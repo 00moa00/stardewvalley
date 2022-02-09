@@ -30,7 +30,7 @@ public:
 	ID3D11Device* device;
 	ID3D11DeviceContext* immediate_context;
 	IDXGISwapChain* swap_chain;
-	ID3D11RenderTargetView* render_targer_view;
+	ID3D11RenderTargetView* render_target_view;
 	ID3D11DepthStencilView* depth_stencil_view;
 
 	framework(HWND hwnd);
