@@ -8,7 +8,7 @@ void SceneTitle::init()
 void SceneTitle::update()
 {
 	timer++;
-	//타이틀에서 게임화면으로 넘어가는 플래그 넣기.
+	//TODO : 타이틀에서 게임화면으로 넘어가는 플래그 넣기.
 }
 
 void SceneTitle::render()
