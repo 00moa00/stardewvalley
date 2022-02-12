@@ -2,7 +2,7 @@
 #include "Obj2d.h"
 #include "Singleton.h"
 
-class Player : public OBJ2D, public Singleton<Player>
+class Player : public OBJ2DManager, public Singleton<Player>
 {
 private:
 	//static const int	OBJ_MAX = 1;

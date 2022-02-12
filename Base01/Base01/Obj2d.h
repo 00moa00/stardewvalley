@@ -22,8 +22,19 @@ public:
 public:
 	OBJ2D();
 
+	void init();
+	void clear();
+	void update();
+	void render();
+};
+
+class OBJ2DManager
+{
+public:
+	virtual OBJ2D* begin() = 0;
+	virtual OBJ2D* end() = 0;
+
 	virtual void init();
-	virtual void release();
 	virtual void update();
 	virtual void render();
 };
