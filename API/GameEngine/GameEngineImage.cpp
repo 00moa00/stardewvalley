@@ -3,6 +3,21 @@
 #include <GameEngineBase/GameEngineWindow.h>
 
 // #pragma comment(lib, "msimg32.lib")
+// 
+//더블 버퍼링 순서
+// 
+//1. 메모리 DC를 만든다.
+//
+//2. 메모리 비트맵을 만든다.
+//
+//3. 메모리 비트맵을 DC에 적용시킨다.(SelectObject)
+//
+//4. 적용시킨 DC에 그림을 그린다.
+//
+//5. 메모리 DC에 있는 데이터를 화면 DC로 복사한다.
+//
+//6. 메모리 비트맵과 메모리 DC를 삭제한다.
+
 
 GameEngineImage::GameEngineImage()
 	: ImageDC_(nullptr)
@@ -11,9 +26,6 @@ GameEngineImage::GameEngineImage()
 
 GameEngineImage::~GameEngineImage() 
 {
-	// window에서 할당해온녀석들은 릭으로 체크가 안되지만
-	// 지워주는게 깔끔하다.
-	// 당연히 윈도우에게 할당해왔으므로 윈도우의 함수를 이용해서 지워야한다.
 
 	if (nullptr != BitMap_)
 	{
