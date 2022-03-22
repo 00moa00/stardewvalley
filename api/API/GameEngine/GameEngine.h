@@ -3,7 +3,8 @@
 #include <string>
 #include <GameEngineBase/GameEngineDebug.h>
 
-
+// 게임엔진이란 게임 그자체의 시작점과 끝점 실행중을 담당하는 녀석이다.
+// 설명 :
 class GameEngineImage;
 class GameEngineLevel;
 class GameEngine
@@ -12,12 +13,13 @@ public:
 	GameEngine();
 	~GameEngine();
 
+	// delete Function
 	GameEngine(const GameEngine& _Other) = delete;
 	GameEngine(GameEngine&& _Other) noexcept = delete;
 	GameEngine& operator=(const GameEngine& _Other) = delete;
 	GameEngine& operator=(GameEngine&& _Other) noexcept = delete;
 
-	static inline GameEngineImage* BackBufferImage() 
+	static inline GameEngineImage* BackBufferImage()
 	{
 		return BackBufferImage_;
 	}
@@ -29,7 +31,7 @@ public:
 	virtual void GameEnd() = 0;
 
 	template<typename GameType>
-	static void Start() 
+	static void Start()
 	{
 		GameEngineDebug::LeakCheckOn();
 
@@ -40,7 +42,7 @@ public:
 		EngineEnd();
 	}
 
-	static GameEngine& GlobalEngine() 
+	static GameEngine& GlobalEngine()
 	{
 		if (nullptr == UserContents_)
 		{
@@ -70,7 +72,6 @@ private:
 	static GameEngineLevel* NextLevel_;
 	static GameEngine* UserContents_;
 
-	//더블 버퍼링
 	static GameEngineImage* WindowMainImage_; // 그려지면 화면에 진짜 나오게 되는 이미지
 	static GameEngineImage* BackBufferImage_; // 깜빡임을 해결하려고 버퍼로 사용하는 이미지
 

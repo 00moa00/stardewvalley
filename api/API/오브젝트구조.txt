@@ -1,0 +1,15 @@
+1. 선생님은 게임을 이렇게 해석할겁니다.
+
+3. 각 화면이 존재하고 화면 전체가 전환된다는 개념
+   타이틀화면 플레이화면 엔딩 
+   => GameEngineLevel 이라고 
+
+4. GameEngineLevel에서 화면에 위치가 존재해야 하는 하는 녀석들을
+   주인공 캐릭터, hp바 몬스터 ui도 actor
+   => GameEngineActor 
+
+5. Level은 GameEngine이관리해줍니다. Level만들거나 전환하거나 하는 기능들을은 
+   ex) 타이틀화면에서 => 플레이화면에서
+   // GameEngine이 지원합니다.
+
+6. Actor는 Level이 관리합니다. Level 주인공 만들어야지 뭐등등의 일을 

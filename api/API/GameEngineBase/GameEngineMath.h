@@ -1,11 +1,14 @@
 #pragma once
 
+// Ό³Έν :
 class GameEngineMath
 {
 private:
+	// constrcuter destructer
 	GameEngineMath();
 	~GameEngineMath();
 
+	// delete Function
 	GameEngineMath(const GameEngineMath& _Other) = delete;
 	GameEngineMath(GameEngineMath&& _Other) noexcept = delete;
 	GameEngineMath& operator=(const GameEngineMath& _Other) = delete;
@@ -17,7 +20,7 @@ private:
 
 };
 
-class float4 
+class float4
 {
 public:
 	float x;
@@ -69,11 +72,21 @@ public:
 
 	float4 Half() const
 	{
-		return {x * 0.5f, y * 0.5f , z * 0.5f, 1.0f};
+		return { x * 0.5f, y * 0.5f , z * 0.5f, 1.0f };
+	}
+
+	float4 operator-(const float4& _Other) const
+	{
+		return { x - _Other.x, y - _Other.y, z - _Other.z, 1.0f };
+	}
+
+	float4 operator+(const float4& _Other) const
+	{
+		return { x + _Other.x, y + _Other.y, z + _Other.z, 1.0f };
 	}
 
 public:
-	float4() 
+	float4()
 		: x(0.0f), y(0.0f), z(0.0f), w(1.0f)
 	{
 
@@ -104,7 +117,7 @@ public:
 	float4 Scale;
 
 public:
-	int CenterLeft() 
+	int CenterLeft()
 	{
 		return Pos.ix() - Scale.hix();
 	}

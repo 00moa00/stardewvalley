@@ -159,6 +159,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineEnum.h" />
     <ClInclude Include="GameEngineImage.h">
       <SubType>
       </SubType>
@@ -171,6 +172,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineRenderer.h" />
     <ClInclude Include="GameEngineSound.h">
       <SubType>
       </SubType>
@@ -197,6 +199,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineRenderer.cpp" />
     <ClCompile Include="GameEngineSound.cpp">
       <SubType>
       </SubType>

@@ -15,31 +15,31 @@ HDC GameEngine::BackBufferDC()
     return BackBufferImage_->ImageDC();
 }
 
-GameEngine::GameEngine() 
+GameEngine::GameEngine()
 {
 }
 
-GameEngine::~GameEngine() 
-{
-
-}
-
-void GameEngine::GameInit() 
+GameEngine::~GameEngine()
 {
 
 }
 
-void GameEngine::GameLoop() 
+void GameEngine::GameInit()
 {
 
 }
 
-void GameEngine::GameEnd() 
+void GameEngine::GameLoop()
 {
 
 }
 
-void GameEngine::WindowCreate() 
+void GameEngine::GameEnd()
+{
+
+}
+
+void GameEngine::WindowCreate()
 {
     GameEngineWindow::GetInst().CreateGameWindow(nullptr, "GameWindow");
     GameEngineWindow::GetInst().ShowGameWindow();
@@ -56,12 +56,13 @@ void GameEngine::EngineInit()
     BackBufferImage_ = GameEngineImageManager::GetInst()->Create("BackBuffer", GameEngineWindow::GetScale());
 
 }
-void GameEngine::EngineLoop() 
+void GameEngine::EngineLoop()
 {
-    // 엔진수준에서 매 프레임마다 체크
+    // 엔진수준에서 매 프레임마다 체크하고 싶은거
     UserContents_->GameLoop();
 
-    // 시점함수
+    // 시점함수라고 하는데
+    // 어느 시점
     if (nullptr != NextLevel_)
     {
         if (nullptr != CurrentLevel_)
@@ -85,15 +86,17 @@ void GameEngine::EngineLoop()
     }
 
 
-
+    // 레벨수준 시간제한이 있는 게임이라면
+    // 매 프레임마다 시간을 체크해야하는데 그런일을 
     CurrentLevel_->Update();
     CurrentLevel_->ActorUpdate();
     CurrentLevel_->ActorRender();
+
     WindowMainImage_->BitCopy(BackBufferImage_);
 
 }
 
-void GameEngine::EngineEnd() 
+void GameEngine::EngineEnd()
 {
     UserContents_->GameEnd();
 

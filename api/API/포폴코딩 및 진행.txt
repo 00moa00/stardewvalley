@@ -1,0 +1,44 @@
+0. 리소스 git
+0. 프로젝트 git 
+   을 스프레드시트에 올려서 선생님이 볼수 있게 한다.
+   이미 되어있어야 합니다.
+
+1. 나는 별의 커비를 만들것이다.
+   나는 어떤 화면을 만들거지
+
+   Global
+
+   GlobalPlay
+
+   인트로                   GameEngineLevel
+   MainMenu                GameEngineLevel
+
+   
+   인트로플레이 레벨 0      GameEngineLevel
+   플레이 레벨 1
+   플레이 레벨 2
+   플레이 레벨 3
+   플레이 레벨 4* 보너스 스테이지
+   플레이 레벨 5 보스스테이지
+
+           GlobalPlay
+            커비			          GameEngineActor
+                  빨아들여서 몬스터를 먹는기능.
+                  슬라이딩
+                  나는기능
+                  숨을 들이마쉬었다가 뱉는데 그게 데미지가 있는것 같다.
+
+            PlayBotUI			  GameEngineActor
+            Ground    			  GameEngineActor
+            BackGround			  GameEngineActor
+
+           Monster
+            MonsterType1    	  GameEngineActor
+
+           Item
+   Ending
+
+
+   진짜 하게 될일
+   1. 해상도
+   2. 

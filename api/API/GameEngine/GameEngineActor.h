@@ -1,16 +1,23 @@
 #pragma once
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineMath.h>
+#include "GameEngineEnum.h"
+#include <list>
 
+// 설명 :
+class GameEngineRenderer;
 class GameEngineLevel;
 class GameEngineActor : public GameEngineNameObject
 {
+	//// ActorBase
 public:
 	friend GameEngineLevel;
 
+	// constrcuter destructer
 	GameEngineActor();
 	virtual ~GameEngineActor();
 
+	// delete Function
 	GameEngineActor(const GameEngineActor& _Other) = delete;
 	GameEngineActor(GameEngineActor&& _Other) noexcept = delete;
 	GameEngineActor& operator=(const GameEngineActor& _Other) = delete;
@@ -50,12 +57,21 @@ private:
 	float4 Position_;
 	float4 Scale_;
 
-	// 레벨
+	// 나를 만들어준 레벨이야.
 	inline void SetLevel(GameEngineLevel* _Level)
 	{
 		Level_ = _Level;
 	}
 
 
+	/////////////////////////////////////////////////// Render
+public:
+	// 벡터의 값
+	// 가장 빠를겁니다.
+	// 디폴트 인자는 선언에서만 지정 가능합니다.
+	GameEngineRenderer* CreateRenderer(const std::string& _Image, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
+
+private:
+	std::list<GameEngineRenderer*> RenderList_;
 };
 
