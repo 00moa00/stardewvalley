@@ -17,8 +17,8 @@ void Player::Start()
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale({ 100, 100 });
 
-	//CreateRenderer("Bouncer.bmp");
-	 CreateRenderer("Bouncer.bmp", RenderPivot::CENTER, {0, -100});
+	CreateRenderer("Bouncer.bmp");
+	 //CreateRenderer("Bouncer.bmp", RenderPivot::CENTER, {0, -100});
 }
 
 // 랜더러가 다 돌아가고 랜더링이 됩니다.

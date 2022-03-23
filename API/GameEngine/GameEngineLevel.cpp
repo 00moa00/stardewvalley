@@ -1,11 +1,11 @@
 #include "GameEngineLevel.h"
 #include "GameEngineActor.h"
 
-GameEngineLevel::GameEngineLevel() 
+GameEngineLevel::GameEngineLevel()
 {
 }
 
-GameEngineLevel::~GameEngineLevel() 
+GameEngineLevel::~GameEngineLevel()
 {
 	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart = AllActor_.begin();
 	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd = AllActor_.end();

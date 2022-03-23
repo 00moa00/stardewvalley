@@ -12,12 +12,12 @@ private:
 	static GameEngineImageManager* Inst_;
 
 public:
-	static GameEngineImageManager* GetInst() 
+	static GameEngineImageManager* GetInst()
 	{
 		return Inst_;
 	}
 
-	static void Destroy() 
+	static void Destroy()
 	{
 		if (nullptr == Inst_)
 		{

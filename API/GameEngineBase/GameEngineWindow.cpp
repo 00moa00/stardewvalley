@@ -1,10 +1,13 @@
 #include "GameEngineWindow.h"
 
 
-// HWND hWnd 어떤 윈도우에 무슨일이 생겼는지 그 윈도우의 핸들
-// UINT message 그 메세지의 중료가 뭔지.
-// WPARAM wParam
-// LPARAM lParam
+// 더블버퍼링 과정
+// 1. 메모리 DC를 만든다.
+// 2. 메모리 비트맵을 만든다.
+// 3. 메모리 비트맵을 DC에 적용시킨다.
+// 4. 적용시킨 DC에 그림을 그린다.
+// 5. 메모리 DC에 있는 데이터를 화면 DC로 복사한다.
+// 6. 메모리 비트맵과 메모리 DC를 삭제한다.
 
 LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -141,7 +144,7 @@ void GameEngineWindow::MessageLoop(void(*_InitFunction)(), void(*_LoopFunction)(
     {
         if (0 != PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg); //달된 메시지가 WM_KEYDOWN인지와 눌려진 키가 문자키인지 검사해 보고 조건이 맞을 경우 WM_CHAR 메시지를 만들어 메시지 큐에 덧붙이는 역할을 한다
+            TranslateMessage(&msg); // 메시지가 WM_KEYDOWN인지와 눌려진 키가 문자키인지 검사해 보고 조건이 맞을 경우 WM_CHAR 메시지를 만들어 메시지 큐에 덧붙이는 역할을 한다
             DispatchMessage(&msg);  //읽은 메세지를 윈도우 프로시저(MessageProcess)로 발송, 처리하는 역할을 한다. (Dispatch)
         }
 

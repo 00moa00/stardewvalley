@@ -1,14 +1,15 @@
 #include "GameEngineImageManager.h"
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineString.h>
+#include <GameEngineBase/GameEnginePath.h>
 
 GameEngineImageManager* GameEngineImageManager::Inst_ = new GameEngineImageManager();
 
-GameEngineImageManager::GameEngineImageManager() 
+GameEngineImageManager::GameEngineImageManager()
 {
 }
 
-GameEngineImageManager::~GameEngineImageManager() 
+GameEngineImageManager::~GameEngineImageManager()
 {
 	std::map<std::string, GameEngineImage*>::iterator StartIter = AllRes.begin();
 	std::map<std::string, GameEngineImage*>::iterator EndIter = AllRes.end();
@@ -38,7 +39,7 @@ GameEngineImage* GameEngineImageManager::Find(const std::string& _Name)
 	return FindIter->second;
 }
 
-GameEngineImage* GameEngineImageManager::Create(const std::string& _Name, HDC _DC) 
+GameEngineImage* GameEngineImageManager::Create(const std::string& _Name, HDC _DC)
 {
 	std::string EngineName = GameEngineString::ToUpperReturn(_Name);
 
@@ -89,16 +90,12 @@ GameEngineImage* GameEngineImageManager::Create(const std::string& _Name, const 
 
 GameEngineImage* GameEngineImageManager::Load(const std::string& _Path)
 {
-	// 무시
-	// Create();
-
-	return nullptr;
+	GameEnginePath NewPath = GameEnginePath(_Path);
+	return Load(_Path, NewPath.GetFileName());
 }
 
 GameEngineImage* GameEngineImageManager::Load(const std::string& _Path, const std::string& _Name)
 {
-
-	//찾기 편하도록 대문자로 변환
 	std::string EngineName = GameEngineString::ToUpperReturn(_Name);
 	if (AllRes.end() != AllRes.find(EngineName))
 	{

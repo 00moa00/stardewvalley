@@ -28,7 +28,7 @@ public:
 		RenderPivot_ = _Pos;
 	}
 
-	inline void SetType(const RenderPivot& _Type) 
+	inline void SetType(const RenderPivot& _Type)
 	{
 		PivotType_ = _Type;
 	}
@@ -37,6 +37,16 @@ public:
 	{
 		ScaleMode_ = _Mode;
 	}
+
+	void SetImageScale();
+
+	inline void SetScale(const float4& _Scale)
+	{
+		ScaleMode_ = RenderScaleMode::User;
+		RenderScale_ = _Scale;
+	}
+
+
 
 
 	void SetImage(const std::string& _Name);

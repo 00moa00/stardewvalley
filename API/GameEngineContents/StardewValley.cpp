@@ -3,7 +3,11 @@
 #include "EndingLevel.h"
 #include "TitleLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEngineBase/GameEngineFile.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <vector>
+
 
 StardewValley::StardewValley() 
 {
@@ -17,9 +21,24 @@ void StardewValley::GameInit()
 {
 	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, {1280, 720});
 
-	// 리소스를 다 로드하지 못하는 상황이 올수가 없다.
+	// 현재 디렉토리
+	GameEngineDirectory ResourcesDir;
+	ResourcesDir.MoveParent("API");
+	ResourcesDir.MoveParent("portfolio");
+	ResourcesDir.Move("APIResource");
+	ResourcesDir.Move("sprite");
+	ResourcesDir.Move("bmp");
+	ResourcesDir.Move("CharacterAPI");
 
-	GameEngineImageManager::GetInst()->Load("D:\\portfolio\\APIResource\\sprite\\bmp\\CharacterAPI\\Bouncer.bmp", "Bouncer.bmp");
+	// 폴더안에 모든 이미지 파일을 찾는다.
+	std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+	for (size_t i = 0; i < AllImageFileList.size(); i++)
+	{
+		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+	}
+
+	//GameEngineImageManager::GetInst()->Load("D:\\portfolio\\APIResource\\sprite\\bmp\\CharacterAPI\\Bouncer.bmp", "Bouncer.bmp");
 	//GameEngineImageManager::GetInst()->Load("D:\\Project\\AR40\\API\\Resources\\Image\\HPBAR.Bmp", "HPBAR.Bmp");
 
 
