@@ -30,7 +30,7 @@ public:
 
 	GameEngineImage* Find(const std::string& _Name);
 
-	// 내가 비어있는 이미지를 만드는 기능이다.
+
 	GameEngineImage* Create(const std::string& _Name, const float4& _Scale);
 	GameEngineImage* Create(const std::string& _Name, HDC _DC);
 

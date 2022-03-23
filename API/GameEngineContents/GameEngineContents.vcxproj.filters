@@ -59,6 +59,9 @@
     <ClInclude Include="Player.h">
       <Filter>Play\Global</Filter>
     </ClInclude>
+    <ClInclude Include="IntroLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">

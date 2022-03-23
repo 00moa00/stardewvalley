@@ -163,6 +163,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BotUI.h" />
+    <ClInclude Include="IntroLevel.h" />
     <ClInclude Include="Monster.h">
       <SubType>
       </SubType>

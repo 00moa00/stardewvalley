@@ -16,9 +16,12 @@ void TitleLogo::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale({500, 500});
+
+
 }
 
 void TitleLogo::Render() 
 {
-	DebugRectRender();
+	//DebugRectRender();
+
 }

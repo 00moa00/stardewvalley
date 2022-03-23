@@ -67,7 +67,6 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _
 
 	std::vector<GameEngineFile> Return;
 
-	\
 	for (const std::filesystem::directory_entry& Entry : DirIter)
 	{
 		if (true == Entry.is_directory())
