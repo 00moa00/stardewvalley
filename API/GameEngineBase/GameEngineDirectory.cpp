@@ -58,6 +58,7 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _
 
 	if (Ext != "")
 	{
+		//대문자 변환 : 실수방지
 		GameEngineString::ToUpper(Ext);
 		if (std::string::npos == Ext.find("."))
 		{

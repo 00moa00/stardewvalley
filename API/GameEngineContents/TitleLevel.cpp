@@ -27,12 +27,17 @@ void TitleLevel::Loading()
 	//
 	//CreateActor<TitleLogo>("TitleLogo", 1);
 
+
+	CreateActor<TitleBackGround>(0);
+
+	CreateActor<TitleLogo>(1);
+
 }
 
 void TitleLevel::Update()
 {
 	// GameEngine::GlobalEngine().ChangeLevel("Play");
 
-	CreateActor<TitleBackGround>("TitleBackGround", (int)ORDER::TitleBackGround);
+	//CreateActor<TitleBackGround>("TitleBackGround", (int)ORDER::TitleBackGround);
 
 }

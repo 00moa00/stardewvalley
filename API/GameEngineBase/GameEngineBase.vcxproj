@@ -155,6 +155,7 @@
     </ClInclude>
     <ClInclude Include="GameEngineDirectory.h" />
     <ClInclude Include="GameEngineFile.h" />
+    <ClInclude Include="GameEngineInput.h" />
     <ClInclude Include="GameEngineMath.h">
       <SubType>
       </SubType>
@@ -168,6 +169,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineTime.h" />
+    <ClInclude Include="GameEngineUpdateObject.h" />
     <ClInclude Include="GameEngineWindow.h">
       <SubType>
       </SubType>
@@ -180,6 +183,7 @@
     </ClCompile>
     <ClCompile Include="GameEngineDirectory.cpp" />
     <ClCompile Include="GameEngineFile.cpp" />
+    <ClCompile Include="GameEngineInput.cpp" />
     <ClCompile Include="GameEngineMath.cpp">
       <SubType>
       </SubType>
@@ -193,6 +197,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineTime.cpp" />
+    <ClCompile Include="GameEngineUpdateObjet.cpp" />
     <ClCompile Include="GameEngineWindow.cpp">
       <SubType>
       </SubType>

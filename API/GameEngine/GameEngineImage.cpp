@@ -75,10 +75,8 @@ bool GameEngineImage::Create(float4 _Scale)
 
 	OldBitMap_ = (HBITMAP)SelectObject(ImageDC_, BitMap_);
 
-
 	ImageScaleCheck();
 
-	return true;
 }
 
 bool GameEngineImage::Load(const std::string& _Path) 
@@ -124,22 +122,22 @@ void GameEngineImage::ImageScaleCheck()
 	GetObject(CurrentBitMap, sizeof(BITMAP), &Info_);
 }
 
-void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos) 
+void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos)
 {
 	BitCopy(_Other, _CopyPos, _Other->GetScale(), float4{ 0, 0 });
 }
 
-void GameEngineImage::BitCopyCenter(GameEngineImage* _Other, const float4& _CopyPos) 
+void GameEngineImage::BitCopyCenter(GameEngineImage* _Other, const float4& _CopyPos)
 {
 	BitCopy(_Other, _CopyPos - _Other->GetScale().Half(), _Other->GetScale(), float4{ 0, 0 });
 }
 
-void GameEngineImage::BitCopyCenterPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot) 
+void GameEngineImage::BitCopyCenterPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot)
 {
 	BitCopy(_Other, _CopyPos - _Other->GetScale().Half() + _CopyPivot, _Other->GetScale(), float4{ 0, 0 });
 }
 
-void GameEngineImage::BitCopyBot(GameEngineImage* _Other, const float4& _CopyPos) 
+void GameEngineImage::BitCopyBot(GameEngineImage* _Other, const float4& _CopyPos)
 {
 	float4 ImagePivot = _Other->GetScale().Half();
 	ImagePivot.y = _Other->GetScale().y;
@@ -155,16 +153,14 @@ void GameEngineImage::BitCopyBotPivot(GameEngineImage* _Other, const float4& _Co
 	BitCopy(_Other, _CopyPos - ImagePivot + _CopyPivot, _Other->GetScale(), float4{ 0, 0 });
 }
 
-void GameEngineImage::BitCopy(GameEngineImage* _Other) 
+void GameEngineImage::BitCopy(GameEngineImage* _Other)
 {
-	BitCopy(_Other, { 0, 0 }, _Other->GetScale() , { 0, 0 });
+	BitCopy(_Other, { 0, 0 }, _Other->GetScale(), { 0, 0 });
 }
 
 // 다른 이미지가 들어와서
 void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyScale, const float4& _OtherPivot)
 {
-
-	//
 	// 윈도우에서 지원해주는 일반적인 dc vs dc의 복사함수입니다.
 	BitBlt(
 		ImageDC_, // 여기에 복사해라.
@@ -181,23 +177,16 @@ void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos, c
 
 //////////////////////////////////////////////////////////////////////// Trans
 
-void GameEngineImage::TransCopyCenterScale(GameEngineImage* _Other, const float4& _CopyPos, const float4& _RenderScale, unsigned int _TransColor)
-{
-	TransCopy(_Other, _CopyPos - _RenderScale.Half(), _RenderScale, float4{ 0, 0 }, _Other->GetScale(), _TransColor);
-}
-
-void GameEngineImage::TransCopyCenter(GameEngineImage* _Other, const float4& _CopyPos, unsigned int _TransColor)
-{
-	TransCopy(_Other, _CopyPos - _Other->GetScale().Half(), _Other->GetScale(), float4{ 0, 0 }, _Other->GetScale(), _TransColor);
-}
 
 // 다른 이미지가 들어와서
 void GameEngineImage::TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
 	const float4& _CopyScale,
 	const float4& _OtherPivot, const float4& _OtherScale, unsigned int _TransColor)
 {
-	// 이미지의 특정 색을 투명하게 적용시켜 화면에 출력해주는 함수
-	//BitBlt함수와는 다르게 이미지의 크기를 변경할 수 있다.
+	// TransCopy(_Other, _CopyPos - _RenderScale.Half(), _RenderScale, _RenderPivot, _Other->GetScale(), _TransColor);
+
+
+	// 윈도우에서 지원해주는 일반적인 dc vs dc의 복사함수입니다.
 	TransparentBlt(
 		ImageDC_, // 여기에 복사해라.
 		_CopyPos.ix(), // 내 이미지의 이 부분 x
@@ -211,4 +200,30 @@ void GameEngineImage::TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
 		_OtherScale.iy(),// 복사하려는 대상의 시작점Y
 		_TransColor // 복사하라는 명령
 	);
+}
+
+void GameEngineImage::Cut(const float4& _CutSize)
+{
+	if (0 != (GetScale().ix() % _CutSize.ix()))
+	{
+		MsgBoxAssert("자를수 있는 수치가 딱 맞아떨어지지 않습니다.");
+	}
+
+	if (0 != (GetScale().iy() % _CutSize.iy()))
+	{
+		MsgBoxAssert("자를수 있는 수치가 딱 맞아떨어지지 않습니다.");
+	}
+
+	int XCount = GetScale().ix() / _CutSize.ix();
+	int YCount = GetScale().iy() / _CutSize.iy();
+
+	for (int y = 0; y < YCount; y++)
+	{
+		for (int x = 0; x < XCount; x++)
+		{
+			CutPivot_.push_back({ static_cast<float>(x * _CutSize.ix()), static_cast<float>(y * _CutSize.iy()) });
+			CutScale_.push_back(_CutSize);
+		}
+	}
+
 }

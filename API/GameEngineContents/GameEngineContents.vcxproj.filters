@@ -12,7 +12,7 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
-      <Filter>Title</Filter>
+      <Filter>Play\Title</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>Play</Filter>
@@ -21,7 +21,7 @@
       <Filter>Ending</Filter>
     </ClCompile>
     <ClCompile Include="TitleBackGround.cpp">
-      <Filter>Title</Filter>
+      <Filter>Play\Title</Filter>
     </ClCompile>
     <ClCompile Include="BotUI.cpp">
       <Filter>Play\Global</Filter>
@@ -42,7 +42,7 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <Filter>Title</Filter>
+      <Filter>Play\Title</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>Play</Filter>
@@ -51,7 +51,7 @@
       <Filter>Ending</Filter>
     </ClInclude>
     <ClInclude Include="TitleBackGround.h">
-      <Filter>Title</Filter>
+      <Filter>Play\Title</Filter>
     </ClInclude>
     <ClInclude Include="BotUI.h">
       <Filter>Play\Global</Filter>
@@ -67,9 +67,6 @@
     <Filter Include="Level">
       <UniqueIdentifier>{3fdc01d6-f74f-4c06-8337-fcfead66623d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Title">
-      <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Play">
       <UniqueIdentifier>{2b9a7125-e5c4-4740-931d-18dd34a3f8d4}</UniqueIdentifier>
     </Filter>
@@ -78,6 +75,9 @@
     </Filter>
     <Filter Include="Play\Global">
       <UniqueIdentifier>{d6a178bf-fc85-411e-b93b-0559d30324c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Title">
+      <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

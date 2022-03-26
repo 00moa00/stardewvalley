@@ -38,6 +38,10 @@ void StardewValley::GameInit()
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
 
+	//GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Bouncer.bmp");
+	//GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Bouncer.bmp");
+
+//	Image->Cut({ 256, 256 });
 	//GameEngineImageManager::GetInst()->Load("D:\\portfolio\\APIResource\\sprite\\bmp\\CharacterAPI\\Bouncer.bmp", "Bouncer.bmp");
 	//GameEngineImageManager::GetInst()->Load("D:\\Project\\AR40\\API\\Resources\\Image\\HPBAR.Bmp", "HPBAR.Bmp");
 
@@ -45,7 +49,8 @@ void StardewValley::GameInit()
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
 	CreateLevel<EndingLevel>("Ending");
-	ChangeLevel("Title");
+
+	ChangeLevel("Play");
 }
 
 void StardewValley::GameLoop() 

@@ -2,6 +2,8 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include "GameEngineLevel.h"
 #include "GameEngineImageManager.h"
+#include <GameEngineBase/GameEngineInput.h>
+#include <GameEngineBase/GameEngineTime.h>
 
 std::map<std::string, GameEngineLevel*> GameEngine::AllLevel_;
 GameEngineLevel* GameEngine::CurrentLevel_ = nullptr;
@@ -58,11 +60,12 @@ void GameEngine::EngineInit()
 }
 void GameEngine::EngineLoop() 
 {
+    GameEngineTime::GetInst()->Update();
     // 엔진수준에서 매 프레임마다 체크하고 싶은거
     UserContents_->GameLoop();
 
     // 시점함수라고 하는데
-    // 어느 시점
+       // 어느 시점
     if (nullptr != NextLevel_)
     {
         if (nullptr != CurrentLevel_)
@@ -78,6 +81,7 @@ void GameEngine::EngineLoop()
         }
 
         NextLevel_ = nullptr;
+        GameEngineTime::GetInst()->Reset();
     }
 
     if (nullptr == CurrentLevel_)
@@ -85,6 +89,7 @@ void GameEngine::EngineLoop()
         MsgBoxAssert("Level is nullptr => GameEngine Loop Error");
     }
 
+    GameEngineInput::GetInst()->Update();
 
  
     CurrentLevel_->Update();
@@ -92,6 +97,10 @@ void GameEngine::EngineLoop()
     CurrentLevel_->ActorRender();
 
     WindowMainImage_->BitCopy(BackBufferImage_);
+
+
+    //실시간 삭제
+    CurrentLevel_->ActorRelease();
 
 }
 
@@ -113,7 +122,8 @@ void GameEngine::EngineEnd()
 
 
     GameEngineImageManager::Destroy();
-
+    GameEngineInput::Destroy();
+    GameEngineTime::Destroy();
     GameEngineWindow::Destroy();
 }
 

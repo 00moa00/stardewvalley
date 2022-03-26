@@ -20,8 +20,14 @@ private:
 
 };
 
-class float4 
+class float4
 {
+public:
+	static float4 LEFT;
+	static float4 RIGHT;
+	static float4 UP;
+	static float4 DOWN;
+
 public:
 	float x;
 	float y;
@@ -72,7 +78,7 @@ public:
 
 	float4 Half() const
 	{
-		return {x * 0.5f, y * 0.5f , z * 0.5f, 1.0f};
+		return { x * 0.5f, y * 0.5f , z * 0.5f, 1.0f };
 	}
 
 	float4 operator-(const float4& _Other) const
@@ -85,8 +91,24 @@ public:
 		return { x + _Other.x, y + _Other.y, z + _Other.z, 1.0f };
 	}
 
+	float4 operator*(const float _Value) const
+	{
+		return { x * _Value, y * _Value, z * _Value, 1.0f };
+	}
+
+
+	float4& operator+=(const float4& _Other)
+	{
+		x += _Other.x;
+		y += _Other.y;
+		z += _Other.z;
+
+		return *this;
+	}
+
+
 public:
-	float4() 
+	float4()
 		: x(0.0f), y(0.0f), z(0.0f), w(1.0f)
 	{
 
@@ -117,7 +139,7 @@ public:
 	float4 Scale;
 
 public:
-	int CenterLeft() 
+	int CenterLeft()
 	{
 		return Pos.ix() - Scale.hix();
 	}
