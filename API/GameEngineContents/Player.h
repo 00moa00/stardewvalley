@@ -9,6 +9,9 @@ public:
 	Player();
 	~Player();
 
+	float GetEnergy() {
+		return Energy_;
+	}
 	// delete Function
 	Player(const Player& _Other) = delete;
 	Player(Player&& _Other) noexcept = delete;
@@ -18,7 +21,12 @@ public:
 protected:
 
 private:
+
+
+
 	float Speed_;
+	float Energy_;
+
 
 	void Start() override;
 	void Update() override;

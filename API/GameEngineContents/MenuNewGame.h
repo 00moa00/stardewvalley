@@ -21,7 +21,7 @@ public:
 		return isClick_;
 	}
 
-	void SetIsSClick(const bool b) {
+	void SetIsClick(const bool b) {
 
 		isClick_ = b;
 

@@ -32,19 +32,12 @@ void TitleLevel::Loading()
 	TitleLogo_ = CreateActor<TitleLogo>(1);
 
 
-	//if (false == GameEngineInput::GetInst()->IsKey("ArrowLeft"))
-	//{
-	//	GameEngineInput::GetInst()->CreateKey("ArrowLeft", VK_LEFT);
-	//	GameEngineInput::GetInst()->CreateKey("Arrowright", VK_RIGHT);
-	//	GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
-	//	GameEngineInput::GetInst()->CreateKey("Esc", VK_ESCAPE);
-	//}
 	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
 	{
 		// 이때 대문자여야 합니다.
 		GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
 		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
-		//GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
+		GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
 
 		// VK_LBUTTON;
 	}
@@ -79,21 +72,26 @@ void TitleLevel::Update()
 		break;
 
 	case KEYBOARD::MenuNewGame :
-		MenuNewGame_->SetIsSClick(true);
-		MenuLoad_->SetIsSClick(false);
-		MenuExit_->SetIsSClick(false);
+
+		MenuNewGame_->SetIsClick(true);
+		MenuLoad_->SetIsClick(false);
+		MenuExit_->SetIsClick(false);
+
+
 		break;
 
 	case KEYBOARD::MenuLoad :
-		MenuNewGame_->SetIsSClick(false);
-		MenuLoad_->SetIsSClick(true);
-		MenuExit_->SetIsSClick(false);
+
+		MenuNewGame_->SetIsClick(false);
+		MenuLoad_->SetIsClick(true);
+		MenuExit_->SetIsClick(false);
 		break;
 
 	case KEYBOARD::MenuExit :
-		MenuNewGame_->SetIsSClick(false);
-		MenuLoad_->SetIsSClick(false);
-		MenuExit_->SetIsSClick(true);
+
+		MenuNewGame_->SetIsClick(false);
+		MenuLoad_->SetIsClick(false);
+		MenuExit_->SetIsClick(true);
 		break;
 
 

@@ -164,6 +164,10 @@
     </ClInclude>
     <ClInclude Include="BotUI.h" />
     <ClInclude Include="IntroLevel.h" />
+    <ClInclude Include="MainUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MenuExit.h">
       <SubType>
       </SubType>
@@ -177,6 +181,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerEnergyFrame.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerEnergyBar.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -213,6 +225,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BotUI.cpp" />
+    <ClCompile Include="MainUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MenuExit.cpp">
       <SubType>
       </SubType>
@@ -226,6 +242,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Player.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerEnergyFrame.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerEnergyBar.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -2,10 +2,13 @@
 #include "PlayLevel.h"
 #include "EndingLevel.h"
 #include "TitleLevel.h"
+
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <GameEngineBase/GameEngineInput.h>
+
 #include <vector>
 
 
@@ -46,7 +49,6 @@ void StardewValley::GameInit()
 	TitleImage->Cut({ 400, 187 }, { 0,0 }); //0
 
 
-
 	for (int j = 0; j < 2; j++) {
 		for (int i = 0; i < 4; i++) {
 			if (i == 2) continue; // Çùµ¿ÇÃ·¹ÀÌ ¹öÆ° ½ºÅµ
@@ -58,7 +60,9 @@ void StardewValley::GameInit()
 	CreateLevel<PlayLevel>("Play");
 	CreateLevel<EndingLevel>("Ending");
 
-	ChangeLevel("Title");
+	ChangeLevel("Play");
+
+
 }
 
 void StardewValley::GameLoop() 

@@ -21,7 +21,7 @@ protected:
 	void Update() override;
 private:
 	float Speed_;
-
+	float4 ScaleSpeed_;
 	GameEngineRenderer* Logo_;
 
 };

@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngineBase/GameEngineInput.h>
 
 #include <GameEngine/GameEngineLevel.h>
 
@@ -17,7 +18,8 @@ GameEngineLevel* MenuExit_ = nullptr;
 
 TitleLogo::TitleLogo()
 	:	Speed_(50.0f),
-		Logo_(nullptr)
+		Logo_(nullptr),
+		ScaleSpeed_({0.0f,0.0f})
 {
 }
 
@@ -29,23 +31,16 @@ TitleLogo::~TitleLogo()
 
 void TitleLogo::Start() 
 {
-	SetPosition({ GameEngineWindow::GetScale().Half().x,0 });
-
-
-	GameEngineRenderer* Logo_;
-
+	SetPosition({ GameEngineWindow::GetScale().Half().x, 0 });
 
 	Logo_ = CreateRenderer("TitleButtons.ko-KR.bmp");
-	Logo_->SetScale({ 420, 207 }); 	//400, 187  로고 원본 크기
 	Logo_->SetIndex(0);
-
+	//Logo_->SetScale({ 500, 500 }); 	//400, 187  로고 원본 크기
 
 }
 
 void TitleLogo::Render() 
 {
-	//DebugRectRender();
-
 }
 
 void TitleLogo::Update()
@@ -54,8 +49,14 @@ void TitleLogo::Update()
 
 	if (GetPosition().y >= GameEngineWindow::GetScale().Half().y - 100.f) {
 		Speed_ = 0.0f;
+	}
+
+	if (true == GameEngineInput::GetInst()->IsDown("Enter")) {
+
+		SetPosition({ GameEngineWindow::GetScale().Half().x,GameEngineWindow::GetScale().Half().y - 100.f });
 
 	}
+
 
 	
 }

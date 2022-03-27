@@ -12,7 +12,8 @@
 
 
 Player::Player()
-	: Speed_(100.0f)
+	:	Speed_(100.0f),
+		Energy_(0.f)
 {
 }
 
@@ -24,27 +25,25 @@ Player::~Player()
 void Player::Start() 
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-	SetScale({ 100, 100 });
 
 	CreateRenderer("Bouncer.bmp");
-
 
 
 	//GameEngineRenderer* Render = CreateRenderer("Bouncer.bmp");
 	//Render->SetIndex(0);
 
-	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
+	if (false == GameEngineInput::GetInst()->IsKey("MoveUp"))
 	{
-		// 이때 대문자여야 합니다.
-		GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
-		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
+		//GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
+		//GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
 		GameEngineInput::GetInst()->CreateKey("MoveUp", 'W');
 		GameEngineInput::GetInst()->CreateKey("MoveDown", 'S');
-		GameEngineInput::GetInst()->CreateKey("Jump", VK_LSHIFT);
-		GameEngineInput::GetInst()->CreateKey("Fire", VK_SPACE);
+
 		// VK_LBUTTON;
 	}
 	 //CreateRenderer("Bouncer.bmp", RenderPivot::CENTER, {0, -100});
+
+	Energy_ = (42.f * 1.8f);
 }
 
 void Player::Update()
@@ -53,21 +52,27 @@ void Player::Update()
 	{
 		// 1.0F * 0.001101F
 		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
+		Energy_ -= 3.0f* GameEngineTime::GetDeltaTime();
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
 		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
+		Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
+
 	}
 
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
 	{
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
+		Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
 	{
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
+		Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
+
 	}
 
 	//if (true == GameEngineInput::GetInst()->IsDown("Fire"))

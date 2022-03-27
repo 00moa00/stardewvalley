@@ -41,6 +41,15 @@
     <ClCompile Include="MenuNewGame.cpp">
       <Filter>Play\Title\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerEnergyFrame.cpp">
+      <Filter>Play\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="MainUI.cpp">
+      <Filter>Play\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerEnergyBar.cpp">
+      <Filter>Play\Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -85,6 +94,15 @@
     </ClInclude>
     <ClInclude Include="MenuNewGame.h">
       <Filter>Play\Title\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerEnergyFrame.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="MainUI.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerEnergyBar.h">
+      <Filter>Play\Global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

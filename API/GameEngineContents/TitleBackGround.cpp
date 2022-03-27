@@ -18,7 +18,6 @@ void TitleBackGround::Start()
 	SetScale(GameEngineWindow::GetScale());
 
 	//CreateRenderer("titleback.bmp");
-
 	CreateRenderer("titleback2.bmp");
 
 
@@ -30,6 +29,4 @@ void TitleBackGround::Start()
 void TitleBackGround::Render() 
 {
 
-
-	//DebugRectRender();
 }

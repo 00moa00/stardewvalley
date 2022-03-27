@@ -20,7 +20,7 @@ public:
 		return isClick_;
 	}
 
-	void SetIsSClick(bool b) {
+	void SetIsClick(const bool b) {
 
 		isClick_ = b;
 

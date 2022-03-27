@@ -1,5 +1,8 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
+#include "Player.h"
+#include "PlayerEnergyBar.h"
+#include "PlayerEnergyFrame.h"
 
 // Ό³Έν :
 class PlayLevel : public GameEngineLevel
@@ -20,5 +23,7 @@ protected:
 	void Update() override;
 	void LevelChangeStart() override;
 private:
-
+	Player* Player_;
+	PlayerEnergyBar* PlayerEnergyBar_;
+	PlayerEnergyFrame* PlayerEnergyFrame_;
 };

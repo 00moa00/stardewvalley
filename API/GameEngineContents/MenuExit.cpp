@@ -25,7 +25,6 @@ void MenuExit::Start()
 	MenuExit_ = CreateRenderer("TitleButtons.ko-KR.bmp");
 	MenuExit_->SetIndex(static_cast<size_t>(MENU::MenuExit));
 
-
 }
 
 void MenuExit::Render()
