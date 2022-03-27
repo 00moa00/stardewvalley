@@ -19,7 +19,7 @@ MenuExit::~MenuExit()
 
 void MenuExit::Start()
 {
-	SetPosition( { GameEngineWindow::GetScale().Half().x + 87.f , GameEngineWindow::GetScale().Half().y + 50.f });
+	SetPosition( { GameEngineWindow::GetScale().Half().x + 174.f , GameEngineWindow::GetScale().Half().y + 150.f });
 
 
 	MenuExit_ = CreateRenderer("TitleButtons.ko-KR.bmp");

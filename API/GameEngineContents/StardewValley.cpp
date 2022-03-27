@@ -22,7 +22,7 @@ StardewValley::~StardewValley()
 
 void StardewValley::GameInit() 
 {
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, {960, 540});
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, {1280, 720});
 
 	// 현재 디렉토리
 	GameEngineDirectory ResourcesDir;
@@ -46,13 +46,13 @@ void StardewValley::GameInit()
 	//GameEngineImageManager::GetInst()->Load("D:\\Project\\AR40\\API\\Resources\\Image\\HPBAR.Bmp", "HPBAR.Bmp");
 
 	GameEngineImage* TitleImage = GameEngineImageManager::GetInst()->Find("TitleButtons.ko-KR.bmp");
-	TitleImage->Cut({ 400, 187 }, { 0,0 }); //0
+	//TitleImage->Cut({ 800, 440 }, { 0,0 }); //0
 
 
 	for (int j = 0; j < 2; j++) {
 		for (int i = 0; i < 4; i++) {
 			if (i == 2) continue; // 협동플레이 버튼 스킵
-			TitleImage->Cut({ 74.f, 58.f }, { 74.f * (float)i, 187.f + (58.f * j)});//1 2 3
+			TitleImage->Cut({ 148, 116 }, { 148 * (float)i, 374.f + (116.f * j)});//1 2 3
 		}
 	}
 
@@ -60,7 +60,7 @@ void StardewValley::GameInit()
 	CreateLevel<PlayLevel>("Play");
 	CreateLevel<EndingLevel>("Ending");
 
-	ChangeLevel("Play");
+	ChangeLevel("Title");
 
 
 }

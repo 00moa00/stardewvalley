@@ -21,11 +21,10 @@ MenuNewGame::~MenuNewGame()
 
 void MenuNewGame::Start()
 {
-	SetPosition({ GameEngineWindow::GetScale().Half().x - 87.f,GameEngineWindow::GetScale().Half().y + 50.f});
+	SetPosition({ GameEngineWindow::GetScale().Half().x - 174.f,GameEngineWindow::GetScale().Half().y + 150.f});
 
 	NewGame_ = CreateRenderer("TitleButtons.ko-KR.bmp");
 	NewGame_->SetIndex(static_cast<size_t>(MENU::MenuNewGame));
-	
 }
 
 void MenuNewGame::Render()
@@ -36,12 +35,9 @@ void MenuNewGame::Render()
 
 void MenuNewGame::Update()
 {
-
-
 	if (GetIsClick() == true) {
 		NewGame_->SetIndex(static_cast<size_t>(MENU::ClickMenuNewGame));
 	} else {
 		NewGame_->SetIndex(static_cast<size_t>(MENU::MenuNewGame));
 	}
-
 }

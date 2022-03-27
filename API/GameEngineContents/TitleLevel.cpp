@@ -17,7 +17,8 @@ TitleLevel::TitleLevel()
 		MenuNewGame_(nullptr),
 		isPopup_(false),
 		Timer_(0),
-	CurrentMenu_(KEYBOARD::Wait)
+		KeyFlag_(false),
+		CurrentMenu_(KEYBOARD::Wait)
 {
 }
 
@@ -60,8 +61,16 @@ void TitleLevel::Update()
 		}
 	}
 
-	if (true == GameEngineInput::GetInst()->IsDown("MoveRight") && CurrentMenu_ < KEYBOARD::MAX) ++MoveMenu_;
-	if (true == GameEngineInput::GetInst()->IsDown("MoveLeft") && CurrentMenu_ > KEYBOARD::Wait) --MoveMenu_;
+	if (true == GameEngineInput::GetInst()->IsDown("MoveRight") && CurrentMenu_ < KEYBOARD::MAX) {
+		++MoveMenu_;
+		KeyFlag_ = true;
+	}
+
+	if (true == GameEngineInput::GetInst()->IsDown("MoveLeft") && CurrentMenu_ > KEYBOARD::Wait) {
+		--MoveMenu_;
+		KeyFlag_ = true;
+
+	}
 
 	CurrentMenu_ = static_cast<KEYBOARD>(MoveMenu_);
 
@@ -73,25 +82,36 @@ void TitleLevel::Update()
 
 	case KEYBOARD::MenuNewGame :
 
-		MenuNewGame_->SetIsClick(true);
-		MenuLoad_->SetIsClick(false);
-		MenuExit_->SetIsClick(false);
+		if(KeyFlag_) {
+			MenuNewGame_->SetIsClick(true);
+			MenuLoad_->SetIsClick(false);
+			MenuExit_->SetIsClick(false);
+			KeyFlag_ = false;
+		}
 
 
 		break;
 
 	case KEYBOARD::MenuLoad :
+		if (KeyFlag_) {
 
-		MenuNewGame_->SetIsClick(false);
-		MenuLoad_->SetIsClick(true);
-		MenuExit_->SetIsClick(false);
+			MenuNewGame_->SetIsClick(false);
+			MenuLoad_->SetIsClick(true);
+			MenuExit_->SetIsClick(false);
+			KeyFlag_ = false;
+
+		}
 		break;
 
 	case KEYBOARD::MenuExit :
+		if (KeyFlag_) {
 
-		MenuNewGame_->SetIsClick(false);
-		MenuLoad_->SetIsClick(false);
-		MenuExit_->SetIsClick(true);
+			MenuNewGame_->SetIsClick(false);
+			MenuLoad_->SetIsClick(false);
+			MenuExit_->SetIsClick(true);
+			KeyFlag_ = false;
+
+		}
 		break;
 
 

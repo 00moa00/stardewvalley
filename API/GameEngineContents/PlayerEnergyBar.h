@@ -30,7 +30,6 @@ private:
 
 
 	float4 EnergyBar_;
-	float4 ImageScale_;
 
 	GameEngineRenderer* PlayerEngergyBar_;
 

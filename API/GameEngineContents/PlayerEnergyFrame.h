@@ -22,7 +22,6 @@ protected:
 
 private:
 
-	float4 ImageScale_;
 
 	GameEngineRenderer* PlayerEngergyFrame_;
 

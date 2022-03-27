@@ -17,8 +17,8 @@ void TitleBackGround::Start()
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale(GameEngineWindow::GetScale());
 
-	//CreateRenderer("titleback.bmp");
-	CreateRenderer("titleback2.bmp");
+
+	CreateRenderer("titleback.bmp");
 
 
 

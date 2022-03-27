@@ -8,16 +8,16 @@
 enum class ORDER
 
 {
+	TitleLogo = 0,
 	TitleBackGround,
 	MAX,
 };
 
 enum class MENU
 {
-	TitleLogo = 0,
-	MenuNewGame, //1
-	MenuLoad,	//2
-	MenuExit,	//3
+	MenuNewGame, //0
+	MenuLoad,	//1
+	MenuExit,	//2
 	ClickMenuNewGame,
 	ClickMenuLoad,
 	ClickMenuExit,
@@ -60,6 +60,7 @@ private:
 	MenuExit* MenuExit_;
 
 	bool isPopup_;
+	bool KeyFlag_; //업데이트에서 함수를 한번만 사용하기 위한 플러그
 	int Timer_;
 	unsigned int MoveMenu_;
 	KEYBOARD CurrentMenu_;

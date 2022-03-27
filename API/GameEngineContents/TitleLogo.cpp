@@ -33,9 +33,9 @@ void TitleLogo::Start()
 {
 	SetPosition({ GameEngineWindow::GetScale().Half().x, 0 });
 
-	Logo_ = CreateRenderer("TitleButtons.ko-KR.bmp");
-	Logo_->SetIndex(0);
-	//Logo_->SetScale({ 500, 500 }); 	//400, 187  로고 원본 크기
+	Logo_ = CreateRenderer("logo.bmp");
+	//Logo_->SetIndex(0);
+	Logo_->SetScale({ 600, 330 }); 	//800, 440  로고 원본 크기
 
 }
 

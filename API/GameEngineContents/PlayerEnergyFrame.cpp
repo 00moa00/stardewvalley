@@ -10,8 +10,7 @@
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 
 PlayerEnergyFrame::PlayerEnergyFrame() 
-	:	PlayerEngergyFrame_(nullptr),
-		ImageScale_({ 0.f , 0.f})
+	:	PlayerEngergyFrame_(nullptr)
 
 {
 }
@@ -24,11 +23,9 @@ PlayerEnergyFrame::~PlayerEnergyFrame()
 
 void PlayerEnergyFrame::Start()
 {
-	ImageScale_ = { 1.8f ,1.8f };
-	SetPosition({GameEngineWindow::GetScale().x - 6.f * ImageScale_.x,GameEngineWindow::GetScale().y - 28.f * ImageScale_.y });
+	SetPosition({GameEngineWindow::GetScale().x - 12.f ,GameEngineWindow::GetScale().y - 56.f });
 	//12 56
 	PlayerEngergyFrame_ = CreateRenderer("UIEnergy.bmp");
-	PlayerEngergyFrame_->SetScale({ 12.f * ImageScale_.x, 56.f * ImageScale_.y });
 
 
 }

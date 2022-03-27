@@ -19,7 +19,7 @@ MenuLoad::~MenuLoad()
 
 void MenuLoad::Start()
 {
-	SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y + 50.f });
+	SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y + 150.f });
 
 
 	MenuLoad_ = CreateRenderer("TitleButtons.ko-KR.bmp");

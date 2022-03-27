@@ -19,7 +19,7 @@ public:
 		return isClick_;
 	}
 
-	void SetIsClick(const bool b) {
+	inline void SetIsClick(const bool b) {
 		isClick_ = b;
 
 	}

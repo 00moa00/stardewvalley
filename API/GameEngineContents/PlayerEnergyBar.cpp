@@ -11,8 +11,7 @@
 
 PlayerEnergyBar::PlayerEnergyBar()
 	:
-	PlayerEngergyBar_(nullptr),
-	ImageScale_({ 0.f , 0.f })
+	PlayerEngergyBar_(nullptr)
 {
 }
 
@@ -24,8 +23,7 @@ PlayerEnergyBar::~PlayerEnergyBar()
 
 void PlayerEnergyBar::Start()
 {
-	ImageScale_ = { 1.8f, 1.8f };
-	EnergyBar_ = { 6.f * ImageScale_.x, 42.f * ImageScale_.y };
+	EnergyBar_ = { 12.f , 84.f  };
 
 	SetPosition({ GameEngineWindow::GetScale().x - EnergyBar_.x, GameEngineWindow::GetScale().y - EnergyBar_.y/2 });
 
