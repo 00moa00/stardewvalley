@@ -68,8 +68,8 @@ public:
 
 	void Cut(const float4& _CutScale, const float4& _CutPos)
 	{
-		CutPivot_.push_back(_CutPos);
 		CutScale_.push_back(_CutScale);
+		CutPivot_.push_back(_CutPos);
 	}
 
 protected:

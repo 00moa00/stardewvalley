@@ -19,7 +19,7 @@ StardewValley::~StardewValley()
 
 void StardewValley::GameInit() 
 {
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, {1920, 1080});
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, {960, 540});
 
 	// 현재 디렉토리
 	GameEngineDirectory ResourcesDir;
@@ -39,18 +39,26 @@ void StardewValley::GameInit()
 	}
 
 	//GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Bouncer.bmp");
-	//GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Bouncer.bmp");
-
-//	Image->Cut({ 256, 256 });
 	//GameEngineImageManager::GetInst()->Load("D:\\portfolio\\APIResource\\sprite\\bmp\\CharacterAPI\\Bouncer.bmp", "Bouncer.bmp");
 	//GameEngineImageManager::GetInst()->Load("D:\\Project\\AR40\\API\\Resources\\Image\\HPBAR.Bmp", "HPBAR.Bmp");
 
+	GameEngineImage* TitleImage = GameEngineImageManager::GetInst()->Find("TitleButtons.ko-KR.bmp");
+	TitleImage->Cut({ 400, 187 }, { 0,0 }); //0
+
+
+
+	for (int j = 0; j < 2; j++) {
+		for (int i = 0; i < 4; i++) {
+			if (i == 2) continue; // 협동플레이 버튼 스킵
+			TitleImage->Cut({ 74.f, 58.f }, { 74.f * (float)i, 187.f + (58.f * j)});//1 2 3
+		}
+	}
 
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
 	CreateLevel<EndingLevel>("Ending");
 
-	ChangeLevel("Play");
+	ChangeLevel("Title");
 }
 
 void StardewValley::GameLoop() 

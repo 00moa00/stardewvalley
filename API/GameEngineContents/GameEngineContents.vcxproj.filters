@@ -29,6 +29,18 @@
     <ClCompile Include="Player.cpp">
       <Filter>Play\Global</Filter>
     </ClCompile>
+    <ClCompile Include="TitleCloud.cpp">
+      <Filter>Play\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuExit.cpp">
+      <Filter>Play\Title\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuLoad.cpp">
+      <Filter>Play\Title\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuNewGame.cpp">
+      <Filter>Play\Title\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -62,6 +74,18 @@
     <ClInclude Include="IntroLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="TitleCloud.h">
+      <Filter>Play\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuExit.h">
+      <Filter>Play\Title\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLoad.h">
+      <Filter>Play\Title\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuNewGame.h">
+      <Filter>Play\Title\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -78,6 +102,9 @@
     </Filter>
     <Filter Include="Play\Title">
       <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Title\Menu">
+      <UniqueIdentifier>{65853773-2cc8-4118-aa08-455b2166b485}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

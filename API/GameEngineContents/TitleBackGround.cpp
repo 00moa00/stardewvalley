@@ -1,6 +1,7 @@
 #include "TitleBackGround.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngine/GameEngineImageManager.h>
 
 TitleBackGround::TitleBackGround() 
 {
@@ -18,7 +19,10 @@ void TitleBackGround::Start()
 
 	//CreateRenderer("titleback.bmp");
 
-	GameEngineRenderer* Render = CreateRenderer("titleback.bmp");
+	CreateRenderer("titleback2.bmp");
+
+
+
 	//Render->SetIndex(10);
 
 }

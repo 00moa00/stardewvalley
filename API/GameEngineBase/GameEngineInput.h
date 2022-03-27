@@ -12,6 +12,7 @@ class GameEngineInput
 private:
 	class GameEngineKey
 	{
+		//TODO : friend
 		friend GameEngineInput;
 
 		bool Down_; // 최초 키를 눌렀을때

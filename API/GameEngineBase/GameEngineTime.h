@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 // Ό³Έν :
 class GameEngineTime

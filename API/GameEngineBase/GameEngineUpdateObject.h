@@ -29,6 +29,7 @@ public:
 
 	virtual bool IsUpdate()
 	{
+		//살아있을때
 		return IsUpdate_ && false == IsDeath_;
 	}
 

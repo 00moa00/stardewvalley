@@ -28,6 +28,8 @@ void Player::Start()
 
 	CreateRenderer("Bouncer.bmp");
 
+
+
 	//GameEngineRenderer* Render = CreateRenderer("Bouncer.bmp");
 	//Render->SetIndex(0);
 

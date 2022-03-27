@@ -121,6 +121,7 @@ void GameEngineLevel::ActorRender()
 
 		for (; StartActor != EndActor; ++StartActor)
 		{
+			//소멸상태면 들어감
 			if (false == (*StartActor)->IsUpdate())
 			{
 				continue;
@@ -130,17 +131,17 @@ void GameEngineLevel::ActorRender()
 		}
 
 
-		StartActor = Group.begin();
-		EndActor = Group.end();
+		//StartActor = Group.begin();
+		//EndActor = Group.end();
 
-		for (; StartActor != EndActor; ++StartActor)
-		{
-			if (false == (*StartActor)->IsUpdate())
-			{
-				continue;
-			}
+		//for (; StartActor != EndActor; ++StartActor)
+		//{
+		//	if (false == (*StartActor)->IsUpdate())
+		//	{
+		//		continue;
+		//	}
 
-			(*StartActor)->Render();
-		}
+		//	(*StartActor)->Render();
+		//}
 	}
 }
