@@ -115,6 +115,7 @@ bool GameEngineImage::Load(const std::string& _Path)
 	return true;
 }
 
+
 void GameEngineImage::ImageScaleCheck()
 {
 	// DC 내부의 BITMAP의 정보를 가져온다

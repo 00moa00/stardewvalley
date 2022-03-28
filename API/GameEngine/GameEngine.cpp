@@ -82,6 +82,10 @@ void GameEngine::EngineLoop()
 
         NextLevel_ = nullptr;
         GameEngineTime::GetInst()->Reset();
+
+        //화면 클리어
+        Rectangle(WindowMainImage_->ImageDC(), 0, 0, WindowMainImage_->GetScale().ix(), WindowMainImage_->GetScale().iy());
+        Rectangle(BackBufferImage_->ImageDC(), 0, 0, BackBufferImage_->GetScale().ix(), BackBufferImage_->GetScale().iy());
     }
 
     if (nullptr == CurrentLevel_)
@@ -94,6 +98,7 @@ void GameEngine::EngineLoop()
  
     CurrentLevel_->Update();
     CurrentLevel_->ActorUpdate();
+
     CurrentLevel_->ActorRender();
 
     WindowMainImage_->BitCopy(BackBufferImage_);

@@ -97,6 +97,7 @@ GameEngineImage* GameEngineImageManager::Load(const std::string& _Path)
 GameEngineImage* GameEngineImageManager::Load(const std::string& _Path, const std::string& _Name)
 {
 	std::string EngineName = GameEngineString::ToUpperReturn(_Name);
+
 	if (AllRes.end() != AllRes.find(EngineName))
 	{
 		MsgBoxAssert("이미 존재하는 이름의 이미지를 또 만들려고 했습니다.");

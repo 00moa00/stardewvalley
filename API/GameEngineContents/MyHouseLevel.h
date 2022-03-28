@@ -11,18 +11,18 @@
 
 
 // Ό³Έν :
-class PlayLevel : public GameEngineLevel
+class MyHouseLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
-	PlayLevel();
-	~PlayLevel();
+	MyHouseLevel();
+	~MyHouseLevel();
 
 	// delete Function
-	PlayLevel(const PlayLevel& _Other) = delete;
-	PlayLevel(PlayLevel&& _Other) noexcept = delete;
-	PlayLevel& operator=(const PlayLevel& _Other) = delete;
-	PlayLevel& operator=(PlayLevel&& _Other) noexcept = delete;
+	MyHouseLevel(const MyHouseLevel& _Other) = delete;
+	MyHouseLevel(MyHouseLevel&& _Other) noexcept = delete;
+	MyHouseLevel& operator=(const MyHouseLevel& _Other) = delete;
+	MyHouseLevel& operator=(MyHouseLevel&& _Other) noexcept = delete;
 
 protected:
 	void Loading() override;

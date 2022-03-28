@@ -89,6 +89,12 @@ void TitleLevel::Update()
 			MenuExit_->SetIsClick(false);
 			KeyFlag_ = false;
 		}
+
+		if (true == GameEngineInput::GetInst()->IsDown("Enter"))
+		{
+			GameEngine::GlobalEngine().ChangeLevel("Custom");
+		}
+
 		break;
 
 	case KEYBOARD::MenuLoad :

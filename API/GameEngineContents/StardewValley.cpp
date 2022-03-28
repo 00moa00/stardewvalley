@@ -1,5 +1,5 @@
 #include "StardewValley.h"
-#include "PlayLevel.h"
+#include "MyHouseLevel.h"
 #include "EndingLevel.h"
 #include "TitleLevel.h"
 #include "CustomLevel.h"
@@ -73,11 +73,11 @@ void StardewValley::GameInit()
 
 
 	CreateLevel<TitleLevel>("Title");
-	CreateLevel<PlayLevel>("Play");
-	CreateLevel<EndingLevel>("Ending");
 	CreateLevel<CustomLevel>("Custom");
+	CreateLevel<MyHouseLevel>("Play");
+	CreateLevel<EndingLevel>("Ending");
 
-	ChangeLevel("Play");
+	ChangeLevel("Title");
 
 
 }

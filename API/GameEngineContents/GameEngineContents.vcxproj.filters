@@ -5,77 +5,86 @@
     <ClCompile Include="TitleLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="PlayLevel.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
-      <Filter>Title</Filter>
+      <Filter>Actor\Title</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>Play</Filter>
-    </ClCompile>
-    <ClCompile Include="EndingCredit.cpp">
-      <Filter>Ending</Filter>
+      <Filter>Actor\Play</Filter>
     </ClCompile>
     <ClCompile Include="TitleBackGround.cpp">
-      <Filter>Title</Filter>
+      <Filter>Actor\Title</Filter>
     </ClCompile>
     <ClCompile Include="TitleCloud.cpp">
-      <Filter>Title</Filter>
+      <Filter>Actor\Title</Filter>
     </ClCompile>
     <ClCompile Include="MenuExit.cpp">
-      <Filter>Title\Menu</Filter>
+      <Filter>Actor\Title\Menu</Filter>
     </ClCompile>
     <ClCompile Include="MenuLoad.cpp">
-      <Filter>Title\Menu</Filter>
+      <Filter>Actor\Title\Menu</Filter>
     </ClCompile>
     <ClCompile Include="MenuNewGame.cpp">
-      <Filter>Title\Menu</Filter>
+      <Filter>Actor\Title\Menu</Filter>
     </ClCompile>
     <ClCompile Include="CustomData.cpp">
-      <Filter>Custom</Filter>
-    </ClCompile>
-    <ClCompile Include="BotUI.cpp">
-      <Filter>Play\Global\UI</Filter>
+      <Filter>Actor\Custom</Filter>
     </ClCompile>
     <ClCompile Include="MainUI.cpp">
-      <Filter>Play\Global\UI</Filter>
+      <Filter>Actor\Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerEnergyFrame.cpp">
-      <Filter>Play\Global\UI</Filter>
+      <Filter>Actor\Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerEnergyBar.cpp">
-      <Filter>Play\Global\UI</Filter>
+      <Filter>Actor\Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Play\Global\Player</Filter>
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHair.cpp">
-      <Filter>Play\Global\Player</Filter>
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerPants.cpp">
-      <Filter>Play\Global\Player</Filter>
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerShirts.cpp">
-      <Filter>Play\Global\Player</Filter>
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCustomBoard.cpp">
-      <Filter>Custom</Filter>
+      <Filter>Actor\Custom</Filter>
     </ClCompile>
     <ClCompile Include="CustomLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="RightArrow.cpp">
-      <Filter>Custom</Filter>
+      <Filter>Actor\Custom</Filter>
     </ClCompile>
     <ClCompile Include="LeftArrow.cpp">
-      <Filter>Custom</Filter>
+      <Filter>Actor\Custom</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBackGround.cpp">
-      <Filter>Custom</Filter>
+      <Filter>Actor\Custom</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MyHouseLevel.cpp">
+      <Filter>Level\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFarmLevel.cpp">
+      <Filter>Level\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TownLevel.cpp">
+      <Filter>Level\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MyHouse.cpp">
+      <Filter>Actor\Play\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="MapleTree.cpp">
+      <Filter>Actor\Play\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,109 +92,142 @@
     <ClInclude Include="TitleLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="PlayLevel.h">
-      <Filter>Level</Filter>
-    </ClInclude>
     <ClInclude Include="EndingLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <Filter>Title</Filter>
+      <Filter>Actor\Title</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>Play</Filter>
-    </ClInclude>
-    <ClInclude Include="EndingCredit.h">
-      <Filter>Ending</Filter>
+      <Filter>Actor\Play</Filter>
     </ClInclude>
     <ClInclude Include="TitleBackGround.h">
-      <Filter>Title</Filter>
-    </ClInclude>
-    <ClInclude Include="IntroLevel.h">
-      <Filter>Level</Filter>
+      <Filter>Actor\Title</Filter>
     </ClInclude>
     <ClInclude Include="TitleCloud.h">
-      <Filter>Title</Filter>
+      <Filter>Actor\Title</Filter>
     </ClInclude>
     <ClInclude Include="MenuExit.h">
-      <Filter>Title\Menu</Filter>
+      <Filter>Actor\Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="MenuLoad.h">
-      <Filter>Title\Menu</Filter>
+      <Filter>Actor\Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="MenuNewGame.h">
-      <Filter>Title\Menu</Filter>
+      <Filter>Actor\Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="CustomData.h">
-      <Filter>Custom</Filter>
-    </ClInclude>
-    <ClInclude Include="BotUI.h">
-      <Filter>Play\Global\UI</Filter>
+      <Filter>Actor\Custom</Filter>
     </ClInclude>
     <ClInclude Include="MainUI.h">
-      <Filter>Play\Global\UI</Filter>
+      <Filter>Actor\Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerEnergyFrame.h">
-      <Filter>Play\Global\UI</Filter>
+      <Filter>Actor\Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerEnergyBar.h">
-      <Filter>Play\Global\UI</Filter>
+      <Filter>Actor\Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Play\Global\Player</Filter>
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHair.h">
-      <Filter>Play\Global\Player</Filter>
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerPants.h">
-      <Filter>Play\Global\Player</Filter>
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerShirts.h">
-      <Filter>Play\Global\Player</Filter>
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCustomBoard.h">
-      <Filter>Custom</Filter>
+      <Filter>Actor\Custom</Filter>
     </ClInclude>
     <ClInclude Include="CustomLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="RightArrow.h">
-      <Filter>Custom</Filter>
+      <Filter>Actor\Custom</Filter>
     </ClInclude>
     <ClInclude Include="LeftArrow.h">
-      <Filter>Custom</Filter>
+      <Filter>Actor\Custom</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBackGround.h">
-      <Filter>Custom</Filter>
+      <Filter>Actor\Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MyHouseLevel.h">
+      <Filter>Level\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFarmLevel.h">
+      <Filter>Level\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TownLevel.h">
+      <Filter>Level\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MyHouse.h">
+      <Filter>Actor\Play\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="MapleTree.h">
+      <Filter>Actor\Play\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
       <UniqueIdentifier>{3fdc01d6-f74f-4c06-8337-fcfead66623d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Play">
+    <Filter Include="Level\Map">
+      <UniqueIdentifier>{6fd5e0fd-213c-47f9-b9b6-11f258a4030f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{81500ed8-0775-4f2e-8f3f-5cb70a8cfb1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play">
       <UniqueIdentifier>{2b9a7125-e5c4-4740-931d-18dd34a3f8d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Ending">
-      <UniqueIdentifier>{537a457f-c8d6-4fbf-b505-9a897541433c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Play\Global">
+    <Filter Include="Actor\Play\Global">
       <UniqueIdentifier>{d6a178bf-fc85-411e-b93b-0559d30324c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Title">
-      <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Title\Menu">
-      <UniqueIdentifier>{65853773-2cc8-4118-aa08-455b2166b485}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Custom">
-      <UniqueIdentifier>{ad173118-410b-4507-85c6-69f87d0afc7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Play\Global\UI">
+    <Filter Include="Actor\Play\Global\UI">
       <UniqueIdentifier>{54011bab-08ea-4755-ae2a-767059796564}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Play\Global\Player">
+    <Filter Include="Actor\Play\Global\Player">
       <UniqueIdentifier>{12175836-2593-4357-aa29-8227fda684d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Global\Tool">
+      <UniqueIdentifier>{5d7ca799-a421-4023-92de-5e757b5cd02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Global\Inventory">
+      <UniqueIdentifier>{0c93c102-3041-46d1-9ab5-18ae840e954d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Global\GameTime">
+      <UniqueIdentifier>{76837e91-0396-4cd9-ba19-b24879c1900a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Title">
+      <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Title\Menu">
+      <UniqueIdentifier>{65853773-2cc8-4118-aa08-455b2166b485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Custom">
+      <UniqueIdentifier>{ad173118-410b-4507-85c6-69f87d0afc7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Buildings">
+      <UniqueIdentifier>{192a0a27-f530-43a4-a4f9-3c4b8cc1df2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\NPC">
+      <UniqueIdentifier>{d3ffba0c-12d1-4fa2-8a35-e9f19a2f687f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Object">
+      <UniqueIdentifier>{58d2decd-647f-41ab-92f1-4f5aad1b6624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Global\PlayerBasicItem">
+      <UniqueIdentifier>{62a74d05-bb20-4132-a619-9d22da794e99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Global\Item">
+      <UniqueIdentifier>{b6823ce8-4576-45c1-9310-bcb1ea10b587}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

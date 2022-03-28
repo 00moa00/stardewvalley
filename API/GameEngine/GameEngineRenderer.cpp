@@ -38,6 +38,7 @@ void GameEngineRenderer::SetImageScale()
 void GameEngineRenderer::SetImage(const std::string& _Name)
 {
 	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Name);
+
 	if (nullptr == FindImage)
 	{
 		MsgBoxAssertString(_Name + "존재하지 않는 이미지를 랜더러에 세팅하려고 했습니다.");
@@ -45,6 +46,8 @@ void GameEngineRenderer::SetImage(const std::string& _Name)
 	}
 
 	Image_ = FindImage;
+	SetImageScale();
+
 }
 
 void GameEngineRenderer::Render()
@@ -70,15 +73,24 @@ void GameEngineRenderer::Render()
 	}
 }
 
-void GameEngineRenderer::SetIndex(size_t _Index)
+void GameEngineRenderer::SetIndex(size_t _Index, float4 _Scale)
 {
 	if (false == Image_->IsCut())
 	{
 		MsgBoxAssert("이미지를 부분적으로 사용할수 있게 잘려지있지 않은 이미지 입니다.");
 		return;
 	}
-
 	RenderImagePivot_ = Image_->GetCutPivot(_Index);
-	RenderScale_ = Image_->GetCutScale(_Index);
+	if (-1.0f == _Scale.x ||
+		-1.0f == _Scale.y)
+	{
+		RenderScale_ = Image_->GetCutScale(_Index);
+	}
+	else
+	{
+		RenderScale_ = _Scale;
+	}
+
+
 	RenderImageScale_ = Image_->GetCutScale(_Index);
 }

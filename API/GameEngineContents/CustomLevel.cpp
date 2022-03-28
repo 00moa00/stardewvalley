@@ -1,6 +1,9 @@
 #include "CustomLevel.h"
+
+#include "GameEngine/GameEngine.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
+
 #include "CustomData.h"
 
 enum class ORDER
@@ -45,9 +48,14 @@ CustomLevel::~CustomLevel()
 
 void CustomLevel::LevelChangeStart()
 {
+
+
+}
+void CustomLevel::Loading()
+{
 	//CustomData::GetInst().SetMoveFlag(true);
 
-	//Player_->Set
+//Player_->Set
 
 	BackGround_ = CreateActor<TitleBackGround>((int)ORDER::BACKGROUND);
 	PlayerCustomBoard_ = CreateActor<PlayerCustomBoard>((int)ORDER::BOARD);
@@ -67,20 +75,16 @@ void CustomLevel::LevelChangeStart()
 	PlayerShirts_->SetPosition({ Player_->GetPosition().x, Player_->GetPosition().y + 6.f }); // (16/2)-2
 
 	for (int i = 0; i < 3; i++) {
-		RightArrow_[i] = CreateActor<RightArrow>(((int)ORDER::RIGHTARROWHAIR ) + i);
-		RightArrow_[i]-> SetPosition({GameEngineWindow::GetScale().Half().x + 50.f,
-									  GameEngineWindow::GetScale().Half().y + (50.f*i)});
-		}
+		RightArrow_[i] = CreateActor<RightArrow>(((int)ORDER::RIGHTARROWHAIR) + i);
+		RightArrow_[i]->SetPosition({ GameEngineWindow::GetScale().Half().x + 50.f,
+									  GameEngineWindow::GetScale().Half().y + (50.f * i) });
+	}
 
 	for (int i = 0; i < 3; i++) {
 		LeftArrow_[i] = CreateActor<LeftArrow>(((int)ORDER::LEFTARROWHAIR) + i);
-		LeftArrow_[i]-> SetPosition({GameEngineWindow::GetScale().Half().x - 50.f,
-						 			  GameEngineWindow::GetScale().Half().y + (50.f * i) });
+		LeftArrow_[i]->SetPosition({ GameEngineWindow::GetScale().Half().x - 50.f,
+									  GameEngineWindow::GetScale().Half().y + (50.f * i) });
 	}
-
-}
-void CustomLevel::Loading()
-{
 }
 
 void CustomLevel::Update()
@@ -97,5 +101,11 @@ void CustomLevel::Update()
 		CustomData::GetInst().SubShirtsIndex();
 		CustomData::GetInst().SubPantsIndex();
 	}
+
+	if (true == GameEngineInput::GetInst()->IsDown("Enter"))
+	{
+		GameEngine::GlobalEngine().ChangeLevel("Play");
+	}
+
 }
 

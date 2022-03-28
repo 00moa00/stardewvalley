@@ -9,7 +9,7 @@
 
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 
-
+#include "PlayerShirts.h"
 
 Player::Player()
 	:	Speed_(100.0f),
@@ -42,6 +42,7 @@ void Player::Start()
 	}
 
 	Energy_ = (42.f * 1.8f);
+
 }
 
 void Player::Update()

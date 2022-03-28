@@ -1,8 +1,7 @@
 #pragma once
-#include <GameEngine/GameEngineLevel.h>
 
 // Ό³Έν :
-class IntroLevel : public GameEngineLevel
+class IntroLevel
 {
 public:
 	// constrcuter destructer
@@ -16,9 +15,8 @@ public:
 	IntroLevel& operator=(IntroLevel&& _Other) noexcept = delete;
 
 protected:
-	void Loading() override;
-	void Update() override;
-	void LevelChangeStart() override;
+
 private:
 
 };
+

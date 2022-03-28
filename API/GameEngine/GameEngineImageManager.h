@@ -3,8 +3,6 @@
 #include <GameEngineBase/GameEngineMath.h>
 #include <map>
 
-// 기본적으로 리소스는 그냥 쓸수도 있지만
-// 관리되는 리소스들은 전부다 이름이 있다고 보고 쓸겁니다.
 
 class GameEngineImageManager
 {

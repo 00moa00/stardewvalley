@@ -72,6 +72,8 @@ public:
 		CutPivot_.push_back(_CutPos);
 	}
 
+
+
 protected:
 
 

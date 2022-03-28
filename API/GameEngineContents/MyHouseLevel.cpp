@@ -1,6 +1,5 @@
-#include "PlayLevel.h"
+#include "MyHouseLevel.h"
 
-#include "BotUI.h"
 
 
 enum class ORDER
@@ -15,7 +14,7 @@ enum class ORDER
 	MAINUI
 };
 
-PlayLevel::PlayLevel() 
+MyHouseLevel::MyHouseLevel() 
 	:
 	Player_(nullptr),
 	PlayerEnergyBar_(nullptr),
@@ -27,16 +26,11 @@ PlayLevel::PlayLevel()
 {
 }
 
-PlayLevel::~PlayLevel() 
+MyHouseLevel::~MyHouseLevel() 
 {
 }
 
-void PlayLevel::Loading()
-{
-
-}
-
-void PlayLevel::LevelChangeStart()
+void MyHouseLevel::Loading()
 {
 	Player_ = CreateActor<Player>((int)ORDER::PLAYER);
 	PlayerHair_ = CreateActor<PlayerHair>((int)ORDER::PLAYERHAIR);
@@ -48,8 +42,14 @@ void PlayLevel::LevelChangeStart()
 
 }
 
+void MyHouseLevel::LevelChangeStart()
+{
 
-void PlayLevel::Update()
+
+}
+
+
+void MyHouseLevel::Update()
 {
 	//플레이어가 행동 할때마다 스테미너 감소. 테스트용
 	PlayerEnergyBar_->SubEnergyBar(Player_->GetEnergy());
