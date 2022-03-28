@@ -89,29 +89,23 @@ void TitleLevel::Update()
 			MenuExit_->SetIsClick(false);
 			KeyFlag_ = false;
 		}
-
-
 		break;
 
 	case KEYBOARD::MenuLoad :
 		if (KeyFlag_) {
-
 			MenuNewGame_->SetIsClick(false);
 			MenuLoad_->SetIsClick(true);
 			MenuExit_->SetIsClick(false);
 			KeyFlag_ = false;
-
 		}
 		break;
 
 	case KEYBOARD::MenuExit :
 		if (KeyFlag_) {
-
 			MenuNewGame_->SetIsClick(false);
 			MenuLoad_->SetIsClick(false);
 			MenuExit_->SetIsClick(true);
 			KeyFlag_ = false;
-
 		}
 		break;
 

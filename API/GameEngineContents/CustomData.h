@@ -15,6 +15,15 @@ public:
 		return *Inst_;
 	}
 
+	static void Destroy()
+	{
+		if (nullptr != Inst_)
+		{
+			delete Inst_;
+			Inst_ = nullptr;
+		}
+	}
+
 
 public:
 	// constrcuter destructer

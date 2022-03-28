@@ -3,6 +3,7 @@
 #include "EndingLevel.h"
 #include "TitleLevel.h"
 #include "CustomLevel.h"
+#include "CustomData.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
@@ -76,7 +77,7 @@ void StardewValley::GameInit()
 	CreateLevel<EndingLevel>("Ending");
 	CreateLevel<CustomLevel>("Custom");
 
-	ChangeLevel("Custom");
+	ChangeLevel("Play");
 
 
 }
@@ -87,5 +88,5 @@ void StardewValley::GameLoop()
 }
 void StardewValley::GameEnd() 
 {
-
+	CustomData::Destroy();
 }

@@ -37,7 +37,8 @@ void MenuNewGame::Update()
 {
 	if (GetIsClick() == true) {
 		NewGame_->SetIndex(static_cast<size_t>(MENU::ClickMenuNewGame));
-	} else {
+	} 
+	else {
 		NewGame_->SetIndex(static_cast<size_t>(MENU::MenuNewGame));
 	}
 }

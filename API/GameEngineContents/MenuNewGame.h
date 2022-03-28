@@ -17,14 +17,11 @@ public:
 
 
 	bool GetIsClick() {
-
 		return isClick_;
 	}
 
 	inline void SetIsClick(const bool b) {
-
 		isClick_ = b;
-
 	}
 
 
