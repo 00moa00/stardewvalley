@@ -53,8 +53,7 @@ public:
 
 	inline void SubHairIndex() {
 		--HairIndex_;
-		//TODO : renderer 포인터 사용해서 최대수로 등록하기
-		// 함수없음................................요청?
+		//TODO :  최댓값으로 등록하기
 		if (HairIndex_ <= 0) HairIndex_ = 0;
 	}
 
