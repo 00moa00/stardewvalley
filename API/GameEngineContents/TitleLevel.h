@@ -6,16 +6,16 @@
 #include "MenuLoad.h"
 #include "MenuNewGame.h"
 enum class ORDER
-
 {
 	TitleLogo = 0,
 	TitleBackGround,
 	MAX,
 };
 
+//자른 이미지 인덱스용
 enum class MENU
 {
-	MenuNewGame, //0
+	MenuNewGame = 0, //0
 	MenuLoad,	//1
 	MenuExit,	//2
 	ClickMenuNewGame,
@@ -27,7 +27,7 @@ enum class MENU
 
 enum class KEYBOARD
 {
-	Wait,
+	Wait = 0,
 	MenuNewGame, //1
 	MenuLoad,	//2
 	MenuExit,	//3

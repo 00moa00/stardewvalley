@@ -13,7 +13,9 @@
 
 Player::Player()
 	:	Speed_(100.0f),
-		Energy_(0.f)
+		Energy_(0.f),
+		PlayerBody_(nullptr),
+		PlayerArm_(nullptr)
 {
 }
 
@@ -25,12 +27,11 @@ Player::~Player()
 void Player::Start() 
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
+	PlayerBody_ = CreateRenderer("farmer_girl_base_bald.bmp");
+	PlayerBody_->SetIndex(0);
 
-	CreateRenderer("Bouncer.bmp");
-
-
-	//GameEngineRenderer* Render = CreateRenderer("Bouncer.bmp");
-	//Render->SetIndex(0);
+	PlayerArm_ = CreateRenderer("farmer_girl_base_bald.bmp");
+	PlayerArm_->SetIndex(6);
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveUp"))
 	{
@@ -38,10 +39,7 @@ void Player::Start()
 		//GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
 		GameEngineInput::GetInst()->CreateKey("MoveUp", 'W');
 		GameEngineInput::GetInst()->CreateKey("MoveDown", 'S');
-
-		// VK_LBUTTON;
 	}
-	 //CreateRenderer("Bouncer.bmp", RenderPivot::CENTER, {0, -100});
 
 	Energy_ = (42.f * 1.8f);
 }
@@ -58,9 +56,7 @@ void Player::Update()
 	{
 		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
 		Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
-
 	}
-
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
 	{
@@ -80,7 +76,6 @@ void Player::Update()
 
 	//}
 
-
 	// 내가 키를 눌렀다면 움직여라.
 	//if (0 != GetAsyncKeyState('A'))
 	//{
@@ -92,7 +87,6 @@ void Player::Update()
 // 랜더러가 다 돌아가고 랜더링이 됩니다.
 void Player::Render() 
 {
-
 	//GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find("Idle.bmp");
 	//if (nullptr == FindImage)
 	//{

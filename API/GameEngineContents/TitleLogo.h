@@ -19,6 +19,7 @@ protected:
 	void Start()override;
 	void Render()override;
 	void Update() override;
+
 private:
 	float Speed_;
 	float4 ScaleSpeed_;

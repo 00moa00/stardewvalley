@@ -18,6 +18,7 @@ TitleLevel::TitleLevel()
 		isPopup_(false),
 		Timer_(0),
 		KeyFlag_(false),
+		MoveMenu_(0),
 		CurrentMenu_(KEYBOARD::Wait)
 {
 }
@@ -51,7 +52,7 @@ void TitleLevel::Update()
 	if ((TitleLogo_->GetPosition().y > GameEngineWindow::GetScale().Half().y - 100.f)
 		&& isPopup_ == false) {
 
-		AddTimer(GameEngineTime::GetDeltaTime() + (int)1);
+		AddTimer(GameEngineTime::GetDeltaTime() + 1.f);
 
 		if (getTimer() > 150 && MenuNewGame_ == nullptr) MenuNewGame_ = CreateActor<MenuNewGame>(2);
 		if (getTimer() > 300 && MenuLoad_ == nullptr) MenuLoad_ = CreateActor<MenuLoad>(3);

@@ -154,6 +154,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CustomData.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CustomLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EndingCredit.h">
       <SubType>
       </SubType>
@@ -164,6 +172,10 @@
     </ClInclude>
     <ClInclude Include="BotUI.h" />
     <ClInclude Include="IntroLevel.h" />
+    <ClInclude Include="LeftArrow.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MainUI.h">
       <SubType>
       </SubType>
@@ -184,6 +196,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerBackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerCustomBoard.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayerEnergyFrame.h">
       <SubType>
       </SubType>
@@ -192,7 +212,23 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerHair.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerPants.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerShirts.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RightArrow.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -216,6 +252,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CustomData.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CustomLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EndingCredit.cpp">
       <SubType>
       </SubType>
@@ -225,6 +269,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BotUI.cpp" />
+    <ClCompile Include="LeftArrow.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MainUI.cpp">
       <SubType>
       </SubType>
@@ -245,6 +293,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlayerBackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerCustomBoard.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayerEnergyFrame.cpp">
       <SubType>
       </SubType>
@@ -253,7 +309,23 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlayerHair.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerPants.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerShirts.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RightArrow.cpp">
       <SubType>
       </SubType>
     </ClCompile>

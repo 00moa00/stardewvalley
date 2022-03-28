@@ -21,7 +21,6 @@ public:
 
 	inline void SetIsClick(const bool b) {
 		isClick_ = b;
-
 	}
 
 

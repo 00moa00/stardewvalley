@@ -2,6 +2,7 @@
 #include "PlayLevel.h"
 #include "EndingLevel.h"
 #include "TitleLevel.h"
+#include "CustomLevel.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
@@ -41,13 +42,9 @@ void StardewValley::GameInit()
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
 
-	//GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Bouncer.bmp");
-	//GameEngineImageManager::GetInst()->Load("D:\\portfolio\\APIResource\\sprite\\bmp\\CharacterAPI\\Bouncer.bmp", "Bouncer.bmp");
-	//GameEngineImageManager::GetInst()->Load("D:\\Project\\AR40\\API\\Resources\\Image\\HPBAR.Bmp", "HPBAR.Bmp");
-
+	//타이틀 로고
 	GameEngineImage* TitleImage = GameEngineImageManager::GetInst()->Find("TitleButtons.ko-KR.bmp");
 	//TitleImage->Cut({ 800, 440 }, { 0,0 }); //0
-
 
 	for (int j = 0; j < 2; j++) {
 		for (int i = 0; i < 4; i++) {
@@ -56,11 +53,30 @@ void StardewValley::GameInit()
 		}
 	}
 
+	//플레이어 바디 32 64
+	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("farmer_girl_base_bald.bmp");
+	PlayerBody->Cut({ 32, 64 });
+
+	//플레이어 헤어  32 64
+	GameEngineImage* PlayerHair = GameEngineImageManager::GetInst()->Find("hairstyles.bmp");
+	PlayerHair->Cut({ 32, 64 });
+
+	//플레이어 하의  32 64
+	GameEngineImage* PlayerPants = GameEngineImageManager::GetInst()->Find("pants.bmp");
+	PlayerPants->Cut({ 32, 64 });
+
+	//플레이어 셔츠  16 16
+	GameEngineImage* PlayerShirts = GameEngineImageManager::GetInst()->Find("shirts2.bmp");
+	PlayerShirts->Cut({ 16, 16 });
+
+
+
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
 	CreateLevel<EndingLevel>("Ending");
+	CreateLevel<CustomLevel>("Custom");
 
-	ChangeLevel("Title");
+	ChangeLevel("Custom");
 
 
 }

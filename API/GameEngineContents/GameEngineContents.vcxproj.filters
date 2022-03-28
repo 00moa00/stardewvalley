@@ -12,7 +12,7 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
-      <Filter>Play\Title</Filter>
+      <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>Play</Filter>
@@ -21,34 +21,61 @@
       <Filter>Ending</Filter>
     </ClCompile>
     <ClCompile Include="TitleBackGround.cpp">
-      <Filter>Play\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="BotUI.cpp">
-      <Filter>Play\Global</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Play\Global</Filter>
+      <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="TitleCloud.cpp">
-      <Filter>Play\Title</Filter>
+      <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="MenuExit.cpp">
-      <Filter>Play\Title\Menu</Filter>
+      <Filter>Title\Menu</Filter>
     </ClCompile>
     <ClCompile Include="MenuLoad.cpp">
-      <Filter>Play\Title\Menu</Filter>
+      <Filter>Title\Menu</Filter>
     </ClCompile>
     <ClCompile Include="MenuNewGame.cpp">
-      <Filter>Play\Title\Menu</Filter>
+      <Filter>Title\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerEnergyFrame.cpp">
-      <Filter>Play\Global</Filter>
+    <ClCompile Include="CustomData.cpp">
+      <Filter>Custom</Filter>
+    </ClCompile>
+    <ClCompile Include="BotUI.cpp">
+      <Filter>Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="MainUI.cpp">
-      <Filter>Play\Global</Filter>
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerEnergyFrame.cpp">
+      <Filter>Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerEnergyBar.cpp">
-      <Filter>Play\Global</Filter>
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Play\Global\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHair.cpp">
+      <Filter>Play\Global\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerPants.cpp">
+      <Filter>Play\Global\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerShirts.cpp">
+      <Filter>Play\Global\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCustomBoard.cpp">
+      <Filter>Custom</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="RightArrow.cpp">
+      <Filter>Custom</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftArrow.cpp">
+      <Filter>Custom</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBackGround.cpp">
+      <Filter>Custom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,7 +90,7 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <Filter>Play\Title</Filter>
+      <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>Play</Filter>
@@ -72,37 +99,64 @@
       <Filter>Ending</Filter>
     </ClInclude>
     <ClInclude Include="TitleBackGround.h">
-      <Filter>Play\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="BotUI.h">
-      <Filter>Play\Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Play\Global</Filter>
+      <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="IntroLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleCloud.h">
-      <Filter>Play\Title</Filter>
+      <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="MenuExit.h">
-      <Filter>Play\Title\Menu</Filter>
+      <Filter>Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="MenuLoad.h">
-      <Filter>Play\Title\Menu</Filter>
+      <Filter>Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="MenuNewGame.h">
-      <Filter>Play\Title\Menu</Filter>
+      <Filter>Title\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerEnergyFrame.h">
-      <Filter>Play\Global</Filter>
+    <ClInclude Include="CustomData.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="BotUI.h">
+      <Filter>Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="MainUI.h">
-      <Filter>Play\Global</Filter>
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerEnergyFrame.h">
+      <Filter>Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerEnergyBar.h">
-      <Filter>Play\Global</Filter>
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Play\Global\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHair.h">
+      <Filter>Play\Global\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPants.h">
+      <Filter>Play\Global\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerShirts.h">
+      <Filter>Play\Global\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCustomBoard.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="RightArrow.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftArrow.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBackGround.h">
+      <Filter>Custom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -118,11 +172,20 @@
     <Filter Include="Play\Global">
       <UniqueIdentifier>{d6a178bf-fc85-411e-b93b-0559d30324c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Play\Title">
+    <Filter Include="Title">
       <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Play\Title\Menu">
+    <Filter Include="Title\Menu">
       <UniqueIdentifier>{65853773-2cc8-4118-aa08-455b2166b485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Custom">
+      <UniqueIdentifier>{ad173118-410b-4507-85c6-69f87d0afc7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Global\UI">
+      <UniqueIdentifier>{54011bab-08ea-4755-ae2a-767059796564}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Global\Player">
+      <UniqueIdentifier>{12175836-2593-4357-aa29-8227fda684d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

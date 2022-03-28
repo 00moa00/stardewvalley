@@ -12,6 +12,16 @@ public:
 	float GetEnergy() {
 		return Energy_;
 	}
+
+	void SetPlayerSpeed(float f) {
+		Speed_ = f;
+	}
+
+	float GetPlayerSpeed() {
+		return Speed_;
+	}
+
+
 	// delete Function
 	Player(const Player& _Other) = delete;
 	Player(Player&& _Other) noexcept = delete;
@@ -22,10 +32,13 @@ protected:
 
 private:
 
-
-
 	float Speed_;
 	float Energy_;
+
+	GameEngineRenderer* PlayerBody_;
+	GameEngineRenderer* PlayerArm_;
+
+
 
 
 	void Start() override;
