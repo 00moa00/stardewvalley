@@ -1,6 +1,6 @@
 #pragma once
 #include "GameEngineImage.h" 
-#include <GameEngineBase/GameEngineMath.h>
+//#include <GameEngineBase/GameEngineMath.h>
 #include <map>
 
 

@@ -5,9 +5,6 @@
     <ClCompile Include="TitleLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="EndingLevel.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
       <Filter>Actor\Title</Filter>
     </ClCompile>
@@ -84,15 +81,15 @@
       <Filter>Actor\Play\Buildings</Filter>
     </ClCompile>
     <ClCompile Include="MapleTree.cpp">
-      <Filter>Actor\Play\Object</Filter>
+      <Filter>Actor\Play\Object\MapObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Actor\Play\Object\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
     <ClInclude Include="TitleLevel.h">
-      <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="EndingLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
@@ -171,7 +168,10 @@
       <Filter>Actor\Play\Buildings</Filter>
     </ClInclude>
     <ClInclude Include="MapleTree.h">
-      <Filter>Actor\Play\Object</Filter>
+      <Filter>Actor\Play\Object\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Actor\Play\Object\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -195,9 +195,6 @@
     </Filter>
     <Filter Include="Actor\Play\Global\Player">
       <UniqueIdentifier>{12175836-2593-4357-aa29-8227fda684d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Global\Tool">
-      <UniqueIdentifier>{5d7ca799-a421-4023-92de-5e757b5cd02c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Actor\Play\Global\Inventory">
       <UniqueIdentifier>{0c93c102-3041-46d1-9ab5-18ae840e954d}</UniqueIdentifier>
@@ -228,6 +225,12 @@
     </Filter>
     <Filter Include="Actor\Play\Global\Item">
       <UniqueIdentifier>{b6823ce8-4576-45c1-9310-bcb1ea10b587}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Object\MapObject">
+      <UniqueIdentifier>{4cf52bda-6cb1-49d3-a06c-26caf3559058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Object\Object">
+      <UniqueIdentifier>{5d7ca799-a421-4023-92de-5e757b5cd02c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

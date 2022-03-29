@@ -21,7 +21,8 @@ MyHouseLevel::MyHouseLevel()
 	PlayerEnergyFrame_(nullptr),
 	PlayerHair_(nullptr),
 	PlayerShirts_(nullptr),
-	PlayerPants_(nullptr)
+	PlayerPants_(nullptr),
+	MainUI_(nullptr)
 
 {
 }
@@ -39,6 +40,7 @@ void MyHouseLevel::Loading()
 
 	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)ORDER::ENERGYFRAME);
 	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)ORDER::ENERGYBAR);
+	MainUI_ = CreateActor<MainUI>((int)ORDER::MAINUI);
 
 }
 

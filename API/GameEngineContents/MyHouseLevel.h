@@ -8,6 +8,7 @@
 
 #include "PlayerEnergyBar.h"
 #include "PlayerEnergyFrame.h"
+#include "MainUI.h"
 
 
 // Ό³Έν :
@@ -35,5 +36,6 @@ private:
 	PlayerHair* PlayerHair_;
 	PlayerPants* PlayerPants_;
 	PlayerShirts* PlayerShirts_;
+	MainUI* MainUI_;
 
 };
