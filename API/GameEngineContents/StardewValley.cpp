@@ -28,11 +28,14 @@ void StardewValley::GameInit()
 	// 현재 디렉토리
 	GameEngineDirectory ResourcesDir;
 	ResourcesDir.MoveParent("API");
-	ResourcesDir.MoveParent("portfolio");
-	ResourcesDir.Move("APIResource");
-	ResourcesDir.Move("sprite");
-	ResourcesDir.Move("bmp");
+	ResourcesDir.Move("Resources");
 	ResourcesDir.Move("All");
+
+	//ResourcesDir.MoveParent("portfolio");
+	//ResourcesDir.Move("APIResource");
+	//ResourcesDir.Move("sprite");
+	//ResourcesDir.Move("bmp");
+	//ResourcesDir.Move("All");
 
 	// 폴더안에 모든 이미지 파일을 찾는다.
 	std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");

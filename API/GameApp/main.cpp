@@ -23,7 +23,6 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
     //    가장 핵심적인 부분이기 때문에 여러분들에게 물어봅니다.
     //    거기에 대해서 그냥이라고 한다.
     //    
-
     GameEngine::Start<StardewValley>();
 
 
