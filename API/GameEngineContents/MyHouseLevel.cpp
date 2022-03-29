@@ -58,5 +58,5 @@ void MyHouseLevel::Update()
 
 	PlayerHair_->SetPosition(Player_->GetPosition());
 	PlayerPants_->SetPosition(Player_->GetPosition());
-	PlayerShirts_->SetPosition({ Player_->GetPosition().x, Player_->GetPosition().y+ 6.f }); // 6? (16/2)-2
+	PlayerShirts_->SetPosition({ Player_->GetPosition().x, Player_->GetPosition().y+ 7.f }); // 6? (16/2)-2
 }

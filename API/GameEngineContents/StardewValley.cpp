@@ -57,8 +57,15 @@ void StardewValley::GameInit()
 	}
 
 	//플레이어 바디 32 64
-	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("farmer_girl_base_bald.bmp");
+	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("farmer_Body.bmp");
 	PlayerBody->Cut({ 32, 64 });
+
+	GameEngineImage* PlayerHand1 = GameEngineImageManager::GetInst()->Find("farmer_hand.bmp");
+	PlayerHand1->Cut({ 32, 64 });
+
+	GameEngineImage* PlayerHand2 = GameEngineImageManager::GetInst()->Find("farmer_hand2.bmp");
+	PlayerHand2->Cut({ 32, 64 });
+
 
 	//플레이어 헤어  32 64
 	GameEngineImage* PlayerHair = GameEngineImageManager::GetInst()->Find("hairstyles.bmp");
@@ -69,7 +76,7 @@ void StardewValley::GameInit()
 	PlayerPants->Cut({ 32, 64 });
 
 	//플레이어 셔츠  16 16
-	GameEngineImage* PlayerShirts = GameEngineImageManager::GetInst()->Find("shirts2.bmp");
+	GameEngineImage* PlayerShirts = GameEngineImageManager::GetInst()->Find("shirts.bmp");
 	PlayerShirts->Cut({ 16, 16 });
 
 
@@ -78,7 +85,7 @@ void StardewValley::GameInit()
 	CreateLevel<CustomLevel>("Custom");
 	CreateLevel<MyHouseLevel>("Play");
 
-	ChangeLevel("Title");
+	ChangeLevel("Play");
 
 
 }

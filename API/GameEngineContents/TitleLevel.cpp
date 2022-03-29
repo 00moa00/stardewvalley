@@ -52,7 +52,10 @@ void TitleLevel::Update()
 	if ((TitleLogo_->GetPosition().y > GameEngineWindow::GetScale().Half().y - 100.f)
 		&& isPopup_ == false) {
 
+		if (true == GameEngineInput::GetInst()->IsDown("Enter")) Timer_ = 450;
+
 		AddTimer(GameEngineTime::GetDeltaTime() + 1.f);
+
 
 		if (getTimer() > 150 && MenuNewGame_ == nullptr) MenuNewGame_ = CreateActor<MenuNewGame>(2);
 		if (getTimer() > 300 && MenuLoad_ == nullptr) MenuLoad_ = CreateActor<MenuLoad>(3);
@@ -75,50 +78,50 @@ void TitleLevel::Update()
 
 	CurrentMenu_ = static_cast<KEYBOARD>(MoveMenu_);
 
-	switch (CurrentMenu_)
-	{
 
-	case KEYBOARD::Wait:
-		break;
-
-	case KEYBOARD::MenuNewGame :
-
-		if(KeyFlag_) {
-			MenuNewGame_->SetIsClick(true);
-			MenuLoad_->SetIsClick(false);
-			MenuExit_->SetIsClick(false);
-			KeyFlag_ = false;
-		}
-
-		if (true == GameEngineInput::GetInst()->IsDown("Enter"))
+	if (MenuExit_ != nullptr) {
+		switch (CurrentMenu_)
 		{
-			GameEngine::GlobalEngine().ChangeLevel("Custom");
+		case KEYBOARD::Wait  :
+			break;
+
+		case KEYBOARD::MenuNewGame:
+
+			if (KeyFlag_) {
+				MenuNewGame_->SetIsClick(true);
+				MenuLoad_->SetIsClick(false);
+				MenuExit_->SetIsClick(false);
+				KeyFlag_ = false;
+			}
+
+			if (true == GameEngineInput::GetInst()->IsDown("Enter") && isPopup_ == true)
+			{
+				GameEngine::GlobalEngine().ChangeLevel("Custom");
+			}
+
+			break;
+
+		case KEYBOARD::MenuLoad:
+			if (KeyFlag_) {
+				MenuNewGame_->SetIsClick(false);
+				MenuLoad_->SetIsClick(true);
+				MenuExit_->SetIsClick(false);
+				KeyFlag_ = false;
+			}
+			break;
+
+		case KEYBOARD::MenuExit:
+			if (KeyFlag_) {
+				MenuNewGame_->SetIsClick(false);
+				MenuLoad_->SetIsClick(false);
+				MenuExit_->SetIsClick(true);
+				KeyFlag_ = false;
+			}
+			break;
+
+		default:
+			break;
 		}
-
-		break;
-
-	case KEYBOARD::MenuLoad :
-		if (KeyFlag_) {
-			MenuNewGame_->SetIsClick(false);
-			MenuLoad_->SetIsClick(true);
-			MenuExit_->SetIsClick(false);
-			KeyFlag_ = false;
-		}
-		break;
-
-	case KEYBOARD::MenuExit :
-		if (KeyFlag_) {
-			MenuNewGame_->SetIsClick(false);
-			MenuLoad_->SetIsClick(false);
-			MenuExit_->SetIsClick(true);
-			KeyFlag_ = false;
-		}
-		break;
-
-
-	default:
-		break;
 	}
-
 
 }

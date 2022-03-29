@@ -27,11 +27,20 @@ Player::~Player()
 void Player::Start() 
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-	PlayerBody_ = CreateRenderer("farmer_girl_base_bald.bmp");
+	PlayerBody_ = CreateRenderer("farmer_Body.bmp");
 	PlayerBody_->SetIndex(0);
 
-	PlayerArm_ = CreateRenderer("farmer_girl_base_bald.bmp");
-	PlayerArm_->SetIndex(6);
+	//PlayerBody_ = CreateRenderer();
+	//PlayerBody_->CreateAnimation("farmer_Body.bmp", "BodyWalkFront", 0, 2, 0.3f, true);
+	//PlayerBody_->ChangeAnimation("BodyWalkFront");
+
+
+
+	PlayerArm_ = CreateRenderer("farmer_hand.bmp");
+	PlayerArm_->SetIndex(0);
+	//PlayerArm_ = CreateRenderer();
+	//PlayerArm_->CreateAnimation("farmer_hand.bmp", "HandWalkFront", 0, 2, 0.3f, true);
+	//PlayerArm_->ChangeAnimation("HandWalkFront");
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveUp"))
 	{
@@ -47,6 +56,10 @@ void Player::Start()
 
 void Player::Update()
 {
+	//PlayerBody_->ChangeAnimation("BodyWalkFront");
+
+	//PlayerArm_->ChangeAnimation("HandWalkFront");
+
 	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
 	{
 		// 1.0F * 0.001101F

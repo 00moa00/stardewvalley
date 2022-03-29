@@ -173,6 +173,9 @@
     <ClInclude Include="Item.h">
       <Filter>Actor\Play\Object\Object</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerEnum.h">
+      <Filter>Actor\GlobalEnum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -231,6 +234,9 @@
     </Filter>
     <Filter Include="Actor\Play\Object\Object">
       <UniqueIdentifier>{5d7ca799-a421-4023-92de-5e757b5cd02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\GlobalEnum">
+      <UniqueIdentifier>{908e33e0-26a8-407b-b705-f8e6fea6ba37}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -158,6 +158,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerEnum.h" />
     <ClInclude Include="CustomLevel.h">
       <SubType>
       </SubType>

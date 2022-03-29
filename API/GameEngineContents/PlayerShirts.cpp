@@ -21,7 +21,7 @@ PlayerShirts::~PlayerShirts()
 void PlayerShirts::Start()
 {
 	SetPosition({ GetPosition().x, GetPosition().y });
-	PlayerShirts_ = CreateRenderer("shirts2.bmp");
+	PlayerShirts_ = CreateRenderer("shirts.bmp");
 
 	PlayerShirts_->SetIndex(0);
 }
