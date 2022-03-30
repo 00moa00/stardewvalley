@@ -1,6 +1,12 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 
+enum class PLAYER_STATE {
+	INIT = 0,
+	MOVE,
+};
+
+
 // Ό³Έν :
 class Player : public GameEngineActor
 {
@@ -34,12 +40,19 @@ private:
 
 	float Speed_;
 	float Energy_;
+	int state_;
 
 	GameEngineRenderer* PlayerBody_;
-	GameEngineRenderer* PlayerArm_;
+	GameEngineRenderer* PlayerHand_;
+	PLAYER_STATE PlayerState_;
 
+	void moveX();
+	void moveY();
+	void SubEnergy() {
+		Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
+	}
 
-
+	bool isStop();
 
 	void Start() override;
 	void Update() override;
