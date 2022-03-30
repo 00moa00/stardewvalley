@@ -1,14 +1,15 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include "PlayerState.h"
 
-//enum class PLAYER_STATE {
-//	INIT = 0,
-//	MOVE,
-//};
+enum class PLAYER_STATE {
+	INIT = 0,
+	MOVE,
+};
 
 
 // Ό³Έν :
-class Player : public GameEngineActor
+class Player : public GameEngineActor, public PlayerState
 {
 public:
 	// constrcuter destructer
@@ -40,11 +41,12 @@ private:
 
 	float Speed_;
 	float Energy_;
-	int state_;
+
+//	bool isInit_;
 
 	GameEngineRenderer* PlayerBody_;
 	GameEngineRenderer* PlayerHand_;
-	//PLAYER_STATE PlayerState_;
+	PLAYER_STATE PlayerState_;
 
 	void moveX();
 	void moveY();
@@ -53,6 +55,8 @@ private:
 	}
 
 	bool isStop();
+	bool isMove();
+	void SetInit();
 
 	void Start() override;
 	void Update() override;

@@ -1,8 +1,9 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include "PlayerState.h"
 
 // Ό³Έν :
-class PlayerShirts : public GameEngineActor
+class PlayerShirts : public GameEngineActor, public PlayerState
 {
 public:
 	// constrcuter destructer

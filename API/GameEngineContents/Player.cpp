@@ -18,7 +18,8 @@ Player::Player()
 	Energy_(42.f * 1.8f),
 	PlayerBody_(nullptr),
 	PlayerHand_(nullptr),
-	state_(0)
+	PlayerState_(PLAYER_STATE::INIT)
+
 {
 }
 
@@ -36,23 +37,33 @@ void Player::Start()
 
 	PlayerBody_ = CreateRenderer();
 
-	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_INIT", PLAYER::INIT, PLAYER::FRONTWALK1, 0.3f, false);
-	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_FRONT_WALK", PLAYER::FRONTWALK0, PLAYER::FRONTWALK1, 0.3f, true);
-	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHTWALK1, 0.3f, true);
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
+
+
+
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, 0.3f, true);
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHT_WALK1, 0.3f, true);
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, 0.3f, true);
-	
-	PlayerBody_->ChangeAnimation("BODY_INIT");
+	PlayerBody_->ChangeAnimation("BODY_FRONT_INIT");
+
 
 	//ÇÃ·¹ÀÌ¾î ÆÈ
 
 	PlayerHand_ = CreateRenderer();
 
-	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_INIT", PLAYER::INIT, PLAYER::FRONTWALK1, 0.3f, false);
-	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_FRONT_WALK", PLAYER::FRONTWALK0, PLAYER::FRONTWALK1, 0.3f, true);
-	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHTWALK1, 0.3f, true);
+	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
+	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
+	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
+
+
+
+	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, 0.3f, true);
+	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHT_WALK1, 0.3f, true);
 	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, 0.3f, true);
 
-	PlayerHand_->ChangeAnimation("HAND_INIT");
+	PlayerHand_->ChangeAnimation("HAND_FRONT_INIT");
 
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveUp"))
@@ -71,17 +82,33 @@ void Player::Start()
 
 void Player::Update()
 {
-	moveX();
-	moveY();
 
-	if (isStop())
+	switch (PlayerState_)
 	{
-		PlayerBody_->ChangeAnimation("BODY_INIT");
-		PlayerHand_->ChangeAnimation("HAND_INIT");
-	}
-	else {
+	case PLAYER_STATE::INIT:
+		SetInit();
+
+		if (isMove()) PlayerState_ = PLAYER_STATE::MOVE;
+
+		break;
+
+	case PLAYER_STATE::MOVE:
+
+		moveX();
+		moveY();
 		SubEnergy();
+
+
+		if (isStop()) PlayerState_ = PLAYER_STATE::INIT;
+
+		break;
+
+	default:
+		break;
 	}
+
+
+
 
 	
 }
@@ -94,8 +121,10 @@ void Player::moveX()
 		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
 		PlayerBody_->ChangeAnimation("BODY_RIGHT_WALK");
 		PlayerHand_->ChangeAnimation("HAND_RIGHT_WALK");
+		setRightWalk(true);
 
 	}
+
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
@@ -103,7 +132,11 @@ void Player::moveX()
 		PlayerBody_->ChangeAnimation("BODY_RIGHT_WALK");
 		PlayerHand_->ChangeAnimation("HAND_RIGHT_WALK");
 
+
+		SetLeftWalk(true);
 	}
+
+
 }
 
 
@@ -115,14 +148,17 @@ void Player::moveY()
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
 		PlayerBody_->ChangeAnimation("BODY_BACK_WALK");
 		PlayerHand_->ChangeAnimation("HAND_BACK_WALK");
+		SetBackWalk(true);
 
 	}
+
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
 	{
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
 		PlayerBody_->ChangeAnimation("BODY_FRONT_WALK");
 		PlayerHand_->ChangeAnimation("HAND_FRONT_WALK");
+		SetFrontWalk(true);
 
 	}
 
@@ -135,6 +171,42 @@ bool Player::isStop()
 		&& true == GameEngineInput::GetInst()->IsFree("MoveLeft")
 		&& true == GameEngineInput::GetInst()->IsFree("MoveDown")
 		&& true == GameEngineInput::GetInst()->IsFree("MoveUp"));
+}
+
+bool Player::isMove()
+{
+	return (true == GameEngineInput::GetInst()->IsPress("MoveRight")
+		|| true == GameEngineInput::GetInst()->IsPress("MoveLeft")
+		|| true == GameEngineInput::GetInst()->IsPress("MoveDown")
+		|| true == GameEngineInput::GetInst()->IsPress("MoveUp"));
+}
+
+void Player::SetInit()
+{
+	if (GetIsRightWalk()) {
+		PlayerBody_->ChangeAnimation("BODY_RIGHT_INIT");
+		PlayerHand_->ChangeAnimation("HAND_RIGHT_INIT");
+	}
+
+	if (GetIsFrontWalk()) {
+		PlayerBody_->ChangeAnimation("BODY_FRONT_INIT");
+		PlayerHand_->ChangeAnimation("HAND_FRONT_INIT");
+
+	}
+
+	if (GetIsBackWalk()) {
+		PlayerBody_->ChangeAnimation("BODY_BACK_INIT");
+		PlayerHand_->ChangeAnimation("HAND_BACK_INIT");
+
+	}
+
+
+	if (GetIsLeftWalk()) {
+		PlayerBody_->ChangeAnimation("BODY_RIGHT_INIT");
+		PlayerHand_->ChangeAnimation("HAND_RIGHT_INIT");
+
+	}
+
 }
 
 

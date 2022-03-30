@@ -86,6 +86,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>Actor\Play\Object\Object</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Actor\Play\Global\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -175,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="PlayerEnum.h">
       <Filter>Actor\GlobalEnum</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
