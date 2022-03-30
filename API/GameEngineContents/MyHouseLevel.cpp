@@ -59,4 +59,13 @@ void MyHouseLevel::Update()
 	PlayerHair_->SetPosition(Player_->GetPosition());
 	PlayerPants_->SetPosition(Player_->GetPosition());
 	PlayerShirts_->SetPosition({ Player_->GetPosition().x, Player_->GetPosition().y+ 7.f }); // 6? (16/2)-2
+
+
+	if(Player_->GetIsBackWalk())PlayerShirts_->SetBackWalk(true);
+	if (Player_->GetIsRightWalk())PlayerShirts_->setRightWalk(true);
+	if (Player_->GetIsLeftWalk())PlayerShirts_->SetLeftWalk(true);
+	if (Player_->GetIsFrontWalk())PlayerShirts_->SetFrontWalk(true);
+
+
+
 }

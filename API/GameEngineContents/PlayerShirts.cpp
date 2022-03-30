@@ -39,20 +39,32 @@ void PlayerShirts::Update()
 {
 	unsigned int index = CustomData::GetInst().GetShirtsIndex();
 
-	if (GetIsRightWalk()) {
-		PlayerShirts_->SetIndex(index + 1);
-
-	}
 
 	if (GetIsFrontWalk()) {
 		PlayerShirts_->SetIndex(index);
+		ResetAllState();
 
 	}
 
 	if (GetIsRightWalk()) {
-		PlayerShirts_->SetIndex(index + 1);
+		PlayerShirts_->SetIndex(index + 16);
+		ResetAllState();
+
 	}
 
+
+	if (GetIsLeftWalk()) {
+		PlayerShirts_->SetIndex(index + 32);
+		ResetAllState();
+
+	}
+
+	if (GetIsBackWalk()) {
+		PlayerShirts_->SetIndex(index + 48);
+		ResetAllState();
+
+
+	}
 
 }
 

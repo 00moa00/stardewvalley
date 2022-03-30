@@ -98,6 +98,7 @@ private:
 	public:
 		FrameAnimation()
 			: Image_(nullptr),
+			Renderer_(nullptr),
 			CurrentFrame_(-1),
 			StartFrame_(-1),
 			EndFrame_(-1),

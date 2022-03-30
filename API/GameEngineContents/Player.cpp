@@ -30,39 +30,52 @@ Player::~Player()
 void Player::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-	//PlayerBody_->SetIndex(0);
-	//PlayerBody_ = CreateRenderer("farmer_Body.bmp");
-
-	//플레이어 몸
 
 	PlayerBody_ = CreateRenderer();
+	PlayerHand_ = CreateRenderer();
+
+
+
+	//================================
+	//     플레이어 바디 대기상태
+	//================================
 
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
 
 
+	//================================
+	//     플레이어 바디 이동 
+	//================================
 
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, 0.3f, true);
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHT_WALK1, 0.3f, true);
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, 0.3f, true);
-	PlayerBody_->ChangeAnimation("BODY_FRONT_INIT");
+	
 
 
-	//플레이어 팔
-
-	PlayerHand_ = CreateRenderer();
+	//================================
+	//      플레이어 팔 대기상태
+	//================================
 
 	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
 	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
 	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
 
 
+	//================================
+	//      플레이어 팔 이동
+	//================================
 
 	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, 0.3f, true);
 	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHT_WALK1, 0.3f, true);
 	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, 0.3f, true);
 
+
+	//------< 애니메이션 초기화 >------------------------------------------------------------------
+
+	PlayerBody_->ChangeAnimation("BODY_FRONT_INIT");
 	PlayerHand_->ChangeAnimation("HAND_FRONT_INIT");
 
 
@@ -82,7 +95,6 @@ void Player::Start()
 
 void Player::Update()
 {
-
 	switch (PlayerState_)
 	{
 	case PLAYER_STATE::INIT:
@@ -107,10 +119,6 @@ void Player::Update()
 		break;
 	}
 
-
-
-
-	
 }
 
 
@@ -121,8 +129,8 @@ void Player::moveX()
 		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
 		PlayerBody_->ChangeAnimation("BODY_RIGHT_WALK");
 		PlayerHand_->ChangeAnimation("HAND_RIGHT_WALK");
-		setRightWalk(true);
 
+		setRightWalk(true);
 	}
 
 
@@ -132,10 +140,8 @@ void Player::moveX()
 		PlayerBody_->ChangeAnimation("BODY_RIGHT_WALK");
 		PlayerHand_->ChangeAnimation("HAND_RIGHT_WALK");
 
-
 		SetLeftWalk(true);
 	}
-
 
 }
 
@@ -148,6 +154,7 @@ void Player::moveY()
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
 		PlayerBody_->ChangeAnimation("BODY_BACK_WALK");
 		PlayerHand_->ChangeAnimation("HAND_BACK_WALK");
+
 		SetBackWalk(true);
 
 	}
@@ -158,6 +165,7 @@ void Player::moveY()
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
 		PlayerBody_->ChangeAnimation("BODY_FRONT_WALK");
 		PlayerHand_->ChangeAnimation("HAND_FRONT_WALK");
+
 		SetFrontWalk(true);
 
 	}

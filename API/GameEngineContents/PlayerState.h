@@ -21,9 +21,6 @@ public:
 	bool isInit_;
 	
 
-
-protected:
-
 	bool GetIsFrontWalk() {
 		return isFrontWalk_;
 	}
@@ -82,6 +79,11 @@ protected:
 		isRightWalk_ = false;
 		isLeftWalk_ = false;
 	}
+
+protected:
+
+	
+
 private:
 
 };
