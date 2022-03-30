@@ -1,10 +1,10 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 
-enum class PLAYER_STATE {
-	INIT = 0,
-	MOVE,
-};
+//enum class PLAYER_STATE {
+//	INIT = 0,
+//	MOVE,
+//};
 
 
 // Ό³Έν :
@@ -44,7 +44,7 @@ private:
 
 	GameEngineRenderer* PlayerBody_;
 	GameEngineRenderer* PlayerHand_;
-	PLAYER_STATE PlayerState_;
+	//PLAYER_STATE PlayerState_;
 
 	void moveX();
 	void moveY();

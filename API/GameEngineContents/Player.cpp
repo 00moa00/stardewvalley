@@ -18,16 +18,13 @@ Player::Player()
 	Energy_(42.f * 1.8f),
 	PlayerBody_(nullptr),
 	PlayerHand_(nullptr),
-	state_(0),
-	PlayerState_(PLAYER_STATE::INIT)
+	state_(0)
 {
 }
 
 Player::~Player() 
 {
 }
-
-
 
 void Player::Start()
 {
@@ -74,27 +71,19 @@ void Player::Start()
 
 void Player::Update()
 {
+	moveX();
+	moveY();
 
-	PlayerState_ = static_cast<PLAYER_STATE>(state_);
-
-	switch (PlayerState_)
+	if (isStop())
 	{
-	case PLAYER_STATE::INIT :
-
-		moveX();
-		moveY();
-		SubEnergy();
-
-		if (isStop())
-		{
-			PlayerBody_->ChangeAnimation("BODY_INIT");
-			PlayerHand_->ChangeAnimation("HAND_INIT");
-		}
-		break;
-
-	case PLAYER_STATE::MOVE :
-		break;
+		PlayerBody_->ChangeAnimation("BODY_INIT");
+		PlayerHand_->ChangeAnimation("HAND_INIT");
 	}
+	else {
+		SubEnergy();
+	}
+
+	
 }
 
 
