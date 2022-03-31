@@ -15,7 +15,7 @@
 
 PlayerHand::PlayerHand()
 	: PlayerHand_(nullptr),
-	WalkAnimationFrame_(0.2f)
+	WalkAnimationFrame_(0.15f)
 {
 }
 

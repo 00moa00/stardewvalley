@@ -4,11 +4,13 @@
 #include "CustomLevel.h"
 #include "CustomData.h"
 
+
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineInput.h>
+
 
 #include <vector>
 
@@ -23,6 +25,7 @@ StardewValley::~StardewValley()
 
 void StardewValley::GameInit()
 {
+
 	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1280, 720 });
 
 	// 현재 디렉토리
@@ -84,6 +87,7 @@ void StardewValley::GameInit()
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<CustomLevel>("Custom");
 	CreateLevel<MyHouseLevel>("Play");
+
 
 	ChangeLevel("Play");
 

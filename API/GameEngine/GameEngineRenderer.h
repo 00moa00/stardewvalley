@@ -50,11 +50,21 @@ public:
 	}
 
 
-
-
 	void SetImage(const std::string& _Name);
 
 	void SetIndex(size_t _Index, float4 _Scale = { -1.0f, -1.0f });
+
+
+	void CameraEffectOff()
+	{
+		IsCameraEffect_ = false;
+	}
+
+	void CameraEffectOn()
+	{
+		IsCameraEffect_ = true;
+	}
+
 
 protected:
 	void Render();
@@ -62,6 +72,7 @@ protected:
 private:
 	friend class FrameAnimation;
 
+	bool IsCameraEffect_;
 	GameEngineImage* Image_;
 	RenderPivot PivotType_; // ºæ≈Õ bot
 	RenderScaleMode ScaleMode_;
@@ -79,7 +90,6 @@ private:
 
 	unsigned int TransColor_;
 
-	bool IsCameraEffect_;
 
 
 

@@ -158,6 +158,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayerEnum.h" />
     <ClInclude Include="CustomLevel.h">
       <SubType>
@@ -320,6 +324,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MyHouse.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>
     </ClCompile>

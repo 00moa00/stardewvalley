@@ -92,6 +92,9 @@
     <ClCompile Include="PlayerHand.cpp">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Actor\Play\Global\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -186,6 +189,9 @@
       <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHand.h">
+      <Filter>Actor\Play\Global\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
   </ItemGroup>

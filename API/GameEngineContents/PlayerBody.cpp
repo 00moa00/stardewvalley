@@ -18,7 +18,7 @@ PlayerBody::PlayerBody()
 	Energy_(128.F),
 	PlayerBody_(nullptr),
 	PlayerState_(PLAYER_STATE::INIT),
-	WalkAnimationFrame_(0.2f)
+	WalkAnimationFrame_(0.15f)
 
 {
 }
