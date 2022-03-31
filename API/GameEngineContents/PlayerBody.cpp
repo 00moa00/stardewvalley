@@ -79,6 +79,9 @@ void PlayerBody::Start()
 
 void PlayerBody::Update()
 {
+
+	//GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
+
 	switch (PlayerState_)
 	{
 	case PLAYER_STATE::INIT:

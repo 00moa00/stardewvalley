@@ -1,6 +1,8 @@
 #include "GameEngineRenderer.h"
 #include "GameEngineImageManager.h"
 #include "GameEngine.h"
+#include "GameEngineLevel.h"
+
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineTime.h>
 
@@ -15,6 +17,8 @@ GameEngineRenderer::GameEngineRenderer()
 	, ScaleMode_(RenderScaleMode::Image)
 	, TransColor_(RGB(255, 0, 255))
 	, RenderImagePivot_({ 0,0 })
+	, IsCameraEffect_(true)
+
 {
 }
 
@@ -53,7 +57,6 @@ void GameEngineRenderer::SetImage(const std::string& _Name)
 
 void GameEngineRenderer::Render()
 {
-
 	if (nullptr != CurrentAnimation_)
 	{
 		CurrentAnimation_->Update();
@@ -67,18 +70,28 @@ void GameEngineRenderer::Render()
 
 	float4 RenderPos = GetActor()->GetPosition() + RenderPivot_;
 
+	if (true == IsCameraEffect_)
+	{
+		RenderPos -= GetActor()->GetLevel()->GetCameraPos();
+	}
+
 	switch (PivotType_)
 	{
 	case RenderPivot::CENTER:
 		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - RenderScale_.Half(), RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
 		break;
 	case RenderPivot::BOT:
-		// GameEngine::BackBufferImage()->TransCopyCenterScale(Image_, RenderPos, RenderScale, TransColor_);
+	{
+		float4 Scale = RenderScale_.Half();
+		Scale.y *= 2.0f;
+		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
 		break;
+	}
 	default:
 		break;
 	}
 }
+
 
 void GameEngineRenderer::SetIndex(size_t _Index, float4 _Scale)
 {

@@ -79,6 +79,9 @@ private:
 
 	unsigned int TransColor_;
 
+	bool IsCameraEffect_;
+
+
 
 	///////////////////////////////////////////////////////////////// 애니메이션
 

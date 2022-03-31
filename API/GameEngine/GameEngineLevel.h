@@ -1,9 +1,9 @@
 #pragma once
-#include "GameEngineBase/GameEngineNameObject.h"
 #include <list>
 #include <map>
+#include <GameEngineBase/GameEngineNameObject.h>
+#include <GameEngineBase/GameEngineMath.h>
 
-// 설명 :
 class GameEngine;
 class GameEngineActor;
 class GameEngineLevel : public GameEngineNameObject
@@ -13,6 +13,7 @@ public:
 	// constrcuter destructer
 	GameEngineLevel();
 
+	// 소멸자 virtual 중요
 	virtual ~GameEngineLevel();
 
 	// delete Function
@@ -34,7 +35,7 @@ public:
 		Group.push_back(NewActor);
 
 		//// _Order 액터들이 돌아가는 순서를 의미하게 된다.
-		//// insert와 find를 동시에 하게 됩니다.
+		//// insert와 find를 동시에
 		//std::map<int, std::list<GameEngineActor*>>::iterator FindGroup
 		//	= AllActor_.find(_Order);
 
@@ -42,7 +43,7 @@ public:
 		//{
 
 		//	// AllActor_.insert(std::make_pair(_Order, std::list<GameEngineActor*>()));
-		//	// 이게더 빠릅니다.
+		//	// 이게더 빠름
 		//	AllActor_.insert(
 		//		std::map<int, std::list<GameEngineActor*>>::value_type(_Order, std::list<GameEngineActor*>())
 		//	);
@@ -50,6 +51,21 @@ public:
 		//}
 
 		return NewActor;
+	}
+
+	inline float4 GetCameraPos()
+	{
+		return CameraPos_;
+	}
+
+	inline void MoveCameraPos(const float4& _Value)
+	{
+		CameraPos_ += _Value;
+	}
+
+	inline void SetCameraPos(const float4& _Value)
+	{
+		CameraPos_ = _Value;
 	}
 
 
@@ -65,11 +81,12 @@ protected:
 	virtual void LevelChangeEnd() {}
 
 private:
-	// std::vector로 관리하는게 더 좋다고 생각합니다.
+	// std::vector로 관리하는게 더 좋다고 생각..
 	std::map<int, std::list<GameEngineActor*>> AllActor_;
+
+	float4 CameraPos_;
 
 	void ActorUpdate();
 	void ActorRender();
 	void ActorRelease();
 };
-

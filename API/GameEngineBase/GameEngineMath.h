@@ -27,6 +27,7 @@ public:
 	static float4 RIGHT;
 	static float4 UP;
 	static float4 DOWN;
+	static float4 ZERO;
 
 public:
 	float x;
@@ -102,6 +103,15 @@ public:
 		x += _Other.x;
 		y += _Other.y;
 		z += _Other.z;
+
+		return *this;
+	}
+
+	float4& operator-=(const float4& _Other)
+	{
+		x -= _Other.x;
+		y -= _Other.y;
+		z -= _Other.z;
 
 		return *this;
 	}
