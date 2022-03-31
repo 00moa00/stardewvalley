@@ -13,17 +13,17 @@
 #include <vector>
 
 
-StardewValley::StardewValley() 
+StardewValley::StardewValley()
 {
 }
 
-StardewValley::~StardewValley() 
+StardewValley::~StardewValley()
 {
 }
 
-void StardewValley::GameInit() 
+void StardewValley::GameInit()
 {
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, {1280, 720});
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1280, 720 });
 
 	// 현재 디렉토리
 	GameEngineDirectory ResourcesDir;
@@ -52,32 +52,32 @@ void StardewValley::GameInit()
 	for (int j = 0; j < 2; j++) {
 		for (int i = 0; i < 4; i++) {
 			if (i == 2) continue; // 협동플레이 버튼 스킵
-			TitleImage->Cut({ 148, 116 }, { 148 * (float)i, 374.f + (116.f * j)});//1 2 3
+			TitleImage->Cut({ 148, 116 }, { 148 * (float)i, 374.f + (116.f * j) });//1 2 3
 		}
 	}
 
 	//플레이어 바디 32 64
 	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("farmer_Body.bmp");
-	PlayerBody->Cut({ 32, 64 });
+	PlayerBody->Cut({ 48, 96 });
 
 	GameEngineImage* PlayerHand1 = GameEngineImageManager::GetInst()->Find("farmer_hand.bmp");
-	PlayerHand1->Cut({ 32, 64 });
+	PlayerHand1->Cut({ 48, 96 });
 
 	GameEngineImage* PlayerHand2 = GameEngineImageManager::GetInst()->Find("farmer_hand2.bmp");
-	PlayerHand2->Cut({ 32, 64 });
+	PlayerHand2->Cut({ 48, 96 });
 
 
 	//플레이어 헤어  32 64
 	GameEngineImage* PlayerHair = GameEngineImageManager::GetInst()->Find("hairstyles.bmp");
-	PlayerHair->Cut({ 32, 64 });
+	PlayerHair->Cut({ 48, 96 });
 
 	//플레이어 하의  32 64
 	GameEngineImage* PlayerPants = GameEngineImageManager::GetInst()->Find("pants.bmp");
-	PlayerPants->Cut({ 32, 64 });
+	PlayerPants->Cut({ 48, 96 });
 
 	//플레이어 셔츠  16 16
 	GameEngineImage* PlayerShirts = GameEngineImageManager::GetInst()->Find("shirts.bmp");
-	PlayerShirts->Cut({ 16, 16 });
+	PlayerShirts->Cut({ 24, 24 });
 
 
 
@@ -90,11 +90,11 @@ void StardewValley::GameInit()
 
 }
 
-void StardewValley::GameLoop() 
+void StardewValley::GameLoop()
 {
 
 }
-void StardewValley::GameEnd() 
+void StardewValley::GameEnd()
 {
 	CustomData::Destroy();
 }

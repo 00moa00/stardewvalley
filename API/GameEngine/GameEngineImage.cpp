@@ -24,7 +24,7 @@ GameEngineImage::GameEngineImage()
 {
 }
 
-GameEngineImage::~GameEngineImage() 
+GameEngineImage::~GameEngineImage()
 {
 
 	if (nullptr != BitMap_)
@@ -46,14 +46,14 @@ GameEngineImage::~GameEngineImage()
 	}
 }
 
-bool GameEngineImage::Create(HDC _DC) 
+bool GameEngineImage::Create(HDC _DC)
 {
 	ImageDC_ = _DC;
 	ImageScaleCheck();
 	return true;
 }
 
-bool GameEngineImage::Create(float4 _Scale) 
+bool GameEngineImage::Create(float4 _Scale)
 {
 	if (true == _Scale.IsZero2D())
 	{
@@ -79,7 +79,7 @@ bool GameEngineImage::Create(float4 _Scale)
 
 }
 
-bool GameEngineImage::Load(const std::string& _Path) 
+bool GameEngineImage::Load(const std::string& _Path)
 {
 
 	// 비트맵 속성으로 파일을 불러오고 HBITMAP으로 형변환해서 BitMap_에 저장한다
@@ -91,7 +91,7 @@ bool GameEngineImage::Load(const std::string& _Path)
 		0,
 		0,
 		LR_LOADFROMFILE
-		));
+	));
 
 	if (nullptr == BitMap_)
 	{

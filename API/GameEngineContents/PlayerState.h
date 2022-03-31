@@ -19,7 +19,7 @@ public:
 	bool isRightWalk_;
 	bool isLeftWalk_;
 	bool isInit_;
-	
+
 
 	bool GetIsFrontWalk() {
 		return isFrontWalk_;
@@ -30,14 +30,14 @@ public:
 	}
 
 	bool GetIsLeftWalk() {
-		return isRightWalk_;
-	}
-
-	bool GetIsRightWalk() {
 		return isLeftWalk_;
 	}
 
-	bool GetIsInit() {
+	bool GetIsRightWalk() {
+		return isRightWalk_;
+	}
+
+	bool GetIsWalkInit() {
 		return isInit_;
 	}
 
@@ -69,7 +69,7 @@ public:
 		isLeftWalk_ = b;
 	}
 
-	void SetInit(bool b) {
+	void SetWalkInit(bool b) {
 		isInit_ = b;
 	}
 
@@ -82,7 +82,7 @@ public:
 
 protected:
 
-	
+
 
 private:
 

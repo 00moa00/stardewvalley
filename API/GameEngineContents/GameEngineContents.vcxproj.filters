@@ -38,7 +38,7 @@
     <ClCompile Include="PlayerEnergyBar.cpp">
       <Filter>Actor\Play\Global\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="PlayerBody.cpp">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHair.cpp">
@@ -89,6 +89,9 @@
     <ClCompile Include="PlayerState.cpp">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHand.cpp">
+      <Filter>Actor\Play\Global\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -128,7 +131,7 @@
     <ClInclude Include="PlayerEnergyBar.h">
       <Filter>Actor\Play\Global\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="PlayerBody.h">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHair.h">
@@ -180,6 +183,9 @@
       <Filter>Actor\GlobalEnum</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState.h">
+      <Filter>Actor\Play\Global\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHand.h">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
   </ItemGroup>

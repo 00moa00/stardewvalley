@@ -203,7 +203,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="PlayerBody.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -224,6 +224,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerHair.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerHand.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -319,7 +323,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="PlayerBody.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -340,6 +344,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PlayerHair.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerHand.cpp">
       <SubType>
       </SubType>
     </ClCompile>

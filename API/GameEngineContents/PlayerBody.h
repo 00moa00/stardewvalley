@@ -9,12 +9,12 @@ enum class PLAYER_STATE {
 
 
 // Ό³Έν :
-class Player : public GameEngineActor, public PlayerState
+class PlayerBody : public GameEngineActor, public PlayerState
 {
 public:
 	// constrcuter destructer
-	Player();
-	~Player();
+	PlayerBody();
+	~PlayerBody();
 
 	float GetEnergy() {
 		return Energy_;
@@ -30,10 +30,10 @@ public:
 
 
 	// delete Function
-	Player(const Player& _Other) = delete;
-	Player(Player&& _Other) noexcept = delete;
-	Player& operator=(const Player& _Other) = delete;
-	Player& operator=(Player&& _Other) noexcept = delete;
+	PlayerBody(const PlayerBody& _Other) = delete;
+	PlayerBody(PlayerBody&& _Other) noexcept = delete;
+	PlayerBody& operator=(const PlayerBody& _Other) = delete;
+	PlayerBody& operator=(PlayerBody&& _Other) noexcept = delete;
 
 protected:
 
@@ -41,11 +41,9 @@ private:
 
 	float Speed_;
 	float Energy_;
-
-//	bool isInit_;
+	float WalkAnimationFrame_;
 
 	GameEngineRenderer* PlayerBody_;
-	GameEngineRenderer* PlayerHand_;
 	PLAYER_STATE PlayerState_;
 
 	void moveX();

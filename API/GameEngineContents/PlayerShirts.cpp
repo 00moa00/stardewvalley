@@ -9,13 +9,13 @@
 
 #include "CustomData.h"
 
-PlayerShirts::PlayerShirts() 
+PlayerShirts::PlayerShirts()
 	:
 	PlayerShirts_(nullptr)
 {
 }
 
-PlayerShirts::~PlayerShirts() 
+PlayerShirts::~PlayerShirts()
 {
 }
 

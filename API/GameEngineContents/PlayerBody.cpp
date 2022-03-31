@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "PlayerBody.h"
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineImageManager.h>
@@ -13,26 +13,25 @@
 #include "PlayerEnum.h"
 
 
-Player::Player()
-	: Speed_(100.0f),
-	Energy_(42.f * 1.8f),
+PlayerBody::PlayerBody()
+	: Speed_(120.0f),
+	Energy_(128.F),
 	PlayerBody_(nullptr),
-	PlayerHand_(nullptr),
-	PlayerState_(PLAYER_STATE::INIT)
+	PlayerState_(PLAYER_STATE::INIT),
+	WalkAnimationFrame_(0.2f)
 
 {
 }
 
-Player::~Player() 
+PlayerBody::~PlayerBody()
 {
 }
 
-void Player::Start()
+void PlayerBody::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 
 	PlayerBody_ = CreateRenderer();
-	PlayerHand_ = CreateRenderer();
 
 
 
@@ -42,6 +41,8 @@ void Player::Start()
 
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_LEFT_INIT", PLAYER::LEFT_INIT, PLAYER::LEFT_INIT, 0.0f, false);
+
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
 
 
@@ -49,34 +50,17 @@ void Player::Start()
 	//     플레이어 바디 이동 
 	//================================
 
-	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, 0.3f, true);
-	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHT_WALK1, 0.3f, true);
-	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, 0.3f, true);
-	
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, WalkAnimationFrame_, true);
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHT_WALK1, WalkAnimationFrame_, true);
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_LEFT_WALK", PLAYER::LEFT_INIT, PLAYER::LEFT_WALK1, WalkAnimationFrame_, true);
 
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, WalkAnimationFrame_, true);
 
-	//================================
-	//      플레이어 팔 대기상태
-	//================================
-
-	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
-	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
-	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
-
-
-	//================================
-	//      플레이어 팔 이동
-	//================================
-
-	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, 0.3f, true);
-	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHT_WALK1, 0.3f, true);
-	PlayerHand_->CreateAnimation("farmer_hand.bmp", "HAND_BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, 0.3f, true);
 
 
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
 	PlayerBody_->ChangeAnimation("BODY_FRONT_INIT");
-	PlayerHand_->ChangeAnimation("HAND_FRONT_INIT");
 
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveUp"))
@@ -93,12 +77,13 @@ void Player::Start()
 
 
 
-void Player::Update()
+void PlayerBody::Update()
 {
 	switch (PlayerState_)
 	{
 	case PLAYER_STATE::INIT:
 		SetInit();
+		SetWalkInit(true);
 
 		if (isMove()) PlayerState_ = PLAYER_STATE::MOVE;
 
@@ -109,6 +94,8 @@ void Player::Update()
 		moveX();
 		moveY();
 		SubEnergy();
+
+		SetWalkInit(false);
 
 
 		if (isStop()) PlayerState_ = PLAYER_STATE::INIT;
@@ -122,13 +109,12 @@ void Player::Update()
 }
 
 
-void Player::moveX()
+void PlayerBody::moveX()
 {
 	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
 	{
 		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
 		PlayerBody_->ChangeAnimation("BODY_RIGHT_WALK");
-		PlayerHand_->ChangeAnimation("HAND_RIGHT_WALK");
 
 		setRightWalk(true);
 	}
@@ -137,8 +123,7 @@ void Player::moveX()
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
 		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
-		PlayerBody_->ChangeAnimation("BODY_RIGHT_WALK");
-		PlayerHand_->ChangeAnimation("HAND_RIGHT_WALK");
+		PlayerBody_->ChangeAnimation("BODY_LEFT_WALK");
 
 		SetLeftWalk(true);
 	}
@@ -146,14 +131,13 @@ void Player::moveX()
 }
 
 
-void Player::moveY()
+void PlayerBody::moveY()
 {
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
 	{
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
 		PlayerBody_->ChangeAnimation("BODY_BACK_WALK");
-		PlayerHand_->ChangeAnimation("HAND_BACK_WALK");
 
 		SetBackWalk(true);
 
@@ -164,7 +148,6 @@ void Player::moveY()
 	{
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
 		PlayerBody_->ChangeAnimation("BODY_FRONT_WALK");
-		PlayerHand_->ChangeAnimation("HAND_FRONT_WALK");
 
 		SetFrontWalk(true);
 
@@ -173,7 +156,7 @@ void Player::moveY()
 }
 
 
-bool Player::isStop()
+bool PlayerBody::isStop()
 {
 	return (true == GameEngineInput::GetInst()->IsFree("MoveRight")
 		&& true == GameEngineInput::GetInst()->IsFree("MoveLeft")
@@ -181,7 +164,7 @@ bool Player::isStop()
 		&& true == GameEngineInput::GetInst()->IsFree("MoveUp"));
 }
 
-bool Player::isMove()
+bool PlayerBody::isMove()
 {
 	return (true == GameEngineInput::GetInst()->IsPress("MoveRight")
 		|| true == GameEngineInput::GetInst()->IsPress("MoveLeft")
@@ -189,36 +172,32 @@ bool Player::isMove()
 		|| true == GameEngineInput::GetInst()->IsPress("MoveUp"));
 }
 
-void Player::SetInit()
+void PlayerBody::SetInit()
 {
 	if (GetIsRightWalk()) {
 		PlayerBody_->ChangeAnimation("BODY_RIGHT_INIT");
-		PlayerHand_->ChangeAnimation("HAND_RIGHT_INIT");
 	}
 
 	if (GetIsFrontWalk()) {
 		PlayerBody_->ChangeAnimation("BODY_FRONT_INIT");
-		PlayerHand_->ChangeAnimation("HAND_FRONT_INIT");
 
 	}
 
 	if (GetIsBackWalk()) {
 		PlayerBody_->ChangeAnimation("BODY_BACK_INIT");
-		PlayerHand_->ChangeAnimation("HAND_BACK_INIT");
 
 	}
 
 
 	if (GetIsLeftWalk()) {
-		PlayerBody_->ChangeAnimation("BODY_RIGHT_INIT");
-		PlayerHand_->ChangeAnimation("HAND_RIGHT_INIT");
+		PlayerBody_->ChangeAnimation("BODY_LEFT_INIT");
 
 	}
 
 }
 
 
-void Player::Render() 
+void PlayerBody::Render()
 {
 	//GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find("Idle.bmp");
 	//if (nullptr == FindImage)

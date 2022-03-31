@@ -4,7 +4,7 @@
 #include "PlayerCustomBoard.h"
 
 
-#include "Player.h"
+#include "PlayerBody.h"
 #include "PlayerHair.h"
 #include "PlayerPants.h"
 #include "PlayerShirts.h"
@@ -35,12 +35,12 @@ protected:
 	void LevelChangeStart() override;
 
 private:
-	
+
 	TitleBackGround* BackGround_;
 	PlayerBackGround* PlayerBackGround_;
 	PlayerCustomBoard* PlayerCustomBoard_;
 
-	Player* Player_;
+	PlayerBody* PlayerBody_;
 	PlayerHair* PlayerHair_;
 	PlayerPants* PlayerPants_;
 	PlayerShirts* PlayerShirts_;

@@ -9,14 +9,15 @@ enum class ORDER
 	PLAYERHAIR,
 	PLAYERPANTS,
 	PLAYERSHIRTS,
+	PLAYERHAND,
 	ENERGYFRAME,
 	ENERGYBAR,
 	MAINUI
 };
 
-MyHouseLevel::MyHouseLevel() 
+MyHouseLevel::MyHouseLevel()
 	:
-	Player_(nullptr),
+	PlayerBody_(nullptr),
 	PlayerEnergyBar_(nullptr),
 	PlayerEnergyFrame_(nullptr),
 	PlayerHair_(nullptr),
@@ -27,13 +28,15 @@ MyHouseLevel::MyHouseLevel()
 {
 }
 
-MyHouseLevel::~MyHouseLevel() 
+MyHouseLevel::~MyHouseLevel()
 {
 }
 
 void MyHouseLevel::Loading()
 {
-	Player_ = CreateActor<Player>((int)ORDER::PLAYER);
+	PlayerBody_ = CreateActor<PlayerBody>((int)ORDER::PLAYER);
+	PlayerHand_ = CreateActor<PlayerHand>((int)ORDER::PLAYERHAND);
+
 	PlayerHair_ = CreateActor<PlayerHair>((int)ORDER::PLAYERHAIR);
 	PlayerPants_ = CreateActor<PlayerPants>((int)ORDER::PLAYERPANTS);
 	PlayerShirts_ = CreateActor<PlayerShirts>((int)ORDER::PLAYERSHIRTS);
@@ -54,17 +57,36 @@ void MyHouseLevel::LevelChangeStart()
 void MyHouseLevel::Update()
 {
 	//플레이어가 행동 할때마다 스테미너 감소. 테스트용
-	PlayerEnergyBar_->SubEnergyBar(Player_->GetEnergy());
+	PlayerEnergyBar_->SubEnergyBar(PlayerBody_->GetEnergy());
 
-	PlayerHair_->SetPosition(Player_->GetPosition());
-	PlayerPants_->SetPosition(Player_->GetPosition());
-	PlayerShirts_->SetPosition({ Player_->GetPosition().x, Player_->GetPosition().y+ 7.f }); // 6? (16/2)-2
+	PlayerHair_->SetPosition(PlayerBody_->GetPosition());
+	PlayerPants_->SetPosition(PlayerBody_->GetPosition());
+	PlayerShirts_->SetPosition({ PlayerBody_->GetPosition().x, PlayerBody_->GetPosition().y + 11.f }); // 6? (16/2)-2
+	PlayerHand_->SetPosition({ PlayerBody_->GetPosition().x, PlayerBody_->GetPosition().y });
 
+	if (PlayerBody_->GetIsBackWalk()) {
+		PlayerShirts_->SetBackWalk(true);
+		PlayerHand_->SetBackWalk(true);
+	}
 
-	if(Player_->GetIsBackWalk())PlayerShirts_->SetBackWalk(true);
-	if (Player_->GetIsRightWalk())PlayerShirts_->setRightWalk(true);
-	if (Player_->GetIsLeftWalk())PlayerShirts_->SetLeftWalk(true);
-	if (Player_->GetIsFrontWalk())PlayerShirts_->SetFrontWalk(true);
+	if (PlayerBody_->GetIsRightWalk()) {
+		PlayerShirts_->setRightWalk(true);
+		PlayerHand_->setRightWalk(true);
+
+	}
+
+	if (PlayerBody_->GetIsLeftWalk()) {
+		PlayerShirts_->SetLeftWalk(true);
+		PlayerHand_->SetLeftWalk(true);
+
+	}
+	if (PlayerBody_->GetIsFrontWalk()) {
+		PlayerShirts_->SetFrontWalk(true);
+		PlayerHand_->SetFrontWalk(true);
+
+	}
+
+	PlayerHand_->SetWalkInit(PlayerBody_->GetIsWalkInit());
 
 
 

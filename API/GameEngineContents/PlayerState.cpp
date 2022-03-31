@@ -1,6 +1,6 @@
 #include "PlayerState.h"
 
-PlayerState::PlayerState() 
+PlayerState::PlayerState()
 	:
 	isFrontWalk_(false),
 	isBackWalk_(false),
@@ -10,7 +10,7 @@ PlayerState::PlayerState()
 {
 }
 
-PlayerState::~PlayerState() 
+PlayerState::~PlayerState()
 {
 }
 
