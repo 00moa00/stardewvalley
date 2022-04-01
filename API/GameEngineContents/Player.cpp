@@ -30,11 +30,11 @@ Player::Player()
 	PlayerHair_(nullptr),
 	PlayerPants_(nullptr),
 	PlayerBody_(nullptr),
-	isFrontWalk_(false),
-	isBackWalk_(false),
-	isRightWalk_(false),
-	isLeftWalk_(false),
-	isInit_(false)
+	PlayerMove_{},
+	MoveEffectTimer_(0),
+	MoveEffectState_(0),
+	PivotY_(),
+	PivotYSpeed_(15.f)
 {
 }
 
@@ -46,26 +46,9 @@ Player::~Player()
 
 void Player::Start()
 {
-	ShirtIndex_ = CustomData::GetInst().GetShirtsIndex();
-	PantsIndex_ = CustomData::GetInst().GetShirtsIndex();
-	HairIndex_ = CustomData::GetInst().GetShirtsIndex();
 
-
-	SetPosition(GameEngineWindow::GetScale().Half());
-
-	PlayerBody_ = GetLevel()->CreateActor<PlayerBody>((int)ORDER::PLAYERBODY);
-	PlayerHand_ = GetLevel()->CreateActor<PlayerHand>((int)ORDER::PLAYERHAND);
-	PlayerHair_ = GetLevel()->CreateActor<PlayerHair>((int)ORDER::PLAYERHAIR);
-	PlayerPants_ = GetLevel()->CreateActor<PlayerPants>((int)ORDER::PLAYERPANTS);
-	PlayerShirts_ = GetLevel()->CreateActor<PlayerShirts>((int)ORDER::PLAYERSHIRTS);
-
-
-
-	PlayerPants_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
-	PlayerHair_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
-	PlayerHand_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
-	PlayerBody_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
-	PlayerShirts_->SetPosition({ this->GetPosition().x, this->GetPosition().y + 11.f });
+	SetInit();
+	PlayerActorSetPos();
 
 
 	PlayerHair_->Renderer()->SetIndex(HairIndex_);
@@ -93,26 +76,27 @@ void Player::Update()
 	switch (PlayerState_)
 	{
 	case PLAYER_STATE::INIT:
-		SetInit();
-		SetWalkInit(true);
 
+		SetDir();
+
+		PlayerMove_.SetWalkInit(true);
 		if (isMove()) PlayerState_ = PLAYER_STATE::MOVE;
 
 		break;
 
+	case PLAYER_STATE::MOVEEFFECT:
+
 	case PLAYER_STATE::MOVE:
-		PlayerBody_->SetPosition(this->GetPosition());		
-		PlayerHair_->SetPosition(this->GetPosition());
-		PlayerPants_->SetPosition(this->GetPosition());
-		PlayerHand_->SetPosition(this->GetPosition());
-		PlayerShirts_->SetPosition({ this->GetPosition().x, this->GetPosition().y+11.f});
 
 		moveX();
 		moveY();
+		if (!GameEngineInput::GetInst()->IsPress("MoveUP")) SetMoveEffect();
+
+		PlayerActorSetPos();
+
 		SubEnergy();
 
-		SetWalkInit(false);
-
+		PlayerMove_.SetWalkInit(false);
 
 		if (isStop()) PlayerState_ = PLAYER_STATE::INIT;
 
@@ -121,6 +105,7 @@ void Player::Update()
 	default:
 		break;
 	}
+
 
 
 }
@@ -143,7 +128,7 @@ void Player::moveX()
 		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_ + 16);
 
 
-		setRightWalk(true);
+		PlayerMove_.setRightWalk(true);
 	}
 
 
@@ -155,7 +140,7 @@ void Player::moveX()
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_LEFT_WALK");
 		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_ + 32);
 
-		SetLeftWalk(true);
+		PlayerMove_.SetLeftWalk(true);
 	}
 
 }
@@ -171,7 +156,7 @@ void Player::moveY()
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_BACK_WALK");
 		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_ + 48);
 
-		SetBackWalk(true);
+		PlayerMove_.SetBackWalk(true);
 
 	}
 
@@ -184,7 +169,7 @@ void Player::moveY()
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_FRONT_WALK");
 		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_);
 
-		SetFrontWalk(true);
+		PlayerMove_.SetFrontWalk(true);
 
 	}
 }
@@ -205,30 +190,101 @@ bool Player::isMove()
 		|| true == GameEngineInput::GetInst()->IsPress("MoveUp"));
 }
 
-void Player::SetInit()
+void Player::SetDir()
 {
 
-	if (isRightWalk_) {
+	if (PlayerMove_.isRightWalk_) {
 		PlayerBody_-> Renderer()->ChangeAnimation("BODY_RIGHT_INIT");
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_RIGHT_INIT");
 	}
 
-	if (isFrontWalk_) {
+	if (PlayerMove_.isFrontWalk_) {
 		PlayerBody_->Renderer()->ChangeAnimation("BODY_FRONT_INIT");
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_FRONT_INIT");
 
 	}
 
-	if (isBackWalk_) {
+	if (PlayerMove_.isBackWalk_) {
 		PlayerBody_->Renderer()->ChangeAnimation("BODY_BACK_INIT");
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_BACK_INIT");
 
 	}
 
-	if (isLeftWalk_) {
+	if (PlayerMove_.isLeftWalk_) {
 		PlayerBody_->Renderer()->ChangeAnimation("BODY_LEFT_INIT");
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_LEFT_INIT");
 
 	}
 
+}
+
+void Player::SetAllPivot(float _MovePosY)
+{
+	PlayerBody_->Renderer()->SetPivot({ 0, _MovePosY });
+	PlayerHair_->Renderer()->SetPivot({ 0, _MovePosY });
+	PlayerHand_->Renderer()->SetPivot({ 0, _MovePosY });
+	PlayerPants_->Renderer()->SetPivot({ 0, _MovePosY });
+	PlayerShirts_->Renderer()->SetPivot({ 0, _MovePosY });
+
+}
+
+void Player::SetMoveEffect()
+{
+	if (isMove()) {
+		switch (MoveEffectState_) {
+
+		case 0:
+
+			MoveEffectTimer_++;
+
+			if (MoveEffectTimer_ > 200)
+			{
+				PivotY_ -= PivotYSpeed_ * GameEngineTime::GetDeltaTime();
+				SetAllPivot(PivotY_);
+
+				if (MoveEffectTimer_ > 400) MoveEffectState_ = 1;
+			}
+
+			break;
+
+		case 1:
+
+			PivotY_ += PivotYSpeed_ * GameEngineTime::GetDeltaTime();
+			SetAllPivot(PivotY_);
+			MoveEffectState_ = 0;
+			PivotY_ = 0;
+			MoveEffectTimer_ = 0;
+		}
+
+	}
+
+
+
+	
+}
+
+void Player::PlayerActorSetPos()
+{
+	PlayerPants_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
+	PlayerHair_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
+	PlayerHand_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
+	PlayerBody_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
+	PlayerShirts_->SetPosition({ this->GetPosition().x, this->GetPosition().y + 11.f });
+}
+
+void Player::SetInit()
+{
+
+	ShirtIndex_ = CustomData::GetInst().GetShirtsIndex();
+	PantsIndex_ = CustomData::GetInst().GetShirtsIndex();
+	HairIndex_ = CustomData::GetInst().GetShirtsIndex();
+
+
+	SetPosition(GameEngineWindow::GetScale().Half());
+
+	PlayerBody_ = GetLevel()->CreateActor<PlayerBody>((int)ORDER::PLAYERBODY);
+	PlayerHand_ = GetLevel()->CreateActor<PlayerHand>((int)ORDER::PLAYERHAND);
+	PlayerHair_ = GetLevel()->CreateActor<PlayerHair>((int)ORDER::PLAYERHAIR);
+	PlayerPants_ = GetLevel()->CreateActor<PlayerPants>((int)ORDER::PLAYERPANTS);
+	PlayerShirts_ = GetLevel()->CreateActor<PlayerShirts>((int)ORDER::PLAYERSHIRTS);
 }

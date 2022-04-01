@@ -113,6 +113,7 @@ void GameEngineRenderer::SetIndex(size_t _Index, float4 _Scale)
 		return;
 	}
 	RenderImagePivot_ = Image_->GetCutPivot(_Index);
+
 	if (-1.0f == _Scale.x ||
 		-1.0f == _Scale.y)
 	{
@@ -123,7 +124,7 @@ void GameEngineRenderer::SetIndex(size_t _Index, float4 _Scale)
 		RenderScale_ = _Scale;
 	}
 
-
+	
 	RenderImageScale_ = Image_->GetCutScale(_Index);
 }
 /////////////////////////////////////// 애니메이션

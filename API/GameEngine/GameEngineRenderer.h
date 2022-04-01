@@ -80,7 +80,7 @@ private:
 
 	bool IsCameraEffect_;
 	GameEngineImage* Image_;
-	RenderPivot PivotType_; // ºæ≈Õ bot
+	RenderPivot PivotType_; 
 	RenderScaleMode ScaleMode_;
 
 

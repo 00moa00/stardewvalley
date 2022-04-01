@@ -27,7 +27,8 @@ void PlayerShirts::Start()
 
 	//PlayerShirts_ = CreateRenderer();
 
-	//PlayerShirts_->CreateAnimation("shirts.bmp", "BODY_INIT", PLAYER::INIT, PLAYER::FRONTWALK1, 0.3f, false);
+	//PlayerShirts_->CreateAnimation("shirts.bmp", "BODY_INIT", SHIRT01_INIT, SHIRT01_INIT, 0.3f, false);
+
 	//PlayerShirts_->CreateAnimation("shirts.bmp", "BODY_FRONT_WALK", PLAYER::FRONTWALK0, PLAYER::FRONTWALK1, 0.3f, false);
 	//PlayerShirts_->CreateAnimation("shirts.bmp", "BODY_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHTWALK1, 0.3f, false);
 	//PlayerShirts_->CreateAnimation("shirts.bmp", "BODY_BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, 0.3f, false);
@@ -36,7 +37,6 @@ void PlayerShirts::Start()
 
 void PlayerShirts::Update()
 {
-
 
 }
 
