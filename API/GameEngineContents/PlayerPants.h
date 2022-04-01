@@ -9,6 +9,10 @@ public:
 	PlayerPants();
 	~PlayerPants();
 
+	GameEngineRenderer* Renderer() {
+		return PlayerPants_;
+	}
+
 	// delete Function
 	PlayerPants(const PlayerPants& _Other) = delete;
 	PlayerPants(PlayerPants&& _Other) noexcept = delete;
@@ -20,6 +24,7 @@ protected:
 private:
 
 	GameEngineRenderer* PlayerPants_;
+
 
 	void Start() override;
 	void Update() override;

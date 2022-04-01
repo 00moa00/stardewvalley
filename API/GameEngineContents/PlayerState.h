@@ -19,7 +19,13 @@ public:
 	bool isRightWalk_;
 	bool isLeftWalk_;
 	bool isInit_;
+	float WalkAnimationFrame_;
 
+
+
+	bool GetWalkFrame() {
+		return WalkAnimationFrame_;
+	}
 
 	bool GetIsFrontWalk() {
 		return isFrontWalk_;
@@ -39,6 +45,10 @@ public:
 
 	bool GetIsWalkInit() {
 		return isInit_;
+	}
+
+	void SetWalkFrame(bool b) {
+		WalkAnimationFrame_ = b;
 	}
 
 	void SetFrontWalk(bool b) {

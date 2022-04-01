@@ -33,14 +33,12 @@ void PlayerPants::Start()
 
 	PlayerPants_ = CreateRenderer("pants.bmp");
 
-	PlayerPants_->SetIndex(0);
+
 }
 
 void PlayerPants::Update()
 {
-	unsigned int index = CustomData::GetInst().GetPantsIndex();
 
-	PlayerPants_->SetIndex(index);
 }
 
 void PlayerPants::Render()

@@ -7,6 +7,7 @@
 class GameEngine;
 class GameEngineActor;
 class GameEngineCollision;
+
 class GameEngineLevel : public GameEngineNameObject
 {
 	friend GameEngine;

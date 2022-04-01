@@ -61,18 +61,18 @@ void CustomLevel::Loading()
 	PlayerCustomBoard_ = CreateActor<PlayerCustomBoard>((int)ORDER::BOARD);
 	PlayerBackGround_ = CreateActor<PlayerBackGround>((int)ORDER::PLAYERBACKGROUND);
 
-	PlayerBody_ = CreateActor<PlayerBody>((int)ORDER::PLAYER);
-	PlayerBody_->SetPosition({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y - 120.f });
-	PlayerBody_->SetPlayerSpeed(0.f);
+	//PlayerBody_ = CreateActor<PlayerBody>((int)ORDER::PLAYER);
+	//PlayerBody_->SetPosition({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y - 120.f });
+	//PlayerBody_->SetPlayerSpeed(0.f);
 
-	PlayerHair_ = CreateActor<PlayerHair>((int)ORDER::PLAYERHAIR);
-	PlayerHair_->SetPosition(PlayerBody_->GetPosition());
+	//PlayerHair_ = CreateActor<PlayerHair>((int)ORDER::PLAYERHAIR);
+	//PlayerHair_->SetPosition(PlayerBody_->GetPosition());
 
-	PlayerPants_ = CreateActor<PlayerPants>((int)ORDER::PLAYERPANTS);
-	PlayerPants_->SetPosition(PlayerBody_->GetPosition());
+	//PlayerPants_ = CreateActor<PlayerPants>((int)ORDER::PLAYERPANTS);
+	//PlayerPants_->SetPosition(PlayerBody_->GetPosition());
 
-	PlayerShirts_ = CreateActor<PlayerShirts>((int)ORDER::PLAYERSHIRTS);
-	PlayerShirts_->SetPosition({ PlayerBody_->GetPosition().x, PlayerBody_->GetPosition().y + 6.f }); // (16/2)-2
+	//PlayerShirts_ = CreateActor<PlayerShirts>((int)ORDER::PLAYERSHIRTS);
+	//PlayerShirts_->SetPosition({ PlayerBody_->GetPosition().x, PlayerBody_->GetPosition().y + 6.f }); // (16/2)-2
 
 	for (int i = 0; i < 3; i++) {
 		RightArrow_[i] = CreateActor<RightArrow>(((int)ORDER::RIGHTARROWHAIR) + i);

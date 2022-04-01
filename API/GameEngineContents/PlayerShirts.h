@@ -1,9 +1,8 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
-#include "PlayerState.h"
 
 // Ό³Έν :
-class PlayerShirts : public GameEngineActor, public PlayerState
+class PlayerShirts : public GameEngineActor
 {
 public:
 	// constrcuter destructer
@@ -15,6 +14,10 @@ public:
 	PlayerShirts(PlayerShirts&& _Other) noexcept = delete;
 	PlayerShirts& operator=(const PlayerShirts& _Other) = delete;
 	PlayerShirts& operator=(PlayerShirts&& _Other) noexcept = delete;
+
+	GameEngineRenderer* Renderer() {
+		return PlayerShirts_;
+	}
 
 protected:
 	GameEngineRenderer* PlayerShirts_;

@@ -1,16 +1,14 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 
-#include "PlayerBody.h"
-#include "PlayerHair.h"
-#include "PlayerPants.h"
-#include "PlayerShirts.h"
+
 
 #include "PlayerEnergyBar.h"
 #include "PlayerEnergyFrame.h"
 #include "MainUI.h"
 
-#include "PlayerHand.h"
+#include "Player.h"
+
 
 
 // Ό³Έν :
@@ -32,14 +30,10 @@ protected:
 	void Update() override;
 	void LevelChangeStart() override;
 private:
-	PlayerBody* PlayerBody_;
-	PlayerHand* PlayerHand_;
 
-	PlayerEnergyBar* PlayerEnergyBar_;
-	PlayerEnergyFrame* PlayerEnergyFrame_;
-	PlayerHair* PlayerHair_;
-	PlayerPants* PlayerPants_;
-	PlayerShirts* PlayerShirts_;
 	MainUI* MainUI_;
 
+	Player* Player_;
+	PlayerEnergyBar* PlayerEnergyBar_;
+	PlayerEnergyFrame* PlayerEnergyFrame_;
 };

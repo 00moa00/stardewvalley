@@ -247,10 +247,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="RightArrow.h">
       <SubType>
       </SubType>
@@ -368,10 +364,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MyHouseLevel.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
       <SubType>
       </SubType>
     </ClCompile>

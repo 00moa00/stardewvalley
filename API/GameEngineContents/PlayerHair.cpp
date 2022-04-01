@@ -28,8 +28,7 @@ void PlayerHair::Start()
 
 void PlayerHair::Update()
 {
-	unsigned int index = CustomData::GetInst().GetHairIndex();
-	PlayerHair_->SetIndex(index);
+
 }
 
 void PlayerHair::Render()

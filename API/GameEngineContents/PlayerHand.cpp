@@ -16,6 +16,13 @@
 PlayerHand::PlayerHand()
 	: PlayerHand_(nullptr),
 	WalkAnimationFrame_(0.15f)
+
+{
+}
+
+PlayerHand::PlayerHand(float _WalkAnimationFrame)
+	: PlayerHand_(nullptr),
+	WalkAnimationFrame_(_WalkAnimationFrame)
 {
 }
 
@@ -64,39 +71,6 @@ void PlayerHand::Start()
 
 void PlayerHand::Update()
 {
-	if (GetIsRightWalk()) {
-		PlayerHand_->ChangeAnimation("HAND_RIGHT_INIT");
-
-		if (GetIsWalkInit())
-		{
-			PlayerHand_->ChangeAnimation("HAND_RIGHT_INIT");
-		}
-	}
-
-	if (GetIsFrontWalk()) {
-		PlayerHand_->ChangeAnimation("HAND_FRONT_INIT");
-		if (GetIsWalkInit())
-		{
-			PlayerHand_->ChangeAnimation("HAND_FRONT_INIT");
-		}
-	}
-
-	if (GetIsBackWalk()) {
-		PlayerHand_->ChangeAnimation("HAND_BACK_INIT");
-		if (GetIsWalkInit())
-		{
-			PlayerHand_->ChangeAnimation("HAND_BACK_INIT");
-		}
-	}
-
-
-	if (GetIsLeftWalk()) {
-		PlayerHand_->ChangeAnimation("HAND_LEFT_INIT");
-		if (GetIsWalkInit())
-		{
-			PlayerHand_->ChangeAnimation("HAND_LEFT_INIT");
-		}
-	}
 
 
 }

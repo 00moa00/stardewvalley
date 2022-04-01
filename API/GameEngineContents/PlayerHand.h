@@ -1,17 +1,20 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
-#include "PlayerState.h"
-
 
 
 // Ό³Έν :
-class PlayerHand : public GameEngineActor, public PlayerState
+class PlayerHand : public GameEngineActor
 {
 public:
 	// constrcuter destructer
 	PlayerHand();
+	PlayerHand(float _WalkAnimationFrame);
+
 	~PlayerHand();
 
+	GameEngineRenderer* Renderer() {
+		return PlayerHand_;
+	}
 
 	// delete Function
 	PlayerHand(const PlayerHand& _Other) = delete;
@@ -25,6 +28,8 @@ private:
 
 	float WalkAnimationFrame_;
 	GameEngineRenderer* PlayerHand_;
+
+
 
 	void Start() override;
 	void Update() override;

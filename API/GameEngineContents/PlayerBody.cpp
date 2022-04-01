@@ -14,12 +14,16 @@
 
 
 PlayerBody::PlayerBody()
-	: Speed_(120.0f),
-	Energy_(128.F),
+	: 
 	PlayerBody_(nullptr),
-	PlayerState_(PLAYER_STATE::INIT),
 	WalkAnimationFrame_(0.15f)
+{
+}
 
+PlayerBody::PlayerBody(float _WalkAnimationFrame)
+	:
+	PlayerBody_(nullptr),
+	WalkAnimationFrame_(_WalkAnimationFrame)
 {
 }
 
@@ -63,14 +67,6 @@ void PlayerBody::Start()
 	PlayerBody_->ChangeAnimation("BODY_FRONT_INIT");
 
 
-	if (false == GameEngineInput::GetInst()->IsKey("MoveUp"))
-	{
-		//GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
-		//GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
-		GameEngineInput::GetInst()->CreateKey("MoveUp", 'W');
-		GameEngineInput::GetInst()->CreateKey("MoveDown", 'S');
-	}
-
 
 }
 
@@ -82,120 +78,7 @@ void PlayerBody::Update()
 
 	//GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
 
-	switch (PlayerState_)
-	{
-	case PLAYER_STATE::INIT:
-		SetInit();
-		SetWalkInit(true);
 
-		if (isMove()) PlayerState_ = PLAYER_STATE::MOVE;
-
-		break;
-
-	case PLAYER_STATE::MOVE:
-
-		moveX();
-		moveY();
-		SubEnergy();
-
-		SetWalkInit(false);
-
-
-		if (isStop()) PlayerState_ = PLAYER_STATE::INIT;
-
-		break;
-
-	default:
-		break;
-	}
-
-}
-
-
-void PlayerBody::moveX()
-{
-	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
-	{
-		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
-		PlayerBody_->ChangeAnimation("BODY_RIGHT_WALK");
-
-		setRightWalk(true);
-	}
-
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
-	{
-		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
-		PlayerBody_->ChangeAnimation("BODY_LEFT_WALK");
-
-		SetLeftWalk(true);
-	}
-
-}
-
-
-void PlayerBody::moveY()
-{
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
-	{
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
-		PlayerBody_->ChangeAnimation("BODY_BACK_WALK");
-
-		SetBackWalk(true);
-
-	}
-
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
-	{
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
-		PlayerBody_->ChangeAnimation("BODY_FRONT_WALK");
-
-		SetFrontWalk(true);
-
-	}
-
-}
-
-
-bool PlayerBody::isStop()
-{
-	return (true == GameEngineInput::GetInst()->IsFree("MoveRight")
-		&& true == GameEngineInput::GetInst()->IsFree("MoveLeft")
-		&& true == GameEngineInput::GetInst()->IsFree("MoveDown")
-		&& true == GameEngineInput::GetInst()->IsFree("MoveUp"));
-}
-
-bool PlayerBody::isMove()
-{
-	return (true == GameEngineInput::GetInst()->IsPress("MoveRight")
-		|| true == GameEngineInput::GetInst()->IsPress("MoveLeft")
-		|| true == GameEngineInput::GetInst()->IsPress("MoveDown")
-		|| true == GameEngineInput::GetInst()->IsPress("MoveUp"));
-}
-
-void PlayerBody::SetInit()
-{
-	if (GetIsRightWalk()) {
-		PlayerBody_->ChangeAnimation("BODY_RIGHT_INIT");
-	}
-
-	if (GetIsFrontWalk()) {
-		PlayerBody_->ChangeAnimation("BODY_FRONT_INIT");
-
-	}
-
-	if (GetIsBackWalk()) {
-		PlayerBody_->ChangeAnimation("BODY_BACK_INIT");
-
-	}
-
-
-	if (GetIsLeftWalk()) {
-		PlayerBody_->ChangeAnimation("BODY_LEFT_INIT");
-
-	}
 
 }
 

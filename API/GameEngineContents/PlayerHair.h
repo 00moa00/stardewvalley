@@ -1,15 +1,17 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
-#include "PlayerState.h"
 
 // Ό³Έν :
-class PlayerHair : public GameEngineActor, public PlayerState
+class PlayerHair : public GameEngineActor
 {
 public:
 	// constrcuter destructer
 	PlayerHair();
 	~PlayerHair();
 
+	GameEngineRenderer* Renderer() {
+		return PlayerHair_;
+	}
 	// delete Function
 	PlayerHair(const PlayerHair& _Other) = delete;
 	PlayerHair(PlayerHair&& _Other) noexcept = delete;
@@ -20,6 +22,7 @@ protected:
 
 private:
 	GameEngineRenderer* PlayerHair_;
+
 
 
 	void Start() override;
