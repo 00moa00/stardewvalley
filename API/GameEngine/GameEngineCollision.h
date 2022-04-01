@@ -2,6 +2,9 @@
 #include "GameEngineActorSubObject.h"
 #include "GameEngineEnum.h"
 #include <map>
+#include <vector>
+
+
 
 
 // 설명 : 그리는걸 도와주는 클래스
@@ -31,6 +34,16 @@ public:
 		Scale_ = _Scale;
 	}
 
+	inline float4 GetCollisionPos()
+	{
+		return GetActor()->GetPosition() + Pivot_;
+	}
+
+	inline GameEngineRect GetRect()
+	{
+		return GameEngineRect(GetActor()->GetPosition() + Pivot_, Scale_);
+	}
+
 
 	// Player   Bullet
 	// 방패     적의 총알을 막는다.
@@ -43,8 +56,19 @@ public:
 		CollisionType _Target = CollisionType::Circle
 	);
 
+	bool CollisionResult(
+		const std::string& _TargetGroup,
+		std::vector<GameEngineCollision*>& _ColResult,
+		CollisionType _This = CollisionType::Circle,
+		CollisionType _Target = CollisionType::Circle
+	);
+
+	void DebugRender();
+
 private:
 	friend class FrameAnimation;
 	float4 Pivot_;
 	float4 Scale_;
+
+
 };

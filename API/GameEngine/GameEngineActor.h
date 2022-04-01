@@ -1,4 +1,5 @@
 #pragma once
+#include "GameEngineLevel.h"
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineUpdateObject.h>
 #include <GameEngineBase/GameEngineMath.h>
@@ -6,8 +7,8 @@
 #include <list>
 
 // 설명 :
-class GameEngineRenderer;
 class GameEngineLevel;
+class GameEngineRenderer;
 class GameEngineCollision;
 class GameEngineActor : public GameEngineNameObject, public GameEngineUpdateObject
 {
@@ -30,15 +31,20 @@ public:
 		return Level_;
 	}
 
+	inline float4 GetCameraEffectPosition()
+	{
+		return Position_ - GetLevel()->GetCameraPos();
+	}
+
 	inline float4 GetPosition()
 	{
 		return Position_;
 	}
+
 	inline float4 GetScale()
 	{
 		return Scale_;
 	}
-
 
 	inline void SetMove(float4 _Value)
 	{
@@ -63,6 +69,8 @@ protected:
 	// 지속적으로 게임이 실행될때 호출된다.
 	virtual void Render() {}
 
+	void Release();
+
 	void DebugRectRender();
 
 private:
@@ -79,10 +87,10 @@ private:
 	/////////////////////////////////////////////////// Render
 public:
 	// 벡터의 값
-	// 가장 빠를겁니다.
-	// 디폴트 인자는 선언에서만 지정 가능합니다.
 	GameEngineRenderer* CreateRenderer(RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
 
+	// 가장 빠를겁니다.
+	// 디폴트 인자는 선언에서만 지정 가능합니다.
 	GameEngineRenderer* CreateRenderer(const std::string& _Image, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
 
 	GameEngineRenderer* CreateRendererToScale(const std::string& _Image, const float4& _Scale, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
@@ -97,7 +105,6 @@ private:
 	std::list<GameEngineRenderer*> RenderList_;
 
 
-
 	////////////////////////////////////////////////////////// Collision
 
 public:
@@ -109,5 +116,4 @@ private:
 	// 이터레이터
 	std::list<GameEngineCollision*> CollisionList_;
 };
-
 

@@ -104,7 +104,7 @@ void CustomLevel::Update()
 
 	if (true == GameEngineInput::GetInst()->IsDown("Enter"))
 	{
-		GameEngine::GlobalEngine().ChangeLevel("Play");
+		GameEngine::GetInst().ChangeLevel("Play");
 	}
 
 }

@@ -1,9 +1,8 @@
 #pragma once
-#pragma once
 #include <string>
 #include "GameEngineTime.h"
 
-// 설명 :
+
 class GameEngineUpdateObject
 {
 public:
@@ -17,6 +16,7 @@ public:
 	GameEngineUpdateObject& operator=(const GameEngineUpdateObject& _Other) = delete;
 	GameEngineUpdateObject& operator=(GameEngineUpdateObject&& _Other) noexcept = delete;
 
+
 	inline void On()
 	{
 		IsUpdate_ = true;
@@ -27,11 +27,16 @@ public:
 		IsUpdate_ = false;
 	}
 
-	virtual bool IsUpdate()
+	inline virtual bool IsUpdate()
 	{
-		//살아있을때
 		return IsUpdate_ && false == IsDeath_;
 	}
+
+	inline virtual bool IsDeath()
+	{
+		return IsDeath_;
+	}
+
 
 	inline 	void Death()
 	{
@@ -59,10 +64,6 @@ public:
 		DeathTime_ = _Time;
 	}
 
-	inline 	bool IsDeath()
-	{
-		return IsDeath_;
-	}
 
 
 private:

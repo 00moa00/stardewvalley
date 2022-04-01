@@ -36,6 +36,12 @@ public:
 		PivotType_ = _Type;
 	}
 
+	inline void SetPivotType(const RenderPivot& _Type)
+	{
+		PivotType_ = _Type;
+	}
+
+
 	inline void SetScaleMode(const RenderScaleMode& _Mode)
 	{
 		ScaleMode_ = _Mode;
