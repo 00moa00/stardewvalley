@@ -188,6 +188,9 @@
     <ClInclude Include="Player.h">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
+    <ClInclude Include="RendererEnum.h">
+      <Filter>Actor\GlobalEnum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">

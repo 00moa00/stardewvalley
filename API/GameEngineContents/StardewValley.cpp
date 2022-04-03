@@ -59,7 +59,7 @@ void StardewValley::GameInit()
 		}
 	}
 
-	//플레이어 바디 32 64
+	//플레이어 바디 48, 96
 	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("farmer_Body.bmp");
 	PlayerBody->Cut({ 48, 96 });
 

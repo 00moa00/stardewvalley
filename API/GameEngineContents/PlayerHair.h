@@ -23,8 +23,6 @@ protected:
 private:
 	GameEngineRenderer* PlayerHair_;
 
-
-
 	void Start() override;
 	void Update() override;
 	void Render() override;

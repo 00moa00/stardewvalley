@@ -18,6 +18,8 @@ PlayerHair::~PlayerHair()
 {
 }
 
+
+
 void PlayerHair::Start()
 {
 	SetPosition({ GetPosition().x, GetPosition().y});

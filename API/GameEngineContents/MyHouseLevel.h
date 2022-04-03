@@ -6,9 +6,9 @@
 #include "PlayerEnergyBar.h"
 #include "PlayerEnergyFrame.h"
 #include "MainUI.h"
-
+#include "TitleBackGround.h"
 #include "Player.h"
-
+#include "RendererEnum.h"
 
 
 // Ό³Έν :
@@ -36,4 +36,5 @@ private:
 	Player* Player_;
 	PlayerEnergyBar* PlayerEnergyBar_;
 	PlayerEnergyFrame* PlayerEnergyFrame_;
+	TitleBackGround* TitleBackGround_;
 };

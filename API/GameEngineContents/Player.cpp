@@ -8,16 +8,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
 
-enum class ORDER
-{
-	//BACKGROUND,
-	PLAYERBODY,
-	PLAYERHAIR,
-	PLAYERPANTS,
-	PLAYERSHIRTS,
-	PLAYERHAND,
 
-};
 
 
 Player::Player() 
@@ -26,23 +17,24 @@ Player::Player()
 	WalkAnimationFrame_(0.15f),
 	Speed_(120.0f),
 	Energy_(128.F),
-	PlayerShirts_(nullptr),
-	PlayerHair_(nullptr),
-	PlayerPants_(nullptr),
-	PlayerBody_(nullptr),
 	PlayerMove_{},
 	MoveEffectTimer_(0),
 	MoveEffectState_(0),
 	PivotY_(),
-	PivotYSpeed_(15.f)
+	PivotYSpeed_(15.f),
+	PlayerShirts_(nullptr),
+	PlayerHair_(nullptr),
+	PlayerPants_(nullptr),
+	PlayerBody_(nullptr),
+	ShirtIndex_(0),
+	PantsIndex_(0),
+	HairIndex_(0)
 {
 }
 
 Player::~Player() 
 {
 }
-
-
 
 void Player::Start()
 {
@@ -67,10 +59,9 @@ void Player::Start()
 
 
 
-
 void Player::Update()
 {
-	PlayerShirts_->Renderer()->SetIndex(ShirtIndex_);
+	//PlayerShirts_->Renderer()->SetIndex(ShirtIndex_);
 
 
 	switch (PlayerState_)
@@ -90,11 +81,12 @@ void Player::Update()
 
 		moveX();
 		moveY();
+		PlayerActorSetPos();
+		SubEnergy();
+
 		if (!GameEngineInput::GetInst()->IsPress("MoveUP")) SetMoveEffect();
 
-		PlayerActorSetPos();
 
-		SubEnergy();
 
 		PlayerMove_.SetWalkInit(false);
 
@@ -105,8 +97,6 @@ void Player::Update()
 	default:
 		break;
 	}
-
-
 
 }
 
@@ -126,6 +116,7 @@ void Player::moveX()
 		PlayerBody_->Renderer()->ChangeAnimation("BODY_RIGHT_WALK");
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_RIGHT_WALK");
 		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_ + 16);
+		PlayerHair_->Renderer()->SetIndex(HairIndex_ + 8);
 
 
 		PlayerMove_.setRightWalk(true);
@@ -139,6 +130,7 @@ void Player::moveX()
 		PlayerBody_->Renderer()->ChangeAnimation("BODY_LEFT_WALK");
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_LEFT_WALK");
 		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_ + 32);
+		PlayerHair_->Renderer()->SetIndex(HairIndex_ + 16);
 
 		PlayerMove_.SetLeftWalk(true);
 	}
@@ -155,6 +147,7 @@ void Player::moveY()
 		PlayerBody_->Renderer()->ChangeAnimation("BODY_BACK_WALK");
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_BACK_WALK");
 		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_ + 48);
+		PlayerHair_->Renderer()->SetIndex(HairIndex_ + 24);
 
 		PlayerMove_.SetBackWalk(true);
 
@@ -168,6 +161,7 @@ void Player::moveY()
 		PlayerBody_->Renderer()->ChangeAnimation("BODY_FRONT_WALK");
 		PlayerHand_->Renderer()->ChangeAnimation("HAND_FRONT_WALK");
 		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_);
+		PlayerHair_->Renderer()->SetIndex(HairIndex_ );
 
 		PlayerMove_.SetFrontWalk(true);
 
@@ -258,15 +252,13 @@ void Player::SetMoveEffect()
 
 	}
 
-
-
 	
 }
 
 void Player::PlayerActorSetPos()
 {
 	PlayerPants_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
-	PlayerHair_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
+	PlayerHair_->SetPosition({ this->GetPosition().x, this->GetPosition().y+6.f });
 	PlayerHand_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
 	PlayerBody_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
 	PlayerShirts_->SetPosition({ this->GetPosition().x, this->GetPosition().y + 11.f });
@@ -282,9 +274,9 @@ void Player::SetInit()
 
 	SetPosition(GameEngineWindow::GetScale().Half());
 
-	PlayerBody_ = GetLevel()->CreateActor<PlayerBody>((int)ORDER::PLAYERBODY);
-	PlayerHand_ = GetLevel()->CreateActor<PlayerHand>((int)ORDER::PLAYERHAND);
-	PlayerHair_ = GetLevel()->CreateActor<PlayerHair>((int)ORDER::PLAYERHAIR);
-	PlayerPants_ = GetLevel()->CreateActor<PlayerPants>((int)ORDER::PLAYERPANTS);
-	PlayerShirts_ = GetLevel()->CreateActor<PlayerShirts>((int)ORDER::PLAYERSHIRTS);
+	PlayerBody_ = GetLevel()->CreateActor<PlayerBody>((int)PlayLevel::PLAYERBODY);
+	PlayerHand_ = GetLevel()->CreateActor<PlayerHand>((int)PlayLevel::PLAYERHAND);
+	PlayerHair_ = GetLevel()->CreateActor<PlayerHair>((int)PlayLevel::PLAYERHAIR);
+	PlayerPants_ = GetLevel()->CreateActor<PlayerPants>((int)PlayLevel::PLAYERPANTS);
+	PlayerShirts_ = GetLevel()->CreateActor<PlayerShirts>((int)PlayLevel::PLAYERSHIRTS);
 }

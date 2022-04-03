@@ -55,8 +55,8 @@ void PlayerBody::Start()
 	//================================
 
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, WalkAnimationFrame_, true);
-	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_WALK", PLAYER::RIGHT_INIT, PLAYER::RIGHT_WALK1, WalkAnimationFrame_, true);
-	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_LEFT_WALK", PLAYER::LEFT_INIT, PLAYER::LEFT_WALK1, WalkAnimationFrame_, true);
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK1, WalkAnimationFrame_, true);
+	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK1, WalkAnimationFrame_, true);
 
 	PlayerBody_->CreateAnimation("farmer_Body.bmp", "BODY_BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, WalkAnimationFrame_, true);
 

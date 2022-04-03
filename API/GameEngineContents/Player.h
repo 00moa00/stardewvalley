@@ -5,6 +5,7 @@
 #include "PlayerPants.h"
 #include "PlayerShirts.h"
 #include "PlayerHand.h"
+#include "RendererEnum.h"
 #include <GameEngine/GameEngineActor.h>
 
 enum class PLAYER_STATE {

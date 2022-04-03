@@ -2,15 +2,7 @@
 
 
 
-enum class ORDER
-{
-	//BACKGROUND,
-	PLAYER,
 
-	ENERGYFRAME,
-	ENERGYBAR,
-	MAINUI
-};
 
 MyHouseLevel::MyHouseLevel()
 	:
@@ -30,10 +22,12 @@ MyHouseLevel::~MyHouseLevel()
 
 void MyHouseLevel::Loading()
 {
-	Player_ = CreateActor<Player>((int)ORDER::PLAYER);
-	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)ORDER::ENERGYFRAME);
-	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)ORDER::ENERGYBAR);
-	MainUI_ = CreateActor<MainUI>((int)ORDER::MAINUI);
+	Player_ = CreateActor<Player>((int)PlayLevel::PLAYER);
+	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PlayLevel::ENERGYFRAME);
+	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PlayLevel::ENERGYBAR);
+	MainUI_ = CreateActor<MainUI>((int)PlayLevel::MAINUI);
+	CreateActor<TitleBackGround>((int)PlayLevel::BACKGROUND);
+
 
 }
 

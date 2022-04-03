@@ -247,6 +247,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="RendererEnum.h" />
     <ClInclude Include="RightArrow.h">
       <SubType>
       </SubType>
