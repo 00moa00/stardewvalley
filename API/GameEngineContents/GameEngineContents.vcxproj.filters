@@ -26,9 +26,6 @@
     <ClCompile Include="MenuNewGame.cpp">
       <Filter>Actor\Title\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="CustomData.cpp">
-      <Filter>Actor\Custom</Filter>
-    </ClCompile>
     <ClCompile Include="MainUI.cpp">
       <Filter>Actor\Play\Global\UI</Filter>
     </ClCompile>
@@ -38,23 +35,8 @@
     <ClCompile Include="PlayerEnergyBar.cpp">
       <Filter>Actor\Play\Global\UI</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerBody.cpp">
-      <Filter>Actor\Play\Global\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHair.cpp">
-      <Filter>Actor\Play\Global\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerPants.cpp">
-      <Filter>Actor\Play\Global\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerShirts.cpp">
-      <Filter>Actor\Play\Global\Player</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerCustomBoard.cpp">
       <Filter>Actor\Custom</Filter>
-    </ClCompile>
-    <ClCompile Include="CustomLevel.cpp">
-      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="RightArrow.cpp">
       <Filter>Actor\Custom</Filter>
@@ -86,9 +68,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>Actor\Play\Object\Object</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerHand.cpp">
-      <Filter>Actor\Play\Global\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
@@ -119,9 +98,6 @@
     <ClInclude Include="MenuNewGame.h">
       <Filter>Actor\Title\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="CustomData.h">
-      <Filter>Actor\Custom</Filter>
-    </ClInclude>
     <ClInclude Include="MainUI.h">
       <Filter>Actor\Play\Global\UI</Filter>
     </ClInclude>
@@ -131,23 +107,8 @@
     <ClInclude Include="PlayerEnergyBar.h">
       <Filter>Actor\Play\Global\UI</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerBody.h">
-      <Filter>Actor\Play\Global\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHair.h">
-      <Filter>Actor\Play\Global\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerPants.h">
-      <Filter>Actor\Play\Global\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerShirts.h">
-      <Filter>Actor\Play\Global\Player</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerCustomBoard.h">
       <Filter>Actor\Custom</Filter>
-    </ClInclude>
-    <ClInclude Include="CustomLevel.h">
-      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="RightArrow.h">
       <Filter>Actor\Custom</Filter>
@@ -181,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="PlayerEnum.h">
       <Filter>Actor\GlobalEnum</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHand.h">
-      <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Actor\Play\Global\Player</Filter>

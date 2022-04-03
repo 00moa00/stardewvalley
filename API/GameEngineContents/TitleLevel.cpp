@@ -89,7 +89,7 @@ void TitleLevel::Update()
 
 		if (true == GameEngineInput::GetInst()->IsDown("Enter") && isPopup_ == true)
 		{
-			GameEngine::GetInst().ChangeLevel("Custom");
+			GameEngine::GetInst().ChangeLevel("Play");
 		}
 
 		break;

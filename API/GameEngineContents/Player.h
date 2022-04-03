@@ -1,10 +1,5 @@
 #pragma once
-#include "PlayerShirts.h"
-#include "PlayerBody.h"
-#include "PlayerHair.h"
-#include "PlayerPants.h"
-#include "PlayerShirts.h"
-#include "PlayerHand.h"
+
 #include "RendererEnum.h"
 #include <GameEngine/GameEngineActor.h>
 
@@ -45,13 +40,8 @@ public:
 	bool isStop();
 	bool isMove();
 
-	void PlayerActorSetPos();
-
 	void SetInit();
 	void SetDir();
-	void SetAllPivot(float _MovePosY);
-
-	void SetMoveEffect();
 
 
 	// delete Function
@@ -71,25 +61,12 @@ private:
 	float WalkAnimationFrame_;
 
 	float Speed_;
-	int MoveEffectTimer_;
-
-	int MoveEffectState_;
-	float PivotY_;
-	float PivotYSpeed_;
-
 	float Energy_;
 
-	unsigned int ShirtIndex_;
-	unsigned int PantsIndex_;
-	unsigned int HairIndex_;
+
 
 	PLAYER_STATE PlayerState_;
-
-	PlayerShirts* PlayerShirts_;
-	PlayerBody* PlayerBody_;
-	PlayerHand* PlayerHand_;
-	PlayerHair* PlayerHair_;
-	PlayerPants* PlayerPants_;
+	GameEngineRenderer* Player_;
 
 
 

@@ -1,13 +1,12 @@
 #include "Player.h"
 
-#include "CustomData.h"
-
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineLevel.h> 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
 
+#include "PlayerEnum.h"
 
 
 
@@ -18,17 +17,8 @@ Player::Player()
 	Speed_(120.0f),
 	Energy_(128.F),
 	PlayerMove_{},
-	MoveEffectTimer_(0),
-	MoveEffectState_(0),
-	PivotY_(),
-	PivotYSpeed_(15.f),
-	PlayerShirts_(nullptr),
-	PlayerHair_(nullptr),
-	PlayerPants_(nullptr),
-	PlayerBody_(nullptr),
-	ShirtIndex_(0),
-	PantsIndex_(0),
-	HairIndex_(0)
+	Player_(nullptr)
+
 {
 }
 
@@ -38,14 +28,39 @@ Player::~Player()
 
 void Player::Start()
 {
+	SetPosition(GameEngineWindow::GetScale().Half());
+
+	Player_ = CreateRenderer();
+
+	//================================
+	//     플레이어 대기상태
+	//================================
+
+	Player_->CreateAnimation("Player.bmp", "FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
+	Player_->CreateAnimation("Player.bmp", "RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
+	Player_->CreateAnimation("Player.bmp", "LEFT_INIT", PLAYER::LEFT_INIT, PLAYER::LEFT_INIT, 0.0f, false);
+
+	Player_->CreateAnimation("Player.bmp", "BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
+
+
+	//================================
+	//     플레이어 이동 
+	//================================
+
+	Player_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, WalkAnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK1, WalkAnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK1, WalkAnimationFrame_, true);
+
+	Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, WalkAnimationFrame_, true);
+
+
+
+	//------< 애니메이션 초기화 >------------------------------------------------------------------
+
+	Player_->ChangeAnimation("FRONT_INIT");
+
 
 	SetInit();
-	PlayerActorSetPos();
-
-
-	PlayerHair_->Renderer()->SetIndex(HairIndex_);
-	PlayerShirts_->Renderer()->SetIndex(ShirtIndex_);
-	PlayerPants_-> Renderer()->SetIndex(PantsIndex_);
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveUp"))
 	{
@@ -61,7 +76,6 @@ void Player::Start()
 
 void Player::Update()
 {
-	//PlayerShirts_->Renderer()->SetIndex(ShirtIndex_);
 
 
 	switch (PlayerState_)
@@ -81,10 +95,9 @@ void Player::Update()
 
 		moveX();
 		moveY();
-		PlayerActorSetPos();
 		SubEnergy();
 
-		if (!GameEngineInput::GetInst()->IsPress("MoveUP")) SetMoveEffect();
+
 
 
 
@@ -113,10 +126,7 @@ void Player::moveX()
 	{
 		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
 
-		PlayerBody_->Renderer()->ChangeAnimation("BODY_RIGHT_WALK");
-		PlayerHand_->Renderer()->ChangeAnimation("HAND_RIGHT_WALK");
-		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_ + 16);
-		PlayerHair_->Renderer()->SetIndex(HairIndex_ + 8);
+		Player_->ChangeAnimation("RIGHT_WALK");
 
 
 		PlayerMove_.setRightWalk(true);
@@ -127,10 +137,7 @@ void Player::moveX()
 	{
 		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
 
-		PlayerBody_->Renderer()->ChangeAnimation("BODY_LEFT_WALK");
-		PlayerHand_->Renderer()->ChangeAnimation("HAND_LEFT_WALK");
-		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_ + 32);
-		PlayerHair_->Renderer()->SetIndex(HairIndex_ + 16);
+		Player_->ChangeAnimation("LEFT_WALK");
 
 		PlayerMove_.SetLeftWalk(true);
 	}
@@ -144,10 +151,8 @@ void Player::moveY()
 	{
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
 
-		PlayerBody_->Renderer()->ChangeAnimation("BODY_BACK_WALK");
-		PlayerHand_->Renderer()->ChangeAnimation("HAND_BACK_WALK");
-		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_ + 48);
-		PlayerHair_->Renderer()->SetIndex(HairIndex_ + 24);
+		Player_->ChangeAnimation("BACK_WALK");
+
 
 		PlayerMove_.SetBackWalk(true);
 
@@ -158,10 +163,8 @@ void Player::moveY()
 	{
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
 
-		PlayerBody_->Renderer()->ChangeAnimation("BODY_FRONT_WALK");
-		PlayerHand_->Renderer()->ChangeAnimation("HAND_FRONT_WALK");
-		PlayerShirts_->Renderer()->SetIndex(ShirtIndex_);
-		PlayerHair_->Renderer()->SetIndex(HairIndex_ );
+		Player_->ChangeAnimation("FRONT_WALK");
+
 
 		PlayerMove_.SetFrontWalk(true);
 
@@ -188,95 +191,33 @@ void Player::SetDir()
 {
 
 	if (PlayerMove_.isRightWalk_) {
-		PlayerBody_-> Renderer()->ChangeAnimation("BODY_RIGHT_INIT");
-		PlayerHand_->Renderer()->ChangeAnimation("HAND_RIGHT_INIT");
+		Player_->ChangeAnimation("RIGHT_INIT");
 	}
 
 	if (PlayerMove_.isFrontWalk_) {
-		PlayerBody_->Renderer()->ChangeAnimation("BODY_FRONT_INIT");
-		PlayerHand_->Renderer()->ChangeAnimation("HAND_FRONT_INIT");
+		Player_->ChangeAnimation("FRONT_INIT");
 
 	}
 
 	if (PlayerMove_.isBackWalk_) {
-		PlayerBody_->Renderer()->ChangeAnimation("BODY_BACK_INIT");
-		PlayerHand_->Renderer()->ChangeAnimation("HAND_BACK_INIT");
-
+		Player_->ChangeAnimation("BACK_INIT");
 	}
 
 	if (PlayerMove_.isLeftWalk_) {
-		PlayerBody_->Renderer()->ChangeAnimation("BODY_LEFT_INIT");
-		PlayerHand_->Renderer()->ChangeAnimation("HAND_LEFT_INIT");
+		Player_->ChangeAnimation("LEFT_INIT");
 
 	}
 
 }
 
-void Player::SetAllPivot(float _MovePosY)
-{
-	PlayerBody_->Renderer()->SetPivot({ 0, _MovePosY });
-	PlayerHair_->Renderer()->SetPivot({ 0, _MovePosY });
-	PlayerHand_->Renderer()->SetPivot({ 0, _MovePosY });
-	PlayerPants_->Renderer()->SetPivot({ 0, _MovePosY });
-	PlayerShirts_->Renderer()->SetPivot({ 0, _MovePosY });
 
-}
 
-void Player::SetMoveEffect()
-{
-	if (isMove()) {
-		switch (MoveEffectState_) {
-
-		case 0:
-
-			MoveEffectTimer_++;
-
-			if (MoveEffectTimer_ > 200)
-			{
-				PivotY_ -= PivotYSpeed_ * GameEngineTime::GetDeltaTime();
-				SetAllPivot(PivotY_);
-
-				if (MoveEffectTimer_ > 400) MoveEffectState_ = 1;
-			}
-
-			break;
-
-		case 1:
-
-			PivotY_ += PivotYSpeed_ * GameEngineTime::GetDeltaTime();
-			SetAllPivot(PivotY_);
-			MoveEffectState_ = 0;
-			PivotY_ = 0;
-			MoveEffectTimer_ = 0;
-		}
-
-	}
-
-	
-}
-
-void Player::PlayerActorSetPos()
-{
-	PlayerPants_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
-	PlayerHair_->SetPosition({ this->GetPosition().x, this->GetPosition().y+6.f });
-	PlayerHand_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
-	PlayerBody_->SetPosition({ this->GetPosition().x, this->GetPosition().y });
-	PlayerShirts_->SetPosition({ this->GetPosition().x, this->GetPosition().y + 11.f });
-}
 
 void Player::SetInit()
 {
 
-	ShirtIndex_ = CustomData::GetInst().GetShirtsIndex();
-	PantsIndex_ = CustomData::GetInst().GetShirtsIndex();
-	HairIndex_ = CustomData::GetInst().GetShirtsIndex();
-
 
 	SetPosition(GameEngineWindow::GetScale().Half());
 
-	PlayerBody_ = GetLevel()->CreateActor<PlayerBody>((int)PlayLevel::PLAYERBODY);
-	PlayerHand_ = GetLevel()->CreateActor<PlayerHand>((int)PlayLevel::PLAYERHAND);
-	PlayerHair_ = GetLevel()->CreateActor<PlayerHair>((int)PlayLevel::PLAYERHAIR);
-	PlayerPants_ = GetLevel()->CreateActor<PlayerPants>((int)PlayLevel::PLAYERPANTS);
-	PlayerShirts_ = GetLevel()->CreateActor<PlayerShirts>((int)PlayLevel::PLAYERSHIRTS);
+
 }

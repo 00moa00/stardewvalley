@@ -154,19 +154,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CustomData.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerEnum.h" />
-    <ClInclude Include="CustomLevel.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="IntroLevel.h">
       <SubType>
       </SubType>
@@ -207,10 +199,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerBody.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="PlayerBackGround.h">
       <SubType>
       </SubType>
@@ -224,22 +212,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerEnergyBar.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerHair.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerHand.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerPants.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerShirts.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -276,14 +248,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CustomData.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="CustomLevel.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="IntroLevel.cpp">
       <SubType>
       </SubType>
@@ -328,10 +292,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerBody.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="PlayerBackGround.cpp">
       <SubType>
       </SubType>
@@ -345,22 +305,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PlayerEnergyBar.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerHair.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerHand.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerPants.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerShirts.cpp">
       <SubType>
       </SubType>
     </ClCompile>

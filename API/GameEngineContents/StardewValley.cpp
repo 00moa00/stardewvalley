@@ -1,8 +1,6 @@
 #include "StardewValley.h"
 #include "MyHouseLevel.h"
 #include "TitleLevel.h"
-#include "CustomLevel.h"
-#include "CustomData.h"
 
 
 #include <GameEngineBase/GameEngineWindow.h>
@@ -60,32 +58,12 @@ void StardewValley::GameInit()
 	}
 
 	//플레이어 바디 48, 96
-	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("farmer_Body.bmp");
-	PlayerBody->Cut({ 48, 96 });
-
-	GameEngineImage* PlayerHand1 = GameEngineImageManager::GetInst()->Find("farmer_hand.bmp");
-	PlayerHand1->Cut({ 48, 96 });
-
-	GameEngineImage* PlayerHand2 = GameEngineImageManager::GetInst()->Find("farmer_hand2.bmp");
-	PlayerHand2->Cut({ 48, 96 });
-
-
-	//플레이어 헤어  32 64
-	GameEngineImage* PlayerHair = GameEngineImageManager::GetInst()->Find("hairstyles.bmp");
-	PlayerHair->Cut({ 48, 96 });
-
-	//플레이어 하의  32 64
-	GameEngineImage* PlayerPants = GameEngineImageManager::GetInst()->Find("pants.bmp");
-	PlayerPants->Cut({ 48, 96 });
-
-	//플레이어 셔츠  16 16
-	GameEngineImage* PlayerShirts = GameEngineImageManager::GetInst()->Find("shirts.bmp");
-	PlayerShirts->Cut({ 24, 24 });
+	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("Player.bmp");
+	PlayerBody->Cut({ 250, 250 });
 
 
 
 	CreateLevel<TitleLevel>("Title");
-	CreateLevel<CustomLevel>("Custom");
 	CreateLevel<MyHouseLevel>("Play");
 
 
@@ -100,5 +78,4 @@ void StardewValley::GameLoop()
 }
 void StardewValley::GameEnd()
 {
-	CustomData::Destroy();
 }

@@ -42,9 +42,4 @@ void MyHouseLevel::Update()
 {
 	//플레이어가 행동 할때마다 스테미너 감소. 테스트용
 	//PlayerEnergyBar_->SubEnergyBar(PlayerBody_->GetEnergy());
-
-
-
-
-
 }
