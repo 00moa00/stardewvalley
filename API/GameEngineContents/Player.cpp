@@ -13,8 +13,8 @@
 Player::Player() 
 	:
 	PlayerState_(PLAYER_STATE::INIT),
-	WalkAnimationFrame_(0.15f),
-	Speed_(120.0f),
+	WalkAnimationFrame_(0.125f),
+	Speed_(150.0f),
 	Energy_(128.F),
 	PlayerMove_{},
 	Player_(nullptr)
@@ -47,11 +47,11 @@ void Player::Start()
 	//     플레이어 이동 
 	//================================
 
-	Player_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK1, WalkAnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK1, WalkAnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK1, WalkAnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK1, PLAYER::FRONT_WALK4, WalkAnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK1, PLAYER::RIGHT_WALK5, WalkAnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK1, PLAYER::LEFT_WALK5, WalkAnimationFrame_, true);
 
-	Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_INIT, PLAYER::WALK_BACK2, WalkAnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK1, PLAYER::BACK_WALK4, WalkAnimationFrame_, true);
 
 
 
