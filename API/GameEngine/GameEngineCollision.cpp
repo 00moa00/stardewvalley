@@ -100,7 +100,7 @@ bool GameEngineCollision::CollisionResult(
 	CollisionType _Target /*= CollisionType::Circle*/
 )
 {
-	size_t StartSize = _TargetGroup.size();
+	size_t StartSize = _ColResult.size();
 
 	std::map<std::string, std::list<GameEngineCollision*>>::iterator FindTargetGroup = GetActor()->GetLevel()->AllCollision_.find(_TargetGroup);
 

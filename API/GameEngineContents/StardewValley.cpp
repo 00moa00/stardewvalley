@@ -67,7 +67,7 @@ void StardewValley::GameInit()
 	CreateLevel<MyHouseLevel>("Play");
 
 
-	ChangeLevel("Play");
+	ChangeLevel("Title");
 
 
 }

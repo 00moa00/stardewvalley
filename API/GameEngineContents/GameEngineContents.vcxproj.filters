@@ -71,6 +71,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Actor\Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -149,6 +152,9 @@
     <ClInclude Include="RendererEnum.h">
       <Filter>Actor\GlobalEnum</Filter>
     </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Actor\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -210,6 +216,9 @@
     </Filter>
     <Filter Include="Actor\GlobalEnum">
       <UniqueIdentifier>{908e33e0-26a8-407b-b705-f8e6fea6ba37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Global">
+      <UniqueIdentifier>{b63f880a-300f-4acf-a371-24a83b8253d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -5,6 +5,8 @@
 #include "MenuExit.h"
 #include "MenuLoad.h"
 #include "MenuNewGame.h"
+#include "Mouse.h"
+
 enum class ORDER
 {
 	TitleLogo = 0,
@@ -58,6 +60,7 @@ private:
 	MenuNewGame* MenuNewGame_;
 	MenuLoad* MenuLoad_;
 	MenuExit* MenuExit_;
+	Mouse* Mouse_;
 
 	bool isPopup_;
 	bool KeyFlag_; //업데이트에서 함수를 한번만 사용하기 위한 플러그

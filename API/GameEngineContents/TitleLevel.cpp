@@ -15,6 +15,7 @@ TitleLevel::TitleLevel()
 		MenuExit_(nullptr),
 		MenuLoad_(nullptr),
 		MenuNewGame_(nullptr),
+		Mouse_(nullptr),
 		isPopup_(false),
 		Timer_(0),
 		KeyFlag_(false),
@@ -30,9 +31,12 @@ TitleLevel::~TitleLevel()
 void TitleLevel::Loading() 
 {
 
+	
+
 	CreateActor<TitleBackGround>(0);
 	TitleLogo_ = CreateActor<TitleLogo>(1);
 
+	Mouse_= CreateActor<Mouse>(4);
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
 	{
@@ -40,6 +44,7 @@ void TitleLevel::Loading()
 		GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
 		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
 		GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
+		//GameEngineInput::GetInst()->CreateKey("LeftClick", MK_LBUTTON);
 
 		// VK_LBUTTON;
 	}
@@ -75,6 +80,11 @@ void TitleLevel::Update()
 
 	CurrentMenu_ = static_cast<KEYBOARD>(MoveMenu_);
 
+	//	if (GetAsyncKeyState(MK_LBUTTON))
+	//{
+	//	GameEngine::GetInst().ChangeLevel("Play");
+	//}
+
 	//switch (CurrentMenu_)
 	//{
 
@@ -87,7 +97,7 @@ void TitleLevel::Update()
 	//		KeyFlag_ = false;
 	//	}
 
-	//	if (true == GameEngineInput::GetInst()->IsDown("Enter") && isPopup_ == true)
+	//	if (true == GameEngineInput::GetInst()->IsDown("LeftClick") && isPopup_ == true)
 	//	{
 	//		GameEngine::GetInst().ChangeLevel("Play");
 	//	}

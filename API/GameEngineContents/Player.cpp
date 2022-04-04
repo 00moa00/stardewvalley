@@ -57,7 +57,7 @@ void Player::Start()
 
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
-	Player_->ChangeAnimation("BACK_INIT");
+	Player_->ChangeAnimation("FRONT_INIT");
 
 
 	SetInit();

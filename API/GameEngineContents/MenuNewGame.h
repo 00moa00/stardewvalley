@@ -16,15 +16,9 @@ public:
 	MenuNewGame& operator=(MenuNewGame&& _Other) noexcept = delete;
 
 
-	bool GetIsClick() {
-		return isClick_;
-	}
 
-	inline void SetIsClick(const bool b) {
-		isClick_ = b;
-	}
-
-
+	void MouseEvent();
+	bool MouseOver();
 
 protected:
 
@@ -35,10 +29,10 @@ protected:
 
 private:
 
-	bool isClick_;
+	bool isMouseOver_;
 
 	GameEngineRenderer* NewGame_;
-
+	GameEngineCollision* NewGameCollision_;
 
 };
 
