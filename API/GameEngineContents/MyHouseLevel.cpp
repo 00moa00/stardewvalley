@@ -10,7 +10,7 @@ MyHouseLevel::MyHouseLevel()
 	PlayerEnergyBar_(nullptr),
 	PlayerEnergyFrame_(nullptr),
 	Player_(nullptr),
-
+	Inventory_(nullptr),
 	MainUI_(nullptr)
 
 {
@@ -27,7 +27,7 @@ void MyHouseLevel::Loading()
 	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PlayLevel::ENERGYBAR);
 	MainUI_ = CreateActor<MainUI>((int)PlayLevel::MAINUI);
 	CreateActor<TitleBackGround>((int)PlayLevel::BACKGROUND);
-
+	Inventory_ = CreateActor<Inventory>((int)PlayLevel::PLAYER);
 
 }
 

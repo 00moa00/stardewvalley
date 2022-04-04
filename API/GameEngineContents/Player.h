@@ -3,6 +3,7 @@
 #include "RendererEnum.h"
 #include <GameEngine/GameEngineActor.h>
 
+
 enum class PLAYER_STATE {
 	INIT = 0,
 	MOVEEFFECT,

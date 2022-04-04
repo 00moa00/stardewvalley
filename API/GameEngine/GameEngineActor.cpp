@@ -142,6 +142,9 @@ void GameEngineActor::Release()
 	{
 		std::list<GameEngineRenderer*>::iterator StartIter = RenderList_.begin();
 		std::list<GameEngineRenderer*>::iterator EndIter = RenderList_.end();
+		
+		
+
 
 		for (; StartIter != EndIter;)
 		{

@@ -74,6 +74,15 @@
     <ClCompile Include="Mouse.cpp">
       <Filter>Actor\Global</Filter>
     </ClCompile>
+    <ClCompile Include="Weeds.cpp">
+      <Filter>Actor\Play\Global\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Actor\Play\Global\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="InventroyBox.cpp">
+      <Filter>Actor\Play\Global\Inventory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -154,6 +163,15 @@
     </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>Actor\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Weeds.h">
+      <Filter>Actor\Play\Global\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Actor\Play\Global\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="InventroyBox.h">
+      <Filter>Actor\Play\Global\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

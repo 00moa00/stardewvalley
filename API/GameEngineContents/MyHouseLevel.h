@@ -9,7 +9,8 @@
 #include "TitleBackGround.h"
 #include "Player.h"
 #include "RendererEnum.h"
-
+#include "Inventory.h"
+#include "Items.h"
 
 // Ό³Έν :
 class MyHouseLevel : public GameEngineLevel
@@ -33,8 +34,10 @@ private:
 
 	MainUI* MainUI_;
 
+	Inventory* Invertory_;
 	Player* Player_;
 	PlayerEnergyBar* PlayerEnergyBar_;
 	PlayerEnergyFrame* PlayerEnergyFrame_;
 	TitleBackGround* TitleBackGround_;
+	Inventory* Inventory_;
 };

@@ -57,17 +57,19 @@ void StardewValley::GameInit()
 		}
 	}
 
-	//플레이어 바디 48, 96
+	//플레이어 48, 96
 	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("Player.bmp");
 	PlayerBody->Cut({ 48, 96 });
 
-
+	//봄아이템 48, 48
+	GameEngineImage* SpringObjects = GameEngineImageManager::GetInst()->Find("springobjects.bmp");
+	SpringObjects->Cut({ 48, 48 });
 
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<MyHouseLevel>("Play");
 
 
-	ChangeLevel("Title");
+	ChangeLevel("Play");
 
 
 }

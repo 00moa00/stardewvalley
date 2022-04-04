@@ -154,6 +154,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="InventroyBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Mouse.h">
       <SubType>
       </SubType>
@@ -250,9 +255,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Weeds.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IntroLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="InventroyBox.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -343,6 +357,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TownLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Weeds.cpp">
       <SubType>
       </SubType>
     </ClCompile>

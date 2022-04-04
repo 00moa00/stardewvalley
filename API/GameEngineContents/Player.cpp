@@ -10,6 +10,8 @@
 
 
 
+
+
 Player::Player() 
 	:
 	PlayerState_(PLAYER_STATE::INIT),

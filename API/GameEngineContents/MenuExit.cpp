@@ -8,7 +8,8 @@
 
 
 MenuExit::MenuExit()
-	:	MenuExit_(nullptr)
+	:	
+	MenuExit_(nullptr)
 {
 }
 
