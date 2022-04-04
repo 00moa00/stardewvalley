@@ -75,47 +75,47 @@ void TitleLevel::Update()
 
 	CurrentMenu_ = static_cast<KEYBOARD>(MoveMenu_);
 
-	switch (CurrentMenu_)
-	{
+	//switch (CurrentMenu_)
+	//{
 
-	case KEYBOARD::MenuNewGame :
+	//case KEYBOARD::MenuNewGame :
 
-		if(KeyFlag_) {
-			MenuNewGame_->SetIsClick(true);
-			MenuLoad_->SetIsClick(false);
-			MenuExit_->SetIsClick(false);
-			KeyFlag_ = false;
-		}
+	//	if(KeyFlag_) {
+	//		MenuNewGame_->SetIsClick(true);
+	//		MenuLoad_->SetIsClick(false);
+	//		MenuExit_->SetIsClick(false);
+	//		KeyFlag_ = false;
+	//	}
 
-		if (true == GameEngineInput::GetInst()->IsDown("Enter") && isPopup_ == true)
-		{
-			GameEngine::GetInst().ChangeLevel("Play");
-		}
+	//	if (true == GameEngineInput::GetInst()->IsDown("Enter") && isPopup_ == true)
+	//	{
+	//		GameEngine::GetInst().ChangeLevel("Play");
+	//	}
 
-		break;
+	//	break;
 
-	case KEYBOARD::MenuLoad :
-		if (KeyFlag_) {
-			MenuNewGame_->SetIsClick(false);
-			MenuLoad_->SetIsClick(true);
-			MenuExit_->SetIsClick(false);
-			KeyFlag_ = false;
-		}
-		break;
+	//case KEYBOARD::MenuLoad :
+	//	if (KeyFlag_) {
+	//		MenuNewGame_->SetIsClick(false);
+	//		MenuLoad_->SetIsClick(true);
+	//		MenuExit_->SetIsClick(false);
+	//		KeyFlag_ = false;
+	//	}
+	//	break;
 
-	case KEYBOARD::MenuExit :
-		if (KeyFlag_) {
-			MenuNewGame_->SetIsClick(false);
-			MenuLoad_->SetIsClick(false);
-			MenuExit_->SetIsClick(true);
-			KeyFlag_ = false;
-		}
-		break;
+	//case KEYBOARD::MenuExit :
+	//	if (KeyFlag_) {
+	//		MenuNewGame_->SetIsClick(false);
+	//		MenuLoad_->SetIsClick(false);
+	//		MenuExit_->SetIsClick(true);
+	//		KeyFlag_ = false;
+	//	}
+	//	break;
 
 
-	default:
-		break;
-	}
+	//default:
+	//	break;
+	//}
 
 
 }

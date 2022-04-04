@@ -47,17 +47,17 @@ void Player::Start()
 	//     플레이어 이동 
 	//================================
 
-	Player_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK1, PLAYER::FRONT_WALK4, WalkAnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK1, PLAYER::RIGHT_WALK5, WalkAnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK1, PLAYER::LEFT_WALK5, WalkAnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK3, 0.1f, true);
+	Player_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK5, 0.1f, true);
+	Player_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK5, WalkAnimationFrame_, true);
 
-	Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK1, PLAYER::BACK_WALK4, WalkAnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, WalkAnimationFrame_, true);
 
 
 
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
-	Player_->ChangeAnimation("FRONT_INIT");
+	Player_->ChangeAnimation("BACK_INIT");
 
 
 	SetInit();
