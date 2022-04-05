@@ -1,6 +1,6 @@
 #pragma once
 
-enum class RenderPivot 
+enum class RenderPivot
 {
 	CENTER,
 	BOT,
@@ -18,4 +18,9 @@ enum class CollisionType
 	Circle,
 	Rect,
 	Max
+};
+
+enum class EngineMax
+{
+	RENDERORDERMAX = 2147483647,
 };
