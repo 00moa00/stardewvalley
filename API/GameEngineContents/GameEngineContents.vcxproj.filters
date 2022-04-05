@@ -62,19 +62,13 @@
     <ClCompile Include="MyHouse.cpp">
       <Filter>Actor\Play\Buildings</Filter>
     </ClCompile>
-    <ClCompile Include="MapleTree.cpp">
-      <Filter>Actor\Play\Object\MapObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Actor\Play\Object\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Actor\Play\Global\Player</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>Actor\Global</Filter>
     </ClCompile>
-    <ClCompile Include="Weeds.cpp">
+    <ClCompile Include="WildHorseradish.cpp">
       <Filter>Actor\Play\Global\Item</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
@@ -146,12 +140,6 @@
     <ClInclude Include="MyHouse.h">
       <Filter>Actor\Play\Buildings</Filter>
     </ClInclude>
-    <ClInclude Include="MapleTree.h">
-      <Filter>Actor\Play\Object\MapObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Actor\Play\Object\Object</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerEnum.h">
       <Filter>Actor\GlobalEnum</Filter>
     </ClInclude>
@@ -164,7 +152,7 @@
     <ClInclude Include="Mouse.h">
       <Filter>Actor\Global</Filter>
     </ClInclude>
-    <ClInclude Include="Weeds.h">
+    <ClInclude Include="WildHorseradish.h">
       <Filter>Actor\Play\Global\Item</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
@@ -172,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="InventroyBox.h">
       <Filter>Actor\Play\Global\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemCode.h">
+      <Filter>Actor\GlobalEnum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -217,20 +208,8 @@
     <Filter Include="Actor\Play\NPC">
       <UniqueIdentifier>{d3ffba0c-12d1-4fa2-8a35-e9f19a2f687f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Play\Object">
-      <UniqueIdentifier>{58d2decd-647f-41ab-92f1-4f5aad1b6624}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Global\PlayerBasicItem">
-      <UniqueIdentifier>{62a74d05-bb20-4132-a619-9d22da794e99}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\Play\Global\Item">
       <UniqueIdentifier>{b6823ce8-4576-45c1-9310-bcb1ea10b587}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Object\MapObject">
-      <UniqueIdentifier>{4cf52bda-6cb1-49d3-a06c-26caf3559058}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Object\Object">
-      <UniqueIdentifier>{5d7ca799-a421-4023-92de-5e757b5cd02c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Actor\GlobalEnum">
       <UniqueIdentifier>{908e33e0-26a8-407b-b705-f8e6fea6ba37}</UniqueIdentifier>

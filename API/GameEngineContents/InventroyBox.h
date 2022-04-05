@@ -5,6 +5,8 @@
 class InventroyBox : public GameEngineActor
 {
 public:
+	
+	void CreateBoxCollision(int i, std::string box = "Box");
 	// constrcuter destructer
 	InventroyBox();
 	~InventroyBox();
@@ -15,13 +17,15 @@ public:
 	InventroyBox& operator=(const InventroyBox& _Other) = delete;
 	InventroyBox& operator=(InventroyBox&& _Other) noexcept = delete;
 
+
+
 protected:
 
 private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
-
+	GameEngineCollision* BoxCollision_;
 	GameEngineRenderer* InventoryBox_;
 };
 

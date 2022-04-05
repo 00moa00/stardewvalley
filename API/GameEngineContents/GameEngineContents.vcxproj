@@ -172,19 +172,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="LeftArrow.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="MainUI.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MapleTree.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -255,10 +247,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Weeds.h">
+    <ClInclude Include="WildHorseradish.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ItemCode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IntroLevel.cpp">
@@ -270,19 +263,11 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="LeftArrow.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="MainUI.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MapleTree.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -360,7 +345,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Weeds.cpp">
+    <ClCompile Include="WildHorseradish.cpp">
       <SubType>
       </SubType>
     </ClCompile>

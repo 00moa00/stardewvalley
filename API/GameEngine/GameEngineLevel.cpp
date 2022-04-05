@@ -2,6 +2,7 @@
 #include "GameEngineActor.h"
 #include "GameEngineCollision.h"
 
+#define DEBUG 0
 
 GameEngineLevel::GameEngineLevel()
 	: CameraPos_(float4::ZERO)
@@ -129,8 +130,12 @@ void GameEngineLevel::CollisionDebugRender()
 			{
 				continue;
 			}
-
+#if (DEBUG > 0)
 			(*StartCollision)->DebugRender();
+			
+#endif 
+			//(*StartCollision)->DebugRender();
+			
 		}
 	}
 

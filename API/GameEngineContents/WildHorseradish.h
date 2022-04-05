@@ -18,22 +18,23 @@ struct ItemData
 
 
 // Ό³Έν :
-class Weeds : public GameEngineActor
+class WildHorseradish : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	Weeds();
-	~Weeds();
+	WildHorseradish();
+	~WildHorseradish();
 
 	// delete Function
-	Weeds(const Weeds& _Other) = delete;
-	Weeds(Weeds&& _Other) noexcept = delete;
-	Weeds& operator=(const Weeds& _Other) = delete;
-	Weeds& operator=(Weeds&& _Other) noexcept = delete;
+	WildHorseradish(const WildHorseradish& _Other) = delete;
+	WildHorseradish(WildHorseradish&& _Other) noexcept = delete;
+	WildHorseradish& operator=(const WildHorseradish& _Other) = delete;
+	WildHorseradish& operator=(WildHorseradish&& _Other) noexcept = delete;
 
 	bool isPlayerHas() {
 		return isPlayerHas_;
 	}
+	void thisCreateActor();
 
 protected:
 	void Start() override;
@@ -44,7 +45,7 @@ private:
 
 	bool isPlayerHas_ = false;
 
-	GameEngineRenderer* Weeds_;
+	GameEngineRenderer* WildHorseradish_;
 
 };
 

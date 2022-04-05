@@ -6,9 +6,9 @@
 #include "MenuExit.h"
 #include "InventroyBox.h"
 
-#include "Weeds.h"
+#include "WildHorseradish.h"
 
-#define INVENTORYCOUNT 36
+#define INVENTORY_MAX_COUNT 36
 
 // 설명 :
 class Inventory : public GameEngineActor
@@ -39,12 +39,31 @@ private:
 	std::vector<GameEngineActor*> PlayerItemList;
 
 	std::map<int, InventroyBox*> Box_;
-	GameEngineCollision* BoxCollision_[INVENTORYCOUNT];
-	bool isItem[INVENTORYCOUNT];
+	GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
+	bool isItem[INVENTORY_MAX_COUNT];
 	
 
 	int ItemCount_;
-	Weeds* Weeds_;
+	WildHorseradish* WildHorseradish_;
+
+	template<typename Actor>
+	Actor* NewItem()
+	{
+
+		Actor* Item = new Actor();
+		//카운팅, 탐색 용
+		PlayerItemList.push_back(Item);
+		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(PlayerItemList.size() - 1);
+
+		float4 Pos = FindIter->second->GetPosition();
+
+		Item = GetLevel()->CreateActor<Actor>(11);
+		Item->SetPosition({ Pos.x, Pos.y });
+
+		return Item;
+
+	}
+
 
 //	InventroyBox* InventroyBox_[36];
 };
