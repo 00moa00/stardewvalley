@@ -76,7 +76,7 @@ void StardewValley::GameInit()
 
 void StardewValley::GameLoop()
 {
-
+	
 }
 void StardewValley::GameEnd()
 {

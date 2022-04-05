@@ -11,8 +11,8 @@ MyHouseLevel::MyHouseLevel()
 	PlayerEnergyFrame_(nullptr),
 	Player_(nullptr),
 	Inventory_(nullptr),
-	MainUI_(nullptr)
-
+	MainUI_(nullptr),
+	Mouse_(nullptr)
 {
 }
 
@@ -28,7 +28,7 @@ void MyHouseLevel::Loading()
 	MainUI_ = CreateActor<MainUI>((int)PlayLevel::MAINUI);
 	CreateActor<TitleBackGround>((int)PlayLevel::BACKGROUND);
 	Inventory_ = CreateActor<Inventory>((int)PlayLevel::PLAYER);
-
+	Mouse_ = CreateActor<Mouse>((int)PlayLevel::MOUSE);
 }
 
 void MyHouseLevel::LevelChangeStart()
@@ -41,5 +41,9 @@ void MyHouseLevel::LevelChangeStart()
 void MyHouseLevel::Update()
 {
 	//플레이어가 행동 할때마다 스테미너 감소. 테스트용
-	//PlayerEnergyBar_->SubEnergyBar(PlayerBody_->GetEnergy());
+	////PlayerEnergyBar_->SubEnergyBar(PlayerBody_->GetEnergy());
+	//		if (GetAsyncKeyState(MK_LBUTTON))
+	//{
+	//	GameEngine::GetInst().ChangeLevel("Title");
+	//}
 }

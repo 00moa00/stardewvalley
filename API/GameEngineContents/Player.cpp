@@ -8,10 +8,6 @@
 
 #include "PlayerEnum.h"
 
-
-
-
-
 Player::Player() 
 	:
 	PlayerState_(PLAYER_STATE::INIT),

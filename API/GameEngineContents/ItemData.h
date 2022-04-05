@@ -6,11 +6,23 @@
 #include <GameEngine/GameEngine.h>
 #include "ItemCode.h"
 
-// Ό³Έν :
-class Items : public GameEngineActor
-{
+class ItemData {
+
 public:
 
+	ItemData()
+		:
+		ItemRenderer_(nullptr),
+		ItemCollider_(nullptr)
+	{
+
+	}
+	~ItemData() {};
+
+
+	GameEngineRenderer* ItemRenderer_ = nullptr;
+	GameEngineCollision* ItemCollider_ = nullptr;
+	bool InMouse = false;
 
 	GameEngineCollision* getCollision() {
 		return ItemCollider_;
@@ -19,7 +31,7 @@ public:
 		return ItemRenderer_;
 	}
 
-	virtual bool MouseClick() {
+	bool MouseClick() {
 
 		std::vector<GameEngineCollision*> ColList;
 		return (ItemCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
@@ -27,22 +39,4 @@ public:
 	}
 
 
-	// constrcuter destructer
-	Items();
-	~Items();
-
-	// delete Function
-	Items(const Items& _Other) = delete;
-	Items(Items&& _Other) noexcept = delete;
-	Items& operator=(const Items& _Other) = delete;
-	Items& operator=(Items&& _Other) noexcept = delete;
-
-protected:
-	GameEngineRenderer* ItemRenderer_ = nullptr;
-	GameEngineCollision* ItemCollider_ = nullptr;
-	bool InMouse = false;
-private:
-
-
 };
-

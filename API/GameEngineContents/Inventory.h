@@ -1,13 +1,21 @@
 #pragma once
-#include  <vector>
-#include <map>
+
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngine/GameEngineLevel.h>
 #include <GameEngine/GameEngineRenderer.h>
+
 #include "MenuExit.h"
 #include "InventroyBox.h"
-
 #include "WildHorseradish.h"
+#include "RendererEnum.h"
 
+
+#include "Items.h"
+#include  <vector>
+#include <map>
+#include <memory>
+
+//#pragma warning(disable : 4267)
 #define INVENTORY_MAX_COUNT 36
 
 // 설명 :
@@ -33,12 +41,15 @@ private:
 	void Update() override;
 	void Render() override;
 
-	void NewItem(GameEngineActor* _Item);
 	void BoxInit();
-	GameEngineRenderer* Inventroy_;
-	std::vector<GameEngineActor*> PlayerItemList;
 
+
+private:
+	
+	std::vector<Items*> PlayerItemList;
 	std::map<int, InventroyBox*> Box_;
+
+	GameEngineRenderer* Inventroy_;
 	GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
 	bool isItem[INVENTORY_MAX_COUNT];
 	
@@ -46,25 +57,31 @@ private:
 	int ItemCount_;
 	WildHorseradish* WildHorseradish_;
 
+
 	template<typename Actor>
 	Actor* NewItem()
 	{
+		Actor* Item = nullptr;
 
-		Actor* Item = new Actor();
-		//카운팅, 탐색 용
 		PlayerItemList.push_back(Item);
-		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(PlayerItemList.size() - 1);
+		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(PlayerItemList.size() - 1));
 
 		float4 Pos = FindIter->second->GetPosition();
 
-		Item = GetLevel()->CreateActor<Actor>(11);
+		Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PlayLevel::ITEM));
 		Item->SetPosition({ Pos.x, Pos.y });
 
 		return Item;
-
 	}
 
+	//template<typename ActorMouse>
+	//bool ActorMouse()
+	//{
+	//	return 	ActorMouse->MouseClick();
 
-//	InventroyBox* InventroyBox_[36];
+	//}
+
+	//GameEngineActor* actors[2];
+
 };
 

@@ -155,7 +155,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="InventoryExit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="InventroyBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ItemData.h" />
+    <ClInclude Include="Items.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -259,7 +268,15 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="InventoryExit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="InventroyBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Items.cpp">
       <SubType>
       </SubType>
     </ClCompile>

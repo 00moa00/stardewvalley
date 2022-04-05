@@ -14,6 +14,17 @@ Inventory::Inventory()
 
 Inventory::~Inventory() 
 {
+	PlayerItemList.clear();
+	std::vector<Items*>().swap(PlayerItemList);
+
+
+	//for (std::map<int, InventroyBox*>::iterator it = Box_.begin(); it != Box_.end(); it++)
+	//{
+	//	delete it->second;
+	//}
+	Box_.clear();
+
+
 }
 
 void Inventory::Start()
@@ -22,11 +33,13 @@ void Inventory::Start()
 
 	Inventroy_ = CreateRenderer("inventory.bmp");
 	BoxInit();
-
+	
 
 	PlayerItemList.reserve(INVENTORY_MAX_COUNT);
 
 	WildHorseradish_ = NewItem<WildHorseradish>();
+	//WildHorseradish_ = GetLevel()->CreateActor<WildHorseradish>(static_cast<int>(PlayLevel::ITEM));
+
 }
 
 
@@ -35,7 +48,7 @@ void Inventory::BoxInit()
 
 	for (int i = 0; i < INVENTORY_MAX_COUNT; i++) {
 
-		Box_.insert(std::make_pair(i, GetLevel()->CreateActor<InventroyBox>(10)));
+		Box_.insert(std::make_pair(i, GetLevel()->CreateActor<InventroyBox>(static_cast<int>(PlayLevel::INVENTROYBOX))));
 
 		//
 		//std::stringstream CollisionBoxNum;
@@ -43,8 +56,6 @@ void Inventory::BoxInit()
 		//BoxCollision_[i] = CreateCollision(CollisionBoxNum.str(), {148, 116});
 
 	}
-
-
 	//위치 초기화
 	std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
 	std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
@@ -73,29 +84,20 @@ void Inventory::BoxInit()
 
 void Inventory::Update()
 {
+	//PlayerItemList.push_back(WildHorseradish_);
 
-	//if (Weeds_->isPlayerHas()) {
-	//	Weeds_ = GetLevel()->CreateActor<Weeds>();
-	//	PlayerItemList.push_back(Weeds_);
+	//std::vector<GameEngineActor*>::iterator StartItr = PlayerItemList.begin();
+	//std::vector<GameEngineActor*>::iterator EndItr = PlayerItemList.end();
+	//
+	//for (; StartItr < EndItr; StartItr++) {
+	//	(
 	//}
 
+
+	
 }
 
 void Inventory::Render()
 {
 }
 
-
-
-//아이템이 들어온다면
-//앞에서부터 채우기
-//랜더는 각각 알아서
-//얘는 아이템 관리용
-
-//포지션정리
-
-//싱글톤
-
-//이름만 받아서 액터를 만들어줘
-
-//아이템을 각각의 액터로 만들것인가?

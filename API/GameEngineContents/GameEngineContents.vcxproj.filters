@@ -77,6 +77,12 @@
     <ClCompile Include="InventroyBox.cpp">
       <Filter>Actor\Play\Global\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="InventoryExit.cpp">
+      <Filter>Actor\Play\Global\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Items.cpp">
+      <Filter>Actor\Play\Global\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -163,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="ItemCode.h">
       <Filter>Actor\GlobalEnum</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
+      <Filter>Actor\Play\Global\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryExit.h">
+      <Filter>Actor\Play\Global\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Items.h">
+      <Filter>Actor\Play\Global\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,26 +1,11 @@
 #pragma once
+#include "ItemData.h"
 #include "Items.h"
-#include <GameEngine/GameEngineRenderer.h>
-
-enum class Type {
-	TOOL,
-	DRINK,
-	ADDITEM
-};
-
-struct ItemData
-{
-	std::string ItemName_;
-
-
-};
-
-
-
 // Ό³Έν :
-class WildHorseradish : public GameEngineActor
+class WildHorseradish : public Items
 {
 public:
+
 	// constrcuter destructer
 	WildHorseradish();
 	~WildHorseradish();
@@ -31,11 +16,6 @@ public:
 	WildHorseradish& operator=(const WildHorseradish& _Other) = delete;
 	WildHorseradish& operator=(WildHorseradish&& _Other) noexcept = delete;
 
-	bool isPlayerHas() {
-		return isPlayerHas_;
-	}
-	void thisCreateActor();
-
 protected:
 	void Start() override;
 	void Update() override;
@@ -43,9 +23,10 @@ protected:
 
 private:
 
-	bool isPlayerHas_ = false;
 
-	GameEngineRenderer* WildHorseradish_;
+	//GameEngineRenderer* WildHorseradish_;
+	//GameEngineRenderer* InventoryBox_;
+
 
 };
 

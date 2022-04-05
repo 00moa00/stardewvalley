@@ -11,6 +11,7 @@
 #include "RendererEnum.h"
 #include "Inventory.h"
 #include "Items.h"
+#include "Mouse.h"
 
 // Ό³Έν :
 class MyHouseLevel : public GameEngineLevel
@@ -40,4 +41,5 @@ private:
 	PlayerEnergyFrame* PlayerEnergyFrame_;
 	TitleBackGround* TitleBackGround_;
 	Inventory* Inventory_;
+	Mouse* Mouse_;
 };

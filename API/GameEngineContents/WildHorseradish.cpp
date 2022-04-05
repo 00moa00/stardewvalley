@@ -1,26 +1,26 @@
 #include "WildHorseradish.h"
-#include <GameEngineBase/GameEngineWindow.h>
 
-WildHorseradish::WildHorseradish() :
-	WildHorseradish_(nullptr)
-{
+
+WildHorseradish::WildHorseradish(){
+
+
+
+
 }
 
 WildHorseradish::~WildHorseradish()
 {
 }
 
-void WildHorseradish::thisCreateActor()
-{
-	GetLevel()->CreateActor<WildHorseradish>(11);
-}
-
 void WildHorseradish::Start()
 {
-	SetPosition(GameEngineWindow::GetScale().Half());
+	//SetPosition(GameEngineWindow::GetScale().Half());
 
-	WildHorseradish_ = CreateRenderer("springobjects.bmp");
-	WildHorseradish_->SetIndex(39);
+		ItemRenderer_= CreateRenderer("springobjects.bmp");
+		ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::WILD_HORSERADISH));
+
+	ItemCollider_= CreateCollision("Item", { 48, 48 });
+
 }
 
 void WildHorseradish::Update()

@@ -6,7 +6,11 @@ enum class PlayLevel {
 	PLAYER,
 	ENERGYFRAME,
 	ENERGYBAR,
-	MAINUI
+	MAINUI,
+	INVENTORY,
+	INVENTROYBOX,
+	ITEM,
+	MOUSE
 
 
 };
