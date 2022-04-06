@@ -1,7 +1,10 @@
 #include "Items.h"
 
-Items::Items() 
+Items::Items() :
+	ItemRenderer_(nullptr),
+	ItemCollider_(nullptr)
 {
+
 }
 
 Items::~Items() 

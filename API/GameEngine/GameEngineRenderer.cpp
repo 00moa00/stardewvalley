@@ -202,6 +202,7 @@ void GameEngineRenderer::FrameAnimation::Update()
 			else //∑Á«¡∞° æ∆¥‘
 			{
 				CurrentFrame_ = EndFrame_;
+
 			}
 		}
 	}

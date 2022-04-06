@@ -41,5 +41,5 @@ private:
 	PlayerEnergyFrame* PlayerEnergyFrame_;
 	TitleBackGround* TitleBackGround_;
 	Inventory* Inventory_;
-	Mouse* Mouse_;
+
 };

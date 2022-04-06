@@ -24,21 +24,35 @@ StardewValley::~StardewValley()
 void StardewValley::GameInit()
 {
 
+
+	//------< 윈도우 초기화 >------------------------------------------------------------------
+
 	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1280, 720 });
 
-	// 현재 디렉토리
+	//------< 키입력 초기화 >------------------------------------------------------------------
+
+	if (false == GameEngineInput::GetInst()->IsKey("MoveUp"))
+	{
+		GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
+		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
+		GameEngineInput::GetInst()->CreateKey("MoveUp", 'W');
+		GameEngineInput::GetInst()->CreateKey("MoveDown", 'S');
+		GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
+		GameEngineInput::GetInst()->CreateKey("LeftClick", MK_LBUTTON);
+	}
+
+
+
+	//------< 현재 디렉토리 >------------------------------------------------------------------
+
 	GameEngineDirectory ResourcesDir;
 	ResourcesDir.MoveParent("API");
 	ResourcesDir.Move("Resources");
 	ResourcesDir.Move("All");
 
-	//ResourcesDir.MoveParent("portfolio");
-	//ResourcesDir.Move("APIResource");
-	//ResourcesDir.Move("sprite");
-	//ResourcesDir.Move("bmp");
-	//ResourcesDir.Move("All");
 
-	// 폴더안에 모든 이미지 파일을 찾는다.
+	//------< 파일 찾기 >------------------------------------------------------------------
+
 	std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 
 	for (size_t i = 0; i < AllImageFileList.size(); i++)
@@ -46,9 +60,13 @@ void StardewValley::GameInit()
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
 
-	//타이틀 로고
+	//------< 이미지 Cut >------------------------------------------------------------------
+
+
+	//================================
+	//     타이틀 메뉴 148 116
+	//================================
 	GameEngineImage* TitleImage = GameEngineImageManager::GetInst()->Find("TitleButtons.ko-KR.bmp");
-	//TitleImage->Cut({ 800, 440 }, { 0,0 }); //0
 
 	for (int j = 0; j < 2; j++) {
 		for (int i = 0; i < 4; i++) {
@@ -57,13 +75,30 @@ void StardewValley::GameInit()
 		}
 	}
 
-	//플레이어 48, 96
+	//================================
+	//     플레이어 48 96
+	//================================
 	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("Player.bmp");
 	PlayerBody->Cut({ 48, 96 });
 
-	//봄아이템 48, 48
+
+	//================================
+	//     봄 아이템 48 48
+	//================================
 	GameEngineImage* SpringObjects = GameEngineImageManager::GetInst()->Find("springobjects.bmp");
 	SpringObjects->Cut({ 48, 48 });
+
+
+	//================================
+	//     플레이어 툴 48 96
+	//================================
+	GameEngineImage* PlayerTool = GameEngineImageManager::GetInst()->Find("tools.bmp");
+	PlayerTool->Cut({ 48, 96 });
+
+
+
+
+	//------< 레벨 등록 >------------------------------------------------------------------
 
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<MyHouseLevel>("Play");

@@ -53,7 +53,9 @@ void MenuNewGame::Update()
 void MenuNewGame::MouseEvent()
 {
 
-	if (MouseOver()&& (true == GameEngineInput::GetInst()->IsDown("LeftClick"))) GameEngine::GetInst().ChangeLevel("Play");
+	if (MouseOver() && (true == GameEngineInput::GetInst()->IsDown("LeftClick"))) {
+		GameEngine::GetInst().ChangeLevel("Play");
+	}
 	
 	if (MouseOver()) isMouseOver_ = true;
 

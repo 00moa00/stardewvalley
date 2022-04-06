@@ -1,5 +1,5 @@
 #pragma once
-enum class PlayLevel {
+enum class PLAYLEVEL {
 
 	//BACKGROUND,
 	BACKGROUND,
@@ -10,6 +10,7 @@ enum class PlayLevel {
 	INVENTORY,
 	INVENTROYBOX,
 	ITEM,
+	TOOL,
 	MOUSE
 
 

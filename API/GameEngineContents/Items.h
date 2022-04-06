@@ -5,6 +5,7 @@
 #include <GameEngine/GameEngineCollision.h>
 #include <GameEngine/GameEngine.h>
 #include "ItemCode.h"
+#include "ToolEnum.h"
 
 // Ό³Έν :
 class Items : public GameEngineActor
@@ -16,7 +17,7 @@ public:
 		return ItemCollider_;
 	}
 	GameEngineRenderer* getRenderer() {
-		return ItemRenderer_;
+		return ItemRenderer_; 
 	}
 
 	virtual bool MouseClick() {
@@ -38,6 +39,8 @@ public:
 	Items& operator=(Items&& _Other) noexcept = delete;
 
 protected:
+
+
 	GameEngineRenderer* ItemRenderer_ = nullptr;
 	GameEngineCollision* ItemCollider_ = nullptr;
 	bool InMouse = false;

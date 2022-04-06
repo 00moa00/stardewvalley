@@ -68,7 +68,7 @@ private:
 
 		float4 Pos = FindIter->second->GetPosition();
 
-		Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PlayLevel::ITEM));
+		Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
 		Item->SetPosition({ Pos.x, Pos.y });
 
 		return Item;

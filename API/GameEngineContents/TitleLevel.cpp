@@ -31,23 +31,12 @@ TitleLevel::~TitleLevel()
 void TitleLevel::Loading() 
 {
 
-	
-
 	CreateActor<TitleBackGround>(0);
 	TitleLogo_ = CreateActor<TitleLogo>(1);
 
 	Mouse_= CreateActor<Mouse>(4);
 
-	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
-	{
-		// 이때 대문자여야 합니다.
-		GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
-		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
-		GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
-		//GameEngineInput::GetInst()->CreateKey("LeftClick", MK_LBUTTON);
 
-		// VK_LBUTTON;
-	}
 }
 
 void TitleLevel::Update()

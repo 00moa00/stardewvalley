@@ -154,6 +154,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Hoe.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="InventoryExit.h">
       <SubType>
@@ -176,6 +180,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PlayerEnum.h" />
     <ClInclude Include="IntroLevel.h">
       <SubType>
@@ -252,6 +257,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ToolEnum.h" />
     <ClInclude Include="TownLevel.h">
       <SubType>
       </SubType>
@@ -263,6 +269,10 @@
     <ClInclude Include="ItemCode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Hoe.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="IntroLevel.cpp">
       <SubType>
       </SubType>

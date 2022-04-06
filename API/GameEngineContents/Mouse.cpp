@@ -19,12 +19,6 @@ Mouse::~Mouse()
 
 void Mouse::Start()
 {
-	if (false == GameEngineInput::GetInst()->IsKey("Enter"))
-	{
-		GameEngineInput::GetInst()->CreateKey("LeftClick", MK_LBUTTON);
-
-		// VK_LBUTTON;
-	}
 
 	CursorPos_ = GameEngineWindow::GetScale().Half();
 	MousePoint_ = CreateRenderer("MouseCursor.bmp");
@@ -48,4 +42,21 @@ void Mouse::Update()
 
 void Mouse::Render()
 {
+}
+
+bool Mouse::isMouseClick()
+{
+	return (GameEngineInput::GetInst()->IsDown("LeftClick"));
+}
+
+bool Mouse::isMouseHold()
+{
+	return (GameEngineInput::GetInst()->IsPress("LeftClick"));
+
+}
+
+bool Mouse::isMouseFree()
+{
+	return (GameEngineInput::GetInst()->IsUp("LeftClick"));
+
 }

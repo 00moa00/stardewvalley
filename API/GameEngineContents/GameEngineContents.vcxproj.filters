@@ -59,9 +59,6 @@
     <ClCompile Include="Mouse.cpp">
       <Filter>Actor\Global</Filter>
     </ClCompile>
-    <ClCompile Include="WildHorseradish.cpp">
-      <Filter>Actor\Play\Global\Item</Filter>
-    </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>Actor\Play\Global\Inventory</Filter>
     </ClCompile>
@@ -82,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="TownLevel.cpp">
       <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="WildHorseradish.cpp">
+      <Filter>Actor\Play\Global\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Hoe.cpp">
+      <Filter>Actor\Play\Global\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,9 +152,6 @@
     <ClInclude Include="Mouse.h">
       <Filter>Actor\Global</Filter>
     </ClInclude>
-    <ClInclude Include="WildHorseradish.h">
-      <Filter>Actor\Play\Global\Item</Filter>
-    </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>Actor\Play\Global\Inventory</Filter>
     </ClInclude>
@@ -178,6 +178,18 @@
     </ClInclude>
     <ClInclude Include="TownLevel.h">
       <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="WildHorseradish.h">
+      <Filter>Actor\Play\Global\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Hoe.h">
+      <Filter>Actor\Play\Global\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolEnum.h">
+      <Filter>Actor\GlobalEnum</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>Actor\Play\Global\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

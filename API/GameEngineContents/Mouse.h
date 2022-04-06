@@ -18,6 +18,11 @@ public:
 
 protected:
 
+public:
+	bool isMouseClick();
+	bool isMouseHold();
+	bool isMouseFree();
+
 private:
 
 	float4 CursorPos_;

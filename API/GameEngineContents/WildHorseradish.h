@@ -5,7 +5,6 @@
 class WildHorseradish : public Items
 {
 public:
-
 	// constrcuter destructer
 	WildHorseradish();
 	~WildHorseradish();
@@ -22,7 +21,6 @@ protected:
 	void Render() override;
 
 private:
-
 
 	//GameEngineRenderer* WildHorseradish_;
 	//GameEngineRenderer* InventoryBox_;

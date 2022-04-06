@@ -48,7 +48,7 @@ void Inventory::BoxInit()
 
 	for (int i = 0; i < INVENTORY_MAX_COUNT; i++) {
 
-		Box_.insert(std::make_pair(i, GetLevel()->CreateActor<InventroyBox>(static_cast<int>(PlayLevel::INVENTROYBOX))));
+		Box_.insert(std::make_pair(i, GetLevel()->CreateActor<InventroyBox>(static_cast<int>(PLAYLEVEL::INVENTROYBOX))));
 
 		//
 		//std::stringstream CollisionBoxNum;
