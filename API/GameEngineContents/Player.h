@@ -5,6 +5,7 @@
 #include "PlayerData.h"
 #include "Hoe.h"
 #include "Mouse.h"
+#include "Inventory.h"
 
 //class PlayerMove;
 
@@ -48,14 +49,15 @@ private:
 
 
 	GameEngineRenderer* Player_;
-	Hoe* Hoe_;
+
 	Mouse* Mouse_;
 
+	Inventory* Inventory_;
 	PLAYERSTATE PlayerState_;
 	PlayerDir  PlayerMove_;
 
-
-
+	//Åø
+	Hoe* Hoe_;
 
 private:
 	float GetEnergy() {

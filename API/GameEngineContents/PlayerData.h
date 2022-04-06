@@ -64,4 +64,5 @@ enum class PLAYERSTATE {
 	INIT = 0,
 	TOOL_USE,
 	MOVE,
+	INVENTROY_POPUP,
 };

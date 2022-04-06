@@ -24,6 +24,9 @@ public:
 		return MousePoint_;
 	}
 
+	void MouseOff() {
+		this -> Off();
+	}
 
 	bool isMouseClick();
 	bool isMouseHold();

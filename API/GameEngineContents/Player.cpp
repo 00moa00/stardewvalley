@@ -16,6 +16,7 @@ Player::Player()
 	Energy_(150.f),
 	PlayerMove_{},
 	Player_(nullptr),
+	Inventory_(nullptr),
 	Mouse_(nullptr)
 
 {
@@ -36,10 +37,12 @@ void Player::Start()
 
 	Player_ = CreateRenderer();
 
-	Hoe_ = GetLevel()->CreateActor<Hoe>(static_cast<int>(PLAYLEVEL::TOOL));
+	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::PLAYER);
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
 
-	Hoe_->SetPosition({ this->GetPosition()});
+	Hoe_ = Inventory_->NewItem<Hoe>(float4 {0,24.f});
+
+
 
 
 	//------< 局聪皋捞记 积己 >------------------------------------------------------------------
@@ -82,8 +85,10 @@ void Player::Update()
 	{
 	case PLAYERSTATE::INIT:
 
+		Inventory_->AllUpdateOff();
 		SetDirAnimation();
 
+		if (true == GameEngineInput::GetInst()->IsDown("Enter")) PlayerState_ = PLAYERSTATE::INVENTROY_POPUP;
 		if(Mouse_->isMouseClick())  PlayerState_ = PLAYERSTATE::TOOL_USE;
 		if (isMove()) PlayerState_ = PLAYERSTATE::MOVE;
 		break;
@@ -111,9 +116,15 @@ void Player::Update()
 		if (isStop()) PlayerState_ = PLAYERSTATE::INIT;
 		break;
 
+	case PLAYERSTATE::INVENTROY_POPUP :
+		Inventory_->AllUpdateOn();
+
+		if (true == GameEngineInput::GetInst()->IsDown("Enter")) 	PlayerState_ = PLAYERSTATE::INIT;
+
 	default:
 		break;
 	}
+
 
 }
 

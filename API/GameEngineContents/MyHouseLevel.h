@@ -35,11 +35,9 @@ private:
 
 	MainUI* MainUI_;
 
-	Inventory* Invertory_;
 	Player* Player_;
 	PlayerEnergyBar* PlayerEnergyBar_;
 	PlayerEnergyFrame* PlayerEnergyFrame_;
 	TitleBackGround* TitleBackGround_;
-	Inventory* Inventory_;
 
 };

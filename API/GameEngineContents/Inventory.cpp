@@ -3,12 +3,22 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <sstream>
 
+
+enum class UPDATE {
+	POPUPINIT,
+	POPUP,
+	POPDOWN
+};
+
 Inventory::Inventory() 
 	:
 	BoxCollision_{nullptr},
 	isItem{false},
 	WildHorseradish_(nullptr),
-	ItemCount_(0)
+	Mouse_(nullptr),
+	isPopUp_(true),
+	ItemCount_(0),
+	UpdateState_(0)
 {
 }
 
@@ -106,23 +116,48 @@ void Inventory::AllUpdateOff()
 
 	}
 
+	
+}
+
+void Inventory::AllUpdateOn()
+{
+
+	//this
+	this->On();
+
+	//박스
+	std::map<int, InventroyBox*>::iterator BoxStartIter = Box_.begin();
+	std::map<int, InventroyBox*>::iterator BoxEndIter = Box_.end();
+	//int count = 0;
+
+	for (; BoxStartIter != BoxEndIter; ++BoxStartIter) {
+		BoxStartIter->second->On();
+
+	}
+
+	//아이템 
+
+	std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
+	std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
+	//int count = 0;
+
+	for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
+		ItemStartIter->second->On();
+
+	}
+
+
 }
 
 
 
 void Inventory::Update()
 {
-	//PlayerItemList.push_back(WildHorseradish_);
-
-	//std::vector<GameEngineActor*>::iterator StartItr = PlayerItemList.begin();
-	//std::vector<GameEngineActor*>::iterator EndItr = PlayerItemList.end();
-	//
-	//for (; StartItr < EndItr; StartItr++) {
-	//	(
+	//switch (static_cast<UPDATE>(UpdateState_))
+	//{
+	//	case UPDATE::POPUPINIT
 	//}
 
-
-	
 }
 
 void Inventory::Render()

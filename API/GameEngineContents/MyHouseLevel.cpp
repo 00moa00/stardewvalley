@@ -2,15 +2,13 @@
 
 
 
-
-
 MyHouseLevel::MyHouseLevel()
 	:
 
 	PlayerEnergyBar_(nullptr),
 	PlayerEnergyFrame_(nullptr),
 	Player_(nullptr),
-	Inventory_(nullptr),
+
 	MainUI_(nullptr)
 
 {
@@ -27,8 +25,8 @@ void MyHouseLevel::Loading()
 	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
 	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	CreateActor<TitleBackGround>((int)PLAYLEVEL::BACKGROUND);
-	Inventory_ = CreateActor<Inventory>((int)PLAYLEVEL::PLAYER);
-	Inventory_->AllUpdateOff();
+
+	//Inventory_->AllUpdateOff();
 }
 
 void MyHouseLevel::LevelChangeStart()

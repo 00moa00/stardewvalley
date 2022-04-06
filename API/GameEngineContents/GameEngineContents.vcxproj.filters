@@ -86,6 +86,9 @@
     <ClCompile Include="Hoe.cpp">
       <Filter>Actor\Play\Global\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Weeds.cpp">
+      <Filter>Actor\Play\Global\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="PlayerData.h">
       <Filter>Actor\Play\Global\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Weeds.h">
+      <Filter>Actor\Play\Global\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

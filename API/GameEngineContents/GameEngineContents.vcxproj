@@ -262,6 +262,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Weeds.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="WildHorseradish.h">
       <SubType>
       </SubType>
@@ -369,6 +373,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TownLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Weeds.cpp">
       <SubType>
       </SubType>
     </ClCompile>

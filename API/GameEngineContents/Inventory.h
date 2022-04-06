@@ -44,8 +44,36 @@ private:
 	void BoxInit();
 
 public:
+	template<typename Actor>
+	Actor* NewItem(float4 _AddPos = {0, 0})
+	{
+		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
+		//Item = 
+
+		//플레이어 아이템리스트에 추가
+		PlayerItemList_.insert(std::make_pair(ItemCount_, Item));
+
+
+		//박스의 위치를 찾아서 등록
+		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(ItemCount_));
+		float4 Pos = FindIter->second->GetPosition();
+
+		Item->SetPosition({ Pos + _AddPos });
+		++ItemCount_;
+		return Item;
+	}
 
 	void AllUpdateOff();
+
+	void AllUpdateOn();
+
+	void SetisPopUp(bool b) {
+		isPopUp_ = b;
+	}
+	bool IsPopUp() {
+		return isPopUp_;
+	}
+
 
 private:
 	
@@ -59,25 +87,10 @@ private:
 
 	int ItemCount_;
 	WildHorseradish* WildHorseradish_;
+	Mouse* Mouse_;
 
-	template<typename Actor>
-	Actor* NewItem()
-	{
-		Actor* Item = nullptr;
-		Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
-
-		//플레이어 아이템리스트에 추가
-		PlayerItemList_.insert(std::make_pair(ItemCount_, Item));
-	
-	
-		//박스의 위치를 찾아서 등록
-		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(ItemCount_));
-		float4 Pos = FindIter->second->GetPosition();
-
-		Item->SetPosition({ Pos.x, Pos.y });
-		++ItemCount_;
-		return Item;
-	}
+	bool isPopUp_;
+	int UpdateState_;
 
 	//template<typename ActorMouse>
 	//bool ActorMouse()
