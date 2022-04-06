@@ -27,7 +27,8 @@ void MyHouseLevel::Loading()
 	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
 	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	CreateActor<TitleBackGround>((int)PLAYLEVEL::BACKGROUND);
-	//Inventory_ = CreateActor<Inventory>((int)PlayLevel::PLAYER);
+	Inventory_ = CreateActor<Inventory>((int)PLAYLEVEL::PLAYER);
+	Inventory_->AllUpdateOff();
 }
 
 void MyHouseLevel::LevelChangeStart()
@@ -39,6 +40,7 @@ void MyHouseLevel::LevelChangeStart()
 
 void MyHouseLevel::Update()
 {
+
 	//플레이어가 행동 할때마다 스테미너 감소. 테스트용
 	////PlayerEnergyBar_->SubEnergyBar(PlayerBody_->GetEnergy());
 	//		if (GetAsyncKeyState(MK_LBUTTON))

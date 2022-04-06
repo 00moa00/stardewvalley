@@ -9,6 +9,7 @@
 #include "WildHorseradish.h"
 #include "RendererEnum.h"
 
+#include "Mouse.h"
 
 #include "Items.h"
 #include  <vector>
@@ -34,19 +35,21 @@ public:
 	Inventory& operator=(Inventory&& _Other) noexcept = delete;
 
 protected:
-
-private:
-
 	void Start() override;
 	void Update() override;
 	void Render() override;
 
+private:
+
 	void BoxInit();
 
+public:
+
+	void AllUpdateOff();
 
 private:
 	
-	std::vector<Items*> PlayerItemList;
+	std::map<int, Items*> PlayerItemList_;
 	std::map<int, InventroyBox*> Box_;
 
 	GameEngineRenderer* Inventroy_;
@@ -57,20 +60,22 @@ private:
 	int ItemCount_;
 	WildHorseradish* WildHorseradish_;
 
-
 	template<typename Actor>
 	Actor* NewItem()
 	{
 		Actor* Item = nullptr;
+		Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
 
-		PlayerItemList.push_back(Item);
-		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(PlayerItemList.size() - 1));
-
+		//플레이어 아이템리스트에 추가
+		PlayerItemList_.insert(std::make_pair(ItemCount_, Item));
+	
+	
+		//박스의 위치를 찾아서 등록
+		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(ItemCount_));
 		float4 Pos = FindIter->second->GetPosition();
 
-		Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
 		Item->SetPosition({ Pos.x, Pos.y });
-
+		++ItemCount_;
 		return Item;
 	}
 

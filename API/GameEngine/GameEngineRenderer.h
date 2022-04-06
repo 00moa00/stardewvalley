@@ -147,13 +147,13 @@ public:
 	// ¿É¼ÇÀ» 
 	void ChangeAnimation(const std::string& _Name);
 
-	int GetCurrentFrame() {
-		return CurrentAnimation_->CurrentFrame_;
-	}
+	//int GetCurrentFrame() {
+	//	return CurrentAnimation_->CurrentFrame_;
+	//}
 
-	void SetCurrentFrame(float _frame) {
-		CurrentAnimation_->CurrentFrame_ = _frame;
-	}
+	//void SetCurrentFrame(float _frame) {
+	//	CurrentAnimation_->CurrentFrame_ = _frame;
+	//}
 
 private:
 	std::map<std::string, FrameAnimation> Animations_;

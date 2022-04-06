@@ -6,6 +6,7 @@
 class Mouse : public GameEngineActor
 {
 public:
+
 	// constrcuter destructer
 	Mouse();
 	~Mouse();
@@ -19,6 +20,11 @@ public:
 protected:
 
 public:
+	GameEngineRenderer* Renderer() {
+		return MousePoint_;
+	}
+
+
 	bool isMouseClick();
 	bool isMouseHold();
 	bool isMouseFree();

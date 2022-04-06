@@ -209,6 +209,7 @@ void GameEngineRenderer::FrameAnimation::Update()
 
 	Renderer_->Image_ = Image_;
 	Renderer_->SetIndex(CurrentFrame_);
+	//Renderer_->Off();
 }
 
 

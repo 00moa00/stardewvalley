@@ -27,6 +27,9 @@ public:
 
 	}
 
+	virtual void UpdateOff() {
+		this->Off();
+	}
 
 	// constrcuter destructer
 	Items();

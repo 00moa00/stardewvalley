@@ -14,14 +14,15 @@ Inventory::Inventory()
 
 Inventory::~Inventory() 
 {
-	PlayerItemList.clear();
-	std::vector<Items*>().swap(PlayerItemList);
+	//PlayerItemList_.clear();
+	//std::vector<Items*>().swap(PlayerItemList_);
 
 
 	//for (std::map<int, InventroyBox*>::iterator it = Box_.begin(); it != Box_.end(); it++)
 	//{
 	//	delete it->second;
 	//}
+
 	Box_.clear();
 
 
@@ -34,8 +35,6 @@ void Inventory::Start()
 	Inventroy_ = CreateRenderer("inventory.bmp");
 	BoxInit();
 	
-
-	PlayerItemList.reserve(INVENTORY_MAX_COUNT);
 
 	WildHorseradish_ = NewItem<WildHorseradish>();
 	//WildHorseradish_ = GetLevel()->CreateActor<WildHorseradish>(static_cast<int>(PlayLevel::ITEM));
@@ -56,6 +55,7 @@ void Inventory::BoxInit()
 		//BoxCollision_[i] = CreateCollision(CollisionBoxNum.str(), {148, 116});
 
 	}
+
 	//위치 초기화
 	std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
 	std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
@@ -78,6 +78,34 @@ void Inventory::BoxInit()
 		}
 
 	}
+}
+
+void Inventory::AllUpdateOff()
+{
+	//this
+	this->Off();
+
+	//박스
+	std::map<int, InventroyBox*>::iterator BoxStartIter = Box_.begin();
+	std::map<int, InventroyBox*>::iterator BoxEndIter = Box_.end();
+	//int count = 0;
+
+	for (; BoxStartIter != BoxEndIter; ++BoxStartIter) {
+		BoxStartIter->second->Off();
+
+	}
+
+	//아이템 
+
+	std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
+	std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
+	//int count = 0;
+
+	for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
+		ItemStartIter->second->Off();
+
+	}
+
 }
 
 

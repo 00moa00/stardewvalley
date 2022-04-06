@@ -37,7 +37,7 @@ void Mouse::Update()
 	CursorPos_.y = static_cast<float>(pt.y);
 
 	MousePoint_->GetActor()->SetPosition(CursorPos_);
-
+	//MousePoint_->Off();
 }
 
 void Mouse::Render()
