@@ -144,6 +144,7 @@ void Inventory::Update()
 		ItemEndIter = PlayerItemList_.end();
 
 		MoveState_ = ITEMMOVE::NOTACT;
+
 		break;
 
 	case ITEMMOVE::NOTACT :
@@ -161,7 +162,6 @@ void Inventory::Update()
 			ItemStartIter = PlayerItemList_.begin();
 		}
 
-		
 		break;
 
 	case ITEMMOVE::HOLD:
@@ -172,7 +172,9 @@ void Inventory::Update()
 		}
 
 		break;
+
 	default:
+
 		break;
 	}
 

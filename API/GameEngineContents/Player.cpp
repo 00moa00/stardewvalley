@@ -11,7 +11,7 @@
 Player::Player() 
 	:
 	PlayerState_(PLAYERSTATE::INIT),
-	DirAnimationFrame_(0.140f),
+	AnimationFrame_(0.120f),
 	Speed_(150.f),
 	Energy_(150.f),
 	PlayerMove_{},
@@ -58,17 +58,17 @@ void Player::Start()
 	//================================
 	//     플레이어 이동 
 	//================================
-	Player_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK3, DirAnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK5, DirAnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK5, DirAnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, DirAnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK3, AnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK5, AnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK5, AnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, AnimationFrame_, true);
 
 	//================================
 	//     플레이어 툴 사용
 	//================================
 	//Player_->CreateAnimation("Player.bmp", "FRONT_HOE", PLAYER::HOE, PLAYER::FRONT_WALK3, DirAnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "RIGHT_HOE", PLAYER::HOE_RIGHT0, PLAYER::HOE_RIGHT4, 0.200f, false);
-	Player_->CreateAnimation("Player.bmp", "LEFT_HOE", PLAYER::HOE_LEFT0, PLAYER::HOE_LEFT4, DirAnimationFrame_, false);
+	Player_->CreateAnimation("Player.bmp", "RIGHT_HOE", PLAYER::HOE_RIGHT0, PLAYER::HOE_RIGHT4, AnimationFrame_, true);
+	Player_->CreateAnimation("Player.bmp", "LEFT_HOE", PLAYER::HOE_LEFT0, PLAYER::HOE_LEFT4, AnimationFrame_, false);
 	//Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, DirAnimationFrame_, true);
 
 
@@ -97,12 +97,12 @@ void Player::Update()
 
 		Player_->ChangeAnimation("RIGHT_HOE");
 
-		if (Mouse_->isMouseFree()) PlayerState_ = PLAYERSTATE::INIT;
+		//if (Mouse_->isMouseFree()) PlayerState_ = PLAYERSTATE::INIT;
 
-		//if (Player_->GetCurrentFrame() == PLAYER::HOE_RIGHT4) {
-		//	Player_->SetCurrentFrame(PLAYER::HOE_RIGHT0);
-		//	PlayerState_ = PLAYERSTATE::INIT;
-		//}
+		if (Player_->IsEndAnimation()) {
+			//Player_->SetCurrentFrame(PLAYER::HOE_RIGHT0);
+			PlayerState_ = PLAYERSTATE::INIT;
+		}
 
 		//
 		break;

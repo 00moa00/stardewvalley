@@ -109,7 +109,7 @@ private:
 	///////////////////////////////////////////////////////////////// 局聪皋捞记
 
 private:
-	class FrameAnimation
+	class FrameAnimation : public GameEngineNameObject
 	{
 	public:
 		GameEngineRenderer* Renderer_;
@@ -120,6 +120,7 @@ private:
 		float CurrentInterTime_;
 		float InterTime_;
 		bool Loop_;
+		bool IsEnd_;
 
 	public:
 		FrameAnimation()
@@ -141,6 +142,7 @@ private:
 
 		void Reset()
 		{
+			IsEnd_ = false;
 			CurrentFrame_ = StartFrame_;
 			CurrentInterTime_ = InterTime_;
 		}
@@ -152,13 +154,17 @@ public:
 	// 可记阑 
 	void ChangeAnimation(const std::string& _Name);
 
-	//int GetCurrentFrame() {
-	//	return CurrentAnimation_->CurrentFrame_;
-	//}
+	bool IsEndAnimation();
 
-	//void SetCurrentFrame(float _frame) {
-	//	CurrentAnimation_->CurrentFrame_ = _frame;
-	//}
+	bool IsAnimationName(const std::string& _Name);
+
+	int GetCurrentFrame() {
+		return CurrentAnimation_->CurrentFrame_;
+	}
+
+	void SetCurrentFrame(float _frame) {
+		CurrentAnimation_->CurrentFrame_ = _frame;
+	}
 
 private:
 	std::map<std::string, FrameAnimation> Animations_;

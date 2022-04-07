@@ -43,7 +43,7 @@ private:
 
 private:
 
-	float DirAnimationFrame_;
+	float AnimationFrame_;
 	float Speed_;
 	float Energy_;
 
