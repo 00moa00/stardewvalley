@@ -164,9 +164,6 @@
     <ClInclude Include="ItemCode.h">
       <Filter>Actor\GlobalEnum</Filter>
     </ClInclude>
-    <ClInclude Include="ItemData.h">
-      <Filter>Actor\Play\Global\Item</Filter>
-    </ClInclude>
     <ClInclude Include="InventoryExit.h">
       <Filter>Actor\Play\Global\Inventory</Filter>
     </ClInclude>

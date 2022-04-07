@@ -32,12 +32,22 @@ public:
 	bool isMouseHold();
 	bool isMouseFree();
 
+	void SetHoldingItem(bool b) {
+		HoldingMouse_ = b;
+	}
+
+	bool GetHoldingItem() {
+		return HoldingMouse_;
+	}
+
 private:
 
 	float4 CursorPos_;
 	POINT pt;
 	GameEngineRenderer* MousePoint_;
 	GameEngineCollision* MouseCollision_;
+
+	bool HoldingMouse_;
 
 	void Start() override;
 	void Update() override;

@@ -117,9 +117,13 @@ void Player::Update()
 		break;
 
 	case PLAYERSTATE::INVENTROY_POPUP :
+
 		Inventory_->AllUpdateOn();
 
-		if (true == GameEngineInput::GetInst()->IsDown("Enter")) 	PlayerState_ = PLAYERSTATE::INIT;
+		if (Inventory_->InventoryExitMouseClick() ||
+			true == GameEngineInput::GetInst()->IsDown("Enter")) {
+			PlayerState_ = PLAYERSTATE::INIT;
+		}
 
 	default:
 		break;

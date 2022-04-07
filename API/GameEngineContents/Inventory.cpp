@@ -13,57 +13,50 @@ enum class UPDATE {
 Inventory::Inventory() 
 	:
 	BoxCollision_{nullptr},
-	isItem{false},
 	WildHorseradish_(nullptr),
+	InventoryExit_(nullptr),
 	Mouse_(nullptr),
-	isPopUp_(true),
 	ItemCount_(0),
-	UpdateState_(0)
+	UpdateState_(0),
+	ItemStartIter(PlayerItemList_.begin()),
+	ItemEndIter(PlayerItemList_.end()),
+
+	MoveState_(ITEMMOVE::INIT)
 {
 }
 
+
 Inventory::~Inventory() 
 {
-	//PlayerItemList_.clear();
-	//std::vector<Items*>().swap(PlayerItemList_);
-
-
-	//for (std::map<int, InventroyBox*>::iterator it = Box_.begin(); it != Box_.end(); it++)
-	//{
-	//	delete it->second;
-	//}
-
 	Box_.clear();
-
-
+	PlayerItemList_.clear();
 }
 
 void Inventory::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-
 	Inventroy_ = CreateRenderer("inventory.bmp");
+	Mouse_ = GetLevel()->CreateActor<Mouse>(static_cast<int>(PLAYLEVEL::MOUSE));
+	InventoryExit_ = GetLevel()->CreateActor<InventoryExit>(static_cast<int>(PLAYLEVEL::ITEM));
 	BoxInit();
+
+	float4 Position;
+	Position.x = this->GetPosition().x + (Inventroy_->GetScale().x / 2) + 25.f;
+	Position.y = this->GetPosition().y + (Inventroy_->GetScale().y / 2) - 25.f;
+	InventoryExit_->SetPosition({ Position.x ,Position.y });
 	
+	WildHorseradish2_ = NewItem<WildHorseradish>();
 
 	WildHorseradish_ = NewItem<WildHorseradish>();
-	//WildHorseradish_ = GetLevel()->CreateActor<WildHorseradish>(static_cast<int>(PlayLevel::ITEM));
-
 }
 
 
 void Inventory::BoxInit()
 {
-
 	for (int i = 0; i < INVENTORY_MAX_COUNT; i++) {
 
-		Box_.insert(std::make_pair(i, GetLevel()->CreateActor<InventroyBox>(static_cast<int>(PLAYLEVEL::INVENTROYBOX))));
-
-		//
-		//std::stringstream CollisionBoxNum;
-		//CollisionBoxNum << i;
-		//BoxCollision_[i] = CreateCollision(CollisionBoxNum.str(), {148, 116});
-
+		Box_.insert(std::make_pair(i,
+			GetLevel()->CreateActor<InventroyBox>(static_cast<int>(PLAYLEVEL::INVENTROYBOX))));
 	}
 
 	//위치 초기화
@@ -92,71 +85,98 @@ void Inventory::BoxInit()
 
 void Inventory::AllUpdateOff()
 {
-	//this
 	this->Off();
 
-	//박스
 	std::map<int, InventroyBox*>::iterator BoxStartIter = Box_.begin();
 	std::map<int, InventroyBox*>::iterator BoxEndIter = Box_.end();
-	//int count = 0;
 
 	for (; BoxStartIter != BoxEndIter; ++BoxStartIter) {
 		BoxStartIter->second->Off();
-
 	}
 
-	//아이템 
 
 	std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
 	std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
-	//int count = 0;
 
 	for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
 		ItemStartIter->second->Off();
-
 	}
 
-	
+	InventoryExit_->Off();
+
 }
+
 
 void Inventory::AllUpdateOn()
 {
-
-	//this
 	this->On();
 
-	//박스
 	std::map<int, InventroyBox*>::iterator BoxStartIter = Box_.begin();
 	std::map<int, InventroyBox*>::iterator BoxEndIter = Box_.end();
-	//int count = 0;
 
 	for (; BoxStartIter != BoxEndIter; ++BoxStartIter) {
 		BoxStartIter->second->On();
-
 	}
-
-	//아이템 
 
 	std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
 	std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
-	//int count = 0;
 
 	for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
 		ItemStartIter->second->On();
-
 	}
 
+	InventoryExit_->On();
 
 }
-
 
 
 void Inventory::Update()
 {
-	//switch (static_cast<UPDATE>(UpdateState_))
-	//{
-	//	case UPDATE::POPUPINIT
-	//}
+
+	//ItemStartIter = PlayerItemList_.begin();
+	//ItemEndIter = PlayerItemList_.end();
+
+	switch (MoveState_)
+	{
+	case ITEMMOVE::INIT:
+
+		ItemStartIter = PlayerItemList_.begin();
+		ItemEndIter = PlayerItemList_.end();
+
+		MoveState_ = ITEMMOVE::NOTACT;
+		break;
+
+	case ITEMMOVE::NOTACT :
+
+		if (ItemStartIter->second->MouseOver() && Mouse_->isMouseClick()) {
+
+			ItemStartIter->second->SetInMouse(true);
+			MoveState_ = ITEMMOVE::HOLD;
+			break;
+		}
+
+		++ItemStartIter;
+
+		if (ItemStartIter == ItemEndIter) {
+			ItemStartIter = PlayerItemList_.begin();
+		}
+
+		
+		break;
+
+	case ITEMMOVE::HOLD:
+
+		if (ItemStartIter->second->GetInMouse()) {
+
+			ItemStartIter->second->SetPosition(Mouse_->GetPosition());
+		}
+
+		break;
+	default:
+		break;
+	}
+
+
 
 }
 

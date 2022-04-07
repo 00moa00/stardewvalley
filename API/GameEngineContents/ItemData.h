@@ -22,7 +22,7 @@ public:
 
 	GameEngineRenderer* ItemRenderer_ = nullptr;
 	GameEngineCollision* ItemCollider_ = nullptr;
-	bool InMouse = false;
+	//bool InMouse = false;
 
 	GameEngineCollision* getCollision() {
 		return ItemCollider_;

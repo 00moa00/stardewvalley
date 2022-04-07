@@ -17,10 +17,16 @@ public:
 
 protected:
 
+public:
+
+	bool MouseClick();
+
 private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
+
+
 
 	GameEngineCollision* ExitCollision_;
 	GameEngineRenderer* Exit_;

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngine/GameEngineRenderer.h>
@@ -10,11 +9,19 @@
 #include "RendererEnum.h"
 
 #include "Mouse.h"
-
+#include "InventoryExit.h"
 #include "Items.h"
 #include  <vector>
 #include <map>
 #include <memory>
+
+enum class ITEMMOVE {
+	INIT,
+	NOTACT,
+	ADDITER,
+	HOLD
+};
+
 
 //#pragma warning(disable : 4267)
 #define INVENTORY_MAX_COUNT 36
@@ -35,6 +42,7 @@ public:
 	Inventory& operator=(Inventory&& _Other) noexcept = delete;
 
 protected:
+
 	void Start() override;
 	void Update() override;
 	void Render() override;
@@ -44,15 +52,14 @@ private:
 	void BoxInit();
 
 public:
+
 	template<typename Actor>
 	Actor* NewItem(float4 _AddPos = {0, 0})
 	{
 		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
-		//Item = 
 
 		//플레이어 아이템리스트에 추가
 		PlayerItemList_.insert(std::make_pair(ItemCount_, Item));
-
 
 		//박스의 위치를 찾아서 등록
 		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(ItemCount_));
@@ -63,15 +70,13 @@ public:
 		return Item;
 	}
 
+
 	void AllUpdateOff();
 
 	void AllUpdateOn();
 
-	void SetisPopUp(bool b) {
-		isPopUp_ = b;
-	}
-	bool IsPopUp() {
-		return isPopUp_;
+	bool InventoryExitMouseClick() {
+		return InventoryExit_->MouseClick();
 	}
 
 
@@ -80,26 +85,25 @@ private:
 	std::map<int, Items*> PlayerItemList_;
 	std::map<int, InventroyBox*> Box_;
 
+	std::map<int, Items*>::iterator ItemStartIter ;
+	std::map<int, Items*>::iterator ItemEndIter;
+	std::map<int, Items*>::iterator ItemHoldIter;
+
+
 	GameEngineRenderer* Inventroy_;
 	GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
-	bool isItem[INVENTORY_MAX_COUNT];
 	
 
 	int ItemCount_;
-	WildHorseradish* WildHorseradish_;
 	Mouse* Mouse_;
+	InventoryExit* InventoryExit_;
 
-	bool isPopUp_;
+	WildHorseradish* WildHorseradish_;
+	WildHorseradish* WildHorseradish2_;
+
 	int UpdateState_;
+	ITEMMOVE MoveState_;
 
-	//template<typename ActorMouse>
-	//bool ActorMouse()
-	//{
-	//	return 	ActorMouse->MouseClick();
-
-	//}
-
-	//GameEngineActor* actors[2];
 
 };
 

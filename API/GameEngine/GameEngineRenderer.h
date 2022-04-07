@@ -56,6 +56,11 @@ public:
 		RenderScale_ = _Scale;
 	}
 
+	 float4 GetScale()
+	{
+		return RenderScale_;
+	}
+
 
 	void SetImage(const std::string& _Name);
 

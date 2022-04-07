@@ -167,7 +167,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ItemData.h" />
     <ClInclude Include="Items.h">
       <SubType>
       </SubType>
