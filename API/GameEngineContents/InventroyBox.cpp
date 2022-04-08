@@ -3,6 +3,8 @@
 #include <sstream>
 
 InventroyBox::InventroyBox()
+	:
+	InItem_(false)
 {
 }
 
@@ -15,7 +17,7 @@ void InventroyBox::CreateBoxCollision(int i,  std::string box /*= "Box"*/)
 {
 	std::stringstream CollisionBoxNum;
 	CollisionBoxNum << i;
-	BoxCollision_ = CreateCollision(box + CollisionBoxNum.str(), {64, 64});
+	BoxCollision_ = CreateCollision(box, {64, 64});
 }
 
 
@@ -30,6 +32,15 @@ void InventroyBox::Start()
 
 void InventroyBox::Update()
 {
+	//if (BoxCollision_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect)) {
+
+	//	InItem_ = true;
+	//}
+	//else {
+
+	//	InItem_ = false;
+	//}
+
 }
 
 void InventroyBox::Render()

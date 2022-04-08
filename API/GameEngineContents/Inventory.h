@@ -19,7 +19,8 @@ enum class ITEMMOVE {
 	INIT,
 	NOTACT,
 	ADDITER,
-	HOLD
+	HOLD,
+	FREE
 };
 
 
@@ -61,8 +62,25 @@ public:
 		//플레이어 아이템리스트에 추가
 		PlayerItemList_.insert(std::make_pair(ItemCount_, Item));
 
+		//
+		std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
+		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
+
+
+		//앞에서부터 탐색해서 아이템이 없으면 그 자리에 넣기
+		int index_;
+
+		for (; StartIter != EndIter; ) {
+			if (!StartIter->second->InItem()) {
+				index_ = StartIter->first;
+				StartIter = EndIter;
+			}
+			if (StartIter != EndIter) { ++StartIter; }
+		}
+
+
 		//박스의 위치를 찾아서 등록
-		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(ItemCount_));
+		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(index_));
 		float4 Pos = FindIter->second->GetPosition();
 
 		Item->SetPosition({ Pos + _AddPos });
@@ -85,10 +103,12 @@ private:
 	std::map<int, Items*> PlayerItemList_;
 	std::map<int, InventroyBox*> Box_;
 
-	std::map<int, Items*>::iterator ItemStartIter ;
-	std::map<int, Items*>::iterator ItemEndIter;
-	std::map<int, Items*>::iterator ItemHoldIter;
+	std::map<int, Items*>::iterator PlayerItemListStartIter;
+	std::map<int, Items*>::iterator PlayerItemListEndIter;
+	//std::map<int, Items*>::iterator ItemHoldIter;
 
+	std::map<int, InventroyBox*>::iterator BoxStartIter;
+	std::map<int, InventroyBox*>::iterator BoxEndIter;
 
 	GameEngineRenderer* Inventroy_;
 	GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];

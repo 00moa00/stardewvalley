@@ -2,6 +2,8 @@
 
 #include <windows.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngine/GameEngineCollision.h>
+#include <vector>
 // Ό³Έν :
 class Mouse : public GameEngineActor
 {
@@ -38,6 +40,14 @@ public:
 
 	bool GetHoldingItem() {
 		return HoldingMouse_;
+	}
+
+
+	bool MouseInBox() {
+		std::vector<GameEngineCollision*> ColList;
+
+		return (MouseCollision_->CollisionResult("Box", ColList, CollisionType::Rect, CollisionType::Rect));
+
 	}
 
 private:

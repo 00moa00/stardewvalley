@@ -10,6 +10,15 @@
 #include "ToolEnum.h"
 
 // Ό³Έν :
+
+enum class ITEMTYPE{
+
+	ITEM,
+	OBJECT,
+	TOOL,
+
+};
+
 class Items : public GameEngineActor
 {
 public:
@@ -30,6 +39,13 @@ public:
 	}
 
 
+	bool IteminItem() {
+		std::vector<GameEngineCollision*> ColList;
+
+		return (ItemCollider_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+
 	bool MouseHoldItem() {
 		return MouseHoldItem_;
 	}
@@ -44,6 +60,10 @@ public:
 
 	bool GetInMouse() {
 		return InMouse;
+	}
+
+	ITEMTYPE GetItemType() {
+		return ItemType_;
 	}
 
 
@@ -63,6 +83,7 @@ protected:
 	GameEngineRenderer* ItemRenderer_ = nullptr;
 	GameEngineCollision* ItemCollider_ = nullptr;
 	bool MouseHoldItem_ = false;
+	ITEMTYPE ItemType_ = ITEMTYPE::ITEM;
 
 private:
 	bool InMouse;

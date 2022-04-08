@@ -18,8 +18,10 @@ Inventory::Inventory()
 	Mouse_(nullptr),
 	ItemCount_(0),
 	UpdateState_(0),
-	ItemStartIter(PlayerItemList_.begin()),
-	ItemEndIter(PlayerItemList_.end()),
+	PlayerItemListStartIter(PlayerItemList_.begin()),
+	PlayerItemListEndIter(PlayerItemList_.end()),
+	BoxStartIter(Box_.begin()),
+	BoxEndIter(Box_.end()),
 
 	MoveState_(ITEMMOVE::INIT)
 {
@@ -132,46 +134,89 @@ void Inventory::AllUpdateOn()
 
 void Inventory::Update()
 {
-
-	//ItemStartIter = PlayerItemList_.begin();
-	//ItemEndIter = PlayerItemList_.end();
+	//TODO: 예상되는 문제점, 플레이 도중에 아이템을 얻었을때 리스트가 변경되면서 이터레이터도 바뀔까?
 
 	switch (MoveState_)
 	{
 	case ITEMMOVE::INIT:
 
-		ItemStartIter = PlayerItemList_.begin();
-		ItemEndIter = PlayerItemList_.end();
+		PlayerItemListStartIter = PlayerItemList_.begin();
+		PlayerItemListEndIter = PlayerItemList_.end();
+
+		BoxStartIter = Box_.begin();
+		BoxEndIter = Box_.end();
 
 		MoveState_ = ITEMMOVE::NOTACT;
 
 		break;
 
-	case ITEMMOVE::NOTACT :
+	case ITEMMOVE::NOTACT:
 
-		if (ItemStartIter->second->MouseOver() && Mouse_->isMouseClick()) {
+		//아이템이 마우스와 충돌했고 클릭했다면 홀드
+		if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick()) {
 
-			ItemStartIter->second->SetInMouse(true);
 			MoveState_ = ITEMMOVE::HOLD;
 			break;
 		}
 
-		++ItemStartIter;
+		++PlayerItemListStartIter;
 
-		if (ItemStartIter == ItemEndIter) {
-			ItemStartIter = PlayerItemList_.begin();
+		if (PlayerItemListStartIter == PlayerItemListEndIter) {
+			PlayerItemListStartIter = PlayerItemList_.begin();
 		}
 
 		break;
 
 	case ITEMMOVE::HOLD:
 
-		if (ItemStartIter->second->GetInMouse()) {
+		//아이템을 마우스의 위치에 고정
+		PlayerItemListStartIter->second->SetPosition(Mouse_->GetPosition());
+		
+		//마우스를 다시 한번 클릭했고, 마우스가 인벤토리 박스 안에 있으면 놓아주기 시도
+		//TODO: 박스 밖에서 놓아주려했을떄 원래 자리로 돌아가게 하기.
 
-			ItemStartIter->second->SetPosition(Mouse_->GetPosition());
+
+	// TODO : 놓는 자리에 아이템이 있다면 하지 않는다. if (마우스 vs 아이템 == true + 홀딩중이 아닐때. )
+		// 홀딩중일때 아이템의 플러그를 설정헌다. (NOATC 에서 )
+
+		if ((Mouse_->isMouseClick() && Mouse_->MouseInBox()))
+		{
+			MoveState_ = ITEMMOVE::FREE;
 		}
 
 		break;
+
+
+	case ITEMMOVE::FREE:
+
+
+		for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
+		{
+			//if(BoxStartIter->second->GetInItem()) MoveState_ = ITEMMOVE::HOLD;
+
+			//마우스와 충돌한 인벤토리 박스를 찾아서 그 박스의 위치에 아이템을 넣는다.
+			if (BoxStartIter->second->MouseOver()) {
+
+				//if(BoxStartIter->second->)
+
+				//툴의 경우 사이즈가 다르다.
+				if (PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL) {
+
+					float4 Pos = { BoxStartIter->second->GetPosition().x, BoxStartIter->second->GetPosition().y + 24.f };
+					PlayerItemListStartIter->second->SetPosition(Pos);
+
+				}
+
+				else { 
+
+					PlayerItemListStartIter->second->SetPosition(BoxStartIter->second->GetPosition());
+
+				}
+				MoveState_ = ITEMMOVE::INIT;
+			}
+		}
+		break;
+
 
 	default:
 

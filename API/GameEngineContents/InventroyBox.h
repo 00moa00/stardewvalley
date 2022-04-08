@@ -25,12 +25,30 @@ public:
 public:
 
 	 bool MouseClick() {
-		std::vector<GameEngineCollision*> ColList;
 
 		return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect)
 			&& (true == GameEngineInput::GetInst()->IsDown("LeftClick")));
 
 	}
+
+	 bool MouseOver() {
+
+		 return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
+
+	 }
+
+	 bool InItem() {
+
+		 return (BoxCollision_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
+	 }
+
+	 bool GetInItem()
+	 {
+		 return InItem_;
+	}
+
+	 
+
 
 protected:
 
@@ -40,7 +58,11 @@ private:
 	void Update() override;
 	void Render() override;
 
+	bool InItem_;
+
 	GameEngineCollision* BoxCollision_;
 	GameEngineRenderer* InventoryBox_;
+
+	std::vector<GameEngineCollision*> ColList;
 };
 
