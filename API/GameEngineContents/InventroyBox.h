@@ -4,6 +4,7 @@
 #include <vector>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineCollision.h>
+#include "Item.h"
 
 // Ό³Έν :
 class InventroyBox : public GameEngineActor
@@ -37,7 +38,7 @@ public:
 
 	 }
 
-	 bool InItem() {
+	 bool IteminBox() {
 
 		 return (BoxCollision_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
 	 }
@@ -47,7 +48,9 @@ public:
 		 return InItem_;
 	}
 
-	 
+	 void SetInItem(bool b) {
+		 InItem_ = b;
+	 }
 
 
 protected:
@@ -63,6 +66,9 @@ private:
 	GameEngineCollision* BoxCollision_;
 	GameEngineRenderer* InventoryBox_;
 
+	Item* Item_;
+
 	std::vector<GameEngineCollision*> ColList;
+
 };
 

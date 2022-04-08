@@ -36,6 +36,7 @@ void TitleLogo::Start()
 	Logo_ = CreateRenderer("logo.bmp");
 	//Logo_->SetIndex(0);
 	Logo_->SetScale({ 600, 330 }); 	//800, 440  로고 원본 크기
+	//Logo_->
 
 }
 

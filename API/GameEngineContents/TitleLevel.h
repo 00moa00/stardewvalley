@@ -7,6 +7,7 @@
 #include "MenuNewGame.h"
 #include "Mouse.h"
 
+#include "TitleBackGround.h"
 enum class ORDER
 {
 	TitleLogo = 0,
@@ -61,6 +62,7 @@ private:
 	MenuLoad* MenuLoad_;
 	MenuExit* MenuExit_;
 	Mouse* Mouse_;
+	TitleBackGround* TitleBackGround_;
 
 	bool isPopup_;
 	bool KeyFlag_; //업데이트에서 함수를 한번만 사용하기 위한 플러그

@@ -85,6 +85,42 @@ void Inventory::BoxInit()
 	}
 }
 
+void Inventory::ItemSetPos()
+{
+
+	std::map<int, Items*>::iterator IterEndIter = PlayerItemList_.end();
+
+	std::map<int, InventroyBox*>::iterator BoxStartIter = Box_.begin();
+	std::map<int, InventroyBox*>::iterator BoxEndIter = Box_.end();
+
+	for (; BoxStartIter != BoxEndIter; ++BoxStartIter) {
+		std::map<int, Items*>::iterator IterFindIter = PlayerItemList_.find(BoxStartIter->first);
+
+		if (IterFindIter == IterEndIter) {
+			continue;
+		}
+
+		//툴의 경우 사이즈가 다르다.
+		if (IterFindIter->second->GetItemType() == ITEMTYPE::TOOL) {
+
+			float4 Pos = { BoxStartIter->second->GetPosition().x, BoxStartIter->second->GetPosition().y + 24.f };
+			IterFindIter->second->SetPosition(Pos);
+
+		}
+
+		else {
+
+			IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
+
+		}
+
+
+
+	}
+
+
+}
+
 void Inventory::AllUpdateOff()
 {
 	this->Off();
@@ -134,6 +170,14 @@ void Inventory::AllUpdateOn()
 
 void Inventory::Update()
 {
+
+
+	//키값 변경용
+	std::map<int, Items*>::iterator Finditer;
+
+	//만약에 놓을 자리에 아이템이 있다면 마우스가 들고있는 아이템을 바꾼다.
+	// 해당 자리에 놓고, 
+
 	//TODO: 예상되는 문제점, 플레이 도중에 아이템을 얻었을때 리스트가 변경되면서 이터레이터도 바뀔까?
 
 	switch (MoveState_)
@@ -146,14 +190,24 @@ void Inventory::Update()
 		BoxStartIter = Box_.begin();
 		BoxEndIter = Box_.end();
 
+
+
+		/*ItemHoldStartIter = PlayerItemList_.begin();
+		ItemHoldEndIter = PlayerItemList_.end();*/
+
 		MoveState_ = ITEMMOVE::NOTACT;
 
 		break;
 
 	case ITEMMOVE::NOTACT:
 
+		ItemSetPos();
+
+
 		//아이템이 마우스와 충돌했고 클릭했다면 홀드
 		if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick()) {
+
+			PlayerItemListStartIter->second->SetInBox(true);
 
 			MoveState_ = ITEMMOVE::HOLD;
 			break;
@@ -171,17 +225,48 @@ void Inventory::Update()
 
 		//아이템을 마우스의 위치에 고정
 		PlayerItemListStartIter->second->SetPosition(Mouse_->GetPosition());
-		
+		PlayerItemListStartIter->second->MouseHoldItem();
 		//마우스를 다시 한번 클릭했고, 마우스가 인벤토리 박스 안에 있으면 놓아주기 시도
 		//TODO: 박스 밖에서 놓아주려했을떄 원래 자리로 돌아가게 하기.
 
 
-	// TODO : 놓는 자리에 아이템이 있다면 하지 않는다. if (마우스 vs 아이템 == true + 홀딩중이 아닐때. )
+		// TODO : 놓는 자리에 아이템이 있다면 하지 않는다. if ((박스 vs 아이템 == true )+ 홀딩중이 아닐때. )
 		// 홀딩중일때 아이템의 플러그를 설정헌다. (NOATC 에서 )
+
 
 		if ((Mouse_->isMouseClick() && Mouse_->MouseInBox()))
 		{
-			MoveState_ = ITEMMOVE::FREE;
+
+			BoxStartIter = Box_.begin();
+			BoxEndIter = Box_.end();
+
+			for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
+			{
+
+				if (BoxStartIter->second->MouseOver()) {
+
+
+					//지정위치의 아이템이 해당 박스 안에 있다면 넘어가지 않는다.
+					//해당 아이템 인덱스가 박스
+					Finditer = PlayerItemList_.find(BoxStartIter->first);
+
+					//해당 위치에 아이템이 없다면 
+					if (Finditer == PlayerItemListEndIter) {
+
+
+						MoveState_ = ITEMMOVE::FREE;
+						continue;
+					}
+
+
+					 if (Finditer->second->GetInBox()) {
+
+						MoveState_ = ITEMMOVE::HOLD;
+					}
+
+				}
+			}
+
 		}
 
 		break;
@@ -189,30 +274,23 @@ void Inventory::Update()
 
 	case ITEMMOVE::FREE:
 
+		BoxStartIter = Box_.begin();
+		BoxEndIter = Box_.end();
 
 		for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
 		{
-			//if(BoxStartIter->second->GetInItem()) MoveState_ = ITEMMOVE::HOLD;
 
 			//마우스와 충돌한 인벤토리 박스를 찾아서 그 박스의 위치에 아이템을 넣는다.
 			if (BoxStartIter->second->MouseOver()) {
 
-				//if(BoxStartIter->second->)
+					//키값 변경
+					Finditer = PlayerItemListStartIter;
+					std::swap(PlayerItemList_[BoxStartIter->first], Finditer->second);
 
-				//툴의 경우 사이즈가 다르다.
-				if (PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL) {
+					PlayerItemList_.erase(Finditer);
 
-					float4 Pos = { BoxStartIter->second->GetPosition().x, BoxStartIter->second->GetPosition().y + 24.f };
-					PlayerItemListStartIter->second->SetPosition(Pos);
-
-				}
-
-				else { 
-
-					PlayerItemListStartIter->second->SetPosition(BoxStartIter->second->GetPosition());
-
-				}
-				MoveState_ = ITEMMOVE::INIT;
+					MoveState_ = ITEMMOVE::INIT;
+			//	}
 			}
 		}
 		break;

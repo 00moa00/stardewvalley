@@ -17,6 +17,8 @@ void InventoryExit::Start()
 	SetPosition(GameEngineWindow::GetScale().Half());
 	Exit_ = CreateRenderer("exit.bmp");
 	ExitCollision_ = CreateCollision("Exit", { 64, 64 });
+	//ExitCollision_->GetCollisionPos();
+	//ExitCollision_->GetCollisionPos
 }
 
 void InventoryExit::Update()

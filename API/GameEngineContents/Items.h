@@ -33,16 +33,20 @@ public:
 	}
 
 	bool MouseOver() {
-		std::vector<GameEngineCollision*> ColList;
 
 		return (ItemCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
 	}
 
 
 	bool IteminItem() {
-		std::vector<GameEngineCollision*> ColList;
 
 		return (ItemCollider_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+	bool IteminBox() {
+	
+
+		return (ItemCollider_->CollisionResult("Box", ColList, CollisionType::Rect, CollisionType::Rect));
 	}
 
 
@@ -54,12 +58,12 @@ public:
 		this->Off();
 	}
 
-	void SetInMouse(bool b) {
-		InMouse = b;
+	void SetInBox(bool b) {
+		InBox = b;
 	}
 
-	bool GetInMouse() {
-		return InMouse;
+	bool GetInBox() {
+		return InBox;
 	}
 
 	ITEMTYPE GetItemType() {
@@ -79,6 +83,7 @@ public:
 
 
 protected:
+	std::vector<GameEngineCollision*> ColList;
 
 	GameEngineRenderer* ItemRenderer_ = nullptr;
 	GameEngineCollision* ItemCollider_ = nullptr;
@@ -87,6 +92,7 @@ protected:
 
 private:
 	bool InMouse;
+	bool InBox;
 
 };
 

@@ -4,7 +4,8 @@
 
 InventroyBox::InventroyBox()
 	:
-	InItem_(false)
+	InItem_(false),
+	Item_(nullptr)
 {
 }
 
@@ -17,7 +18,7 @@ void InventroyBox::CreateBoxCollision(int i,  std::string box /*= "Box"*/)
 {
 	std::stringstream CollisionBoxNum;
 	CollisionBoxNum << i;
-	BoxCollision_ = CreateCollision(box, {64, 64});
+	BoxCollision_ = CreateCollision(box, {50, 50});
 }
 
 

@@ -41,10 +41,13 @@ public:
 	bool GetHoldingItem() {
 		return HoldingMouse_;
 	}
+	bool MouseInItem() {
+
+		return (MouseCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
 
 
 	bool MouseInBox() {
-		std::vector<GameEngineCollision*> ColList;
 
 		return (MouseCollision_->CollisionResult("Box", ColList, CollisionType::Rect, CollisionType::Rect));
 
@@ -56,6 +59,7 @@ private:
 	POINT pt;
 	GameEngineRenderer* MousePoint_;
 	GameEngineCollision* MouseCollision_;
+	std::vector<GameEngineCollision*> ColList;
 
 	bool HoldingMouse_;
 

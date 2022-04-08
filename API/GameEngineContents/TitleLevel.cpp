@@ -5,8 +5,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
 
-#include "TitleBackGround.h"
-
+#include <GameEngine/GameEngineImage.h>
 
 
 
@@ -15,6 +14,7 @@ TitleLevel::TitleLevel()
 		MenuExit_(nullptr),
 		MenuLoad_(nullptr),
 		MenuNewGame_(nullptr),
+		TitleBackGround_(nullptr),
 		Mouse_(nullptr),
 		isPopup_(false),
 		Timer_(0),
@@ -31,12 +31,12 @@ TitleLevel::~TitleLevel()
 void TitleLevel::Loading() 
 {
 
-	CreateActor<TitleBackGround>(0);
+	TitleBackGround_ = CreateActor<TitleBackGround>(0);
 	TitleLogo_ = CreateActor<TitleLogo>(1);
 
 	Mouse_= CreateActor<Mouse>(4);
 
-
+	//TitleBackGround_->GetMapImage()->
 }
 
 void TitleLevel::Update()

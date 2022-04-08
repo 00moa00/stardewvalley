@@ -51,7 +51,7 @@ protected:
 private:
 
 	void BoxInit();
-
+	void ItemSetPos();
 public:
 
 	template<typename Actor>
@@ -59,25 +59,30 @@ public:
 	{
 		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
 
-		//플레이어 아이템리스트에 추가
-		PlayerItemList_.insert(std::make_pair(ItemCount_, Item));
+
 
 		//
 		std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
 		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
 
 
+
+
 		//앞에서부터 탐색해서 아이템이 없으면 그 자리에 넣기
-		int index_;
+		int index_ = 0;
 
 		for (; StartIter != EndIter; ) {
-			if (!StartIter->second->InItem()) {
+			if (!StartIter->second->IteminBox()) {
 				index_ = StartIter->first;
 				StartIter = EndIter;
 			}
 			if (StartIter != EndIter) { ++StartIter; }
 		}
 
+
+
+		//플레이어 아이템리스트에 추가
+		PlayerItemList_.insert(std::make_pair(index_, Item));
 
 		//박스의 위치를 찾아서 등록
 		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(index_));
@@ -109,6 +114,10 @@ private:
 
 	std::map<int, InventroyBox*>::iterator BoxStartIter;
 	std::map<int, InventroyBox*>::iterator BoxEndIter;
+
+	//std::map<int, Items*>::iterator ItemHoldStartIter;
+	//std::map<int, Items*>::iterator ItemHoldEndIter;
+
 
 	GameEngineRenderer* Inventroy_;
 	GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
