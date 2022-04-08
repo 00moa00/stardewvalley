@@ -77,6 +77,8 @@ void Inventory::BoxInit()
 		for (int x = 0; x < 12; ++x)
 		{
 			StartIter->second->SetPosition({ (GetPosition().x - 352.f) + (64.f * x), (GetPosition().y - 200.f) + (64.f * y + BoxMargin) });
+
+			//TODO : 카운트 필요없음 삭제하기.
 			StartIter->second->CreateBoxCollision(count);
 			count++;
 			StartIter++;
@@ -114,11 +116,7 @@ void Inventory::ItemSetPos()
 
 		}
 
-
-
 	}
-
-
 }
 
 void Inventory::AllUpdateOff()
@@ -175,8 +173,6 @@ void Inventory::Update()
 	//키값 변경용
 	std::map<int, Items*>::iterator Finditer;
 
-	//만약에 놓을 자리에 아이템이 있다면 마우스가 들고있는 아이템을 바꾼다.
-	// 해당 자리에 놓고, 
 
 	//TODO: 예상되는 문제점, 플레이 도중에 아이템을 얻었을때 리스트가 변경되면서 이터레이터도 바뀔까?
 
@@ -191,16 +187,13 @@ void Inventory::Update()
 		BoxEndIter = Box_.end();
 
 
-
-		/*ItemHoldStartIter = PlayerItemList_.begin();
-		ItemHoldEndIter = PlayerItemList_.end();*/
-
 		MoveState_ = ITEMMOVE::NOTACT;
 
 		break;
 
 	case ITEMMOVE::NOTACT:
 
+		//아이템은 박스의 위치를 무조건 따라감
 		ItemSetPos();
 
 
@@ -226,13 +219,11 @@ void Inventory::Update()
 		//아이템을 마우스의 위치에 고정
 		PlayerItemListStartIter->second->SetPosition(Mouse_->GetPosition());
 		PlayerItemListStartIter->second->MouseHoldItem();
+
+
 		//마우스를 다시 한번 클릭했고, 마우스가 인벤토리 박스 안에 있으면 놓아주기 시도
-		//TODO: 박스 밖에서 놓아주려했을떄 원래 자리로 돌아가게 하기.
-
-
-		// TODO : 놓는 자리에 아이템이 있다면 하지 않는다. if ((박스 vs 아이템 == true )+ 홀딩중이 아닐때. )
-		// 홀딩중일때 아이템의 플러그를 설정헌다. (NOATC 에서 )
-
+		//TODO : 박스 밖에서 놓아주려했을떄 원래 자리로 돌아가게 하기.
+		//TODO : 아이템이 있는 위치에는 들고있는 아이템 변경하기
 
 		if ((Mouse_->isMouseClick() && Mouse_->MouseInBox()))
 		{
@@ -245,19 +236,16 @@ void Inventory::Update()
 
 				if (BoxStartIter->second->MouseOver()) {
 
-
 					//지정위치의 아이템이 해당 박스 안에 있다면 넘어가지 않는다.
-					//해당 아이템 인덱스가 박스
+
 					Finditer = PlayerItemList_.find(BoxStartIter->first);
 
 					//해당 위치에 아이템이 없다면 
 					if (Finditer == PlayerItemListEndIter) {
 
-
 						MoveState_ = ITEMMOVE::FREE;
 						continue;
 					}
-
 
 					 if (Finditer->second->GetInBox()) {
 
@@ -266,7 +254,6 @@ void Inventory::Update()
 
 				}
 			}
-
 		}
 
 		break;
@@ -282,6 +269,8 @@ void Inventory::Update()
 
 			//마우스와 충돌한 인벤토리 박스를 찾아서 그 박스의 위치에 아이템을 넣는다.
 			if (BoxStartIter->second->MouseOver()) {
+
+					PlayerItemListStartIter->second->SetInBox(false);
 
 					//키값 변경
 					Finditer = PlayerItemListStartIter;
@@ -300,8 +289,6 @@ void Inventory::Update()
 
 		break;
 	}
-
-
 
 }
 
