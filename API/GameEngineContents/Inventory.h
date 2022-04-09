@@ -20,9 +20,15 @@ enum class ITEMMOVE {
 	NOTACT,
 	ADDITER,
 	HOLD,
-	FREE
+	FREE,
+	MINE
 };
 
+enum class MINIPOPUP {
+	INIT,
+	MINI,
+	MAIN
+};
 
 //#pragma warning(disable : 4267)
 #define INVENTORY_MAX_COUNT 36
@@ -50,8 +56,10 @@ protected:
 
 private:
 
+	void InvenPopUp();
 	void BoxInit();
-	void ItemSetPos();
+	void InventoryPosInit();
+	void ItemPosFocusInvenBox();
 public:
 
 	template<typename Actor>
@@ -103,6 +111,16 @@ public:
 	}
 
 
+
+	void SetisMiniInven(MINIPOPUP b) {
+		MiniState_ = b;
+	}
+
+	//bool GetisMiniInven() {
+	//	return isMiniInven_;
+	//}
+
+
 private:
 	
 	std::map<int, Items*> PlayerItemList_;
@@ -110,18 +128,17 @@ private:
 
 	std::map<int, Items*>::iterator PlayerItemListStartIter;
 	std::map<int, Items*>::iterator PlayerItemListEndIter;
-	//std::map<int, Items*>::iterator ItemHoldIter;
 
 	std::map<int, InventroyBox*>::iterator BoxStartIter;
 	std::map<int, InventroyBox*>::iterator BoxEndIter;
-
-	//std::map<int, Items*>::iterator ItemHoldStartIter;
-	//std::map<int, Items*>::iterator ItemHoldEndIter;
 
 
 	GameEngineRenderer* Inventroy_;
 	GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
 	
+
+	bool isMiniInven_;
+
 
 	int ItemCount_;
 	Mouse* Mouse_;
@@ -132,7 +149,7 @@ private:
 
 	int UpdateState_;
 	ITEMMOVE MoveState_;
-
+	MINIPOPUP MiniState_;
 
 };
 

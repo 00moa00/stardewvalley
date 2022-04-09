@@ -10,21 +10,19 @@ enum class UPDATE {
 	POPDOWN
 };
 
-Inventory::Inventory() 
+Inventory::Inventory()
 	:
-	BoxCollision_{nullptr},
+	BoxCollision_{ nullptr },
 	WildHorseradish_(nullptr),
 	InventoryExit_(nullptr),
 	Mouse_(nullptr),
 	ItemCount_(0),
 	UpdateState_(0),
-	PlayerItemListStartIter(PlayerItemList_.begin()),
-	PlayerItemListEndIter(PlayerItemList_.end()),
-	BoxStartIter(Box_.begin()),
-	BoxEndIter(Box_.end()),
 
+	MiniState_(MINIPOPUP::MINI),
 	MoveState_(ITEMMOVE::INIT)
 {
+
 }
 
 
@@ -61,33 +59,44 @@ void Inventory::BoxInit()
 			GetLevel()->CreateActor<InventroyBox>(static_cast<int>(PLAYLEVEL::INVENTROYBOX))));
 	}
 
+
+	InventoryPosInit();
+
+}
+
+void Inventory::InventoryPosInit()
+{
+
 	//위치 초기화
 	std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
 	std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
 	int count = 0;
 
-	for (int y = 0; y < 3; ++y) {
+	int BoxMargin = 0;
+	int BoxYMargin = 0;
+	float BoxXMargin = 0.f;
 
-		float BoxMargin = 0.f;
+	for (; StartIter != EndIter; ++StartIter) {
 
-		if (y > 0) {
+		if (StartIter->first == 12) {
 			BoxMargin = 10.f;
+			BoxYMargin = 1;
+			BoxXMargin = 0.f;
+		}
+		if (StartIter->first == 24) {
+			//BoxYMargin = 20.f;
+			BoxYMargin = 2;
+
+			BoxXMargin = 0.f;
 		}
 
-		for (int x = 0; x < 12; ++x)
-		{
-			StartIter->second->SetPosition({ (GetPosition().x - 352.f) + (64.f * x), (GetPosition().y - 200.f) + (64.f * y + BoxMargin) });
-
-			//TODO : 카운트 필요없음 삭제하기.
-			StartIter->second->CreateBoxCollision(count);
-			count++;
-			StartIter++;
-		}
-
+		StartIter->second->SetPosition({ (GetPosition().x - 352.f) + (64.f * BoxXMargin), (GetPosition().y - 200.f) + (64.f * BoxYMargin + BoxMargin) });
+		StartIter->second->CreateBoxCollision(StartIter->first);
+		++BoxXMargin;
 	}
 }
 
-void Inventory::ItemSetPos()
+void Inventory::ItemPosFocusInvenBox()
 {
 
 	std::map<int, Items*>::iterator IterEndIter = PlayerItemList_.end();
@@ -165,20 +174,115 @@ void Inventory::AllUpdateOn()
 
 }
 
+void Inventory::InvenPopUp()
+{
+
+	std::map<int, InventroyBox*>::iterator BoxStartIter = Box_.begin();
+	std::map<int, InventroyBox*>::iterator BoxEndIter = Box_.end();
+
+	std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
+	std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
+
+
+	int BoxXMargin = 0;
+
+	switch (MiniState_)
+	{
+	case MINIPOPUP::INIT :
+
+		break;
+
+	case MINIPOPUP::MINI:
+
+		InventoryExit_->Off();
+
+
+		Inventroy_->SetImage("MiniInven.bmp");
+		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y+300.f });
+
+
+		for (; BoxStartIter != BoxEndIter; ++BoxStartIter) {
+			BoxStartIter->second->SetPosition({ (this->GetPosition().x - 352.f) + (64.f * BoxXMargin), (this->GetPosition().y) });
+			++BoxXMargin;
+
+			if (BoxStartIter->first > 11){
+
+				BoxStartIter->second->Off();
+			}
+		}
+
+
+		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
+
+			if (ItemStartIter == ItemEndIter) {
+				continue;
+			}
+
+			if (ItemStartIter->first > 11)
+				ItemStartIter->second->Off();
+		}
+
+		MiniState_ = MINIPOPUP::INIT;
+
+		break;
+
+	case MINIPOPUP::MAIN:
+
+		InventoryExit_->On();
+
+		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
+
+			if (ItemStartIter == ItemEndIter) {
+				continue;
+			}
+
+			ItemStartIter->second->On();
+		}
+
+		for (; BoxStartIter != BoxEndIter; ++BoxStartIter) {
+			InventoryPosInit();
+			BoxStartIter->second->On();
+		}
+		SetPosition(GameEngineWindow::GetScale().Half());
+		Inventroy_->SetImage("inventory.bmp");
+
+
+		InventoryPosInit();
+
+		MiniState_ = MINIPOPUP::INIT;
+
+		break;
+
+	}
+
+
+}
+
 
 void Inventory::Update()
 {
+	//if (Mouse_->isMouseFree()) {
+	//	MoveState_ = ITEMMOVE::INIT;
+	//}
 
+	//std::map<int, Items*>::iterator PlayerItemListStartIter = PlayerItemList_.begin();
+	//std::map<int, Items*>::iterator PlayerItemListEndIter = PlayerItemList_.end();
+
+	//std::map<int, InventroyBox*>::iterator BoxStartIter = Box_.begin();
+	//std::map<int, InventroyBox*>::iterator BoxEndIter = Box_.end();
 
 	//키값 변경용
 	std::map<int, Items*>::iterator Finditer;
+	std::map<int, InventroyBox*>::iterator FindBoxiter;
 
+	InvenPopUp();
 
 	//TODO: 예상되는 문제점, 플레이 도중에 아이템을 얻었을때 리스트가 변경되면서 이터레이터도 바뀔까?
 
 	switch (MoveState_)
 	{
 	case ITEMMOVE::INIT:
+
 
 		PlayerItemListStartIter = PlayerItemList_.begin();
 		PlayerItemListEndIter = PlayerItemList_.end();
@@ -194,23 +298,38 @@ void Inventory::Update()
 	case ITEMMOVE::NOTACT:
 
 		//아이템은 박스의 위치를 무조건 따라감
-		ItemSetPos();
+		ItemPosFocusInvenBox();
+
+		for (; PlayerItemListStartIter != PlayerItemListEndIter; ++PlayerItemListStartIter) {
 
 
-		//아이템이 마우스와 충돌했고 클릭했다면 홀드
-		if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick()) {
+			if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick()) {
+				PlayerItemListStartIter->second->SetInBox(false);
+				MoveState_ = ITEMMOVE::HOLD;
+				break;
+			}
 
-			PlayerItemListStartIter->second->SetInBox(true);
-
-			MoveState_ = ITEMMOVE::HOLD;
-			break;
+			
+			//break;
 		}
 
-		++PlayerItemListStartIter;
 
 		if (PlayerItemListStartIter == PlayerItemListEndIter) {
 			PlayerItemListStartIter = PlayerItemList_.begin();
 		}
+
+
+		////아이템이 마우스와 충돌했고 클릭했다면 홀드
+		//if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick()) {
+
+		//
+		//}
+
+		//++PlayerItemListStartIter;
+
+		//if (PlayerItemListStartIter == PlayerItemListEndIter) {
+		//	PlayerItemListStartIter = PlayerItemList_.begin();
+		//}
 
 		break;
 
@@ -252,6 +371,12 @@ void Inventory::Update()
 						MoveState_ = ITEMMOVE::HOLD;
 					}
 
+
+					 if (Finditer->first == PlayerItemListStartIter->first) {
+
+						 MoveState_ = ITEMMOVE::MINE;
+					 }
+
 				}
 			}
 		}
@@ -270,7 +395,7 @@ void Inventory::Update()
 			//마우스와 충돌한 인벤토리 박스를 찾아서 그 박스의 위치에 아이템을 넣는다.
 			if (BoxStartIter->second->MouseOver()) {
 
-					PlayerItemListStartIter->second->SetInBox(false);
+					PlayerItemListStartIter->second->SetInBox(true);
 
 					//키값 변경
 					Finditer = PlayerItemListStartIter;
@@ -284,6 +409,12 @@ void Inventory::Update()
 		}
 		break;
 
+	case ITEMMOVE::MINE :
+		
+		FindBoxiter = Box_.find(PlayerItemListStartIter->first);
+
+		PlayerItemListStartIter->second->SetPosition(FindBoxiter->second->GetPosition());
+		MoveState_ = ITEMMOVE::INIT;
 
 	default:
 

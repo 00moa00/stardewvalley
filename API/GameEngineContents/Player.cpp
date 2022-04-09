@@ -15,7 +15,8 @@ Player::Player()
 	Speed_(150.f),
 	Energy_(150.f),
 	PlayerMove_{},
-	Player_(nullptr),
+	PlayerRenderer_(nullptr),
+	PlayerCollider_(nullptr),
 	Inventory_(nullptr),
 	Mouse_(nullptr)
 
@@ -35,7 +36,8 @@ void Player::Start()
 
 	SetPosition(GameEngineWindow::GetScale().Half());
 
-	Player_ = CreateRenderer();
+	PlayerRenderer_ = CreateRenderer();
+	PlayerCollider_ = CreateCollision("Player", { 48*4, 96 });
 
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::PLAYER);
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
@@ -50,31 +52,31 @@ void Player::Start()
 	//================================
 	//     플레이어 대기
 	//================================
-	Player_->CreateAnimation("Player.bmp", "FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
-	Player_->CreateAnimation("Player.bmp", "RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
-	Player_->CreateAnimation("Player.bmp", "LEFT_INIT", PLAYER::LEFT_INIT, PLAYER::LEFT_INIT, 0.0f, false);
-	Player_->CreateAnimation("Player.bmp", "BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_INIT", PLAYER::LEFT_INIT, PLAYER::LEFT_INIT, 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
 
 	//================================
 	//     플레이어 이동 
 	//================================
-	Player_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK3, AnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK5, AnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK5, AnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK3, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK5, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK5, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, AnimationFrame_, true);
 
 	//================================
 	//     플레이어 툴 사용
 	//================================
-	//Player_->CreateAnimation("Player.bmp", "FRONT_HOE", PLAYER::HOE, PLAYER::FRONT_WALK3, DirAnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "RIGHT_HOE", PLAYER::HOE_RIGHT0, PLAYER::HOE_RIGHT4, AnimationFrame_, true);
-	Player_->CreateAnimation("Player.bmp", "LEFT_HOE", PLAYER::HOE_LEFT0, PLAYER::HOE_LEFT4, AnimationFrame_, false);
-	//Player_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, DirAnimationFrame_, true);
+	//PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HOE", PLAYER::HOE, PLAYER::FRONT_WALK3, DirAnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HOE", PLAYER::HOE_RIGHT0, PLAYER::HOE_RIGHT4, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HOE", PLAYER::HOE_LEFT0, PLAYER::HOE_LEFT4, AnimationFrame_, false);
+	//PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, DirAnimationFrame_, true);
 
 
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
-	Player_->ChangeAnimation("FRONT_INIT");
+	PlayerRenderer_->ChangeAnimation("FRONT_INIT");
 	PlayerMove_.SetFrontDir(true);
 }
 
@@ -83,23 +85,29 @@ void Player::Update()
 {
 	switch (PlayerState_)
 	{
-	case PLAYERSTATE::INIT:
 
-		Inventory_->AllUpdateOff();
+	case PLAYERSTATE::INVENTROY_MINI_INIT:
+
+		Inventory_->SetisMiniInven(MINIPOPUP::MINI);
+		PlayerState_ = PLAYERSTATE::INIT;
+		break;
+
+	case PLAYERSTATE::INIT:
+	
 		SetDirAnimation();
 
-		if (true == GameEngineInput::GetInst()->IsDown("Enter")) PlayerState_ = PLAYERSTATE::INVENTROY_POPUP;
-		if(Mouse_->isMouseClick())  PlayerState_ = PLAYERSTATE::TOOL_USE;
+		if (true == GameEngineInput::GetInst()->IsDown("Enter")) PlayerState_ = PLAYERSTATE::INVENTROY_POPUP_INIT;
+		if(PlayerMouseCollision())  PlayerState_ = PLAYERSTATE::TOOL_USE;
 		if (isMove()) PlayerState_ = PLAYERSTATE::MOVE;
 		break;
 
 	case PLAYERSTATE::TOOL_USE:
 
-		Player_->ChangeAnimation("RIGHT_HOE");
+		PlayerRenderer_->ChangeAnimation("RIGHT_HOE");
 
 		//if (Mouse_->isMouseFree()) PlayerState_ = PLAYERSTATE::INIT;
 
-		if (Player_->IsEndAnimation()) {
+		if (PlayerRenderer_->IsEndAnimation()) {
 			//Player_->SetCurrentFrame(PLAYER::HOE_RIGHT0);
 			PlayerState_ = PLAYERSTATE::INIT;
 		}
@@ -115,14 +123,19 @@ void Player::Update()
 
 		if (isStop()) PlayerState_ = PLAYERSTATE::INIT;
 		break;
+	case PLAYERSTATE::INVENTROY_POPUP_INIT:
+
+		Inventory_->SetisMiniInven(MINIPOPUP::MAIN);
+		PlayerState_ = PLAYERSTATE::INVENTROY_POPUP;
+		break;
 
 	case PLAYERSTATE::INVENTROY_POPUP :
 
-		Inventory_->AllUpdateOn();
+	
 
 		if (Inventory_->InventoryExitMouseClick() ||
 			true == GameEngineInput::GetInst()->IsDown("Enter")) {
-			PlayerState_ = PLAYERSTATE::INIT;
+			PlayerState_ = PLAYERSTATE::INVENTROY_MINI_INIT;
 		}
 
 	default:
@@ -144,7 +157,7 @@ void Player::moveX()
 	{
 		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
 
-		Player_->ChangeAnimation("RIGHT_WALK");
+		PlayerRenderer_->ChangeAnimation("RIGHT_WALK");
 		PlayerMove_.setRightDir(true);
 	}
 
@@ -153,7 +166,7 @@ void Player::moveX()
 	{
 		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
 
-		Player_->ChangeAnimation("LEFT_WALK");
+		PlayerRenderer_->ChangeAnimation("LEFT_WALK");
 		PlayerMove_.SetLeftDir(true);
 	}
 
@@ -166,7 +179,7 @@ void Player::moveY()
 	{
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
 
-		Player_->ChangeAnimation("BACK_WALK");
+		PlayerRenderer_->ChangeAnimation("BACK_WALK");
 		PlayerMove_.SetBackDir(true);
 
 	}
@@ -176,7 +189,7 @@ void Player::moveY()
 	{
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
 
-		Player_->ChangeAnimation("FRONT_WALK");
+		PlayerRenderer_->ChangeAnimation("FRONT_WALK");
 		PlayerMove_.SetFrontDir(true);
 
 	}
@@ -202,20 +215,20 @@ void Player::SetDirAnimation()
 {
 
 	if (PlayerMove_.isRightDir_) {
-		Player_->ChangeAnimation("RIGHT_INIT");
+		PlayerRenderer_->ChangeAnimation("RIGHT_INIT");
 	}
 
 	if (PlayerMove_.isFrontDir_) {
-		Player_->ChangeAnimation("FRONT_INIT");
+		PlayerRenderer_->ChangeAnimation("FRONT_INIT");
 
 	}
 
 	if (PlayerMove_.isBackDir_) {
-		Player_->ChangeAnimation("BACK_INIT");
+		PlayerRenderer_->ChangeAnimation("BACK_INIT");
 	}
 
 	if (PlayerMove_.isLeftDir_) {
-		Player_->ChangeAnimation("LEFT_INIT");
+		PlayerRenderer_->ChangeAnimation("LEFT_INIT");
 	}
 
 }

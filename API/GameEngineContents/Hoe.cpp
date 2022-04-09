@@ -13,7 +13,7 @@ void Hoe::Start()
 	ItemRenderer_ = CreateRenderer("tools.bmp");
 	ItemRenderer_->SetIndex(static_cast<size_t>(TOOL::HOE_IN_INVENTROY));
 	///ItemRenderer_->SetPivot()
-	ItemCollider_ = CreateCollision("Item", { 43, 43 });
+	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 	ItemType_ = ITEMTYPE::TOOL;
 
 	//Pos = GetPosition();

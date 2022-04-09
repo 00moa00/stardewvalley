@@ -18,7 +18,7 @@ void InventroyBox::CreateBoxCollision(int i,  std::string box /*= "Box"*/)
 {
 	std::stringstream CollisionBoxNum;
 	CollisionBoxNum << i;
-	BoxCollision_ = CreateCollision(box, {50, 50});
+	BoxCollision_ = CreateCollision(box, {35, 35});
 }
 
 

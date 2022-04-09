@@ -48,8 +48,8 @@ private:
 	float Energy_;
 
 
-	GameEngineRenderer* Player_;
-
+	GameEngineRenderer* PlayerRenderer_;
+	GameEngineCollision* PlayerCollider_;
 	Mouse* Mouse_;
 
 	Inventory* Inventory_;
@@ -60,6 +60,15 @@ private:
 	Hoe* Hoe_;
 
 private:
+
+	bool PlayerMouseCollision() {
+		std::vector<GameEngineCollision*> ColList;
+
+		return (PlayerCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
+			&& (Mouse_->isMouseClick());
+	}
+
+
 	float GetEnergy() {
 		return Energy_;
 	}
