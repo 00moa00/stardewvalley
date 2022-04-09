@@ -24,14 +24,16 @@ void MyHouseLevel::Loading()
 	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PLAYLEVEL::ENERGYFRAME);
 	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
 	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
-	CreateActor<TitleBackGround>((int)PLAYLEVEL::BACKGROUND);
+	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
 
+	
 	//Inventory_->AllUpdateOff();
 }
 
 void MyHouseLevel::LevelChangeStart()
 {
-
+	BackGround_->GetRenderer()->SetImage("Farm.bmp");
+	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
 }
 

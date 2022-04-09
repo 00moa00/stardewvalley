@@ -28,7 +28,7 @@ void InventroyBox::Start()
 	SetPosition(GameEngineWindow::GetScale().Half());
 
 	InventoryBox_ = CreateRenderer("inventoryBox.bmp");
-
+	InventoryBox_ -> CameraEffectOff();
 }
 
 void InventroyBox::Update()

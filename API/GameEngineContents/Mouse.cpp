@@ -23,7 +23,7 @@ void Mouse::Start()
 	CursorPos_ = GameEngineWindow::GetScale().Half();
 	MousePoint_ = CreateRenderer("MouseCursor.bmp");
 	//MousePoint_->SetScale({ 600, 330 }); 	//800, 440  로고 원본 크기
-
+	MousePoint_->CameraEffectOff();
 	MouseCollision_ = CreateCollision("MouseCursor", { 24, 30 });
 
 }

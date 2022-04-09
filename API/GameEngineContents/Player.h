@@ -6,6 +6,7 @@
 #include "Hoe.h"
 #include "Mouse.h"
 #include "Inventory.h"
+#include "GameData.h"
 
 //class PlayerMove;
 
@@ -29,7 +30,7 @@ protected:
 
 private:
 
-
+	float4 CameraPos_;
 
 	void moveX();
 	void moveY();
@@ -37,6 +38,7 @@ private:
 	bool isStop();
 	bool isMove();
 	void SetDirAnimation();
+	void SetCamera();
 
 	//void SetInit();
 

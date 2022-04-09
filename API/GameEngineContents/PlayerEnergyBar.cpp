@@ -27,6 +27,7 @@ void PlayerEnergyBar::Start()
 	SetPosition({ GameEngineWindow::GetScale().x - EnergyBar_.x, GameEngineWindow::GetScale().y - EnergyBar_.y/2 });
 
 	PlayerEngergyBar_ = CreateRenderer("HPUIBar.bmp");
+	PlayerEngergyBar_->CameraEffectOff();
 	//PlayerEngergyBar_->SetScale({ EnergyBar_.x,   EnergyBar_.y });
 
 	//CreateRenderer("HPUIBar.bmp", RenderPivot::BOT);

@@ -6,34 +6,34 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
-      <Filter>Actor\Title</Filter>
+      <Filter>Actor\02. Title</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>Actor\Play</Filter>
+      <Filter>Actor\03. Play</Filter>
     </ClCompile>
     <ClCompile Include="TitleBackGround.cpp">
-      <Filter>Actor\Title</Filter>
+      <Filter>Actor\02. Title</Filter>
     </ClCompile>
     <ClCompile Include="TitleCloud.cpp">
-      <Filter>Actor\Title</Filter>
+      <Filter>Actor\02. Title</Filter>
     </ClCompile>
     <ClCompile Include="MenuExit.cpp">
-      <Filter>Actor\Title\Menu</Filter>
+      <Filter>Actor\02. Title\Menu</Filter>
     </ClCompile>
     <ClCompile Include="MenuLoad.cpp">
-      <Filter>Actor\Title\Menu</Filter>
+      <Filter>Actor\02. Title\Menu</Filter>
     </ClCompile>
     <ClCompile Include="MenuNewGame.cpp">
-      <Filter>Actor\Title\Menu</Filter>
+      <Filter>Actor\02. Title\Menu</Filter>
     </ClCompile>
     <ClCompile Include="MainUI.cpp">
-      <Filter>Actor\Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerEnergyFrame.cpp">
-      <Filter>Actor\Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerEnergyBar.cpp">
-      <Filter>Actor\Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCustomBoard.cpp">
       <Filter>Actor\Custom</Filter>
@@ -51,25 +51,25 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="MyHouse.cpp">
-      <Filter>Actor\Play\Buildings</Filter>
+      <Filter>Actor\03. Play\Buildings</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Actor\Play\Global\Player</Filter>
+      <Filter>Actor\03. Play\Global\Player</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
-      <Filter>Actor\Global</Filter>
+      <Filter>Actor\01. GlobalObject</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
-      <Filter>Actor\Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Global\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="InventroyBox.cpp">
-      <Filter>Actor\Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Global\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="InventoryExit.cpp">
-      <Filter>Actor\Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Global\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="Items.cpp">
-      <Filter>Actor\Play\Global\Item</Filter>
+      <Filter>Actor\03. Play\Global\Item</Filter>
     </ClCompile>
     <ClCompile Include="MyFarmLevel.cpp">
       <Filter>Level</Filter>
@@ -81,13 +81,22 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="WildHorseradish.cpp">
-      <Filter>Actor\Play\Global\Item</Filter>
+      <Filter>Actor\03. Play\Global\Item</Filter>
     </ClCompile>
     <ClCompile Include="Hoe.cpp">
-      <Filter>Actor\Play\Global\Item</Filter>
+      <Filter>Actor\03. Play\Global\Item</Filter>
     </ClCompile>
     <ClCompile Include="Weeds.cpp">
-      <Filter>Actor\Play\Global\Item</Filter>
+      <Filter>Actor\03. Play\Global\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeBottom.cpp">
+      <Filter>Actor\03. Play\Global\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Actor\01. GlobalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeTop.cpp">
+      <Filter>Actor\03. Play\Global\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,34 +105,34 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <Filter>Actor\Title</Filter>
+      <Filter>Actor\02. Title</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>Actor\Play</Filter>
+      <Filter>Actor\03. Play</Filter>
     </ClInclude>
     <ClInclude Include="TitleBackGround.h">
-      <Filter>Actor\Title</Filter>
+      <Filter>Actor\02. Title</Filter>
     </ClInclude>
     <ClInclude Include="TitleCloud.h">
-      <Filter>Actor\Title</Filter>
+      <Filter>Actor\02. Title</Filter>
     </ClInclude>
     <ClInclude Include="MenuExit.h">
-      <Filter>Actor\Title\Menu</Filter>
+      <Filter>Actor\02. Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="MenuLoad.h">
-      <Filter>Actor\Title\Menu</Filter>
+      <Filter>Actor\02. Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="MenuNewGame.h">
-      <Filter>Actor\Title\Menu</Filter>
+      <Filter>Actor\02. Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="MainUI.h">
-      <Filter>Actor\Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerEnergyFrame.h">
-      <Filter>Actor\Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerEnergyBar.h">
-      <Filter>Actor\Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCustomBoard.h">
       <Filter>Actor\Custom</Filter>
@@ -141,34 +150,34 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="MyHouse.h">
-      <Filter>Actor\Play\Buildings</Filter>
+      <Filter>Actor\03. Play\Buildings</Filter>
     </ClInclude>
     <ClInclude Include="PlayerEnum.h">
-      <Filter>Actor\GlobalEnum</Filter>
+      <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Actor\Play\Global\Player</Filter>
+      <Filter>Actor\03. Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="RendererEnum.h">
-      <Filter>Actor\GlobalEnum</Filter>
+      <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
-      <Filter>Actor\Global</Filter>
+      <Filter>Actor\01. GlobalObject</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
-      <Filter>Actor\Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Global\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="InventroyBox.h">
-      <Filter>Actor\Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Global\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="ItemCode.h">
-      <Filter>Actor\GlobalEnum</Filter>
+      <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="InventoryExit.h">
-      <Filter>Actor\Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Global\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="Items.h">
-      <Filter>Actor\Play\Global\Item</Filter>
+      <Filter>Actor\03. Play\Global\Item</Filter>
     </ClInclude>
     <ClInclude Include="MyFarmLevel.h">
       <Filter>Level</Filter>
@@ -180,69 +189,81 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="WildHorseradish.h">
-      <Filter>Actor\Play\Global\Item</Filter>
+      <Filter>Actor\03. Play\Global\Item</Filter>
     </ClInclude>
     <ClInclude Include="Hoe.h">
-      <Filter>Actor\Play\Global\Item</Filter>
+      <Filter>Actor\03. Play\Global\Item</Filter>
     </ClInclude>
     <ClInclude Include="ToolEnum.h">
-      <Filter>Actor\GlobalEnum</Filter>
+      <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="PlayerData.h">
-      <Filter>Actor\Play\Global\Player</Filter>
+      <Filter>Actor\03. Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="Weeds.h">
-      <Filter>Actor\Play\Global\Item</Filter>
+      <Filter>Actor\03. Play\Global\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="GameData.h">
+      <Filter>Actor\00. GlobalData</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeBottom.h">
+      <Filter>Actor\03. Play\Global\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>Actor\01. GlobalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeTop.h">
+      <Filter>Actor\03. Play\Global\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Level">
-      <UniqueIdentifier>{3fdc01d6-f74f-4c06-8337-fcfead66623d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor">
       <UniqueIdentifier>{81500ed8-0775-4f2e-8f3f-5cb70a8cfb1a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play">
-      <UniqueIdentifier>{2b9a7125-e5c4-4740-931d-18dd34a3f8d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Global">
-      <UniqueIdentifier>{d6a178bf-fc85-411e-b93b-0559d30324c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Global\UI">
-      <UniqueIdentifier>{54011bab-08ea-4755-ae2a-767059796564}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Global\Player">
-      <UniqueIdentifier>{12175836-2593-4357-aa29-8227fda684d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Global\Inventory">
-      <UniqueIdentifier>{0c93c102-3041-46d1-9ab5-18ae840e954d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Global\GameTime">
-      <UniqueIdentifier>{76837e91-0396-4cd9-ba19-b24879c1900a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Title">
-      <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Title\Menu">
-      <UniqueIdentifier>{65853773-2cc8-4118-aa08-455b2166b485}</UniqueIdentifier>
     </Filter>
     <Filter Include="Actor\Custom">
       <UniqueIdentifier>{ad173118-410b-4507-85c6-69f87d0afc7e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Play\Buildings">
-      <UniqueIdentifier>{192a0a27-f530-43a4-a4f9-3c4b8cc1df2e}</UniqueIdentifier>
+    <Filter Include="Level">
+      <UniqueIdentifier>{3fdc01d6-f74f-4c06-8337-fcfead66623d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Play\NPC">
-      <UniqueIdentifier>{d3ffba0c-12d1-4fa2-8a35-e9f19a2f687f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play\Global\Item">
-      <UniqueIdentifier>{b6823ce8-4576-45c1-9310-bcb1ea10b587}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\GlobalEnum">
+    <Filter Include="Actor\00. GlobalData">
       <UniqueIdentifier>{908e33e0-26a8-407b-b705-f8e6fea6ba37}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Global">
+    <Filter Include="Actor\01. GlobalObject">
       <UniqueIdentifier>{b63f880a-300f-4acf-a371-24a83b8253d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\02. Title">
+      <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\02. Title\Menu">
+      <UniqueIdentifier>{65853773-2cc8-4118-aa08-455b2166b485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play">
+      <UniqueIdentifier>{2b9a7125-e5c4-4740-931d-18dd34a3f8d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global">
+      <UniqueIdentifier>{d6a178bf-fc85-411e-b93b-0559d30324c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global\UI">
+      <UniqueIdentifier>{54011bab-08ea-4755-ae2a-767059796564}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global\Player">
+      <UniqueIdentifier>{12175836-2593-4357-aa29-8227fda684d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global\Inventory">
+      <UniqueIdentifier>{0c93c102-3041-46d1-9ab5-18ae840e954d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global\GameTime">
+      <UniqueIdentifier>{76837e91-0396-4cd9-ba19-b24879c1900a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global\Item">
+      <UniqueIdentifier>{b6823ce8-4576-45c1-9310-bcb1ea10b587}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Buildings">
+      <UniqueIdentifier>{192a0a27-f530-43a4-a4f9-3c4b8cc1df2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\NPC">
+      <UniqueIdentifier>{d3ffba0c-12d1-4fa2-8a35-e9f19a2f687f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

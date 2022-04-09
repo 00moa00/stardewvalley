@@ -38,6 +38,10 @@ void Inventory::Start()
 	Inventroy_ = CreateRenderer("inventory.bmp");
 	Mouse_ = GetLevel()->CreateActor<Mouse>(static_cast<int>(PLAYLEVEL::MOUSE));
 	InventoryExit_ = GetLevel()->CreateActor<InventoryExit>(static_cast<int>(PLAYLEVEL::ITEM));
+
+
+
+	Inventroy_->CameraEffectOff();
 	BoxInit();
 
 	float4 Position;

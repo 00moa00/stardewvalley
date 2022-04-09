@@ -22,6 +22,7 @@ void MainUI::Start()
 	MainUI_ = CreateRenderer("UITop.bmp");
 	//PlayerEngergyBar_->SetScale({ EnergyBar_.x,   EnergyBar_.y });
 
+	MainUI_->CameraEffectOff();
 }
 
 void MainUI::Update()

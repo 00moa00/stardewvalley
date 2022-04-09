@@ -33,8 +33,7 @@ void Player::Start()
 {
 	//------< 초기화 >------------------------------------------------------------------
 
-
-	SetPosition(GameEngineWindow::GetScale().Half());
+	SetPosition({FARM_SIZE_WEIGHT / 2, FARM_SIZE_WEIGHT / 2});
 
 	PlayerRenderer_ = CreateRenderer();
 	PlayerCollider_ = CreateCollision("Player", { 48*4, 96 });
@@ -44,8 +43,7 @@ void Player::Start()
 
 	Hoe_ = Inventory_->NewItem<Hoe>(float4 {0,24.f});
 
-
-
+	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();;
 
 	//------< 애니메이션 생성 >------------------------------------------------------------------
 
@@ -83,6 +81,10 @@ void Player::Start()
 
 void Player::Update()
 {
+
+
+	SetCamera();
+
 	switch (PlayerState_)
 	{
 
@@ -141,6 +143,8 @@ void Player::Update()
 	default:
 		break;
 	}
+
+
 
 
 }
@@ -229,6 +233,59 @@ void Player::SetDirAnimation()
 
 	if (PlayerMove_.isLeftDir_) {
 		PlayerRenderer_->ChangeAnimation("LEFT_INIT");
+	}
+
+}
+
+void Player::SetCamera()
+{
+	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
+
+	if (0 > GetLevel()->GetCameraPos().x)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = 0;
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (0 > GetLevel()->GetCameraPos().y)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.y = 0;
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+
+	{
+		float MapSizeX = FARM_SIZE_WEIGHT;
+		float MapSizeY = FARM_SIZE_HEIGHT;
+
+		//float CameraRectX = WINDOW_SIZE_WEIGHT;
+		//float CameraRectY = WINDOW_SIZE_HEIGHT;
+		//if (GetLevel()->GetNameCopy() == "")
+		//{
+		//	MapSizeX = 3120.0f;
+		//	MapSizeY = 2496.0f;
+		//}
+
+		CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
+
+		if (CameraPos_.x <= 0)
+		{
+			CameraPos_.x = 0;
+		}
+		if (CameraPos_.x >= MapSizeX - GameEngineWindow::GetInst().GetScale().ix())
+		{
+			CameraPos_.x = MapSizeX - GameEngineWindow::GetInst().GetScale().ix();
+		}
+		if (CameraPos_.y <= 0)
+		{
+			CameraPos_.y = 0;
+		}
+		if (CameraPos_.y >= MapSizeY - GameEngineWindow::GetInst().GetScale().iy())
+		{
+			CameraPos_.y = MapSizeY - GameEngineWindow::GetInst().GetScale().iy();
+		}
+
+		GetLevel()->SetCameraPos(CameraPos_);
 	}
 
 }

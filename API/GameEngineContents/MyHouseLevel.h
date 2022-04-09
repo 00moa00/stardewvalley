@@ -1,12 +1,12 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 
-
+#include "GameData.h"
 
 #include "PlayerEnergyBar.h"
 #include "PlayerEnergyFrame.h"
 #include "MainUI.h"
-#include "TitleBackGround.h"
+#include "BackGround.h"
 #include "Player.h"
 #include "RendererEnum.h"
 #include "Inventory.h"
@@ -38,6 +38,6 @@ private:
 	Player* Player_;
 	PlayerEnergyBar* PlayerEnergyBar_;
 	PlayerEnergyFrame* PlayerEnergyFrame_;
-	TitleBackGround* TitleBackGround_;
+	BackGround* BackGround_;
 
 };

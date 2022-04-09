@@ -154,6 +154,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GameData.h" />
     <ClInclude Include="Hoe.h">
       <SubType>
       </SubType>
@@ -261,6 +266,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TreeBottom.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TreeTop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Weeds.h">
       <SubType>
       </SubType>
@@ -272,6 +285,10 @@
     <ClInclude Include="ItemCode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Hoe.cpp">
       <SubType>
       </SubType>
@@ -372,6 +389,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TownLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TreeBottom.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TreeTop.cpp">
       <SubType>
       </SubType>
     </ClCompile>
