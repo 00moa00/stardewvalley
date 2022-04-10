@@ -6,7 +6,7 @@
 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineLevel.h> 
-
+#include "GameData.h"
 Mouse::Mouse() :
 	CursorPos_({}),
 	MousePoint_(nullptr)
@@ -19,24 +19,31 @@ Mouse::~Mouse()
 
 void Mouse::Start()
 {
+	//SetPosition({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_WEIGHT / 2 });
 
-	CursorPos_ = GameEngineWindow::GetScale().Half();
+	CursorPos_ = { FARM_SIZE_WEIGHT / 2, FARM_SIZE_WEIGHT / 2 };
 	MousePoint_ = CreateRenderer("MouseCursor.bmp");
-	//MousePoint_->SetScale({ 600, 330 }); 	//800, 440  로고 원본 크기
+	////MousePoint_->SetScale({ 600, 330 }); 	//800, 440  로고 원본 크기
+	
 	MousePoint_->CameraEffectOff();
 	MouseCollision_ = CreateCollision("MouseCursor", { 24, 30 });
-
+	
 }
 
 void Mouse::Update()
 {
 	ShowCursor(FALSE);
-	GetCursorPos(&pt);	
+	GetCursorPos(&pt);
+
 	ScreenToClient(GameEngineWindow::GetHWND(), &pt);
 	CursorPos_.x = static_cast<float>(pt.x);
 	CursorPos_.y = static_cast<float>(pt.y);
 
 	MousePoint_->GetActor()->SetPosition(CursorPos_);
+	//MouseCollision_->SetPivot({GetPosition()});
+	
+
+	//MouseCollision_->Set
 	//MousePoint_->Off();
 }
 

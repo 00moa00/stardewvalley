@@ -37,14 +37,14 @@ void Player::Start()
 	SetScale({ 40, 20 });
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
-
-
+	//CameraEffectOff();
+	//PlayerCollider_->SetPivot();
 
 	PlayerCollider_ = CreateCollision("Player", { 48*4, 96 });
 
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::PLAYER);
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-
+	
 	Hoe_ = Inventory_->NewItem<Hoe>(float4 {0,24.f});
 
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();;

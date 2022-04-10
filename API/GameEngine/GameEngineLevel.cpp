@@ -3,7 +3,7 @@
 #include "GameEngineCollision.h"
 #include "GameEngineRenderer.h"
 
-#define DEBUG 0
+#define DEBUG 1
 
 GameEngineLevel::GameEngineLevel()
 	: CameraPos_(float4::ZERO)

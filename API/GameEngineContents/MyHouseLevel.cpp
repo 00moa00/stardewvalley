@@ -20,6 +20,8 @@ MyHouseLevel::~MyHouseLevel()
 
 void MyHouseLevel::Loading()
 {
+
+	
 	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
 	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PLAYLEVEL::ENERGYFRAME);
 	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);

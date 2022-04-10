@@ -1,6 +1,7 @@
 #include "InventroyBox.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <sstream>
+#include "GameData.h"
 
 InventroyBox::InventroyBox()
 	:
@@ -24,8 +25,8 @@ void InventroyBox::CreateBoxCollision(int i,  std::string box /*= "Box"*/)
 
 void InventroyBox::Start()
 {
-
-	SetPosition(GameEngineWindow::GetScale().Half());
+	SetPosition({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_WEIGHT / 2 });
+	//SetPosition(GameEngineWindow::GetScale().Half());
 
 	InventoryBox_ = CreateRenderer("inventoryBox.bmp");
 	InventoryBox_ -> CameraEffectOff();
