@@ -7,6 +7,7 @@
 #include "Mouse.h"
 #include "Inventory.h"
 #include "GameData.h"
+#include <list>
 
 //class PlayerMove;
 
@@ -42,13 +43,24 @@ private:
 
 	//void SetInit();
 
+public:
+	void SetSpeed(float f) {
+		Speed_ = f;
+	}
+
+	float4 CurrentDir() {
+		return MoveDir_;
+	}
+
 
 private:
 
 	float AnimationFrame_;
 	float Speed_;
 	float Energy_;
+	float4 MoveDir_;
 
+	std::vector<GameEngineCollision*> ColList;
 
 	GameEngineRenderer* PlayerRenderer_;
 	GameEngineCollision* PlayerCollider_;
@@ -56,7 +68,7 @@ private:
 
 	Inventory* Inventory_;
 	PLAYERSTATE PlayerState_;
-	PlayerDir  PlayerMove_;
+
 
 	//Åø
 	Hoe* Hoe_;
@@ -82,6 +94,8 @@ private:
 	float GetPlayerSpeed() {
 		return Speed_;
 	}
+
+	
 
 	void SubEnergy() {
 		Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();

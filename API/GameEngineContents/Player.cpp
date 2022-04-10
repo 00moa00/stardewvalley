@@ -8,17 +8,17 @@
 
 #include "PlayerEnum.h"
 
-Player::Player() 
+Player::Player()
 	:
 	PlayerState_(PLAYERSTATE::INIT),
 	AnimationFrame_(0.120f),
 	Speed_(150.f),
 	Energy_(150.f),
-	PlayerMove_{},
 	PlayerRenderer_(nullptr),
 	PlayerCollider_(nullptr),
 	Inventory_(nullptr),
-	Mouse_(nullptr)
+	Mouse_(nullptr),
+	MoveDir_(float4::ZERO)
 
 {
 
@@ -34,8 +34,12 @@ void Player::Start()
 	//------< 초기화 >------------------------------------------------------------------
 
 	SetPosition({FARM_SIZE_WEIGHT / 2, FARM_SIZE_WEIGHT / 2});
-
+	SetScale({ 40, 20 });
 	PlayerRenderer_ = CreateRenderer();
+	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
+
+
+
 	PlayerCollider_ = CreateCollision("Player", { 48*4, 96 });
 
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::PLAYER);
@@ -75,7 +79,7 @@ void Player::Start()
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
 	PlayerRenderer_->ChangeAnimation("FRONT_INIT");
-	PlayerMove_.SetFrontDir(true);
+	//PlayerMove_.SetFrontDir(true);
 }
 
 
@@ -119,9 +123,13 @@ void Player::Update()
 
 	case PLAYERSTATE::MOVE:
 
+
 		moveX();
 		moveY();
+
+
 		SubEnergy();
+
 
 		if (isStop()) PlayerState_ = PLAYERSTATE::INIT;
 		break;
@@ -162,7 +170,8 @@ void Player::moveX()
 		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
 
 		PlayerRenderer_->ChangeAnimation("RIGHT_WALK");
-		PlayerMove_.setRightDir(true);
+	//	PlayerMove_.setRightDir(true);
+		MoveDir_ = float4::RIGHT;
 	}
 
 
@@ -171,7 +180,8 @@ void Player::moveX()
 		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
 
 		PlayerRenderer_->ChangeAnimation("LEFT_WALK");
-		PlayerMove_.SetLeftDir(true);
+	//	PlayerMove_.SetLeftDir(true);
+		MoveDir_ = float4::LEFT;
 	}
 
 }
@@ -184,9 +194,11 @@ void Player::moveY()
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
 
 		PlayerRenderer_->ChangeAnimation("BACK_WALK");
-		PlayerMove_.SetBackDir(true);
-
+		//PlayerMove_.SetBackDir(true);
+		MoveDir_ = float4::UP;
 	}
+
+	
 
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
@@ -194,7 +206,8 @@ void Player::moveY()
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
 
 		PlayerRenderer_->ChangeAnimation("FRONT_WALK");
-		PlayerMove_.SetFrontDir(true);
+		//PlayerMove_.SetFrontDir(true);
+		MoveDir_ = float4::DOWN;
 
 	}
 }
@@ -218,20 +231,20 @@ bool Player::isMove()
 void Player::SetDirAnimation()
 {
 
-	if (PlayerMove_.isRightDir_) {
+	if (MoveDir_ == float4::RIGHT) {
 		PlayerRenderer_->ChangeAnimation("RIGHT_INIT");
 	}
 
-	if (PlayerMove_.isFrontDir_) {
+	if (MoveDir_ == float4::DOWN) {
 		PlayerRenderer_->ChangeAnimation("FRONT_INIT");
 
 	}
 
-	if (PlayerMove_.isBackDir_) {
+	if (MoveDir_ == float4::UP) {
 		PlayerRenderer_->ChangeAnimation("BACK_INIT");
 	}
 
-	if (PlayerMove_.isLeftDir_) {
+	if (MoveDir_ == float4::LEFT) {
 		PlayerRenderer_->ChangeAnimation("LEFT_INIT");
 	}
 
@@ -258,13 +271,6 @@ void Player::SetCamera()
 		float MapSizeX = FARM_SIZE_WEIGHT;
 		float MapSizeY = FARM_SIZE_HEIGHT;
 
-		//float CameraRectX = WINDOW_SIZE_WEIGHT;
-		//float CameraRectY = WINDOW_SIZE_HEIGHT;
-		//if (GetLevel()->GetNameCopy() == "")
-		//{
-		//	MapSizeX = 3120.0f;
-		//	MapSizeY = 2496.0f;
-		//}
 
 		CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 

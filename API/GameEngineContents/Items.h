@@ -8,6 +8,7 @@
 
 #include "ItemCode.h"
 #include "ToolEnum.h"
+//#include "Player.h"
 
 // Ό³Έν :
 
@@ -53,9 +54,29 @@ public:
 	bool MouseHoldItem() {
 		return MouseHoldItem_;
 	}
+	
+	bool IsWall(float4 pos, float4 scale, float4 dir);
+
 
 	virtual void UpdateOff() {
 		this->Off();
+	}
+
+
+	float GetLeft() {
+		return GetPosition().ix() - GetScale().hix();
+	}
+
+	float GetRight() {
+		return GetPosition().ix() + GetScale().hix();
+	}
+
+	float GetTop() {
+		return GetPosition().iy() - GetScale().hiy();
+	}
+
+	float GetBottom() {
+		return GetPosition().iy() + GetScale().hiy();
 	}
 
 	void SetInBox(bool b) {

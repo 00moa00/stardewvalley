@@ -98,6 +98,9 @@
     <ClCompile Include="TreeTop.cpp">
       <Filter>Actor\03. Play\Global\Item</Filter>
     </ClCompile>
+    <ClCompile Include="SmallStone.cpp">
+      <Filter>Actor\03. Play\Global\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -213,6 +216,9 @@
       <Filter>Actor\01. GlobalObject</Filter>
     </ClInclude>
     <ClInclude Include="TreeTop.h">
+      <Filter>Actor\03. Play\Global\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallStone.h">
       <Filter>Actor\03. Play\Global\Item</Filter>
     </ClInclude>
   </ItemGroup>

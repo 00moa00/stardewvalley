@@ -12,6 +12,9 @@
 #include "Inventory.h"
 #include "Items.h"
 #include "Mouse.h"
+#include "SmallStone.h"
+#include <map>
+#include <list>
 
 // Ό³Έν :
 class MyHouseLevel : public GameEngineLevel
@@ -28,12 +31,22 @@ public:
 	MyHouseLevel& operator=(MyHouseLevel&& _Other) noexcept = delete;
 
 protected:
+
+
+
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart() override;
 private:
 
+
+	void LoadMapObject();
+
+
 	MainUI* MainUI_;
+	//std::map<int, Items*> MapObject_;
+	std::list<Items*> MapObject_;
+
 
 	Player* Player_;
 	PlayerEnergyBar* PlayerEnergyBar_;
