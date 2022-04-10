@@ -17,7 +17,6 @@ void InventoryExit::Start()
 	SetPosition(GameEngineWindow::GetScale().Half());
 	Exit_ = CreateRenderer("exit.bmp");
 	ExitCollision_ = CreateCollision("Exit", { 64, 64 });
-	
 	Exit_->CameraEffectOff();
 	//ExitCollision_->GetCollisionPos();
 	//ExitCollision_->GetCollisionPos

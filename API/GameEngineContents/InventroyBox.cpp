@@ -6,7 +6,8 @@
 InventroyBox::InventroyBox()
 	:
 	InItem_(false),
-	Item_(nullptr)
+	Item_(nullptr),
+	BoxCollision_(nullptr)
 {
 }
 
@@ -19,13 +20,13 @@ void InventroyBox::CreateBoxCollision(int i,  std::string box /*= "Box"*/)
 {
 	std::stringstream CollisionBoxNum;
 	CollisionBoxNum << i;
-	BoxCollision_ = CreateCollision(box, {35, 35});
+ BoxCollision_ = CreateCollision(box, {35, 35});
 }
 
 
 void InventroyBox::Start()
 {
-	SetPosition({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_WEIGHT / 2 });
+	//SetPosition({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_WEIGHT / 2 });
 	//SetPosition(GameEngineWindow::GetScale().Half());
 
 	InventoryBox_ = CreateRenderer("inventoryBox.bmp");

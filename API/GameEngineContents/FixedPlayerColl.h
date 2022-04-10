@@ -3,21 +3,22 @@
 #include <windows.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineCollision.h>
+#include <GameEngineBase/GameEngineInput.h>
 #include <vector>
 // Ό³Έν :
-class Mouse : public GameEngineActor
+class FixedPlayerColl : public GameEngineActor
 {
 public:
 
 	// constrcuter destructer
-	Mouse();
-	~Mouse();
+	FixedPlayerColl();
+	~FixedPlayerColl();
 
 	// delete Function
-	Mouse(const Mouse& _Other) = delete;
-	Mouse(Mouse&& _Other) noexcept = delete;
-	Mouse& operator=(const Mouse& _Other) = delete;
-	Mouse& operator=(Mouse&& _Other) noexcept = delete;
+	FixedPlayerColl(const FixedPlayerColl& _Other) = delete;
+	FixedPlayerColl(FixedPlayerColl&& _Other) noexcept = delete;
+	FixedPlayerColl& operator=(const FixedPlayerColl& _Other) = delete;
+	FixedPlayerColl& operator=(FixedPlayerColl&& _Other) noexcept = delete;
 
 protected:
 
@@ -29,27 +30,11 @@ public:
 		return MouseCollision_;
 	}
 
-	void MouseOff() {
-		this -> Off();
-	}
 
-	bool isMouseClick();
-	bool isMouseHold();
-	bool isMouseFree();
+	bool FixedPlayerCollMouse() {
 
-	void SetHoldingItem(bool b) {
-		HoldingMouse_ = b;
-	}
-
-	bool GetHoldingItem() {
-		return HoldingMouse_;
-	}
-
-
-
-	bool MouseInItem() {
-
-		return (MouseCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
+		return (MouseCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect)) && 
+			GameEngineInput::GetInst()->IsDown("LeftClick");
 	}
 
 

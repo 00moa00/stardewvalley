@@ -101,6 +101,12 @@
     <ClCompile Include="SmallStone.cpp">
       <Filter>Actor\03. Play\Global\Item</Filter>
     </ClCompile>
+    <ClCompile Include="FixedPlayerColl.cpp">
+      <Filter>Actor\01. GlobalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryCurrentFrame.cpp">
+      <Filter>Actor\03. Play\Global\Inventory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -220,6 +226,12 @@
     </ClInclude>
     <ClInclude Include="SmallStone.h">
       <Filter>Actor\03. Play\Global\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedPlayerColl.h">
+      <Filter>Actor\01. GlobalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryCurrentFrame.h">
+      <Filter>Actor\03. Play\Global\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

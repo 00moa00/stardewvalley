@@ -7,7 +7,7 @@
 #include "InventroyBox.h"
 #include "WildHorseradish.h"
 #include "RendererEnum.h"
-
+#include "InventoryCurrentFrame.h"
 #include "Mouse.h"
 #include "InventoryExit.h"
 #include "Items.h"
@@ -116,6 +116,15 @@ public:
 		MiniState_ = b;
 	}
 
+
+	void SetCurrentItemFrame(Items* item_, InventroyBox* box_);
+	void SetCurrentItemFrame(Items* item_);
+
+	void SetCurrentItemFrameChange(InventroyBox* box_);
+
+	Items* CurrentItem() {
+		return CurrentItem_;
+	}
 	//bool GetisMiniInven() {
 	//	return isMiniInven_;
 	//}
@@ -133,9 +142,11 @@ private:
 	std::map<int, InventroyBox*>::iterator BoxEndIter;
 
 
+	InventoryCurrentFrame* CurrentItemFrame_;
+
 	GameEngineRenderer* Inventroy_;
 	GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
-	
+	Items* CurrentItem_;
 
 	bool isMiniInven_;
 
@@ -150,6 +161,7 @@ private:
 	int UpdateState_;
 	ITEMMOVE MoveState_;
 	MINIPOPUP MiniState_;
+	MINIPOPUP CurrentInventState_;
 
 };
 

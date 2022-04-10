@@ -18,7 +18,8 @@ Inventory::Inventory()
 	Mouse_(nullptr),
 	ItemCount_(0),
 	UpdateState_(0),
-
+	CurrentItem_(nullptr ),
+	CurrentInventState_(MINIPOPUP::INIT),
 	MiniState_(MINIPOPUP::MINI),
 	MoveState_(ITEMMOVE::INIT)
 {
@@ -34,25 +35,33 @@ Inventory::~Inventory()
 
 void Inventory::Start()
 {
-	SetPosition(GameEngineWindow::GetScale().Half());
+//	SetPosition(GameEngineWindow::GetScale().Half());
 	Inventroy_ = CreateRenderer("inventory.bmp");
+	Inventroy_->CameraEffectOff();
+	
+
+	CurrentItemFrame_ = GetLevel()->CreateActor<InventoryCurrentFrame>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
+
 	Mouse_ = GetLevel()->CreateActor<Mouse>(static_cast<int>(PLAYLEVEL::MOUSE));
-	
-	
-	
 	InventoryExit_ = GetLevel()->CreateActor<InventoryExit>(static_cast<int>(PLAYLEVEL::ITEM));
 
-	Inventroy_->CameraEffectOff();
+
 	BoxInit();
 
+	
+	//게임 첫 시작은 숨기기
+	CurrentItemFrame_->SetPosition({-50.f, -50.f});
+
 	float4 Position;
-	Position.x = this->GetPosition().x + (Inventroy_->GetScale().x / 2) + 25.f;
-	Position.y = this->GetPosition().y + (Inventroy_->GetScale().y / 2) - 25.f;
+	Position.x = Inventroy_->GetScale().x  + 250.f;
+	Position.y = Inventroy_->GetScale().y  + 50.f;
 	InventoryExit_->SetPosition({ Position.x ,Position.y });
 	
 	WildHorseradish2_ = NewItem<WildHorseradish>();
 
 	WildHorseradish_ = NewItem<WildHorseradish>();
+	//CurrentItem_ = WildHorseradish_;
+	//CurrentItemFrame_->SetPosition(CurrentItem_->GetPosition());
 }
 
 
@@ -96,7 +105,15 @@ void Inventory::InventoryPosInit()
 		}
 
 		StartIter->second->SetPosition({ (GetPosition().x - 352.f) + (64.f * BoxXMargin), (GetPosition().y - 200.f) + (64.f * BoxYMargin + BoxMargin) });
-		StartIter->second->CreateBoxCollision(StartIter->first);
+		
+		//박스 충돌체
+		if (StartIter->second->BoxCollision() == nullptr) {
+			StartIter->second->CreateBoxCollision(StartIter->first);
+		}
+
+		//현재 아이템 프레임 체인지
+		if (StartIter->first == 0) SetCurrentItemFrameChange(StartIter->second);
+
 		++BoxXMargin;
 	}
 }
@@ -118,7 +135,8 @@ void Inventory::ItemPosFocusInvenBox()
 
 		//툴의 경우 사이즈가 다르다.
 		if (IterFindIter->second->GetItemType() == ITEMTYPE::TOOL) {
-
+		
+	
 			float4 Pos = { BoxStartIter->second->GetPosition().x, BoxStartIter->second->GetPosition().y + 24.f };
 			IterFindIter->second->SetPosition(Pos);
 
@@ -129,7 +147,7 @@ void Inventory::ItemPosFocusInvenBox()
 			IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
 
 		}
-
+		
 	}
 }
 
@@ -179,6 +197,55 @@ void Inventory::AllUpdateOn()
 
 }
 
+void Inventory::SetCurrentItemFrame(Items* item_, InventroyBox* box_)
+{
+	if (item_->GetItemType() == ITEMTYPE::TOOL) {
+
+		float4 Pos = { box_->GetPosition().x, box_->GetPosition().y  };
+		CurrentItemFrame_->SetPosition(Pos);
+	}
+
+	else {
+		CurrentItemFrame_->SetPosition({ box_->GetPosition().x,  box_->GetPosition().y });
+	}
+
+}
+
+void Inventory::SetCurrentItemFrame(Items* item_)
+{
+
+	if (item_->GetItemType() == ITEMTYPE::TOOL) {
+
+		float4 Pos = { item_->GetPosition().x, item_->GetPosition().y - 24.f };
+		CurrentItemFrame_->SetPosition(Pos);
+	}
+
+	else {
+		CurrentItemFrame_->SetPosition({ item_->GetPosition().x,  item_->GetPosition().y });
+	
+	}
+
+}
+
+void Inventory::SetCurrentItemFrameChange(InventroyBox* box_)
+{
+
+	if (CurrentItem_ != nullptr) {
+
+		if (CurrentItem_->GetItemType() == ITEMTYPE::TOOL) {
+
+			float4 Pos = { CurrentItemFrame_->GetPosition().x, box_->GetPosition().y};
+			CurrentItemFrame_->SetPosition(Pos);
+		}
+
+		else {
+			CurrentItemFrame_->SetPosition({ CurrentItemFrame_->GetPosition().x,  box_->GetPosition().y });
+
+		}
+	}
+
+}
+
 void Inventory::InvenPopUp()
 {
 
@@ -199,15 +266,22 @@ void Inventory::InvenPopUp()
 
 	case MINIPOPUP::MINI:
 
-		InventoryExit_->Off();
+		CurrentInventState_ = MINIPOPUP::MINI;
 
+		InventoryExit_->Off();
+		CurrentItemFrame_->On();
 
 		Inventroy_->SetImage("MiniInven.bmp");
 		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y+300.f });
-
-
+		
 		for (; BoxStartIter != BoxEndIter; ++BoxStartIter) {
+
 			BoxStartIter->second->SetPosition({ (this->GetPosition().x - 352.f) + (64.f * BoxXMargin), (this->GetPosition().y) });
+			if (BoxStartIter->first == 0) {
+				SetCurrentItemFrameChange(BoxStartIter->second);
+
+			}
+			
 			++BoxXMargin;
 
 			if (BoxStartIter->first > 11){
@@ -227,12 +301,13 @@ void Inventory::InvenPopUp()
 				ItemStartIter->second->Off();
 		}
 
+	
 		MiniState_ = MINIPOPUP::INIT;
 
 		break;
 
 	case MINIPOPUP::MAIN:
-
+		CurrentInventState_ = MINIPOPUP::MAIN;
 		InventoryExit_->On();
 
 		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
@@ -245,9 +320,10 @@ void Inventory::InvenPopUp()
 		}
 
 		for (; BoxStartIter != BoxEndIter; ++BoxStartIter) {
-			InventoryPosInit();
+	
 			BoxStartIter->second->On();
 		}
+
 		SetPosition(GameEngineWindow::GetScale().Half());
 		Inventroy_->SetImage("inventory.bmp");
 
@@ -266,15 +342,7 @@ void Inventory::InvenPopUp()
 
 void Inventory::Update()
 {
-	//if (Mouse_->isMouseFree()) {
-	//	MoveState_ = ITEMMOVE::INIT;
-	//}
-
-	//std::map<int, Items*>::iterator PlayerItemListStartIter = PlayerItemList_.begin();
-	//std::map<int, Items*>::iterator PlayerItemListEndIter = PlayerItemList_.end();
-
-	//std::map<int, InventroyBox*>::iterator BoxStartIter = Box_.begin();
-	//std::map<int, InventroyBox*>::iterator BoxEndIter = Box_.end();
+	
 
 	//키값 변경용
 	std::map<int, Items*>::iterator Finditer;
@@ -282,7 +350,7 @@ void Inventory::Update()
 
 	InvenPopUp();
 
-	//TODO: 예상되는 문제점, 플레이 도중에 아이템을 얻었을때 리스트가 변경되면서 이터레이터도 바뀔까?
+	//TODO: 예상되는 문제점, 플레이 도중에 아이템을 얻었을때 리스트가 변경되면 INIT 해주기
 
 	switch (MoveState_)
 	{
@@ -309,6 +377,19 @@ void Inventory::Update()
 
 
 			if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick()) {
+				
+				//현재 아이템 프레임
+				SetCurrentItemFrame(PlayerItemListStartIter->second);
+
+				//현재 아이템 저장
+				CurrentItem_ = PlayerItemListStartIter->second;
+
+				if ((CurrentInventState_ == MINIPOPUP::MINI) &&  (PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL)) {
+					PlayerItemListStartIter->second->SetInBox(false);
+					MoveState_ = ITEMMOVE::INIT;
+					break;
+				}
+
 				PlayerItemListStartIter->second->SetInBox(false);
 				MoveState_ = ITEMMOVE::HOLD;
 				break;
@@ -323,18 +404,6 @@ void Inventory::Update()
 			PlayerItemListStartIter = PlayerItemList_.begin();
 		}
 
-
-		////아이템이 마우스와 충돌했고 클릭했다면 홀드
-		//if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick()) {
-
-		//
-		//}
-
-		//++PlayerItemListStartIter;
-
-		//if (PlayerItemListStartIter == PlayerItemListEndIter) {
-		//	PlayerItemListStartIter = PlayerItemList_.begin();
-		//}
 
 		break;
 
@@ -361,12 +430,12 @@ void Inventory::Update()
 				if (BoxStartIter->second->MouseOver()) {
 
 					//지정위치의 아이템이 해당 박스 안에 있다면 넘어가지 않는다.
-
+					
 					Finditer = PlayerItemList_.find(BoxStartIter->first);
 
 					//해당 위치에 아이템이 없다면 
 					if (Finditer == PlayerItemListEndIter) {
-
+						SetCurrentItemFrame(PlayerItemListStartIter->second, BoxStartIter->second);
 						MoveState_ = ITEMMOVE::FREE;
 						continue;
 					}
@@ -378,7 +447,7 @@ void Inventory::Update()
 
 
 					 if (Finditer->first == PlayerItemListStartIter->first) {
-
+						 SetCurrentItemFrame(PlayerItemListStartIter->second, BoxStartIter->second);
 						 MoveState_ = ITEMMOVE::MINE;
 					 }
 

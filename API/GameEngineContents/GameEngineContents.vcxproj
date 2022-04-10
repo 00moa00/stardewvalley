@@ -158,12 +158,20 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FixedPlayerColl.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameData.h" />
     <ClInclude Include="Hoe.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="InventoryCurrentFrame.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="InventoryExit.h">
       <SubType>
       </SubType>
@@ -293,6 +301,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FixedPlayerColl.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Hoe.cpp">
       <SubType>
       </SubType>
@@ -302,6 +314,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="InventoryCurrentFrame.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="InventoryExit.cpp">
       <SubType>
       </SubType>

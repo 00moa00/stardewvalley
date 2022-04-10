@@ -37,14 +37,17 @@ void Player::Start()
 	SetScale({ 40, 20 });
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
-	//CameraEffectOff();
-	//PlayerCollider_->SetPivot();
 
 	PlayerCollider_ = CreateCollision("Player", { 48*4, 96 });
 
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::PLAYER);
+
+
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-	
+	Mouse_->Renderer()->CameraEffectOff();
+
+	FixedPlayerColl_ = GetLevel()->CreateActor<FixedPlayerColl>((int)PLAYLEVEL::MOUSE);
+
 	Hoe_ = Inventory_->NewItem<Hoe>(float4 {0,24.f});
 
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();;
@@ -103,7 +106,7 @@ void Player::Update()
 		SetDirAnimation();
 
 		if (true == GameEngineInput::GetInst()->IsDown("Enter")) PlayerState_ = PLAYERSTATE::INVENTROY_POPUP_INIT;
-		if(PlayerMouseCollision())  PlayerState_ = PLAYERSTATE::TOOL_USE;
+		if(FixedPlayerColl_->FixedPlayerCollMouse())  PlayerState_ = PLAYERSTATE::TOOL_USE;
 		if (isMove()) PlayerState_ = PLAYERSTATE::MOVE;
 		break;
 
@@ -111,10 +114,8 @@ void Player::Update()
 
 		PlayerRenderer_->ChangeAnimation("RIGHT_HOE");
 
-		//if (Mouse_->isMouseFree()) PlayerState_ = PLAYERSTATE::INIT;
 
 		if (PlayerRenderer_->IsEndAnimation()) {
-			//Player_->SetCurrentFrame(PLAYER::HOE_RIGHT0);
 			PlayerState_ = PLAYERSTATE::INIT;
 		}
 

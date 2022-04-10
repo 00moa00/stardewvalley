@@ -25,6 +25,13 @@ public:
 
 public:
 
+
+
+	GameEngineCollision* BoxCollision() {
+		return BoxCollision_;
+	}
+
+
 	 bool MouseClick() {
 
 		return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect)
@@ -51,7 +58,6 @@ public:
 	 void SetInItem(bool b) {
 		 InItem_ = b;
 	 }
-
 
 protected:
 

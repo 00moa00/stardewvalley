@@ -7,6 +7,7 @@
 #include "Mouse.h"
 #include "Inventory.h"
 #include "GameData.h"
+#include "FixedPlayerColl.h"
 #include <list>
 
 //class PlayerMove;
@@ -65,7 +66,7 @@ private:
 	GameEngineRenderer* PlayerRenderer_;
 	GameEngineCollision* PlayerCollider_;
 	Mouse* Mouse_;
-
+	FixedPlayerColl* FixedPlayerColl_;
 	Inventory* Inventory_;
 	PLAYERSTATE PlayerState_;
 
