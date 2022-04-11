@@ -199,9 +199,6 @@ void Player::moveY()
 		MoveDir_ = float4::UP;
 	}
 
-	
-
-
 	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
 	{
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
