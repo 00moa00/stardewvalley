@@ -6,7 +6,7 @@
 #include "PlayerHouse.h"
 #include "Block.h"
 
-
+#include <GameEngineBase/GameEngineTime.h>
 
 MyFarmLevel::MyFarmLevel()
 	:
@@ -41,6 +41,9 @@ void MyFarmLevel::Loading()
 
 void MyFarmLevel::LevelChangeStart()
 {
+	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
+	Time = 5.0f;
+
 	BackGround_->GetRenderer()->SetImage("Farm.bmp");
 	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
@@ -142,6 +145,12 @@ void MyFarmLevel::Update()
 	//float4 CheckPos = NextPos + float4(0.0f, 20.0f);
 	//std::list<Items*>::iterator Iter;
 
+	Time -= GameEngineTime::GetDeltaTime();
+
+	if (0 >= Time)
+	{
+		BgmPlayer.Stop();
+	}
 
 	switch (TileState_)
 	{
