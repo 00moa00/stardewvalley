@@ -17,6 +17,7 @@ enum class ITEMTYPE{
 	ITEM,
 	OBJECT,
 	TOOL,
+	BLOCK,
 
 };
 
@@ -55,7 +56,7 @@ public:
 		return MouseHoldItem_;
 	}
 	
-	bool IsWall(float4 pos, float4 scale, float4 dir);
+	bool IsWall(const float4 pos, const float4 scale,  float4 dir);
 
 
 	virtual void UpdateOff() {
@@ -63,19 +64,19 @@ public:
 	}
 
 
-	float GetLeft() {
+	int GetLeft() {
 		return GetPosition().ix() - GetScale().hix();
 	}
 
-	float GetRight() {
+	int GetRight() {
 		return GetPosition().ix() + GetScale().hix();
 	}
 
-	float GetTop() {
+	int GetTop() {
 		return GetPosition().iy() - GetScale().hiy();
 	}
 
-	float GetBottom() {
+	int GetBottom() {
 		return GetPosition().iy() + GetScale().hiy();
 	}
 

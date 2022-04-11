@@ -1,7 +1,7 @@
 #include "Items.h"
 #include "GameData.h"
 
-bool Items::IsWall(float4 pos, float4 scale, float4 dir)
+bool Items::IsWall(const float4 pos, const float4 scale,  float4 dir)
 {
 
 	float4 NextPos = pos + (dir * GameEngineTime::GetDeltaTime() * 150.f);
@@ -16,18 +16,35 @@ bool Items::IsWall(float4 pos, float4 scale, float4 dir)
 		Margin = float4(-8.f, 0.f);
 	}
 	if (dir == float4::UP) {
-		Margin = float4(0.f, -2.f);
+		Margin = float4(0.f, -8.f);
 	}
 	if (dir == float4::DOWN) {
 		Margin = float4(0.f, 15.f);
 	}
 
+
+	if (this->GetItemType() == ITEMTYPE::BLOCK) {
+
+		if (dir == float4::RIGHT) {
+			Margin = float4(0.10f, 0.f);
+		}
+		if (dir == float4::LEFT) {
+			Margin = float4(-0.10f, 0.f);
+		}
+		if (dir == float4::UP) {
+			Margin = float4(0.f, -0.10f);
+		}
+		if (dir == float4::DOWN) {
+			Margin = float4(0.f, 10.f);
+		}
+	}
+
 	float4 CheckPos = NextPos + Margin;
 	
-	float OtherLeft = CheckPos.ix() - scale.hix();
-	float OtherRight = CheckPos.ix() + scale.hix();
-	float OtherTop = CheckPos.iy() - scale.hiy();
-	float OtherBottom = CheckPos.iy() + scale.hiy();
+	int OtherLeft = CheckPos.ix() - scale.hix();
+	int OtherRight = CheckPos.ix() + scale.hix();
+	int OtherTop = CheckPos.iy() - scale.hiy();
+	int OtherBottom = CheckPos.iy() + scale.hiy();
 
 //	GameEngineRect DebugRect;
 

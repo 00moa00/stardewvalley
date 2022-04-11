@@ -18,7 +18,7 @@ Player::Player()
 	PlayerCollider_(nullptr),
 	Inventory_(nullptr),
 	Mouse_(nullptr),
-	MoveDir_(float4::ZERO)
+	MoveDir_(float4::DOWN)
 
 {
 
@@ -96,7 +96,7 @@ void Player::Update()
 	{
 
 	case PLAYERSTATE::INVENTROY_MINI_INIT:
-
+	//	SetDirAnimation();
 		Inventory_->SetisMiniInven(MINIPOPUP::MINI);
 		PlayerState_ = PLAYERSTATE::INIT;
 		break;

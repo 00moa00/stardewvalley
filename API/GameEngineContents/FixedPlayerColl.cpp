@@ -21,7 +21,7 @@ void FixedPlayerColl::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 	//CreateRenderer();
-	MousePoint_ = CreateRenderer("MouseCursor.bmp");
+	MousePoint_ = CreateRenderer("PlayerColl.bmp");
 
 	MouseCollision_ = CreateCollision("FixedPlayerColl", { 144, 96 });
 	MousePoint_->CameraEffectOff();

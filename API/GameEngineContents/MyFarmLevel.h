@@ -1,7 +1,50 @@
 #pragma once
+#include <GameEngine/GameEngineLevel.h>
+
+#include "GameData.h"
+
+#include "PlayerEnergyBar.h"
+#include "PlayerEnergyFrame.h"
+#include "MainUI.h"
+#include "BackGround.h"
+#include "Player.h"
+#include "RendererEnum.h"
+#include "Inventory.h"
+#include "Items.h"
+#include "Mouse.h"
+
+#include <map>
+#include <list>
+
+
+enum class OBJECT_TILE {
+	MAPLE_TREE = 0,
+	PINE_TREE,
+	OAK_TREE,
+	MAHOGANI_TREE,
+	SMALL_STONE,
+	BIG_STONE,
+	SMALL_WOOD1,
+	SMAA_WOOD2,
+	MIDDLE_WOOD,
+	BIG_WOOD,
+	WEED1,
+	WEED2,
+	MY_HOUSE,
+	BLOCK = 29,
+};
+
+
+enum class TILE_COLL {
+	INIT,
+	NOTACT,
+	COll,
+	FREE,
+
+};
 
 // Ό³Έν :
-class MyFarmLevel
+class MyFarmLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
@@ -16,7 +59,26 @@ public:
 
 protected:
 
+
+
+	void Loading() override;
+	void Update() override;
+	void LevelChangeStart() override;
 private:
 
-};
 
+	void LoadMapObject();
+
+
+	MainUI* MainUI_;
+	//std::map<int, Items*> MapObject_;
+	std::list<Items*> MapObject_;
+	std::list<Items*>::iterator Iter;
+
+	TILE_COLL TileState_;
+	Player* Player_;
+	PlayerEnergyBar* PlayerEnergyBar_;
+	PlayerEnergyFrame* PlayerEnergyFrame_;
+	BackGround* BackGround_;
+
+};

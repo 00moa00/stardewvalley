@@ -36,12 +36,12 @@ public:
 		return Position_ - GetLevel()->GetCameraPos();
 	}
 
-	inline float4 GetPosition()
+	inline const float4 GetPosition()
 	{
 		return Position_;
 	}
 
-	inline float4 GetScale()
+	inline const float4 GetScale()
 	{
 		return Scale_;
 	}
