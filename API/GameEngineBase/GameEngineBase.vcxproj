@@ -165,6 +165,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEnginePath.h" />
+    <ClInclude Include="GameEngineRandom.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineString.h">
       <SubType>
       </SubType>
@@ -193,6 +197,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEnginePath.cpp" />
+    <ClCompile Include="GameEngineRandom.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineString.cpp">
       <SubType>
       </SubType>

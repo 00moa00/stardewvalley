@@ -23,21 +23,21 @@ bool Items::IsWall(const float4 pos, const float4 scale,  float4 dir)
 	}
 
 
-	if (this->GetItemType() == ITEMTYPE::BLOCK) {
+	//if (this->GetItemType() == ITEMTYPE::BLOCK) {
 
-		if (dir == float4::RIGHT) {
-			Margin = float4(0.10f, 0.f);
-		}
-		if (dir == float4::LEFT) {
-			Margin = float4(-0.10f, 0.f);
-		}
-		if (dir == float4::UP) {
-			Margin = float4(0.f, -0.10f);
-		}
-		if (dir == float4::DOWN) {
-			Margin = float4(0.f, 10.f);
-		}
-	}
+	//	if (dir == float4::RIGHT) {
+	//		Margin = float4(0.10f, 0.f);
+	//	}
+	//	if (dir == float4::LEFT) {
+	//		Margin = float4(-0.10f, 0.f);
+	//	}
+	//	if (dir == float4::UP) {
+	//		Margin = float4(0.f, -0.10f);
+	//	}
+	//	if (dir == float4::DOWN) {
+	//		Margin = float4(0.f, 10.f);
+	//	}
+	//}
 
 	float4 CheckPos = NextPos + Margin;
 	

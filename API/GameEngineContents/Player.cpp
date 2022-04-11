@@ -33,7 +33,7 @@ void Player::Start()
 {
 	//------< ÃÊ±âÈ­ >------------------------------------------------------------------
 
-	SetPosition({FARM_SIZE_WEIGHT -300.f, (FARM_SIZE_WEIGHT / 2 )-600.f});
+	SetPosition({FARM_SIZE_WEIGHT -400.f, (FARM_SIZE_WEIGHT / 2 )-600.f});
 	SetScale({ 40, 20 });
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);

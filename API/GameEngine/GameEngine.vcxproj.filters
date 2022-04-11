@@ -29,6 +29,9 @@
     <ClInclude Include="GameEngineCollision.h">
       <Filter>Object\Actor\SubObject</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineRendererTileMap.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
@@ -56,6 +59,9 @@
     <ClCompile Include="GameEngineCollision.cpp">
       <Filter>Object\Actor\SubObject</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineRendererTileMap.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -75,6 +81,9 @@
     </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{61f840a0-bab3-44fd-a379-e315fda223ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{a0aa5a78-d07f-4629-8793-d5ca556f7019}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
