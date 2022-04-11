@@ -8,7 +8,7 @@
 #include <GameEngineBase/GameEngineFile.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineInput.h>
-
+#include <GameEngineBase/GameEngineSound.h>
 
 #include <vector>
 
@@ -42,26 +42,52 @@ void StardewValley::GameInit()
 	}
 
 
-
-	//------< 현재 디렉토리 >------------------------------------------------------------------
-
-	GameEngineDirectory ResourcesDir;
-	ResourcesDir.MoveParent("API");
-	ResourcesDir.Move("Resources");
-	ResourcesDir.Move("All");
-
-
-	//------< 파일 찾기 >------------------------------------------------------------------
-
-	std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
-
-	for (size_t i = 0; i < AllImageFileList.size(); i++)
 	{
-		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		//------< 이미지 현재 디렉토리 >------------------------------------------------------------------
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("All");
+
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
 	}
 
-	//------< 이미지 Cut >------------------------------------------------------------------
 
+
+	{
+		//------< 사운드 현재 디렉토리 >------------------------------------------------------------------
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sound");
+
+
+		//------< 사운드 파일 찾기 >------------------------------------------------------------------
+		
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile();
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
+		}
+
+	}
+
+
+
+	//------< 이미지 Cut >------------------------------------------------------------------
 
 	//================================
 	//     타이틀 메뉴 148 116

@@ -22,6 +22,18 @@
     <Filter Include="IO">
       <UniqueIdentifier>{91b26a68-e4d0-4080-b840-b652abf98103}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{2274321c-6ed7-4333-a38d-1a75bd63143a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\bin">
+      <UniqueIdentifier>{2b929172-f8d2-49f2-b371-9a8f144bfab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\inc">
+      <UniqueIdentifier>{92727f47-385a-4b52-b309-6d99bbdcc2a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{e2dfcde2-d4c6-4d89-b519-b6b5a3547351}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineWindow.h">
@@ -59,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineRandom.h">
       <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineSound.h">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -98,5 +113,30 @@
     <ClCompile Include="GameEngineRandom.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineSound.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
+      <Filter>ThirdParty\bin</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmod_vc.lib">
+      <Filter>ThirdParty\bin</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL.dll">
+      <Filter>ThirdParty\bin</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib">
+      <Filter>ThirdParty\bin</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\inc\fmod.h">
+      <Filter>ThirdParty\inc</Filter>
+    </None>
+    <None Include="ThirdParty\inc\fmod.hpp">
+      <Filter>ThirdParty\inc</Filter>
+    </None>
   </ItemGroup>
 </Project>
