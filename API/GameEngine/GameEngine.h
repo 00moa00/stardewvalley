@@ -54,6 +54,12 @@ public:
 
 	void ChangeLevel(const std::string& _Name);
 
+	static inline GameEngineLevel* GetPrevLevel()
+	{
+		return PrevLevel_;
+	}
+
+
 protected:
 	template<typename LevelType>
 	void CreateLevel(const std::string& _Name)
@@ -70,6 +76,7 @@ private:
 	static std::map<std::string, GameEngineLevel*> AllLevel_;
 	static GameEngineLevel* CurrentLevel_;
 	static GameEngineLevel* NextLevel_;
+	static GameEngineLevel* PrevLevel_;
 	static GameEngine* UserContents_;
 
 	static GameEngineImage* WindowMainImage_; // 그려지면 화면에 진짜 나오게 되는 이미지

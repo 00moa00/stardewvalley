@@ -61,6 +61,8 @@ public:
 	}
 
 
+	void SetOrder(int _Order) override;
+
 protected:
 	// 시작할때 뭔가를 하고 싶은데 생성자에서는 절대로 못할 부분들을 처리한다.
 	virtual void Start() = 0;
