@@ -52,10 +52,11 @@ public:
 	MyFarmLevel(MyFarmLevel&& _Other) noexcept = delete;
 	MyFarmLevel& operator=(const MyFarmLevel& _Other) = delete;
 	MyFarmLevel& operator=(MyFarmLevel&& _Other) noexcept = delete;
-	
+
 	float Time;
 
 	GameEngineSoundPlayer BgmPlayer;
+
 
 protected:
 

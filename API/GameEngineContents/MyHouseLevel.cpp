@@ -90,47 +90,13 @@ void MyHouseLevel::LoadMapObject()
 			switch (TileState_)
 			{
 			case MYHOUSE_OBJECT_TILE::BAD_BOTTOM:
+
 				MapObject_.push_back(CreateActor<BadBottom>((int)PLAYLEVEL::TOPOBJECT));
 				ThisIter = --MapObject_.end();
 				(*ThisIter)->SetPosition({ pos.x, pos.y });
-				MapObject_.push_back(CreateActor<BadTop>((int)PLAYLEVEL::OBJECT));
-				ThisIter = --MapObject_.end();
-				(*ThisIter)->SetPosition({ pos.x, pos.y });
 
 				break;
-			case MYHOUSE_OBJECT_TILE::TV:
-				MapObject_.push_back(CreateActor<Tv>((int)PLAYLEVEL::OBJECT));
-				
-
-				break;
-			case MYHOUSE_OBJECT_TILE::HITTER:
-				MapObject_.push_back(CreateActor<Hitter>((int)PLAYLEVEL::OBJECT));
-
-				break;
-			case MYHOUSE_OBJECT_TILE::TABLE:
-				MapObject_.push_back(CreateActor<Table>((int)PLAYLEVEL::OBJECT));
-				ThisIter = --MapObject_.end();
-				(*ThisIter)->getRenderer()-> CameraEffectOff();
-
-				break;
-			case MYHOUSE_OBJECT_TILE::CHAIR:
-				MapObject_.push_back(CreateActor<Chair>((int)PLAYLEVEL::OBJECT));
-
-				break;
-			case MYHOUSE_OBJECT_TILE::BLOCK:
-				MapObject_.push_back(CreateActor<Block>((int)PLAYLEVEL::OBJECT));
-				ThisIter = --MapObject_.end();
-
-				(*ThisIter)->getRenderer()->CameraEffectOff();
-				(*ThisIter)->getRenderer()->SetPivot({ 0, -24.f });
-				(*ThisIter)->SetScale({ 48.f, 48.f + 48.f });
-
-				break;
-			case MYHOUSE_OBJECT_TILE::MOVEFARM:
-				MapObject_.push_back(CreateActor<MoveFarm>((int)PLAYLEVEL::OBJECT));
-				ThisIter = --MapObject_.end();
-				(*ThisIter)->getRenderer()->CameraEffectOff();
-
+		
 
 			//	break;
 			default:
@@ -150,9 +116,6 @@ void MyHouseLevel::LoadMapObject()
 void MyHouseLevel::Update()
 {
 	
-	//float4 NextPos = Player_->GetPosition() + (float4::RIGHT *GameEngineTime::GetDeltaTime() * 150.f);
-	//float4 CheckPos = NextPos + float4(0.0f, 20.0f);
-	//std::list<Items*>::iterator Iter;
 
 	Time -= GameEngineTime::GetDeltaTime();
 
@@ -177,10 +140,15 @@ void MyHouseLevel::Update()
 		for (; Iter != MapObject_.end(); ++Iter) {
 
 			if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir()) == true) {
-				Player_->SetSpeed(0.0f);
 				
-				TileState_ = TILE_COLL::COll;
+				Player_->SetBreakMove(true);
+				//TileState_ = TILE_COLL::COll;
 				break;
+			}
+
+			else {
+
+				Player_->SetBreakMove(false);
 			}
 
 		}
@@ -194,32 +162,9 @@ void MyHouseLevel::Update()
 	case TILE_COLL::COll:
 
 
-		/*if (true == GameEngineInput::GetInst()->IsPress("MoveRight") && true == GameEngineInput::GetInst()->IsPress("MoveDown")) {
-			TileState_ = TILE_COLL::RIGHTDOWN; }
-		
-
-
-		if (true == GameEngineInput::GetInst()->IsPress("MoveRight") && true == GameEngineInput::GetInst()->IsPress("MoveUp")) {
-			TileState_ = TILE_COLL::RIGHTUP;
-		}
-
-
-		if (true == GameEngineInput::GetInst()->IsPress("MoveLeft") && true == GameEngineInput::GetInst()->IsPress("MoveDown")) {
-			TileState_ = TILE_COLL::LEFTDOWN;
-		}
-
-
-
-		if (true == GameEngineInput::GetInst()->IsPress("MoveLeft") && true == GameEngineInput::GetInst()->IsPress("MoveUp")) {
-			TileState_ = TILE_COLL::LEFTUP;
-		}
-
-*/
-
-
 		if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir())==false) {
 			Player_->SetSpeed(150.f);
-			Player_->SetBreakY(false);
+			Player_->SetBreakMove(false);
 
 			Iter = MapObject_.begin();
 			TileState_ = TILE_COLL::NOTACT;
@@ -227,52 +172,6 @@ void MyHouseLevel::Update()
 
 		break;
 
-
-	//case TILE_COLL::RIGHTDOWN:
-
-	//	Player_->SetBreakY(true);
-	//	if ((true == GameEngineInput::GetInst()->IsFree("MoveDown")) && (Player_->GetBreakY())) {
-
-	//		Player_->SetBreakY(false);
-	//		TileState_ = TILE_COLL::COll;
-	//	}
-
-	//	
-	//	break;
-	//case TILE_COLL::RIGHTUP:
-
-	//	Player_->SetBreakY(true);
-	//	if ((true == GameEngineInput::GetInst()->IsFree("MoveUp")) && (Player_->GetBreakY())) {
-
-	//		Player_->SetBreakY(false);
-	//		TileState_ = TILE_COLL::COll;
-	//	}
-
-
-	//	break;
-
-
-
-
-	//case TILE_COLL::LEFTDOWN:
-
-	//	Player_->SetBreakY(true);
-	//	if ((true == GameEngineInput::GetInst()->IsFree("MoveDown")) && (Player_->GetBreakY())) {
-
-	//		Player_->SetBreakY(false);
-	//		TileState_ = TILE_COLL::COll;
-	//	}
-
-
-	//case TILE_COLL::LEFTUP:
-
-
-	//	Player_->SetBreakY(true);
-	//	if ((true == GameEngineInput::GetInst()->IsFree("MoveUp")) && (Player_->GetBreakY())) {
-
-	//		Player_->SetBreakY(false);
-	//		TileState_ = TILE_COLL::COll;
-	//	}
 
 	}
 

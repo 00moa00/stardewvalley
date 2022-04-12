@@ -140,6 +140,9 @@
     <ClCompile Include="MoveFarm.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClCompile>
+    <ClCompile Include="MapColl.cpp">
+      <Filter>Actor\01. GlobalObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -298,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="MoveFarm.h">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="MapColl.h">
+      <Filter>Actor\01. GlobalObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,6 @@
 #include "GameData.h"
 #include "FixedPlayerColl.h"
 #include <list>
-
 //class PlayerMove;
 
 class Player : public GameEngineActor
@@ -31,33 +30,28 @@ protected:
 	Player& operator=(Player&& _Other) noexcept = delete;
 
 private:
+	const char* ArrAnimationName[static_cast<int>(PLAYERSTATE::MAX)];
 
 	float4 CameraPos_;
 
-	void moveX();
-	void moveY();
-
-	bool isStop();
-	bool isMove();
-	void SetDirAnimation();
-	void SetCamera();
+	//void moveX();
+	//void moveY();
 
 
-
-	//void SetInit();
 
 public:
+
 	void SetSpeed(float f) {
 		Speed_ = f;
 	}
 
-	void SetBreakY(bool b) {
-		BreakY_ = b;
+	void SetBreakMove(bool b) {
+		BreakMove_ = b;
 	}
 
 
 	bool GetBreakY() {
-		return BreakY_;
+		return BreakMove_;
 	}
 
 	float4 CurrentDir() {
@@ -74,7 +68,10 @@ private:
 	float Speed_;
 	float Energy_;
 	float4 MoveDir_;
-	bool BreakY_;
+	float4 MovePrevDir_;
+
+
+	bool BreakMove_;
 
 	std::vector<GameEngineCollision*> ColList;
 
@@ -82,14 +79,32 @@ private:
 	GameEngineCollision* PlayerCollider_;
 	Mouse* Mouse_;
 	FixedPlayerColl* FixedPlayerColl_;
-	 Inventory* Inventory_;
+	Inventory* Inventory_;
 	PLAYERSTATE PlayerState_;
+	GameEngineImage* MapColImage_;
 
-
-	//Åø
 	Hoe* Hoe_;
 
 private:
+
+	bool isStop();
+	bool isMove();
+
+	void SetDirAnimation();
+	void SetCamera();
+
+	void PlayerWalk();
+	void PlayerDirCheck();
+	void PlayerCollCheck();
+
+
+	inline std::string GetCurrentLevel()
+	{
+		return GetLevel()->GetNameCopy();
+	}
+
+
+	//bool MapCollCheck();
 
 	bool PlayerMouseClickCollision() {
 
@@ -115,7 +130,10 @@ private:
 		return Speed_;
 	}
 
+	void DirAnimationChange();
 	
+
+	std::string GetDirString();
 
 	void SubEnergy() {
 		Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();

@@ -26,10 +26,12 @@ Player::Player()
 	PlayerCollider_(nullptr),
 	//Inventory_(nullptr),
 	Mouse_(nullptr),
-	BreakY_(false),
+	BreakMove_(false),
 	MoveDir_(float4::DOWN)
 
 {
+	ArrAnimationName[static_cast<int>(PLAYERSTATE::INIT)] = "INIT";
+	ArrAnimationName[static_cast<int>(PLAYERSTATE::WALK)] = "WALK";
 
 }
 
@@ -42,15 +44,16 @@ void Player::Start()
 {
 	//------< 초기화 >------------------------------------------------------------------
 
-	SetPosition({FARM_SIZE_WEIGHT -400.f, (FARM_SIZE_WEIGHT / 2 )-600.f});
+	SetPosition({FARM_SIZE_WEIGHT -400.f, (FARM_SIZE_WEIGHT / 2 )-700.f});
 	SetScale({ 40, 20 });
+
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
 
 	PlayerCollider_ = CreateCollision("Player", { 48, 96 });
 
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
-
+	//MapColl_ = GetLevel()->CreateActor<MapColl>((int)PLAYLEVEL::INVENTORY);
 
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
 	Mouse_->Renderer()->CameraEffectOff();
@@ -59,7 +62,18 @@ void Player::Start()
 
 	Hoe_ = Inventory_->NewItem<Hoe>(float4 {0,24.f});
 
-	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();;
+	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
+
+	if (GetCurrentLevel() == "MyHouseLevel") {
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+
+	}
+
+
+	if (GetCurrentLevel() == "MyFarmLevel") {
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
+
+	}
 
 	//------< 애니메이션 생성 >------------------------------------------------------------------
 
@@ -97,8 +111,7 @@ void Player::Start()
 
 void Player::Update()
 {
-
-
+	PlayerDirCheck();
 	SetCamera();
 
 	switch (PlayerState_)
@@ -112,11 +125,11 @@ void Player::Update()
 
 	case PLAYERSTATE::INIT:
 	
-		SetDirAnimation();
+		//SetDirAnimation();
 
 		if (true == GameEngineInput::GetInst()->IsDown("Enter")) PlayerState_ = PLAYERSTATE::INVENTROY_POPUP_INIT;
 		if(FixedPlayerColl_->FixedPlayerCollMouse())  PlayerState_ = PLAYERSTATE::TOOL_USE;
-		if (isMove()) PlayerState_ = PLAYERSTATE::MOVE;
+		if (isMove()) PlayerState_ = PLAYERSTATE::WALK;
 		break;
 
 	case PLAYERSTATE::TOOL_USE:
@@ -131,18 +144,16 @@ void Player::Update()
 		//
 		break;
 
-	case PLAYERSTATE::MOVE:
+	case PLAYERSTATE::WALK:
 
-
-		moveX();
-		moveY();
-
+		PlayerWalk();
 
 		SubEnergy();
 
 
 		if (isStop()) PlayerState_ = PLAYERSTATE::INIT;
 		break;
+
 	case PLAYERSTATE::INVENTROY_POPUP_INIT:
 
 		Inventory_->SetMiniInven(MINIPOPUP::MAIN);
@@ -151,8 +162,6 @@ void Player::Update()
 		break;
 
 	case PLAYERSTATE::INVENTROY_POPUP :
-
-	
 
 		if (Inventory_->InventoryExitMouseClick() ||
 			true == GameEngineInput::GetInst()->IsDown("Enter")) {
@@ -176,58 +185,46 @@ void Player::Render()
 {
 }
 
+void Player::PlayerWalk() {
 
-void Player::moveX()
-{
+
+	float4 NextPos;
+	float4 CheckPos = MoveDir_;
+	float4 Move = float4::ZERO;
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
 	{
-		MoveDir_ = float4::RIGHT;
-		MoveDir_.Normal2D();
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-
-		PlayerRenderer_->ChangeAnimation("RIGHT_WALK");
-	//	PlayerMove_.setRightDir(true);
+		Move += float4::RIGHT;
 	}
-
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
-		MoveDir_ = float4::LEFT;
-		MoveDir_.Normal2D();
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-
-		PlayerRenderer_->ChangeAnimation("LEFT_WALK");
-	//	PlayerMove_.SetLeftDir(true);
-		
+		Move += float4::LEFT;
 	}
-
-}
-
-void Player::moveY()
-{
-
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
 	{
-		MoveDir_ = float4::UP;
-		MoveDir_.Normal2D();
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-
-		PlayerRenderer_->ChangeAnimation("BACK_WALK");
-		//PlayerMove_.SetBackDir(true);
-		
+		Move += float4::UP;
 	}
 
-	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
 	{
-		MoveDir_ = float4::DOWN;
-		MoveDir_.Normal2D();
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+		Move += float4::DOWN;
+	}
 
-		PlayerRenderer_->ChangeAnimation("FRONT_WALK");
-		//PlayerMove_.SetFrontDir(true);
-	
+	Move.Normal2D();
+
+	NextPos = GetPosition() + (Move * GameEngineTime::GetDeltaTime() * Speed_);
+	CheckPos += NextPos;
+
+	{
+
+		int Color = MapColImage_->GetImagePixel(CheckPos);
+
+		if ((RGB(0, 0, 0) != Color ) && BreakMove_ == false)
+		{
+			SetMove(Move * GameEngineTime::GetDeltaTime() * Speed_);
+		}
+
 
 	}
 }
@@ -314,6 +311,84 @@ void Player::SetCamera()
 		GetLevel()->SetCameraPos(CameraPos_);
 	}
 
+}
+
+void Player::PlayerDirCheck()
+{
+
+
+	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+	{
+		MoveDir_ = float4::LEFT;
+	}
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
+	{
+		MoveDir_ = float4::RIGHT;
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
+	{
+		MoveDir_ = float4::UP;
+	}
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
+	{
+		MoveDir_ = float4::DOWN;
+	}
+
+	MovePrevDir_ = MoveDir_;
+	DirAnimationChange();
+
+}
+
+void Player::PlayerCollCheck()
+{
+	float4 CheckPos ;
+
+	float4 NextPos = GetPosition() + (MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+	CheckPos += NextPos;
+
+	int Color = MapColImage_->GetImagePixel(CheckPos);
+
+
+}
+
+
+
+void Player::DirAnimationChange()
+{
+
+	if (PlayerState_ == PLAYERSTATE::INVENTROY_MINI_INIT) { return ; }
+	if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP_INIT) { return; }
+	if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP) { return; }
+	if (PlayerState_ == PLAYERSTATE::TOOL_USE) { return; }
+
+
+
+
+	PlayerRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+
+
+}
+
+std::string Player::GetDirString()
+{
+	if (MoveDir_.CompareInt2D(float4::DOWN))
+	{
+		return "FRONT_";
+	}
+	else if (MoveDir_.CompareInt2D(float4::UP))
+	{
+		return "BACK_";
+	}
+	else if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		return "LEFT_";
+	}
+	else if (MoveDir_.CompareInt2D(float4::RIGHT))
+	{
+		return "RIGHT_";
+	}
+	return "";
 }
 
 

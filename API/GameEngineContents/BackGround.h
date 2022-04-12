@@ -19,6 +19,9 @@ public:
 		return Image_;
 	};
 
+
+
+
 protected:
 	void Start() override;
 

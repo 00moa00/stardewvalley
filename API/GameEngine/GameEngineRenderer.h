@@ -32,6 +32,14 @@ public:
 		RenderPivot_ = _Pos;
 	}
 
+
+	inline float4 GetPivot()
+	{
+		return RenderPivot_;
+	}
+
+
+
 	inline void SetType(const RenderPivot& _Type)
 	{
 		PivotType_ = _Type;
@@ -56,11 +64,6 @@ public:
 		RenderScale_ = _Scale;
 	}
 
-	 float4 GetScale()
-	{
-		return RenderScale_;
-	}
-
 
 	void SetImage(const std::string& _Name);
 
@@ -77,7 +80,41 @@ public:
 		IsCameraEffect_ = true;
 	}
 
+
+	float4 GetScale()
+	{
+		return RenderScale_;
+	}
+
+	inline float4 GetImagePivot()
+	{
+		return RenderImagePivot_;
+	}
+
+	inline float4 GetImageScale()
+	{
+		return RenderImageScale_;
+	}
+
+	inline GameEngineImage* GetImage()
+	{
+		return Image_;
+	}
+
+	inline void SetAlpha(unsigned int _Alpha)
+	{
+		Alpha_ = _Alpha;
+
+		if (Alpha_ >= 255)
+		{
+			Alpha_ = 255;
+		}
+	}
+
+
+
 	void SetOrder(int _Order) override;
+
 
 protected:
 	void Render();
@@ -102,7 +139,7 @@ private:
 	float4 RenderImagePivot_;
 
 	unsigned int TransColor_;
-
+	unsigned int Alpha_;
 
 
 

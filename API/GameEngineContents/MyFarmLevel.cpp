@@ -37,10 +37,10 @@ void MyFarmLevel::Loading()
 	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
-	BackGround_->GetRenderer()->SetImage("Farm.bmp");
+	BackGround_->GetRenderer()->SetImage("FarmBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
-	LoadMapObject();
+	//LoadMapObject();
 	//Inventory_->AllUpdateOff();
 }
 
@@ -164,7 +164,7 @@ void MyFarmLevel::Update()
 		for (; Iter != MapObject_.end(); ++Iter) {
 
 			if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir()) == true) {
-				Player_->SetSpeed(0.0f);
+				Player_->SetBreakMove(true);
 				
 				TileState_ = TILE_COLL::COll;
 				break;
@@ -205,8 +205,8 @@ void MyFarmLevel::Update()
 
 
 		if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir())==false) {
-			Player_->SetSpeed(150.f);
-			Player_->SetBreakY(false);
+			//Player_->SetSpeed(150.f);
+			Player_->SetBreakMove(false);
 
 			Iter = MapObject_.begin();
 			TileState_ = TILE_COLL::NOTACT;
