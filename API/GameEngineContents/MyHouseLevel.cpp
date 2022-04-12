@@ -1,69 +1,80 @@
-#include "MyFarmLevel.h"
+#include "MyHouseLevel.h"
 #include "GameData.h"
 
-#include "SmallStone.h"
-#include "SmallWood1.h"
-#include "SmallWood2.h"
-#include "PlayerHouse.h"
 #include "Block.h"
+#include "BadBottom.h"
+#include "BadTop.h"
+#include "Chair.h"
+#include "Table.h"
+#include "Tv.h"
+#include "Hitter.h"
+#include "MoveFarm.h"
 
 #include <GameEngineBase/GameEngineTime.h>
 
-MyFarmLevel::MyFarmLevel()
+
+MyHouseLevel::MyHouseLevel()
 	:
 
-	PlayerEnergyBar_(nullptr),
-	PlayerEnergyFrame_(nullptr),
-	Player_(nullptr),
 	TileState_(TILE_COLL::INIT),
 	MainUI_(nullptr),
+	Player_(nullptr),
 	Iter(MapObject_.begin())
 
 {
 }
 
-MyFarmLevel::~MyFarmLevel()
+MyHouseLevel::~MyHouseLevel()
 {
 }
 
-void MyFarmLevel::Loading()
+void MyHouseLevel::Loading()
 {
 
 	
 	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
-	
-	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PLAYLEVEL::ENERGYFRAME);
-	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
+	Player_->SetPosition({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y + 100.f });
+	Player_->Renderer()->CameraEffectOff();
+
 	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 
+
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
-	BackGround_->GetRenderer()->SetImage("Farm.bmp");
-	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
+
+	BackGround_->GetRenderer()->SetImage("PlayerHouse.bmp");
+	BackGround_->GetRenderer()->CameraEffectOff();
+	BackGround_->GetRenderer()->SetPivot({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y});
+
+
+
+	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
+	Time = 5.0f;
+
 
 	LoadMapObject();
 	//Inventory_->AllUpdateOff();
 }
 
-void MyFarmLevel::LevelChangeStart()
+void MyHouseLevel::LevelChangeStart()
 {
-	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
-	Time = 5.0f;
+
+	BgmPlayer.Stop();
 
 
 }
 
-void MyFarmLevel::LoadMapObject()
+void MyHouseLevel::LoadMapObject()
 {
 
-    char MapOject[CHIP_NUM_Y][CHIP_NUM_X] = {
-    #include "Map/Farm.txt";
+    char MapOject[MYHOUSE_CHIP_NUM_Y][MYHOUSE_CHIP_NUM_X] = {
+    #include "Map/FarmerHouse.txt";
 
     };
 	 
 
-    for (int y = 0; y < CHIP_NUM_Y; y++)
+    for (int y = 0; y < MYHOUSE_CHIP_NUM_Y; y++)
     {
-        for (int x = 0; x < CHIP_NUM_X; x++)
+        for (int x = 0; x < MYHOUSE_CHIP_NUM_X; x++)
         {
             const char chip = MapOject[y][x];
             if (chip < 0) continue;
@@ -73,59 +84,61 @@ void MyFarmLevel::LoadMapObject()
                 y * CHIP_SIZE_F + CHIP_SIZE_F,
             };
 
-			OBJECT_TILE TileState_ = static_cast<OBJECT_TILE>(chip);
+			MYHOUSE_OBJECT_TILE TileState_ = static_cast<MYHOUSE_OBJECT_TILE>(chip);
 			std::list<Items*>::iterator ThisIter;
 
 			switch (TileState_)
 			{
-			case OBJECT_TILE::MAPLE_TREE:
-				break;
-			case OBJECT_TILE::PINE_TREE:
-				break;
-			case OBJECT_TILE::OAK_TREE:
-				break;
-			case OBJECT_TILE::MAHOGANI_TREE:
-				break;
-			case OBJECT_TILE::SMALL_STONE:
-				MapObject_.push_back(CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT));
-			
-				break;
-			case OBJECT_TILE::BIG_STONE:
-				break;
-			case OBJECT_TILE::SMALL_WOOD1:
+			case MYHOUSE_OBJECT_TILE::BAD_BOTTOM:
+				MapObject_.push_back(CreateActor<BadBottom>((int)PLAYLEVEL::TOPOBJECT));
+				ThisIter = --MapObject_.end();
+				(*ThisIter)->SetPosition({ pos.x, pos.y });
+				MapObject_.push_back(CreateActor<BadTop>((int)PLAYLEVEL::OBJECT));
+				ThisIter = --MapObject_.end();
+				(*ThisIter)->SetPosition({ pos.x, pos.y });
 
-				MapObject_.push_back(CreateActor<SmallWood1>((int)PLAYLEVEL::OBJECT));
+				break;
+			case MYHOUSE_OBJECT_TILE::TV:
+				MapObject_.push_back(CreateActor<Tv>((int)PLAYLEVEL::OBJECT));
 				
-				break;
-			case OBJECT_TILE::SMAA_WOOD2:
-				MapObject_.push_back(CreateActor<SmallWood2>((int)PLAYLEVEL::OBJECT));
-				
-				break;
-			case OBJECT_TILE::MIDDLE_WOOD:
-				break;
-			case OBJECT_TILE::BIG_WOOD:
-				break;
-			case OBJECT_TILE::WEED1:
-				break;
-			case OBJECT_TILE::WEED2:
-				break;
 
-			case OBJECT_TILE::MY_HOUSE :
-
-				MapObject_.push_back(CreateActor<PlayerHouse>((int)PLAYLEVEL::OBJECT));
-				
 				break;
+			case MYHOUSE_OBJECT_TILE::HITTER:
+				MapObject_.push_back(CreateActor<Hitter>((int)PLAYLEVEL::OBJECT));
 
-			case OBJECT_TILE::BLOCK :
+				break;
+			case MYHOUSE_OBJECT_TILE::TABLE:
+				MapObject_.push_back(CreateActor<Table>((int)PLAYLEVEL::OBJECT));
+				ThisIter = --MapObject_.end();
+				(*ThisIter)->getRenderer()-> CameraEffectOff();
 
+				break;
+			case MYHOUSE_OBJECT_TILE::CHAIR:
+				MapObject_.push_back(CreateActor<Chair>((int)PLAYLEVEL::OBJECT));
+
+				break;
+			case MYHOUSE_OBJECT_TILE::BLOCK:
 				MapObject_.push_back(CreateActor<Block>((int)PLAYLEVEL::OBJECT));
-				
+				ThisIter = --MapObject_.end();
+
+				(*ThisIter)->getRenderer()->CameraEffectOff();
+				(*ThisIter)->getRenderer()->SetPivot({ 0, -24.f });
+				(*ThisIter)->SetScale({ 48.f, 48.f + 48.f });
+
+				break;
+			case MYHOUSE_OBJECT_TILE::MOVEFARM:
+				MapObject_.push_back(CreateActor<MoveFarm>((int)PLAYLEVEL::OBJECT));
+				ThisIter = --MapObject_.end();
+				(*ThisIter)->getRenderer()->CameraEffectOff();
+
+
+			//	break;
 			default:
 				break;
-			
 			}
+
 			ThisIter = --MapObject_.end();
-			(*ThisIter)->SetPosition(pos);
+			(*ThisIter)->SetPosition({ pos.x, pos.y });
 			
      
         }
@@ -134,7 +147,7 @@ void MyFarmLevel::LoadMapObject()
 }
 
 
-void MyFarmLevel::Update()
+void MyHouseLevel::Update()
 {
 	
 	//float4 NextPos = Player_->GetPosition() + (float4::RIGHT *GameEngineTime::GetDeltaTime() * 150.f);

@@ -1,7 +1,7 @@
 #include "StardewValley.h"
 #include "MyFarmLevel.h"
 #include "TitleLevel.h"
-
+#include "MyHouseLevel.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
@@ -127,10 +127,11 @@ void StardewValley::GameInit()
 	//------< 레벨 등록 >------------------------------------------------------------------
 
 	CreateLevel<TitleLevel>("Title");
-	CreateLevel<MyFarmLevel>("Play");
+	CreateLevel<MyFarmLevel>("MyFarm");
+	CreateLevel<MyHouseLevel>("MyHouseLevel");
 
 
-	ChangeLevel("Play");
+	ChangeLevel("MyHouseLevel");
 
 
 }

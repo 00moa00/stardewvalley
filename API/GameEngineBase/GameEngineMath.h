@@ -83,7 +83,6 @@ public:
 		return { x * 0.5f, y * 0.5f , z * 0.5f, 1.0f };
 	}
 
-
 	float Len2D() const
 	{
 		// sqrtf 제곱근 구해줍니다.
@@ -117,18 +116,15 @@ public:
 
 
 
-
 	float4 operator-(const float4& _Other) const
 	{
 		return { x - _Other.x, y - _Other.y, z - _Other.z, 1.0f };
 	}
 
-
 	float4 operator-() const
 	{
 		return { -x, -y, -z, 1.0f };
 	}
-
 
 	float4 operator+(const float4& _Other) const
 	{
@@ -139,7 +135,6 @@ public:
 	{
 		return { x * _Value, y * _Value, z * _Value, 1.0f };
 	}
-
 
 	float4& operator+=(const float4& _Other)
 	{
@@ -178,11 +173,17 @@ public:
 		return *this;
 	}
 
-	bool operator ==(const float4& _Other)
+	bool CompareInt2D(const float4& _Value)
 	{
-		return (x == _Other.x && y == _Other.y && z == _Other.z);
+		return ix() == _Value.ix() && iy() == _Value.iy();
 	}
 
+	bool CompareInt3D(const float4& _Value)
+	{
+		return ix() == _Value.ix() &&
+			iy() == _Value.iy() &&
+			iz() == _Value.iz();
+	}
 
 
 public:

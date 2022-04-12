@@ -9,16 +9,18 @@ bool Items::IsWall(const float4 pos, const float4 scale,  float4 dir)
 	//float4 CheckPos = float4::ZERO;
 	float4 Margin = float4::ZERO;
 
-	if (dir == float4::RIGHT) {
+	dir.Normal2D();
+
+	if (dir.CompareInt2D(float4::RIGHT)) {
 		Margin = float4(8.f, 0.f);
 	}
-	if (dir == float4::LEFT) {
+	if (dir.CompareInt2D(float4::LEFT)) {
 		Margin = float4(-8.f, 0.f);
 	}
-	if (dir == float4::UP) {
+	if (dir.CompareInt2D(float4::UP)) {
 		Margin = float4(0.f, -8.f);
 	}
-	if (dir == float4::DOWN) {
+	if (dir.CompareInt2D(float4::DOWN)) {
 		Margin = float4(0.f, 15.f);
 	}
 

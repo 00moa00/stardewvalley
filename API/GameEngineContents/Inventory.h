@@ -112,7 +112,7 @@ public:
 
 
 
-	void SetisMiniInven(MINIPOPUP b) {
+	void SetMiniInven(MINIPOPUP b) {
 		MiniState_ = b;
 	}
 
@@ -135,6 +135,8 @@ private:
 	std::map<int, Items*> PlayerItemList_;
 	std::map<int, InventroyBox*> Box_;
 
+
+
 	std::map<int, Items*>::iterator PlayerItemListStartIter;
 	std::map<int, Items*>::iterator PlayerItemListEndIter;
 
@@ -145,7 +147,7 @@ private:
 	InventoryCurrentFrame* CurrentItemFrame_;
 
 	GameEngineRenderer* Inventroy_;
-	GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
+	// GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
 	Items* CurrentItem_;
 
 	bool isMiniInven_;
@@ -161,7 +163,7 @@ private:
 	int UpdateState_;
 	ITEMMOVE MoveState_;
 	MINIPOPUP MiniState_;
-	MINIPOPUP CurrentInventState_;
+	MINIPOPUP CurrentInvenState_;
 
 };
 

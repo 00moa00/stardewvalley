@@ -3,6 +3,10 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <sstream>
 
+//
+//std::map<int, Items*> Inventory::PlayerItemList_;
+////std::map<int, InventroyBox*> Inventory::Box_;
+
 
 enum class UPDATE {
 	POPUPINIT,
@@ -12,14 +16,14 @@ enum class UPDATE {
 
 Inventory::Inventory()
 	:
-	BoxCollision_{ nullptr },
+	
 	WildHorseradish_(nullptr),
 	InventoryExit_(nullptr),
 	Mouse_(nullptr),
 	ItemCount_(0),
 	UpdateState_(0),
 	CurrentItem_(nullptr ),
-	CurrentInventState_(MINIPOPUP::INIT),
+	CurrentInvenState_(MINIPOPUP::INIT),
 	MiniState_(MINIPOPUP::MINI),
 	MoveState_(ITEMMOVE::INIT)
 {
@@ -38,7 +42,6 @@ void Inventory::Start()
 //	SetPosition(GameEngineWindow::GetScale().Half());
 	Inventroy_ = CreateRenderer("inventory.bmp");
 	Inventroy_->CameraEffectOff();
-	
 
 	CurrentItemFrame_ = GetLevel()->CreateActor<InventoryCurrentFrame>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
 
@@ -266,10 +269,11 @@ void Inventory::InvenPopUp()
 
 	case MINIPOPUP::MINI:
 
-		CurrentInventState_ = MINIPOPUP::MINI;
+		CurrentInvenState_ = MINIPOPUP::MINI;
 
 		InventoryExit_->Off();
 		CurrentItemFrame_->On();
+
 
 		Inventroy_->SetImage("MiniInven.bmp");
 		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y+300.f });
@@ -307,8 +311,13 @@ void Inventory::InvenPopUp()
 		break;
 
 	case MINIPOPUP::MAIN:
-		CurrentInventState_ = MINIPOPUP::MAIN;
+
+		CurrentInvenState_ = MINIPOPUP::MAIN;
 		InventoryExit_->On();
+
+		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y});
+		Inventroy_->SetImage("inventory.bmp");
+
 
 		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
 
@@ -324,8 +333,6 @@ void Inventory::InvenPopUp()
 			BoxStartIter->second->On();
 		}
 
-		SetPosition(GameEngineWindow::GetScale().Half());
-		Inventroy_->SetImage("inventory.bmp");
 
 
 		InventoryPosInit();
@@ -384,7 +391,9 @@ void Inventory::Update()
 				//현재 아이템 저장
 				CurrentItem_ = PlayerItemListStartIter->second;
 
-				if ((CurrentInventState_ == MINIPOPUP::MINI) &&  (PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL)) {
+
+				//미니 상태에서 툴은 이동할 수 없다.
+				if ((CurrentInvenState_ == MINIPOPUP::MINI) &&  (PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL)) {
 					PlayerItemListStartIter->second->SetInBox(false);
 					MoveState_ = ITEMMOVE::INIT;
 					break;

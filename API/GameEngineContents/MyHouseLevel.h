@@ -3,8 +3,7 @@
 
 #include "GameData.h"
 
-#include "PlayerEnergyBar.h"
-#include "PlayerEnergyFrame.h"
+
 #include "MainUI.h"
 #include "BackGround.h"
 #include "Player.h"
@@ -19,39 +18,30 @@
 #include <list>
 
 
-enum class OBJECT_TILE {
-	MAPLE_TREE = 0,
-	PINE_TREE,
-	OAK_TREE,
-	MAHOGANI_TREE,
-	SMALL_STONE,
-	BIG_STONE,
-	SMALL_WOOD1,
-	SMAA_WOOD2,
-	MIDDLE_WOOD,
-	BIG_WOOD,
-	WEED1,
-	WEED2,
-	MY_HOUSE,
+enum class MYHOUSE_OBJECT_TILE {
+	BAD_BOTTOM,
+	BAD,
+	TV,
+	HITTER,
+	TABLE,
+	CHAIR,
 	BLOCK = 29,
-};
-
-
-
+	MOVEFARM,
+}; 
 
 // Ό³Έν :
-class MyFarmLevel : public GameEngineLevel
+class MyHouseLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
-	MyFarmLevel();
-	~MyFarmLevel();
+	MyHouseLevel();
+	~MyHouseLevel();
 
 	// delete Function
-	MyFarmLevel(const MyFarmLevel& _Other) = delete;
-	MyFarmLevel(MyFarmLevel&& _Other) noexcept = delete;
-	MyFarmLevel& operator=(const MyFarmLevel& _Other) = delete;
-	MyFarmLevel& operator=(MyFarmLevel&& _Other) noexcept = delete;
+	MyHouseLevel(const MyHouseLevel& _Other) = delete;
+	MyHouseLevel(MyHouseLevel&& _Other) noexcept = delete;
+	MyHouseLevel& operator=(const MyHouseLevel& _Other) = delete;
+	MyHouseLevel& operator=(MyHouseLevel&& _Other) noexcept = delete;
 	
 	float Time;
 
@@ -65,18 +55,17 @@ protected:
 
 private:
 
+
 	void LoadMapObject();
 
 
 	MainUI* MainUI_;
-	//std::map<int, Items*> MapObject_;
 	std::list<Items*> MapObject_;
 	std::list<Items*>::iterator Iter;
 
 	TILE_COLL TileState_;
 	Player* Player_;
-	PlayerEnergyBar* PlayerEnergyBar_;
-	PlayerEnergyFrame* PlayerEnergyFrame_;
+
 	BackGround* BackGround_;
 
 };

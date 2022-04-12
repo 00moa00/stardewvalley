@@ -1,19 +1,14 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include "TitleLogo.h"
-
+#include "RendererEnum.h"
 #include "MenuExit.h"
 #include "MenuLoad.h"
 #include "MenuNewGame.h"
 #include "Mouse.h"
+#include "Player.h"
 
-#include "TitleBackGround.h"
-enum class ORDER
-{
-	TitleLogo = 0,
-	TitleBackGround,
-	MAX,
-};
+#include "BackGround.h"
 
 //자른 이미지 인덱스용
 enum class MENU
@@ -55,6 +50,7 @@ public:
 protected:
 	void Loading() override;
 	void Update() override;
+	void LevelChangeStart() override;
 
 private:
 	TitleLogo* TitleLogo_;
@@ -62,7 +58,10 @@ private:
 	MenuLoad* MenuLoad_;
 	MenuExit* MenuExit_;
 	Mouse* Mouse_;
-	TitleBackGround* TitleBackGround_;
+	BackGround* TitleBackGround_;
+
+	Player* Player_;
+
 
 	bool isPopup_;
 	bool KeyFlag_; //업데이트에서 함수를 한번만 사용하기 위한 플러그

@@ -158,7 +158,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BadBottom.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BadTop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Block.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Chair.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -167,6 +179,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameData.h" />
+    <ClInclude Include="Hitter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Hoe.h">
       <SubType>
       </SubType>
@@ -192,6 +208,11 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MoveFarm.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MyHouseLevel.h" />
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
@@ -271,6 +292,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Table.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleBackGround.h" />
     <ClInclude Include="TitleCloud.h" />
     <ClInclude Include="TitleLevel.h">
@@ -298,6 +323,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Tv.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Weeds.h">
       <SubType>
       </SubType>
@@ -313,11 +342,27 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BadBottom.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BadTop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Block.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Chair.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FixedPlayerColl.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Hitter.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -370,10 +415,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MoveFarm.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MyHouse.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MyHouseLevel.cpp" />
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>
@@ -422,6 +472,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Table.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleBackGround.cpp" />
     <ClCompile Include="TitleCloud.cpp" />
     <ClCompile Include="TitleLevel.cpp">
@@ -445,6 +499,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TreeTop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Tv.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -26,7 +26,6 @@ public:
 public:
 
 
-
 	GameEngineCollision* BoxCollision() {
 		return BoxCollision_;
 	}

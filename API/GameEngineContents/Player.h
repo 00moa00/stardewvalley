@@ -42,6 +42,8 @@ private:
 	void SetDirAnimation();
 	void SetCamera();
 
+
+
 	//void SetInit();
 
 public:
@@ -49,8 +51,20 @@ public:
 		Speed_ = f;
 	}
 
+	void SetBreakY(bool b) {
+		BreakY_ = b;
+	}
+
+
+	bool GetBreakY() {
+		return BreakY_;
+	}
+
 	float4 CurrentDir() {
 		return MoveDir_;
+	}
+	GameEngineRenderer* Renderer() {
+		return PlayerRenderer_;
 	}
 
 
@@ -60,6 +74,7 @@ private:
 	float Speed_;
 	float Energy_;
 	float4 MoveDir_;
+	bool BreakY_;
 
 	std::vector<GameEngineCollision*> ColList;
 
@@ -67,7 +82,7 @@ private:
 	GameEngineCollision* PlayerCollider_;
 	Mouse* Mouse_;
 	FixedPlayerColl* FixedPlayerColl_;
-	Inventory* Inventory_;
+	 Inventory* Inventory_;
 	PLAYERSTATE PlayerState_;
 
 
@@ -76,11 +91,15 @@ private:
 
 private:
 
-	bool PlayerMouseCollision() {
-		std::vector<GameEngineCollision*> ColList;
+	bool PlayerMouseClickCollision() {
 
 		return (PlayerCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
 			&& (Mouse_->isMouseClick());
+	}
+
+	bool MoveFarmCollision() {
+
+		return (PlayerCollider_->CollisionResult("MoveFarm", ColList, CollisionType::Rect, CollisionType::Rect));
 	}
 
 

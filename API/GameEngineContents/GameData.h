@@ -5,4 +5,20 @@
 
 #define CHIP_NUM_X 65
 #define CHIP_NUM_Y 52
+
+#define MYHOUSE_CHIP_NUM_X 27
+#define MYHOUSE_CHIP_NUM_Y 15
+
 #define CHIP_SIZE_F 48.f
+
+enum class TILE_COLL {
+	INIT,
+	NOTACT,
+	COll,
+	RIGHTUP,
+	RIGHTDOWN,
+	LEFTUP,
+	LEFTDOWN,
+	FREE,
+
+};

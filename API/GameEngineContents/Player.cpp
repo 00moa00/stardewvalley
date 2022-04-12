@@ -8,16 +8,25 @@
 
 #include "PlayerEnum.h"
 
+
+//PLAYERSTATE Player::PlayerState_ = PLAYERSTATE::INIT;
+//GameEngineRenderer* Player::PlayerRenderer_ = nullptr;
+//GameEngineCollision* Player::PlayerCollider_ = nullptr;
+//Inventory* Player::Inventory_ = nullptr;
+//Mouse* Player::Mouse_ = nullptr;
+//FixedPlayerColl* Player::FixedPlayerColl_ = nullptr;
+
 Player::Player()
 	:
-	PlayerState_(PLAYERSTATE::INIT),
+	PlayerState_(PLAYERSTATE::INVENTROY_MINI_INIT),
 	AnimationFrame_(0.120f),
 	Speed_(150.f),
 	Energy_(150.f),
 	PlayerRenderer_(nullptr),
 	PlayerCollider_(nullptr),
-	Inventory_(nullptr),
+	//Inventory_(nullptr),
 	Mouse_(nullptr),
+	BreakY_(false),
 	MoveDir_(float4::DOWN)
 
 {
@@ -38,9 +47,9 @@ void Player::Start()
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
 
-	PlayerCollider_ = CreateCollision("Player", { 48*4, 96 });
+	PlayerCollider_ = CreateCollision("Player", { 48, 96 });
 
-	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::PLAYER);
+	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
 
 
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
@@ -97,7 +106,7 @@ void Player::Update()
 
 	case PLAYERSTATE::INVENTROY_MINI_INIT:
 	//	SetDirAnimation();
-		Inventory_->SetisMiniInven(MINIPOPUP::MINI);
+		Inventory_->SetMiniInven(MINIPOPUP::MINI);
 		PlayerState_ = PLAYERSTATE::INIT;
 		break;
 
@@ -136,7 +145,8 @@ void Player::Update()
 		break;
 	case PLAYERSTATE::INVENTROY_POPUP_INIT:
 
-		Inventory_->SetisMiniInven(MINIPOPUP::MAIN);
+		Inventory_->SetMiniInven(MINIPOPUP::MAIN);
+
 		PlayerState_ = PLAYERSTATE::INVENTROY_POPUP;
 		break;
 
@@ -154,6 +164,10 @@ void Player::Update()
 	}
 
 
+	if (MoveFarmCollision()) {
+
+		GameEngine::GetInst().ChangeLevel("MyFarm");
+	}
 
 
 }
@@ -168,21 +182,24 @@ void Player::moveX()
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
 	{
-		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
+		MoveDir_ = float4::RIGHT;
+		MoveDir_.Normal2D();
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
 
 		PlayerRenderer_->ChangeAnimation("RIGHT_WALK");
 	//	PlayerMove_.setRightDir(true);
-		MoveDir_ = float4::RIGHT;
 	}
 
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
-		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
+		MoveDir_ = float4::LEFT;
+		MoveDir_.Normal2D();
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
 
 		PlayerRenderer_->ChangeAnimation("LEFT_WALK");
 	//	PlayerMove_.SetLeftDir(true);
-		MoveDir_ = float4::LEFT;
+		
 	}
 
 }
@@ -190,22 +207,27 @@ void Player::moveX()
 void Player::moveY()
 {
 
+
 	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
 	{
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
+		MoveDir_ = float4::UP;
+		MoveDir_.Normal2D();
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
 
 		PlayerRenderer_->ChangeAnimation("BACK_WALK");
 		//PlayerMove_.SetBackDir(true);
-		MoveDir_ = float4::UP;
+		
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
 	{
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
+		MoveDir_ = float4::DOWN;
+		MoveDir_.Normal2D();
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
 
 		PlayerRenderer_->ChangeAnimation("FRONT_WALK");
 		//PlayerMove_.SetFrontDir(true);
-		MoveDir_ = float4::DOWN;
+	
 
 	}
 }
@@ -229,20 +251,20 @@ bool Player::isMove()
 void Player::SetDirAnimation()
 {
 
-	if (MoveDir_ == float4::RIGHT) {
+	if (MoveDir_.CompareInt2D(float4::RIGHT) ) {
 		PlayerRenderer_->ChangeAnimation("RIGHT_INIT");
 	}
 
-	if (MoveDir_ == float4::DOWN) {
+	if (MoveDir_.CompareInt2D(float4::DOWN)) {
 		PlayerRenderer_->ChangeAnimation("FRONT_INIT");
 
 	}
 
-	if (MoveDir_ == float4::UP) {
+	if (MoveDir_.CompareInt2D(float4::UP)) {
 		PlayerRenderer_->ChangeAnimation("BACK_INIT");
 	}
 
-	if (MoveDir_ == float4::LEFT) {
+	if (MoveDir_.CompareInt2D(float4::LEFT)) {
 		PlayerRenderer_->ChangeAnimation("LEFT_INIT");
 	}
 

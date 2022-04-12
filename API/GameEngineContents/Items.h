@@ -52,6 +52,13 @@ public:
 	}
 
 
+	bool playerVSobject() {
+
+
+		return (ItemCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+
 	bool MouseHoldItem() {
 		return MouseHoldItem_;
 	}

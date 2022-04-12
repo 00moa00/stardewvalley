@@ -8,12 +8,15 @@
 #include <GameEngine/GameEngineImage.h>
 
 
+//Player* TitleLevel::Player_;
+
 
 TitleLevel::TitleLevel() 
 	:	TitleLogo_(nullptr),
 		MenuExit_(nullptr),
 		MenuLoad_(nullptr),
 		MenuNewGame_(nullptr),
+ 		/*Player_(nullptr),*/
 		TitleBackGround_(nullptr),
 		Mouse_(nullptr),
 		isPopup_(false),
@@ -31,12 +34,14 @@ TitleLevel::~TitleLevel()
 void TitleLevel::Loading() 
 {
 
-	TitleBackGround_ = CreateActor<TitleBackGround>(0);
-	TitleLogo_ = CreateActor<TitleLogo>(1);
+	TitleLogo_ = CreateActor<TitleLogo>((int)TITLELEVEL::TITLELOGO);
 
-	Mouse_= CreateActor<Mouse>(4);
+	Mouse_= CreateActor<Mouse>((int)TITLELEVEL::MOUSE);
 
-	//TitleBackGround_->GetMapImage()->
+	TitleBackGround_ = CreateActor<BackGround>((int)TITLELEVEL::BACKGROUND);
+
+
+	//TitleBackGround_->GetRenderer()->SetImage();
 }
 
 void TitleLevel::Update()
@@ -116,5 +121,12 @@ void TitleLevel::Update()
 	//	break;
 	//}
 
+
+}
+
+void TitleLevel::LevelChangeStart()
+{
+	TitleBackGround_->GetRenderer()->SetImage("titleback.bmp");
+	TitleBackGround_->SetPosition(GameEngineWindow::GetScale().Half());
 
 }
