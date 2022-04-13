@@ -24,6 +24,7 @@ MyFarmLevel::MyFarmLevel()
 
 	SetName("MyFarmLevel");
 
+	//Inventory_ = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
 
 	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
 	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PLAYLEVEL::ENERGYFRAME);
@@ -44,38 +45,40 @@ void MyFarmLevel::Loading()
 
 void MyFarmLevel::LevelChangeStart()
 {
-
+	
 
 	BackGround_->GetRenderer()->SetImage("FarmBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
+	BackGround_->TileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
 	LoadMapObject();
 
+	Player_->SetPosition({ FARM_SIZE_WEIGHT - 400.f, (FARM_SIZE_HEIGHT / 2) - 700.f });
+	Player_->SetTileMap(&BackGround_->TileMap_);
+	
 	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	Time = 5.0f;
-
-
 }
 
 void MyFarmLevel::LoadMapObject()
 {
 
-    char MapOject[CHIP_NUM_Y][CHIP_NUM_X] = {
+    char MapOject[FARM_CHIP_NUM_Y][FARM_CHIP_NUM_X] = {
     #include "Map/Farm.txt";
 
     };
 	 
 
-    for (int y = 0; y < CHIP_NUM_Y; y++)
+    for (int y = 0; y < FARM_CHIP_NUM_Y; y++)
     {
-        for (int x = 0; x < CHIP_NUM_X; x++)
+        for (int x = 0; x < FARM_CHIP_NUM_X; x++)
         {
             const char chip = MapOject[y][x];
             if (chip < 0) continue;
 
             const float4 pos = {
-                x * CHIP_SIZE_F + CHIP_SIZE_F * 0.5f,
-                y * CHIP_SIZE_F + CHIP_SIZE_F,
+                x * CHIP_SIZE + CHIP_SIZE * 0.5f,
+                y * CHIP_SIZE + CHIP_SIZE,
             };
 
 			OBJECT_TILE TileState_ = static_cast<OBJECT_TILE>(chip);

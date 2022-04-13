@@ -20,6 +20,11 @@ private:
 	GameEngineRenderer* Renderer;
 
 public:
+
+	GameEngineRenderer* GetRenderer() {
+		return Renderer;
+	}
+
 	virtual ~Tile() = 0
 	{
 

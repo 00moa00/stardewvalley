@@ -5,6 +5,7 @@
 #include <GameEngine/GameEngineImageManager.h>
 
 BackGround::BackGround() 
+	: TileMap_(this)
 {
 }
 

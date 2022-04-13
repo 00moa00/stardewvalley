@@ -37,15 +37,19 @@ public:
 	bool isMouseHold();
 	bool isMouseFree();
 
-	void SetHoldingItem(bool b) {
+	void SetHoldingItem(bool b) 
+	{
 		HoldingMouse_ = b;
 	}
 
-	bool GetHoldingItem() {
+	bool GetHoldingItem() 
+	{
 		return HoldingMouse_;
 	}
 
-
+	bool MouseClickInventoryOut() {
+		return (isMouseClick() && CursorPos_.y < 600);
+	}
 
 	bool MouseInItem() {
 

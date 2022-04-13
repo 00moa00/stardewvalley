@@ -94,8 +94,10 @@ void StardewValley::GameInit()
 	//================================
 	GameEngineImage* TitleImage = GameEngineImageManager::GetInst()->Find("TitleButtons.ko-KR.bmp");
 
-	for (int j = 0; j < 2; j++) {
-		for (int i = 0; i < 4; i++) {
+	for (int j = 0; j < 2; j++) 
+	{
+		for (int i = 0; i < 4; i++) 
+		{
 			if (i == 2) continue; // 협동플레이 버튼 스킵
 			TitleImage->Cut({ 148, 116 }, { 148 * (float)i, 374.f + (116.f * j) });//1 2 3
 		}
@@ -122,6 +124,11 @@ void StardewValley::GameInit()
 	PlayerTool->Cut({ 48, 96 });
 
 
+	//================================
+	//    호미로 판 땅
+	//================================
+	GameEngineImage* HoeDirt = GameEngineImageManager::GetInst()->Find("hoeDirt.bmp");
+	HoeDirt->Cut({ 48, 48 });
 
 
 	//------< 레벨 등록 >------------------------------------------------------------------
@@ -131,7 +138,7 @@ void StardewValley::GameInit()
 	CreateLevel<MyFarmLevel>("MyFarmLevel");
 
 
-	ChangeLevel("MyHouseLevel");
+	ChangeLevel("MyFarmLevel");
 
 
 }

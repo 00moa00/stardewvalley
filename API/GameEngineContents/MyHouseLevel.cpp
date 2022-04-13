@@ -23,7 +23,7 @@ MyHouseLevel::MyHouseLevel()
 
 {
 	SetName("MyHouseLevel");
-
+	//Inventory_ = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
 	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
 	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
@@ -45,10 +45,12 @@ void MyHouseLevel::Loading()
 void MyHouseLevel::LevelChangeStart()
 {
 
-	Player_->SetPosition({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y + 100.f });
+	//Player_->SetPosition({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y + 100.f });
+
+	Player_->SetPosition({ HOUSE_SIZE_WEIGHT / 2, (HOUSE_SIZE_HEIGHT / 2 ) + 100.f});
 	Player_->Renderer()->CameraEffectOff();
 
-
+		
 
 
 	BackGround_->GetRenderer()->SetImage("PlayerHouse.bmp");
@@ -62,7 +64,7 @@ void MyHouseLevel::LevelChangeStart()
 
 
 	LoadMapObject();
-	//BgmPlayer.Stop();
+	BgmPlayer.Stop();
 
 
 }
@@ -84,8 +86,8 @@ void MyHouseLevel::LoadMapObject()
             if (chip < 0) continue;
 
             const float4 pos = {
-                x * CHIP_SIZE_F + CHIP_SIZE_F * 0.5f,
-                y * CHIP_SIZE_F + CHIP_SIZE_F,
+                x * CHIP_SIZE + CHIP_SIZE * 0.5f,
+                y * CHIP_SIZE + CHIP_SIZE,
             };
 
 			MYHOUSE_OBJECT_TILE TileState_ = static_cast<MYHOUSE_OBJECT_TILE>(chip);
@@ -147,7 +149,8 @@ void MyHouseLevel::Update()
 	case TILE_COLL::NOTACT :
 	
 
-		for (; Iter != MapObject_.end(); ++Iter) {
+		for (; Iter != MapObject_.end(); ++Iter) 
+		{
 
 			if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir()) == true) {
 				
@@ -172,7 +175,8 @@ void MyHouseLevel::Update()
 	case TILE_COLL::COll:
 
 
-		if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir())==false) {
+		if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir())==false)
+		{
 			Player_->SetSpeed(150.f);
 			Player_->SetBreakMove(false);
 

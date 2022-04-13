@@ -17,8 +17,6 @@ void TitleCloud::Start()
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale(GameEngineWindow::GetScale());
 
-
-
 }
 
 void TitleCloud::Render()

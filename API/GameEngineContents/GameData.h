@@ -3,16 +3,16 @@
 #define FARM_SIZE_WEIGHT 3840.f
 #define FARM_SIZE_HEIGHT 3120.f
 
-#define HOUSE_SIZE_WEIGHT 3840.f
-#define HOUSE_SIZE_HEIGHT 3120.f
+#define HOUSE_SIZE_WEIGHT 1280.f
+#define HOUSE_SIZE_HEIGHT 720.f
 
-#define CHIP_NUM_X 80
-#define CHIP_NUM_Y 65
+#define FARM_CHIP_NUM_X 80
+#define FARM_CHIP_NUM_Y 65
 
 #define MYHOUSE_CHIP_NUM_X 27
 #define MYHOUSE_CHIP_NUM_Y 15
 
-#define CHIP_SIZE_F 48.f
+#define CHIP_SIZE 48.f
 
 enum class TILE_COLL {
 	INIT,

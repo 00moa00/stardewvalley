@@ -11,16 +11,23 @@ bool Items::IsWall(const float4 pos, const float4 scale,  float4 dir)
 
 	dir.Normal2D();
 
-	if (dir.CompareInt2D(float4::RIGHT)) {
+	if (dir.CompareInt2D(float4::RIGHT)) 
+	{
 		Margin += float4(8.f, 0.f);
 	}
-	if (dir.CompareInt2D(float4::LEFT)) {
+
+	if (dir.CompareInt2D(float4::LEFT)) 
+	{
 		Margin += float4(-8.f, 0.f);
 	}
-	if (dir.CompareInt2D(float4::UP)) {
+
+	if (dir.CompareInt2D(float4::UP))
+	{
 		Margin += float4(0.f, -8.f);
 	}
-	if (dir.CompareInt2D(float4::DOWN)) {
+
+	if (dir.CompareInt2D(float4::DOWN)) 
+	{
 		Margin += float4(0.f, 8.f);
 	}
 
@@ -52,10 +59,25 @@ bool Items::IsWall(const float4 pos, const float4 scale,  float4 dir)
 //	GameEngineRect DebugRect;
 
 
-	if (GetRight() < OtherLeft) return false;
-	if (OtherRight < GetLeft()) return false;
-	if (GetBottom() < OtherTop) return false;
-	if (OtherBottom < GetTop()) return false;
+	if (GetRight() < OtherLeft)
+	{
+		return false;
+	}
+	if (OtherRight < GetLeft())
+	{
+		return false;
+	}
+
+	if (GetBottom() < OtherTop) 
+	{
+		return false;
+	}
+
+	if (OtherBottom < GetTop()) 
+	{
+		return false;
+	}
+
 	return true;
 }
 

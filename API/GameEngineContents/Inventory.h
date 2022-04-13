@@ -9,6 +9,7 @@
 #include "RendererEnum.h"
 #include "InventoryCurrentFrame.h"
 #include "Mouse.h"
+#include "Player.h"
 #include "InventoryExit.h"
 #include "Items.h"
 #include  <vector>
@@ -36,6 +37,7 @@ enum class MINIPOPUP {
 // 설명 :
 class Inventory : public GameEngineActor
 {
+
 public:
 
 	// constrcuter destructer
@@ -67,14 +69,8 @@ public:
 	{
 		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
 
-
-
-		//
 		std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
 		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
-
-
-
 
 		//앞에서부터 탐색해서 아이템이 없으면 그 자리에 넣기
 		int index_ = 0;
@@ -86,8 +82,6 @@ public:
 			}
 			if (StartIter != EndIter) { ++StartIter; }
 		}
-
-
 
 		//플레이어 아이템리스트에 추가
 		PlayerItemList_.insert(std::make_pair(index_, Item));

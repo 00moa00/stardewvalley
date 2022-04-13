@@ -34,7 +34,6 @@ enum class OBJECT_TILE {
 	WEED2,
 	MY_HOUSE,
 	MOVE_HOUSE = 27,
-	MOVE_FARM = 28,
 	BLOCK = 29,
 };
 
@@ -65,6 +64,7 @@ protected:
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart() override;
+//	void LevelChangeEnd() override;
 
 private:
 
@@ -78,6 +78,7 @@ private:
 
 	TILE_COLL TileState_;
 	Player* Player_;
+	//Inventory* Inventory_;
 	PlayerEnergyBar* PlayerEnergyBar_;
 	PlayerEnergyFrame* PlayerEnergyFrame_;
 	BackGround* BackGround_;

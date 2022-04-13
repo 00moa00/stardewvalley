@@ -53,15 +53,26 @@ void TitleLevel::Update()
 
 		AddTimer(GameEngineTime::GetDeltaTime() + 1.f);
 
-		if (getTimer() > 150 && MenuNewGame_ == nullptr) MenuNewGame_ = CreateActor<MenuNewGame>(2);
-		if (getTimer() > 300 && MenuLoad_ == nullptr) MenuLoad_ = CreateActor<MenuLoad>(3);
-		if (getTimer() > 450 && MenuExit_== nullptr) {
+		if (getTimer() > 150 && MenuNewGame_ == nullptr)
+		{
+			MenuNewGame_ = CreateActor<MenuNewGame>(2);
+		}
+
+		if (getTimer() > 300 && MenuLoad_ == nullptr)
+		{
+			MenuLoad_ = CreateActor<MenuLoad>(3);
+		}
+
+
+		if (getTimer() > 450 && MenuExit_== nullptr)
+		{
 			MenuExit_ = CreateActor<MenuExit>(4);
 			isPopup_ = true;
 		}
 	}
 
-	if (true == GameEngineInput::GetInst()->IsDown("MoveRight") && CurrentMenu_ < KEYBOARD::MAX) {
+	if (true == GameEngineInput::GetInst()->IsDown("MoveRight") && CurrentMenu_ < KEYBOARD::MAX) 
+	{
 		++MoveMenu_;
 		KeyFlag_ = true;
 	}

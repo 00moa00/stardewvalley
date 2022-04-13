@@ -56,7 +56,6 @@ protected:
 
 private:
 
-
 	void LoadMapObject();
 
 
@@ -66,6 +65,7 @@ private:
 
 	TILE_COLL TileState_;
 	Player* Player_;
+	//Inventory* Inventory_;
 
 	BackGround* BackGround_;
 

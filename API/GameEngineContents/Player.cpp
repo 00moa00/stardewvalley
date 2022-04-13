@@ -22,7 +22,7 @@ std::string Player::PrevLevel_ = "";
 
 Player::Player()
 	:
-	PlayerState_(PLAYERSTATE::INVENTROY_MINI_INIT),
+	PlayerState_(PLAYERSTATE::COLLINIT),
 	AnimationFrame_(0.120f),
 	Speed_(150.f),
 	Energy_(150.f),
@@ -36,6 +36,7 @@ Player::Player()
 {
 	ArrAnimationName[static_cast<int>(PLAYERSTATE::INIT)] = "INIT";
 	ArrAnimationName[static_cast<int>(PLAYERSTATE::WALK)] = "WALK";
+	ArrAnimationName[static_cast<int>(PLAYERSTATE::HOE)] = "HOE";
 
 }
 
@@ -49,17 +50,11 @@ void Player::Start()
 {
 	//------< 초기화 >------------------------------------------------------------------
 
-
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-	FixedPlayerColl_ = GetLevel()->CreateActor<FixedPlayerColl>((int)PLAYLEVEL::MOUSE);
+	//FixedPlayerColl_ = GetLevel()->CreateActor<FixedPlayerColl>((int)PLAYLEVEL::MOUSE);
 
-
-
-	CurrentLevel_ = GetCurrentLevel();
-	SetPlayerStartPos();
-
-	SetScale({ 40, 20 });
+	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
@@ -68,12 +63,12 @@ void Player::Start()
 
 	Mouse_->Renderer()->CameraEffectOff();
 
-
-	Hoe_ = Inventory_->NewItem<Hoe>(float4 {0,24.f});
+	Hoe_ = Inventory_->NewItem<Hoe>(float4{ 0, 24.f });
 
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 
-	SetColl();
+	SetPlayerStartPos();
+	SetScale({ 40, 20 });
 
 
 	//------< 애니메이션 생성 >------------------------------------------------------------------
@@ -97,10 +92,10 @@ void Player::Start()
 	//================================
 	//     플레이어 툴 사용
 	//================================
-	//PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HOE", PLAYER::HOE, PLAYER::FRONT_WALK3, DirAnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HOE", PLAYER::HOE_FRONT0, PLAYER::HOE_FRONT5, AnimationFrame_, true);
 	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HOE", PLAYER::HOE_RIGHT0, PLAYER::HOE_RIGHT4, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HOE", PLAYER::HOE_LEFT0, PLAYER::HOE_LEFT4, AnimationFrame_, false);
-	//PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, DirAnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HOE", PLAYER::HOE_LEFT0, PLAYER::HOE_LEFT4, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HOE", PLAYER::HOE_BACK0, PLAYER::HOE_BACK2, AnimationFrame_, true);
 
 
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
@@ -113,77 +108,89 @@ void Player::Start()
 void Player::Update()
 {
 	PlayerDirCheck();
-	//PlayerCollCheck();
 	SetCamera();
-
+	ChangeTile();
 	switch (PlayerState_)
 	{
+	case PLAYERSTATE::COLLINIT:
+		
+		CurrentLevel_ = GetCurrentLevel();
 
-	case PLAYERSTATE::INVENTROY_MINI_INIT:
-	//	SetDirAnimation();
-		Inventory_->SetMiniInven(MINIPOPUP::MINI);
+		if (CurrentLevel_ == "MyFarmLevel") 
+		{
+			MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
+		}
+
+		if (CurrentLevel_ == "MyHouseLevel") 
+		{
+			MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+		}
+
+
 		PlayerState_ = PLAYERSTATE::INIT;
 		break;
 
 	case PLAYERSTATE::INIT:
-	
-		//SetDirAnimation();
 
-		if (true == GameEngineInput::GetInst()->IsDown("Enter")) PlayerState_ = PLAYERSTATE::INVENTROY_POPUP_INIT;
-		if(FixedPlayerColl_->FixedPlayerCollMouse())  PlayerState_ = PLAYERSTATE::TOOL_USE;
-		if (isMove()) PlayerState_ = PLAYERSTATE::WALK;
+		ChangeLevelAndColl();
+
+
+		if (Mouse_->MouseClickInventoryOut())
+		{
+			PlayerState_ = PLAYERSTATE::HOE;
+		}
+
+		if (isMove())
+		{
+			PlayerState_ = PLAYERSTATE::WALK;
+		}
+
 		break;
 
-	case PLAYERSTATE::TOOL_USE:
+	case PLAYERSTATE::HOE:
 
-		PlayerRenderer_->ChangeAnimation("RIGHT_HOE");
+		//PlayerRenderer_->ChangeAnimation("LEFT_HOE");
 
 
-		if (PlayerRenderer_->IsEndAnimation()) {
+		if (PlayerRenderer_->IsEndAnimation())
+		{
+		
+			float4 Length = MoveDir_ ;
+			float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y  };
+
+			FarmTile* Tile = TileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
+				, "hoeDirt.bmp", 0, (int)PLAYLEVEL::OBJECT);
+			Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
+
+			TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+			int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+			TileList_.insert(std::make_pair(ChangeIndex,Tile));
+		
+
 			PlayerState_ = PLAYERSTATE::INIT;
 		}
 
-		//
 		break;
 
 	case PLAYERSTATE::WALK:
 
 		PlayerWalk();
-
 		SubEnergy();
 
 
-		if (isStop()) PlayerState_ = PLAYERSTATE::INIT;
-		break;
-
-	case PLAYERSTATE::INVENTROY_POPUP_INIT:
-
-		Inventory_->SetMiniInven(MINIPOPUP::MAIN);
-
-		PlayerState_ = PLAYERSTATE::INVENTROY_POPUP;
-		break;
-
-	case PLAYERSTATE::INVENTROY_POPUP :
-
-		if (Inventory_->InventoryExitMouseClick() ||
-			true == GameEngineInput::GetInst()->IsDown("Enter")) {
-			PlayerState_ = PLAYERSTATE::INVENTROY_MINI_INIT;
+		if (isStop())
+		{
+			PlayerState_ = PLAYERSTATE::INIT;
 		}
+
+		break;
+
 
 	default:
 		break;
 	}
 
-
-	if (MoveFarmCollision()) {
-
-		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
-	}
-
-	if (MoveHouseCollision()) {
-
-		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
-	}
 
 
 }
@@ -254,20 +261,24 @@ bool Player::isMove()
 void Player::SetDirAnimation()
 {
 
-	if (MoveDir_.CompareInt2D(float4::RIGHT) ) {
+	if (MoveDir_.CompareInt2D(float4::RIGHT) ) 
+	{
 		PlayerRenderer_->ChangeAnimation("RIGHT_INIT");
 	}
 
-	if (MoveDir_.CompareInt2D(float4::DOWN)) {
+	if (MoveDir_.CompareInt2D(float4::DOWN)) 
+	{
 		PlayerRenderer_->ChangeAnimation("FRONT_INIT");
 
 	}
 
-	if (MoveDir_.CompareInt2D(float4::UP)) {
+	if (MoveDir_.CompareInt2D(float4::UP)) 
+	{
 		PlayerRenderer_->ChangeAnimation("BACK_INIT");
 	}
 
-	if (MoveDir_.CompareInt2D(float4::LEFT)) {
+	if (MoveDir_.CompareInt2D(float4::LEFT)) 
+	{
 		PlayerRenderer_->ChangeAnimation("LEFT_INIT");
 	}
 
@@ -377,31 +388,146 @@ void Player::PlayerCollCheck()
 
 }
 
-void Player::SetColl()
+void Player::ChangeLevelAndColl()
 {
+	if (MoveFarmCollision()) 
+	{
 
-	if (CurrentLevel_ == "MyHouseLevel") {
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
-
+		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
 	}
 
-
-	if (CurrentLevel_ == "MyFarmLevel") {
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
-
+	if (MoveHouseCollision())
+	{
+		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	}
 }
 
 void Player::SetPlayerStartPos()
 {
 
-	if (GetCurrentLevel() == "MyFarmLevel") {
-		SetPosition({ FARM_SIZE_WEIGHT - 400.f, (FARM_SIZE_HEIGHT / 2) - 700.f });
 
-	}
 
-	if (GetCurrentLevel() == "MyHouseLevel") {
-		SetPosition({ HOUSE_SIZE_WEIGHT /2, HOUSE_SIZE_HEIGHT / 2});
+
+}
+
+void Player::ChangeTile()
+{
+
+	//위치 초기화
+	//std::map<int, FarmTile*>::iterator StartIter = TileList_.begin();
+	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
+
+	//for (; StartIter != EndIter; ++StartIter)
+	//{
+
+	//}
+
+	//int i;
+
+	//std::map<int, FarmTile*>::iterator FindLeftIter;
+	//std::map<int, FarmTile*>::iterator FindThisIter;
+	//std::map<int, FarmTile*>::iterator FindRightIter;
+
+	//switch (TileChangeState_)
+	//{
+	//case TILE_CHANGE::INIT:
+
+	//	i = 0;
+
+
+	//	TileChangeState_ = TILE_CHANGE::THIS_CHECK;
+	//	break;
+
+	//case TILE_CHANGE::THIS_CHECK:
+
+	//	FindLeftIter = TileList_.find(i - 1);
+	//	FindThisIter = TileList_.find(i);
+	//	FindRightIter = TileList_.find(i + 1);
+
+	//	//현재 찾으려는 타일이 없으면 다음 타일 탐색
+	//	if (FindThisIter == EndIter)
+	//	{
+	//		++i;
+	//	}
+
+	//	//있다면 왼쪽 체크
+	//	else
+	//	{
+	//		TileChangeState_ = TILE_CHANGE::LEFT_CHECK;
+	//	}
+
+	//	break;
+
+	//case TILE_CHANGE::LEFT_CHECK:
+
+	//	//없다면 타일맵을 바꿀 필요가 없다.
+	//	if (FindLeftIter != EndIter)
+	//	{
+	//		++i;
+	//		TileChangeState_ = TILE_CHANGE::THIS_CHECK;
+	//	}
+
+	//	//왼쪽에 있거나 오른쪽에 있다면 
+
+	//	else
+	//	{
+	//		TileChangeState_ = TILE_CHANGE::RIGHT_CHECK;
+	//	}
+
+	//	break;
+
+	//case TILE_CHANGE::RIGHT_CHECK:
+
+	//	//없다면 타일맵을 바꿀 필요가 없다.
+	//	if (FindLeftIter != EndIter)
+	//	{
+	//		++i;
+	//		TileChangeState_ = TILE_CHANGE::THIS_CHECK;
+	//	}
+
+	//	break;
+
+	//default:
+	//	break;
+	//}
+
+
+	for (int i = 0; i < FARM_CHIP_NUM_X * FARM_CHIP_NUM_Y; ++i) 
+	{
+
+		std::map<int, FarmTile*>::iterator FindLeftIter = TileList_.find(i-1);
+		std::map<int, FarmTile*>::iterator FindThisIter = TileList_.find(i);
+		std::map<int, FarmTile*>::iterator FindRightIter = TileList_.find(i+1);
+
+
+		//현재 찾으려는 타일이 없으면 패스
+		if (FindThisIter == EndIter) continue;
+
+		//case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
+		// 
+		//왼쪽이 없고 오른쪽이 있는경우
+		if (FindLeftIter == EndIter && FindRightIter != EndIter)
+		{
+			FindThisIter->second->GetRenderer()->SetIndex(1);
+
+		}
+
+
+		//case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
+
+		if (FindLeftIter != EndIter && FindRightIter == EndIter)
+		{
+			FindThisIter->second->GetRenderer()->SetIndex(3);
+
+		}
+
+
+		//case 3 왼쪽 오른쪽 둘 다 있는 경우
+		if (FindLeftIter != EndIter && FindRightIter != EndIter)
+		{
+			FindThisIter->second->GetRenderer()->SetIndex(2);
+
+		}
 
 	}
 
@@ -413,10 +539,16 @@ void Player::SetPlayerStartPos()
 void Player::DirAnimationChange()
 {
 
-	if (PlayerState_ == PLAYERSTATE::INVENTROY_MINI_INIT) { return ; }
-	if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP_INIT) { return; }
-	if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP) { return; }
-	if (PlayerState_ == PLAYERSTATE::TOOL_USE) { return; }
+	//if (PlayerState_ == PLAYERSTATE::INVENTROY_MINI_INIT) { return ; }
+	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP_INIT) { return; }
+	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP) { return; }
+
+
+
+	if (PlayerState_ == PLAYERSTATE::COLLINIT) 
+	{
+		return; 
+	}
 
 
 
