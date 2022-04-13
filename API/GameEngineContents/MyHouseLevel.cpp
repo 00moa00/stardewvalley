@@ -154,14 +154,9 @@ void MyHouseLevel::Update()
 
 			if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir()) == true) {
 				
-				Player_->SetBreakMove(true);
+				Player_->SetSpeed(0.f);
 				//TileState_ = TILE_COLL::COll;
 				break;
-			}
-
-			else {
-
-				Player_->SetBreakMove(false);
 			}
 
 		}
@@ -178,7 +173,6 @@ void MyHouseLevel::Update()
 		if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir())==false)
 		{
 			Player_->SetSpeed(150.f);
-			Player_->SetBreakMove(false);
 
 			Iter = MapObject_.begin();
 			TileState_ = TILE_COLL::NOTACT;

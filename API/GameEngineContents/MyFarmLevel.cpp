@@ -31,6 +31,7 @@ MyFarmLevel::MyFarmLevel()
 	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
 	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
+	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
 }
 
 MyFarmLevel::~MyFarmLevel()
@@ -46,6 +47,8 @@ void MyFarmLevel::Loading()
 void MyFarmLevel::LevelChangeStart()
 {
 	
+	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
+	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
 	BackGround_->GetRenderer()->SetImage("FarmBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });

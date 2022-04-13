@@ -25,6 +25,10 @@ public:
 	Tile* GetTile() {
 		return this;
 	}
+
+	TILE_STATE GetTileState() {
+		return TileState_;
+	}
 };
 
 enum class TILE_CHANGE
@@ -75,13 +79,13 @@ public:
 		Speed_ = f;
 	}
 
-	void SetBreakMove(bool b) {
-		BreakMove_ = b;
+	void SetObjectColl(bool b) {
+		ObjectColl_ = b;
 	}
 
 
-	bool GetBreakY() {
-		return BreakMove_;
+	bool GetObjectColl() {
+		return ObjectColl_;
 	}
 
 	void SetCurrentLevel(std::string s) {
@@ -118,8 +122,8 @@ private:
 	float4 MoveDir_;
 	float4 MovePrevDir_;
 
-
-	bool BreakMove_;
+	bool FarmingArea_;
+	bool ObjectColl_;
 
 	std::vector<GameEngineCollision*> ColList;
 	std::map<int, FarmTile*> TileList_;

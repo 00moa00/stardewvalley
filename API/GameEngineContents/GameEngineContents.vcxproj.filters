@@ -146,6 +146,9 @@
     <ClCompile Include="MoveHouse.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClCompile>
+    <ClCompile Include="BussStopLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -313,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="PlayerData.h">
       <Filter>Actor\00. GlobalData</Filter>
+    </ClInclude>
+    <ClInclude Include="BussStopLevel.h">
+      <Filter>Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

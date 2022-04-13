@@ -158,6 +158,7 @@ public:
 
 	virtual ~GameEngineRendererTileMap()
 	{
+		Tiles_.clear();
 	}
 };
 

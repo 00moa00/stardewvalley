@@ -30,7 +30,8 @@ Player::Player()
 	PlayerCollider_(nullptr),
 	//Inventory_(nullptr),
 	Mouse_(nullptr),
-	BreakMove_(false),
+	ObjectColl_(false),
+	FarmingArea_(false),
 	MoveDir_(float4::DOWN)
 
 {
@@ -44,6 +45,16 @@ Player::Player()
 Player::~Player() 
 {
 	CurrentLevel_ = "";
+
+	std::map<int, FarmTile*>::iterator StartIter = TileList_.begin();
+	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
+
+
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		delete StartIter->second->GetTile();
+	}
+	//TileList_.clear();
 }
 
 void Player::Start()
@@ -52,7 +63,6 @@ void Player::Start()
 
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-	//FixedPlayerColl_ = GetLevel()->CreateActor<FixedPlayerColl>((int)PLAYLEVEL::MOUSE);
 
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 
@@ -117,6 +127,7 @@ void Player::Update()
 		
 		CurrentLevel_ = GetCurrentLevel();
 
+
 		if (CurrentLevel_ == "MyFarmLevel") 
 		{
 			MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
@@ -127,7 +138,6 @@ void Player::Update()
 			MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 		}
 
-
 		PlayerState_ = PLAYERSTATE::INIT;
 		break;
 
@@ -136,7 +146,7 @@ void Player::Update()
 		ChangeLevelAndColl();
 
 
-		if (Mouse_->MouseClickInventoryOut())
+		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true)
 		{
 			PlayerState_ = PLAYERSTATE::HOE;
 		}
@@ -155,9 +165,7 @@ void Player::Update()
 
 		if (PlayerRenderer_->IsEndAnimation())
 		{
-		
-			
-		
+			CreateDirtTile();
 
 			PlayerState_ = PLAYERSTATE::INIT;
 		}
@@ -172,7 +180,6 @@ void Player::Update()
 
 		if (isStop())
 		{
-			CreateDirtTile();
 			PlayerState_ = PLAYERSTATE::INIT;
 		}
 
@@ -226,12 +233,32 @@ void Player::PlayerWalk() {
 
 	int Color = MapColImage_->GetImagePixel(CheckPos);
 
-	if ((RGB(0, 0, 0) != Color ) && BreakMove_ == false)
+
+
+
+
+	if ((RGB(0, 0, 0) != Color ) )
 	{
 		SetMove(Move * GameEngineTime::GetDeltaTime() * Speed_);
 	}
 
+
 	
+	// if ((RGB(0, 255, 255) == Color))
+	//{
+	//	GameEngine::GetInst().ChangeLevel("MyHouseLevel");
+	//}
+
+	if ((RGB(0, 0, 255) == Color) )
+	{
+		FarmingArea_ = true;
+	}
+
+	else
+	{
+		FarmingArea_ = false;
+
+	}
 }
 
 bool Player::isStop()
@@ -324,8 +351,6 @@ void Player::SetCamera()
 
 void Player::PlayerDirCheck()
 {
-
-
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
 		MoveDir_ = float4::LEFT;
@@ -384,12 +409,14 @@ void Player::ChangeLevelAndColl()
 {
 	if (MoveFarmCollision()) 
 	{
-
+		MapColImage_ = nullptr;
 		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
 	}
 
 	if (MoveHouseCollision())
 	{
+		MapColImage_ = nullptr;
+
 		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	}
 }
@@ -419,19 +446,40 @@ void Player::CreateDirtTile()
 	}
 	if (float4::UP.CompareInt2D(MoveDir_))
 	{
-		Length += float4(0.0f, 24.0f);
+		Length += float4(0.0f, -24.0f);
 	}
 
 	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
 
-	FarmTile* Tile = TileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
-		, "hoeDirt.bmp", 0, (int)PLAYLEVEL::OBJECT);
-	Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
+
 
 	TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
 	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
 
-	TileList_.insert(std::make_pair(ChangeIndex, Tile));
+	std::map<int, FarmTile*>::iterator FindIter = TileList_.find(ChangeIndex);
+	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
+
+	//찾아서 타일맵이 이미 형성되어 있다면 + 그게 그냥 판 땅이라면, 새로운 타일맵을 생성하지 않음
+
+	if (FindIter != EndIter)
+	{
+		if (FindIter->second->GetTileState() == TILE_STATE::HOE_DIRT_CREATE)
+		{
+			return;
+		}
+	}
+
+	else {
+		FarmTile* Tile = TileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
+			, "hoeDirt.bmp", 0, (int)PLAYLEVEL::OBJECT);
+		Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
+
+		Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+		ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+		TileList_.insert(std::make_pair(ChangeIndex, Tile));
+	}
+	//delete Tile;
 }
 
 
@@ -441,8 +489,6 @@ void Player::DirAnimationChange()
 	//if (PlayerState_ == PLAYERSTATE::INVENTROY_MINI_INIT) { return ; }
 	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP_INIT) { return; }
 	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP) { return; }
-
-
 
 	if (PlayerState_ == PLAYERSTATE::COLLINIT) 
 	{
