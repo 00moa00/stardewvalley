@@ -3,8 +3,8 @@
 #define FARM_SIZE_WEIGHT 3840.f
 #define FARM_SIZE_HEIGHT 3120.f
 
-#define CHIP_NUM_X 65
-#define CHIP_NUM_Y 52
+#define CHIP_NUM_X 80
+#define CHIP_NUM_Y 65
 
 #define MYHOUSE_CHIP_NUM_X 27
 #define MYHOUSE_CHIP_NUM_Y 15

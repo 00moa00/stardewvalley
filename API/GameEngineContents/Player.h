@@ -84,7 +84,6 @@ private:
 	GameEngineImage* MapColImage_;
 
 	Hoe* Hoe_;
-
 private:
 
 	bool isStop();
@@ -96,9 +95,9 @@ private:
 	void PlayerWalk();
 	void PlayerDirCheck();
 	void PlayerCollCheck();
+	void SetColl();
 
-
-	inline std::string GetCurrentLevel()
+	std::string GetCurrentLevel()
 	{
 		return GetLevel()->GetNameCopy();
 	}

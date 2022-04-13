@@ -64,16 +64,8 @@ void Player::Start()
 
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 
-	if (GetCurrentLevel() == "MyHouseLevel") {
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+	SetColl();
 
-	}
-
-
-	if (GetCurrentLevel() == "MyFarmLevel") {
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
-
-	}
 
 	//------< 局聪皋捞记 积己 >------------------------------------------------------------------
 
@@ -349,7 +341,26 @@ void Player::PlayerCollCheck()
 
 	int Color = MapColImage_->GetImagePixel(CheckPos);
 
+	if (RGB(0, 255, 255) == Color)
+	{
+		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
+	}
 
+}
+
+void Player::SetColl()
+{
+
+	if (GetCurrentLevel() == "MyHouseLevel") {
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+
+	}
+
+
+	if (GetCurrentLevel() == "MyFarmLevel") {
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
+
+	}
 }
 
 

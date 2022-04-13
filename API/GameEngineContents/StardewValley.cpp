@@ -131,7 +131,7 @@ void StardewValley::GameInit()
 	CreateLevel<MyFarmLevel>("MyFarmLevel");
 
 
-	ChangeLevel("MyHouseLevel");
+	ChangeLevel("MyFarmLevel");
 
 
 }
