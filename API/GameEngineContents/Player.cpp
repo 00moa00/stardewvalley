@@ -126,7 +126,7 @@ void Player::Update()
 	case PLAYERSTATE::COLLINIT:
 		
 		CurrentLevel_ = GetCurrentLevel();
-
+		Speed_ = 150.f;
 
 		if (CurrentLevel_ == "MyFarmLevel") 
 		{
@@ -409,13 +409,13 @@ void Player::ChangeLevelAndColl()
 {
 	if (MoveFarmCollision()) 
 	{
-		MapColImage_ = nullptr;
+		PlayerState_ = PLAYERSTATE::COLLINIT;
 		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
 	}
 
 	if (MoveHouseCollision())
 	{
-		MapColImage_ = nullptr;
+		PlayerState_ = PLAYERSTATE::COLLINIT;
 
 		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	}
