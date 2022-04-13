@@ -82,8 +82,11 @@ private:
 	Inventory* Inventory_;
 	PLAYERSTATE PlayerState_;
 	GameEngineImage* MapColImage_;
-
 	Hoe* Hoe_;
+
+	static std::string CurrentLevel_;
+	static std::string PrevLevel_;
+
 private:
 
 	bool isStop();
@@ -96,14 +99,13 @@ private:
 	void PlayerDirCheck();
 	void PlayerCollCheck();
 	void SetColl();
+	void SetPlayerStartPos();
 
 	std::string GetCurrentLevel()
 	{
-		return GetLevel()->GetNameCopy();
+		return GetLevel()->GetNameConstRef();
 	}
 
-
-	//bool MapCollCheck();
 
 	bool PlayerMouseClickCollision() {
 
@@ -116,6 +118,10 @@ private:
 		return (PlayerCollider_->CollisionResult("MoveFarm", ColList, CollisionType::Rect, CollisionType::Rect));
 	}
 
+	bool MoveHouseCollision() {
+
+		return (PlayerCollider_->CollisionResult("MoveHouse", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
 
 	float GetEnergy() {
 		return Energy_;

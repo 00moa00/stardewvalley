@@ -22,6 +22,13 @@ MyHouseLevel::MyHouseLevel()
 	Iter(MapObject_.begin())
 
 {
+	SetName("MyHouseLevel");
+
+	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
+
+
 }
 
 MyHouseLevel::~MyHouseLevel()
@@ -31,19 +38,22 @@ MyHouseLevel::~MyHouseLevel()
 void MyHouseLevel::Loading()
 {
 
-	
-	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+
+	//Inventory_->AllUpdateOff();
+}
+
+void MyHouseLevel::LevelChangeStart()
+{
+
 	Player_->SetPosition({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y + 100.f });
 	Player_->Renderer()->CameraEffectOff();
 
-	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 
 
-	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
 
 	BackGround_->GetRenderer()->SetImage("PlayerHouse.bmp");
 	BackGround_->GetRenderer()->CameraEffectOff();
-	BackGround_->GetRenderer()->SetPivot({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y});
+	BackGround_->GetRenderer()->SetPivot({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y });
 
 
 
@@ -52,13 +62,7 @@ void MyHouseLevel::Loading()
 
 
 	LoadMapObject();
-	//Inventory_->AllUpdateOff();
-}
-
-void MyHouseLevel::LevelChangeStart()
-{
-
-	BgmPlayer.Stop();
+	//BgmPlayer.Stop();
 
 
 }
@@ -98,7 +102,13 @@ void MyHouseLevel::LoadMapObject()
 				break;
 		
 
-			//	break;
+			case MYHOUSE_OBJECT_TILE::MOVE_FARM:
+
+				MapObject_.push_back(CreateActor<MoveFarm>((int)PLAYLEVEL::TOPOBJECT));
+				ThisIter = --MapObject_.end();
+				(*ThisIter)->getRenderer()->CameraEffectOff();
+
+				break;
 			default:
 				break;
 			}

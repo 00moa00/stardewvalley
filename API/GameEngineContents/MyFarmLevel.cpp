@@ -6,6 +6,7 @@
 #include "SmallWood2.h"
 #include "PlayerHouse.h"
 #include "Block.h"
+#include "MoveHouse.h"
 
 #include <GameEngineBase/GameEngineTime.h>
 
@@ -20,32 +21,36 @@ MyFarmLevel::MyFarmLevel()
 	Iter(MapObject_.begin())
 
 {
+
+	SetName("MyFarmLevel");
+
+
+	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PLAYLEVEL::ENERGYFRAME);
+	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
+	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
 }
 
 MyFarmLevel::~MyFarmLevel()
 {
+
 }
 
 void MyFarmLevel::Loading()
 {
-
 	
-	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
-	
-	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PLAYLEVEL::ENERGYFRAME);
-	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
-	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
-
-	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
-	BackGround_->GetRenderer()->SetImage("FarmBack.bmp");
-	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
-
-	LoadMapObject();
-	//Inventory_->AllUpdateOff();
 }
 
 void MyFarmLevel::LevelChangeStart()
 {
+
+
+	BackGround_->GetRenderer()->SetImage("FarmBack.bmp");
+	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
+
+	LoadMapObject();
+
 	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	Time = 5.0f;
 
@@ -110,9 +115,9 @@ void MyFarmLevel::LoadMapObject()
 			case OBJECT_TILE::WEED2:
 				break;
 
-			case OBJECT_TILE::MY_HOUSE :
+			case OBJECT_TILE::MOVE_HOUSE :
 
-			//	MapObject_.push_back(CreateActor<PlayerHouse>((int)PLAYLEVEL::OBJECT));
+				MapObject_.push_back(CreateActor<MoveHouse>((int)PLAYLEVEL::OBJECT));
 				
 				break;
 

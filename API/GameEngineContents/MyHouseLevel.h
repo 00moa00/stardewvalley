@@ -25,8 +25,9 @@ enum class MYHOUSE_OBJECT_TILE {
 	HITTER,
 	TABLE,
 	CHAIR,
+	MOVE_FARM = 28,
 	BLOCK = 29,
-	MOVEFARM,
+
 }; 
 
 // Ό³Έν :

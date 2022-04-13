@@ -9,6 +9,10 @@
 #include "PlayerEnum.h"
 
 
+std::string Player::CurrentLevel_ = "";
+std::string Player::PrevLevel_ = "";
+
+
 //PLAYERSTATE Player::PlayerState_ = PLAYERSTATE::INIT;
 //GameEngineRenderer* Player::PlayerRenderer_ = nullptr;
 //GameEngineCollision* Player::PlayerCollider_ = nullptr;
@@ -38,13 +42,23 @@ Player::Player()
 
 Player::~Player() 
 {
+	CurrentLevel_ = "";
 }
 
 void Player::Start()
 {
 	//------< ÃÊ±âÈ­ >------------------------------------------------------------------
 
-	SetPosition({FARM_SIZE_WEIGHT -400.f, (FARM_SIZE_WEIGHT / 2 )-700.f});
+
+	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
+	FixedPlayerColl_ = GetLevel()->CreateActor<FixedPlayerColl>((int)PLAYLEVEL::MOUSE);
+
+
+
+	CurrentLevel_ = GetCurrentLevel();
+	SetPlayerStartPos();
+
 	SetScale({ 40, 20 });
 
 	PlayerRenderer_ = CreateRenderer();
@@ -52,13 +66,8 @@ void Player::Start()
 
 	PlayerCollider_ = CreateCollision("Player", { 48, 96 });
 
-	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
-	//MapColl_ = GetLevel()->CreateActor<MapColl>((int)PLAYLEVEL::INVENTORY);
-
-	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
 	Mouse_->Renderer()->CameraEffectOff();
 
-	FixedPlayerColl_ = GetLevel()->CreateActor<FixedPlayerColl>((int)PLAYLEVEL::MOUSE);
 
 	Hoe_ = Inventory_->NewItem<Hoe>(float4 {0,24.f});
 
@@ -104,6 +113,7 @@ void Player::Start()
 void Player::Update()
 {
 	PlayerDirCheck();
+	//PlayerCollCheck();
 	SetCamera();
 
 	switch (PlayerState_)
@@ -167,7 +177,12 @@ void Player::Update()
 
 	if (MoveFarmCollision()) {
 
-		GameEngine::GetInst().ChangeLevel("MyFarm");
+		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
+	}
+
+	if (MoveHouseCollision()) {
+
+		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	}
 
 
@@ -208,17 +223,16 @@ void Player::PlayerWalk() {
 	NextPos = GetPosition() + (Move * GameEngineTime::GetDeltaTime() * Speed_);
 	CheckPos += NextPos;
 
+	
+
+	int Color = MapColImage_->GetImagePixel(CheckPos);
+
+	if ((RGB(0, 0, 0) != Color ) && BreakMove_ == false)
 	{
-
-		int Color = MapColImage_->GetImagePixel(CheckPos);
-
-		if ((RGB(0, 0, 0) != Color ) && BreakMove_ == false)
-		{
-			SetMove(Move * GameEngineTime::GetDeltaTime() * Speed_);
-		}
-
-
+		SetMove(Move * GameEngineTime::GetDeltaTime() * Speed_);
 	}
+
+	
 }
 
 bool Player::isStop()
@@ -337,30 +351,61 @@ void Player::PlayerCollCheck()
 	float4 CheckPos ;
 
 	float4 NextPos = GetPosition() + (MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-	CheckPos += NextPos;
+
+
+	//if (float4::DOWN.CompareInt2D(MoveDir_))
+	//{
+	//	NextPos += float4(0.0f, 24.0f);
+	//}
+	//if (float4::RIGHT.CompareInt2D(MoveDir_))
+	//{
+	//	NextPos += float4(24.0f, 0.0f);
+	//}
+	//if (float4::LEFT.CompareInt2D(MoveDir_))
+	//{
+	//	NextPos += float4(-24.0f, 0.0f);
+	//}
+	//if (float4::UP.CompareInt2D(MoveDir_))
+	//{
+	//	NextPos += float4(0.0f, 24.0f);
+	//}
+
+	CheckPos = NextPos;
 
 	int Color = MapColImage_->GetImagePixel(CheckPos);
 
-	if (RGB(0, 255, 255) == Color)
-	{
-		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
-	}
 
 }
 
 void Player::SetColl()
 {
 
-	if (GetCurrentLevel() == "MyHouseLevel") {
+	if (CurrentLevel_ == "MyHouseLevel") {
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 
 	}
 
 
-	if (GetCurrentLevel() == "MyFarmLevel") {
+	if (CurrentLevel_ == "MyFarmLevel") {
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
 
 	}
+}
+
+void Player::SetPlayerStartPos()
+{
+
+	if (GetCurrentLevel() == "MyFarmLevel") {
+		SetPosition({ FARM_SIZE_WEIGHT - 400.f, (FARM_SIZE_HEIGHT / 2) - 700.f });
+
+	}
+
+	if (GetCurrentLevel() == "MyHouseLevel") {
+		SetPosition({ HOUSE_SIZE_WEIGHT /2, HOUSE_SIZE_HEIGHT / 2});
+
+	}
+
+
 }
 
 

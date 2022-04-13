@@ -33,6 +33,8 @@ enum class OBJECT_TILE {
 	WEED1,
 	WEED2,
 	MY_HOUSE,
+	MOVE_HOUSE = 27,
+	MOVE_FARM = 28,
 	BLOCK = 29,
 };
 

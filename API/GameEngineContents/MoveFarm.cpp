@@ -11,10 +11,10 @@ MoveFarm::~MoveFarm()
 void MoveFarm::Start()
 {
 	ItemRenderer_ = CreateRenderer("block.bmp");
-	//ItemRenderer_->CameraEffectOff();
+	
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	//SetScale({ 48.f, 48.f });
-	ItemCollider_ = CreateCollision("MoveFarm", { 48, 24 });
+	ItemCollider_ = CreateCollision("MoveFarm", { 48, 10 });
 	ItemType_ = ITEMTYPE::BLOCK;
 }
 
