@@ -6,7 +6,7 @@
 #include "MenuExit.h"
 #include "InventroyBox.h"
 #include "WildHorseradish.h"
-#include "RendererEnum.h"
+#include "RendererData.h"
 #include "InventoryCurrentFrame.h"
 #include "Mouse.h"
 #include "Player.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RendererEnum.h"
+#include "RendererData.h"
 #include <GameEngine/GameEngineActor.h>
 #include "PlayerData.h"
 #include "Hoe.h"
@@ -153,7 +153,7 @@ private:
 	void PlayerCollCheck();
 	void ChangeLevelAndColl();
 	void SetPlayerStartPos();
-
+	void CreateDirtTile();
 	void ChangeTile();
 
 	std::string GetCurrentLevel()

@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 
-#include "GameData.h"
+#include "TileData.h"
 
 #include "PlayerEnergyBar.h"
 #include "PlayerEnergyFrame.h"
@@ -9,7 +9,7 @@
 #include "BackGround.h"
 #include "Player.h"
 
-#include "RendererEnum.h"
+#include "RendererData.h"
 #include "Inventory.h"
 #include "Items.h"
 #include "Mouse.h"

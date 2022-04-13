@@ -37,6 +37,8 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
    
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
+  //  int *a= new int(0);
+
    // _CrtSetBreakAlloc(22389);
     GameEngine::Start<StardewValley>();
 

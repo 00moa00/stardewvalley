@@ -226,7 +226,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerData.h" />
-    <ClInclude Include="PlayerEnum.h" />
+    <ClInclude Include="PlayerSpriteData.h" />
     <ClInclude Include="IntroLevel.h">
       <SubType>
       </SubType>
@@ -279,7 +279,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="RendererEnum.h" />
+    <ClInclude Include="RendererData.h" />
     <ClInclude Include="RightArrow.h">
       <SubType>
       </SubType>
@@ -304,6 +304,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TileData.h" />
     <ClInclude Include="TitleBackGround.h" />
     <ClInclude Include="TitleCloud.h" />
     <ClInclude Include="TitleLevel.h">
@@ -318,7 +319,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ToolEnum.h" />
+    <ClInclude Include="ToolData.h" />
     <ClInclude Include="TownLevel.h">
       <SubType>
       </SubType>

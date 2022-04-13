@@ -6,8 +6,8 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
 
-#include "PlayerEnum.h"
-
+#include "PlayerSpriteData.h"
+#include "TileData.h"
 
 std::string Player::CurrentLevel_ = "";
 std::string Player::PrevLevel_ = "";
@@ -110,6 +110,7 @@ void Player::Update()
 	PlayerDirCheck();
 	SetCamera();
 	ChangeTile();
+
 	switch (PlayerState_)
 	{
 	case PLAYERSTATE::COLLINIT:
@@ -155,17 +156,7 @@ void Player::Update()
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 		
-			float4 Length = MoveDir_ ;
-			float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y  };
-
-			FarmTile* Tile = TileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
-				, "hoeDirt.bmp", 0, (int)PLAYLEVEL::OBJECT);
-			Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
-
-			TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
-			int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
-
-			TileList_.insert(std::make_pair(ChangeIndex,Tile));
+			
 		
 
 			PlayerState_ = PLAYERSTATE::INIT;
@@ -181,6 +172,7 @@ void Player::Update()
 
 		if (isStop())
 		{
+			CreateDirtTile();
 			PlayerState_ = PLAYERSTATE::INIT;
 		}
 
@@ -407,133 +399,40 @@ void Player::SetPlayerStartPos()
 
 
 
-
 }
 
-void Player::ChangeTile()
+void Player::CreateDirtTile()
 {
+	float4 Length = MoveDir_;
 
-	//위치 초기화
-	//std::map<int, FarmTile*>::iterator StartIter = TileList_.begin();
-	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
-
-	//for (; StartIter != EndIter; ++StartIter)
-	//{
-
-	//}
-
-	//int i;
-
-	//std::map<int, FarmTile*>::iterator FindLeftIter;
-	//std::map<int, FarmTile*>::iterator FindThisIter;
-	//std::map<int, FarmTile*>::iterator FindRightIter;
-
-	//switch (TileChangeState_)
-	//{
-	//case TILE_CHANGE::INIT:
-
-	//	i = 0;
-
-
-	//	TileChangeState_ = TILE_CHANGE::THIS_CHECK;
-	//	break;
-
-	//case TILE_CHANGE::THIS_CHECK:
-
-	//	FindLeftIter = TileList_.find(i - 1);
-	//	FindThisIter = TileList_.find(i);
-	//	FindRightIter = TileList_.find(i + 1);
-
-	//	//현재 찾으려는 타일이 없으면 다음 타일 탐색
-	//	if (FindThisIter == EndIter)
-	//	{
-	//		++i;
-	//	}
-
-	//	//있다면 왼쪽 체크
-	//	else
-	//	{
-	//		TileChangeState_ = TILE_CHANGE::LEFT_CHECK;
-	//	}
-
-	//	break;
-
-	//case TILE_CHANGE::LEFT_CHECK:
-
-	//	//없다면 타일맵을 바꿀 필요가 없다.
-	//	if (FindLeftIter != EndIter)
-	//	{
-	//		++i;
-	//		TileChangeState_ = TILE_CHANGE::THIS_CHECK;
-	//	}
-
-	//	//왼쪽에 있거나 오른쪽에 있다면 
-
-	//	else
-	//	{
-	//		TileChangeState_ = TILE_CHANGE::RIGHT_CHECK;
-	//	}
-
-	//	break;
-
-	//case TILE_CHANGE::RIGHT_CHECK:
-
-	//	//없다면 타일맵을 바꿀 필요가 없다.
-	//	if (FindLeftIter != EndIter)
-	//	{
-	//		++i;
-	//		TileChangeState_ = TILE_CHANGE::THIS_CHECK;
-	//	}
-
-	//	break;
-
-	//default:
-	//	break;
-	//}
-
-
-	for (int i = 0; i < FARM_CHIP_NUM_X * FARM_CHIP_NUM_Y; ++i) 
+	if (float4::DOWN.CompareInt2D(MoveDir_))
 	{
-
-		std::map<int, FarmTile*>::iterator FindLeftIter = TileList_.find(i-1);
-		std::map<int, FarmTile*>::iterator FindThisIter = TileList_.find(i);
-		std::map<int, FarmTile*>::iterator FindRightIter = TileList_.find(i+1);
-
-
-		//현재 찾으려는 타일이 없으면 패스
-		if (FindThisIter == EndIter) continue;
-
-		//case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
-		// 
-		//왼쪽이 없고 오른쪽이 있는경우
-		if (FindLeftIter == EndIter && FindRightIter != EndIter)
-		{
-			FindThisIter->second->GetRenderer()->SetIndex(1);
-
-		}
-
-
-		//case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
-
-		if (FindLeftIter != EndIter && FindRightIter == EndIter)
-		{
-			FindThisIter->second->GetRenderer()->SetIndex(3);
-
-		}
-
-
-		//case 3 왼쪽 오른쪽 둘 다 있는 경우
-		if (FindLeftIter != EndIter && FindRightIter != EndIter)
-		{
-			FindThisIter->second->GetRenderer()->SetIndex(2);
-
-		}
-
+		Length += float4(0.0f, 24.0f);
+	}
+	if (float4::RIGHT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(24.0f, 0.0f);
+	}
+	if (float4::LEFT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(-24.0f, 0.0f);
+	}
+	if (float4::UP.CompareInt2D(MoveDir_))
+	{
+		Length += float4(0.0f, 24.0f);
 	}
 
+	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
 
+	FarmTile* Tile = TileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
+		, "hoeDirt.bmp", 0, (int)PLAYLEVEL::OBJECT);
+	Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
+
+	TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+	TileList_.insert(std::make_pair(ChangeIndex, Tile));
 }
-
 
 
 void Player::DirAnimationChange()
@@ -549,8 +448,6 @@ void Player::DirAnimationChange()
 	{
 		return; 
 	}
-
-
 
 
 	PlayerRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
@@ -580,9 +477,230 @@ std::string Player::GetDirString()
 }
 
 
-//
-//void Player::SetInit()
-//{
-//	SetPosition(GameEngineWindow::GetScale().Half());
-//}
-//
+void Player::ChangeTile()
+{
+
+	//위치 초기화
+	//std::map<int, FarmTile*>::iterator StartIter = TileList_.begin();
+	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
+
+
+
+	for (int i = 0; i < FARM_CHIP_NUM_X * FARM_CHIP_NUM_Y; ++i)
+	{
+
+		std::map<int, FarmTile*>::iterator FindLeftIter = TileList_.find(i - 1);
+		std::map<int, FarmTile*>::iterator FindThisIter = TileList_.find(i);
+		std::map<int, FarmTile*>::iterator FindRightIter = TileList_.find(i + 1);
+		std::map<int, FarmTile*>::iterator FindTopIter = TileList_.find(i - FARM_CHIP_NUM_Y);
+		std::map<int, FarmTile*>::iterator FindBottomIter = TileList_.find(i + FARM_CHIP_NUM_Y);
+
+
+		//현재 찾으려는 타일이 없으면 패스
+		if (FindThisIter == EndIter) continue;
+
+		//------< 위 아래 아무것도 없을때 x축, 원라인 >------------------------------------------------------------------
+
+		if (FindTopIter == EndIter && FindBottomIter == EndIter)
+		{
+			//===================================================
+			//   case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
+			//===================================================
+
+			if (FindLeftIter == EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_LEFT));
+
+			}
+
+			//===================================================
+			//   case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_RIGHT));
+
+			}
+
+			//===================================================
+			//   case 3 왼쪽 오른쪽 둘 다 있는 경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_MIDDLE));
+
+			}
+
+
+		}
+
+		//------< 양 옆 아무것도 없을때 y축, 원라인 >------------------------------------------------------------------
+
+		if (FindLeftIter == EndIter && FindRightIter == EndIter)
+		{
+
+			//===================================================
+			//   case 1 위쪽 타일은 없는데 아래쪽 타일은 있는경우
+			//===================================================
+
+			if (FindTopIter == EndIter && FindBottomIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_TOP));
+
+			}
+
+
+			//===================================================
+			//   case 2 위쪽타일은 있는데 아래쪽 타일은 없는경우
+			//===================================================
+
+			if (FindTopIter != EndIter && FindBottomIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_MIDDLE));
+
+			}
+
+
+			//===================================================
+			//   case 3 위쪽 아래쪽 둘 다 있는 경우
+			//===================================================
+
+			if (FindTopIter != EndIter && FindBottomIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_BOTTOM));
+
+			}
+
+
+		}
+
+
+
+		//------< 아래는 있는데 위가 없을경우 >------------------------------------------------------------------
+
+
+		if (FindTopIter == EndIter && FindBottomIter != EndIter)
+		{
+
+			//===================================================
+			//   case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
+			//===================================================
+			if (FindLeftIter == EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_TOP));
+
+			}
+
+
+			//===================================================
+			//   case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_TOP));
+
+			}
+
+
+			//===================================================
+			//   case 3 왼쪽 오른쪽 둘 다 있는 경우
+			//===================================================
+			if (FindLeftIter != EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_TOP));
+
+			}
+
+
+		}
+
+		//------< 위는 있는데 아래는 없는 경우 >------------------------------------------------------------------
+
+		if (FindTopIter != EndIter && FindBottomIter == EndIter)
+		{
+
+			//===================================================
+			//   case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
+			//===================================================
+			if (FindLeftIter == EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_BOTTOM));
+
+			}
+
+
+			//===================================================
+			//   case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_BOTTOM));
+
+			}
+
+
+			//===================================================
+			//   case 3 왼쪽 오른쪽 둘 다 있는 경우
+			//===================================================
+			if (FindLeftIter != EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_BOTTOM));
+
+			}
+
+		}
+
+
+		//------< 위아래 둘다 있는 경우 >------------------------------------------------------------------
+
+		if (FindTopIter != EndIter && FindBottomIter != EndIter)
+		{
+
+			//===================================================
+			//   case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
+			//===================================================
+			if (FindLeftIter == EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_MIDDLE));
+
+			}
+
+
+			//===================================================
+			//   case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_MIDDLE));
+
+			}
+
+
+			//===================================================
+			//   case 3 왼쪽 오른쪽 둘 다 있는 경우
+			//===================================================
+			if (FindLeftIter != EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_MIDDLE));
+
+			}
+
+		}
+
+		//------< 위의 모든 경우에 속하지 않는다 >------------------------------------------------------------------
+
+		if (FindLeftIter == EndIter || FindRightIter == EndIter || FindTopIter == EndIter || FindBottomIter == EndIter)
+		{
+			continue;
+		}
+
+	}
+
+
+}
+

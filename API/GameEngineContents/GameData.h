@@ -14,14 +14,3 @@
 
 #define CHIP_SIZE 48.f
 
-enum class TILE_COLL {
-	INIT,
-	NOTACT,
-	COll,
-	RIGHTUP,
-	RIGHTDOWN,
-	LEFTUP,
-	LEFTDOWN,
-	FREE,
-
-};

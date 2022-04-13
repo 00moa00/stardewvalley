@@ -200,13 +200,13 @@
     <ClInclude Include="MyHouse.h">
       <Filter>Actor\03. Play\Buildings</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerEnum.h">
+    <ClInclude Include="PlayerSpriteData.h">
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Actor\03. Play\Global\Player</Filter>
     </ClInclude>
-    <ClInclude Include="RendererEnum.h">
+    <ClInclude Include="RendererData.h">
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
@@ -230,11 +230,8 @@
     <ClInclude Include="TownLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="ToolEnum.h">
+    <ClInclude Include="ToolData.h">
       <Filter>Actor\00. GlobalData</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerData.h">
-      <Filter>Actor\03. Play\Global\Player</Filter>
     </ClInclude>
     <ClInclude Include="GameData.h">
       <Filter>Actor\00. GlobalData</Filter>
@@ -310,6 +307,12 @@
     </ClInclude>
     <ClInclude Include="MoveHouse.h">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="TileData.h">
+      <Filter>Actor\00. GlobalData</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

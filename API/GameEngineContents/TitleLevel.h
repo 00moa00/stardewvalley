@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include "TitleLogo.h"
-#include "RendererEnum.h"
+#include "RendererData.h"
 #include "MenuExit.h"
 #include "MenuLoad.h"
 #include "MenuNewGame.h"
