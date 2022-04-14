@@ -8,6 +8,15 @@ GameEngineDirectory::GameEngineDirectory()
 	SetCurrentPath();
 }
 
+GameEngineDirectory::GameEngineDirectory(const std::string& _Path)
+{
+	Path_ = _Path;
+	if (false == IsExits())
+	{
+		MsgBoxAssert("존재하지 않는 폴더로 디렉토리를 초기화하려고 했습니다.");
+	}
+}
+
 GameEngineDirectory::~GameEngineDirectory()
 {
 }
@@ -58,7 +67,6 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _
 
 	if (Ext != "")
 	{
-		//대문자 변환 : 실수방지
 		GameEngineString::ToUpper(Ext);
 		if (std::string::npos == Ext.find("."))
 		{
@@ -67,12 +75,12 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _
 	}
 
 	std::vector<GameEngineFile> Return;
-
+	// 디렉토리까지 다나오니까 File
 	for (const std::filesystem::directory_entry& Entry : DirIter)
 	{
 		if (true == Entry.is_directory())
 		{
-
+			// 이때 재귀 돌려야죠.
 			continue;
 		}
 
@@ -82,7 +90,6 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _
 			std::string OtherExt = NewPath.GetExtension();
 			GameEngineString::ToUpper(OtherExt);
 
-			
 			if (OtherExt != Ext)
 			{
 				continue;
