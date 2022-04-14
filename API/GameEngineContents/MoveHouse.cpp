@@ -14,7 +14,7 @@ void MoveHouse::Start()
 	//ItemRenderer_->CameraEffectOff();
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	//SetScale({ 48.f, 48.f });
-	ItemCollider_ = CreateCollision("MoveHouse", { 48, 24 });
+	ItemCollider_ = CreateCollision("MoveHouse", { 48, 48 });
 	ItemType_ = ITEMTYPE::BLOCK;
 }
 

@@ -7,7 +7,8 @@
 #include "PlayerHouse.h"
 #include "Block.h"
 #include "MoveHouse.h"
-
+#include "MoveBusStop.h"
+#include "MoveForest.h"
 #include <GameEngineBase/GameEngineTime.h>
 
 MyFarmLevel::MyFarmLevel()
@@ -84,50 +85,66 @@ void MyFarmLevel::LoadMapObject()
                 y * CHIP_SIZE + CHIP_SIZE,
             };
 
-			OBJECT_TILE TileState_ = static_cast<OBJECT_TILE>(chip);
+			FARM_TILE TileState_ = static_cast<FARM_TILE>(chip);
 			std::list<Items*>::iterator ThisIter;
 
 			switch (TileState_)
 			{
-			case OBJECT_TILE::MAPLE_TREE:
+			case FARM_TILE::MAPLE_TREE:
 				break;
-			case OBJECT_TILE::PINE_TREE:
+			case FARM_TILE::PINE_TREE:
 				break;
-			case OBJECT_TILE::OAK_TREE:
+			case FARM_TILE::OAK_TREE:
 				break;
-			case OBJECT_TILE::MAHOGANI_TREE:
+			case FARM_TILE::MAHOGANI_TREE:
 				break;
-			case OBJECT_TILE::SMALL_STONE:
+			case FARM_TILE::SMALL_STONE:
 				MapObject_.push_back(CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT));
 			
 				break;
-			case OBJECT_TILE::BIG_STONE:
+			case FARM_TILE::BIG_STONE:
 				break;
-			case OBJECT_TILE::SMALL_WOOD1:
+			case FARM_TILE::SMALL_WOOD1:
 
 				MapObject_.push_back(CreateActor<SmallWood1>((int)PLAYLEVEL::OBJECT));
 				
 				break;
-			case OBJECT_TILE::SMAA_WOOD2:
+			case FARM_TILE::SMAA_WOOD2:
 				MapObject_.push_back(CreateActor<SmallWood2>((int)PLAYLEVEL::OBJECT));
 				
 				break;
-			case OBJECT_TILE::MIDDLE_WOOD:
+			case FARM_TILE::MIDDLE_WOOD:
 				break;
-			case OBJECT_TILE::BIG_WOOD:
+			case FARM_TILE::BIG_WOOD:
 				break;
-			case OBJECT_TILE::WEED1:
+			case FARM_TILE::WEED1:
 				break;
-			case OBJECT_TILE::WEED2:
+			case FARM_TILE::WEED2:
 				break;
 
-			case OBJECT_TILE::MOVE_HOUSE :
+
+			case FARM_TILE::MOVE_FOREST:
+
+				MapObject_.push_back(CreateActor<MoveForest>((int)PLAYLEVEL::OBJECT));
+
+				break;
+
+
+			case FARM_TILE::MOVE_BUSSTOP:
+
+				MapObject_.push_back(CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT));
+
+				break;
+
+			case FARM_TILE::MOVE_HOUSE :
 
 				MapObject_.push_back(CreateActor<MoveHouse>((int)PLAYLEVEL::OBJECT));
 				
 				break;
 
-			case OBJECT_TILE::BLOCK :
+		
+
+			case FARM_TILE::BLOCK :
 
 				//MapObject_.push_back(CreateActor<Block>((int)PLAYLEVEL::OBJECT));
 				break;

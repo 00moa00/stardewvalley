@@ -19,25 +19,6 @@
 #include <list>
 
 
-enum class OBJECT_TILE {
-	MAPLE_TREE = 0,
-	PINE_TREE,
-	OAK_TREE,
-	MAHOGANI_TREE,
-	SMALL_STONE,
-	BIG_STONE,
-	SMALL_WOOD1,
-	SMAA_WOOD2,
-	MIDDLE_WOOD,
-	BIG_WOOD,
-	WEED1,
-	WEED2,
-	MY_HOUSE,
-	MOVE_HOUSE = 27,
-	BLOCK = 29,
-};
-
-
 
 
 // Ό³Έν :

@@ -90,12 +90,12 @@ void MyHouseLevel::LoadMapObject()
                 y * CHIP_SIZE + CHIP_SIZE,
             };
 
-			MYHOUSE_OBJECT_TILE TileState_ = static_cast<MYHOUSE_OBJECT_TILE>(chip);
+			MYHOUSE_TILE TileState_ = static_cast<MYHOUSE_TILE>(chip);
 			std::list<Items*>::iterator ThisIter;
 
 			switch (TileState_)
 			{
-			case MYHOUSE_OBJECT_TILE::BAD_BOTTOM:
+			case MYHOUSE_TILE::BAD_BOTTOM:
 
 				MapObject_.push_back(CreateActor<BadBottom>((int)PLAYLEVEL::TOPOBJECT));
 				ThisIter = --MapObject_.end();
@@ -104,7 +104,7 @@ void MyHouseLevel::LoadMapObject()
 				break;
 		
 
-			case MYHOUSE_OBJECT_TILE::MOVE_FARM:
+			case MYHOUSE_TILE::MOVE_FARM:
 
 				MapObject_.push_back(CreateActor<MoveFarm>((int)PLAYLEVEL::TOPOBJECT));
 				ThisIter = --MapObject_.end();

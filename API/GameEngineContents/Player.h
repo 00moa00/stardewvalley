@@ -115,7 +115,8 @@ public:
 	}
 
 private:
-
+	float MapSizeX_;
+	float MapSizeY_;
 	float AnimationFrame_;
 	float Speed_;
 	float Energy_;
@@ -155,7 +156,7 @@ private:
 	void PlayerWalk();
 	void PlayerDirCheck();
 	void PlayerCollCheck();
-	void ChangeLevelAndColl();
+	void ChangeLevel();
 	void SetPlayerStartPos();
 	void CreateDirtTile();
 	void ChangeTile();
@@ -165,22 +166,6 @@ private:
 		return GetLevel()->GetNameConstRef();
 	}
 
-
-	bool PlayerMouseClickCollision() {
-
-		return (PlayerCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
-			&& (Mouse_->isMouseClick());
-	}
-
-	bool MoveFarmCollision() {
-
-		return (PlayerCollider_->CollisionResult("MoveFarm", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-	bool MoveHouseCollision() {
-
-		return (PlayerCollider_->CollisionResult("MoveHouse", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
 
 	float GetEnergy() {
 		return Energy_;
@@ -201,6 +186,40 @@ private:
 		Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
 	}
 
-	
+
+	bool PlayerMouseClickCollision() {
+
+		return (PlayerCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
+			&& (Mouse_->isMouseClick());
+	}
+
+	bool MoveFarmCollision() {
+
+		return (PlayerCollider_->CollisionResult("MoveFarm", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+	bool MoveHouseCollision() {
+
+		return (PlayerCollider_->CollisionResult("MoveHouse", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+
+	bool MoveBusStopCollision() {
+
+		return (PlayerCollider_->CollisionResult("MoveBusStop", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+
+	bool MoveTownCollision() {
+
+		return (PlayerCollider_->CollisionResult("MoveTown", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+
+	bool MoveBackForestCollision() {
+
+		return (PlayerCollider_->CollisionResult("MoveForest", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
 };
 

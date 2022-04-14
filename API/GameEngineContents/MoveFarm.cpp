@@ -14,7 +14,7 @@ void MoveFarm::Start()
 	
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	//SetScale({ 48.f, 48.f });
-	ItemCollider_ = CreateCollision("MoveFarm", { 48, 10 });
+	ItemCollider_ = CreateCollision("MoveFarm", { 48, 48 });
 	ItemType_ = ITEMTYPE::BLOCK;
 }
 

@@ -57,7 +57,7 @@
       <Filter>Actor\03. Play\Global\Player</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
-      <Filter>Actor\01. GlobalObject</Filter>
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>Actor\03. Play\Global\Inventory</Filter>
@@ -75,10 +75,10 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
-      <Filter>Actor\01. GlobalObject</Filter>
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="FixedPlayerColl.cpp">
-      <Filter>Actor\01. GlobalObject</Filter>
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="InventoryCurrentFrame.cpp">
       <Filter>Actor\03. Play\Global\Inventory</Filter>
@@ -141,13 +141,22 @@
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClCompile>
     <ClCompile Include="MapColl.cpp">
-      <Filter>Actor\01. GlobalObject</Filter>
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="MoveHouse.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClCompile>
-    <ClCompile Include="BussStopLevel.cpp">
+    <ClCompile Include="BusStopLevel.cpp">
       <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveBusStop.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveTown.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveForest.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +222,7 @@
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
-      <Filter>Actor\01. GlobalObject</Filter>
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>Actor\03. Play\Global\Inventory</Filter>
@@ -240,10 +249,10 @@
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
-      <Filter>Actor\01. GlobalObject</Filter>
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="FixedPlayerColl.h">
-      <Filter>Actor\01. GlobalObject</Filter>
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="InventoryCurrentFrame.h">
       <Filter>Actor\03. Play\Global\Inventory</Filter>
@@ -306,7 +315,7 @@
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClInclude>
     <ClInclude Include="MapColl.h">
-      <Filter>Actor\01. GlobalObject</Filter>
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="MoveHouse.h">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
@@ -317,8 +326,17 @@
     <ClInclude Include="PlayerData.h">
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
-    <ClInclude Include="BussStopLevel.h">
+    <ClInclude Include="BusStopLevel.h">
       <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveBusStop.h">
+      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveTown.h">
+      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveForest.h">
+      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -333,9 +351,6 @@
     </Filter>
     <Filter Include="Actor\00. GlobalData">
       <UniqueIdentifier>{908e33e0-26a8-407b-b705-f8e6fea6ba37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\01. GlobalObject">
-      <UniqueIdentifier>{b63f880a-300f-4acf-a371-24a83b8253d3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Actor\02. Title">
       <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
@@ -384,6 +399,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Global\Obejct\Item">
       <UniqueIdentifier>{53c2011e-28b5-42ab-8fdb-a1b3b96b3f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\01. GlobalActor">
+      <UniqueIdentifier>{b63f880a-300f-4acf-a371-24a83b8253d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

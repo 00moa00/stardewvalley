@@ -11,6 +11,58 @@ enum class TILE_COLL {
 
 };
 
+enum class MYHOUSE_TILE {
+
+	BAD_BOTTOM,
+	BAD,
+	TV,
+	HITTER,
+	TABLE,
+	CHAIR,
+	MOVE_FARM = 28,
+	BLOCK = 29,
+
+};
+
+enum class BUSSTOP_TILE {
+
+	MOVE_TOWN = 25,
+	MOVE_FARM = 28,
+
+};
+
+enum class TOWN_TILE {
+
+	MOVE_BUSSTOP = 26,
+
+};
+
+
+enum class FOREST_TILE {
+
+	MOVE_FARM = 28,
+};
+
+enum class FARM_TILE {
+	MAPLE_TREE = 0,
+	PINE_TREE,
+	OAK_TREE,
+	MAHOGANI_TREE,
+	SMALL_STONE,
+	BIG_STONE,
+	SMALL_WOOD1,
+	SMAA_WOOD2,
+	MIDDLE_WOOD,
+	BIG_WOOD,
+	WEED1,
+	WEED2,
+	MY_HOUSE,
+	MOVE_FOREST = 24,
+	MOVE_BUSSTOP = 26,
+	MOVE_HOUSE = 27,
+	BLOCK = 29,
+};
+
 
 enum class TILE_DIRT {
 	BASIC,			LEFT_TOP,		MIDDLE_TOP,		RIGHT_TOP,			BASIC_WET, LEFT_TOP_WET, MIDDLE_TOP_WET, RIGHT_TOP_WET,

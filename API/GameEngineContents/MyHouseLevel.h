@@ -18,17 +18,7 @@
 #include <list>
 
 
-enum class MYHOUSE_OBJECT_TILE {
-	BAD_BOTTOM,
-	BAD,
-	TV,
-	HITTER,
-	TABLE,
-	CHAIR,
-	MOVE_FARM = 28,
-	BLOCK = 29,
 
-}; 
 
 // Ό³Έν :
 class MyHouseLevel : public GameEngineLevel

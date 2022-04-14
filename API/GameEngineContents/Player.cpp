@@ -22,7 +22,7 @@ std::string Player::PrevLevel_ = "";
 
 Player::Player()
 	:
-	PlayerState_(PLAYERSTATE::COLLINIT),
+	PlayerState_(PLAYERSTATE::LEVELINIT),
 	AnimationFrame_(0.120f),
 	Speed_(150.f),
 	Energy_(150.f),
@@ -32,7 +32,10 @@ Player::Player()
 	Mouse_(nullptr),
 	ObjectColl_(false),
 	FarmingArea_(false),
-	MoveDir_(float4::DOWN)
+	MoveDir_(float4::DOWN),
+	MapSizeX_(0.f),
+	MapSizeY_(0.f)
+
 
 {
 	ArrAnimationName[static_cast<int>(PLAYERSTATE::INIT)] = "INIT";
@@ -123,19 +126,34 @@ void Player::Update()
 
 	switch (PlayerState_)
 	{
-	case PLAYERSTATE::COLLINIT:
+	case PLAYERSTATE::LEVELINIT:
 		
 		CurrentLevel_ = GetCurrentLevel();
 		Speed_ = 150.f;
 
+	
+
 		if (CurrentLevel_ == "MyFarmLevel") 
 		{
+			MapSizeX_ = FARM_SIZE_WEIGHT;
+			MapSizeY_ = FARM_SIZE_HEIGHT;
+
 			MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
 		}
 
 		if (CurrentLevel_ == "MyHouseLevel") 
 		{
+
+
 			MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+		}
+
+		if (CurrentLevel_ == "BusStopLevel")
+		{
+			MapSizeX_ = BUSSTOP_SIZE_WEIGHT;
+			MapSizeY_ = BUSSTOP_SIZE_HEIGHT;
+
+			MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
 		}
 
 		PlayerState_ = PLAYERSTATE::INIT;
@@ -143,7 +161,7 @@ void Player::Update()
 
 	case PLAYERSTATE::INIT:
 
-		ChangeLevelAndColl();
+		ChangeLevel();
 
 
 		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true)
@@ -243,11 +261,6 @@ void Player::PlayerWalk() {
 	}
 
 
-	
-	// if ((RGB(0, 255, 255) == Color))
-	//{
-	//	GameEngine::GetInst().ChangeLevel("MyHouseLevel");
-	//}
 
 	if ((RGB(0, 0, 255) == Color) )
 	{
@@ -321,8 +334,7 @@ void Player::SetCamera()
 	}
 
 	{
-		float MapSizeX = FARM_SIZE_WEIGHT;
-		float MapSizeY = FARM_SIZE_HEIGHT;
+
 
 
 		CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
@@ -331,17 +343,17 @@ void Player::SetCamera()
 		{
 			CameraPos_.x = 0;
 		}
-		if (CameraPos_.x >= MapSizeX - GameEngineWindow::GetInst().GetScale().ix())
+		if (CameraPos_.x >= MapSizeX_ - GameEngineWindow::GetInst().GetScale().ix())
 		{
-			CameraPos_.x = MapSizeX - GameEngineWindow::GetInst().GetScale().ix();
+			CameraPos_.x = MapSizeX_ - GameEngineWindow::GetInst().GetScale().ix();
 		}
 		if (CameraPos_.y <= 0)
 		{
 			CameraPos_.y = 0;
 		}
-		if (CameraPos_.y >= MapSizeY - GameEngineWindow::GetInst().GetScale().iy())
+		if (CameraPos_.y >= MapSizeY_ - GameEngineWindow::GetInst().GetScale().iy())
 		{
-			CameraPos_.y = MapSizeY - GameEngineWindow::GetInst().GetScale().iy();
+			CameraPos_.y = MapSizeY_ - GameEngineWindow::GetInst().GetScale().iy();
 		}
 
 		GetLevel()->SetCameraPos(CameraPos_);
@@ -405,20 +417,38 @@ void Player::PlayerCollCheck()
 
 }
 
-void Player::ChangeLevelAndColl()
+void Player::ChangeLevel()
 {
 	if (MoveFarmCollision()) 
 	{
-		PlayerState_ = PLAYERSTATE::COLLINIT;
+		PlayerState_ = PLAYERSTATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
 	}
 
 	if (MoveHouseCollision())
 	{
-		PlayerState_ = PLAYERSTATE::COLLINIT;
-
+		PlayerState_ = PLAYERSTATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	}
+
+	if (MoveBusStopCollision())
+	{
+		PlayerState_ = PLAYERSTATE::LEVELINIT;
+		GameEngine::GetInst().ChangeLevel("BusStopLevel");
+	}
+
+	//if (MoveHouseCollision())
+	//{
+	//	PlayerState_ = PLAYERSTATE::COLLINIT;
+	//	GameEngine::GetInst().ChangeLevel("MyHouseLevel");
+	//}
+
+	//if (MoveHouseCollision())
+	//{
+	//	PlayerState_ = PLAYERSTATE::COLLINIT;
+	//	GameEngine::GetInst().ChangeLevel("MyHouseLevel");
+	//}
+
 }
 
 void Player::SetPlayerStartPos()
@@ -490,7 +520,7 @@ void Player::DirAnimationChange()
 	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP_INIT) { return; }
 	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP) { return; }
 
-	if (PlayerState_ == PLAYERSTATE::COLLINIT) 
+	if (PlayerState_ == PLAYERSTATE::LEVELINIT)
 	{
 		return; 
 	}
