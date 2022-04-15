@@ -42,15 +42,6 @@ public:
 	}
 };
 
-enum class TILE_CHANGE
-{
-	INIT= 0,
-	THIS_CHECK ,
-	LEFT_CHECK,
-	RIGHT_CHECK,
-
-};
-
 
 class Inventory;
 class Player : public GameEngineActor
@@ -170,12 +161,14 @@ private:
 	void ChangeLevel();
 
 	//================================
-	//    업데이트 초기화, 체크
+	//    업데이트, 체크
 	//================================
 
 	void SetPlayerStartPos();
 	void CollInit();
 	void CheckTool();
+
+	void PlayerUpdate();
 
 	//================================
 	//    플레이어 기본

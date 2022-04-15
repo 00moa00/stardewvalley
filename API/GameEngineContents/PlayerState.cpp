@@ -332,6 +332,7 @@ void Player::CollInit()
 
 
 
+
 void Player::CheckTool()
 {
 
@@ -358,7 +359,6 @@ void Player::CheckTool()
 
 
 }
-
 
 
 void  Player::SetObjectColl(bool b)

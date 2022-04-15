@@ -149,6 +149,7 @@ void Player::Start()
 }
 
 
+
 void Player::Update()
 {
 
@@ -156,6 +157,32 @@ void Player::Update()
 	ObjectTileColl();
 	SetCamera();
 	ChangeTile();
+	PlayerUpdate();
+}
+
+void Player::Render()
+{
+
+}
+
+void Player::LevelChangeStart()
+{
+
+	//if(MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
+
+}
+
+void Player::LevelChangeEnd()
+{
+	if (MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
+	MainPlayer = this;
+}
+
+
+
+
+void Player::PlayerUpdate()
+{
 
 	switch (PlayerState_)
 	{
@@ -174,8 +201,8 @@ void Player::Update()
 		ChangeLevel();
 		MapObject_;
 
-		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true )
-		{ 
+		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true)
+		{
 			CheckTool();//툴에 맞게 스테이트 이동
 		}
 
@@ -233,25 +260,6 @@ void Player::Update()
 	default:
 		break;
 	}
-}
-
-void Player::Render()
-{
 
 }
-
-void Player::LevelChangeStart()
-{
-
-	//if(MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
-
-}
-
-void Player::LevelChangeEnd()
-{
-	if (MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
-	MainPlayer = this;
-}
-
-
 
