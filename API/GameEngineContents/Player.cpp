@@ -752,9 +752,7 @@ void Player::ChangeTile()
 
 			}
 
-
 		}
-
 
 
 		//------< 아래는 있는데 위가 없을경우 >------------------------------------------------------------------
@@ -871,13 +869,21 @@ void Player::ChangeTile()
 
 		}
 
-		//------< 위의 모든 경우에 속하지 않는다 >------------------------------------------------------------------
+		//------< 사방에 아무것도 없다면 >------------------------------------------------------------------
 
-		if (FindLeftIter == EndIter || FindRightIter == EndIter || FindTopIter == EndIter || FindBottomIter == EndIter)
+		if (FindLeftIter == EndIter && FindRightIter == EndIter && FindTopIter == EndIter && FindBottomIter == EndIter)
 		{
 			FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::BASIC) + Water);
 
 		}
+
+		//------< 이모든것에 속하지 않는다 >------------------------------------------------------------------
+
+		//if (FindLeftIter == EndIter || FindRightIter == EndIter || FindTopIter == EndIter || FindBottomIter == EndIter)
+		//{
+		//	return;
+
+		//}
 
 	}
 
