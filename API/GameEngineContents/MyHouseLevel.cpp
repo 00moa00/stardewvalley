@@ -115,7 +115,7 @@ void MyHouseLevel::LoadMapObject()
 
 				MapObject_.push_back(CreateActor<MoveFarm>((int)PLAYLEVEL::TOPOBJECT));
 				ThisIter = --MapObject_.end();
-				(*ThisIter)->getRenderer()->CameraEffectOff();
+				(*ThisIter)->GetRenderer()->CameraEffectOff();
 
 				break;
 			default:

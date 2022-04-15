@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include "Font.h"
 
 // Ό³Έν :
 class MainUI : public GameEngineActor
@@ -22,6 +23,8 @@ protected:
 
 private:
 	GameEngineRenderer* MainUI_;
+	Font* Font_;
 
+	int Money_;
 };
 

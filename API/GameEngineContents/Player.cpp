@@ -75,11 +75,14 @@ void Player::Start()
 {
 	//------< 액터 등록 >------------------------------------------------------------------
 
+	//Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::INVENTORY);
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
 
 	//------< 액터 초기화 >------------------------------------------------------------------
 
+	//Font_->ChangeNum(10);
+	//Font_->SetPosition(GameEngineWindow::GetInst().GetScale().Half());
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
@@ -145,7 +148,7 @@ void Player::Start()
 
 	PlayerRenderer_->ChangeAnimation("FRONT_INIT");
 	//PlayerMove_.SetFrontDir(true);
-	//LevelRegist("MainPlayer");
+	LevelRegist("MainPlayer");
 }
 
 

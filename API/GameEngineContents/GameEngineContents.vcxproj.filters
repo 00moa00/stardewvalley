@@ -179,6 +179,9 @@
     <ClCompile Include="PlayerTile.cpp">
       <Filter>Actor\03. Play\Global\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Actor\01. GlobalActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -373,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="Axe.h">
       <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

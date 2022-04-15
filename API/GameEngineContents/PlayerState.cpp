@@ -409,8 +409,14 @@ std::string  Player::GetCurrentLevel()
 }
 
 
-float  Player::GetEnergy() {
+float  Player::GetEnergy()
+{
 	return Energy_;
+}
+
+int Player::GetMoney()
+{
+	return Money_;
 }
 
 

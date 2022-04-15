@@ -47,17 +47,20 @@ public:
 		return HoldingMouse_;
 	}
 
-	bool MouseClickInventoryOut() {
+	bool MouseClickInventoryOut() 
+	{
 		return (isMouseClick() && CursorPos_.y < 600);
 	}
 
-	bool MouseInItem() {
+	bool MouseInItem()
+	{
 
 		return (MouseCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
 	}
 
 
-	bool MouseInBox() {
+	bool MouseInBox() 
+	{
 
 		return (MouseCollision_->CollisionResult("Box", ColList, CollisionType::Rect, CollisionType::Rect));
 

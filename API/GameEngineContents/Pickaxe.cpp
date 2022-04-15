@@ -16,8 +16,11 @@ void Pickaxe::Start()
 
 	///ItemRenderer_->SetPivot()
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
+	
 	ItemType_ = ITEMTYPE::TOOL;
 	ToolType_ = TOOLTYPE::PICKAXE;
+
+
 }
 
 void Pickaxe::Update()

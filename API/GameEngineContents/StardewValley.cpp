@@ -131,6 +131,18 @@ void StardewValley::GameInit()
 	GameEngineImage* HoeDirt = GameEngineImageManager::GetInst()->Find("hoeDirt.bmp");
 	HoeDirt->Cut({ 48, 48 });
 
+	//================================
+	//		폰트 블랙
+	//================================
+	GameEngineImage* Font = GameEngineImageManager::GetInst()->Find("font_colored.bmp");
+	Font->Cut({ 12, 21 });
+
+	//================================
+	//		폰트 블랙
+	//================================
+	GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
+	WhiteFont->Cut({ 12, 21 });
+
 
 	//------< 레벨 등록 >------------------------------------------------------------------
 

@@ -4,12 +4,13 @@
 #include <GameEngine/GameEngineRendererTileMap.h>
 
 #include "RendererData.h"
-#include"TileData.h"
+#include "TileData.h"
 #include "PlayerData.h"
 #include "Hoe.h"
 #include "Mouse.h"
 #include "Inventory.h"
 #include "GameData.h"
+#include "Font.h"
 
 #include <list>
 #include <map>
@@ -73,6 +74,8 @@ private:
 
 	const char* ArrAnimationName[static_cast<int>(PLAYER_UPDATE::MAX)];
 
+	int Money_;
+
 	float MapSizeX_;
 	float MapSizeY_;
 	float AnimationFrame_;
@@ -101,6 +104,7 @@ private:
 	TILE_COLL TileState_;
 	USE_TOOL UseToolState_;
 
+	//Font* Font_;
 	Mouse* Mouse_;
 	Hoe* Hoe_;
 	Inventory* Inventory_;
@@ -128,7 +132,9 @@ public:
 	std::string GetCurrentLevel();
 
 	PLAYER_UPDATE GetPlayerState();
+
 	float GetEnergy();
+	int GetMoney();
 
 	GameEngineRenderer* Renderer();
 	GameEngineImage* CollImage();

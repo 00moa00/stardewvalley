@@ -9,11 +9,13 @@
 
 #include "ItemCode.h"
 #include "ToolData.h"
+#include "Font.h"
 //#include "Player.h"
 
 // 설명 :
 
-enum class ITEMTYPE{
+enum class ITEMTYPE
+{
 
 	ITEM,
 	OBJECT,
@@ -22,7 +24,8 @@ enum class ITEMTYPE{
 
 };
 
-enum class TOOLTYPE {
+enum class TOOLTYPE 
+{
 
 	OTHER,
 	HOE,
@@ -32,98 +35,17 @@ enum class TOOLTYPE {
 
 };
 
+enum class ITEM_STATE
+{
+	INIT,
+	ADDITEM,
+};
+
 
 class Items : public GameEngineActor
 {
 public:
 
-	GameEngineCollision* getCollision() {
-
-		return ItemCollider_;
-	}
-	GameEngineRenderer* getRenderer() {
-
-		return ItemRenderer_; 
-	}
-
-	bool MouseOver() {
-
-		return (ItemCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-
-	bool IteminItem() {
-
-		return (ItemCollider_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-	bool IteminBox() {
-	
-
-		return (ItemCollider_->CollisionResult("Box", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-
-	bool playerVSobject() {
-
-
-		return (ItemCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-
-	bool MouseHoldItem() {
-		return MouseHoldItem_;
-	}
-	
-	bool IsWall(const float4 pos, const float4 scale,  float4 dir);
-
-
-	virtual void UpdateOff() {
-		this->Off();
-	}
-
-
-	int GetLeft() {
-		return GetPosition().ix() - GetScale().hix();
-	}
-
-	int GetRight() {
-		return GetPosition().ix() + GetScale().hix();
-	}
-
-	int GetTop() {
-		return GetPosition().iy() - GetScale().hiy();
-	}
-
-	int GetBottom() {
-		return GetPosition().iy() + GetScale().hiy();
-	}
-
-	void SetInBox(bool b) {
-		InBox = b;
-	}
-
-	bool GetInBox() {
-		return InBox;
-	}
-
-	ITEMTYPE GetItemType() {
-		return ItemType_;
-	}
-
-	TOOLTYPE GetToolType() {
-		return ToolType_;
-	}
-
-	const std::string& GetNameConstRef()
-	{
-		return Name_;
-	}
-
-	inline void SetName(std::string _Name)
-	{
-		Name_ = _Name;
-	}
 
 	// constrcuter destructer
 	Items();
@@ -136,19 +58,153 @@ public:
 	Items& operator=(Items&& _Other) noexcept = delete;
 
 
+
 protected:
 	std::vector<GameEngineCollision*> ColList;
 
 	GameEngineRenderer* ItemRenderer_;
-	GameEngineCollision* ItemCollider_ ;
-	bool MouseHoldItem_ ;
-	ITEMTYPE ItemType_ = ITEMTYPE::ITEM;
-	TOOLTYPE ToolType_ = TOOLTYPE::OTHER;
+	GameEngineCollision* ItemCollider_;
+	bool MouseHoldItem_;
+	ITEMTYPE ItemType_;
+	TOOLTYPE ToolType_;
 
 private:
+
 	bool InMouse;
 	bool InBox;
+
+	int Count_;
+
 	std::string Name_;
+
+	Font* Font_;
+
+	ITEM_STATE ItemState_;
+
+protected :
+
+	virtual void UpdateOff()
+	{
+		this->Off();
+	}
+
+
+private:
+	void Start() override;
+	void Update() override;
+
+public :
+
+	bool IsWall(const float4 pos, const float4 scale, float4 dir);
+
+	//================================
+	//     Getter
+	//================================
+
+	GameEngineCollision* GetCollision() {
+
+		return ItemCollider_;
+	}
+	GameEngineRenderer* GetRenderer() {
+
+		return ItemRenderer_;
+	}
+
+
+	int GetLeft()
+	{
+		return GetPosition().ix() - GetScale().hix();
+	}
+
+	int GetRight()
+	{
+		return GetPosition().ix() + GetScale().hix();
+	}
+
+	int GetTop()
+	{
+		return GetPosition().iy() - GetScale().hiy();
+	}
+
+	int GetBottom()
+	{
+		return GetPosition().iy() + GetScale().hiy();
+	}
+
+	bool GetInBox()
+	{
+		return InBox;
+	}
+
+	ITEMTYPE GetItemType()
+	{
+		return ItemType_;
+	}
+
+	TOOLTYPE GetToolType()
+	{
+		return ToolType_;
+	}
+
+	const std::string& GetNameConstRef()
+	{
+		return Name_;
+	}
+
+	bool MouseHoldItem()
+	{
+		return MouseHoldItem_;
+	}
+
+	//================================
+	//    Setter
+	//================================
+
+	void SetInBox(bool _b)
+	{
+		InBox = _b;
+	}
+
+	void SetItemState(ITEM_STATE _state)
+	{
+		ItemState_ = _state;
+	}
+
+	inline void SetName(std::string _Name)
+	{
+		Name_ = _Name;
+	}
+
+
+
+
+	//------< 마우스, 충돌 관련 >------------------------------------------------------------------
+
+
+	bool MouseOver()
+	{
+		return (ItemCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+
+	bool IteminItem() 
+	{
+
+		return (ItemCollider_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+	bool IteminBox() 
+	{
+
+		return (ItemCollider_->CollisionResult("Box", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+
+	bool playerVSobject() 
+	{
+
+		return (ItemCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
 
 };
 
