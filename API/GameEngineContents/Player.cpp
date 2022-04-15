@@ -52,7 +52,8 @@ Player::Player()
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::WATER)] = "WATER";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";
-
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "HANDITEM";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "HANDITEMWALK";
 
 }
 
@@ -75,14 +76,12 @@ void Player::Start()
 {
 	//------< 액터 등록 >------------------------------------------------------------------
 
-	//Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::INVENTORY);
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
+	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::ITEM);
 
 	//------< 액터 초기화 >------------------------------------------------------------------
 
-	//Font_->ChangeNum(10);
-	//Font_->SetPosition(GameEngineWindow::GetInst().GetScale().Half());
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
@@ -112,6 +111,27 @@ void Player::Start()
 	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK5, AnimationFrame_, true);
 	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK5, AnimationFrame_, true);
 	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, AnimationFrame_, true);
+
+
+
+	//================================
+	//     플레이어 손 번쩍! 대기
+	//================================
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HANDITEM", PLAYER::FRONT_HAND_INIT, PLAYER::FRONT_HAND_INIT, 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HANDITEM", PLAYER::RIGHT_HAND_INIT, PLAYER::RIGHT_HAND_INIT, 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HANDITEM", PLAYER::LEFT_HAND_INIT, PLAYER::LEFT_HAND_INIT, 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HANDITEM", PLAYER::BACK_HAND_INIT, PLAYER::BACK_HAND_INIT, 0.0f, false);
+
+
+	//================================
+	//     플레이어 이동 
+	//================================
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HANDITEMWALK", PLAYER::FRONT_WALK_HAND0, PLAYER::FRONT_WALK_HAND3, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HANDITEMWALK", PLAYER::RIGHT_WALK_HAND0, PLAYER::RIGHT_WALK_HAND5, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HANDITEMWALK", PLAYER::LEFT_WALK_HAND0, PLAYER::LEFT_WALK_HAND5, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HANDITEMWALK", PLAYER::BACK_WALK_HAND0, PLAYER::BACK_WALK_HAND3, AnimationFrame_, true);
+
+
 
 	//================================
 	//     플레이어 호미 사용
@@ -155,7 +175,6 @@ void Player::Start()
 
 void Player::Update()
 {
-
 	PlayerDirCheck();
 	ObjectTileColl();
 	SetCamera();
@@ -182,6 +201,21 @@ void Player::LevelChangeEnd()
 }
 
 
+void Player::ChangeHandItem()
+{
+	if (Inventory_->CurrentItem()->GetisPossibleHand() == true)
+	{
+		PlayerHandItem_->GetRenderer()->SetImage(( Inventory_->CurrentItem()->GetFilePath() ));
+		PlayerHandItem_->GetRenderer()->SetIndex((Inventory_->CurrentItem()->GetFileIndex()));
+
+	}
+
+	else
+	{
+		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
+
+	}
+}
 
 
 void Player::PlayerUpdate()
@@ -202,17 +236,33 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::INIT:
 
 		ChangeLevel();
-		MapObject_;
+		ChangeHandItem();
+
+
+
+		//손에 들 수 있는 아이템이라면 
+		if (Inventory_->CurrentItem()->GetisPossibleHand() == true)
+		{
+			PlayerState_ = PLAYER_UPDATE::HANDITEM;
+
+		}
+
+
+		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
 
 		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true)
 		{
 			CheckTool();//툴에 맞게 스테이트 이동
 		}
 
+
+		//이동키를 눌렀다면 이동스테이트로 변경
+
 		if (isMove())
 		{
 			PlayerState_ = PLAYER_UPDATE::WALK;
 		}
+
 
 		break;
 
@@ -246,10 +296,47 @@ void Player::PlayerUpdate()
 
 		break;
 
+	case PLAYER_UPDATE::HANDITEM:
+
+		ChangeLevel();
+		ChangeHandItem();
+
+		SetPlayerHandItemPos();
+
+		//손에 들 수 없는 아이템을 선택했다면 기본 상태로 돌아간다.
+		if (Inventory_->CurrentItem()->GetisPossibleHand() == false)
+		{
+			PlayerState_ = PLAYER_UPDATE::INIT;
+
+		}
+
+		if (isMove()
+			&& Inventory_->CurrentItem()->GetisPossibleHand() == true)
+		{
+			PlayerState_ = PLAYER_UPDATE::HANDITEMWALK;
+		}
+
+
+		break;
+
 
 	case PLAYER_UPDATE::WALK:
 
 		PlayerWalk();
+		SubEnergy();
+
+
+		if (isStop())
+		{
+			PlayerState_ = PLAYER_UPDATE::INIT;
+		}
+
+		break;
+
+	case PLAYER_UPDATE::HANDITEMWALK:
+
+		PlayerWalk();
+		SetPlayerHandItemPos();
 		SubEnergy();
 
 

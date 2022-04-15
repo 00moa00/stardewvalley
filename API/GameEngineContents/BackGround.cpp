@@ -16,7 +16,7 @@ BackGround::~BackGround()
 void BackGround::Start()
 {
 	//MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
-	Image_ = CreateRenderer();
+	Renderer = CreateRenderer();
 
 }
 

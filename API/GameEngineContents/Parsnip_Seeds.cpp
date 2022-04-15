@@ -10,21 +10,27 @@ Parsnip_Seeds::~Parsnip_Seeds()
 
 void Parsnip_Seeds::Start()
 {
+	isPossibleHand_ = true;
+
+	Name_ = "Parsnip_Seeds";
+	FilePath_ = "springobjects.bmp";
+
+	FileIndex_ = static_cast<size_t>(ITEM::PARSNIP_SEEDS);
+
 	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 	Font_->ChangeWhiteColor();
 
 	Font_->ChangeNumItem(1);
 	//Font_->SetPositionItem({ GetPosition() });
 
-	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::PARSNIP_SEEDS));
+	ItemRenderer_ = CreateRenderer(FilePath_);
+	ItemRenderer_->SetIndex(FileIndex_);
 	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
 	ItemType_ = ITEMTYPE::ITEM;
 
-	SetItemName("Parsnip_Seeds");
 }
 
 void Parsnip_Seeds::Update()

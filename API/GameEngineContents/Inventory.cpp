@@ -389,7 +389,8 @@ void Inventory::ItemMove()
 
 				//현재 아이템 저장
 				CurrentItem_ = PlayerItemListStartIter->second;
-
+				//Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+				//MainPlayer->ChangeHandItem();
 
 				//미니 상태에서 툴은 이동할 수 없다.
 				if ((CurrentInvenState_ == MINIPOPUP::MINI) &&

@@ -121,6 +121,7 @@ void Player::SetDirAnimation()
 }
 
 
+
 void Player::SetCamera()
 {
 	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
@@ -332,7 +333,6 @@ void Player::CollInit()
 
 
 
-
 void Player::CheckTool()
 {
 
@@ -429,6 +429,12 @@ void  Player::CopyList(std::list <Items*> _OtherList)
 
 void Player::SubEnergy() {
 	Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
+}
+
+void Player::SetPlayerHandItemPos()
+{
+	PlayerHandItem_->SetPosition({ this->GetPosition().x, this->GetPosition().y - 92.f });
+
 }
 
 

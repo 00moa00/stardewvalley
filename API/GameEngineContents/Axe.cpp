@@ -19,7 +19,7 @@ void Axe::Start()
 	ItemType_ = ITEMTYPE::TOOL;
 	ToolType_ = TOOLTYPE::AXE;
 
-	SetItemName("Axe");
+	Name_ = "Axe";
 
 }
 

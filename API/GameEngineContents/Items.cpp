@@ -7,10 +7,13 @@ Items::Items() :
 	ItemCollider_ (nullptr),
 	MouseHoldItem_ (false),
 	InMouse (false),
+	isPossibleHand_(false),
 	InBox (true),
+	FileIndex_(0),
 	Count_ (1),
 
 	Name_ ({""}),
+	FilePath_({""}),
 	ItemType_ (ITEMTYPE::ITEM),
 	ToolType_ (TOOLTYPE::OTHER),
 	ItemState_(ITEM_STATE::INIT)
@@ -32,7 +35,7 @@ void Items::Start()
 void Items::Update()
 {
 
-
+//	ItemRenderer_->GetImage()->;
 
 }
 
@@ -52,6 +55,7 @@ bool Items::IsWall(const float4 pos, const float4 scale, float4 dir)
 	{
 		return false;
 	}
+
 	if (OtherRight < GetLeft())
 	{
 		return false;

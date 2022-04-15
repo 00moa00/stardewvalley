@@ -55,9 +55,7 @@ public:
 	// delete Function
 	Items(const Items& _Other) = delete;
 	Items(Items&& _Other) noexcept = delete;
-	Items& operator=(const Items& _Other) = delete;
 	Items& operator=(Items&& _Other) noexcept = delete;
-
 
 
 protected:
@@ -65,24 +63,27 @@ protected:
 
 	GameEngineRenderer* ItemRenderer_;
 	GameEngineCollision* ItemCollider_;
-	bool MouseHoldItem_;
+
+	Font* Font_;
+
 	ITEMTYPE ItemType_;
 	TOOLTYPE ToolType_;
 	ITEM_STATE ItemState_;
 
-	Font* Font_;
 	int Count_;
+	int FileIndex_;
 
+	bool MouseHoldItem_;
+	bool isPossibleHand_;
+
+	std::string Name_;
+	std::string FilePath_;
+	
 
 private:
 
 	bool InMouse;
 	bool InBox;
-
-
-	std::string Name_;
-
-
 
 protected :
 
@@ -112,7 +113,10 @@ public :
 
 		return ItemRenderer_;
 	}
+	GameEngineRenderer& GetRendererLef() {
 
+		return *ItemRenderer_;
+	}
 
 	int GetLeft()
 	{
@@ -134,9 +138,19 @@ public :
 		return GetPosition().iy() + GetScale().hiy();
 	}
 
+	int GetFileIndex()
+	{
+		return FileIndex_;
+	}
+
 	bool GetInBox()
 	{
 		return InBox;
+	}
+
+	bool GetisPossibleHand()
+	{
+		return isPossibleHand_;
 	}
 
 	ITEMTYPE GetItemType()
@@ -147,6 +161,11 @@ public :
 	TOOLTYPE GetToolType()
 	{
 		return ToolType_;
+	}
+
+	const std::string& GetFilePath()
+	{
+		return FilePath_;
 	}
 
 	const std::string& GetItemNameConstRef()
@@ -162,6 +181,13 @@ public :
 	//================================
 	//    Setter
 	//================================
+
+
+	void SetRenderer(GameEngineRenderer& _Renderer) {
+
+		ItemRenderer_ = &_Renderer;
+	}
+
 
 	void AddCount()
 	{
@@ -184,7 +210,15 @@ public :
 		Name_ = _Name;
 	}
 
+	void SetFilePath(const std::string& _Path)
+	{
+		FilePath_ = _Path;
+	}
 
+	void SetFileIndex(int _FileIndex)
+	{
+		FileIndex_ = _FileIndex;
+	}
 
 
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------

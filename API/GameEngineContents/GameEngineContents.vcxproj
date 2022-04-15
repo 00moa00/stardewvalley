@@ -258,6 +258,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerData.h" />
+    <ClInclude Include="PlayerHandItem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayerSpriteData.h" />
     <ClInclude Include="IntroLevel.h">
       <SubType>
@@ -538,6 +542,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MyFarmLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerHandItem.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -19,7 +19,7 @@ public:
 
 	GameEngineRenderer* GetRenderer()
 	{
-		return Image_;
+		return Renderer;
 	};
 
 
@@ -33,6 +33,6 @@ protected:
 	//void Render() override;
 
 private:
-	GameEngineRenderer* Image_;
+	GameEngineRenderer* Renderer;
 };
 

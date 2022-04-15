@@ -185,6 +185,9 @@
     <ClCompile Include="Parsnip_Seeds.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Farming</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHandItem.cpp">
+      <Filter>Actor\03. Play\Global\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -385,6 +388,9 @@
     </ClInclude>
     <ClInclude Include="Parsnip_Seeds.h">
       <Filter>Actor\03. Play\Global\Obejct\Farming</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHandItem.h">
+      <Filter>Actor\03. Play\Global\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

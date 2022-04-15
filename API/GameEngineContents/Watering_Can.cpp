@@ -22,7 +22,7 @@ void Watering_Can::Start()
 	ItemType_ = ITEMTYPE::TOOL;
 	ToolType_ = TOOLTYPE::WATTERING_CAN;
 
-	SetItemName("Watering_Can");
+	Name_= "Watering_Can";
 
 }
 

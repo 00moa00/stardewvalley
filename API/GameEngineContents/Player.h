@@ -6,11 +6,13 @@
 #include "RendererData.h"
 #include "TileData.h"
 #include "PlayerData.h"
+#include "GameData.h"
+
 #include "Hoe.h"
 #include "Mouse.h"
 #include "Inventory.h"
-#include "GameData.h"
 #include "Font.h"
+#include "PlayerHandItem.h"
 
 #include <list>
 #include <map>
@@ -97,7 +99,8 @@ private:
 	GameEngineRendererTileMap* TileMap_;
 	GameEngineImage* MapColImage_;
 
-	Items* CurrentItem_;
+	//Items* HandItem_;
+	PlayerHandItem* PlayerHandItem_;
 	TOOLTYPE CurrentItemType_;
 
 	PLAYER_UPDATE PlayerState_;
@@ -157,11 +160,13 @@ public:
 
 	void CopyList(std::list <Items*> _OtherList);
 
+	void ChangeHandItem();
 
 
 private:
 
 	//------< 비공개 함수 >------------------------------------------------------------------
+
 
 	void SetCamera();
 	void ChangeLevel();
@@ -185,6 +190,7 @@ private:
 	void PlayerWalk();
 	void PlayerDirCheck();
 	void SubEnergy();
+	void SetPlayerHandItemPos();
 
 	//================================
 	//   애니메이션
@@ -208,8 +214,6 @@ private:
 	void CrushWood();
 
 
-private:
-
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------
 
 
@@ -220,6 +224,22 @@ private:
 	bool MoveBusStopCollision();
 	bool MoveTownCollision();
 	bool MoveBackForestCollision();
+
+	//------< 손에 들고 있는 아이템 >------------------------------------------------------------------
+
+	/*template<typename Actor>
+	Actor* HandItem( Items* _CurrentItem)
+	{
+		Actor* Item = new Actor();
+		 Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
+		Item->SetRenderer(_CurrentItem->GetRendererLef());
+		std::list<GameEngineActor*> Group;
+		Group.push_back(Item);
+		Item->GetRenderer()->CameraEffectOn();
+
+		++ItemCount_;
+		return Item;
+	}*/
 
 };
 

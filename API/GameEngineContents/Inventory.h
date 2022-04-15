@@ -119,6 +119,9 @@ public:
 	{
 		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
 
+
+		//가지고 있는 아이템이라면 생성하고 카운팅한다.
+
 		std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
 		std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
 
@@ -132,6 +135,7 @@ public:
 		}
 
 
+		//아이템 생성
 
 		std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
 		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
@@ -168,8 +172,6 @@ public:
 		return InventoryExit_->MouseClick();
 	}
 
-
-
 	void SetMiniInven(MINIPOPUP b) {
 		MiniState_ = b;
 	}
@@ -183,6 +185,11 @@ public:
 	Items* CurrentItem() {
 		return CurrentItem_;
 	}
+
+	Items& CurrentItemLef() {
+		return *CurrentItem_;
+	}
+
 	//bool GetisMiniInven() {
 	//	return isMiniInven_;
 	//}
