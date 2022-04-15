@@ -173,6 +173,12 @@
     <ClCompile Include="Axe.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Actor\03. Play\Global\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTile.cpp">
+      <Filter>Actor\03. Play\Global\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />

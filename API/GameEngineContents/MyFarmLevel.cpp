@@ -51,8 +51,8 @@ void MyFarmLevel::LevelChangeStart()
 	Player_->SetTileMap(&BackGround_->TileMap_);
 
 
-	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
-	Time = 5.0f;
+	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
+	//Time = 5.0f;
 }
 
 void MyFarmLevel::LevelChangeEnd()
@@ -174,7 +174,7 @@ void MyFarmLevel::Update()
 
 	if (0 >= Time)
 	{
-		BgmPlayer.Stop();
+	//	BgmPlayer.Stop();
 	}
 
 	

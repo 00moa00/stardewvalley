@@ -49,10 +49,8 @@ enum class TILE_CHANGE
 	LEFT_CHECK,
 	RIGHT_CHECK,
 
-
 };
 
-//class PlayerMove;
 
 class Inventory;
 class Player : public GameEngineActor
@@ -80,112 +78,25 @@ protected:
 	Player& operator=(Player&& _Other) noexcept = delete;
 
 private:
+
+
 	const char* ArrAnimationName[static_cast<int>(PLAYER_UPDATE::MAX)];
 
-	float4 CameraPos_;
-
-	//void moveX();
-	//void moveY();
-
-
-
-public:
-
-	//Inventory* GetInventory() {
-	//	return Inventory_;
-	//}
-
-
-	//void SetInventory(Inventory* i) {
-	//	Inventory_ = i;
-	//}
-
-	void PlayerDataSave();
-	TOOLTYPE CurrentItemType();
-
-	void SetSpeed(float f) 
-	{
-		Speed_ = f;
-	}
-
-	void SetObjectColl(bool b) 
-	{
-		ObjectColl_ = b;
-	}
-
-
-	bool GetObjectColl() 
-	{
-		return ObjectColl_;
-	}
-
-	void SetCurrentLevel(std::string s) 
-	{
-		CurrentLevel_ = s;
-	}
-
-	void SetPrevLevel(std::string s) 
-	{
-		PrevLevel_ = s;
-	}
-
-	float4 GetCurrentDir()
-	{
-		return MoveDir_;
-	}
-
-
-	inline void SetTileMap(GameEngineRendererTileMap* _TileMap)
-	{
-		TileMap_ = _TileMap;
-	}
-	
-	PLAYER_UPDATE GetPlayerState()
-	{
-		return PlayerState_;
-	}
-
-	bool GetUsingAxe()
-	{
-		return UsingAxe_;
-	}
-
-	void SetUsingAxe(bool b)
-	{
-		UsingAxe_ = b;
-	}
-
-	void CopyList(std::list <Items*> _OtherList)
-	{
-		std::copy(_OtherList.begin(), _OtherList.end(), std::back_inserter(MapObject_));
-	}
-
-
-	GameEngineRenderer* Renderer() {
-		return PlayerRenderer_;
-	}
-
-	GameEngineImage* CollImage() {
-		return MapColImage_;
-	}
-
-
-private:
 	float MapSizeX_;
 	float MapSizeY_;
 	float AnimationFrame_;
 	float Speed_;
 	float Energy_;
+
 	float4 MoveDir_;
 	float4 MovePrevDir_;
+	float4 CameraPos_;
 
 	bool FarmingArea_;
 	bool ObjectColl_;
 	bool UsingAxe_;
 	bool UsingPickaxe_;
 
-	std::vector<GameEngineCollision*> ColList;
-	std::map<int, FarmTile*> TileList_;
 
 	GameEngineRenderer* PlayerRenderer_;
 	GameEngineCollision* PlayerCollider_;
@@ -195,7 +106,6 @@ private:
 	Items* CurrentItem_;
 	TOOLTYPE CurrentItemType_;
 
-	TILE_CHANGE TileChangeState_;
 	PLAYER_UPDATE PlayerState_;
 	TILE_COLL TileState_;
 	USE_TOOL UseToolState_;
@@ -207,93 +117,110 @@ private:
 	static std::string CurrentLevel_;
 	static std::string PrevLevel_;
 
+
+	std::vector<GameEngineCollision*> ColList;
+	std::map<int, FarmTile*> TileList_;
 	std::list<Items*> MapObject_;
 	std::list<Items*>::iterator Iter;
 
+
+public:
+
+	//------< 공개 함수 >------------------------------------------------------------------
+
+
+	//================================
+	//     Getter
+	//================================
+
+	bool GetObjectColl();
+	std::string GetCurrentLevel();
+
+	PLAYER_UPDATE GetPlayerState();
+	float GetEnergy();
+
+	GameEngineRenderer* Renderer();
+	GameEngineImage* CollImage();
+
+
+	//================================
+	//    Setter
+	//================================
+
+	void SetObjectColl(bool b);
+	void SetCurrentLevel(std::string s);
+
+	TOOLTYPE CurrentItemType();
+	void SetPrevLevel(std::string s);
+	void SetTileMap(GameEngineRendererTileMap* _TileMap);
+
+	//================================
+	//    Etc
+	//================================
+
+	void CopyList(std::list <Items*> _OtherList);
+
+
+
 private:
 
+	//------< 비공개 함수 >------------------------------------------------------------------
 
-	bool isStop();
-	bool isMove();
-
-	void SetDirAnimation();
-	void DirAnimationChange();
 	void SetCamera();
-
-	void PlayerWalk();
-	void PlayerDirCheck();
-	float4 PlayerCollCheckPos();
 	void ChangeLevel();
+
+	//================================
+	//    업데이트 초기화, 체크
+	//================================
+
 	void SetPlayerStartPos();
 	void CollInit();
 	void CheckTool();
 
-	//타일
+	//================================
+	//    플레이어 기본
+	//================================
+
+	bool isStop();
+	bool isMove();
+	void PlayerWalk();
+	void PlayerDirCheck();
+	void SubEnergy();
+
+	//================================
+	//   애니메이션
+	//================================
+
+	void SetDirAnimation();
+	void DirAnimationChange();
+	std::string GetDirString();
+
+
+	//================================
+	//   충돌, 타일
+	//================================
+	float4 PlayerCollCheckPos();
+
+
 	void CreateDirtTile();
 	void CreateWaterTile();
 	void ChangeTile();
 	void ObjectTileColl();
 	void CrushWood();
 
-	std::string GetCurrentLevel()
-	{
-		return GetLevel()->GetNameConstRef();
-	}
+
+private:
+
+	//------< 마우스, 충돌 관련 >------------------------------------------------------------------
 
 
-	float GetEnergy() {
-		return Energy_;
-	}
+	bool PlayerMouseClickCollision();
 
-	void SetPlayerSpeed(float f) {
-		Speed_ = f;
-	}
-
-	float GetPlayerSpeed() {
-		return Speed_;
-	}
-
-
-	std::string GetDirString();
-
-	void SubEnergy() {
-		Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
-	}
-
-
-	bool PlayerMouseClickCollision() {
-
-		return (PlayerCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
-			&& (Mouse_->isMouseClick());
-	}
-
-	bool MoveFarmCollision() {
-
-		return (PlayerCollider_->CollisionResult("MoveFarm", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-	bool MoveHouseCollision() {
-
-		return (PlayerCollider_->CollisionResult("MoveHouse", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-
-	bool MoveBusStopCollision() {
-
-		return (PlayerCollider_->CollisionResult("MoveBusStop", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-
-	bool MoveTownCollision() {
-
-		return (PlayerCollider_->CollisionResult("MoveTown", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-
-	bool MoveBackForestCollision() {
-
-		return (PlayerCollider_->CollisionResult("MoveForest", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
+	bool MoveFarmCollision();
+	bool MoveHouseCollision();
+	bool MoveBusStopCollision();
+	bool MoveTownCollision();
+	bool MoveBackForestCollision();
 
 };
 

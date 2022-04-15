@@ -20,7 +20,7 @@ public:
 	
 	float Time;
 
-	GameEngineSoundPlayer BgmPlayer;
+	//GameEngineSoundPlayer BgmPlayer;
 
 protected:
 

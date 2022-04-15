@@ -60,11 +60,11 @@ void MyHouseLevel::LevelChangeStart()
 
 
 
-	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
+	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	Time = 5.0f;
 
 	LoadMapObject();
-	BgmPlayer.Stop();
+	//BgmPlayer.Stop();
 
 
 }
@@ -143,7 +143,7 @@ void MyHouseLevel::Update()
 
 	if (0 >= Time)
 	{
-		BgmPlayer.Stop();
+		//BgmPlayer.Stop();
 	}
 
 
