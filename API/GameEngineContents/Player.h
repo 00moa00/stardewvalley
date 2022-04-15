@@ -1,16 +1,20 @@
 #pragma once
 
-#include "RendererData.h"
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngine/GameEngineRendererTileMap.h>
+
+#include "RendererData.h"
+#include"TileData.h"
 #include "PlayerData.h"
 #include "Hoe.h"
 #include "Mouse.h"
 #include "Inventory.h"
 #include "GameData.h"
-//#include "FixedPlayerColl.h"
-#include <GameEngine/GameEngineRendererTileMap.h>
+
 #include <list>
 #include <map>
+#include <algorithm>
+#include <iterator>
 
 enum class TILE_STATE {
 	HOE_DIRT_CREATE,
@@ -97,29 +101,36 @@ public:
 	//}
 
 	void PlayerDataSave();
+	TOOLTYPE CurrentItemType();
 
-	void SetSpeed(float f) {
+	void SetSpeed(float f) 
+	{
 		Speed_ = f;
 	}
 
-	void SetObjectColl(bool b) {
+	void SetObjectColl(bool b) 
+	{
 		ObjectColl_ = b;
 	}
 
 
-	bool GetObjectColl() {
+	bool GetObjectColl() 
+	{
 		return ObjectColl_;
 	}
 
-	void SetCurrentLevel(std::string s) {
+	void SetCurrentLevel(std::string s) 
+	{
 		CurrentLevel_ = s;
 	}
 
-	void SetPrevLevel(std::string s) {
+	void SetPrevLevel(std::string s) 
+	{
 		PrevLevel_ = s;
 	}
 
-	float4 CurrentDir() {
+	float4 GetCurrentDir()
+	{
 		return MoveDir_;
 	}
 
@@ -128,6 +139,27 @@ public:
 	{
 		TileMap_ = _TileMap;
 	}
+	
+	PLAYERSTATE GetPlayerState()
+	{
+		return PlayerState_;
+	}
+
+	bool GetUsingAxe()
+	{
+		return UsingAxe_;
+	}
+
+	void SetUsingAxe(bool b)
+	{
+		UsingAxe_ = b;
+	}
+
+	void CopyList(std::list <Items*> _OtherList)
+	{
+		std::copy(_OtherList.begin(), _OtherList.end(), std::back_inserter(MapObject_));
+	}
+
 
 	GameEngineRenderer* Renderer() {
 		return PlayerRenderer_;
@@ -137,7 +169,6 @@ public:
 		return MapColImage_;
 	}
 
-	TOOLTYPE CurrentItemType();
 
 private:
 	float MapSizeX_;
@@ -150,6 +181,8 @@ private:
 
 	bool FarmingArea_;
 	bool ObjectColl_;
+	bool UsingAxe_;
+	bool UsingPickaxe_;
 
 	std::vector<GameEngineCollision*> ColList;
 	std::map<int, FarmTile*> TileList_;
@@ -164,6 +197,7 @@ private:
 
 	TILE_CHANGE TileChangeState_;
 	PLAYERSTATE PlayerState_;
+	TILE_COLL TileState_;
 
 
 	Mouse* Mouse_;
@@ -173,8 +207,10 @@ private:
 	static std::string CurrentLevel_;
 	static std::string PrevLevel_;
 
-private:
+	std::list<Items*> MapObject_;
+	std::list<Items*>::iterator Iter;
 
+private:
 
 
 	bool isStop();
@@ -186,7 +222,7 @@ private:
 
 	void PlayerWalk();
 	void PlayerDirCheck();
-	void PlayerCollCheck();
+	float4 PlayerCollCheckPos();
 	void ChangeLevel();
 	void SetPlayerStartPos();
 	void CollInit();
@@ -196,6 +232,8 @@ private:
 	void CreateDirtTile();
 	void CreateWaterTile();
 	void ChangeTile();
+	void ObjectTileColl();
+	void CrushWood();
 
 	std::string GetCurrentLevel()
 	{

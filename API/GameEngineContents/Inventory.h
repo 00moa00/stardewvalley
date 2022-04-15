@@ -188,7 +188,7 @@ private:
 
 	InventoryCurrentFrame* CurrentItemFrame_;
 
-	GameEngineRenderer* Inventroy_;
+	GameEngineRenderer* Inventory_;
 	// GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
 	Items* CurrentItem_;
 

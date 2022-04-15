@@ -128,6 +128,7 @@ void MyHouseLevel::LoadMapObject()
      
         }
     }
+	Player_->CopyList(MapObject_);
 
 }
 
@@ -145,47 +146,6 @@ void MyHouseLevel::Update()
 		BgmPlayer.Stop();
 	}
 
-	switch (TileState_)
-	{
-	case TILE_COLL::INIT :
-		Iter = MapObject_.begin();
-		TileState_ = TILE_COLL::NOTACT;
-
-	break;
-
-	case TILE_COLL::NOTACT :
-	
-
-		for (; Iter != MapObject_.end(); ++Iter) 
-		{
-
-			if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir()) == true) {
-				
-				Player_->SetSpeed(0.f);
-				//TileState_ = TILE_COLL::COll;
-				break;
-			}
-
-		}
-
-
-		if (Iter == MapObject_.end()) {
-			Iter = MapObject_.begin();
-		}
-		break;
-
-	case TILE_COLL::COll:
-
-
-		if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir())==false)
-		{
-			Player_->SetSpeed(150.f);
-
-			Iter = MapObject_.begin();
-			TileState_ = TILE_COLL::NOTACT;
-		}
-
-		break;
 
 
 	}
@@ -198,4 +158,4 @@ void MyHouseLevel::Update()
 	//{
 	//	GameEngine::GetInst().ChangeLevel("Title");
 	//}
-}
+

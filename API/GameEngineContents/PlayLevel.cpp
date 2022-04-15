@@ -9,7 +9,6 @@ PlayLevel::PlayLevel()
 	PlayerEnergyBar_(nullptr),
 	PlayerEnergyFrame_(nullptr),
 	Player_(nullptr),
-	TileState_(TILE_COLL::INIT),
 	MainUI_(nullptr)
 {
 

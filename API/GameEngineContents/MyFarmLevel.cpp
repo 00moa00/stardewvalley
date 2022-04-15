@@ -155,6 +155,9 @@ void MyFarmLevel::LoadMapObject()
         }
     }
 
+	Player_->CopyList(MapObject_);
+
+
 }
 
 
@@ -174,125 +177,6 @@ void MyFarmLevel::Update()
 		BgmPlayer.Stop();
 	}
 
-	switch (TileState_)
-	{
-	case TILE_COLL::INIT :
-		Iter = MapObject_.begin();
-		TileState_ = TILE_COLL::NOTACT;
-
-	break;
-
-	case TILE_COLL::NOTACT :
 	
 
-		for (; Iter != MapObject_.end(); ++Iter) {
-
-			if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir()) == true) {
-				Player_->SetSpeed(0.0f);
-				
-				TileState_ = TILE_COLL::COll;
-				break;
-			}
-
-		}
-
-
-		if (Iter == MapObject_.end()) {
-			Iter = MapObject_.begin();
-		}
-		break;
-
-	case TILE_COLL::COll:
-
-
-		/*if (true == GameEngineInput::GetInst()->IsPress("MoveRight") && true == GameEngineInput::GetInst()->IsPress("MoveDown")) {
-			TileState_ = TILE_COLL::RIGHTDOWN; }
-		
-
-
-		if (true == GameEngineInput::GetInst()->IsPress("MoveRight") && true == GameEngineInput::GetInst()->IsPress("MoveUp")) {
-			TileState_ = TILE_COLL::RIGHTUP;
-		}
-
-
-		if (true == GameEngineInput::GetInst()->IsPress("MoveLeft") && true == GameEngineInput::GetInst()->IsPress("MoveDown")) {
-			TileState_ = TILE_COLL::LEFTDOWN;
-		}
-
-
-
-		if (true == GameEngineInput::GetInst()->IsPress("MoveLeft") && true == GameEngineInput::GetInst()->IsPress("MoveUp")) {
-			TileState_ = TILE_COLL::LEFTUP;
-		}
-
-*/
-
-
-		if ((*Iter)->IsWall(Player_->GetPosition(), Player_->GetScale(), Player_->CurrentDir())==false) {
-			Player_->SetSpeed(150.f);
-			//Player_->SetBreakY(false);
-
-			Iter = MapObject_.begin();
-			TileState_ = TILE_COLL::NOTACT;
-		}
-
-		break;
-
-
-	//case TILE_COLL::RIGHTDOWN:
-
-	//	Player_->SetBreakY(true);
-	//	if ((true == GameEngineInput::GetInst()->IsFree("MoveDown")) && (Player_->GetBreakY())) {
-
-	//		Player_->SetBreakY(false);
-	//		TileState_ = TILE_COLL::COll;
-	//	}
-
-	//	
-	//	break;
-	//case TILE_COLL::RIGHTUP:
-
-	//	Player_->SetBreakY(true);
-	//	if ((true == GameEngineInput::GetInst()->IsFree("MoveUp")) && (Player_->GetBreakY())) {
-
-	//		Player_->SetBreakY(false);
-	//		TileState_ = TILE_COLL::COll;
-	//	}
-
-
-	//	break;
-
-
-
-
-	//case TILE_COLL::LEFTDOWN:
-
-	//	Player_->SetBreakY(true);
-	//	if ((true == GameEngineInput::GetInst()->IsFree("MoveDown")) && (Player_->GetBreakY())) {
-
-	//		Player_->SetBreakY(false);
-	//		TileState_ = TILE_COLL::COll;
-	//	}
-
-
-	//case TILE_COLL::LEFTUP:
-
-
-	//	Player_->SetBreakY(true);
-	//	if ((true == GameEngineInput::GetInst()->IsFree("MoveUp")) && (Player_->GetBreakY())) {
-
-	//		Player_->SetBreakY(false);
-	//		TileState_ = TILE_COLL::COll;
-	//	}
-
-	}
-
-
-
-	//플레이어가 행동 할때마다 스테미너 감소. 테스트용
-	////PlayerEnergyBar_->SubEnergyBar(PlayerBody_->GetEnergy());
-	//		if (GetAsyncKeyState(MK_LBUTTON))
-	//{
-	//	GameEngine::GetInst().ChangeLevel("Title");
-	//}
 }

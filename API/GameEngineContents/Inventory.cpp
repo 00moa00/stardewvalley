@@ -24,6 +24,9 @@ Inventory::Inventory()
 	InventoryExit_(nullptr),
 	Mouse_(nullptr),
 	CurrentItem_(nullptr ),
+	Hoe_(nullptr),
+	Inventory_(nullptr),
+	Pickaxe_(nullptr),
 	CurrentInvenState_(MINIPOPUP::INIT),
 	MiniState_(MINIPOPUP::MINI),
 	MoveState_(ITEMMOVE::INIT),
@@ -43,8 +46,8 @@ Inventory::~Inventory()
 void Inventory::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-	Inventroy_ = CreateRenderer("inventory.bmp");
-	Inventroy_->CameraEffectOff();
+	Inventory_ = CreateRenderer("inventory.bmp");
+	Inventory_->CameraEffectOff();
 
 	CurrentItemFrame_ = GetLevel()->CreateActor<InventoryCurrentFrame>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
 
@@ -58,8 +61,8 @@ void Inventory::Start()
 	//게임 첫 시작은 숨기기
 	//CurrentItemFrame_->SetPosition({-50.f, -50.f});
 	float4 Position;
-	Position.x = Inventroy_->GetScale().x  + 250.f;
-	Position.y = Inventroy_->GetScale().y  + 50.f;
+	Position.x = Inventory_->GetScale().x  + 250.f;
+	Position.y = Inventory_->GetScale().y  + 50.f;
 	InventoryExit_->SetPosition({ Position.x ,Position.y });
 	
 	//WildHorseradish2_ = NewItem<WildHorseradish>();
@@ -546,7 +549,7 @@ void Inventory::InvenPopUp()
 		CurrentItemFrame_->On();
 
 
-		Inventroy_->SetImage("MiniInven.bmp");
+		Inventory_->SetImage("MiniInven.bmp");
 		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y+300.f });
 		
 		for (; BoxStartIter != BoxEndIter; ++BoxStartIter) 
@@ -592,7 +595,7 @@ void Inventory::InvenPopUp()
 		CurrentItemFrame_->Off();
 
 		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y});
-		Inventroy_->SetImage("inventory.bmp");
+		Inventory_->SetImage("inventory.bmp");
 
 
 		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) 

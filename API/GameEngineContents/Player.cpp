@@ -32,13 +32,19 @@ Player::Player()
 	Energy_(150.f),
 	PlayerRenderer_(nullptr),
 	PlayerCollider_(nullptr),
+	MapColImage_(nullptr),
+	Inventory_(nullptr),
+	TileChangeState_(TILE_CHANGE::INIT),
 	//Inventory_(nullptr),
 	Mouse_(nullptr),
 	ObjectColl_(false),
 	FarmingArea_(false),
 	MoveDir_(float4::DOWN),
 	MapSizeX_(0.f),
-	MapSizeY_(0.f)
+	UsingAxe_(false),
+	MapSizeY_(0.f),
+	TileState_(TILE_COLL::INIT)
+
 
 
 {
@@ -46,6 +52,8 @@ Player::Player()
 	ArrAnimationName[static_cast<int>(PLAYERSTATE::WALK)] = "WALK";
 	ArrAnimationName[static_cast<int>(PLAYERSTATE::HOE)] = "HOE";
 	ArrAnimationName[static_cast<int>(PLAYERSTATE::WATER)] = "WATER";
+	ArrAnimationName[static_cast<int>(PLAYERSTATE::AXE)] = "AXE";
+
 
 }
 
@@ -130,6 +138,17 @@ void Player::Start()
 
 
 
+	//================================
+	//     플레이어 도끼 사용
+	//================================
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_AXE", PLAYER::HOE_FRONT0, PLAYER::HOE_FRONT5, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_AXE", PLAYER::HOE_RIGHT0, PLAYER::HOE_RIGHT4, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_AXE", PLAYER::HOE_LEFT0, PLAYER::HOE_LEFT4, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_AXE", PLAYER::HOE_BACK0, PLAYER::HOE_BACK2, AnimationFrame_, true);
+
+
+
+
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
 	PlayerRenderer_->ChangeAnimation("FRONT_INIT");
@@ -142,7 +161,7 @@ void Player::Update()
 {
 
 	PlayerDirCheck();
-
+	ObjectTileColl();
 	SetCamera();
 	ChangeTile();
 
@@ -161,12 +180,11 @@ void Player::Update()
 	case PLAYERSTATE::INIT:
 
 		ChangeLevel();
-
+		MapObject_;
 
 		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true )
-		{
-			//툴에 맞게 스테이트 이동
-			CheckTool();
+		{ 
+			CheckTool();//툴에 맞게 스테이트 이동
 		}
 
 		if (isMove())
@@ -194,6 +212,18 @@ void Player::Update()
 			CreateWaterTile();
 
 			PlayerState_ = PLAYERSTATE::INIT;
+		}
+
+		break;
+
+
+	case PLAYERSTATE::AXE:
+
+		if (PlayerRenderer_->IsEndAnimation())
+		{
+			CrushWood();
+			
+			//PlayerState_ = PLAYERSTATE::INIT;
 		}
 
 		break;
@@ -284,8 +314,6 @@ void Player::PlayerWalk() {
 	
 
 	int Color = MapColImage_->GetImagePixel(CheckPos);
-
-
 
 
 
@@ -420,34 +448,30 @@ void Player::PlayerDirCheck()
 
 }
 
-void Player::PlayerCollCheck()
+float4 Player::PlayerCollCheckPos()
 {
-	float4 CheckPos ;
+	float4 Length = MoveDir_;
 
-	float4 NextPos = GetPosition() + (MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+	if (float4::DOWN.CompareInt2D(MoveDir_))
+	{
+		Length += float4(0.0f, 24.0f);
+	}
+	if (float4::RIGHT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(24.0f, 0.0f);
+	}
+	if (float4::LEFT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(-24.0f, 0.0f);
+	}
+	if (float4::UP.CompareInt2D(MoveDir_))
+	{
+		Length += float4(0.0f, -24.0f);
+	}
 
+	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
 
-	//if (float4::DOWN.CompareInt2D(MoveDir_))
-	//{
-	//	NextPos += float4(0.0f, 24.0f);
-	//}
-	//if (float4::RIGHT.CompareInt2D(MoveDir_))
-	//{
-	//	NextPos += float4(24.0f, 0.0f);
-	//}
-	//if (float4::LEFT.CompareInt2D(MoveDir_))
-	//{
-	//	NextPos += float4(-24.0f, 0.0f);
-	//}
-	//if (float4::UP.CompareInt2D(MoveDir_))
-	//{
-	//	NextPos += float4(0.0f, 24.0f);
-	//}
-
-	CheckPos = NextPos;
-
-	int Color = MapColImage_->GetImagePixel(CheckPos);
-
+	return Pos;
 
 }
 
@@ -891,6 +915,107 @@ void Player::ChangeTile()
 }
 
 
+void Player::CrushWood()
+{
+	
+	for (Iter = MapObject_.begin(); Iter != MapObject_.end(); ++Iter) {
+
+		if ((*Iter)->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true) 
+		{
+				(*Iter)->Death();
+				TileState_ = TILE_COLL::INIT;
+				Speed_ = 150.f;
+				PlayerState_ = PLAYERSTATE::INIT;
+		
+		}
+
+		else
+		{
+			PlayerState_ = PLAYERSTATE::INIT;
+		}
+
+
+	}
+}
+
+
+void Player::ObjectTileColl()
+{
+
+	float4 Length = MoveDir_;
+
+	if (float4::DOWN.CompareInt2D(MoveDir_))
+	{
+		Length += float4(0.0f, 24.0f);
+	}
+	if (float4::RIGHT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(24.0f, 0.0f);
+	}
+	if (float4::LEFT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(-24.0f, 0.0f);
+	}
+	if (float4::UP.CompareInt2D(MoveDir_))
+	{
+		Length += float4(0.0f, -24.0f);
+	}
+
+	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
+
+
+	switch (TileState_)
+	{
+	case TILE_COLL::INIT:
+		Iter = MapObject_.begin();
+		TileState_ = TILE_COLL::NOTACT;
+
+		break;
+
+	case TILE_COLL::NOTACT:
+
+
+		for (; Iter != MapObject_.end(); ++Iter) {
+
+			if ((*Iter)->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true) {
+				SetSpeed(0.0f);
+
+
+
+				TileState_ = TILE_COLL::COll;
+				break;
+			}
+
+		}
+
+
+		if (Iter == MapObject_.end()) {
+			Iter = MapObject_.begin();
+		}
+		break;
+
+	case TILE_COLL::COll:
+
+
+
+		if ((*Iter)->IsWall(PlayerCollCheckPos(),GetScale(), MoveDir_) == false) {
+			SetSpeed(150.f);
+			//Player_->SetBreakY(false);
+
+			Iter = MapObject_.begin();
+			TileState_ = TILE_COLL::NOTACT;
+		}
+
+		break;
+
+
+	}
+
+}
+
+
+
+
 void Player::CollInit()
 {
 	if (CurrentLevel_ == "MyFarmLevel")
@@ -930,6 +1055,11 @@ void Player::CheckTool()
 	else if (CurrentItemType() == TOOLTYPE::WATTERING_CAN)
 	{
 		PlayerState_ = PLAYERSTATE::WATER;
+	}
+
+	else if (CurrentItemType() == TOOLTYPE::AXE)
+	{
+		PlayerState_ = PLAYERSTATE::AXE;
 	}
 
 	else

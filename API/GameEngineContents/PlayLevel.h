@@ -47,7 +47,6 @@ protected:
 
 	//Inventory* Inventory_;
 
-	TILE_COLL TileState_;
 	Player* Player_;
 	//Inventory* Inventory_;
 	PlayerEnergyBar* PlayerEnergyBar_;
