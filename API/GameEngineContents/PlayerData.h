@@ -16,7 +16,7 @@ enum class PLAYER_UPDATE
 };
 
 
-enum class USE_ITEM 
+enum class USE_TOOL
 {
 	INIT,
 	COLL,

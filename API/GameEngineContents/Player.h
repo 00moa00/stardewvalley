@@ -198,7 +198,7 @@ private:
 	TILE_CHANGE TileChangeState_;
 	PLAYER_UPDATE PlayerState_;
 	TILE_COLL TileState_;
-
+	USE_TOOL UseToolState_;
 
 	Mouse* Mouse_;
 	Hoe* Hoe_;

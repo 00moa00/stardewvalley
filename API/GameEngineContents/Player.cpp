@@ -43,6 +43,7 @@ Player::Player()
 	MapSizeX_(0.f),
 	UsingAxe_(false),
 	MapSizeY_(0.f),
+	UseToolState_(USE_TOOL::INIT),
 	TileState_(TILE_COLL::INIT)
 
 
