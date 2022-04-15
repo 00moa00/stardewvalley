@@ -22,12 +22,19 @@ class FarmTile : public Tile
 public:
 	TILE_STATE TileState_;
 
-	Tile* GetTile() {
+	Tile* GetTile() 
+	{
 		return this;
 	}
 
-	TILE_STATE GetTileState() {
+	TILE_STATE GetTileState() 
+	{
 		return TileState_;
+	}
+
+	void SetTileState(TILE_STATE _state) 
+	{
+		TileState_ = _state;
 	}
 };
 
@@ -48,6 +55,9 @@ class Player : public GameEngineActor
 {
 
 public:
+	static Player* MainPlayer;
+	static Inventory* MainInventory;
+
 	// constrcuter destructer
 	Player();
 	~Player();
@@ -56,6 +66,8 @@ protected:
 	void Start() override;
 	void Update() override;
 	void Render() override;
+	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
 
 	// delete Function
 	Player(const Player& _Other) = delete;
@@ -74,6 +86,17 @@ private:
 
 
 public:
+
+	//Inventory* GetInventory() {
+	//	return Inventory_;
+	//}
+
+
+	//void SetInventory(Inventory* i) {
+	//	Inventory_ = i;
+	//}
+
+	void PlayerDataSave();
 
 	void SetSpeed(float f) {
 		Speed_ = f;
@@ -114,6 +137,8 @@ public:
 		return MapColImage_;
 	}
 
+	TOOLTYPE CurrentItemType();
+
 private:
 	float MapSizeX_;
 	float MapSizeY_;
@@ -132,19 +157,25 @@ private:
 	GameEngineRenderer* PlayerRenderer_;
 	GameEngineCollision* PlayerCollider_;
 	GameEngineRendererTileMap* TileMap_;
+	GameEngineImage* MapColImage_;
 
-	Mouse* Mouse_;
+	Items* CurrentItem_;
+	TOOLTYPE CurrentItemType_;
 
-	Inventory* Inventory_;
 	TILE_CHANGE TileChangeState_;
 	PLAYERSTATE PlayerState_;
-	GameEngineImage* MapColImage_;
+
+
+	Mouse* Mouse_;
 	Hoe* Hoe_;
+	Inventory* Inventory_;
 
 	static std::string CurrentLevel_;
 	static std::string PrevLevel_;
 
 private:
+
+
 
 	bool isStop();
 	bool isMove();
@@ -158,7 +189,12 @@ private:
 	void PlayerCollCheck();
 	void ChangeLevel();
 	void SetPlayerStartPos();
+	void CollInit();
+	void CheckTool();
+
+	//≈∏¿œ
 	void CreateDirtTile();
+	void CreateWaterTile();
 	void ChangeTile();
 
 	std::string GetCurrentLevel()

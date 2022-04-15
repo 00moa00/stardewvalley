@@ -85,7 +85,12 @@ Items::Items() :
 	ItemRenderer_(nullptr),
 	ItemCollider_(nullptr),
 	InMouse(false),
-	InBox(true)
+	MouseHoldItem_(false),
+	InBox(true),
+	Name_({""}),
+	ItemType_(ITEMTYPE::ITEM),
+	ToolType_(TOOLTYPE::OTHER)
+		
 {
 
 }

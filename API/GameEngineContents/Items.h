@@ -5,6 +5,7 @@
 #include <GameEngine/GameEngineCollision.h>
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include <GameEngineBase/GameEngineNameObject.h>
 
 #include "ItemCode.h"
 #include "ToolData.h"
@@ -20,6 +21,17 @@ enum class ITEMTYPE{
 	BLOCK,
 
 };
+
+enum class TOOLTYPE {
+
+	OTHER,
+	HOE,
+	WATTERING_CAN,
+	AXE,
+	PICKAXE
+
+};
+
 
 class Items : public GameEngineActor
 {
@@ -99,6 +111,19 @@ public:
 		return ItemType_;
 	}
 
+	TOOLTYPE GetToolType() {
+		return ToolType_;
+	}
+
+	const std::string& GetNameConstRef()
+	{
+		return Name_;
+	}
+
+	inline void SetName(std::string _Name)
+	{
+		Name_ = _Name;
+	}
 
 	// constrcuter destructer
 	Items();
@@ -114,14 +139,16 @@ public:
 protected:
 	std::vector<GameEngineCollision*> ColList;
 
-	GameEngineRenderer* ItemRenderer_ = nullptr;
-	GameEngineCollision* ItemCollider_ = nullptr;
-	bool MouseHoldItem_ = false;
+	GameEngineRenderer* ItemRenderer_;
+	GameEngineCollision* ItemCollider_ ;
+	bool MouseHoldItem_ ;
 	ITEMTYPE ItemType_ = ITEMTYPE::ITEM;
+	TOOLTYPE ToolType_ = TOOLTYPE::OTHER;
 
 private:
 	bool InMouse;
 	bool InBox;
+	std::string Name_;
 
 };
 

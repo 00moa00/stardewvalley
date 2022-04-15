@@ -12,6 +12,16 @@
 #include "Player.h"
 #include "InventoryExit.h"
 #include "Items.h"
+
+
+//기본 아이템
+#include "Hoe.h"
+#include "Axe.h"
+#include "Pickaxe.h"
+#include "Watering_Can.h"
+
+
+
 #include  <vector>
 #include <map>
 #include <memory>
@@ -31,6 +41,13 @@ enum class MINIPOPUP {
 	MAIN
 };
 
+enum class INVEN_UPDATE
+{
+	INIT,
+	UPDATE,
+
+};
+
 //#pragma warning(disable : 4267)
 #define INVENTORY_MAX_COUNT 36
 
@@ -40,6 +57,7 @@ class Inventory : public GameEngineActor
 
 public:
 
+	//static Inventory* MainInventory;
 	// constrcuter destructer
 	Inventory();
 	~Inventory();
@@ -47,7 +65,7 @@ public:
 	// delete Function
 	Inventory(const Inventory& _Other) = delete;
 	Inventory(Inventory&& _Other) noexcept = delete;
-	Inventory& operator=(const Inventory& _Other) = delete;
+	//Inventory& operator=(const Inventory& _Other) = delete;
 	Inventory& operator=(Inventory&& _Other) noexcept = delete;
 
 protected:
@@ -55,14 +73,44 @@ protected:
 	void Start() override;
 	void Update() override;
 	void Render() override;
+	void LevelChangeStart() override;
+
+	void LevelChangeEnd() override;
 
 private:
 
+	void ItemMove();
 	void InvenPopUp();
 	void BoxInit();
 	void InventoryPosInit();
 	void ItemPosFocusInvenBox();
 public:
+
+	Inventory& operator= (const Inventory& other)
+	{
+
+		if (0 < other.PlayerItemList_.size())
+		{
+			PlayerItemList_.insert(other.PlayerItemList_.begin(), other.PlayerItemList_.end());
+		}
+
+		if (0 < other.Box_.size())
+		{
+			Box_.insert(other.Box_.begin(), other.Box_.end());
+		}
+
+		//CurrentItemFrame_ = other.CurrentItemFrame_;
+		//CurrentItem_ = other.CurrentItem_;
+
+		UpdateState_ = INVEN_UPDATE::INIT;
+		MoveState_ = ITEMMOVE::INIT;
+		MiniState_ = MINIPOPUP::MINI;
+		CurrentInvenState_ = MINIPOPUP::INIT;
+
+
+		return *this;
+	}
+
 
 	template<typename Actor>
 	Actor* NewItem(float4 _AddPos = {0, 0})
@@ -91,7 +139,7 @@ public:
 		float4 Pos = FindIter->second->GetPosition();
 
 		Item->SetPosition({ Pos + _AddPos });
-		++ItemCount_;
+		//++ItemCount_;
 		return Item;
 	}
 
@@ -144,20 +192,23 @@ private:
 	// GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
 	Items* CurrentItem_;
 
-	bool isMiniInven_;
+	//bool isMiniInven_;
 
 
-	int ItemCount_;
+	//int ItemCount_;
 	Mouse* Mouse_;
 	InventoryExit* InventoryExit_;
 
-	WildHorseradish* WildHorseradish_;
-	WildHorseradish* WildHorseradish2_;
+	Hoe* Hoe_;
+	Watering_Can* Watering_Can_;
+	Axe* Axe_;
+	Pickaxe* Pickaxe_;
 
-	int UpdateState_;
+	WildHorseradish* WildHorseradish_;
+
 	ITEMMOVE MoveState_;
 	MINIPOPUP MiniState_;
 	MINIPOPUP CurrentInvenState_;
-
+	INVEN_UPDATE UpdateState_;
 };
 

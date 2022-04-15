@@ -6,6 +6,10 @@
 #include "GameEngineEnum.h"
 #include <list>
 
+// 
+
+// #define RENDERORDERMAX 2147483647
+
 // 설명 :
 class GameEngineLevel;
 class GameEngineRenderer;
@@ -36,12 +40,12 @@ public:
 		return Position_ - GetLevel()->GetCameraPos();
 	}
 
-	inline const float4 GetPosition()
+	inline float4 GetPosition()
 	{
 		return Position_;
 	}
 
-	inline const float4 GetScale()
+	inline float4 GetScale()
 	{
 		return Scale_;
 	}
@@ -71,9 +75,14 @@ protected:
 	// 지속적으로 게임이 실행될때 호출된다.
 	virtual void Render() {}
 
+	virtual void LevelChangeStart() {}
+	virtual void LevelChangeEnd() {}
+
 	void Release();
 
 	void DebugRectRender();
+
+	
 
 private:
 	GameEngineLevel* Level_;
@@ -96,9 +105,8 @@ public:
 	GameEngineRenderer* CreateRenderer(const std::string& _Image, int _Order = static_cast<int>(EngineMax::RENDERORDERMAX), RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
 
 	GameEngineRenderer* CreateRendererToScale(const std::string& _Image, const float4& _Scale, int _Order = static_cast<int>(EngineMax::RENDERORDERMAX), RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
-
-	//void Renderering();
-
+	
+	void LevelRegist(std::string _RegistName = "");
 private:
 	// 이터레이터
 	std::list<GameEngineRenderer*>::iterator StartRenderIter;
@@ -112,10 +120,10 @@ private:
 public:
 	GameEngineCollision* CreateCollision(const std::string& _GroupName, float4 _Scale, float4 _Pivot = { 0, 0 });
 
-	// 
-
 private:
 	// 이터레이터
 	std::list<GameEngineCollision*> CollisionList_;
+
+
 };
 

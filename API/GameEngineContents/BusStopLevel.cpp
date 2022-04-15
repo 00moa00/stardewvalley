@@ -6,25 +6,11 @@
 #include <GameEngineBase/GameEngineTime.h>
 BusStopLevel::BusStopLevel() 
 	:
-
-	PlayerEnergyBar_(nullptr),
-	PlayerEnergyFrame_(nullptr),
-	Player_(nullptr),
-	TileState_(TILE_COLL::INIT),
-	MainUI_(nullptr),
 	Iter(MapObject_.begin())
 {
 
 	SetName("BusStopLevel");
 
-	//Inventory_ = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
-
-	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
-	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PLAYLEVEL::ENERGYFRAME);
-	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
-	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
-	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
-	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
 }
 
 void BusStopLevel::LevelChangeStart()
@@ -39,6 +25,8 @@ void BusStopLevel::LevelChangeStart()
 
 	LoadMapObject();
 
+	Player* MainPlayer = FindActor<Player>("MainPlayer");
+	Player_ = MainPlayer;
 	Player_->SetPosition({ (BUSSTOP_SIZE_WEIGHT/2), (BUSSTOP_SIZE_HEIGHT / 2)});
 	Player_->SetTileMap(&BackGround_->TileMap_);
 

@@ -12,6 +12,10 @@
 std::string Player::CurrentLevel_ = "";
 std::string Player::PrevLevel_ = "";
 
+Player* Player::MainPlayer = nullptr;
+Inventory* Player::MainInventory = nullptr;
+
+
 
 //PLAYERSTATE Player::PlayerState_ = PLAYERSTATE::INIT;
 //GameEngineRenderer* Player::PlayerRenderer_ = nullptr;
@@ -41,6 +45,7 @@ Player::Player()
 	ArrAnimationName[static_cast<int>(PLAYERSTATE::INIT)] = "INIT";
 	ArrAnimationName[static_cast<int>(PLAYERSTATE::WALK)] = "WALK";
 	ArrAnimationName[static_cast<int>(PLAYERSTATE::HOE)] = "HOE";
+	ArrAnimationName[static_cast<int>(PLAYERSTATE::WATER)] = "WATER";
 
 }
 
@@ -64,7 +69,9 @@ void Player::Start()
 {
 	//------< 초기화 >------------------------------------------------------------------
 
+	//Inventory* Inventory_ = GetLevel()->FindActor<Inventory>("MainInventory");
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
 
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
@@ -76,7 +83,7 @@ void Player::Start()
 
 	Mouse_->Renderer()->CameraEffectOff();
 
-	Hoe_ = Inventory_->NewItem<Hoe>(float4{ 0, 24.f });
+	//Hoe_ = Inventory_->NewItem<Hoe>(float4{ 0, 24.f });
 
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 
@@ -103,7 +110,7 @@ void Player::Start()
 	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, AnimationFrame_, true);
 
 	//================================
-	//     플레이어 툴 사용
+	//     플레이어 호미 사용
 	//================================
 	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HOE", PLAYER::HOE_FRONT0, PLAYER::HOE_FRONT5, AnimationFrame_, true);
 	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HOE", PLAYER::HOE_RIGHT0, PLAYER::HOE_RIGHT4, AnimationFrame_, true);
@@ -111,50 +118,42 @@ void Player::Start()
 	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HOE", PLAYER::HOE_BACK0, PLAYER::HOE_BACK2, AnimationFrame_, true);
 
 
+
+	//================================
+	//     플레이어 물뿌리개 사용
+	//================================
+
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_WATER", PLAYER::WATER_FRONT0, PLAYER::WATER_FRONT2, 0.200f, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WATER", PLAYER::WATER_RIGHT0, PLAYER::WATER_RIGHT2, 0.200f, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WATER", PLAYER::WATER_LEFT0, PLAYER::WATER_LEFT2, 0.200f, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WATER", PLAYER::WATER_BACK0, PLAYER::WATER_BACK2, 0.200f, true);
+
+
+
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
 	PlayerRenderer_->ChangeAnimation("FRONT_INIT");
 	//PlayerMove_.SetFrontDir(true);
+	//LevelRegist("MainPlayer");
 }
 
 
 void Player::Update()
 {
+
 	PlayerDirCheck();
+
 	SetCamera();
 	ChangeTile();
 
 	switch (PlayerState_)
 	{
 	case PLAYERSTATE::LEVELINIT:
-		
-		CurrentLevel_ = GetCurrentLevel();
+
 		Speed_ = 150.f;
+		CurrentLevel_ = GetCurrentLevel();
 
-	
-
-		if (CurrentLevel_ == "MyFarmLevel") 
-		{
-			MapSizeX_ = FARM_SIZE_WEIGHT;
-			MapSizeY_ = FARM_SIZE_HEIGHT;
-
-			MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
-		}
-
-		if (CurrentLevel_ == "MyHouseLevel") 
-		{
-
-
-			MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
-		}
-
-		if (CurrentLevel_ == "BusStopLevel")
-		{
-			MapSizeX_ = BUSSTOP_SIZE_WEIGHT;
-			MapSizeY_ = BUSSTOP_SIZE_HEIGHT;
-
-			MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
-		}
+		CollInit();
 
 		PlayerState_ = PLAYERSTATE::INIT;
 		break;
@@ -164,9 +163,10 @@ void Player::Update()
 		ChangeLevel();
 
 
-		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true)
+		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true )
 		{
-			PlayerState_ = PLAYERSTATE::HOE;
+			//툴에 맞게 스테이트 이동
+			CheckTool();
 		}
 
 		if (isMove())
@@ -178,9 +178,6 @@ void Player::Update()
 
 	case PLAYERSTATE::HOE:
 
-		//PlayerRenderer_->ChangeAnimation("LEFT_HOE");
-
-
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CreateDirtTile();
@@ -190,11 +187,22 @@ void Player::Update()
 
 		break;
 
+	case PLAYERSTATE::WATER:
+
+		if (PlayerRenderer_->IsEndAnimation())
+		{
+			CreateWaterTile();
+
+			PlayerState_ = PLAYERSTATE::INIT;
+		}
+
+		break;
+
+
 	case PLAYERSTATE::WALK:
 
 		PlayerWalk();
 		SubEnergy();
-
 
 		if (isStop())
 		{
@@ -203,17 +211,43 @@ void Player::Update()
 
 		break;
 
-
 	default:
 		break;
 	}
-
-
-
 }
 
 void Player::Render()
 {
+}
+
+void Player::LevelChangeStart()
+{
+
+	//if(MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
+
+}
+void Player::LevelChangeEnd()
+{
+	//MainInventory = Inventory_;
+	if (MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
+	MainPlayer = this;
+}
+
+TOOLTYPE Player::CurrentItemType()
+{
+	CurrentItemType_ = Player::Inventory_->CurrentItem()->GetToolType();
+
+	return CurrentItemType_;
+
+}
+
+
+
+
+void Player::PlayerDataSave()
+{
+//
+	//MainPlayer = this;
 }
 
 void Player::PlayerWalk() {
@@ -458,6 +492,50 @@ void Player::SetPlayerStartPos()
 
 }
 
+
+void Player::DirAnimationChange()
+{
+
+	//if (PlayerState_ == PLAYERSTATE::INVENTROY_MINI_INIT) { return ; }
+	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP_INIT) { return; }
+	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP) { return; }
+
+	if (PlayerState_ == PLAYERSTATE::LEVELINIT)
+	{
+		return; 
+	}
+
+
+	PlayerRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+
+
+}
+
+std::string Player::GetDirString()
+{
+	if (MoveDir_.CompareInt2D(float4::DOWN))
+	{
+		return "FRONT_";
+	}
+	else if (MoveDir_.CompareInt2D(float4::UP))
+	{
+		return "BACK_";
+	}
+	else if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		return "LEFT_";
+	}
+	else if (MoveDir_.CompareInt2D(float4::RIGHT))
+	{
+		return "RIGHT_";
+	}
+	return "";
+}
+
+
+
+
+
 void Player::CreateDirtTile()
 {
 	float4 Length = MoveDir_;
@@ -513,45 +591,55 @@ void Player::CreateDirtTile()
 }
 
 
-void Player::DirAnimationChange()
+
+void Player::CreateWaterTile()
 {
 
-	//if (PlayerState_ == PLAYERSTATE::INVENTROY_MINI_INIT) { return ; }
-	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP_INIT) { return; }
-	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP) { return; }
+	float4 Length = MoveDir_;
 
-	if (PlayerState_ == PLAYERSTATE::LEVELINIT)
+	if (float4::DOWN.CompareInt2D(MoveDir_))
 	{
-		return; 
+		Length += float4(0.0f, 24.0f);
+	}
+	if (float4::RIGHT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(24.0f, 0.0f);
+	}
+	if (float4::LEFT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(-24.0f, 0.0f);
+	}
+	if (float4::UP.CompareInt2D(MoveDir_))
+	{
+		Length += float4(0.0f, -24.0f);
+	}
+
+	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
+
+
+
+	TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+	std::map<int, FarmTile*>::iterator FindIter = TileList_.find(ChangeIndex);
+	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
+
+
+	//땅에 아무것도 없다면
+	if (FindIter == EndIter)
+	{
+		return;
 	}
 
 
-	PlayerRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+	//호미질을 한 땅이면 스테이트를 변경
+	if (FindIter->second->GetTileState() == TILE_STATE::HOE_DIRT_CREATE)
+	{
+		FindIter->second->SetTileState(TILE_STATE::HOE_DIRT_WATER);
+	}
 
 
 }
-
-std::string Player::GetDirString()
-{
-	if (MoveDir_.CompareInt2D(float4::DOWN))
-	{
-		return "FRONT_";
-	}
-	else if (MoveDir_.CompareInt2D(float4::UP))
-	{
-		return "BACK_";
-	}
-	else if (MoveDir_.CompareInt2D(float4::LEFT))
-	{
-		return "LEFT_";
-	}
-	else if (MoveDir_.CompareInt2D(float4::RIGHT))
-	{
-		return "RIGHT_";
-	}
-	return "";
-}
-
 
 void Player::ChangeTile()
 {
@@ -572,9 +660,24 @@ void Player::ChangeTile()
 		std::map<int, FarmTile*>::iterator FindBottomIter = TileList_.find(i + FARM_CHIP_NUM_Y);
 
 
-		//현재 찾으려는 타일이 없으면 패스
+		//현재 찾으려는 타일이 땅에 없으면 패스
 		if (FindThisIter == EndIter) continue;
 
+		int Water = 0;
+
+		//찾은 땅에 물을 뿌렸다면
+		if (FindThisIter->second->GetTileState() == TILE_STATE::HOE_DIRT_WATER)
+		{
+			Water = 4;
+		}
+		else if (FindThisIter->second->GetTileState() == TILE_STATE::HOE_DIRT_CREATE)
+		{
+			Water = 0;
+		}
+
+		
+
+		
 		//------< 위 아래 아무것도 없을때 x축, 원라인 >------------------------------------------------------------------
 
 		if (FindTopIter == EndIter && FindBottomIter == EndIter)
@@ -585,7 +688,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter == EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_LEFT));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_LEFT) + Water);
 
 			}
 
@@ -595,7 +698,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_RIGHT));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_RIGHT)+ Water);
 
 			}
 
@@ -605,7 +708,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_MIDDLE));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_MIDDLE)+ Water);
 
 			}
 
@@ -623,7 +726,7 @@ void Player::ChangeTile()
 
 			if (FindTopIter == EndIter && FindBottomIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_TOP));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_TOP)+ Water);
 
 			}
 
@@ -634,7 +737,7 @@ void Player::ChangeTile()
 
 			if (FindTopIter != EndIter && FindBottomIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_MIDDLE));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_MIDDLE)+ Water);
 
 			}
 
@@ -645,7 +748,7 @@ void Player::ChangeTile()
 
 			if (FindTopIter != EndIter && FindBottomIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_BOTTOM));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_BOTTOM)+ Water);
 
 			}
 
@@ -665,7 +768,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter == EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_TOP));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_TOP)+ Water);
 
 			}
 
@@ -676,7 +779,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_TOP));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_TOP)+ Water);
 
 			}
 
@@ -686,7 +789,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter != EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_TOP));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_TOP)+ Water);
 
 			}
 
@@ -703,7 +806,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter == EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_BOTTOM));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_BOTTOM)+ Water);
 
 			}
 
@@ -714,7 +817,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_BOTTOM));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_BOTTOM)+ Water);
 
 			}
 
@@ -724,7 +827,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter != EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_BOTTOM));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_BOTTOM)+ Water);
 
 			}
 
@@ -741,7 +844,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter == EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_MIDDLE));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_MIDDLE)+ Water);
 
 			}
 
@@ -752,7 +855,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_MIDDLE));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_MIDDLE)+ Water);
 
 			}
 
@@ -762,7 +865,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter != EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_MIDDLE));
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_MIDDLE)+ Water);
 
 			}
 
@@ -772,10 +875,62 @@ void Player::ChangeTile()
 
 		if (FindLeftIter == EndIter || FindRightIter == EndIter || FindTopIter == EndIter || FindBottomIter == EndIter)
 		{
-			continue;
+			FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::BASIC) + Water);
+
 		}
 
 	}
+
+
+}
+
+
+void Player::CollInit()
+{
+	if (CurrentLevel_ == "MyFarmLevel")
+	{
+		MapSizeX_ = FARM_SIZE_WEIGHT;
+		MapSizeY_ = FARM_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
+	}
+
+	if (CurrentLevel_ == "MyHouseLevel")
+	{
+
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+	}
+
+	if (CurrentLevel_ == "BusStopLevel")
+	{
+		MapSizeX_ = BUSSTOP_SIZE_WEIGHT;
+		MapSizeY_ = BUSSTOP_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
+	}
+
+
+}
+
+void Player::CheckTool()
+{
+
+	if (CurrentItemType() == TOOLTYPE::HOE)
+	{
+		PlayerState_ = PLAYERSTATE::HOE;
+	}
+
+	else if (CurrentItemType() == TOOLTYPE::WATTERING_CAN)
+	{
+		PlayerState_ = PLAYERSTATE::WATER;
+	}
+
+	else
+	{
+		PlayerState_ = PLAYERSTATE::INIT;
+	}
+
 
 
 }

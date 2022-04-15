@@ -13,26 +13,13 @@
 
 MyFarmLevel::MyFarmLevel()
 	:
-
-	PlayerEnergyBar_(nullptr),
-	PlayerEnergyFrame_(nullptr),
-	Player_(nullptr),
-	TileState_(TILE_COLL::INIT),
-	MainUI_(nullptr),
 	Iter(MapObject_.begin())
-
+	
 {
 
 	SetName("MyFarmLevel");
+	
 
-	//Inventory_ = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
-
-	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
-	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PLAYLEVEL::ENERGYFRAME);
-	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
-	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
-	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
-	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
 }
 
 MyFarmLevel::~MyFarmLevel()
@@ -48,6 +35,8 @@ void MyFarmLevel::Loading()
 void MyFarmLevel::LevelChangeStart()
 {
 	
+	//if(MainInventory_ != nullptr) Inventory_ = MainInventory_;
+
 	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
@@ -56,12 +45,19 @@ void MyFarmLevel::LevelChangeStart()
 	BackGround_->TileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
 	LoadMapObject();
+	
 
 	Player_->SetPosition({ FARM_SIZE_WEIGHT - 400.f, (FARM_SIZE_HEIGHT / 2) - 700.f });
 	Player_->SetTileMap(&BackGround_->TileMap_);
-	
+
+
 	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	Time = 5.0f;
+}
+
+void MyFarmLevel::LevelChangeEnd()
+{
+	//MainInventory_ = Inventory_;
 }
 
 void MyFarmLevel::LoadMapObject()

@@ -158,6 +158,21 @@
     <ClCompile Include="MoveForest.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClCompile>
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Watering_Can.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Pickaxe.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Scythe.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Axe.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -337,6 +352,21 @@
     </ClInclude>
     <ClInclude Include="MoveForest.h">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Watering_Can.h">
+      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Pickaxe.h">
+      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Scythe.h">
+      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Axe.h">
+      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

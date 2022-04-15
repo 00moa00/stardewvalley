@@ -15,19 +15,9 @@
 
 MyHouseLevel::MyHouseLevel()
 	:
-
-	TileState_(TILE_COLL::INIT),
-	MainUI_(nullptr),
-	Player_(nullptr),
 	Iter(MapObject_.begin())
-
 {
 	SetName("MyHouseLevel");
-	//Inventory_ = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
-	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
-	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
-	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
-
 
 }
 
@@ -44,13 +34,24 @@ void MyHouseLevel::Loading()
 
 void MyHouseLevel::LevelChangeStart()
 {
+	//if (MainInventory_ != nullptr) Inventory_ = MainInventory_;
 
-	//Player_->SetPosition({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y + 100.f });
+	////Player_->SetPosition({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y + 100.f });
+	//Player* MainPlayer = FindActor<Player>("MainPlayer");
+	//Player_ = MainPlayer;
+	//if (MainPlayer_ != nullptr) Player_ = MainPlayer_;
+	
+	//if (MainPlayer_ != nullptr)
+	//{
+	//	Player_ = MainPlayer_;
+	//}
 
 	Player_->SetPosition({ HOUSE_SIZE_WEIGHT / 2, (HOUSE_SIZE_HEIGHT / 2 ) + 100.f});
 	Player_->Renderer()->CameraEffectOff();
 
-		
+	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
+	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
+
 
 
 	BackGround_->GetRenderer()->SetImage("PlayerHouse.bmp");
@@ -62,10 +63,16 @@ void MyHouseLevel::LevelChangeStart()
 	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	Time = 5.0f;
 
-
 	LoadMapObject();
 	BgmPlayer.Stop();
 
+
+}
+
+void MyHouseLevel::LevelChangeEnd()
+{
+
+	//MainInventory_ = Inventory_;
 
 }
 

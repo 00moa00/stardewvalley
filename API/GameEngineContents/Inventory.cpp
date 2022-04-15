@@ -9,6 +9,8 @@
 ////std::map<int, InventroyBox*> Inventory::Box_;
 
 
+//Inventory* Inventory::MainInventory = nullptr;
+
 enum class UPDATE {
 	POPUPINIT,
 	POPUP,
@@ -21,12 +23,12 @@ Inventory::Inventory()
 	WildHorseradish_(nullptr),
 	InventoryExit_(nullptr),
 	Mouse_(nullptr),
-	ItemCount_(0),
-	UpdateState_(0),
 	CurrentItem_(nullptr ),
 	CurrentInvenState_(MINIPOPUP::INIT),
 	MiniState_(MINIPOPUP::MINI),
-	MoveState_(ITEMMOVE::INIT)
+	MoveState_(ITEMMOVE::INIT),
+	UpdateState_(INVEN_UPDATE::INIT)
+
 {
 
 }
@@ -40,7 +42,7 @@ Inventory::~Inventory()
 
 void Inventory::Start()
 {
-//	SetPosition(GameEngineWindow::GetScale().Half());
+	SetPosition(GameEngineWindow::GetScale().Half());
 	Inventroy_ = CreateRenderer("inventory.bmp");
 	Inventroy_->CameraEffectOff();
 
@@ -54,19 +56,90 @@ void Inventory::Start()
 
 	
 	//게임 첫 시작은 숨기기
-	CurrentItemFrame_->SetPosition({-50.f, -50.f});
-
+	//CurrentItemFrame_->SetPosition({-50.f, -50.f});
 	float4 Position;
 	Position.x = Inventroy_->GetScale().x  + 250.f;
 	Position.y = Inventroy_->GetScale().y  + 50.f;
 	InventoryExit_->SetPosition({ Position.x ,Position.y });
 	
-	WildHorseradish2_ = NewItem<WildHorseradish>();
+	//WildHorseradish2_ = NewItem<WildHorseradish>();
+	Hoe_ = NewItem<Hoe>();
+	Watering_Can_ = NewItem<Watering_Can>();
+	Axe_ = NewItem<Axe>();
+	Pickaxe_ = NewItem<Pickaxe>();
+
+
+
 
 	WildHorseradish_ = NewItem<WildHorseradish>();
+
+	LevelRegist("MainInventory");
+
 	//CurrentItem_ = WildHorseradish_;
 	//CurrentItemFrame_->SetPosition(CurrentItem_->GetPosition());
 }
+
+void Inventory::LevelChangeStart()
+{
+	//MainInventory = this;
+}
+
+void Inventory::LevelChangeEnd()
+{
+
+
+		//if (0 < MainInventory->PlayerItemList_.size())
+		//{
+		//	PlayerItemList_.insert(MainInventory->PlayerItemList_.begin(), MainInventory->PlayerItemList_.end());
+		//}
+
+		//if (0 < MainInventory->Box_.size())
+		//{
+		//	Box_.insert(MainInventory->Box_.begin(), MainInventory->Box_.end());
+		//}
+
+		//CurrentItemFrame_ = MainInventory->CurrentItemFrame_;
+		//CurrentItem_ = MainInventory->CurrentItem_;
+
+		//UpdateState_ = 0;
+		//MoveState_ = ITEMMOVE::INIT;
+		//MiniState_ = MINIPOPUP::MINI;
+		//CurrentInvenState_ = MINIPOPUP::INIT;
+
+}
+
+void Inventory::Update()
+{
+	switch (UpdateState_)
+	{
+	case INVEN_UPDATE::INIT:
+		InventoryPosInit();
+		ItemPosFocusInvenBox();
+
+		CurrentItem_ = WildHorseradish_;
+		CurrentItemFrame_->SetPosition(CurrentItem_->GetPosition());
+
+		UpdateState_ = INVEN_UPDATE::UPDATE;
+		break;
+	case INVEN_UPDATE::UPDATE:
+		//아이템은 박스의 위치를 무조건 따라감
+		//ItemPosFocusInvenBox();
+		InvenPopUp();
+		ItemMove();
+
+		break;
+	default:
+		break;
+	}
+
+
+
+}
+
+void Inventory::Render()
+{
+}
+
 
 
 void Inventory::BoxInit()
@@ -120,11 +193,11 @@ void Inventory::InventoryPosInit()
 			StartIter->second->CreateBoxCollision(StartIter->first);
 		}
 
-		//현재 아이템 프레임 체인지
-		if (StartIter->first == 0)
-		{
-			SetCurrentItemFrameChange(StartIter->second);
-		}
+		////현재 아이템 프레임 체인지
+		//if (StartIter->first == 0)
+		//{
+		//	SetCurrentItemFrameChange(StartIter->second);
+		//}
 
 		++BoxXMargin;
 	}
@@ -270,6 +343,169 @@ void Inventory::SetCurrentItemFrameChange(InventroyBox* box_)
 
 }
 
+void Inventory::ItemMove()
+{
+	//키값 변경용
+	std::map<int, Items*>::iterator Finditer;
+	std::map<int, InventroyBox*>::iterator FindBoxiter;
+
+
+	//TODO: 예상되는 문제점, 플레이 도중에 아이템을 얻었을때 리스트가 변경되면 INIT 해주기
+
+	switch (MoveState_)
+	{
+	case ITEMMOVE::INIT:
+
+
+		PlayerItemListStartIter = PlayerItemList_.begin();
+		PlayerItemListEndIter = PlayerItemList_.end();
+
+		BoxStartIter = Box_.begin();
+		BoxEndIter = Box_.end();
+
+
+		MoveState_ = ITEMMOVE::NOTACT;
+
+		break;
+
+	case ITEMMOVE::NOTACT:
+
+		ItemPosFocusInvenBox();
+
+		for (; PlayerItemListStartIter != PlayerItemListEndIter; ++PlayerItemListStartIter)
+		{
+
+
+			if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick())
+			{
+
+				//현재 아이템 프레임
+				SetCurrentItemFrame(PlayerItemListStartIter->second);
+
+				//현재 아이템 저장
+				CurrentItem_ = PlayerItemListStartIter->second;
+
+
+				//미니 상태에서 툴은 이동할 수 없다.
+				if ((CurrentInvenState_ == MINIPOPUP::MINI) &&
+					(PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL))
+				{
+					PlayerItemListStartIter->second->SetInBox(false);
+					MoveState_ = ITEMMOVE::INIT;
+					break;
+				}
+
+				PlayerItemListStartIter->second->SetInBox(false);
+				MoveState_ = ITEMMOVE::HOLD;
+				break;
+			}
+
+
+			//break;
+		}
+
+
+		if (PlayerItemListStartIter == PlayerItemListEndIter)
+		{
+			PlayerItemListStartIter = PlayerItemList_.begin();
+		}
+
+
+		break;
+
+	case ITEMMOVE::HOLD:
+
+		//아이템을 마우스의 위치에 고정
+		PlayerItemListStartIter->second->SetPosition(Mouse_->GetPosition());
+		PlayerItemListStartIter->second->MouseHoldItem();
+
+
+		//마우스를 다시 한번 클릭했고, 마우스가 인벤토리 박스 안에 있으면 놓아주기 시도
+		//TODO : 박스 밖에서 놓아주려했을떄 원래 자리로 돌아가게 하기.
+		//TODO : 아이템이 있는 위치에는 들고있는 아이템 변경하기
+
+		if ((Mouse_->isMouseClick() && Mouse_->MouseInBox()))
+		{
+
+			BoxStartIter = Box_.begin();
+			BoxEndIter = Box_.end();
+
+			for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
+			{
+
+				if (BoxStartIter->second->MouseOver())
+				{
+
+					//지정위치의 아이템이 해당 박스 안에 있다면 넘어가지 않는다.
+
+					Finditer = PlayerItemList_.find(BoxStartIter->first);
+
+					//해당 위치에 아이템이 없다면 
+					if (Finditer == PlayerItemListEndIter)
+					{
+						SetCurrentItemFrame(PlayerItemListStartIter->second, BoxStartIter->second);
+						MoveState_ = ITEMMOVE::FREE;
+						continue;
+					}
+
+					if (Finditer->second->GetInBox())
+					{
+
+						MoveState_ = ITEMMOVE::HOLD;
+					}
+
+
+					if (Finditer->first == PlayerItemListStartIter->first)
+					{
+						SetCurrentItemFrame(PlayerItemListStartIter->second, BoxStartIter->second);
+						MoveState_ = ITEMMOVE::MINE;
+					}
+
+				}
+			}
+		}
+
+		break;
+
+
+	case ITEMMOVE::FREE:
+
+		BoxStartIter = Box_.begin();
+		BoxEndIter = Box_.end();
+
+		for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
+		{
+
+			//마우스와 충돌한 인벤토리 박스를 찾아서 그 박스의 위치에 아이템을 넣는다.
+			if (BoxStartIter->second->MouseOver())
+			{
+
+				PlayerItemListStartIter->second->SetInBox(true);
+
+				//키값 변경
+				Finditer = PlayerItemListStartIter;
+				std::swap(PlayerItemList_[BoxStartIter->first], Finditer->second);
+
+				PlayerItemList_.erase(Finditer);
+
+				MoveState_ = ITEMMOVE::INIT;
+			}
+		}
+		break;
+
+	case ITEMMOVE::MINE:
+
+		FindBoxiter = Box_.find(PlayerItemListStartIter->first);
+
+		PlayerItemListStartIter->second->SetPosition(FindBoxiter->second->GetPosition());
+		MoveState_ = ITEMMOVE::INIT;
+
+	default:
+
+		break;
+	}
+}
+
 void Inventory::InvenPopUp()
 {
 
@@ -387,176 +623,4 @@ void Inventory::InvenPopUp()
 
 }
 
-
-void Inventory::Update()
-{
-	
-
-	//키값 변경용
-	std::map<int, Items*>::iterator Finditer;
-	std::map<int, InventroyBox*>::iterator FindBoxiter;
-
-	InvenPopUp();
-
-	//TODO: 예상되는 문제점, 플레이 도중에 아이템을 얻었을때 리스트가 변경되면 INIT 해주기
-
-	switch (MoveState_)
-	{
-	case ITEMMOVE::INIT:
-
-
-		PlayerItemListStartIter = PlayerItemList_.begin();
-		PlayerItemListEndIter = PlayerItemList_.end();
-
-		BoxStartIter = Box_.begin();
-		BoxEndIter = Box_.end();
-
-
-		MoveState_ = ITEMMOVE::NOTACT;
-
-		break;
-
-	case ITEMMOVE::NOTACT:
-
-		//아이템은 박스의 위치를 무조건 따라감
-		ItemPosFocusInvenBox();
-
-		for (; PlayerItemListStartIter != PlayerItemListEndIter; ++PlayerItemListStartIter) 
-		{
-
-
-			if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick()) 
-			{
-				
-				//현재 아이템 프레임
-				SetCurrentItemFrame(PlayerItemListStartIter->second);
-
-				//현재 아이템 저장
-				CurrentItem_ = PlayerItemListStartIter->second;
-
-
-				//미니 상태에서 툴은 이동할 수 없다.
-				if ((CurrentInvenState_ == MINIPOPUP::MINI) && 
-					(PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL)) 
-				{
-					PlayerItemListStartIter->second->SetInBox(false);
-					MoveState_ = ITEMMOVE::INIT;
-					break;
-				}
-
-				PlayerItemListStartIter->second->SetInBox(false);
-				MoveState_ = ITEMMOVE::HOLD;
-				break;
-			}
-
-			
-			//break;
-		}
-
-
-		if (PlayerItemListStartIter == PlayerItemListEndIter) 
-		{
-			PlayerItemListStartIter = PlayerItemList_.begin();
-		}
-
-
-		break;
-
-	case ITEMMOVE::HOLD:
-
-		//아이템을 마우스의 위치에 고정
-		PlayerItemListStartIter->second->SetPosition(Mouse_->GetPosition());
-		PlayerItemListStartIter->second->MouseHoldItem();
-
-
-		//마우스를 다시 한번 클릭했고, 마우스가 인벤토리 박스 안에 있으면 놓아주기 시도
-		//TODO : 박스 밖에서 놓아주려했을떄 원래 자리로 돌아가게 하기.
-		//TODO : 아이템이 있는 위치에는 들고있는 아이템 변경하기
-
-		if ((Mouse_->isMouseClick() && Mouse_->MouseInBox()))
-		{
-
-			BoxStartIter = Box_.begin();
-			BoxEndIter = Box_.end();
-
-			for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
-			{
-
-				if (BoxStartIter->second->MouseOver()) 
-				{
-
-					//지정위치의 아이템이 해당 박스 안에 있다면 넘어가지 않는다.
-					
-					Finditer = PlayerItemList_.find(BoxStartIter->first);
-
-					//해당 위치에 아이템이 없다면 
-					if (Finditer == PlayerItemListEndIter) 
-					{
-						SetCurrentItemFrame(PlayerItemListStartIter->second, BoxStartIter->second);
-						MoveState_ = ITEMMOVE::FREE;
-						continue;
-					}
-
-					 if (Finditer->second->GetInBox()) 
-					 {
-
-						MoveState_ = ITEMMOVE::HOLD;
-					}
-
-
-					 if (Finditer->first == PlayerItemListStartIter->first)
-					 {
-						 SetCurrentItemFrame(PlayerItemListStartIter->second, BoxStartIter->second);
-						 MoveState_ = ITEMMOVE::MINE;
-					 }
-
-				}
-			}
-		}
-
-		break;
-
-
-	case ITEMMOVE::FREE:
-
-		BoxStartIter = Box_.begin();
-		BoxEndIter = Box_.end();
-
-		for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
-		{
-
-			//마우스와 충돌한 인벤토리 박스를 찾아서 그 박스의 위치에 아이템을 넣는다.
-			if (BoxStartIter->second->MouseOver()) 
-			{
-
-					PlayerItemListStartIter->second->SetInBox(true);
-
-					//키값 변경
-					Finditer = PlayerItemListStartIter;
-					std::swap(PlayerItemList_[BoxStartIter->first], Finditer->second);
-
-					PlayerItemList_.erase(Finditer);
-
-					MoveState_ = ITEMMOVE::INIT;
-			}
-		}
-		break;
-
-	case ITEMMOVE::MINE :
-		
-		FindBoxiter = Box_.find(PlayerItemListStartIter->first);
-
-		PlayerItemListStartIter->second->SetPosition(FindBoxiter->second->GetPosition());
-		MoveState_ = ITEMMOVE::INIT;
-
-	default:
-
-		break;
-	}
-
-}
-
-void Inventory::Render()
-{
-}
 

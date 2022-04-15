@@ -1,27 +1,11 @@
 #pragma once
-#include <GameEngine/GameEngineLevel.h>
 
-#include "TileData.h"
-
-
-#include "MainUI.h"
-#include "BackGround.h"
-#include "Player.h"
-
-#include "RendererData.h"
-#include "Inventory.h"
-#include "Items.h"
-#include "Mouse.h"
-#include <GameEngineBase/GameEngineSound.h>
-
-
-#include <list>
-
+#include "PlayLevel.h"
 
 
 
 // Ό³Έν :
-class MyHouseLevel : public GameEngineLevel
+class MyHouseLevel : public PlayLevel
 {
 public:
 	// constrcuter destructer
@@ -43,20 +27,11 @@ protected:
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart() override;
-
+	void LevelChangeEnd() override;
 private:
 
 	void LoadMapObject();
 
-
-	MainUI* MainUI_;
 	std::list<Items*> MapObject_;
 	std::list<Items*>::iterator Iter;
-
-	TILE_COLL TileState_;
-	Player* Player_;
-	//Inventory* Inventory_;
-
-	BackGround* BackGround_;
-
 };

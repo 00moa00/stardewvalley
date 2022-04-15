@@ -1,25 +1,10 @@
 #pragma once
 
-#include <GameEngine/GameEngineLevel.h>
-
-#include "TileData.h"
-
-#include "PlayerEnergyBar.h"
-#include "PlayerEnergyFrame.h"
-#include "MainUI.h"
-#include "BackGround.h"
-#include "Player.h"
-
-#include "RendererData.h"
-#include "Inventory.h"
-#include "Items.h"
-#include "Mouse.h"
-#include <GameEngineBase/GameEngineSound.h>
-
+#include "PlayLevel.h"
 
 
 // Ό³Έν :
-class BusStopLevel : public GameEngineLevel
+class BusStopLevel : public PlayLevel
 {
 public:
 	// constrcuter destructer
@@ -40,19 +25,7 @@ protected:
 
 private:
 	void LoadMapObject();
-
-
-	MainUI* MainUI_;
-	//std::map<int, Items*> MapObject_;
 	std::list<Items*> MapObject_;
 	std::list<Items*>::iterator Iter;
-
-	TILE_COLL TileState_;
-	Player* Player_;
-	//Inventory* Inventory_;
-	PlayerEnergyBar* PlayerEnergyBar_;
-	PlayerEnergyFrame* PlayerEnergyFrame_;
-	BackGround* BackGround_;
-	BackGround* BackGroundFront_;
 };
 

@@ -27,6 +27,7 @@ public:
 		IsUpdate_ = false;
 	}
 
+
 	inline virtual bool IsUpdate()
 	{
 		return IsUpdate_ && false == IsDeath_;

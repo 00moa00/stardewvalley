@@ -60,7 +60,6 @@ void GameEngineActor::DebugRectRender()
 	);
 }
 
-
 GameEngineRenderer* GameEngineActor::CreateRenderer(
 	int _Order, /*= static_cast<int>(EngineMax::RENDERORDERMAX)*/
 	RenderPivot _PivotType /*= RenderPivot::CENTER*/,
@@ -86,6 +85,7 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(
 
 }
 
+
 GameEngineRenderer* GameEngineActor::CreateRenderer(
 	const std::string& _Image,
 	int _Order, /*= static_cast<int>(EngineMax::RENDERORDERMAX)*/
@@ -96,7 +96,6 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(
 	GameEngineRenderer* NewRenderer = new GameEngineRenderer();
 
 	NewRenderer->SetActor(this);
-
 	if (_Order != static_cast<int>(EngineMax::RENDERORDERMAX))
 	{
 		NewRenderer->GameEngineUpdateObject::SetOrder(_Order);
@@ -105,7 +104,6 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(
 	{
 		NewRenderer->GameEngineUpdateObject::SetOrder(GetOrder());
 	}
-
 	NewRenderer->SetImage(_Image);
 	NewRenderer->SetPivot(_PivotPos);
 	NewRenderer->SetPivotType(_PivotType);
@@ -114,22 +112,6 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(
 	RenderList_.push_back(NewRenderer);
 	return NewRenderer;
 }
-
-//void GameEngineActor::Renderering()
-//{
-//	StartRenderIter = RenderList_.begin();
-//	EndRenderIter = RenderList_.end();
-//
-//	for (; StartRenderIter != EndRenderIter; ++StartRenderIter)
-//	{
-//		if (false == (*StartRenderIter)->IsUpdate())
-//		{
-//			continue;
-//		}
-//
-//		(*StartRenderIter)->Render();
-//	}
-//}
 
 GameEngineRenderer* GameEngineActor::CreateRendererToScale(
 	const std::string& _Image, const float4& _Scale,
@@ -141,8 +123,6 @@ GameEngineRenderer* GameEngineActor::CreateRendererToScale(
 
 	NewRenderer->SetActor(this);
 
-
-
 	if (_Order != static_cast<int>(EngineMax::RENDERORDERMAX))
 	{
 		NewRenderer->GameEngineUpdateObject::SetOrder(_Order);
@@ -151,7 +131,6 @@ GameEngineRenderer* GameEngineActor::CreateRendererToScale(
 	{
 		NewRenderer->GameEngineUpdateObject::SetOrder(GetOrder());
 	}
-
 
 	NewRenderer->SetImage(_Image);
 	NewRenderer->SetScale(_Scale);
@@ -180,9 +159,6 @@ void GameEngineActor::Release()
 	{
 		std::list<GameEngineRenderer*>::iterator StartIter = RenderList_.begin();
 		std::list<GameEngineRenderer*>::iterator EndIter = RenderList_.end();
-		
-		
-
 
 		for (; StartIter != EndIter;)
 		{
@@ -193,6 +169,7 @@ void GameEngineActor::Release()
 			}
 
 			delete (*StartIter);
+			(*StartIter) = nullptr;
 			StartIter = RenderList_.erase(StartIter);
 		}
 	}
@@ -210,13 +187,13 @@ void GameEngineActor::Release()
 			}
 
 			delete (*StartIter);
+			(*StartIter) = nullptr;
 			StartIter = CollisionList_.erase(StartIter);
 		}
 	}
 
 
 }
-
 
 void GameEngineActor::SetOrder(int _Order)
 {
@@ -231,4 +208,16 @@ void GameEngineActor::SetOrder(int _Order)
 	}
 
 	GetLevel()->ChangeUpdateOrder(this, _Order);
+}
+
+
+void GameEngineActor::LevelRegist(std::string _RegistName/* = ""*/)
+{
+	if (_RegistName == "")
+	{
+		GetLevel()->RegistActor(GetNameConstPtr(), this);
+		return;
+	}
+
+	GetLevel()->RegistActor(_RegistName, this);
 }

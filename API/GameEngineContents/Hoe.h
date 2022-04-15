@@ -21,6 +21,5 @@ private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
-	float4 Pos;
 };
 
