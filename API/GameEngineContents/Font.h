@@ -28,11 +28,12 @@ private:
 
 	std::vector<GameEngineRenderer*> FontRenderer;
 	int Num_;
-	int Count_;
 	std::string StrNum_;
 
 public:
-	void ChangeNum(int _Num);
+	void ChangeNumUI(int _Num);
+	void ChangeNumItem(int _Num);
+
 	void ChangeWhiteColor();
 
 	void SetPositionUI(float4 _Pos);

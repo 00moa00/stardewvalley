@@ -182,6 +182,9 @@
     <ClCompile Include="Font.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
+    <ClCompile Include="Parsnip_Seeds.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Farming</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -380,6 +383,9 @@
     <ClInclude Include="Font.h">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
+    <ClInclude Include="Parsnip_Seeds.h">
+      <Filter>Actor\03. Play\Global\Obejct\Farming</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">
@@ -444,6 +450,9 @@
     </Filter>
     <Filter Include="Actor\01. GlobalActor">
       <UniqueIdentifier>{b63f880a-300f-4acf-a371-24a83b8253d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global\Obejct\Farming">
+      <UniqueIdentifier>{f82147fe-f42d-4839-8ff7-bfdf842ca330}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

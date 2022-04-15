@@ -1,6 +1,5 @@
 #include "Items.h"
 #include "GameData.h"
-#include "RendererData.h"
 
 
 Items::Items() :
@@ -9,7 +8,7 @@ Items::Items() :
 	MouseHoldItem_ (false),
 	InMouse (false),
 	InBox (true),
-	Count_ (0),
+	Count_ (1),
 
 	Name_ ({""}),
 	ItemType_ (ITEMTYPE::ITEM),
@@ -26,28 +25,14 @@ Items::~Items()
 
 void Items::Start()
 {
-	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-	Font_->ChangeNum(Count_);
-	Font_->SetPositionItem({GetPosition()});
+
 
 }
 
 void Items::Update()
 {
 
-	switch (ItemState_)
-	{
-	case ITEM_STATE::INIT :
-		break;
 
-	case ITEM_STATE::ADDITEM :
-		//Font_->ChangeNum(100);
-		//Font_->SetPositionItem({ GetPosition() });
-
-		ItemState_ = ITEM_STATE::INIT;
-		break;
-	}
-	
 
 }
 

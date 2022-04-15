@@ -19,14 +19,15 @@
 #include "Axe.h"
 #include "Pickaxe.h"
 #include "Watering_Can.h"
-
+#include "Parsnip_Seeds.h"
 
 
 #include  <vector>
 #include <map>
 #include <memory>
 
-enum class ITEMMOVE {
+enum class ITEMMOVE 
+{
 	INIT,
 	NOTACT,
 	ADDITER,
@@ -35,7 +36,8 @@ enum class ITEMMOVE {
 	MINE
 };
 
-enum class MINIPOPUP {
+enum class MINIPOPUP 
+{
 	INIT,
 	MINI,
 	MAIN
@@ -117,10 +119,24 @@ public:
 	{
 		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
 
+		std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
+		std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
+
+		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
+			if (ItemStartIter->second->GetItemNameConstRef() == Item->GetItemNameConstRef())
+			{
+				ItemStartIter->second->SetItemStateAddItem();
+				Item->Death();
+				return nullptr;
+			}
+		}
+
+
+
 		std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
 		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
 
-		//앞에서부터 탐색해서 아이템이 없으면 그 자리에 넣기
+		//앞에서부터 탐색해서 박스에 아이템이 없으면 그 자리에 넣기
 		int index_ = 0;
 
 		for (; StartIter != EndIter; ) {
@@ -205,6 +221,9 @@ private:
 	Pickaxe* Pickaxe_;
 
 	WildHorseradish* WildHorseradish_;
+	Parsnip_Seeds* Parsnip_Seeds_;
+	Parsnip_Seeds* Parsnip_Seeds2_;
+	Parsnip_Seeds* Parsnip_Seeds3_;
 
 	ITEMMOVE MoveState_;
 	MINIPOPUP MiniState_;

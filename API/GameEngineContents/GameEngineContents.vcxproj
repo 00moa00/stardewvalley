@@ -245,6 +245,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MyHouseLevel.h" />
+    <ClInclude Include="Parsnip_Seeds.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Pickaxe.h">
       <SubType>
       </SubType>
@@ -505,6 +509,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MyHouseLevel.cpp" />
+    <ClCompile Include="Parsnip_Seeds.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Pickaxe.cpp">
       <SubType>
       </SubType>

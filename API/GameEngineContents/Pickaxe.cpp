@@ -20,6 +20,7 @@ void Pickaxe::Start()
 	ItemType_ = ITEMTYPE::TOOL;
 	ToolType_ = TOOLTYPE::PICKAXE;
 
+	SetItemName("Pickaxe");
 
 }
 

@@ -71,7 +71,9 @@ void Inventory::Start()
 	Axe_ = NewItem<Axe>();
 	Pickaxe_ = NewItem<Pickaxe>();
 
-
+	Parsnip_Seeds_ = NewItem<Parsnip_Seeds>();
+	Parsnip_Seeds2_ = NewItem<Parsnip_Seeds>();
+	Parsnip_Seeds3_ = NewItem<Parsnip_Seeds>();
 
 
 	WildHorseradish_ = NewItem<WildHorseradish>();
@@ -119,7 +121,7 @@ void Inventory::Update()
 		InventoryPosInit();
 		ItemPosFocusInvenBox();
 
-		CurrentItem_ = WildHorseradish_;
+		CurrentItem_ = Parsnip_Seeds_;
 		CurrentItemFrame_->SetPosition(CurrentItem_->GetPosition());
 
 		UpdateState_ = INVEN_UPDATE::UPDATE;

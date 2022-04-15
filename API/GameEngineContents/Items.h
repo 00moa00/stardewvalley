@@ -7,6 +7,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineNameObject.h>
 
+#include "RendererData.h"
 #include "ItemCode.h"
 #include "ToolData.h"
 #include "Font.h"
@@ -67,19 +68,21 @@ protected:
 	bool MouseHoldItem_;
 	ITEMTYPE ItemType_;
 	TOOLTYPE ToolType_;
+	ITEM_STATE ItemState_;
+
+	Font* Font_;
+	int Count_;
+
 
 private:
 
 	bool InMouse;
 	bool InBox;
 
-	int Count_;
 
 	std::string Name_;
 
-	Font* Font_;
 
-	ITEM_STATE ItemState_;
 
 protected :
 
@@ -146,7 +149,7 @@ public :
 		return ToolType_;
 	}
 
-	const std::string& GetNameConstRef()
+	const std::string& GetItemNameConstRef()
 	{
 		return Name_;
 	}
@@ -160,17 +163,23 @@ public :
 	//    Setter
 	//================================
 
+	void AddCount()
+	{
+		++Count_;
+	}
+
 	void SetInBox(bool _b)
 	{
 		InBox = _b;
 	}
 
-	void SetItemState(ITEM_STATE _state)
+	void SetItemStateAddItem()
 	{
-		ItemState_ = _state;
+		++Count_;
+		ItemState_ = ITEM_STATE::ADDITEM;
 	}
 
-	inline void SetName(std::string _Name)
+	void SetItemName(std::string _Name)
 	{
 		Name_ = _Name;
 	}
