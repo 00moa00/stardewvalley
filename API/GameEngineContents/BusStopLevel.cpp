@@ -21,14 +21,13 @@ void BusStopLevel::LevelChangeStart()
 
 	BackGround_->GetRenderer()->SetImage("BusStop_Back.bmp");
 	BackGround_->GetRenderer()->SetPivot({ BUSSTOP_SIZE_WEIGHT / 2,  BUSSTOP_SIZE_HEIGHT / 2 });
-	//BackGround_->TileMap_.TileRangeSetting(BUSSTOP_CHIP_NUM_X, BUSSTOP_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	BackGround_->TileMap_.TileRangeSetting(BUSSTOP_CHIP_NUM_X, BUSSTOP_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
 	LoadMapObject();
 
-	Player* MainPlayer = FindActor<Player>("MainPlayer");
-	Player_ = MainPlayer;
+
 	Player_->SetPosition({ (BUSSTOP_SIZE_WEIGHT/2), (BUSSTOP_SIZE_HEIGHT / 2)});
-	//Player_->SetTileMap(&BackGround_->TileMap_);
+	Player_->SetTileMap(&BackGround_->TileMap_);
 
 }
 
