@@ -17,7 +17,7 @@ Inventory* Player::MainInventory = nullptr;
 
 
 
-//PLAYERSTATE Player::PlayerState_ = PLAYERSTATE::INIT;
+//PLAYER_UPDATE Player::PlayerState_ = PLAYER_UPDATE::INIT;
 //GameEngineRenderer* Player::PlayerRenderer_ = nullptr;
 //GameEngineCollision* Player::PlayerCollider_ = nullptr;
 //Inventory* Player::Inventory_ = nullptr;
@@ -26,7 +26,7 @@ Inventory* Player::MainInventory = nullptr;
 
 Player::Player()
 	:
-	PlayerState_(PLAYERSTATE::LEVELINIT),
+	PlayerState_(PLAYER_UPDATE::LEVELINIT),
 	AnimationFrame_(0.120f),
 	Speed_(150.f),
 	Energy_(150.f),
@@ -48,11 +48,11 @@ Player::Player()
 
 
 {
-	ArrAnimationName[static_cast<int>(PLAYERSTATE::INIT)] = "INIT";
-	ArrAnimationName[static_cast<int>(PLAYERSTATE::WALK)] = "WALK";
-	ArrAnimationName[static_cast<int>(PLAYERSTATE::HOE)] = "HOE";
-	ArrAnimationName[static_cast<int>(PLAYERSTATE::WATER)] = "WATER";
-	ArrAnimationName[static_cast<int>(PLAYERSTATE::AXE)] = "AXE";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::INIT)] = "INIT";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::WALK)] = "WALK";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::WATER)] = "WATER";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";
 
 
 }
@@ -167,17 +167,17 @@ void Player::Update()
 
 	switch (PlayerState_)
 	{
-	case PLAYERSTATE::LEVELINIT:
+	case PLAYER_UPDATE::LEVELINIT:
 
 		Speed_ = 150.f;
 		CurrentLevel_ = GetCurrentLevel();
 
 		CollInit();
 
-		PlayerState_ = PLAYERSTATE::INIT;
+		PlayerState_ = PLAYER_UPDATE::INIT;
 		break;
 
-	case PLAYERSTATE::INIT:
+	case PLAYER_UPDATE::INIT:
 
 		ChangeLevel();
 		MapObject_;
@@ -189,54 +189,54 @@ void Player::Update()
 
 		if (isMove())
 		{
-			PlayerState_ = PLAYERSTATE::WALK;
+			PlayerState_ = PLAYER_UPDATE::WALK;
 		}
 
 		break;
 
-	case PLAYERSTATE::HOE:
+	case PLAYER_UPDATE::HOE:
 
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CreateDirtTile();
 
-			PlayerState_ = PLAYERSTATE::INIT;
+			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
 		break;
 
-	case PLAYERSTATE::WATER:
+	case PLAYER_UPDATE::WATER:
 
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CreateWaterTile();
 
-			PlayerState_ = PLAYERSTATE::INIT;
+			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
 		break;
 
 
-	case PLAYERSTATE::AXE:
+	case PLAYER_UPDATE::AXE:
 
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CrushWood();
 			
-			//PlayerState_ = PLAYERSTATE::INIT;
+			//PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
 		break;
 
 
-	case PLAYERSTATE::WALK:
+	case PLAYER_UPDATE::WALK:
 
 		PlayerWalk();
 		SubEnergy();
 
 		if (isStop())
 		{
-			PlayerState_ = PLAYERSTATE::INIT;
+			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
 		break;
@@ -479,31 +479,31 @@ void Player::ChangeLevel()
 {
 	if (MoveFarmCollision()) 
 	{
-		PlayerState_ = PLAYERSTATE::LEVELINIT;
+		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
 	}
 
 	if (MoveHouseCollision())
 	{
-		PlayerState_ = PLAYERSTATE::LEVELINIT;
+		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	}
 
 	if (MoveBusStopCollision())
 	{
-		PlayerState_ = PLAYERSTATE::LEVELINIT;
+		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("BusStopLevel");
 	}
 
 	//if (MoveHouseCollision())
 	//{
-	//	PlayerState_ = PLAYERSTATE::COLLINIT;
+	//	PlayerState_ = PLAYER_UPDATE::COLLINIT;
 	//	GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	//}
 
 	//if (MoveHouseCollision())
 	//{
-	//	PlayerState_ = PLAYERSTATE::COLLINIT;
+	//	PlayerState_ = PLAYER_UPDATE::COLLINIT;
 	//	GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	//}
 
@@ -520,11 +520,11 @@ void Player::SetPlayerStartPos()
 void Player::DirAnimationChange()
 {
 
-	//if (PlayerState_ == PLAYERSTATE::INVENTROY_MINI_INIT) { return ; }
-	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP_INIT) { return; }
-	//if (PlayerState_ == PLAYERSTATE::INVENTROY_POPUP) { return; }
+	//if (PlayerState_ == PLAYER_UPDATE::INVENTROY_MINI_INIT) { return ; }
+	//if (PlayerState_ == PLAYER_UPDATE::INVENTROY_POPUP_INIT) { return; }
+	//if (PlayerState_ == PLAYER_UPDATE::INVENTROY_POPUP) { return; }
 
-	if (PlayerState_ == PLAYERSTATE::LEVELINIT)
+	if (PlayerState_ == PLAYER_UPDATE::LEVELINIT)
 	{
 		return; 
 	}
@@ -925,13 +925,13 @@ void Player::CrushWood()
 				(*Iter)->Death();
 				TileState_ = TILE_COLL::INIT;
 				Speed_ = 150.f;
-				PlayerState_ = PLAYERSTATE::INIT;
+				PlayerState_ = PLAYER_UPDATE::INIT;
 		
 		}
 
 		else
 		{
-			PlayerState_ = PLAYERSTATE::INIT;
+			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
 
@@ -1049,22 +1049,22 @@ void Player::CheckTool()
 
 	if (CurrentItemType() == TOOLTYPE::HOE)
 	{
-		PlayerState_ = PLAYERSTATE::HOE;
+		PlayerState_ = PLAYER_UPDATE::HOE;
 	}
 
 	else if (CurrentItemType() == TOOLTYPE::WATTERING_CAN)
 	{
-		PlayerState_ = PLAYERSTATE::WATER;
+		PlayerState_ = PLAYER_UPDATE::WATER;
 	}
 
 	else if (CurrentItemType() == TOOLTYPE::AXE)
 	{
-		PlayerState_ = PLAYERSTATE::AXE;
+		PlayerState_ = PLAYER_UPDATE::AXE;
 	}
 
 	else
 	{
-		PlayerState_ = PLAYERSTATE::INIT;
+		PlayerState_ = PLAYER_UPDATE::INIT;
 	}
 
 

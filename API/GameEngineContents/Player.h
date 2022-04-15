@@ -80,7 +80,7 @@ protected:
 	Player& operator=(Player&& _Other) noexcept = delete;
 
 private:
-	const char* ArrAnimationName[static_cast<int>(PLAYERSTATE::MAX)];
+	const char* ArrAnimationName[static_cast<int>(PLAYER_UPDATE::MAX)];
 
 	float4 CameraPos_;
 
@@ -140,7 +140,7 @@ public:
 		TileMap_ = _TileMap;
 	}
 	
-	PLAYERSTATE GetPlayerState()
+	PLAYER_UPDATE GetPlayerState()
 	{
 		return PlayerState_;
 	}
@@ -196,7 +196,7 @@ private:
 	TOOLTYPE CurrentItemType_;
 
 	TILE_CHANGE TileChangeState_;
-	PLAYERSTATE PlayerState_;
+	PLAYER_UPDATE PlayerState_;
 	TILE_COLL TileState_;
 
 
