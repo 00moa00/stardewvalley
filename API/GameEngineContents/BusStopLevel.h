@@ -25,7 +25,8 @@ protected:
 
 private:
 	void LoadMapObject();
-	std::list<Items*> MapObject_;
-	std::list<Items*>::iterator Iter;
+
+	std::map<int, Items*> MapObject_;
+	std::map<int, Items*>::iterator Iter;
 };
 

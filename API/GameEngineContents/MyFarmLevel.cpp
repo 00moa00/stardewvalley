@@ -134,19 +134,21 @@ void MyFarmLevel::LoadMapObject()
 
 
 			case FARM_TILE::MOVE_FOREST:
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveForest>((int)PLAYLEVEL::OBJECT)));
 
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveForest>((int)PLAYLEVEL::OBJECT)));
 
 				break;
 
 
 			case FARM_TILE::MOVE_BUSSTOP:
+
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT)));
 
 
 				break;
 
 			case FARM_TILE::MOVE_HOUSE :
+
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveHouse>((int)PLAYLEVEL::OBJECT)));
 
 				
