@@ -98,7 +98,10 @@ private:
 
 	GameEngineRenderer* PlayerRenderer_;
 	GameEngineCollision* PlayerCollider_;
-	GameEngineRendererTileMap* TileMap_;
+
+	GameEngineRendererTileMap* DirtTileMap_;
+	GameEngineRendererTileMap* WetTileMap_;
+
 	GameEngineImage* MapColImage_;
 
 	//Items* HandItem_;
@@ -120,7 +123,9 @@ private:
 
 	std::vector<GameEngineCollision*> ColList;
 
-	std::map<int, FarmTile*> TileList_;
+	std::map<int, FarmTile*> DirtList_;
+	std::map<int, FarmTile*> WetDirtList_;
+
 	std::map<int, Items*> SeedList_;
 
 	std::list<Items*> MapObject_;
@@ -157,7 +162,9 @@ public:
 
 	TOOLTYPE CurrentItemType();
 	void SetPrevLevel(std::string s);
-	void SetTileMap(GameEngineRendererTileMap* _TileMap);
+	void SetDirtTileMap(GameEngineRendererTileMap* _TileMap);
+	void SetWetTileMap(GameEngineRendererTileMap* _TileMap);
+
 
 	//================================
 	//    Etc
@@ -214,7 +221,10 @@ private:
 
 	void CreateDirtTile();
 	void CreateWaterTile();
-	void ChangeTile();
+	void ChangeDirtTile();
+	void ChangeWetDirtTile();
+
+
 	void ObjectTileColl();
 	void CrushWood();
 

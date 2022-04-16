@@ -62,13 +62,22 @@ Player::~Player()
 {
 	CurrentLevel_ = "";
 
-	std::map<int, FarmTile*>::iterator StartIter = TileList_.begin();
-	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
+	std::map<int, FarmTile*>::iterator StartDirtIter = DirtList_.begin();
+	std::map<int, FarmTile*>::iterator EndDirtIter = DirtList_.end();
 
 
-	for (; StartIter != EndIter; ++StartIter)
+	for (; StartDirtIter != EndDirtIter; ++StartDirtIter)
 	{
-		delete StartIter->second->GetTile();
+		delete StartDirtIter->second->GetTile();
+	}
+
+	std::map<int, FarmTile*>::iterator StartWetIter = WetDirtList_.begin();
+	std::map<int, FarmTile*>::iterator EndWetIter = WetDirtList_.end();
+
+
+	for (; StartWetIter != EndWetIter; ++StartWetIter)
+	{
+		delete StartWetIter->second->GetTile();
 	}
 }
 
@@ -178,7 +187,8 @@ void Player::Update()
 	PlayerDirCheck();
 	ObjectTileColl();
 	SetCamera();
-	ChangeTile();
+	ChangeDirtTile();
+	ChangeWetDirtTile();
 	PlayerUpdate();
 	SetPlayerHandItemPos();
 

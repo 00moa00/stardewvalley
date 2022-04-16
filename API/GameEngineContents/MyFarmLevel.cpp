@@ -42,14 +42,16 @@ void MyFarmLevel::LevelChangeStart()
 
 	BackGround_->GetRenderer()->SetImage("FarmBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
-	BackGround_->TileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+
+	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
 	LoadMapObject();
 	
 
 	Player_->SetPosition({ FARM_SIZE_WEIGHT - 400.f, (FARM_SIZE_HEIGHT / 2) - 700.f });
-	Player_->SetTileMap(&BackGround_->TileMap_);
-
+	Player_->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	Player_->SetWetTileMap(&BackGround_->WetTileMap_);
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;

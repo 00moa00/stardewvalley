@@ -383,9 +383,16 @@ void  Player::SetPrevLevel(std::string s)
 }
 
 
-void  Player::SetTileMap(GameEngineRendererTileMap* _TileMap)
+void  Player::SetDirtTileMap(GameEngineRendererTileMap* _TileMap)
 {
-	TileMap_ = _TileMap;
+	DirtTileMap_ = _TileMap;
+
+}
+
+void  Player::SetWetTileMap(GameEngineRendererTileMap* _TileMap)
+{
+	WetTileMap_ = _TileMap;
+
 }
 
 PLAYER_UPDATE Player::GetPlayerState()

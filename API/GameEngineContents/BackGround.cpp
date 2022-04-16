@@ -5,7 +5,8 @@
 #include <GameEngine/GameEngineImageManager.h>
 
 BackGround::BackGround() 
-	: TileMap_(this)
+	: DirtTileMap_(this),
+	WetTileMap_(this)
 {
 }
 

@@ -16,31 +16,29 @@ void Player::CreateDirtTile()
 	float4 Pos = PlayerCollCheckPos();
 
 
-	TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+	TileIndex Index = DirtTileMap_->GetTileIndex({ Pos.x , Pos.y });
 	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
 
-	std::map<int, FarmTile*>::iterator FindIter = TileList_.find(ChangeIndex);
-	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
+	std::map<int, FarmTile*>::iterator FindIter = DirtList_.find(ChangeIndex);
+	std::map<int, FarmTile*>::iterator EndIter = DirtList_.end();
 
-	//찾아서 타일맵이 이미 형성되어 있다면 + 그게 그냥 판 땅이라면, 새로운 타일맵을 생성하지 않음
+	// 해당 땅이 이미 파져있다면 새로운 타일맵을 생성하지 않음
 
 	if (FindIter != EndIter)
 	{
-		if (FindIter->second->GetTileState() == TILE_STATE::HOE_DIRT_CREATE)
-		{
 			return;
-		}
+		
 	}
 
 	else {
-		FarmTile* Tile = TileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
-			, "hoeDirt.bmp", 0, (int)PLAYLEVEL::SEED);
+		FarmTile* Tile = DirtTileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
+			, "hoeDirt.bmp", static_cast<int>(TILE_DIRT::BASIC), (int)PLAYLEVEL::DIRT);
 		Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
 
 		//Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
 		//ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
 
-		TileList_.insert(std::make_pair(ChangeIndex, Tile));
+		DirtList_.insert(std::make_pair(ChangeIndex, Tile));
 	}
 	//delete Tile;
 }
@@ -52,24 +50,32 @@ void Player::CreateWaterTile()
 
 	float4 Pos = PlayerCollCheckPos();
 
-	TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+
+	TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
 	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
 
-	std::map<int, FarmTile*>::iterator FindIter = TileList_.find(ChangeIndex);
-	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
+	std::map<int, FarmTile*>::iterator FindIter = WetDirtList_.find(ChangeIndex);
+	std::map<int, FarmTile*>::iterator EndIter = WetDirtList_.end();
 
 
-	//땅에 아무것도 없다면
-	if (FindIter == EndIter)
+	std::map<int, FarmTile*>::iterator FindDIrtIter = DirtList_.find(ChangeIndex);
+	std::map<int, FarmTile*>::iterator EndDIrtIter = DirtList_.end();
+
+
+	//해당 땅이 이미 젖어있다면 + 땅이 파져있지 않으면 패스
+
+	if (FindIter != EndIter && FindDIrtIter == EndDIrtIter)
 	{
 		return;
 	}
 
-
-	//호미질을 한 땅이면 스테이트를 변경
-	if (FindIter->second->GetTileState() == TILE_STATE::HOE_DIRT_CREATE)
+	if(FindIter == EndIter && FindDIrtIter != EndDIrtIter)
 	{
-		FindIter->second->SetTileState(TILE_STATE::HOE_DIRT_WATER);
+		FarmTile* Tile = WetTileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
+			, "hoeDirt.bmp",static_cast<int>(TILE_DIRT::BASIC_WET), (int)PLAYLEVEL::WETDIRT);
+		Tile->TileState_ = TILE_STATE::HOE_DIRT_WATER;
+
+		WetDirtList_.insert(std::make_pair(ChangeIndex, Tile));
 	}
 
 
@@ -81,11 +87,11 @@ void Player::CreateSeed()
 
 	float4 Pos = PlayerCollCheckPos();
 
-	TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+	TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
 	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
 
-	std::map<int, FarmTile*>::iterator FindDirtIter = TileList_.find(ChangeIndex);
-	std::map<int, FarmTile*>::iterator EndDirtIter = TileList_.end();
+	std::map<int, FarmTile*>::iterator FindDirtIter = DirtList_.find(ChangeIndex);
+	std::map<int, FarmTile*>::iterator EndDirtIter = DirtList_.end();
 
 	std::map<int, Items*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
 	std::map<int, Items*>::iterator EndSeedIter = SeedList_.end();
@@ -192,39 +198,26 @@ void Player::ObjectTileColl()
 }
 
 
-void Player::ChangeTile()
+void Player::ChangeDirtTile()
 {
 
-	//위치 초기화
-	//std::map<int, FarmTile*>::iterator StartIter = TileList_.begin();
-	std::map<int, FarmTile*>::iterator EndIter = TileList_.end();
+	std::map<int, FarmTile*>::iterator EndIter = DirtList_.end();
 
 
 
 	for (int i = 0; i < FARM_CHIP_NUM_X * FARM_CHIP_NUM_Y; ++i)
 	{
 
-		std::map<int, FarmTile*>::iterator FindLeftIter = TileList_.find(i - 1);
-		std::map<int, FarmTile*>::iterator FindThisIter = TileList_.find(i);
-		std::map<int, FarmTile*>::iterator FindRightIter = TileList_.find(i + 1);
-		std::map<int, FarmTile*>::iterator FindTopIter = TileList_.find(i - FARM_CHIP_NUM_Y);
-		std::map<int, FarmTile*>::iterator FindBottomIter = TileList_.find(i + FARM_CHIP_NUM_Y);
+		std::map<int, FarmTile*>::iterator FindLeftIter = DirtList_.find(i - 1);
+		std::map<int, FarmTile*>::iterator FindThisIter = DirtList_.find(i);
+		std::map<int, FarmTile*>::iterator FindRightIter = DirtList_.find(i + 1);
+		std::map<int, FarmTile*>::iterator FindTopIter = DirtList_.find(i - FARM_CHIP_NUM_Y);
+		std::map<int, FarmTile*>::iterator FindBottomIter = DirtList_.find(i + FARM_CHIP_NUM_Y);
 
 
 		//현재 찾으려는 타일이 땅에 없으면 패스
 		if (FindThisIter == EndIter) continue;
 
-		int Water = 0;
-
-		//찾은 땅에 물을 뿌렸다면
-		if (FindThisIter->second->GetTileState() == TILE_STATE::HOE_DIRT_WATER)
-		{
-			Water = 4;
-		}
-		else if (FindThisIter->second->GetTileState() == TILE_STATE::HOE_DIRT_CREATE)
-		{
-			Water = 0;
-		}
 
 
 		//------< 위 아래 아무것도 없을때 x축, 원라인 >------------------------------------------------------------------
@@ -237,7 +230,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter == EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_LEFT) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_LEFT));
 
 			}
 
@@ -247,7 +240,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_RIGHT) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_RIGHT) );
 
 			}
 
@@ -257,7 +250,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_MIDDLE) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_MIDDLE) );
 
 			}
 
@@ -275,7 +268,7 @@ void Player::ChangeTile()
 
 			if (FindTopIter == EndIter && FindBottomIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_TOP) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_TOP) );
 
 			}
 
@@ -286,7 +279,7 @@ void Player::ChangeTile()
 
 			if (FindTopIter != EndIter && FindBottomIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_MIDDLE) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_MIDDLE) );
 
 			}
 
@@ -297,7 +290,7 @@ void Player::ChangeTile()
 
 			if (FindTopIter != EndIter && FindBottomIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_BOTTOM) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_BOTTOM) );
 
 			}
 
@@ -315,7 +308,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter == EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_TOP) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_TOP) );
 
 			}
 
@@ -326,7 +319,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_TOP) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_TOP) );
 
 			}
 
@@ -336,7 +329,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter != EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_TOP) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_TOP) );
 
 			}
 
@@ -353,7 +346,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter == EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_BOTTOM) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_BOTTOM) );
 
 			}
 
@@ -364,7 +357,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_BOTTOM) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_BOTTOM) );
 
 			}
 
@@ -374,7 +367,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter != EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_BOTTOM) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_BOTTOM) );
 
 			}
 
@@ -391,7 +384,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter == EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_MIDDLE) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_MIDDLE) );
 
 			}
 
@@ -402,7 +395,7 @@ void Player::ChangeTile()
 
 			if (FindLeftIter != EndIter && FindRightIter == EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_MIDDLE) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_MIDDLE) );
 
 			}
 
@@ -412,7 +405,7 @@ void Player::ChangeTile()
 			//===================================================
 			if (FindLeftIter != EndIter && FindRightIter != EndIter)
 			{
-				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_MIDDLE) + Water);
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_MIDDLE) );
 
 			}
 
@@ -422,7 +415,7 @@ void Player::ChangeTile()
 
 		if (FindLeftIter == EndIter && FindRightIter == EndIter && FindTopIter == EndIter && FindBottomIter == EndIter)
 		{
-			FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::BASIC) + Water);
+			FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::BASIC) );
 
 		}
 
@@ -436,5 +429,238 @@ void Player::ChangeTile()
 
 	}
 
+
+}
+
+
+void Player::ChangeWetDirtTile()
+{
+
+	std::map<int, FarmTile*>::iterator EndIter = WetDirtList_.end();
+
+
+	for (int i = 0; i < FARM_CHIP_NUM_X * FARM_CHIP_NUM_Y; ++i)
+	{
+
+		std::map<int, FarmTile*>::iterator FindLeftIter = WetDirtList_.find(i - 1);
+		std::map<int, FarmTile*>::iterator FindThisIter = WetDirtList_.find(i);
+		std::map<int, FarmTile*>::iterator FindRightIter = WetDirtList_.find(i + 1);
+		std::map<int, FarmTile*>::iterator FindTopIter = WetDirtList_.find(i - FARM_CHIP_NUM_Y);
+		std::map<int, FarmTile*>::iterator FindBottomIter = WetDirtList_.find(i + FARM_CHIP_NUM_Y);
+
+
+		//현재 찾으려는 타일이 땅에 없으면 패스
+		if (FindThisIter == EndIter) continue;
+
+
+
+		//------< 위 아래 아무것도 없을때 x축, 원라인 >------------------------------------------------------------------
+
+		if (FindTopIter == EndIter && FindBottomIter == EndIter)
+		{
+			//===================================================
+			//   case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
+			//===================================================
+
+			if (FindLeftIter == EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_LEFT_WET));
+
+			}
+
+			//===================================================
+			//   case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_RIGHT_WET));
+
+			}
+
+			//===================================================
+			//   case 3 왼쪽 오른쪽 둘 다 있는 경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_MIDDLE_WET));
+
+			}
+
+
+		}
+
+		//------< 양 옆 아무것도 없을때 y축, 원라인 >------------------------------------------------------------------
+
+		if (FindLeftIter == EndIter && FindRightIter == EndIter)
+		{
+
+			//===================================================
+			//   case 1 위쪽 타일은 없는데 아래쪽 타일은 있는경우
+			//===================================================
+
+			if (FindTopIter == EndIter && FindBottomIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_TOP_WET));
+
+			}
+
+
+			//===================================================
+			//   case 2 위쪽타일은 있는데 아래쪽 타일은 없는경우
+			//===================================================
+
+			if (FindTopIter != EndIter && FindBottomIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_MIDDLE_WET));
+
+			}
+
+
+			//===================================================
+			//   case 3 위쪽 아래쪽 둘 다 있는 경우
+			//===================================================
+
+			if (FindTopIter != EndIter && FindBottomIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::H_LINE_BOTTOM_WET));
+
+			}
+
+		}
+
+
+		//------< 아래는 있는데 위가 없을경우 >------------------------------------------------------------------
+
+
+		if (FindTopIter == EndIter && FindBottomIter != EndIter)
+		{
+
+			//===================================================
+			//   case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
+			//===================================================
+			if (FindLeftIter == EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_TOP_WET));
+
+			}
+
+
+			//===================================================
+			//   case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_TOP_WET));
+
+			}
+
+
+			//===================================================
+			//   case 3 왼쪽 오른쪽 둘 다 있는 경우
+			//===================================================
+			if (FindLeftIter != EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_TOP_WET));
+
+			}
+
+
+		}
+
+		//------< 위는 있는데 아래는 없는 경우 >------------------------------------------------------------------
+
+		if (FindTopIter != EndIter && FindBottomIter == EndIter)
+		{
+
+			//===================================================
+			//   case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
+			//===================================================
+			if (FindLeftIter == EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_BOTTOM_WET));
+
+			}
+
+
+			//===================================================
+			//   case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_BOTTOM_WET));
+
+			}
+
+
+			//===================================================
+			//   case 3 왼쪽 오른쪽 둘 다 있는 경우
+			//===================================================
+			if (FindLeftIter != EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_BOTTOM_WET));
+
+			}
+
+		}
+
+
+		//------< 위아래 둘다 있는 경우 >------------------------------------------------------------------
+
+		if (FindTopIter != EndIter && FindBottomIter != EndIter)
+		{
+
+			//===================================================
+			//   case 1 왼쪽 타일은 없는데 오른쪽 타일은 있는경우
+			//===================================================
+			if (FindLeftIter == EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::LEFT_MIDDLE_WET));
+
+			}
+
+
+			//===================================================
+			//   case 2 왼쪽타일은 있는데 오른쪽 타일은 없는경우
+			//===================================================
+
+			if (FindLeftIter != EndIter && FindRightIter == EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::RIGHT_MIDDLE_WET));
+
+			}
+
+
+			//===================================================
+			//   case 3 왼쪽 오른쪽 둘 다 있는 경우
+			//===================================================
+			if (FindLeftIter != EndIter && FindRightIter != EndIter)
+			{
+				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::MIDDLE_MIDDLE_WET));
+
+			}
+
+		}
+
+		//------< 사방에 아무것도 없다면 >------------------------------------------------------------------
+
+		if (FindLeftIter == EndIter && FindRightIter == EndIter && FindTopIter == EndIter && FindBottomIter == EndIter)
+		{
+			FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::BASIC_WET));
+
+		}
+
+		//------< 이모든것에 속하지 않는다 >------------------------------------------------------------------
+
+		//if (FindLeftIter == EndIter || FindRightIter == EndIter || FindTopIter == EndIter || FindBottomIter == EndIter)
+		//{
+		//	return;
+
+		//}
+
+	}
 
 }

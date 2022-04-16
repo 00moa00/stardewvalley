@@ -23,7 +23,8 @@ public:
 	};
 
 
-	GameEngineRendererTileMap TileMap_;
+	GameEngineRendererTileMap DirtTileMap_;
+	GameEngineRendererTileMap WetTileMap_;
 
 
 
