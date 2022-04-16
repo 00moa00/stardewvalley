@@ -74,8 +74,14 @@ protected:
 	int Count_;
 	int FileIndex_;
 
+	float4 ItemPosition_;
+	float4 ItemSpeed_;
+	float4 Gravity_;
+
+
 	bool MouseHoldItem_;
 	bool isPossibleHand_;
+	bool isDeath_;
 
 	std::string Name_;
 	std::string FilePath_;
@@ -99,7 +105,6 @@ private:
 	void Update() override;
 
 public :
-
 	bool IsWall(const float4 pos, const float4 scale, float4 dir);
 
 	//================================
@@ -114,10 +119,7 @@ public :
 
 		return ItemRenderer_;
 	}
-	GameEngineRenderer& GetRendererLef() {
 
-		return *ItemRenderer_;
-	}
 
 	int GetLeft()
 	{
@@ -143,6 +145,12 @@ public :
 	{
 		return FileIndex_;
 	}
+
+	bool IsDeath()
+	{
+		return isDeath_;
+	}
+
 
 	bool GetInBox()
 	{
@@ -183,6 +191,10 @@ public :
 	//    Setter
 	//================================
 
+	void SetDeath(bool _flag)
+	{
+		isDeath_ = _flag;
+	}
 
 	void SetRenderer(GameEngineRenderer& _Renderer) {
 
@@ -249,6 +261,8 @@ public :
 
 		return (ItemCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect));
 	}
+
+
 
 };
 

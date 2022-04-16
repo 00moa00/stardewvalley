@@ -5,12 +5,19 @@
 Items::Items() :
 	ItemRenderer_ (nullptr),
 	ItemCollider_ (nullptr),
+
 	MouseHoldItem_ (false),
 	InMouse (false),
 	isPossibleHand_(false),
+	isDeath_(false),
 	InBox (true),
+
 	FileIndex_(0),
 	Count_ (1),
+
+	Gravity_({}),
+	ItemSpeed_({}),
+	ItemPosition_({}),
 
 	Name_ ({""}),
 	FilePath_({""}),
@@ -38,6 +45,8 @@ void Items::Update()
 //	ItemRenderer_->GetImage()->;
 
 }
+
+
 
 
 bool Items::IsWall(const float4 pos, const float4 scale, float4 dir)

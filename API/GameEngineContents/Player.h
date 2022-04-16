@@ -14,6 +14,7 @@
 #include "Font.h"
 #include "PlayerHandItem.h"
 #include "Parsnip_Growing.h"
+#include "MiniStone.h"
 
 #include <list>
 #include <map>

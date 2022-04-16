@@ -121,7 +121,7 @@ void Inventory::Update()
 		InventoryPosInit();
 		ItemPosFocusInvenBox();
 
-		CurrentItem_ = Parsnip_Seeds_;
+		CurrentItem_ = Hoe_;
 		CurrentItemFrame_->SetPosition(CurrentItem_->GetPosition());
 
 		UpdateState_ = INVEN_UPDATE::UPDATE;

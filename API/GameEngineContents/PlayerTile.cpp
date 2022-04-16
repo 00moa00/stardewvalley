@@ -134,9 +134,18 @@ void Player::CrushWood()
 		if ((*Iter)->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
 		{
 			(*Iter)->Death();
+			
+			//(*Iter)->SetDeath(true);
+			Items* MiniStone_ = CreateSeedActor<MiniStone>();
+			
+			MiniStone_->SetPosition((*Iter)->GetPosition());
+			MapObject_.erase(Iter);
+
 			TileState_ = TILE_COLL::INIT;
 			Speed_ = 150.f;
 			PlayerState_ = PLAYER_UPDATE::INIT;
+
+			Iter = MapObject_.begin();
 
 		}
 

@@ -92,9 +92,6 @@
     <ClCompile Include="Block.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClCompile>
-    <ClCompile Include="Items.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
-    </ClCompile>
     <ClCompile Include="SmallStone.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
     </ClCompile>
@@ -190,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="Parsnip_Growing.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Farming\GrowingSeed</Filter>
+    </ClCompile>
+    <ClCompile Include="Items.cpp">
+      <Filter>Actor\03. Play\Global\Obejct</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniStone.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,9 +299,6 @@
     <ClInclude Include="Hoe.h">
       <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
     </ClInclude>
-    <ClInclude Include="Items.h">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
-    </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClInclude>
@@ -400,6 +400,12 @@
     </ClInclude>
     <ClInclude Include="Parsnip_Growing.h">
       <Filter>Actor\03. Play\Global\Obejct\Farming\GrowingSeed</Filter>
+    </ClInclude>
+    <ClInclude Include="Items.h">
+      <Filter>Actor\03. Play\Global\Obejct</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniStone.h">
+      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

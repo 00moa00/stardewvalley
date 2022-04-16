@@ -94,7 +94,7 @@ void Player::Start()
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
-	PlayerCollider_ = CreateCollision("Player", { 48, 96 });
+	PlayerCollider_ = CreateCollision("Player", { 24, 48 });
 
 	Mouse_->Renderer()->CameraEffectOff();
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
