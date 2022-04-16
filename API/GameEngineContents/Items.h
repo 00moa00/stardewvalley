@@ -82,6 +82,7 @@ protected:
 	bool MouseHoldItem_;
 	bool isPossibleHand_;
 	bool isDeath_;
+	bool MoveFlag_;
 
 	std::string Name_;
 	std::string FilePath_;
@@ -190,6 +191,11 @@ public :
 	//================================
 	//    Setter
 	//================================
+
+	void SetMoveFlag(bool _flag)
+	{
+		MoveFlag_ = _flag;
+	}
 
 	void SetDeath(bool _flag)
 	{

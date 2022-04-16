@@ -135,10 +135,13 @@ void Font::SetPositionItem(float4 _Pos)
 {
 
 	std::vector<GameEngineRenderer*>::iterator ItemPosIter = FontRenderer.begin();
-	for (; ItemPosIter != FontRenderer.end(); ++ItemPosIter) {
+	for (int i = 0; ItemPosIter != FontRenderer.end(); ++ItemPosIter) {
 
-		(*ItemPosIter)->SetPivot({ _Pos.x + (22.f), _Pos.y+(22.f)});
-		
+
+
+
+		(*ItemPosIter)->SetPivot({ _Pos.x + (20.f) + (8.f * i), _Pos.y+(22.f)});
+		++i;
 
 	}
 

@@ -92,6 +92,6 @@ void BusStopLevel::LoadMapObject()
 
 		}
 	}
-	Player_->CopyList(MapObject_);
+	//Player_->CopyList(MapObject_);
 
 }

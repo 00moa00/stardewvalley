@@ -10,6 +10,7 @@ Items::Items() :
 	InMouse (false),
 	isPossibleHand_(false),
 	isDeath_(false),
+	MoveFlag_(false),
 	InBox (true),
 
 	FileIndex_(0),

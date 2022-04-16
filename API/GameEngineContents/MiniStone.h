@@ -27,6 +27,10 @@ private:
 	void Start() override;
 	void Update() override;
 
+	float4 targetPos_;
+	float4 TransformPos_;
+	float4 Normal_ ;
+
 	MOVE State_;
 };
 

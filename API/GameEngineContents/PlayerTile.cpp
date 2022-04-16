@@ -22,9 +22,13 @@ void Player::CreateDirtTile()
 	std::map<int, FarmTile*>::iterator FindIter = DirtList_.find(ChangeIndex);
 	std::map<int, FarmTile*>::iterator EndIter = DirtList_.end();
 
+	std::map<int, Items*>::iterator ObjectFindIter = MapObject_.find(ChangeIndex);
+	std::map<int, Items*>::iterator ObjectEndIter = MapObject_.end();
+
+	
 	// 해당 땅이 이미 파져있다면 새로운 타일맵을 생성하지 않음
 
-	if (FindIter != EndIter)
+	if (FindIter != EndIter || ObjectFindIter != ObjectEndIter)
 	{
 			return;
 		
@@ -131,14 +135,15 @@ void Player::CrushWood()
 
 	for (Iter = MapObject_.begin(); Iter != MapObject_.end(); ++Iter) {
 
-		if ((*Iter)->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
+		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
 		{
-			(*Iter)->Death();
+			Iter->second->Death();
 			
 			//(*Iter)->SetDeath(true);
 			Items* MiniStone_ = CreateSeedActor<MiniStone>();
 			
-			MiniStone_->SetPosition((*Iter)->GetPosition());
+			MiniStone_->SetPosition(Iter->second->GetPosition());
+			MiniStone_->SetMoveFlag(true);
 			MapObject_.erase(Iter);
 
 			TileState_ = TILE_COLL::INIT;
@@ -176,9 +181,8 @@ void Player::ObjectTileColl()
 
 		for (; Iter != MapObject_.end(); ++Iter) {
 
-			if ((*Iter)->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true) {
+			if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true) {
 				Speed_ = 0.f;
-
 				TileState_ = TILE_COLL::COll;
 				break;
 			}
@@ -192,7 +196,7 @@ void Player::ObjectTileColl()
 
 	case TILE_COLL::COll:
 
-		if ((*Iter)->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == false) {
+		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == false) {
 			Speed_ = 150.f;
 			//Player_->SetBreakY(false);
 

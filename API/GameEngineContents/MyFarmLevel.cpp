@@ -84,7 +84,18 @@ void MyFarmLevel::LoadMapObject()
             };
 
 			FARM_TILE TileState_ = static_cast<FARM_TILE>(chip);
-			std::list<Items*>::iterator ThisIter;
+			std::map<int, Items*>::iterator ThisIter;
+
+
+			const float4 IndexPos = {
+			  x * CHIP_SIZE ,
+			  y * CHIP_SIZE,
+			};
+
+
+			TileIndex Index = { static_cast<int>(IndexPos.x / CHIP_SIZE), static_cast<int>(IndexPos.y / CHIP_SIZE) };
+			int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
 
 			switch (TileState_)
 			{
@@ -97,18 +108,19 @@ void MyFarmLevel::LoadMapObject()
 			case FARM_TILE::MAHOGANI_TREE:
 				break;
 			case FARM_TILE::SMALL_STONE:
-				MapObject_.push_back(CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 			
 				break;
 			case FARM_TILE::BIG_STONE:
 				break;
 			case FARM_TILE::SMALL_WOOD1:
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallWood1>((int)PLAYLEVEL::OBJECT)));
 
-				MapObject_.push_back(CreateActor<SmallWood1>((int)PLAYLEVEL::OBJECT));
 				
 				break;
 			case FARM_TILE::SMAA_WOOD2:
-				MapObject_.push_back(CreateActor<SmallWood2>((int)PLAYLEVEL::OBJECT));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallWood2>((int)PLAYLEVEL::OBJECT)));
+
 				
 				break;
 			case FARM_TILE::MIDDLE_WOOD:
@@ -122,21 +134,21 @@ void MyFarmLevel::LoadMapObject()
 
 
 			case FARM_TILE::MOVE_FOREST:
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveForest>((int)PLAYLEVEL::OBJECT)));
 
-				MapObject_.push_back(CreateActor<MoveForest>((int)PLAYLEVEL::OBJECT));
 
 				break;
 
 
 			case FARM_TILE::MOVE_BUSSTOP:
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT)));
 
-				MapObject_.push_back(CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT));
 
 				break;
 
 			case FARM_TILE::MOVE_HOUSE :
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveHouse>((int)PLAYLEVEL::OBJECT)));
 
-				MapObject_.push_back(CreateActor<MoveHouse>((int)PLAYLEVEL::OBJECT));
 				
 				break;
 
@@ -144,14 +156,13 @@ void MyFarmLevel::LoadMapObject()
 
 			case FARM_TILE::BLOCK :
 
-				//MapObject_.push_back(CreateActor<Block>((int)PLAYLEVEL::OBJECT));
 				break;
 			default:
 				break;
 			
 			}
 			ThisIter = --MapObject_.end();
-			(*ThisIter)->SetPosition(pos);
+			ThisIter->second->SetPosition(pos);
 			
      
         }

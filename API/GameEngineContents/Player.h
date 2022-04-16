@@ -95,7 +95,7 @@ private:
 	bool ObjectColl_;
 	bool UsingAxe_;
 	bool UsingPickaxe_;
-
+	//bool ObjectColl_;
 
 	GameEngineRenderer* PlayerRenderer_;
 	GameEngineCollision* PlayerCollider_;
@@ -129,8 +129,8 @@ private:
 
 	std::map<int, Items*> SeedList_;
 
-	std::list<Items*> MapObject_;
-	std::list<Items*>::iterator Iter;
+	std::map<int, Items*> MapObject_;
+	std::map<int, Items*>::iterator Iter;
 
 
 public:
@@ -143,13 +143,15 @@ public:
 	//================================
 
 	bool GetObjectColl();
-	std::string GetCurrentLevel();
 
-	PLAYER_UPDATE GetPlayerState();
 
 	float GetEnergy();
 	int GetMoney();
 
+	std::string GetCurrentLevel();
+
+	PLAYER_UPDATE GetPlayerState();
+	Inventory* GetInventroy();
 	GameEngineRenderer* Renderer();
 	GameEngineImage* CollImage();
 
@@ -171,7 +173,7 @@ public:
 	//    Etc
 	//================================
 
-	void CopyList(std::list <Items*> _OtherList);
+	void CopyList(std::map<int, Items*> _OtherList);
 
 	void ChangeHandItem();
 

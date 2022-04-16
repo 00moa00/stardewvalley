@@ -128,7 +128,8 @@ void MyHouseLevel::LoadMapObject()
      
         }
     }
-	Player_->CopyList(MapObject_);
+
+	//Player_->CopyList(MapObject_);
 
 }
 

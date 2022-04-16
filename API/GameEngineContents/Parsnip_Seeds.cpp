@@ -20,7 +20,7 @@ void Parsnip_Seeds::Start()
 	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 	Font_->ChangeWhiteColor();
 
-	Font_->ChangeNumItem(1);
+	Font_->ChangeNumItem(10);
 	//Font_->SetPositionItem({ GetPosition() });
 
 	ItemRenderer_ = CreateRenderer(FilePath_);

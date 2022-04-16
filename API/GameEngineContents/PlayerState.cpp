@@ -400,6 +400,11 @@ PLAYER_UPDATE Player::GetPlayerState()
 	return PlayerState_;
 }
 
+Inventory* Player::GetInventroy()
+{
+	return Inventory_;
+}
+
 
 GameEngineRenderer* Player::Renderer() {
 	return PlayerRenderer_;
@@ -428,9 +433,9 @@ int Player::GetMoney()
 
 
 
-void  Player::CopyList(std::list <Items*> _OtherList)
+void  Player::CopyList(std::map<int, Items*> _OtherList)
 {
-	std::copy(_OtherList.begin(), _OtherList.end(), std::back_inserter(MapObject_));
+	std::copy(_OtherList.begin(), _OtherList.end(), std::inserter(MapObject_, MapObject_.begin()));
 }
 
 

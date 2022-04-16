@@ -159,6 +159,8 @@ public:
 		float4 Pos = FindIter->second->GetPosition();
 
 		Item->SetPosition({ Pos + _AddPos });
+		Item -> GetRenderer()->CameraEffectOff();
+
 		//++ItemCount_;
 		return Item;
 	}

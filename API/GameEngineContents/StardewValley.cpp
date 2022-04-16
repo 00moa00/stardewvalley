@@ -151,7 +151,7 @@ void StardewValley::GameInit()
 	//		폰트 화이트
 	//================================
 	GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
-	WhiteFont->Cut({ 12, 21 });
+	WhiteFont->Cut({ 9, 16 });
 
 
 	//------< 레벨 등록 >------------------------------------------------------------------
