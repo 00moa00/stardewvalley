@@ -182,6 +182,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="CropsData.h" />
     <ClInclude Include="FixedPlayerColl.h">
       <SubType>
       </SubType>
@@ -245,6 +246,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MyHouseLevel.h" />
+    <ClInclude Include="Parsnip_Growing.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Parsnip_Seeds.h">
       <SubType>
       </SubType>
@@ -513,6 +518,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MyHouseLevel.cpp" />
+    <ClCompile Include="Parsnip_Growing.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Parsnip_Seeds.cpp">
       <SubType>
       </SubType>

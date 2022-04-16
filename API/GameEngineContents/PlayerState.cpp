@@ -471,3 +471,4 @@ bool Player::MoveBackForestCollision() {
 
 	return (PlayerCollider_->CollisionResult("MoveForest", ColList, CollisionType::Rect, CollisionType::Rect));
 }
+

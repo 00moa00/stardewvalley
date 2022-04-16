@@ -11,6 +11,7 @@
 #include "ItemCode.h"
 #include "ToolData.h"
 #include "Font.h"
+#include "CropsData.h"
 //#include "Player.h"
 
 // Ό³Έν :

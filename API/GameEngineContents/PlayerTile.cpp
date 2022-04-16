@@ -12,27 +12,8 @@
 
 void Player::CreateDirtTile()
 {
-	float4 Length = MoveDir_;
-
-	if (float4::DOWN.CompareInt2D(MoveDir_))
-	{
-		Length += float4(0.0f, 24.0f);
-	}
-	if (float4::RIGHT.CompareInt2D(MoveDir_))
-	{
-		Length += float4(24.0f, 0.0f);
-	}
-	if (float4::LEFT.CompareInt2D(MoveDir_))
-	{
-		Length += float4(-24.0f, 0.0f);
-	}
-	if (float4::UP.CompareInt2D(MoveDir_))
-	{
-		Length += float4(0.0f, -24.0f);
-	}
-
-	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
-
+	
+	float4 Pos = PlayerCollCheckPos();
 
 
 	TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
@@ -53,11 +34,11 @@ void Player::CreateDirtTile()
 
 	else {
 		FarmTile* Tile = TileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
-			, "hoeDirt.bmp", 0, (int)PLAYLEVEL::OBJECT);
+			, "hoeDirt.bmp", 0, (int)PLAYLEVEL::SEED);
 		Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
 
-		Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
-		ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+		//Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+		//ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
 
 		TileList_.insert(std::make_pair(ChangeIndex, Tile));
 	}
@@ -69,28 +50,7 @@ void Player::CreateDirtTile()
 void Player::CreateWaterTile()
 {
 
-	float4 Length = MoveDir_;
-
-	if (float4::DOWN.CompareInt2D(MoveDir_))
-	{
-		Length += float4(0.0f, 24.0f);
-	}
-	if (float4::RIGHT.CompareInt2D(MoveDir_))
-	{
-		Length += float4(24.0f, 0.0f);
-	}
-	if (float4::LEFT.CompareInt2D(MoveDir_))
-	{
-		Length += float4(-24.0f, 0.0f);
-	}
-	if (float4::UP.CompareInt2D(MoveDir_))
-	{
-		Length += float4(0.0f, -24.0f);
-	}
-
-	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
-
-
+	float4 Pos = PlayerCollCheckPos();
 
 	TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
 	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
@@ -115,6 +75,49 @@ void Player::CreateWaterTile()
 
 }
 
+void Player::CreateSeed()
+{
+
+
+	float4 Pos = PlayerCollCheckPos();
+
+	TileIndex Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+	std::map<int, FarmTile*>::iterator FindDirtIter = TileList_.find(ChangeIndex);
+	std::map<int, FarmTile*>::iterator EndDirtIter = TileList_.end();
+
+	std::map<int, Items*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
+	std::map<int, Items*>::iterator EndSeedIter = SeedList_.end();
+
+
+	//땅에 아무것도 없으면, 이미 씨앗이 있으면
+	if (FindDirtIter == EndDirtIter&& FindSeedIter!= EndSeedIter)
+	{
+		return;
+	}
+
+
+	//해당 땅이 파져있으면 씨앗을 심는다.
+	if (FindDirtIter != EndDirtIter)
+	{
+		Items* seed = CreateSeedActor<Parsnip_Growing>();
+
+		float4 TileSize_ = { 48.f, 48.f };
+		float4 WorldPos = TileSize_;
+
+		WorldPos.x *= static_cast<int>(Pos.x / CHIP_SIZE);
+		WorldPos.y *= static_cast<int>(Pos.y / CHIP_SIZE);
+
+		WorldPos += TileSize_.Half();
+
+		seed->GetRenderer()->SetPivot({ WorldPos.x, WorldPos.y - 24.f });
+		SeedList_.insert(std::make_pair(ChangeIndex, seed));
+
+	}
+
+
+}
 
 
 void Player::CrushWood()
@@ -143,28 +146,7 @@ void Player::CrushWood()
 
 void Player::ObjectTileColl()
 {
-
-	float4 Length = MoveDir_;
-
-	if (float4::DOWN.CompareInt2D(MoveDir_))
-	{
-		Length += float4(0.0f, 24.0f);
-	}
-	if (float4::RIGHT.CompareInt2D(MoveDir_))
-	{
-		Length += float4(24.0f, 0.0f);
-	}
-	if (float4::LEFT.CompareInt2D(MoveDir_))
-	{
-		Length += float4(-24.0f, 0.0f);
-	}
-	if (float4::UP.CompareInt2D(MoveDir_))
-	{
-		Length += float4(0.0f, -24.0f);
-	}
-
-	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
-
+	float4 Pos = PlayerCollCheckPos();
 
 	switch (TileState_)
 	{
@@ -243,8 +225,6 @@ void Player::ChangeTile()
 		{
 			Water = 0;
 		}
-
-
 
 
 		//------< 위 아래 아무것도 없을때 x축, 원라인 >------------------------------------------------------------------

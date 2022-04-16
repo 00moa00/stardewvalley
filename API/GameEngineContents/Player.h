@@ -13,13 +13,15 @@
 #include "Inventory.h"
 #include "Font.h"
 #include "PlayerHandItem.h"
+#include "Parsnip_Growing.h"
 
 #include <list>
 #include <map>
 #include <algorithm>
 #include <iterator>
 
-enum class TILE_STATE {
+enum class TILE_STATE 
+{
 	HOE_DIRT_CREATE,
 	HOE_DIRT_WATER,
 };
@@ -117,7 +119,10 @@ private:
 
 
 	std::vector<GameEngineCollision*> ColList;
+
 	std::map<int, FarmTile*> TileList_;
+	std::map<int, Items*> SeedList_;
+
 	std::list<Items*> MapObject_;
 	std::list<Items*>::iterator Iter;
 
@@ -225,21 +230,16 @@ private:
 	bool MoveTownCollision();
 	bool MoveBackForestCollision();
 
-	//------< 손에 들고 있는 아이템 >------------------------------------------------------------------
+	//------< 씨앗 생성 >------------------------------------------------------------------
 
-	/*template<typename Actor>
-	Actor* HandItem( Items* _CurrentItem)
+	void CreateSeed();
+
+	template<typename Actor>
+	Actor* CreateSeedActor()
 	{
-		Actor* Item = new Actor();
-		 Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
-		Item->SetRenderer(_CurrentItem->GetRendererLef());
-		std::list<GameEngineActor*> Group;
-		Group.push_back(Item);
-		Item->GetRenderer()->CameraEffectOn();
-
-		++ItemCount_;
+		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
 		return Item;
-	}*/
+	}
 
 };
 

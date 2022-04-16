@@ -131,6 +131,16 @@ void StardewValley::GameInit()
 	GameEngineImage* HoeDirt = GameEngineImageManager::GetInst()->Find("hoeDirt.bmp");
 	HoeDirt->Cut({ 48, 48 });
 
+
+
+	//================================
+	//    씨앗
+	//================================
+	GameEngineImage* crops = GameEngineImageManager::GetInst()->Find("crops.bmp");
+	crops->Cut({ 48, 96 });
+
+
+
 	//================================
 	//		폰트 블랙
 	//================================
@@ -138,7 +148,7 @@ void StardewValley::GameInit()
 	Font->Cut({ 12, 21 });
 
 	//================================
-	//		폰트 블랙
+	//		폰트 화이트
 	//================================
 	GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
 	WhiteFont->Cut({ 12, 21 });

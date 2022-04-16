@@ -182,11 +182,14 @@
     <ClCompile Include="Font.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
-    <ClCompile Include="Parsnip_Seeds.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Farming</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerHandItem.cpp">
       <Filter>Actor\03. Play\Global\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Parsnip_Seeds.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Farming\Seed</Filter>
+    </ClCompile>
+    <ClCompile Include="Parsnip_Growing.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Farming\GrowingSeed</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -386,11 +389,17 @@
     <ClInclude Include="Font.h">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
-    <ClInclude Include="Parsnip_Seeds.h">
-      <Filter>Actor\03. Play\Global\Obejct\Farming</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerHandItem.h">
       <Filter>Actor\03. Play\Global\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CropsData.h">
+      <Filter>Actor\00. GlobalData</Filter>
+    </ClInclude>
+    <ClInclude Include="Parsnip_Seeds.h">
+      <Filter>Actor\03. Play\Global\Obejct\Farming\Seed</Filter>
+    </ClInclude>
+    <ClInclude Include="Parsnip_Growing.h">
+      <Filter>Actor\03. Play\Global\Obejct\Farming\GrowingSeed</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -459,6 +468,12 @@
     </Filter>
     <Filter Include="Actor\03. Play\Global\Obejct\Farming">
       <UniqueIdentifier>{f82147fe-f42d-4839-8ff7-bfdf842ca330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global\Obejct\Farming\Seed">
+      <UniqueIdentifier>{fdd2d070-ae77-4508-ac68-5b9b814032c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global\Obejct\Farming\GrowingSeed">
+      <UniqueIdentifier>{67fa58fc-eb51-4124-b642-16508260f0d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

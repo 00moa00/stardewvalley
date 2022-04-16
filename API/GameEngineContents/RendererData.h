@@ -5,6 +5,8 @@ enum class PLAYLEVEL {
 	BACKGROUND,
 
 	OBJECT,
+	TILE,
+	SEED,
 	PLAYER,
 	BACKGROUND_FRONT,
 
@@ -17,6 +19,7 @@ enum class PLAYLEVEL {
 	ITEM,
 	TOOL,
 	FONT,
+
 
 	CURRENTITEM,
 	MOUSE

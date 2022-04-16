@@ -180,6 +180,8 @@ void Player::Update()
 	SetCamera();
 	ChangeTile();
 	PlayerUpdate();
+	SetPlayerHandItemPos();
+
 }
 
 void Player::Render()
@@ -239,14 +241,12 @@ void Player::PlayerUpdate()
 		ChangeHandItem();
 
 
-
 		//손에 들 수 있는 아이템이라면 
 		if (Inventory_->CurrentItem()->GetisPossibleHand() == true)
 		{
 			PlayerState_ = PLAYER_UPDATE::HANDITEM;
 
 		}
-
 
 		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
 
@@ -301,7 +301,11 @@ void Player::PlayerUpdate()
 		ChangeLevel();
 		ChangeHandItem();
 
-		SetPlayerHandItemPos();
+		if (Mouse_->MouseClickInventoryOut())
+		{
+			CreateSeed();
+		}
+
 
 		//손에 들 수 없는 아이템을 선택했다면 기본 상태로 돌아간다.
 		if (Inventory_->CurrentItem()->GetisPossibleHand() == false)
@@ -336,9 +340,12 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::HANDITEMWALK:
 
 		PlayerWalk();
-		SetPlayerHandItemPos();
 		SubEnergy();
 
+		if (Mouse_->MouseClickInventoryOut())
+		{
+			CreateSeed();
+		}
 
 		if (isStop())
 		{
