@@ -2,6 +2,7 @@
 
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngine/GameEngineRendererTileMap.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 #include "RendererData.h"
 #include "TileData.h"
@@ -96,7 +97,6 @@ private:
 	bool ObjectColl_;
 	bool UsingAxe_;
 	bool UsingPickaxe_;
-	//bool ObjectColl_;
 
 	GameEngineRenderer* PlayerRenderer_;
 	GameEngineCollision* PlayerCollider_;
@@ -106,18 +106,22 @@ private:
 
 	GameEngineImage* MapColImage_;
 
-	//Items* HandItem_;
 	PlayerHandItem* PlayerHandItem_;
+	Mouse* Mouse_;
+	Hoe* Hoe_;
+	Inventory* Inventory_;
+
+	GameEngineRandom RandomItemCount;
+	GameEngineRandom RandomItemPosX;
+	GameEngineRandom RamdomItemPosY;
+
 	TOOLTYPE CurrentItemType_;
 
 	PLAYER_UPDATE PlayerState_;
 	TILE_COLL TileState_;
 	USE_TOOL UseToolState_;
 
-	//Font* Font_;
-	Mouse* Mouse_;
-	Hoe* Hoe_;
-	Inventory* Inventory_;
+
 
 	static std::string CurrentLevel_;
 	static std::string PrevLevel_;

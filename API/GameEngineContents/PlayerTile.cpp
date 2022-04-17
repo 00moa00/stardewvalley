@@ -137,24 +137,33 @@ void Player::CrushWood()
 
 		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
 		{
-			Items* MiniItem = nullptr;
-
-			if (Iter->second->GetItemNameConstRef() == "SmallStone")
+			
+			int Count = RandomItemCount.RandomInt(1, 5);
+ 			for (int i = 0; i < Count; ++i)
 			{
-				MiniItem = CreateSeedActor<MiniStone>();
-			}
+				Items* MiniItem = nullptr;
 
-			if (Iter->second->GetItemNameConstRef() == "SmallWood1"
-				|| Iter->second->GetItemNameConstRef() == "SmallWood2")
-			{
-				MiniItem = CreateSeedActor<MiniWood>();
+				if (Iter->second->GetItemNameConstRef() == "SmallStone")
+				{
+					MiniItem = CreateSeedActor<MiniStone>();
+				}
+
+				if (Iter->second->GetItemNameConstRef() == "SmallWood1"
+					|| Iter->second->GetItemNameConstRef() == "SmallWood2")
+				{
+					MiniItem = CreateSeedActor<MiniWood>();
+				}
+
+				float4 Pos;
+				Pos.x = RandomItemPosX.RandomFloat(-30.f, 30.f);
+				Pos.y = RamdomItemPosY.RandomFloat(-30.f, 30.f);
+
+				MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
+				MiniItem->SetMoveFlag(true);
 			}
 
 
 			Iter->second->Death();
-			
-			MiniItem->SetPosition(Iter->second->GetPosition());
-			MiniItem->SetMoveFlag(true);
 			MapObject_.erase(Iter);
 
 			TileState_ = TILE_COLL::INIT;

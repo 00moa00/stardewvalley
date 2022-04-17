@@ -89,17 +89,19 @@ void Player::Start()
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
 	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::ITEM);
 
-	//------< 액터 초기화 >------------------------------------------------------------------
+	//------< 초기화 >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
 	PlayerCollider_ = CreateCollision("Player", { 24, 80 });
 
+	SetScale({ 40, 20 });
+
 	Mouse_->Renderer()->CameraEffectOff();
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 
-	SetPlayerStartPos();
-	SetScale({ 40, 20 });
+
+
 
 
 	//------< 애니메이션 생성 >------------------------------------------------------------------
