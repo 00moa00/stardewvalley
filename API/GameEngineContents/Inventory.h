@@ -88,30 +88,30 @@ private:
 	void ItemPosFocusInvenBox();
 public:
 
-	Inventory& operator= (const Inventory& other)
-	{
+	//Inventory& operator= (const Inventory& other)
+	//{
 
-		if (0 < other.PlayerItemList_.size())
-		{
-			PlayerItemList_.insert(other.PlayerItemList_.begin(), other.PlayerItemList_.end());
-		}
+	//	if (0 < other.PlayerItemList_.size())
+	//	{
+	//		PlayerItemList_.insert(other.PlayerItemList_.begin(), other.PlayerItemList_.end());
+	//	}
 
-		if (0 < other.Box_.size())
-		{
-			Box_.insert(other.Box_.begin(), other.Box_.end());
-		}
+	//	if (0 < other.Box_.size())
+	//	{
+	//		Box_.insert(other.Box_.begin(), other.Box_.end());
+	//	}
 
-		//CurrentItemFrame_ = other.CurrentItemFrame_;
-		//CurrentItem_ = other.CurrentItem_;
+	//	//CurrentItemFrame_ = other.CurrentItemFrame_;
+	//	//CurrentItem_ = other.CurrentItem_;
 
-		UpdateState_ = INVEN_UPDATE::INIT;
-		MoveState_ = ITEMMOVE::INIT;
-		MiniState_ = MINIPOPUP::MINI;
-		CurrentInvenState_ = MINIPOPUP::INIT;
+	//	UpdateState_ = INVEN_UPDATE::INIT;
+	//	MoveState_ = ITEMMOVE::INIT;
+	//	MiniState_ = MINIPOPUP::MINI;
+	//	CurrentInvenState_ = MINIPOPUP::INIT;
 
 
-		return *this;
-	}
+	//	return *this;
+	//}
 
 
 	template<typename Actor>

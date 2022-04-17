@@ -241,17 +241,17 @@ void Player::ChangeLevel()
 		GameEngine::GetInst().ChangeLevel("BusStopLevel");
 	}
 
-	//if (MoveHouseCollision())
-	//{
-	//	PlayerState_ = PLAYER_UPDATE::COLLINIT;
-	//	GameEngine::GetInst().ChangeLevel("MyHouseLevel");
-	//}
+	if (MoveTownCollision())
+	{
+		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
+		GameEngine::GetInst().ChangeLevel("TownLevel");
+	}
 
-	//if (MoveHouseCollision())
-	//{
-	//	PlayerState_ = PLAYER_UPDATE::COLLINIT;
-	//	GameEngine::GetInst().ChangeLevel("MyHouseLevel");
-	//}
+	if (MoveShopCollision())
+	{
+		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
+		GameEngine::GetInst().ChangeLevel("ShopLevel");
+	}
 
 }
 
@@ -329,6 +329,22 @@ void Player::CollInit()
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
 	}
 
+
+	if (CurrentLevel_ == "TownLevel")
+	{
+		MapSizeX_ = TOWN_SIZE_WEIGHT;
+		MapSizeY_ = TOWN_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("Town_Col.bmp");
+	}
+
+	if (CurrentLevel_ == "ShopLevel")
+	{
+		MapSizeX_ = SHOP_SIZE_WEIGHT;
+		MapSizeY_ = SHOP_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("Shop_Coll.bmp");
+	}
 }
 
 
@@ -476,6 +492,11 @@ bool Player::MoveBusStopCollision() {
 bool Player::MoveTownCollision() {
 
 	return (PlayerCollider_->CollisionResult("MoveTown", ColList, CollisionType::Rect, CollisionType::Rect));
+}
+
+bool Player::MoveShopCollision()
+{
+	return (PlayerCollider_->CollisionResult("MoveShop", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
 

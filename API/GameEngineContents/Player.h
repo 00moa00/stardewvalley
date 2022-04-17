@@ -246,6 +246,7 @@ private:
 	bool MoveHouseCollision();
 	bool MoveBusStopCollision();
 	bool MoveTownCollision();
+	bool MoveShopCollision();
 	bool MoveBackForestCollision();
 
 	//------< ¾¾¾Ñ »ý¼º >------------------------------------------------------------------

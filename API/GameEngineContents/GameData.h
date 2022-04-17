@@ -30,6 +30,14 @@
 #define TOWN_CHIP_NUM_Y 110
 
 
+#define SHOP_SIZE_WEIGHT 2304.f
+#define SHOP_SIZE_HEIGHT 1536.f
+
+#define SHOP_CHIP_NUM_X 48
+#define SHOP_CHIP_NUM_Y 32
+
+
+
 #define FOREST_SIZE_WEIGHT 2400.f
 #define FOREST_SIZE_HEIGHT 1920.f
 

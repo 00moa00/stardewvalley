@@ -44,6 +44,7 @@ enum class FOREST_TILE {
 };
 
 enum class FARM_TILE {
+
 	MAPLE_TREE = 0,
 	PINE_TREE,
 	OAK_TREE,
@@ -57,7 +58,10 @@ enum class FARM_TILE {
 	WEED1,
 	WEED2,
 	MY_HOUSE,
+	SHOP_FLAG = 22,
+	MOVE_SHOP = 23,
 	MOVE_FOREST = 24,
+	MOVE_TOWN = 25,
 	MOVE_BUSSTOP = 26,
 	MOVE_HOUSE = 27,
 	BLOCK = 29,

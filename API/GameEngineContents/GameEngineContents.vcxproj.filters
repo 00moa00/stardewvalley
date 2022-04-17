@@ -27,13 +27,13 @@
       <Filter>Actor\02. Title\Menu</Filter>
     </ClCompile>
     <ClCompile Include="MainUI.cpp">
-      <Filter>Actor\03. Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerEnergyFrame.cpp">
-      <Filter>Actor\03. Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerEnergyBar.cpp">
-      <Filter>Actor\03. Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCustomBoard.cpp">
       <Filter>Actor\Custom</Filter>
@@ -54,19 +54,19 @@
       <Filter>Actor\03. Play\Buildings</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Actor\03. Play\Global\Player</Filter>
+      <Filter>Actor\03. Play\Player</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
-      <Filter>Actor\03. Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="InventroyBox.cpp">
-      <Filter>Actor\03. Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="InventoryExit.cpp">
-      <Filter>Actor\03. Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="MyFarmLevel.cpp">
       <Filter>Level</Filter>
@@ -81,121 +81,133 @@
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="InventoryCurrentFrame.cpp">
-      <Filter>Actor\03. Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHouse.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\buildings</Filter>
+      <Filter>Actor\03. Play\Obejct\buildings</Filter>
     </ClCompile>
     <ClCompile Include="Hoe.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Block.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClCompile>
     <ClCompile Include="Weeds.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
     <ClCompile Include="WildHorseradish.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
     <ClCompile Include="Tv.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClCompile>
     <ClCompile Include="BadTop.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClCompile>
     <ClCompile Include="BadBottom.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClCompile>
     <ClCompile Include="Table.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClCompile>
     <ClCompile Include="Chair.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClCompile>
     <ClCompile Include="MyHouseLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Hitter.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClCompile>
     <ClCompile Include="MoveFarm.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClCompile>
     <ClCompile Include="MapColl.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="MoveHouse.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClCompile>
     <ClCompile Include="BusStopLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="MoveBusStop.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClCompile>
     <ClCompile Include="MoveTown.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClCompile>
     <ClCompile Include="MoveForest.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClCompile>
     <ClCompile Include="PlayLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Watering_Can.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Pickaxe.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Scythe.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Axe.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>Actor\03. Play\Global\Player</Filter>
+      <Filter>Actor\03. Play\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTile.cpp">
-      <Filter>Actor\03. Play\Global\Player</Filter>
+      <Filter>Actor\03. Play\Player</Filter>
     </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHandItem.cpp">
-      <Filter>Actor\03. Play\Global\Player</Filter>
+      <Filter>Actor\03. Play\Player</Filter>
     </ClCompile>
     <ClCompile Include="Parsnip_Seeds.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Farming\Seed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
     </ClCompile>
     <ClCompile Include="Parsnip_Growing.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
     </ClCompile>
     <ClCompile Include="Items.cpp">
-      <Filter>Actor\03. Play\Global\Obejct</Filter>
+      <Filter>Actor\03. Play\Obejct</Filter>
     </ClCompile>
     <ClCompile Include="MiniStone.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
     <ClCompile Include="TreeTop.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClCompile>
     <ClCompile Include="TreeBottom.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClCompile>
     <ClCompile Include="SmallWood2.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClCompile>
     <ClCompile Include="SmallWood1.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClCompile>
     <ClCompile Include="SmallStone.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClCompile>
     <ClCompile Include="MiniWood.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveShop.cpp">
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopFlag.cpp">
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>Actor\03. Play\Shop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,13 +237,13 @@
       <Filter>Actor\02. Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="MainUI.h">
-      <Filter>Actor\03. Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerEnergyFrame.h">
-      <Filter>Actor\03. Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerEnergyBar.h">
-      <Filter>Actor\03. Play\Global\UI</Filter>
+      <Filter>Actor\03. Play\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCustomBoard.h">
       <Filter>Actor\Custom</Filter>
@@ -255,7 +267,7 @@
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Actor\03. Play\Global\Player</Filter>
+      <Filter>Actor\03. Play\Player</Filter>
     </ClInclude>
     <ClInclude Include="RendererData.h">
       <Filter>Actor\00. GlobalData</Filter>
@@ -264,16 +276,16 @@
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
-      <Filter>Actor\03. Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="InventroyBox.h">
-      <Filter>Actor\03. Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="ItemCode.h">
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="InventoryExit.h">
-      <Filter>Actor\03. Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="MyFarmLevel.h">
       <Filter>Level</Filter>
@@ -294,52 +306,52 @@
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="InventoryCurrentFrame.h">
-      <Filter>Actor\03. Play\Global\Inventory</Filter>
+      <Filter>Actor\03. Play\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHouse.h">
-      <Filter>Actor\03. Play\Global\Obejct\buildings</Filter>
+      <Filter>Actor\03. Play\Obejct\buildings</Filter>
     </ClInclude>
     <ClInclude Include="Hoe.h">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClInclude>
     <ClInclude Include="Weeds.h">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
     <ClInclude Include="WildHorseradish.h">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
     <ClInclude Include="Tv.h">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClInclude>
     <ClInclude Include="BadTop.h">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClInclude>
     <ClInclude Include="BadBottom.h">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClInclude>
     <ClInclude Include="Table.h">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClInclude>
     <ClInclude Include="Chair.h">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClInclude>
     <ClInclude Include="MyHouseLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Hitter.h">
-      <Filter>Actor\03. Play\Global\Obejct\Furniture</Filter>
+      <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClInclude>
     <ClInclude Include="MoveFarm.h">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClInclude>
     <ClInclude Include="MapColl.h">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="MoveHouse.h">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClInclude>
     <ClInclude Include="TileData.h">
       <Filter>Actor\00. GlobalData</Filter>
@@ -351,67 +363,79 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="MoveBusStop.h">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClInclude>
     <ClInclude Include="MoveTown.h">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClInclude>
     <ClInclude Include="MoveForest.h">
-      <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
     </ClInclude>
     <ClInclude Include="PlayLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Watering_Can.h">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Pickaxe.h">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Scythe.h">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Axe.h">
-      <Filter>Actor\03. Play\Global\Obejct\Tool</Filter>
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHandItem.h">
-      <Filter>Actor\03. Play\Global\Player</Filter>
+      <Filter>Actor\03. Play\Player</Filter>
     </ClInclude>
     <ClInclude Include="CropsData.h">
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="Parsnip_Seeds.h">
-      <Filter>Actor\03. Play\Global\Obejct\Farming\Seed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
     </ClInclude>
     <ClInclude Include="Parsnip_Growing.h">
-      <Filter>Actor\03. Play\Global\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
     </ClInclude>
     <ClInclude Include="Items.h">
-      <Filter>Actor\03. Play\Global\Obejct</Filter>
+      <Filter>Actor\03. Play\Obejct</Filter>
     </ClInclude>
     <ClInclude Include="MiniStone.h">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
     <ClInclude Include="TreeTop.h">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClInclude>
     <ClInclude Include="TreeBottom.h">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClInclude>
     <ClInclude Include="SmallWood2.h">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClInclude>
     <ClInclude Include="SmallWood1.h">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClInclude>
     <ClInclude Include="SmallStone.h">
-      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClInclude>
     <ClInclude Include="MiniWood.h">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveShop.h">
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopFlag.h">
+      <Filter>Actor\03. Play\Obejct\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>Actor\03. Play\Shop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -436,59 +460,59 @@
     <Filter Include="Actor\03. Play">
       <UniqueIdentifier>{2b9a7125-e5c4-4740-931d-18dd34a3f8d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\Global">
-      <UniqueIdentifier>{d6a178bf-fc85-411e-b93b-0559d30324c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Global\UI">
-      <UniqueIdentifier>{54011bab-08ea-4755-ae2a-767059796564}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Global\Player">
-      <UniqueIdentifier>{12175836-2593-4357-aa29-8227fda684d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Global\Inventory">
-      <UniqueIdentifier>{0c93c102-3041-46d1-9ab5-18ae840e954d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Global\GameTime">
-      <UniqueIdentifier>{76837e91-0396-4cd9-ba19-b24879c1900a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\03. Play\Buildings">
       <UniqueIdentifier>{192a0a27-f530-43a4-a4f9-3c4b8cc1df2e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Actor\03. Play\NPC">
       <UniqueIdentifier>{d3ffba0c-12d1-4fa2-8a35-e9f19a2f687f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct">
-      <UniqueIdentifier>{b6823ce8-4576-45c1-9310-bcb1ea10b587}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct\buildings">
-      <UniqueIdentifier>{9d549d44-4815-4517-a918-f31c9cd79189}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct\Furniture">
-      <UniqueIdentifier>{16c55988-52a5-42a8-bc12-f5d8f359cef3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct\Tool">
-      <UniqueIdentifier>{bf2ef558-8502-462c-b3a3-3268d4c6fc31}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct\Global">
-      <UniqueIdentifier>{2fb373cf-46c0-4a11-8b84-fa6589acc391}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct\Item">
-      <UniqueIdentifier>{53c2011e-28b5-42ab-8fdb-a1b3b96b3f61}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\01. GlobalActor">
       <UniqueIdentifier>{b63f880a-300f-4acf-a371-24a83b8253d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct\Farming">
+    <Filter Include="Actor\03. Play\GameTime">
+      <UniqueIdentifier>{76837e91-0396-4cd9-ba19-b24879c1900a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Inventory">
+      <UniqueIdentifier>{0c93c102-3041-46d1-9ab5-18ae840e954d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct">
+      <UniqueIdentifier>{b6823ce8-4576-45c1-9310-bcb1ea10b587}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\buildings">
+      <UniqueIdentifier>{9d549d44-4815-4517-a918-f31c9cd79189}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\Furniture">
+      <UniqueIdentifier>{16c55988-52a5-42a8-bc12-f5d8f359cef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\Tool">
+      <UniqueIdentifier>{bf2ef558-8502-462c-b3a3-3268d4c6fc31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\Global">
+      <UniqueIdentifier>{2fb373cf-46c0-4a11-8b84-fa6589acc391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\Item">
+      <UniqueIdentifier>{53c2011e-28b5-42ab-8fdb-a1b3b96b3f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\Farming">
       <UniqueIdentifier>{f82147fe-f42d-4839-8ff7-bfdf842ca330}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct\Farming\Seed">
+    <Filter Include="Actor\03. Play\Obejct\Farming\Seed">
       <UniqueIdentifier>{fdd2d070-ae77-4508-ac68-5b9b814032c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct\Farming\GrowingSeed">
+    <Filter Include="Actor\03. Play\Obejct\Farming\GrowingSeed">
       <UniqueIdentifier>{67fa58fc-eb51-4124-b642-16508260f0d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\Global\Obejct\MapObject">
+    <Filter Include="Actor\03. Play\Obejct\MapObject">
       <UniqueIdentifier>{c15f9684-5260-4222-bee4-d446efaf9813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Player">
+      <UniqueIdentifier>{12175836-2593-4357-aa29-8227fda684d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\UI">
+      <UniqueIdentifier>{54011bab-08ea-4755-ae2a-767059796564}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Shop">
+      <UniqueIdentifier>{a5fd3d76-7287-4952-b7d1-9214d98bf275}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

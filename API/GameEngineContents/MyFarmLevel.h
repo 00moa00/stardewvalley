@@ -16,22 +16,20 @@ public:
 	MyFarmLevel& operator=(const MyFarmLevel& _Other) = delete;
 	MyFarmLevel& operator=(MyFarmLevel&& _Other) noexcept = delete;
 
-	float Time;
-
-	//GameEngineSoundPlayer BgmPlayer;
-
-
-protected:
-
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart() override;
 	void LevelChangeEnd() override;
 
-private:
 
+protected:
+
+
+
+private:
 	void LoadMapObject();
 
+	float Time;
 
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;
