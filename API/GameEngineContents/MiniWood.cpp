@@ -1,22 +1,22 @@
-#include "MiniStone.h"
+#include "MiniWood.h"
 #include "Player.h"
-MiniStone::MiniStone() 
 
+MiniWood::MiniWood() 
 {
 }
 
-MiniStone::~MiniStone() 
+MiniWood::~MiniWood() 
 {
 }
 
-void MiniStone::Start()
+void MiniWood::Start()
 {
 	ItemSpeed_.x = 1.f;
 	ItemSpeed_.y = 5.f;
 	Gravity_.y = 0.1f;
 
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::MINI_STONE));
+	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::MINI_WOOD));
 	ItemRenderer_->CameraEffectOn();
 
 	ItemCollider_ = CreateCollision("MapObject", { 20, 20 });
@@ -29,16 +29,12 @@ void MiniStone::Start()
 
 	ItemType_ = ITEMTYPE::ITEM;
 
-	SetItemName("MiniStone");
-
+	Name_ = "MiniWood";
 }
 
-void MiniStone::Update()
+void MiniWood::Update()
 {
-
 	MoveToPlayer();
-	
-
 
 }
 

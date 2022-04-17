@@ -1,11 +1,5 @@
 #pragma once
 #include "Items.h"
-enum class MOVE
-{
-	INIT,
-	Y_UP,
-	Y_DOWN
-};
 
 // Ό³Έν :
 class MiniStone : public Items
@@ -27,10 +21,6 @@ private:
 	void Start() override;
 	void Update() override;
 
-	float4 targetPos_;
-	float4 TransformPos_;
-	float4 Normal_ ;
 
-	MOVE State_;
 };
 

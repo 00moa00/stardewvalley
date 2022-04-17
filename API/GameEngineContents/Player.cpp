@@ -190,6 +190,7 @@ void Player::Update()
 	ChangeWetDirtTile();
 	PlayerUpdate();
 	SetPlayerHandItemPos();
+	ChangeLevel();
 
 }
 
@@ -246,7 +247,6 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::INIT:
 
-		ChangeLevel();
 		ChangeHandItem();
 
 

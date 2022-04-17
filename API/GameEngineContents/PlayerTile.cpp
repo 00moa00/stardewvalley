@@ -137,13 +137,24 @@ void Player::CrushWood()
 
 		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
 		{
+			Items* MiniItem = nullptr;
+
+			if (Iter->second->GetItemNameConstRef() == "SmallStone")
+			{
+				MiniItem = CreateSeedActor<MiniStone>();
+			}
+
+			if (Iter->second->GetItemNameConstRef() == "SmallWood1"
+				|| Iter->second->GetItemNameConstRef() == "SmallWood2")
+			{
+				MiniItem = CreateSeedActor<MiniWood>();
+			}
+
+
 			Iter->second->Death();
 			
-			//(*Iter)->SetDeath(true);
-			Items* MiniStone_ = CreateSeedActor<MiniStone>();
-			
-			MiniStone_->SetPosition(Iter->second->GetPosition());
-			MiniStone_->SetMoveFlag(true);
+			MiniItem->SetPosition(Iter->second->GetPosition());
+			MiniItem->SetMoveFlag(true);
 			MapObject_.erase(Iter);
 
 			TileState_ = TILE_COLL::INIT;

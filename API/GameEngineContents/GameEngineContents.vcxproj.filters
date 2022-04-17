@@ -92,21 +92,6 @@
     <ClCompile Include="Block.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClCompile>
-    <ClCompile Include="SmallStone.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="SmallWood1.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="SmallWood2.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="TreeBottom.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="TreeTop.cpp">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClCompile>
     <ClCompile Include="Weeds.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
     </ClCompile>
@@ -192,6 +177,24 @@
       <Filter>Actor\03. Play\Global\Obejct</Filter>
     </ClCompile>
     <ClCompile Include="MiniStone.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeTop.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeBottom.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallWood2.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallWood1.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallStone.cpp">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniWood.cpp">
       <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
     </ClCompile>
   </ItemGroup>
@@ -302,21 +305,6 @@
     <ClInclude Include="Block.h">
       <Filter>Actor\03. Play\Global\Obejct\Global</Filter>
     </ClInclude>
-    <ClInclude Include="SmallStone.h">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="SmallWood1.h">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="SmallWood2.h">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="TreeBottom.h">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="TreeTop.h">
-      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
-    </ClInclude>
     <ClInclude Include="Weeds.h">
       <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
     </ClInclude>
@@ -407,6 +395,24 @@
     <ClInclude Include="MiniStone.h">
       <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
     </ClInclude>
+    <ClInclude Include="TreeTop.h">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeBottom.h">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallWood2.h">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallWood1.h">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallStone.h">
+      <Filter>Actor\03. Play\Global\Obejct\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniWood.h">
+      <Filter>Actor\03. Play\Global\Obejct\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">
@@ -480,6 +486,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Global\Obejct\Farming\GrowingSeed">
       <UniqueIdentifier>{67fa58fc-eb51-4124-b642-16508260f0d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Global\Obejct\MapObject">
+      <UniqueIdentifier>{c15f9684-5260-4222-bee4-d446efaf9813}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

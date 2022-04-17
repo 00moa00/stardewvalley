@@ -19,6 +19,9 @@ void SmallStone::Start()
 	SetScale({ 48.f, 48.f });
 	//ItemCollider_ = CreateCollision("Object", { 30, 30 });
 	ItemType_ = ITEMTYPE::ITEM;
+	Name_ = "SmallStone";
+
+
 }
 
 void SmallStone::Update()

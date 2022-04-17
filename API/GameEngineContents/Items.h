@@ -43,6 +43,13 @@ enum class ITEM_STATE
 	ADDITEM,
 };
 
+enum class MOVE
+{
+	INIT,
+	Y_UP,
+	Y_DOWN
+};
+
 
 class Items : public GameEngineActor
 {
@@ -70,6 +77,7 @@ protected:
 	ITEMTYPE ItemType_;
 	TOOLTYPE ToolType_;
 	ITEM_STATE ItemState_;
+	MOVE State_;
 
 	int Count_;
 	int FileIndex_;
@@ -77,6 +85,9 @@ protected:
 	float4 ItemPosition_;
 	float4 ItemSpeed_;
 	float4 Gravity_;
+	float4 targetPos_;
+	float4 TransformPos_;
+	float4 Normal_;
 
 
 	bool MouseHoldItem_;
@@ -107,6 +118,7 @@ private:
 
 public :
 	bool IsWall(const float4 pos, const float4 scale, float4 dir);
+	void MoveToPlayer();
 
 	//================================
 	//     Getter

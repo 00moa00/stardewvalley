@@ -274,7 +274,7 @@ enum class ITEM{
 	COAL = 382,
 	GOLD_ORE = 384,
 	IRIDIUM_ORE = 386,
-	WOOD = 388,
+	MINI_WOOD = 388,
 
 	MINI_STONE = 390,
 
