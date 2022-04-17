@@ -465,6 +465,24 @@ void Player::SetPlayerHandItemPos()
 
 }
 
+void Player::PlayerShopping()
+{
+	//¼îÇÎÁß
+
+	if (MouseClickAndColl() == true)
+	{
+		Shop_->On();
+		isShopping_ = true;
+	}
+
+	else
+	{
+		Shop_->Off();
+
+	}
+
+}
+
 
 bool Player::PlayerMouseClickCollision() {
 
@@ -503,5 +521,11 @@ bool Player::MoveShopCollision()
 bool Player::MoveBackForestCollision() {
 
 	return (PlayerCollider_->CollisionResult("MoveForest", ColList, CollisionType::Rect, CollisionType::Rect));
+}
+
+bool Player::MouseClickAndColl()
+{
+	return ((PlayerCollider_->CollisionResult("ShopFlag", ColList, CollisionType::Rect, CollisionType::Rect))
+		&& (Mouse_->isMouseClick()));
 }
 

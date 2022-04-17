@@ -26,23 +26,29 @@ Inventory* Player::MainInventory = nullptr;
 
 Player::Player()
 	:
-	PlayerState_(PLAYER_UPDATE::LEVELINIT),
 	AnimationFrame_(0.120f),
 	Speed_(150.f),
 	Energy_(150.f),
+	MapSizeX_(0.f),
+	MapSizeY_(0.f),
+
 	PlayerRenderer_(nullptr),
 	PlayerCollider_(nullptr),
 	MapColImage_(nullptr),
 	Inventory_(nullptr),
 	Mouse_(nullptr),
+	Shop_(nullptr),
+
 	ObjectColl_(false),
 	FarmingArea_(false),
-	MoveDir_(float4::DOWN),
-	MapSizeX_(0.f),
 	UsingAxe_(false),
-	MapSizeY_(0.f),
+	isShopping_(false),
+
+	MoveDir_(float4::DOWN),
+
 	UseToolState_(USE_TOOL::INIT),
-	TileState_(TILE_COLL::INIT)
+	TileState_(TILE_COLL::INIT),
+	PlayerState_(PLAYER_UPDATE::LEVELINIT)
 
 
 
@@ -88,6 +94,7 @@ void Player::Start()
 	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
 	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
 	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::ITEM);
+	Shop_ = GetLevel()->CreateActor<Shop>((int)PLAYLEVEL::SHOP);
 
 	//------< ÃÊ±âÈ­ >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
@@ -193,6 +200,7 @@ void Player::Update()
 	PlayerUpdate();
 	SetPlayerHandItemPos();
 	ChangeLevel();
+	//PlayerShopping();
 
 }
 
@@ -210,7 +218,7 @@ void Player::LevelChangeStart()
 
 void Player::LevelChangeEnd()
 {
-	if (MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
+	//if (MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
 	MainPlayer = this;
 }
 

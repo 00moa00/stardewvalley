@@ -40,8 +40,16 @@ void StardewValley::GameInit()
 		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
 		GameEngineInput::GetInst()->CreateKey("MoveUp", 'W');
 		GameEngineInput::GetInst()->CreateKey("MoveDown", 'S');
+
 		GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
+
 		GameEngineInput::GetInst()->CreateKey("LeftClick", MK_LBUTTON);
+
+		GameEngineInput::GetInst()->CreateKey("KeyLeft", VK_LEFT);
+		GameEngineInput::GetInst()->CreateKey("KeyRight", VK_RIGHT);
+		GameEngineInput::GetInst()->CreateKey("KeyUp", VK_UP);
+		GameEngineInput::GetInst()->CreateKey("KeyDown", VK_DOWN);
+
 	}
 
 
@@ -165,7 +173,7 @@ void StardewValley::GameInit()
 	CreateLevel<TownLevel>("TownLevel");
 	CreateLevel<ShopLevel>("ShopLevel");
 
-	ChangeLevel("MyFarmLevel");
+	ChangeLevel("ShopLevel");
 
 
 }

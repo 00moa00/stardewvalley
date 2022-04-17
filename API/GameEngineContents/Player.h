@@ -17,6 +17,7 @@
 #include "Parsnip_Growing.h"
 #include "MiniStone.h"
 #include "MiniWood.h"
+#include "Shop.h"
 
 #include <list>
 #include <map>
@@ -97,6 +98,7 @@ private:
 	bool ObjectColl_;
 	bool UsingAxe_;
 	bool UsingPickaxe_;
+	bool isShopping_;
 
 	GameEngineRenderer* PlayerRenderer_;
 	GameEngineCollision* PlayerCollider_;
@@ -110,6 +112,7 @@ private:
 	Mouse* Mouse_;
 	Hoe* Hoe_;
 	Inventory* Inventory_;
+	Shop* Shop_;
 
 	GameEngineRandom RandomItemCount;
 	GameEngineRandom RandomItemPosX;
@@ -211,6 +214,7 @@ private:
 	void PlayerDirCheck();
 	void SubEnergy();
 	void SetPlayerHandItemPos();
+	void PlayerShopping();
 
 	//================================
 	//   局聪皋捞记
@@ -248,6 +252,8 @@ private:
 	bool MoveTownCollision();
 	bool MoveShopCollision();
 	bool MoveBackForestCollision();
+
+	bool MouseClickAndColl();
 
 	//------< 揪狙 积己 >------------------------------------------------------------------
 

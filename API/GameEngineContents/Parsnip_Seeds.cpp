@@ -43,7 +43,7 @@ void Parsnip_Seeds::Update()
 		break;
 
 	case ITEM_STATE::ADDITEM:
-	//	++Count_;
+		//	++Count_;
 		Font_->ChangeNumItem(Count_);
 		//	Font_->SetPositionItem({ GetPosition() });
 

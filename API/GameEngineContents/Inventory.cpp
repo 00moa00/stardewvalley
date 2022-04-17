@@ -348,6 +348,7 @@ void Inventory::SetCurrentItemFrameChange(InventroyBox* box_)
 
 void Inventory::ItemMove()
 {
+
 	//키값 변경용
 	std::map<int, Items*>::iterator Finditer;
 	std::map<int, InventroyBox*>::iterator FindBoxiter;

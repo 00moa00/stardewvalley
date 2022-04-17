@@ -18,23 +18,19 @@
 
 enum class ITEMTYPE
 {
-
 	ITEM,
 	OBJECT,
 	TOOL,
 	BLOCK,
-
 };
 
 enum class TOOLTYPE 
 {
-
 	OTHER,
 	HOE,
 	WATTERING_CAN,
 	AXE,
 	PICKAXE
-
 };
 
 enum class ITEM_STATE

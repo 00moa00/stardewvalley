@@ -70,13 +70,12 @@ public:
 	//Inventory& operator=(const Inventory& _Other) = delete;
 	Inventory& operator=(Inventory&& _Other) noexcept = delete;
 
-protected:
+private:
 
 	void Start() override;
 	void Update() override;
 	void Render() override;
 	void LevelChangeStart() override;
-
 	void LevelChangeEnd() override;
 
 private:
@@ -86,6 +85,7 @@ private:
 	void BoxInit();
 	void InventoryPosInit();
 	void ItemPosFocusInvenBox();
+
 public:
 
 	//Inventory& operator= (const Inventory& other)
