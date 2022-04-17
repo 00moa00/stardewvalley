@@ -71,6 +71,7 @@ protected:
 
 	GameEngineRenderer* ItemRenderer_;
 	GameEngineCollision* ItemCollider_;
+	GameEngineCollision* MapItemCollider_;
 
 	Font* Font_;
 
@@ -277,7 +278,7 @@ public :
 	bool playerVSobject() 
 	{
 
-		return (ItemCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect));
+		return (MapItemCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect));
 	}
 
 

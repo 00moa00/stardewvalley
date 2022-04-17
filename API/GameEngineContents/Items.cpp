@@ -5,6 +5,7 @@
 Items::Items() :
 	ItemRenderer_ (nullptr),
 	ItemCollider_ (nullptr),
+	MapItemCollider_(nullptr),
 
 	MouseHoldItem_ (false),
 	InMouse (false),
@@ -88,6 +89,8 @@ bool Items::IsWall(const float4 pos, const float4 scale, float4 dir)
 	return true;
 }
 
+
+
 void Items::MoveToPlayer()
 {
 
@@ -132,8 +135,8 @@ void Items::MoveToPlayer()
 			if (playerVSobject())
 
 			{
-				MainPlayer->GetInventroy()->NewItem<MiniStone>();
 
+				isDeath_ = true;
 				Death();
 			}
 

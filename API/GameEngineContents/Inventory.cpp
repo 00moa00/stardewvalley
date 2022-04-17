@@ -71,9 +71,7 @@ void Inventory::Start()
 	Axe_ = NewItem<Axe>();
 	Pickaxe_ = NewItem<Pickaxe>();
 
-	Parsnip_Seeds_ = NewItem<Parsnip_Seeds>();
-	Parsnip_Seeds2_ = NewItem<Parsnip_Seeds>();
-	Parsnip_Seeds3_ = NewItem<Parsnip_Seeds>();
+	//Parsnip_Seeds_ = NewItem<Parsnip_Seeds>();
 
 
 	WildHorseradish_ = NewItem<WildHorseradish>();
@@ -601,12 +599,12 @@ void Inventory::InvenPopUp()
 		Inventory_->SetImage("inventory.bmp");
 
 
-		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) 
+		for (; ItemStartIter != ItemEndIter; ++ItemStartIter)
 		{
 			if (ItemStartIter == ItemEndIter) {
 				continue;
 			}
-
+			//ItemStartIter->second->
 			ItemStartIter->second->On();
 		}
 
@@ -614,6 +612,7 @@ void Inventory::InvenPopUp()
 		{
 	
 			BoxStartIter->second->On();
+
 		}
 
 

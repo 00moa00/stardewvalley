@@ -231,8 +231,6 @@ private:
 
 	WildHorseradish* WildHorseradish_;
 	Parsnip_Seeds* Parsnip_Seeds_;
-	Parsnip_Seeds* Parsnip_Seeds2_;
-	Parsnip_Seeds* Parsnip_Seeds3_;
 
 	ITEMMOVE MoveState_;
 	MINIPOPUP MiniState_;

@@ -1,7 +1,8 @@
 #pragma once
+#include "PlayLevel.h"
 
 // Ό³Έν :
-class TownLevel
+class TownLevel : public PlayLevel
 {
 public:
 	// constrcuter destructer
@@ -15,8 +16,14 @@ public:
 	TownLevel& operator=(TownLevel&& _Other) noexcept = delete;
 
 protected:
+	void Loading() override;
+	void Update() override;
+	void LevelChangeStart() override;
 
 private:
+	void LoadMapObject();
 
+	std::map<int, Items*> MapObject_;
+	std::map<int, Items*>::iterator Iter;
 };
 
