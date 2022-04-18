@@ -340,25 +340,21 @@ void Inventory::SetCurrentItemFrameChange(InventroyBox* box_)
 
 void Inventory::ItemMove()
 {
-
 	//키값 변경용
 	std::map<int, Items*>::iterator Finditer;
 	std::map<int, InventroyBox*>::iterator FindBoxiter;
 
-
-	//TODO: 예상되는 문제점, 플레이 도중에 아이템을 얻었을때 리스트가 변경되면 INIT 해주기
+	Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 
 	switch (MoveState_)
 	{
 	case ITEMMOVE::INIT:
-
 
 		PlayerItemListStartIter = PlayerItemList_.begin();
 		PlayerItemListEndIter = PlayerItemList_.end();
 
 		BoxStartIter = Box_.begin();
 		BoxEndIter = Box_.end();
-
 
 		MoveState_ = ITEMMOVE::NOTACT;
 
@@ -371,17 +367,16 @@ void Inventory::ItemMove()
 		for (; PlayerItemListStartIter != PlayerItemListEndIter; ++PlayerItemListStartIter)
 		{
 
-
 			if (PlayerItemListStartIter->second->MouseOver() && Mouse_->isMouseClick())
 			{
 
-				//현재 아이템 프레임
-				SetCurrentItemFrame(PlayerItemListStartIter->second);
+				//상점일때 
 
-				//현재 아이템 저장
-				CurrentItem_ = PlayerItemListStartIter->second;
-				//Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-				//MainPlayer->ChangeHandItem();
+				if (MainPlayer->GetPlayerShoppingStateShopping())
+				{
+					MoveState_ = ITEMMOVE::SHOPPING;
+					break;
+				}
 
 				//미니 상태에서 툴은 이동할 수 없다.
 				if ((CurrentInvenState_ == POPUPSTATE::MINI) &&
@@ -391,6 +386,10 @@ void Inventory::ItemMove()
 					MoveState_ = ITEMMOVE::INIT;
 					break;
 				}
+
+				//현재 아이템 프레임, 현재 아이템 저장
+				SetCurrentItemFrame(PlayerItemListStartIter->second);
+				CurrentItem_ = PlayerItemListStartIter->second;
 
 				PlayerItemListStartIter->second->SetInBox(false);
 				MoveState_ = ITEMMOVE::HOLD;
@@ -496,6 +495,32 @@ void Inventory::ItemMove()
 
 		PlayerItemListStartIter->second->SetPosition(FindBoxiter->second->GetPosition());
 		MoveState_ = ITEMMOVE::INIT;
+		break;
+
+
+	case ITEMMOVE::SHOPPING:
+
+		if (PlayerItemListStartIter->second->GetCount() > 1)
+		{
+			PlayerItemListStartIter->second->SubItemCount();
+			MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
+
+		}
+
+		else
+		{
+			MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
+			PlayerItemListStartIter->second->Death();
+			PlayerItemList_.erase(PlayerItemListStartIter->first);
+
+		}
+
+		//아이템의 카운터를 먼저 깍아내고, 만약 0이 되면 삭제
+
+
+
+		MoveState_ = ITEMMOVE::INIT;
+
 
 	default:
 

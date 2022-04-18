@@ -23,6 +23,7 @@ private:
 public:
 
 	void InventoryNewItem() override;
+	bool MouseInItem() override;
 
 private:
 

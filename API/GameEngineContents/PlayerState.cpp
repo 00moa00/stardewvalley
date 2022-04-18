@@ -51,6 +51,11 @@ PLAYER_SHOPPING Player::GetPlayerShoppingState()
 	return PlayerShoppingState_;
 }
 
+bool Player::GetPlayerShoppingStateShopping()
+{
+	return (PlayerShoppingState_ == PLAYER_SHOPPING::SHOPPING);
+}
+
 PLAYER_UPDATE Player::GetPlayerState()
 {
 	return PlayerState_;
@@ -81,12 +86,24 @@ GameEngineImage* Player::CollImage() {
 
 
 
-void Player::SetMoney(int _Money)
+void Player::SubMoney(int _Money)
 {
-	MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
-	MainUI_->SetMainUIMoney(_Money);
-	Shop_->SetShopMoney(_Money);
+	if (Money_ > 0 + _Money)
+	{
+		Money_ -= _Money;
+		MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
+		MainUI_->SetMainUIMoney(Money_);
+		Shop_->SetShopMoney(Money_);
+	}
 
+}
+
+void Player::AddMoney(int _Money)
+{
+	Money_ += _Money;
+	MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
+	MainUI_->SetMainUIMoney(Money_);
+	Shop_->SetShopMoney(Money_);
 }
 
 void Player::SetisShopping(bool b)
@@ -148,6 +165,61 @@ void  Player::CopyList(std::map<int, Items*> _OtherList)
 //
 //******************************************************************************
 
+void Player::PlayerShopping()
+{
+
+	switch (PlayerShoppingState_)
+	{
+	case PLAYER_SHOPPING::INT:
+
+		Shop_->ShopOff();
+
+		if (MouseClickAndColl() == true)
+		{
+			PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_ON;
+		}
+		break;
+
+	case PLAYER_SHOPPING::SHOPPING:
+
+
+		if (isShopping_ == false)
+		{
+			PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_OFF;
+
+		}
+
+		break;
+
+
+	case PLAYER_SHOPPING::SHOP_ON:
+
+		Shop_->ShopOn();
+		isShopping_ = true;
+		PlayerShoppingState_ = PLAYER_SHOPPING::SHOPPING;
+
+		break;
+
+	case PLAYER_SHOPPING::SHOP_OFF:
+
+		Shop_->ShopOff();
+		PlayerShoppingState_ = PLAYER_SHOPPING::INT;
+
+		break;
+	default:
+		break;
+	}
+	//¼îÇÎÁß
+
+	//if (MouseClickAndColl() == true && isShopping_ == false)
+	//{
+	//	isShopping_ = true;
+	//}
+	//
+	//if (isShopping_ == true) Shop_->ShopOn();
+	//if (isShopping_ == false) Shop_->ShopOff();
+
+}
 
 void Player::SetCamera()
 {
@@ -437,61 +509,6 @@ void Player::SetPlayerHandItemPos()
 
 }
 
-void Player::PlayerShopping()
-{
-
-	switch (PlayerShoppingState_)
-	{
-	case PLAYER_SHOPPING::INT:
-
-		Shop_->ShopOff();
-
-		if (MouseClickAndColl() == true)
-		{
-			PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_ON;
-		}
-		break;
-
-	case PLAYER_SHOPPING::SHOPPING:
-
-
-		if (isShopping_ == false)
-		{
-			PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_OFF;
-
-		}
-
-		break;
-
-
-	case PLAYER_SHOPPING::SHOP_ON:
-
-		Shop_->ShopOn();
-		isShopping_ = true;
-		PlayerShoppingState_ = PLAYER_SHOPPING::SHOPPING;
-
-		break;
-
-	case PLAYER_SHOPPING::SHOP_OFF:
-
-		Shop_->ShopOff();
-		PlayerShoppingState_ = PLAYER_SHOPPING::INT;
-
-		break;
-	default:
-		break;
-	}
-	//¼îÇÎÁß
-
-	//if (MouseClickAndColl() == true && isShopping_ == false)
-	//{
-	//	isShopping_ = true;
-	//}
-	//
-	//if (isShopping_ == true) Shop_->ShopOn();
-	//if (isShopping_ == false) Shop_->ShopOff();
-
-}
 
 
 

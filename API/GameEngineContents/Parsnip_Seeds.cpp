@@ -31,6 +31,7 @@ void Parsnip_Seeds::Start()
 
 	ItemType_ = ITEMTYPE::ITEM;
 
+	SellPrice_ = 35;
 }
 
 void Parsnip_Seeds::Update()

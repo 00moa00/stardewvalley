@@ -53,6 +53,12 @@ public:
 		return (isMouseClick() && CursorPos_.y < 600);
 	}
 
+	bool MouseClickShopIn()
+	{
+		return (isMouseClick() && CursorPos_.y < 400);
+	}
+
+
 	bool isMouseClick()
 	{
 		return (GameEngineInput::GetInst()->IsDown("LeftClick"));

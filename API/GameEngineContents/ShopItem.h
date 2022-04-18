@@ -51,17 +51,20 @@ protected:
 	std::vector<GameEngineCollision*> ColList;
 
 	int Index_;
+	int BuyPrice_;
 
 public:
+	virtual bool MouseInItem() = 0;
 
-	bool MouseInItem()
-	{
-		return (ShopItemListCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
 
 	//================================
 	//     Getter
 	//================================
+
+	int GetBuyPrice()
+	{
+		return BuyPrice_;
+	}
 
 	int GetIndex()
 	{

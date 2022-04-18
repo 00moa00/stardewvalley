@@ -144,9 +144,10 @@ void Shop::Update()
 
 		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
 		{
-			if (ItemStartIter->second->MouseInItem() && Mouse_->isMouseClick())
+			if (ItemStartIter->second->MouseInItem() && Mouse_->MouseClickShopIn())
 			{
 				ItemStartIter->second->InventoryNewItem();
+				MainPlayer->SubMoney(ItemStartIter->second->GetBuyPrice());
 			}
 		}
 
@@ -247,7 +248,6 @@ void Shop::ShopOn()
 	}
 
 	ShopUpdateState_ = SHOP_UPDATE::HIDE_ITME;
-
 
 }
 

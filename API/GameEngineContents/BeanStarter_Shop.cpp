@@ -17,7 +17,9 @@ void BeanStarter_Shop::Start()
 
 	Index_ = static_cast<int>(SHOP_LIST::BEANSTARTER);
 
+	BuyPrice_ = 60;
 }
+
 
 void BeanStarter_Shop::Update()
 {
@@ -25,5 +27,10 @@ void BeanStarter_Shop::Update()
 
 void BeanStarter_Shop::InventoryNewItem()
 {
+}
+
+bool BeanStarter_Shop::MouseInItem()
+{
+	return (ShopItemListCollider_->CollisionResult("BeanStarter_Shop", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 

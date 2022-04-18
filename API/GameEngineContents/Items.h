@@ -37,6 +37,7 @@ enum class ITEM_STATE
 {
 	INIT,
 	ADDITEM,
+	SUBITEM
 };
 
 enum class MOVE
@@ -78,6 +79,8 @@ protected:
 	ITEM_STATE ItemState_;
 	MOVE State_;
 
+
+	int SellPrice_;
 	int Count_;
 	int FileIndex_;
 	int Damage_;
@@ -139,6 +142,11 @@ public:
 		return TreeTop_;
 	}
 
+	int GetSellPrice()
+	{
+		return SellPrice_;
+	}
+
 	int GetDamage()
 	{
 		return Damage_;
@@ -167,6 +175,11 @@ public:
 	int GetFileIndex()
 	{
 		return FileIndex_;
+	}
+
+	int GetCount()
+	{
+		return Count_;
 	}
 
 	bool IsDeath()
@@ -257,6 +270,13 @@ public:
 	{
 		++Count_;
 		ItemState_ = ITEM_STATE::ADDITEM;
+	}
+
+	void SubItemCount()
+	{
+		--Count_;
+		Font_->ChangeNumItem(Count_);
+
 	}
 
 	void SetItemName(std::string _Name)

@@ -79,7 +79,6 @@ private:
 	void LevelChangeStart() override;
 	void LevelChangeEnd() override;
 
-
 private:
 
 	const char* ArrAnimationName[static_cast<int>(PLAYER_UPDATE::MAX)];
@@ -128,7 +127,6 @@ private:
 	USE_TOOL UseToolState_;
 
 
-
 	static std::string CurrentLevel_;
 	static std::string PrevLevel_;
 
@@ -163,6 +161,7 @@ public:
 
 	TOOLTYPE CurrentItemType();
 	PLAYER_SHOPPING GetPlayerShoppingState();
+	bool GetPlayerShoppingStateShopping();
 	PLAYER_UPDATE GetPlayerState();
 	Inventory* GetInventroy();
 	GameEngineRenderer* Renderer();
@@ -173,7 +172,8 @@ public:
 	//    Setter
 	//================================
 
-	void SetMoney(int _Money);
+	void SubMoney(int _Money);
+	void AddMoney(int _Money);
 
 	void SetisShopping(bool b);
 	void SetObjectColl(bool b);
@@ -199,6 +199,7 @@ private:
 	//================================
 	//    업데이트, 체크, 체인지
 	//================================
+	void PlayerShopping();
 
 	void SetCamera();
 	void SetPlayerStartPos();
@@ -222,7 +223,6 @@ private:
 	void PlayerDirCheck();
 	void SubEnergy();
 	void SetPlayerHandItemPos();
-	void PlayerShopping();
 
 	//================================
 	//   애니메이션

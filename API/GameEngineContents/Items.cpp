@@ -19,6 +19,7 @@ Items::Items() :
 	targetPos_({}),
 	TransformPos_({}),
 	FileIndex_(0),
+	SellPrice_(0),
 	Count_ (1),
 	Damage_(5),
 
@@ -113,7 +114,12 @@ void Items::MoveToPlayer()
 
 		ItemState_ = ITEM_STATE::INIT;
 		break;
+
 	}
+
+
+
+
 
 	Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 

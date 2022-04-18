@@ -33,7 +33,8 @@ enum class ITEMMOVE
 	ADDITER,
 	HOLD,
 	FREE,
-	MINE
+	MINE,
+	SHOPPING
 };
 
 enum class POPUPSTATE 

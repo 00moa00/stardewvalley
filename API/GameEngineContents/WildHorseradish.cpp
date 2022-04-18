@@ -12,8 +12,6 @@ WildHorseradish::~WildHorseradish()
 void WildHorseradish::Start()
 {
 
-
-
 	ItemRenderer_= CreateRenderer("springobjects.bmp");
 	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::WILD_HORSERADISH));
 	ItemRenderer_->CameraEffectOff();
@@ -24,6 +22,7 @@ void WildHorseradish::Start()
 
 	SetItemName("WildHorseradish");
 
+	SellPrice_ = 40;
 
 }
 
