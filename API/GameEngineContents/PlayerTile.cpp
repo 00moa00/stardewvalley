@@ -111,6 +111,9 @@ void Player::CreateSeed()
 	//해당 땅이 파져있으면 씨앗을 심는다.
 	if (FindDirtIter != EndDirtIter)
 	{
+
+		//TODO: 핸드 아이템의 타입에 따라서 초기화.
+
 		Items* seed = CreateSeedActor<Parsnip_Growing>();
 
 		float4 TileSize_ = { 48.f, 48.f };
@@ -202,6 +205,8 @@ void Player::ObjectTileColl()
 		for (; Iter != MapObject_.end(); ++Iter) {
 
 			if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true) {
+				
+				
 				Speed_ = 0.f;
 				TileState_ = TILE_COLL::COll;
 				break;

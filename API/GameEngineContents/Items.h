@@ -94,14 +94,14 @@ protected:
 
 	std::string Name_;
 	std::string FilePath_;
-	
+
 
 private:
 
 	bool InMouse;
 	bool InBox;
 
-protected :
+protected:
 
 	virtual void UpdateOff()
 	{
@@ -113,7 +113,7 @@ private:
 	void Start() override;
 	void Update() override;
 
-public :
+public:
 	bool IsWall(const float4 pos, const float4 scale, float4 dir);
 	void MoveToPlayer();
 
@@ -200,6 +200,50 @@ public :
 	//================================
 	//    Setter
 	//================================
+
+	void SetImageMahoganyBottom()
+	{
+		ItemRenderer_->SetImage("Mahogany_Tree_Bottom.bmp");
+
+	}
+	void SetImageFineBottom()
+	{
+		ItemRenderer_->SetImage("Fine_Tree_Bottom.bmp");
+
+	}
+	void SetImageMapleBottom()
+	{
+		ItemRenderer_->SetImage("Maple_Tree_Bottom.bmp");
+
+	}
+
+	void SetImageOakBottom()
+	{
+		ItemRenderer_->SetImage("Oak_Tree_Bottom.bmp");
+
+	}
+
+	void SetImageMahoganyTop()
+	{
+		ItemRenderer_->SetImage("Mahogany_Tree.bmp");
+
+	}
+
+	void SetImageFineTop()
+	{
+		ItemRenderer_->SetImage("Fine_Tree.bmp");
+
+	}
+	void SetImageMapleTop()
+	{
+		ItemRenderer_->SetImage("Maple_Tree.bmp");
+
+	}
+	void SetImageOakTop()
+	{
+		ItemRenderer_->SetImage("Oak_Tree.bmp");
+
+	}
 
 	void SetMoveFlag(bool _flag)
 	{

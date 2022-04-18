@@ -10,15 +10,16 @@ TreeBottom::~TreeBottom()
 
 void TreeBottom::Start()
 {
-	ItemRenderer_ = CreateRenderer();
-	ItemRenderer_->CameraEffectOff();
+	ItemRenderer_ = CreateRenderer("Mahogany_Tree_Bottom.bmp");
+	ItemRenderer_->SetPivotType(RenderPivot::BOT);
 
-	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 	ItemType_ = ITEMTYPE::ITEM;
 
+	SetScale({ 48.f, 96.f });
+
+	Name_ = "TreeBottom";
 }
 
 void TreeBottom::Update()
 {
 }
-

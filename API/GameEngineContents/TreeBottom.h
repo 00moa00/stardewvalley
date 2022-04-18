@@ -15,9 +15,13 @@ public:
 	TreeBottom& operator=(const TreeBottom& _Other) = delete;
 	TreeBottom& operator=(TreeBottom&& _Other) noexcept = delete;
 
-protected:
+private:
+
 	void Start() override;
 	void Update() override;
+
 private:
+
+
 };
 

@@ -14,11 +14,15 @@ public:
 	TreeTop& operator=(const TreeTop& _Other) = delete;
 	TreeTop& operator=(TreeTop&& _Other) noexcept = delete;
 
-protected:
+private:
+
 	void Start() override;
 	void Update() override;
 
 private:
 
+
 };
+
+
 
