@@ -26,6 +26,8 @@ Inventory* Player::MainInventory = nullptr;
 
 Player::Player()
 	:
+	Money_(1000),
+
 	AnimationFrame_(0.120f),
 	Speed_(150.f),
 	Energy_(150.f),
@@ -118,9 +120,6 @@ void Player::Start()
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 
 
-
-
-
 	//------< 애니메이션 생성 >------------------------------------------------------------------
 
 	//================================
@@ -138,7 +137,6 @@ void Player::Start()
 	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK5, AnimationFrame_, true);
 	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK5, AnimationFrame_, true);
 	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, AnimationFrame_, true);
-
 
 
 	//================================
@@ -159,7 +157,6 @@ void Player::Start()
 	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HANDITEMWALK", PLAYER::BACK_WALK_HAND0, PLAYER::BACK_WALK_HAND3, AnimationFrame_, true);
 
 
-
 	//================================
 	//     플레이어 호미 사용
 	//================================
@@ -178,19 +175,6 @@ void Player::Start()
 	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WATER", PLAYER::WATER_LEFT0, PLAYER::WATER_LEFT2, 0.200f, true);
 	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WATER", PLAYER::WATER_BACK0, PLAYER::WATER_BACK2, 0.200f, true);
 
-
-
-	//================================
-	//     플레이어 도끼 사용
-	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_AXE", PLAYER::HOE_FRONT0, PLAYER::HOE_FRONT5, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_AXE", PLAYER::HOE_RIGHT0, PLAYER::HOE_RIGHT4, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_AXE", PLAYER::HOE_LEFT0, PLAYER::HOE_LEFT4, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_AXE", PLAYER::HOE_BACK0, PLAYER::HOE_BACK2, AnimationFrame_, true);
-
-
-
-
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
 	PlayerRenderer_->ChangeAnimation("FRONT_INIT");
@@ -205,8 +189,9 @@ void Player::Update()
 	PlayerDirCheck();
 	ObjectTileColl();
 	SetCamera();
-	ChangeDirtTile();
-	ChangeWetDirtTile();
+
+
+
 	PlayerUpdate();
 	SetPlayerHandItemPos();
 	ChangeLevel();
@@ -233,21 +218,6 @@ void Player::LevelChangeEnd()
 }
 
 
-void Player::ChangeHandItem()
-{
-	if (Inventory_->CurrentItem()->GetisPossibleHand() == true)
-	{
-		PlayerHandItem_->GetRenderer()->SetImage(( Inventory_->CurrentItem()->GetFilePath() ));
-		PlayerHandItem_->GetRenderer()->SetIndex((Inventory_->CurrentItem()->GetFileIndex()));
-
-	}
-
-	else
-	{
-		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
-
-	}
-}
 
 
 void Player::PlayerUpdate()
@@ -300,6 +270,7 @@ void Player::PlayerUpdate()
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CreateDirtTile();
+			ChangeDirtTile();
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -310,6 +281,8 @@ void Player::PlayerUpdate()
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CreateWaterTile();
+			ChangeWetDirtTile();
+
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 

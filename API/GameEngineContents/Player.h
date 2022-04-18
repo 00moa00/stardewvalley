@@ -161,6 +161,7 @@ public:
 
 	std::string GetCurrentLevel();
 
+	TOOLTYPE CurrentItemType();
 	PLAYER_SHOPPING GetPlayerShoppingState();
 	PLAYER_UPDATE GetPlayerState();
 	Inventory* GetInventroy();
@@ -172,11 +173,12 @@ public:
 	//    Setter
 	//================================
 
+	void SetMoney(int _Money);
+
 	void SetisShopping(bool b);
 	void SetObjectColl(bool b);
 	void SetCurrentLevel(std::string s);
 
-	TOOLTYPE CurrentItemType();
 	void SetPrevLevel(std::string s);
 	void SetDirtTileMap(GameEngineRendererTileMap* _TileMap);
 	void SetWetTileMap(GameEngineRendererTileMap* _TileMap);
@@ -188,25 +190,26 @@ public:
 
 	void CopyList(std::map<int, Items*> _OtherList);
 
-	void ChangeHandItem();
-
 
 private:
 
 	//------< 비공개 함수 >------------------------------------------------------------------
 
 
+	//================================
+	//    업데이트, 체크, 체인지
+	//================================
+
 	void SetCamera();
-	void ChangeLevel();
-
-	//================================
-	//    업데이트, 체크
-	//================================
-
 	void SetPlayerStartPos();
+
+	void ChangeLevel();
+	void ChangeHandItem();
+
 	void CollInit();
 	void CheckTool();
 
+	// 메인 업데이트 함수
 	void PlayerUpdate();
 
 	//================================

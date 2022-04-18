@@ -10,6 +10,7 @@
 #include "ShopItem.h"
 #include "ExitBotton.h"
 #include "Mouse.h"
+#include "Font.h"
 
 #include "TulipBulb_Shop.h"
 #include "PatatoSeeds_Shop.h"
@@ -57,15 +58,21 @@ private:
 
 	ExitBotton* ExitBotton_;
 	Mouse* Mouse_;
+	Font* Font_;
 
 	SHOP_UPDATE ShopUpdateState_;
 	std::map<int, ShopItem*> ShopItemList_;
 	std::map<int, float4> ConstItmePos_;
 
+private:
+
+protected:
+
 public:
 
 	void ShopOff();
 	void ShopOn();
+	void SetShopMoney(int _Money);
 
 	template<typename Actor>
 	void NewShopItem()
@@ -77,7 +84,7 @@ public:
 		ShopItemList_.insert(std::make_pair(Index, Item));
 	}
 
-protected:
+
 
 
 

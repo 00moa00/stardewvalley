@@ -1,125 +1,152 @@
 #include  "Player.h"
+#include "MainUI.h"
+
+
+//------< 공개 함수 >------------------------------------------------------------------
 
 
 //******************************************************************************
 //
 //
-//		플레이어 관련 함수 구현부
+//		Getter
 //
 //
 //******************************************************************************
 
 
-
-
-
-
-void Player::PlayerWalk() {
-
-
-	float4 NextPos;
-	float4 CheckPos = MoveDir_;
-	float4 Move = float4::ZERO;
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
-	{
-		Move += float4::RIGHT;
-	}
-	else if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
-	{
-		Move += float4::LEFT;
-	}
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
-	{
-		Move += float4::UP;
-	}
-
-	else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
-	{
-		Move += float4::DOWN;
-	}
-
-	Move.Normal2D();
-
-	NextPos = GetPosition() + (Move * GameEngineTime::GetDeltaTime() * Speed_);
-	CheckPos += NextPos;
-
-
-
-	int Color = MapColImage_->GetImagePixel(CheckPos);
-
-
-
-	if ((RGB(0, 0, 0) != Color))
-	{
-		SetMove(Move * GameEngineTime::GetDeltaTime() * Speed_);
-	}
-
-
-
-	if ((RGB(0, 0, 255) == Color))
-	{
-		FarmingArea_ = true;
-	}
-
-	else
-	{
-		FarmingArea_ = false;
-
-	}
+bool  Player::GetObjectColl()
+{
+	return ObjectColl_;
 }
 
-bool Player::isStop()
+bool Player::GetisShopping()
 {
-	return (true == GameEngineInput::GetInst()->IsFree("MoveRight")
-		&& true == GameEngineInput::GetInst()->IsFree("MoveLeft")
-		&& true == GameEngineInput::GetInst()->IsFree("MoveDown")
-		&& true == GameEngineInput::GetInst()->IsFree("MoveUp"));
+	return isShopping_;
 }
 
-bool Player::isMove()
+float  Player::GetEnergy()
 {
-	return (true == GameEngineInput::GetInst()->IsPress("MoveRight")
-		|| true == GameEngineInput::GetInst()->IsPress("MoveLeft")
-		|| true == GameEngineInput::GetInst()->IsPress("MoveDown")
-		|| true == GameEngineInput::GetInst()->IsPress("MoveUp"));
+	return Energy_;
+}
+
+int Player::GetMoney()
+{
+	return Money_;
+}
+
+std::string  Player::GetCurrentLevel()
+{
+	return GetLevel()->GetNameConstRef();
 }
 
 TOOLTYPE Player::CurrentItemType()
 {
 	CurrentItemType_ = Player::Inventory_->CurrentItem()->GetToolType();
-
 	return CurrentItemType_;
-
 }
 
-void Player::SetDirAnimation()
+
+PLAYER_SHOPPING Player::GetPlayerShoppingState()
 {
+	return PlayerShoppingState_;
+}
 
-	if (MoveDir_.CompareInt2D(float4::RIGHT))
-	{
-		PlayerRenderer_->ChangeAnimation("RIGHT_INIT");
-	}
+PLAYER_UPDATE Player::GetPlayerState()
+{
+	return PlayerState_;
+}
 
-	if (MoveDir_.CompareInt2D(float4::DOWN))
-	{
-		PlayerRenderer_->ChangeAnimation("FRONT_INIT");
+Inventory* Player::GetInventroy()
+{
+	return Inventory_;
+}
 
-	}
+GameEngineRenderer* Player::Renderer() {
+	return PlayerRenderer_;
+}
 
-	if (MoveDir_.CompareInt2D(float4::UP))
-	{
-		PlayerRenderer_->ChangeAnimation("BACK_INIT");
-	}
+GameEngineImage* Player::CollImage() {
+	return MapColImage_;
+}
 
-	if (MoveDir_.CompareInt2D(float4::LEFT))
-	{
-		PlayerRenderer_->ChangeAnimation("LEFT_INIT");
-	}
+
+
+//******************************************************************************
+//
+//
+//		Setter
+//
+//
+//******************************************************************************
+
+
+
+void Player::SetMoney(int _Money)
+{
+	MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
+	MainUI_->SetMainUIMoney(_Money);
+	Shop_->SetShopMoney(_Money);
 
 }
 
+void Player::SetisShopping(bool b)
+{
+	isShopping_ = b;
+}
+
+void  Player::SetObjectColl(bool b)
+{
+	ObjectColl_ = b;
+}
+
+void  Player::SetCurrentLevel(std::string s)
+{
+	CurrentLevel_ = s;
+}
+
+void  Player::SetPrevLevel(std::string s)
+{
+	PrevLevel_ = s;
+}
+
+void  Player::SetDirtTileMap(GameEngineRendererTileMap* _TileMap)
+{
+	DirtTileMap_ = _TileMap;
+
+}
+
+void  Player::SetWetTileMap(GameEngineRendererTileMap* _TileMap)
+{
+	WetTileMap_ = _TileMap;
+
+}
+
+
+
+//******************************************************************************
+//
+//
+//		Etc
+//
+//
+//******************************************************************************
+
+
+void  Player::CopyList(std::map<int, Items*> _OtherList)
+{
+	std::copy(_OtherList.begin(), _OtherList.end(), std::inserter(MapObject_, MapObject_.begin()));
+}
+
+
+//------< 비공개 함수 >------------------------------------------------------------------
+
+//******************************************************************************
+//
+//
+//		업데이트, 체크
+//
+//
+//******************************************************************************
 
 
 void Player::SetCamera()
@@ -167,57 +194,10 @@ void Player::SetCamera()
 
 }
 
-
-void Player::PlayerDirCheck()
+void Player::SetPlayerStartPos()
 {
-	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
-	{
-		MoveDir_ = float4::LEFT;
-	}
-	else if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
-	{
-		MoveDir_ = float4::RIGHT;
-	}
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
-	{
-		MoveDir_ = float4::UP;
-	}
-	else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
-	{
-		MoveDir_ = float4::DOWN;
-	}
-
-	MovePrevDir_ = MoveDir_;
-	DirAnimationChange();
-
-}
 
 
-float4 Player::PlayerCollCheckPos()
-{
-	float4 Length = MoveDir_;
-
-	if (float4::DOWN.CompareInt2D(MoveDir_))
-	{
-		Length += float4(0.0f, 24.0f);
-	}
-	if (float4::RIGHT.CompareInt2D(MoveDir_))
-	{
-		Length += float4(24.0f, 0.0f);
-	}
-	if (float4::LEFT.CompareInt2D(MoveDir_))
-	{
-		Length += float4(-24.0f, 0.0f);
-	}
-	if (float4::UP.CompareInt2D(MoveDir_))
-	{
-		Length += float4(0.0f, -24.0f);
-	}
-
-	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
-
-	return Pos;
 
 }
 
@@ -255,54 +235,20 @@ void Player::ChangeLevel()
 
 }
 
-
-void Player::SetPlayerStartPos()
+void Player::ChangeHandItem()
 {
+	if (Inventory_->CurrentItem()->GetisPossibleHand() == true)
+	{
+		PlayerHandItem_->GetRenderer()->SetImage((Inventory_->CurrentItem()->GetFilePath()));
+		PlayerHandItem_->GetRenderer()->SetIndex((Inventory_->CurrentItem()->GetFileIndex()));
 
+	}
 
-
+	else
+	{
+		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
+	}
 }
-
-
-void Player::DirAnimationChange()
-{
-
-	//if (PlayerState_ == PLAYER_UPDATE::INVENTROY_MINI_INIT) { return ; }
-	//if (PlayerState_ == PLAYER_UPDATE::INVENTROY_POPUP_INIT) { return; }
-	//if (PlayerState_ == PLAYER_UPDATE::INVENTROY_POPUP) { return; }
-
-	if (PlayerState_ == PLAYER_UPDATE::LEVELINIT)
-	{
-		return;
-	}
-
-
-	PlayerRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
-
-
-}
-
-std::string Player::GetDirString()
-{
-	if (MoveDir_.CompareInt2D(float4::DOWN))
-	{
-		return "FRONT_";
-	}
-	else if (MoveDir_.CompareInt2D(float4::UP))
-	{
-		return "BACK_";
-	}
-	else if (MoveDir_.CompareInt2D(float4::LEFT))
-	{
-		return "LEFT_";
-	}
-	else if (MoveDir_.CompareInt2D(float4::RIGHT))
-	{
-		return "RIGHT_";
-	}
-	return "";
-}
-
 
 void Player::CollInit()
 {
@@ -347,8 +293,6 @@ void Player::CollInit()
 	}
 }
 
-
-
 void Player::CheckTool()
 {
 
@@ -382,98 +326,106 @@ void Player::CheckTool()
 }
 
 
-void Player::SetisShopping(bool b)
+
+//******************************************************************************
+//
+//
+//		플레이어 기본
+//
+//
+//******************************************************************************
+
+
+bool Player::isStop()
 {
-	isShopping_ = b;
+	return (true == GameEngineInput::GetInst()->IsFree("MoveRight")
+		&& true == GameEngineInput::GetInst()->IsFree("MoveLeft")
+		&& true == GameEngineInput::GetInst()->IsFree("MoveDown")
+		&& true == GameEngineInput::GetInst()->IsFree("MoveUp"));
 }
 
-void  Player::SetObjectColl(bool b)
+bool Player::isMove()
 {
-	ObjectColl_ = b;
+	return (true == GameEngineInput::GetInst()->IsPress("MoveRight")
+		|| true == GameEngineInput::GetInst()->IsPress("MoveLeft")
+		|| true == GameEngineInput::GetInst()->IsPress("MoveDown")
+		|| true == GameEngineInput::GetInst()->IsPress("MoveUp"));
 }
 
+void Player::PlayerWalk() {
 
-bool  Player::GetObjectColl()
+
+	float4 NextPos;
+	float4 CheckPos = MoveDir_;
+	float4 Move = float4::ZERO;
+
+	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
+	{
+		Move += float4::RIGHT;
+	}
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+	{
+		Move += float4::LEFT;
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
+	{
+		Move += float4::UP;
+	}
+
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
+	{
+		Move += float4::DOWN;
+	}
+
+	Move.Normal2D();
+
+	NextPos = GetPosition() + (Move * GameEngineTime::GetDeltaTime() * Speed_);
+	CheckPos += NextPos;
+
+	int Color = MapColImage_->GetImagePixel(CheckPos);
+
+	if ((RGB(0, 0, 0) != Color))
+	{
+		SetMove(Move * GameEngineTime::GetDeltaTime() * Speed_);
+	}
+
+	if ((RGB(0, 0, 255) == Color))
+	{
+		FarmingArea_ = true;
+	}
+
+	else
+	{
+		FarmingArea_ = false;
+
+	}
+}
+
+void Player::PlayerDirCheck()
 {
-	return ObjectColl_;
-}
+	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+	{
+		MoveDir_ = float4::LEFT;
+	}
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
+	{
+		MoveDir_ = float4::RIGHT;
+	}
 
-bool Player::GetisShopping()
-{
-	return isShopping_;
-}
+	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
+	{
+		MoveDir_ = float4::UP;
+	}
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
+	{
+		MoveDir_ = float4::DOWN;
+	}
 
-void  Player::SetCurrentLevel(std::string s)
-{
-	CurrentLevel_ = s;
-}
-
-void  Player::SetPrevLevel(std::string s)
-{
-	PrevLevel_ = s;
-}
-
-
-void  Player::SetDirtTileMap(GameEngineRendererTileMap* _TileMap)
-{
-	DirtTileMap_ = _TileMap;
+	MovePrevDir_ = MoveDir_;
+	DirAnimationChange();
 
 }
-
-void  Player::SetWetTileMap(GameEngineRendererTileMap* _TileMap)
-{
-	WetTileMap_ = _TileMap;
-
-}
-
-PLAYER_SHOPPING Player::GetPlayerShoppingState()
-{
-	return PlayerShoppingState_;
-}
-
-PLAYER_UPDATE Player::GetPlayerState()
-{
-	return PlayerState_;
-}
-
-Inventory* Player::GetInventroy()
-{
-	return Inventory_;
-}
-
-
-GameEngineRenderer* Player::Renderer() {
-	return PlayerRenderer_;
-}
-
-GameEngineImage* Player::CollImage() {
-	return MapColImage_;
-}
-
-
-std::string  Player::GetCurrentLevel()
-{
-	return GetLevel()->GetNameConstRef();
-}
-
-
-float  Player::GetEnergy()
-{
-	return Energy_;
-}
-
-int Player::GetMoney()
-{
-	return Money_;
-}
-
-
-
-void  Player::CopyList(std::map<int, Items*> _OtherList)
-{
-	std::copy(_OtherList.begin(), _OtherList.end(), std::inserter(MapObject_, MapObject_.begin()));
-}
-
 
 void Player::SubEnergy() {
 	Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
@@ -542,6 +494,92 @@ void Player::PlayerShopping()
 }
 
 
+
+//******************************************************************************
+//
+//
+//		애니메이션
+//
+//
+//******************************************************************************
+
+
+void Player::SetDirAnimation()
+{
+
+	if (MoveDir_.CompareInt2D(float4::RIGHT))
+	{
+		PlayerRenderer_->ChangeAnimation("RIGHT_INIT");
+	}
+
+	if (MoveDir_.CompareInt2D(float4::DOWN))
+	{
+		PlayerRenderer_->ChangeAnimation("FRONT_INIT");
+
+	}
+
+	if (MoveDir_.CompareInt2D(float4::UP))
+	{
+		PlayerRenderer_->ChangeAnimation("BACK_INIT");
+	}
+
+	if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		PlayerRenderer_->ChangeAnimation("LEFT_INIT");
+	}
+
+}
+
+void Player::DirAnimationChange()
+{
+
+	//if (PlayerState_ == PLAYER_UPDATE::INVENTROY_MINI_INIT) { return ; }
+	//if (PlayerState_ == PLAYER_UPDATE::INVENTROY_POPUP_INIT) { return; }
+	//if (PlayerState_ == PLAYER_UPDATE::INVENTROY_POPUP) { return; }
+
+	if (PlayerState_ == PLAYER_UPDATE::LEVELINIT)
+	{
+		return;
+	}
+
+
+	PlayerRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+
+
+}
+
+std::string Player::GetDirString()
+{
+	if (MoveDir_.CompareInt2D(float4::DOWN))
+	{
+		return "FRONT_";
+	}
+	else if (MoveDir_.CompareInt2D(float4::UP))
+	{
+		return "BACK_";
+	}
+	else if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		return "LEFT_";
+	}
+	else if (MoveDir_.CompareInt2D(float4::RIGHT))
+	{
+		return "RIGHT_";
+	}
+	return "";
+}
+
+
+//******************************************************************************
+//
+//
+//		마우스, 충돌 관련
+//
+//
+//******************************************************************************
+
+
+
 bool Player::PlayerMouseClickCollision() {
 
 	return (PlayerCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
@@ -558,12 +596,10 @@ bool Player::MoveHouseCollision() {
 	return (PlayerCollider_->CollisionResult("MoveHouse", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
-
 bool Player::MoveBusStopCollision() {
 
 	return (PlayerCollider_->CollisionResult("MoveBusStop", ColList, CollisionType::Rect, CollisionType::Rect));
 }
-
 
 bool Player::MoveTownCollision() {
 
@@ -574,7 +610,6 @@ bool Player::MoveShopCollision()
 {
 	return (PlayerCollider_->CollisionResult("MoveShop", ColList, CollisionType::Rect, CollisionType::Rect));
 }
-
 
 bool Player::MoveBackForestCollision() {
 

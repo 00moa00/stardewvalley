@@ -17,6 +17,7 @@ public:
 	MainUI& operator=(MainUI&& _Other) noexcept = delete;
 
 protected:
+
 	void Start() override;
 	void Update() override;
 	void Render() override;
@@ -26,5 +27,9 @@ private:
 	Font* Font_;
 
 	int Money_;
+
+public:
+	void SetMainUIMoney(int _Money);
+
 };
 

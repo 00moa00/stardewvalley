@@ -40,6 +40,11 @@ void Shop::Start()
 	NewShopItem<CauliflowerSeeds_Shop>();
 	NewShopItem<BeanStarter_Shop>();
 
+	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+	Font_->ChangeNumUI(1000);
+	Font_->SetPositionUI({ 136.f, 475.f });
+
+
 	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
 	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
 
@@ -244,5 +249,10 @@ void Shop::ShopOn()
 	ShopUpdateState_ = SHOP_UPDATE::HIDE_ITME;
 
 
+}
+
+void Shop::SetShopMoney(int _Money)
+{
+	Font_->ChangeNumUI(_Money);
 }
 

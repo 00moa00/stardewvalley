@@ -8,6 +8,32 @@
 //
 //******************************************************************************
 
+float4 Player::PlayerCollCheckPos()
+{
+	float4 Length = MoveDir_;
+
+	if (float4::DOWN.CompareInt2D(MoveDir_))
+	{
+		Length += float4(0.0f, 24.0f);
+	}
+	if (float4::RIGHT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(24.0f, 0.0f);
+	}
+	if (float4::LEFT.CompareInt2D(MoveDir_))
+	{
+		Length += float4(-24.0f, 0.0f);
+	}
+	if (float4::UP.CompareInt2D(MoveDir_))
+	{
+		Length += float4(0.0f, -24.0f);
+	}
+
+	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
+
+	return Pos;
+
+}
 
 
 void Player::CreateDirtTile()
@@ -349,9 +375,8 @@ void Player::ObjectTileColl()
 
 		for (; Iter != MapObject_.end(); ++Iter) {
 
-			if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true) {
-				
-				
+			if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true) 
+			{
 				Speed_ = 0.f;
 				TileState_ = TILE_COLL::COll;
 				break;
@@ -367,6 +392,7 @@ void Player::ObjectTileColl()
 	case TILE_COLL::COll:
 
 		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == false) {
+			
 			Speed_ = 150.f;
 			//Player_->SetBreakY(false);
 
@@ -648,7 +674,7 @@ void Player::ChangeWetDirtTile()
 			if (FindLeftIter == EndIter && FindRightIter != EndIter)
 			{
 				FindThisIter->second->GetRenderer()->SetIndex(static_cast<int>(TILE_DIRT::W_LINE_LEFT_WET));
-
+				
 			}
 
 			//===================================================
