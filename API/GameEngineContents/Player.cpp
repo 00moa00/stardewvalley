@@ -48,7 +48,8 @@ Player::Player()
 
 	UseToolState_(USE_TOOL::INIT),
 	TileState_(TILE_COLL::INIT),
-	PlayerState_(PLAYER_UPDATE::LEVELINIT)
+	PlayerState_(PLAYER_UPDATE::LEVELINIT),
+	PlayerShoppingState_(PLAYER_SHOPPING::INT)
 
 
 
@@ -200,7 +201,7 @@ void Player::Update()
 	PlayerUpdate();
 	SetPlayerHandItemPos();
 	ChangeLevel();
-	//PlayerShopping();
+	PlayerShopping();
 
 }
 

@@ -17,6 +17,14 @@ enum class PLAYER_UPDATE
 	MAX
 };
 
+enum class PLAYER_SHOPPING
+{
+	INT,
+	SHOPPING,
+	SHOP_ON,
+	SHOP_OFF
+};
+
 
 enum class USE_TOOL
 {

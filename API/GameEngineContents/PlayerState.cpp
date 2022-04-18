@@ -467,19 +467,50 @@ void Player::SetPlayerHandItemPos()
 
 void Player::PlayerShopping()
 {
+
+	switch (PlayerShoppingState_)
+	{
+	case PLAYER_SHOPPING::INT:
+
+		Shop_->ShopOff();
+
+		if (MouseClickAndColl() == true)
+		{
+			PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_ON;
+		}
+		break;
+
+	case PLAYER_SHOPPING::SHOPPING:
+
+
+		//if (MouseClickAndColl() == true && isShopping_ == false)
+		//{
+		//	PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_ON;
+		//}
+		break;
+
+
+	case PLAYER_SHOPPING::SHOP_ON:
+
+		Shop_->ShopOn();
+
+		PlayerShoppingState_ = PLAYER_SHOPPING::SHOPPING;
+
+		break;
+	case PLAYER_SHOPPING::SHOP_OFF:
+		break;
+	default:
+		break;
+	}
 	//¼îÇÎÁß
 
-	if (MouseClickAndColl() == true)
-	{
-		Shop_->On();
-		isShopping_ = true;
-	}
-
-	else
-	{
-		Shop_->Off();
-
-	}
+	//if (MouseClickAndColl() == true && isShopping_ == false)
+	//{
+	//	isShopping_ = true;
+	//}
+	//
+	//if (isShopping_ == true) Shop_->ShopOn();
+	//if (isShopping_ == false) Shop_->ShopOff();
 
 }
 

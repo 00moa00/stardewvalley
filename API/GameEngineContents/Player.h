@@ -120,6 +120,7 @@ private:
 
 	TOOLTYPE CurrentItemType_;
 
+	PLAYER_SHOPPING PlayerShoppingState_;
 	PLAYER_UPDATE PlayerState_;
 	TILE_COLL TileState_;
 	USE_TOOL UseToolState_;

@@ -142,10 +142,10 @@ void Shop::Update()
 
 		if (true == GameEngineInput::GetInst()->IsDown("KeyUp") )
 		{
+
 			if (ItemfirstFindtIter->second->GetIndex() == 0)
 			{
 				ShopUpdateState_ = SHOP_UPDATE::INIT;
-
 			}
 
 			else
@@ -163,6 +163,7 @@ void Shop::Update()
 				ShopUpdateState_ = SHOP_UPDATE::INIT;
 
 			}
+
 			else
 			{
 				ShopUpdateState_ = SHOP_UPDATE::SCROLL_DOWN;
@@ -172,8 +173,6 @@ void Shop::Update()
 		break;
 
 	case SHOP_UPDATE::SCROLL_UP:
-
-
 
 		ItemStartIter = ShopItemList_.begin();
 		ItemEndtIter = ShopItemList_.end();
@@ -190,16 +189,12 @@ void Shop::Update()
 
 	case SHOP_UPDATE::SCROLL_DOWN:
 
-
 		ItemStartIter = ShopItemList_.begin();
 		ItemEndtIter = ShopItemList_.end();
 
 		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
 		{
-
 			ItemStartIter->second->SubIndex();
-
-			
 		}
 
 		ShopUpdateState_ = SHOP_UPDATE::SET_POS_INDEX;
@@ -239,5 +234,8 @@ void Shop::ShopOn()
 		StartIter->second->On();
 
 	}
+	ShopUpdateState_ = SHOP_UPDATE::HIDE_ITME;
+
+
 }
 
