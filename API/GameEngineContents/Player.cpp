@@ -60,9 +60,14 @@ Player::Player()
 {
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::INIT)] = "INIT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::WALK)] = "WALK";
-	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::WATER)] = "WATER";
-	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
+
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::AXE)] = "HOE";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "HOE";
+
+
+
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "HANDITEM";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "HANDITEMWALK";
 
@@ -317,6 +322,15 @@ void Player::PlayerUpdate()
 		{
 			CrushTree();
 			CrushWood();
+		}
+
+		break;
+
+	case PLAYER_UPDATE::PICKAXE:
+
+		if (PlayerRenderer_->IsEndAnimation())
+		{
+			CrushStone();
 		}
 
 		break;

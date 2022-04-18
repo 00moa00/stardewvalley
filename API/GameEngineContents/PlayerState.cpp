@@ -367,6 +367,11 @@ void Player::CheckTool()
 		PlayerState_ = PLAYER_UPDATE::AXE;
 	}
 
+	else if (CurrentItemType() == TOOLTYPE::PICKAXE)
+	{
+		PlayerState_ = PLAYER_UPDATE::PICKAXE;
+	}
+
 	else
 	{
 		PlayerState_ = PLAYER_UPDATE::INIT;
