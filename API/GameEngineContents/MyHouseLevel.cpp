@@ -113,7 +113,7 @@ void MyHouseLevel::LoadMapObject()
 			{
 			case MYHOUSE_TILE::BAD_BOTTOM:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<BadBottom>((int)PLAYLEVEL::TOPOBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<BadBottom>((int)PLAYLEVEL::TOP_OBJECT)));
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition({ pos.x, pos.y });
@@ -123,7 +123,7 @@ void MyHouseLevel::LoadMapObject()
 
 			case MYHOUSE_TILE::MOVE_FARM:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFarm>((int)PLAYLEVEL::TOPOBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFarm>((int)PLAYLEVEL::TOP_OBJECT)));
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->GetRenderer()->CameraEffectOff();

@@ -244,6 +244,8 @@ private:
 
 	void ObjectTileColl();
 	void CrushWood();
+	void CrushStone();
+	void CrushTree();
 
 
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------

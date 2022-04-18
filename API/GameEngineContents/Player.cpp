@@ -32,6 +32,10 @@ Player::Player()
 	MapSizeX_(0.f),
 	MapSizeY_(0.f),
 
+	RandomItemCount(),
+	RandomItemPosX(),
+	RamdomItemPosY(),
+
 	PlayerRenderer_(nullptr),
 	PlayerCollider_(nullptr),
 	MapColImage_(nullptr),
@@ -311,6 +315,7 @@ void Player::PlayerUpdate()
 
 		if (PlayerRenderer_->IsEndAnimation())
 		{
+			CrushTree();
 			CrushWood();
 		}
 

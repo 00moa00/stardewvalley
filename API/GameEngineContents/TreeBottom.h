@@ -1,6 +1,8 @@
 #pragma once
-#include "Items.h"
+#include <GameEngineBase/GameEngineRandom.h>
 
+#include "Items.h"
+#include "TreeTop.h"
 // Ό³Έν :
 class TreeBottom : public Items
 {
@@ -20,8 +22,13 @@ private:
 	void Start() override;
 	void Update() override;
 
-private:
 
+private:
+	Items* TreeTop_;
+
+
+public:
+	void TreeOff() override;
 
 };
 

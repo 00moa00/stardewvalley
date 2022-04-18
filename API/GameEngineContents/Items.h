@@ -69,6 +69,8 @@ protected:
 	GameEngineCollision* ItemCollider_;
 	GameEngineCollision* MapItemCollider_;
 
+	GameEngineRenderer* TreeTop_;
+
 	Font* Font_;
 
 	ITEMTYPE ItemType_;
@@ -78,6 +80,7 @@ protected:
 
 	int Count_;
 	int FileIndex_;
+	int Damage_;
 
 	float4 ItemPosition_;
 	float4 ItemSpeed_;
@@ -116,6 +119,7 @@ private:
 public:
 	bool IsWall(const float4 pos, const float4 scale, float4 dir);
 	void MoveToPlayer();
+	virtual void TreeOff();
 
 	//================================
 	//     Getter
@@ -130,6 +134,15 @@ public:
 		return ItemRenderer_;
 	}
 
+	GameEngineRenderer* GetTreeTop()
+	{
+		return TreeTop_;
+	}
+
+	int GetDamage()
+	{
+		return Damage_;
+	}
 
 	int GetLeft()
 	{
@@ -201,48 +214,17 @@ public:
 	//    Setter
 	//================================
 
-	void SetImageMahoganyBottom()
+	void SubDamage()
 	{
-		ItemRenderer_->SetImage("Mahogany_Tree_Bottom.bmp");
-
-	}
-	void SetImageFineBottom()
-	{
-		ItemRenderer_->SetImage("Fine_Tree_Bottom.bmp");
-
-	}
-	void SetImageMapleBottom()
-	{
-		ItemRenderer_->SetImage("Maple_Tree_Bottom.bmp");
-
+		if (Damage_ > 0)
+		{
+			--Damage_;
+		}
 	}
 
-	void SetImageOakBottom()
+	void SetDamage(int _Damage)
 	{
-		ItemRenderer_->SetImage("Oak_Tree_Bottom.bmp");
-
-	}
-
-	void SetImageMahoganyTop()
-	{
-		ItemRenderer_->SetImage("Mahogany_Tree.bmp");
-
-	}
-
-	void SetImageFineTop()
-	{
-		ItemRenderer_->SetImage("Fine_Tree.bmp");
-
-	}
-	void SetImageMapleTop()
-	{
-		ItemRenderer_->SetImage("Maple_Tree.bmp");
-
-	}
-	void SetImageOakTop()
-	{
-		ItemRenderer_->SetImage("Oak_Tree.bmp");
-
+		Damage_ = _Damage;
 	}
 
 	void SetMoveFlag(bool _flag)

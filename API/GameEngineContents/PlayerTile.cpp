@@ -146,15 +146,15 @@ void Player::CrushWood()
 			{
 				Items* MiniItem = nullptr;
 
-				if (Iter->second->GetItemNameConstRef() == "SmallStone")
-				{
-					MiniItem = CreateSeedActor<MiniStone>();
-				}
-
 				if (Iter->second->GetItemNameConstRef() == "SmallWood1"
 					|| Iter->second->GetItemNameConstRef() == "SmallWood2")
 				{
 					MiniItem = CreateSeedActor<MiniWood>();
+				}
+
+				else
+				{
+					return;
 				}
 
 				float4 Pos;
@@ -184,6 +184,151 @@ void Player::CrushWood()
 
 
 	}
+}
+
+void Player::CrushStone()
+{
+
+	for (Iter = MapObject_.begin(); Iter != MapObject_.end(); ++Iter) {
+
+		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
+		{
+
+			int Count = RandomItemCount.RandomInt(1, 5);
+			for (int i = 0; i < Count; ++i)
+			{
+				Items* MiniItem = nullptr;
+
+				if (Iter->second->GetItemNameConstRef() == "SmallStone")
+				{
+					MiniItem = CreateSeedActor<MiniStone>();
+				}
+
+				else
+				{
+					return;
+				}
+
+				float4 Pos;
+				Pos.x = RandomItemPosX.RandomFloat(-30.f, 30.f);
+				Pos.y = RamdomItemPosY.RandomFloat(-30.f, 30.f);
+
+				MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
+				MiniItem->SetMoveFlag(true);
+			}
+
+
+			Iter->second->Death();
+			MapObject_.erase(Iter);
+
+			TileState_ = TILE_COLL::INIT;
+			Speed_ = 150.f;
+			PlayerState_ = PLAYER_UPDATE::INIT;
+
+			Iter = MapObject_.begin();
+
+		}
+
+		else
+		{
+			PlayerState_ = PLAYER_UPDATE::INIT;
+		}
+
+
+	}
+
+
+}
+
+
+void Player::CrushTree()
+{
+
+	for (Iter = MapObject_.begin(); Iter != MapObject_.end(); ++Iter) {
+
+		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
+		{
+			if (Iter->second->GetItemNameConstRef() == "Maple_Tree"
+				|| Iter->second->GetItemNameConstRef() == "Fine_Tree"
+				|| Iter->second->GetItemNameConstRef() == "Oak_Tree"
+				|| Iter->second->GetItemNameConstRef() == "Mahogany_Tree"
+				)
+			{
+
+				//나무의 데미지가 0이상이면 SubDamage
+				if (Iter->second->GetDamage() > 0)
+				{
+					Iter->second->SubDamage();
+
+					//나무의 데미지가 2이상이면 Top 제거와 나무조각 드랍
+
+					if (Iter->second->GetDamage() == 2)
+					{
+
+						int Count = RandomItemCount.RandomInt(1, 5);
+						Items* MiniItem;
+						for (int i = 0; i < Count; ++i)
+						{
+							MiniItem = CreateSeedActor<MiniWood>();
+
+							float4 Pos;
+							Pos.x = RandomItemPosX.RandomFloat(-30.f, 30.f);
+							Pos.y = RamdomItemPosY.RandomFloat(-30.f, 30.f);
+
+							MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
+							MiniItem->SetMoveFlag(true);
+
+						}
+					}
+
+					Speed_ = 150.f;
+					TileState_ = TILE_COLL::INIT;
+					PlayerState_ = PLAYER_UPDATE::INIT;
+
+					return;
+				}
+
+				//나무의 데미지가 0이면 (주둥이까지 삭제)
+				else
+				{
+					int Count = RandomItemCount.RandomInt(1, 5);
+					Items* MiniItem;
+					for (int i = 0; i < Count; ++i)
+					{
+						MiniItem = CreateSeedActor<MiniWood>();
+
+						float4 Pos;
+						Pos.x = RandomItemPosX.RandomFloat(-30.f, 30.f);
+						Pos.y = RamdomItemPosY.RandomFloat(-30.f, 30.f);
+
+						MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
+						MiniItem->SetMoveFlag(true);
+
+					}
+
+					Iter->second->TreeOff();
+					MapObject_.erase(Iter);
+
+					Speed_ = 150.f;
+					TileState_ = TILE_COLL::INIT;
+					PlayerState_ = PLAYER_UPDATE::INIT;
+
+					Iter = MapObject_.begin();
+
+				}
+			}
+
+		}
+
+		//빈 땅을 찍어눌렀다면
+		else
+		{
+			Speed_ = 150.f;
+			PlayerState_ = PLAYER_UPDATE::INIT;
+		}
+
+	}
+
 }
 
 

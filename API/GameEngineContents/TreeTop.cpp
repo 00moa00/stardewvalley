@@ -15,9 +15,9 @@ void TreeTop::Start()
 
 	ItemType_ = ITEMTYPE::ITEM;
 
-	SetScale({ 48.f, 96.f });
+	//SetScale({ 48.f, 96.f });
 
-	Name_ = "TreeTop";
+	//Name_ = "TreeTop";
 }
 
 void TreeTop::Update()

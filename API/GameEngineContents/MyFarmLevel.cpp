@@ -107,14 +107,8 @@ void MyFarmLevel::LoadMapObject()
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
 				ThisIter = MapObject_.find(ChangeIndex);
-				ThisIter->second->SetImageMapleBottom();
-				ThisIter->second->SetPosition(pos);
+				ThisIter->second->SetName("Maple_Tree");
 
-				MapObject_.insert(std::make_pair(ChangeIndex - FARM_CHIP_NUM_Y, CreateActor<TreeTop>((int)PLAYLEVEL::TOP_OBJECT)));
-				
-				ThisIter = MapObject_.find(ChangeIndex - FARM_CHIP_NUM_Y);
-				ThisIter->second->SetImageMapleTop();
-				ThisIter->second->SetPosition({ pos.x , pos.y - 30.f });
 
 				break;
 
@@ -123,15 +117,7 @@ void MyFarmLevel::LoadMapObject()
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
 				ThisIter = MapObject_.find(ChangeIndex);
-				ThisIter->second->SetImageFineBottom();
-				ThisIter->second->SetPosition(pos);
-
-				MapObject_.insert(std::make_pair(ChangeIndex - FARM_CHIP_NUM_Y, CreateActor<TreeTop>((int)PLAYLEVEL::TOP_OBJECT)));
-				
-				ThisIter = MapObject_.find(ChangeIndex - FARM_CHIP_NUM_Y);
-				ThisIter->second->SetImageFineTop();
-				ThisIter->second->SetPosition({ pos.x , pos.y - 30.f });
-
+				ThisIter->second->SetName("Fine_Tree");
 
 				break;
 
@@ -140,14 +126,8 @@ void MyFarmLevel::LoadMapObject()
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
 				ThisIter = MapObject_.find(ChangeIndex);
-				ThisIter->second->SetImageOakBottom();
-				ThisIter->second->SetPosition(pos);
+				ThisIter->second->SetName("Oak_Tree");
 
-				MapObject_.insert(std::make_pair(ChangeIndex - FARM_CHIP_NUM_Y, CreateActor<TreeTop>((int)PLAYLEVEL::TOP_OBJECT)));
-				
-				ThisIter = MapObject_.find(ChangeIndex - FARM_CHIP_NUM_Y);
-				ThisIter->second->SetImageOakTop();
-				ThisIter->second->SetPosition({ pos.x , pos.y - 30.f });
 
 				break;
 
@@ -156,14 +136,7 @@ void MyFarmLevel::LoadMapObject()
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
 				ThisIter = MapObject_.find(ChangeIndex);
-				ThisIter->second->SetImageMahoganyBottom();
-				ThisIter->second->SetPosition(pos);
-
-				MapObject_.insert(std::make_pair(ChangeIndex - FARM_CHIP_NUM_Y, CreateActor<TreeTop>((int)PLAYLEVEL::TOP_OBJECT)));
-				
-				ThisIter = MapObject_.find(ChangeIndex - FARM_CHIP_NUM_Y);
-				ThisIter->second->SetImageMahoganyTop();
-				ThisIter->second->SetPosition({ pos.x , pos.y - 30.f });
+				ThisIter->second->SetName("Mahogany_Tree");
 
 
 				break;

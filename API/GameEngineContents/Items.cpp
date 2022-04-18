@@ -20,6 +20,7 @@ Items::Items() :
 	TransformPos_({}),
 	FileIndex_(0),
 	Count_ (1),
+	Damage_(5),
 
 	Gravity_({}),
 	ItemSpeed_({}),
@@ -36,6 +37,10 @@ Items::Items() :
 }
 
 Items::~Items() 
+{
+}
+
+void Items::TreeOff()
 {
 }
 
