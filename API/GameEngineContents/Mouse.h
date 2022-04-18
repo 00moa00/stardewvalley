@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineCollision.h>
+#include <GameEngineBase/GameEngineInput.h>
 #include <vector>
 // Ό³Έν :
 class Mouse : public GameEngineActor
@@ -22,20 +23,20 @@ public:
 protected:
 
 public:
-	GameEngineRenderer* Renderer() {
+	GameEngineRenderer* Renderer()
+	{
 		return MousePoint_;
 	}
-	GameEngineCollision* Collision() {
+
+	GameEngineCollision* Collision() 
+	{
 		return MouseCollision_;
 	}
 
-	void MouseOff() {
+	void MouseOff()
+	{
 		this -> Off();
 	}
-
-	bool isMouseClick();
-	bool isMouseHold();
-	bool isMouseFree();
 
 	void SetHoldingItem(bool b) 
 	{
@@ -52,26 +53,46 @@ public:
 		return (isMouseClick() && CursorPos_.y < 600);
 	}
 
+	bool isMouseClick()
+	{
+		return (GameEngineInput::GetInst()->IsDown("LeftClick"));
+	}
+
+	bool isMouseHold()
+	{
+		return (GameEngineInput::GetInst()->IsPress("LeftClick"));
+	}
+
+	bool isMouseFree()
+	{
+		return (GameEngineInput::GetInst()->IsUp("LeftClick"));
+	}
+
 	bool MouseInItem()
 	{
-
 		return (MouseCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
 	}
 
-
 	bool MouseInBox() 
 	{
-
 		return (MouseCollision_->CollisionResult("Box", ColList, CollisionType::Rect, CollisionType::Rect));
-
 	}
+
+	bool MouseClickAndItemColl()
+	{
+		return (MouseCollision_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect))
+			&& (isMouseClick() == true);
+	}
+
 
 private:
 
-	float4 CursorPos_;
-	POINT pt;
 	GameEngineRenderer* MousePoint_;
 	GameEngineCollision* MouseCollision_;
+
+	float4 CursorPos_;
+	POINT pt;
+
 	std::vector<GameEngineCollision*> ColList;
 
 	bool HoldingMouse_;

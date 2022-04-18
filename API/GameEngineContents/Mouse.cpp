@@ -2,14 +2,16 @@
 
 
 #include <GameEngine/GameEngineImageManager.h>
-#include <GameEngineBase/GameEngineInput.h>
-
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineLevel.h> 
+
 #include "GameData.h"
 Mouse::Mouse() :
 	CursorPos_({}),
-	MousePoint_(nullptr)
+	pt(),
+	MousePoint_(nullptr),
+	MouseCollision_(nullptr),
+	HoldingMouse_(false)
 {
 }
 
@@ -52,19 +54,3 @@ void Mouse::Render()
 {
 }
 
-bool Mouse::isMouseClick()
-{
-	return (GameEngineInput::GetInst()->IsDown("LeftClick"));
-}
-
-bool Mouse::isMouseHold()
-{
-	return (GameEngineInput::GetInst()->IsPress("LeftClick"));
-
-}
-
-bool Mouse::isMouseFree()
-{
-	return (GameEngineInput::GetInst()->IsUp("LeftClick"));
-
-}

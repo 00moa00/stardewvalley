@@ -1,4 +1,6 @@
 #include "ParsnipSeeds_Shop.h"
+#include "Player.h"
+#include "Parsnip_Seeds.h"
 
 ParsnipSeeds_Shop::ParsnipSeeds_Shop() 
 {
@@ -20,5 +22,11 @@ void ParsnipSeeds_Shop::Start()
 
 void ParsnipSeeds_Shop::Update()
 {
+}
+
+void ParsnipSeeds_Shop::InventoryNewItem()
+{
+	Player* MainPlayer = MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+	MainPlayer->GetInventroy()->NewItem<Parsnip_Seeds>();
 }
 

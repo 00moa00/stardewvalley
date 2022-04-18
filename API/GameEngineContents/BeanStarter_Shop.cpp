@@ -23,3 +23,7 @@ void BeanStarter_Shop::Update()
 {
 }
 
+void BeanStarter_Shop::InventoryNewItem()
+{
+}
+

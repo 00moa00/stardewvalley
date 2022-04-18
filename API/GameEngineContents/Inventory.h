@@ -10,7 +10,7 @@
 #include "InventoryCurrentFrame.h"
 #include "Mouse.h"
 #include "Player.h"
-#include "InventoryExit.h"
+#include "ExitBotton.h"
 #include "Items.h"
 
 
@@ -36,18 +36,18 @@ enum class ITEMMOVE
 	MINE
 };
 
-enum class MINIPOPUP 
+enum class POPUPSTATE 
 {
 	INIT,
 	MINI,
-	MAIN
+	MAIN,
+	SHOP
 };
 
 enum class INVEN_UPDATE
 {
 	INIT,
 	UPDATE,
-
 };
 
 //#pragma warning(disable : 4267)
@@ -106,8 +106,8 @@ public:
 
 	//	UpdateState_ = INVEN_UPDATE::INIT;
 	//	MoveState_ = ITEMMOVE::INIT;
-	//	MiniState_ = MINIPOPUP::MINI;
-	//	CurrentInvenState_ = MINIPOPUP::INIT;
+	//	PopUpState_ = POPUPSTATE::MINI;
+	//	CurrentInvenState_ = POPUPSTATE::INIT;
 
 
 	//	return *this;
@@ -123,6 +123,7 @@ public:
 		//가지고 있는 아이템이라면 생성하고 카운팅한다.
 
 		std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
+
 		std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
 
 		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
@@ -141,14 +142,22 @@ public:
 		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
 
 		//앞에서부터 탐색해서 박스에 아이템이 없으면 그 자리에 넣기
+
 		int index_ = 0;
 
-		for (; StartIter != EndIter; ) {
-			if (!StartIter->second->IteminBox()) {
+		for (int i = 0; StartIter != EndIter; ++i) {
+
+			std::map<int, Items*>::iterator ItemFindIter = PlayerItemList_.find(i);
+			if (ItemFindIter == PlayerItemList_.end())
+			{
 				index_ = StartIter->first;
-				StartIter = EndIter;
+				break;
 			}
-			if (StartIter != EndIter) { ++StartIter; }
+			else
+			{
+				++StartIter;
+			}
+
 		}
 
 		//플레이어 아이템리스트에 추가
@@ -170,12 +179,12 @@ public:
 
 	void AllUpdateOn();
 
-	bool InventoryExitMouseClick() {
-		return InventoryExit_->MouseClick();
+	bool ExitBottonMouseClick() {
+		return ExitBotton_->MouseClick();
 	}
 
-	void SetMiniInven(MINIPOPUP b) {
-		MiniState_ = b;
+	void SetMiniInven(POPUPSTATE b) {
+		PopUpState_ = b;
 	}
 
 
@@ -222,7 +231,7 @@ private:
 
 	//int ItemCount_;
 	Mouse* Mouse_;
-	InventoryExit* InventoryExit_;
+	ExitBotton* ExitBotton_;
 
 	Hoe* Hoe_;
 	Watering_Can* Watering_Can_;
@@ -233,8 +242,8 @@ private:
 	Parsnip_Seeds* Parsnip_Seeds_;
 
 	ITEMMOVE MoveState_;
-	MINIPOPUP MiniState_;
-	MINIPOPUP CurrentInvenState_;
+	POPUPSTATE PopUpState_;
+	POPUPSTATE CurrentInvenState_;
 	INVEN_UPDATE UpdateState_;
 };
 

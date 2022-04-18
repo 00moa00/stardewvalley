@@ -24,3 +24,7 @@ void Dandelion_Shop::Update()
 {
 }
 
+void Dandelion_Shop::InventoryNewItem()
+{
+}
+

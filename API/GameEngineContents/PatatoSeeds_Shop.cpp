@@ -1,4 +1,5 @@
 #include "PatatoSeeds_Shop.h"
+#include "Player.h"
 
 PatatoSeeds_Shop::PatatoSeeds_Shop() 
 {
@@ -21,5 +22,11 @@ void PatatoSeeds_Shop::Start()
 
 void PatatoSeeds_Shop::Update()
 {
+}
+
+void PatatoSeeds_Shop::InventoryNewItem()
+{
+	//Player* MainPlayer = MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+	//MainPlayer->GetInventroy()->NewItem<PatatoSeeds_Shop>();
 }
 

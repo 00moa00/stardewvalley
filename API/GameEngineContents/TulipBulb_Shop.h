@@ -16,8 +16,16 @@ public:
 	TulipBulb_Shop& operator=(TulipBulb_Shop&& _Other) noexcept = delete;
 
 private:
+
 	void Start() override;
 	void Update() override;
+
+public:
+
+	void InventoryNewItem() override;
+
+private:
+
 
 protected:
 

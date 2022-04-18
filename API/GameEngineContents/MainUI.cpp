@@ -23,7 +23,7 @@ void MainUI::Start()
 	MainUI_ = CreateRenderer("UITop.bmp");
 	MainUI_->CameraEffectOff();
 
-	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONTUI);
 	Font_->ChangeNumUI(1000);
 	Font_->SetPositionUI({1085.f, 192.f });
 

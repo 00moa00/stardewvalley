@@ -1,20 +1,20 @@
-#include "InventoryExit.h"
+#include "ExitBotton.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <vector>
 #include <GameEngine/GameEngineCollision.h>
 #include <GameEngineBase/GameEngineInput.h>
 
-InventoryExit::InventoryExit() 
+ExitBotton::ExitBotton() 
 {
 }
 
-InventoryExit::~InventoryExit() 
+ExitBotton::~ExitBotton() 
 {
 }
 
-void InventoryExit::Start()
+void ExitBotton::Start()
 {
-	SetPosition(GameEngineWindow::GetScale().Half());
+	//SetPosition(GameEngineWindow::GetScale().Half());
 	Exit_ = CreateRenderer("exit.bmp");
 	ExitCollision_ = CreateCollision("Exit", { 64, 64 });
 	Exit_->CameraEffectOff();
@@ -22,15 +22,15 @@ void InventoryExit::Start()
 	//ExitCollision_->GetCollisionPos
 }
 
-void InventoryExit::Update()
+void ExitBotton::Update()
 {
 }
 
-void InventoryExit::Render()
+void ExitBotton::Render()
 {
 }
 
-bool InventoryExit::MouseClick()
+bool ExitBotton::MouseClick()
 {
 	std::vector<GameEngineCollision*> ColList;
 

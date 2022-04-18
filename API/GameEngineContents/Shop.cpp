@@ -1,8 +1,13 @@
 #include "Shop.h"
+#include "Player.h"
+
 
 Shop::Shop() 
 	:
 	ShopRenderer_(nullptr),
+	ExitBotton_(nullptr),
+	Mouse_(nullptr),
+
 	ShopUpdateState_(SHOP_UPDATE::SET_POS_INDEX)
 {
 }
@@ -15,6 +20,12 @@ void Shop::Start()
 {
 	ShopRenderer_ = CreateRenderer("Shop.bmp");
 	ShopRenderer_->CameraEffectOff();
+
+	ExitBotton_ = GetLevel()->CreateActor<ExitBotton>(static_cast<int>(PLAYLEVEL::ITEM));
+	ExitBotton_->SetPosition({1125.f, 620.f});
+
+	Mouse_ = GetLevel()->CreateActor<Mouse>(static_cast<int>(PLAYLEVEL::MOUSE));
+
 	SetPosition( GameEngineWindow::GetInst().GetScale().Half());
 
 	NewShopItem<TulipBulb_Shop>();
@@ -44,7 +55,6 @@ void Shop::Start()
 		ConstItmePos_.insert(std::make_pair(i, float4({ 715.f, 123.5f + (i * 76.f)})));
 	}
 
-
 }
 
 void Shop::Update()
@@ -55,37 +65,25 @@ void Shop::Update()
 
 	std::map<int, ShopItem*>::iterator ItemfirstFindtIter = ShopItemList_.begin();
 
-	//std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
-	//std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
-
-
 	std::map<int, float4>::iterator ConstStartIter = ConstItmePos_.begin();
 	std::map<int, float4>::iterator ConstEndtIter = ConstItmePos_.end();
 
-	int count = 0;
-
+	Player* MainPlayer = MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 
 	switch (ShopUpdateState_)
 	{
 	case SHOP_UPDATE::SET_POS_INDEX:
-
-
 
 		ItemStartIter = ShopItemList_.begin();
 		ItemEndtIter = ShopItemList_.end();
 
 		ItemfirstFindtIter = ShopItemList_.begin();
 
-		//std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
-		//std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
-
-
 		ConstStartIter = ConstItmePos_.begin();
 		ConstEndtIter = ConstItmePos_.end();
 
 
-		// °íÁ¤ ÀÎµ¦½º¿¡ ¸ÂÃá´Ù
-
+		// °íÁ¤ ÀÎµ¦½º¿¡ À§Ä¡¸¦ ¸ÂÃá´Ù
 		for (; ConstStartIter != ConstEndtIter; ++ConstStartIter)
 		{
 
@@ -99,13 +97,10 @@ void Shop::Update()
 					break;
 				}
 
-
 				else
 				{
 					++ItemStartIter;
 				}
-
-
 			}
 
 		//	ItemStartIter = ShopItemList_.find(count);
@@ -116,13 +111,12 @@ void Shop::Update()
 		break;
 
 	case SHOP_UPDATE::HIDE_ITME:
+
 		// 4°³ ÀÌ»óÀº ¼û±è
+		ItemStartIter = ShopItemList_.begin();
+		ItemEndtIter = ShopItemList_.end();
 
-
-		 ItemStartIter = ShopItemList_.begin();
-		 ItemEndtIter = ShopItemList_.end();
-
-		for (int i = 0; ItemStartIter != ItemEndtIter; ++ItemStartIter)
+		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
 		{
 			if (ItemStartIter->second->GetIndex() > 3 || ItemStartIter->second->GetIndex() < 0)
 			{
@@ -140,6 +134,23 @@ void Shop::Update()
 
 	case SHOP_UPDATE::INIT:
 
+		ItemStartIter = ShopItemList_.begin();
+		ItemEndtIter = ShopItemList_.end();
+
+		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
+		{
+			if (ItemStartIter->second->MouseInItem() && Mouse_->isMouseClick())
+			{
+				ItemStartIter->second->InventoryNewItem();
+			}
+		}
+
+		if (ExitBotton_->MouseClick() == true)
+		{
+			MainPlayer->SetisShopping(false);
+		}
+
+
 		if (true == GameEngineInput::GetInst()->IsDown("KeyUp") )
 		{
 
@@ -150,7 +161,6 @@ void Shop::Update()
 
 			else
 			{
-
 				ShopUpdateState_ = SHOP_UPDATE::SCROLL_UP;
 			}
 		}
@@ -161,7 +171,6 @@ void Shop::Update()
 			if (ItemfirstFindtIter->second->GetIndex() == -6)
 			{
 				ShopUpdateState_ = SHOP_UPDATE::INIT;
-
 			}
 
 			else
@@ -179,9 +188,7 @@ void Shop::Update()
 
 		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
 		{
-
 			ItemStartIter->second->AddIndex();
-			
 		}
 
 		ShopUpdateState_ = SHOP_UPDATE::SET_POS_INDEX;
@@ -209,6 +216,7 @@ void Shop::Update()
 void Shop::ShopOff()
 {
 	this->Off();
+	ExitBotton_->Off();
 
 	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
 	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
@@ -216,15 +224,14 @@ void Shop::ShopOff()
 	for (; StartIter != EndtIter; ++StartIter)
 	{
 		StartIter->second->Off();
-
 	}
-
 
 }
 
 void Shop::ShopOn()
 {
 	this->On();
+	ExitBotton_->On();
 
 	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
 	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
@@ -232,8 +239,8 @@ void Shop::ShopOn()
 	for (; StartIter != EndtIter; ++StartIter)
 	{
 		StartIter->second->On();
-
 	}
+
 	ShopUpdateState_ = SHOP_UPDATE::HIDE_ITME;
 
 

@@ -221,7 +221,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="InventoryExit.h">
+    <ClInclude Include="ExitBotton.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -537,7 +537,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="InventoryExit.cpp">
+    <ClCompile Include="ExitBotton.cpp">
       <SubType>
       </SubType>
     </ClCompile>

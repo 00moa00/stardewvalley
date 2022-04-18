@@ -38,16 +38,26 @@ public:
 	ShopItem& operator=(const ShopItem& _Other) = delete;
 	ShopItem& operator=(ShopItem&& _Other) noexcept = delete;
 
-protected:
-	GameEngineRenderer* ShopItemListRenderer_;
-	GameEngineCollision* ShopItemListCollider_;
+public:
 
-	int Index_;
+	virtual void InventoryNewItem() = 0;
 
 private:
 
+protected:
+
+	GameEngineRenderer* ShopItemListRenderer_;
+	GameEngineCollision* ShopItemListCollider_;
+	std::vector<GameEngineCollision*> ColList;
+
+	int Index_;
 
 public:
+
+	bool MouseInItem()
+	{
+		return (ShopItemListCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
 
 	//================================
 	//     Getter
@@ -57,7 +67,6 @@ public:
 	{
 		return Index_;
 	}
-
 
 	//================================
 	//    Setter

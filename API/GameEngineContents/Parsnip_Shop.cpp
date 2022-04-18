@@ -24,3 +24,7 @@ void Parsnip_Shop::Update()
 {
 }
 
+void Parsnip_Shop::InventoryNewItem()
+{
+}
+

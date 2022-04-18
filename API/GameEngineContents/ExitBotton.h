@@ -2,18 +2,18 @@
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngine/GameEngineRenderer.h>
 // Ό³Έν :
-class InventoryExit : public GameEngineActor
+class ExitBotton : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	InventoryExit();
-	~InventoryExit();
+	ExitBotton();
+	~ExitBotton();
 
 	// delete Function
-	InventoryExit(const InventoryExit& _Other) = delete;
-	InventoryExit(InventoryExit&& _Other) noexcept = delete;
-	InventoryExit& operator=(const InventoryExit& _Other) = delete;
-	InventoryExit& operator=(InventoryExit&& _Other) noexcept = delete;
+	ExitBotton(const ExitBotton& _Other) = delete;
+	ExitBotton(ExitBotton&& _Other) noexcept = delete;
+	ExitBotton& operator=(const ExitBotton& _Other) = delete;
+	ExitBotton& operator=(ExitBotton&& _Other) noexcept = delete;
 
 protected:
 

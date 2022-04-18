@@ -1,4 +1,5 @@
 #include "Inventory.h"
+#include "Player.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -21,14 +22,14 @@ Inventory::Inventory()
 	:
 	
 	WildHorseradish_(nullptr),
-	InventoryExit_(nullptr),
+	ExitBotton_(nullptr),
 	Mouse_(nullptr),
 	CurrentItem_(nullptr ),
 	Hoe_(nullptr),
 	Inventory_(nullptr),
 	Pickaxe_(nullptr),
-	CurrentInvenState_(MINIPOPUP::INIT),
-	MiniState_(MINIPOPUP::MINI),
+	CurrentInvenState_(POPUPSTATE::INIT),
+	PopUpState_(POPUPSTATE::MINI),
 	MoveState_(ITEMMOVE::INIT),
 	UpdateState_(INVEN_UPDATE::INIT)
 
@@ -52,8 +53,7 @@ void Inventory::Start()
 	CurrentItemFrame_ = GetLevel()->CreateActor<InventoryCurrentFrame>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
 
 	Mouse_ = GetLevel()->CreateActor<Mouse>(static_cast<int>(PLAYLEVEL::MOUSE));
-	InventoryExit_ = GetLevel()->CreateActor<InventoryExit>(static_cast<int>(PLAYLEVEL::ITEM));
-
+	ExitBotton_ = GetLevel()->CreateActor<ExitBotton>(static_cast<int>(PLAYLEVEL::ITEM));
 
 	BoxInit();
 
@@ -63,7 +63,7 @@ void Inventory::Start()
 	float4 Position;
 	Position.x = Inventory_->GetScale().x  + 250.f;
 	Position.y = Inventory_->GetScale().y  + 50.f;
-	InventoryExit_->SetPosition({ Position.x ,Position.y });
+	ExitBotton_->SetPosition({ Position.x ,Position.y });
 	
 	//WildHorseradish2_ = NewItem<WildHorseradish>();
 	Hoe_ = NewItem<Hoe>();
@@ -106,8 +106,8 @@ void Inventory::LevelChangeEnd()
 
 		//UpdateState_ = 0;
 		//MoveState_ = ITEMMOVE::INIT;
-		//MiniState_ = MINIPOPUP::MINI;
-		//CurrentInvenState_ = MINIPOPUP::INIT;
+		//PopUpState_ = POPUPSTATE::MINI;
+		//CurrentInvenState_ = POPUPSTATE::INIT;
 
 }
 
@@ -167,25 +167,23 @@ void Inventory::InventoryPosInit()
 	int count = 0;
 
 	int BoxMargin = 0;
+
 	int BoxYMargin = 0;
-	float BoxXMargin = 0.f;
+	int BoxXMargin = 0;
 
 	for (; StartIter != EndIter; ++StartIter)
 	{
-
 		if (StartIter->first == 12) 
 		{
 			BoxMargin = 10.f;
 			BoxYMargin = 1;
-			BoxXMargin = 0.f;
+			BoxXMargin = 0;
 		}
 
 		if (StartIter->first == 24) 
 		{
-			//BoxYMargin = 20.f;
 			BoxYMargin = 2;
-
-			BoxXMargin = 0.f;
+			BoxXMargin = 0;
 		}
 
 		StartIter->second->SetPosition({ (GetPosition().x - 352.f) + (64.f * BoxXMargin), (GetPosition().y - 200.f) + (64.f * BoxYMargin + BoxMargin) });
@@ -195,12 +193,6 @@ void Inventory::InventoryPosInit()
 		{
 			StartIter->second->CreateBoxCollision(StartIter->first);
 		}
-
-		////현재 아이템 프레임 체인지
-		//if (StartIter->first == 0)
-		//{
-		//	SetCurrentItemFrameChange(StartIter->second);
-		//}
 
 		++BoxXMargin;
 	}
@@ -262,7 +254,7 @@ void Inventory::AllUpdateOff()
 		ItemStartIter->second->Off();
 	}
 
-	InventoryExit_->Off();
+	ExitBotton_->Off();
 
 }
 
@@ -287,7 +279,7 @@ void Inventory::AllUpdateOn()
 		ItemStartIter->second->On();
 	}
 
-	InventoryExit_->On();
+	ExitBotton_->On();
 
 }
 
@@ -392,7 +384,7 @@ void Inventory::ItemMove()
 				//MainPlayer->ChangeHandItem();
 
 				//미니 상태에서 툴은 이동할 수 없다.
-				if ((CurrentInvenState_ == MINIPOPUP::MINI) &&
+				if ((CurrentInvenState_ == POPUPSTATE::MINI) &&
 					(PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL))
 				{
 					PlayerItemListStartIter->second->SetInBox(false);
@@ -429,7 +421,7 @@ void Inventory::ItemMove()
 		//TODO : 박스 밖에서 놓아주려했을떄 원래 자리로 돌아가게 하기.
 		//TODO : 아이템이 있는 위치에는 들고있는 아이템 변경하기
 
-		if ((Mouse_->isMouseClick() && Mouse_->MouseInBox()))
+		if (Mouse_->MouseClickAndItemColl())
 		{
 
 			BoxStartIter = Box_.begin();
@@ -514,16 +506,29 @@ void Inventory::ItemMove()
 void Inventory::InvenPopUp()
 {
 
-	if ((CurrentInvenState_ == MINIPOPUP::MINI)
+	if ((CurrentInvenState_ == POPUPSTATE::MINI)
 		&& true == GameEngineInput::GetInst()->IsDown("Enter"))
 	{
-		MiniState_ = MINIPOPUP::MAIN;
+		PopUpState_ = POPUPSTATE::MAIN;
 	}
 
-	if (((CurrentInvenState_ == MINIPOPUP::MAIN) 
-		&& true == GameEngineInput::GetInst()->IsDown("Enter")) || (InventoryExit_->MouseClick()))
+	if (((CurrentInvenState_ == POPUPSTATE::MAIN) 
+		&& true == GameEngineInput::GetInst()->IsDown("Enter")) || (ExitBotton_->MouseClick()))
 	{
-		MiniState_ = MINIPOPUP::MINI;
+		PopUpState_ = POPUPSTATE::MINI;
+	}
+
+	Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+
+	if (MainPlayer->GetisShopping())
+	{
+		PopUpState_ = POPUPSTATE::SHOP;
+	}
+
+
+	if (MainPlayer->GetPlayerShoppingState() == PLAYER_SHOPPING::SHOP_OFF)
+	{
+		PopUpState_ = POPUPSTATE::MINI;
 	}
 
 
@@ -537,19 +542,19 @@ void Inventory::InvenPopUp()
 
 	int BoxXMargin = 0;
 
-	switch (MiniState_)
+	switch (PopUpState_)
 	{
-	case MINIPOPUP::INIT :
+	case POPUPSTATE::INIT :
 
 		break;
 
-	case MINIPOPUP::MINI:
+	case POPUPSTATE::MINI:
 
-		CurrentInvenState_ = MINIPOPUP::MINI;
+		CurrentInvenState_ = POPUPSTATE::MINI;
 
-		InventoryExit_->Off();
+		ExitBotton_->Off();
 		CurrentItemFrame_->On();
-
+		Inventory_->On();
 
 		Inventory_->SetImage("MiniInven.bmp");
 		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y+300.f });
@@ -586,14 +591,14 @@ void Inventory::InvenPopUp()
 		}
 
 	
-		MiniState_ = MINIPOPUP::INIT;
+		PopUpState_ = POPUPSTATE::INIT;
 
 		break;
 
-	case MINIPOPUP::MAIN:
+	case POPUPSTATE::MAIN:
 
-		CurrentInvenState_ = MINIPOPUP::MAIN;
-		InventoryExit_->On();
+		CurrentInvenState_ = POPUPSTATE::MAIN;
+		ExitBotton_->On();
 		CurrentItemFrame_->Off();
 
 		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y});
@@ -617,10 +622,65 @@ void Inventory::InvenPopUp()
 		}
 
 
-
 		InventoryPosInit();
 
-		MiniState_ = MINIPOPUP::INIT;
+		PopUpState_ = POPUPSTATE::INIT;
+
+		break;
+
+	case POPUPSTATE::SHOP:
+
+		CurrentInvenState_ = POPUPSTATE::SHOP;
+		ExitBotton_->Off();
+		CurrentItemFrame_->Off();
+		Inventory_->Off();
+		//SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y });
+		//Inventory_->SetImage("inventory.bmp");
+
+
+		for (; ItemStartIter != ItemEndIter; ++ItemStartIter)
+		{
+			if (ItemStartIter == ItemEndIter) {
+				continue;
+			}
+			//ItemStartIter->second->
+			ItemStartIter->second->On();
+		}
+
+		for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
+		{
+
+			BoxStartIter->second->On();
+
+		}
+
+
+		std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
+		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
+
+		int BoxYMargin = 0;
+		int BoxXMargin = 0;
+
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			if (StartIter->first == 12)
+			{
+				BoxYMargin = 1;
+				BoxXMargin = 0;
+			}
+
+			if (StartIter->first == 24)
+			{
+				BoxYMargin = 2;
+				BoxXMargin = 0;
+			}
+
+			StartIter->second->SetPosition({ (362.f) + (64.f * BoxXMargin), (459.f) + (64.f * BoxYMargin ) });
+
+			++BoxXMargin;
+		}
+
+		PopUpState_ = POPUPSTATE::INIT;
 
 		break;
 

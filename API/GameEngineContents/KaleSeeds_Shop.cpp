@@ -24,3 +24,7 @@ void KaleSeeds_Shop::Update()
 {
 }
 
+void KaleSeeds_Shop::InventoryNewItem()
+{
+}
+

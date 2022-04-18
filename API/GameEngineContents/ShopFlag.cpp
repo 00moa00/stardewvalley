@@ -15,6 +15,6 @@ void ShopFlag::Start()
 	
 	ItemCollider_ = CreateCollision("ShopFlag", { 48, 48 });
 	
-	ItemType_ = ITEMTYPE::BLOCK;
+	//ItemType_ = ITEMTYPE::BLOCK;
 }
 

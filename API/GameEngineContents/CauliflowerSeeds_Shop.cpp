@@ -23,3 +23,7 @@ void CauliflowerSeeds_Shop::Update()
 {
 }
 
+void CauliflowerSeeds_Shop::InventoryNewItem()
+{
+}
+

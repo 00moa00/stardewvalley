@@ -24,3 +24,7 @@ void JazzSeeds_Shop::Update()
 {
 }
 
+void JazzSeeds_Shop::InventoryNewItem()
+{
+}
+

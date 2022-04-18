@@ -16,8 +16,13 @@ public:
 	Dandelion_Shop& operator=(Dandelion_Shop&& _Other) noexcept = delete;
 
 private:
+
 	void Start() override;
 	void Update() override;
+
+public:
+
+	void InventoryNewItem() override;
 
 protected:
 

@@ -57,19 +57,13 @@ class Player : public GameEngineActor
 {
 
 public:
+
 	static Player* MainPlayer;
 	static Inventory* MainInventory;
 
 	// constrcuter destructer
 	Player();
 	~Player();
-
-protected:
-	void Start() override;
-	void Update() override;
-	void Render() override;
-	void LevelChangeStart() override;
-	void LevelChangeEnd() override;
 
 	// delete Function
 	Player(const Player& _Other) = delete;
@@ -79,6 +73,14 @@ protected:
 
 private:
 
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
+
+
+private:
 
 	const char* ArrAnimationName[static_cast<int>(PLAYER_UPDATE::MAX)];
 
@@ -152,13 +154,14 @@ public:
 	//================================
 
 	bool GetObjectColl();
-
+	bool GetisShopping();
 
 	float GetEnergy();
 	int GetMoney();
 
 	std::string GetCurrentLevel();
 
+	PLAYER_SHOPPING GetPlayerShoppingState();
 	PLAYER_UPDATE GetPlayerState();
 	Inventory* GetInventroy();
 	GameEngineRenderer* Renderer();
@@ -169,6 +172,7 @@ public:
 	//    Setter
 	//================================
 
+	void SetisShopping(bool b);
 	void SetObjectColl(bool b);
 	void SetCurrentLevel(std::string s);
 

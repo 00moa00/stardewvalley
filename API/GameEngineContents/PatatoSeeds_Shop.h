@@ -19,6 +19,9 @@ private:
 	void Start() override;
 	void Update() override;
 
+public:
+	void InventoryNewItem() override;
+
 protected:
 
 private:

@@ -377,6 +377,11 @@ void Player::CheckTool()
 }
 
 
+void Player::SetisShopping(bool b)
+{
+	isShopping_ = b;
+}
+
 void  Player::SetObjectColl(bool b)
 {
 	ObjectColl_ = b;
@@ -386,6 +391,11 @@ void  Player::SetObjectColl(bool b)
 bool  Player::GetObjectColl()
 {
 	return ObjectColl_;
+}
+
+bool Player::GetisShopping()
+{
+	return isShopping_;
 }
 
 void  Player::SetCurrentLevel(std::string s)
@@ -409,6 +419,11 @@ void  Player::SetWetTileMap(GameEngineRendererTileMap* _TileMap)
 {
 	WetTileMap_ = _TileMap;
 
+}
+
+PLAYER_SHOPPING Player::GetPlayerShoppingState()
+{
+	return PlayerShoppingState_;
 }
 
 PLAYER_UPDATE Player::GetPlayerState()
@@ -483,21 +498,28 @@ void Player::PlayerShopping()
 	case PLAYER_SHOPPING::SHOPPING:
 
 
-		//if (MouseClickAndColl() == true && isShopping_ == false)
-		//{
-		//	PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_ON;
-		//}
+		if (isShopping_ == false)
+		{
+			PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_OFF;
+
+		}
+
 		break;
 
 
 	case PLAYER_SHOPPING::SHOP_ON:
 
 		Shop_->ShopOn();
-
+		isShopping_ = true;
 		PlayerShoppingState_ = PLAYER_SHOPPING::SHOPPING;
 
 		break;
+
 	case PLAYER_SHOPPING::SHOP_OFF:
+
+		Shop_->ShopOff();
+		PlayerShoppingState_ = PLAYER_SHOPPING::INT;
+
 		break;
 	default:
 		break;

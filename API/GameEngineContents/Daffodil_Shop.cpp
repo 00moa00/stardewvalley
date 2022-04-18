@@ -24,3 +24,7 @@ void Daffodil_Shop::Update()
 {
 }
 
+void Daffodil_Shop::InventoryNewItem()
+{
+}
+

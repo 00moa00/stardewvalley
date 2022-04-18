@@ -8,6 +8,8 @@
 #include <map>
 
 #include "ShopItem.h"
+#include "ExitBotton.h"
+#include "Mouse.h"
 
 #include "TulipBulb_Shop.h"
 #include "PatatoSeeds_Shop.h"
@@ -28,7 +30,6 @@ enum class SHOP_UPDATE
 	INIT,
 	SCROLL_UP,
 	SCROLL_DOWN
-
 };
 
 // 설명 :
@@ -54,12 +55,12 @@ private:
 
 	GameEngineRenderer* ShopRenderer_;
 
-	std::map<int, ShopItem*> ShopItemList_;
-	std::map<int, float4> ConstItmePos_;
-
-
+	ExitBotton* ExitBotton_;
+	Mouse* Mouse_;
 
 	SHOP_UPDATE ShopUpdateState_;
+	std::map<int, ShopItem*> ShopItemList_;
+	std::map<int, float4> ConstItmePos_;
 
 public:
 
@@ -74,10 +75,11 @@ public:
 		//기본 인덱스로 초기화
 		int Index = Item->GetIndex();
 		ShopItemList_.insert(std::make_pair(Index, Item));
-
 	}
 
 protected:
+
+
 
 };
 

@@ -65,9 +65,6 @@
     <ClCompile Include="InventroyBox.cpp">
       <Filter>Actor\03. Play\Inventory</Filter>
     </ClCompile>
-    <ClCompile Include="InventoryExit.cpp">
-      <Filter>Actor\03. Play\Inventory</Filter>
-    </ClCompile>
     <ClCompile Include="MyFarmLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
@@ -90,7 +87,7 @@
       <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Block.cpp">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="Weeds.cpp">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
@@ -120,25 +117,25 @@
       <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClCompile>
     <ClCompile Include="MoveFarm.cpp">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="MapColl.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="MoveHouse.cpp">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="BusStopLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="MoveBusStop.cpp">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="MoveTown.cpp">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="MoveForest.cpp">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="PlayLevel.cpp">
       <Filter>Level</Filter>
@@ -198,13 +195,13 @@
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
     <ClCompile Include="MoveShop.cpp">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="ShopLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="ShopFlag.cpp">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="Shop.cpp">
       <Filter>Actor\03. Play\Shop</Filter>
@@ -241,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="Daffodil_Shop.cpp">
       <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitBotton.cpp">
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -317,9 +317,6 @@
     <ClInclude Include="ItemCode.h">
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
-    <ClInclude Include="InventoryExit.h">
-      <Filter>Actor\03. Play\Inventory</Filter>
-    </ClInclude>
     <ClInclude Include="MyFarmLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
@@ -348,7 +345,7 @@
       <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="Weeds.h">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
@@ -378,13 +375,13 @@
       <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClInclude>
     <ClInclude Include="MoveFarm.h">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="MapColl.h">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="MoveHouse.h">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="TileData.h">
       <Filter>Actor\00. GlobalData</Filter>
@@ -396,13 +393,13 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="MoveBusStop.h">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="MoveTown.h">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="MoveForest.h">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="PlayLevel.h">
       <Filter>Level</Filter>
@@ -459,13 +456,13 @@
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
     <ClInclude Include="MoveShop.h">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="ShopLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="ShopFlag.h">
-      <Filter>Actor\03. Play\Obejct\Global</Filter>
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="Shop.h">
       <Filter>Actor\03. Play\Shop</Filter>
@@ -502,6 +499,9 @@
     </ClInclude>
     <ClInclude Include="Daffodil_Shop.h">
       <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitBotton.h">
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -553,9 +553,6 @@
     <Filter Include="Actor\03. Play\Obejct\Tool">
       <UniqueIdentifier>{bf2ef558-8502-462c-b3a3-3268d4c6fc31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\Obejct\Global">
-      <UniqueIdentifier>{2fb373cf-46c0-4a11-8b84-fa6589acc391}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\03. Play\Obejct\Item">
       <UniqueIdentifier>{53c2011e-28b5-42ab-8fdb-a1b3b96b3f61}</UniqueIdentifier>
     </Filter>
@@ -582,6 +579,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Shop\ShopItemList">
       <UniqueIdentifier>{febc0259-bb78-415e-987e-c751b3b9de17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\MapCollisionBlock">
+      <UniqueIdentifier>{2fb373cf-46c0-4a11-8b84-fa6589acc391}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
