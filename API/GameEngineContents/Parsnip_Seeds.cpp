@@ -13,7 +13,7 @@ void Parsnip_Seeds::Start()
 	isPossibleHand_ = true;
 
 	Name_ = "Parsnip_Seeds";
-	FilePath_ = "springobjects.bmp";
+	FileName_ = "springobjects.bmp";
 
 	FileIndex_ = static_cast<size_t>(ITEM::PARSNIP_SEEDS);
 
@@ -23,7 +23,7 @@ void Parsnip_Seeds::Start()
 	Font_->ChangeNumItem(1);
 	//Font_->SetPositionItem({ GetPosition() });
 
-	ItemRenderer_ = CreateRenderer(FilePath_);
+	ItemRenderer_ = CreateRenderer(FileName_);
 	ItemRenderer_->SetIndex(FileIndex_);
 	ItemRenderer_->CameraEffectOff();
 

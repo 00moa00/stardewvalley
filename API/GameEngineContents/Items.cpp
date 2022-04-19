@@ -28,7 +28,7 @@ Items::Items() :
 	ItemPosition_({}),
 
 	Name_ ({""}),
-	FilePath_({""}),
+	FileName_({""}),
 	ItemType_ (ITEMTYPE::ITEM),
 	ToolType_ (TOOLTYPE::OTHER),
 	ItemState_(ITEM_STATE::INIT)
@@ -192,4 +192,10 @@ void Items::MoveToPlayer()
 			break;
 		}
 	}
+}
+
+void Items::SetReRenderer()
+{
+	ItemRenderer_ = CreateRenderer(FileName_);
+	ItemRenderer_->SetIndex(FileIndex_);
 }

@@ -320,7 +320,7 @@ void Player::ChangeHandItem()
 {
 	if (Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
 	{
-		PlayerHandItem_->GetRenderer()->SetImage((Inventory::MainInventory->GetCurrentItem()->GetFilePath()));
+		PlayerHandItem_->GetRenderer()->SetImage((Inventory::MainInventory->GetCurrentItem()->GetFileName()));
 		PlayerHandItem_->GetRenderer()->SetIndex((Inventory::MainInventory->GetCurrentItem()->GetFileIndex()));
 	}
 

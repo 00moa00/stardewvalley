@@ -63,6 +63,12 @@ public:
 	Items(Items&& _Other) noexcept = delete;
 	Items& operator=(Items&& _Other) noexcept = delete;
 
+private:
+	void Start() override;
+	void Update() override;
+
+public:
+	virtual void TreeOff();
 
 protected:
 	std::vector<GameEngineCollision*> ColList;
@@ -83,7 +89,6 @@ protected:
 
 	int SellPrice_;
 	int Count_;
-	int FileIndex_;
 	int Damage_;
 
 	float4 ItemPosition_;
@@ -100,7 +105,8 @@ protected:
 	bool MoveFlag_;
 
 	std::string Name_;
-	std::string FilePath_;
+	std::string FileName_;
+	int FileIndex_;
 
 
 private:
@@ -116,14 +122,11 @@ protected:
 	}
 
 
-private:
-	void Start() override;
-	void Update() override;
 
 public:
 	bool IsWall(const float4 pos, const float4 scale, float4 dir);
 	void MoveToPlayer();
-	virtual void TreeOff();
+	void SetReRenderer();
 
 	//================================
 	//     Getter
@@ -209,9 +212,9 @@ public:
 		return ToolType_;
 	}
 
-	const std::string& GetFilePath()
+	const std::string& GetFileName()
 	{
-		return FilePath_;
+		return FileName_;
 	}
 
 	const std::string& GetItemNameConstRef()
@@ -285,9 +288,9 @@ public:
 		Name_ = _Name;
 	}
 
-	void SetFilePath(const std::string& _Path)
+	void SetFileName(const std::string& _Name)
 	{
-		FilePath_ = _Path;
+		FileName_ = _Name;
 	}
 
 	void SetFileIndex(int _FileIndex)
