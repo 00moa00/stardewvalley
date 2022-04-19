@@ -63,8 +63,8 @@ void Inventory::Start()
 
 	
 	float4 Position;
-	//Position.x = Inventory_->GetScale().x  + 250.f;
-	//Position.y = Inventory_->GetScale().y  + 50.f;
+	Position.x = Inventory_->GetScale().x  + 250.f;
+	Position.y = Inventory_->GetScale().y  + 50.f;
 	ExitBotton_->SetPosition({ Position.x ,Position.y });
 	
 
@@ -113,7 +113,28 @@ void Inventory::Render()
 void Inventory::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainInventory = this;
+
+
+	//std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
+	//std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
+
+	//for (; StartIter != EndIter; ++StartIter)
+	//{
+	//	StartIter->second->SetReRenderer();
+	//}
 	
+}
+
+void Inventory::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
+	std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
+
+	for (; ItemStartIter != ItemEndIter; ++ItemStartIter)
+	{
+		ItemStartIter->second->ItemNextLevelOn();
+	}
+
 }
 
 

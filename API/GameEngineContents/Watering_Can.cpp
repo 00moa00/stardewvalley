@@ -24,6 +24,9 @@ void Watering_Can::Start()
 
 	Name_= "Watering_Can";
 
+	FileName_ = "tools.bmp";
+	FileIndex_ = static_cast<size_t>(TOOL::WATER_RIGHT00);
+
 }
 
 void Watering_Can::Update()

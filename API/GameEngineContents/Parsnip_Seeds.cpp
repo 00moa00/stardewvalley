@@ -1,5 +1,7 @@
 #include "Parsnip_Seeds.h"
 
+Parsnip_Seeds* Parsnip_Seeds::MainParsnipSeeds = nullptr;
+
 Parsnip_Seeds::Parsnip_Seeds() 
 {
 }
@@ -19,9 +21,7 @@ void Parsnip_Seeds::Start()
 
 	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 	Font_->ChangeWhiteColor();
-
 	Font_->ChangeNumItem(1);
-	//Font_->SetPositionItem({ GetPosition() });
 
 	ItemRenderer_ = CreateRenderer(FileName_);
 	ItemRenderer_->SetIndex(FileIndex_);
@@ -50,6 +50,21 @@ void Parsnip_Seeds::Update()
 
 		ItemState_ = ITEM_STATE::INIT;
 		break;
+	}
+
+}
+
+void Parsnip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainParsnipSeeds = this;
+}
+
+void Parsnip_Seeds::ItemNextLevelOn()
+{
+
+	if (MainParsnipSeeds != nullptr)
+	{
+		Parsnip_Seeds::MainParsnipSeeds->NextLevelOn();
 	}
 
 }

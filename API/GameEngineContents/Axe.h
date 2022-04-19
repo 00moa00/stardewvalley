@@ -5,6 +5,8 @@
 class Axe : public Items
 {
 public:
+	static Axe* MainAxe;
+
 	// constrcuter destructer
 	Axe();
 	~Axe();
@@ -15,10 +17,10 @@ public:
 	Axe& operator=(const Axe& _Other) = delete;
 	Axe& operator=(Axe&& _Other) noexcept = delete;
 
-protected:
-
 private:
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void ItemNextLevelOn() override;
 };
 

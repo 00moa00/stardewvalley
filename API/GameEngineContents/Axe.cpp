@@ -1,5 +1,7 @@
 #include "Axe.h"
 
+Axe* Axe::MainAxe = nullptr;
+
 Axe::Axe() 
 {
 }
@@ -21,9 +23,22 @@ void Axe::Start()
 
 	Name_ = "Axe";
 
+	FileName_ = "tools.bmp";
+	FileIndex_ = static_cast<size_t>(TOOL::AXE_IN_INVENTROY);
 }
 
 void Axe::Update()
 {
+}
+
+void Axe::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainAxe = this;
+}
+
+void Axe::ItemNextLevelOn()
+{
+	Axe::MainAxe->NextLevelOn();
+
 }
 

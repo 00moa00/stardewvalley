@@ -5,6 +5,9 @@
 class Parsnip_Seeds : public Items
 {
 public:
+	static Parsnip_Seeds* MainParsnipSeeds;
+
+
 	// constrcuter destructer
 	Parsnip_Seeds();
 	~Parsnip_Seeds();
@@ -15,10 +18,10 @@ public:
 	Parsnip_Seeds& operator=(const Parsnip_Seeds& _Other) = delete;
 	Parsnip_Seeds& operator=(Parsnip_Seeds&& _Other) noexcept = delete;
 
-protected:
-
 private:
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void ItemNextLevelOn() override;
 };
 

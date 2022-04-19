@@ -22,49 +22,17 @@ public:
 	InventroyBox& operator=(const InventroyBox& _Other) = delete;
 	InventroyBox& operator=(InventroyBox&& _Other) noexcept = delete;
 
-
-public:
-
-
-	GameEngineCollision* BoxCollision() {
-		return BoxCollision_;
-	}
-
-
-	 bool MouseClick() {
-
-		return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect)
-			&& (true == GameEngineInput::GetInst()->IsDown("LeftClick")));
-
-	}
-
-	 bool MouseOver() {
-
-		 return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
-
-	 }
-
-	 bool IteminBox() {
-
-		 return (BoxCollision_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
-	 }
-
-	 bool GetInItem()
-	 {
-		 return InItem_;
-	}
-
-	 void SetInItem(bool b) {
-		 InItem_ = b;
-	 }
-
-protected:
-
-
 private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
+
+
+
+
+private:
+
+
 
 	bool InItem_;
 
@@ -74,6 +42,56 @@ private:
 	Item* Item_;
 
 	std::vector<GameEngineCollision*> ColList;
+
+public:
+
+
+	void SetReRenderer()
+	{
+		InventoryBox_ = CreateRenderer();
+		InventoryBox_ = CreateRenderer("inventoryBox.bmp");
+		InventoryBox_->CameraEffectOff();
+
+	}
+
+
+
+	GameEngineCollision* BoxCollision() 
+	{
+		return BoxCollision_;
+	}
+
+	bool MouseClick() 
+	{
+
+		return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect)
+			&& (true == GameEngineInput::GetInst()->IsDown("LeftClick")));
+
+	}
+
+	bool MouseOver() 
+	{
+
+		return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
+
+	}
+
+	bool IteminBox()
+	{
+
+		return (BoxCollision_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+	bool GetInItem()
+	{
+		return InItem_;
+	}
+
+	void SetInItem(bool b) 
+	{
+		InItem_ = b;
+	}
+
 
 };
 

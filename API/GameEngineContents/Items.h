@@ -69,6 +69,7 @@ private:
 
 public:
 	virtual void TreeOff();
+	virtual void ItemNextLevelOn();
 
 protected:
 	std::vector<GameEngineCollision*> ColList;

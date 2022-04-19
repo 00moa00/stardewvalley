@@ -45,6 +45,10 @@ void Items::TreeOff()
 {
 }
 
+void Items::ItemNextLevelOn()
+{
+}
+
 void Items::Start()
 {
 
@@ -196,6 +200,9 @@ void Items::MoveToPlayer()
 
 void Items::SetReRenderer()
 {
+	ItemRenderer_ = CreateRenderer();
 	ItemRenderer_ = CreateRenderer(FileName_);
 	ItemRenderer_->SetIndex(FileIndex_);
+	ItemRenderer_->CameraEffectOff();
+
 }

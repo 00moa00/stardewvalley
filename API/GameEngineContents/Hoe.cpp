@@ -25,6 +25,9 @@ void Hoe::Start()
 
 	SetItemName("Hoe");
 
+	FileName_ = "tools.bmp";
+	FileIndex_ = static_cast<size_t>(TOOL::HOE_IN_INVENTROY);
+
 }
 
 void Hoe::Update()
