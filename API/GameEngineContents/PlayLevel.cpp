@@ -1,18 +1,16 @@
 #include "PlayLevel.h"
 
-Player* PlayLevel::MainPlayer_ = nullptr;
-Inventory* PlayLevel::MainInventory_ = nullptr;
 
 
 PlayLevel::PlayLevel() 
 	:
 	PlayerEnergyBar_(nullptr),
 	PlayerEnergyFrame_(nullptr),
-	Player_(nullptr),
+	//Player_(nullptr),
 	MainUI_(nullptr)
 {
 
-	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+//	Player_ = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
 	PlayerEnergyFrame_ = CreateActor<PlayerEnergyFrame>((int)PLAYLEVEL::ENERGYFRAME);
 	PlayerEnergyBar_ = CreateActor<PlayerEnergyBar>((int)PLAYLEVEL::ENERGYBAR);
 	MainUI_ = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
@@ -26,9 +24,12 @@ PlayLevel::~PlayLevel()
 {
 }
 
-void PlayLevel::LevelChangeEnd()
+void PlayLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
-
-
 }
+
+void PlayLevel::LevelChangeEnd(GameEngineLevel* _PrevLevel)
+{
+}
+
 

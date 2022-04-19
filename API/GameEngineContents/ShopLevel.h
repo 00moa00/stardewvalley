@@ -15,21 +15,25 @@ public:
 	ShopLevel& operator=(const ShopLevel& _Other) = delete;
 	ShopLevel& operator=(ShopLevel&& _Other) noexcept = delete;
 
+private:
+
 	void Loading() override;
 	void Update() override;
-	void LevelChangeStart() override;
-
-protected:
-
+	void LevelChangeStart(GameEngineLevel* _NextLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 
 private:
-	void LoadMapObject();
 
 	float Time;
+
+	Shop* Shop_;
 
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;
 
+private:
+
+	void LoadMapObject();
 };
 

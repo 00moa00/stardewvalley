@@ -15,21 +15,20 @@ public:
 	ExitBotton& operator=(const ExitBotton& _Other) = delete;
 	ExitBotton& operator=(ExitBotton&& _Other) noexcept = delete;
 
-protected:
-
-public:
-
-	bool MouseClick();
 
 private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
 
-
+private:
 
 	GameEngineCollision* ExitCollision_;
 	GameEngineRenderer* Exit_;
+
+public:
+
+	bool MouseClick();
 
 };
 

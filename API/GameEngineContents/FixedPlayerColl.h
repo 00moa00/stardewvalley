@@ -23,22 +23,26 @@ public:
 protected:
 
 public:
-	GameEngineRenderer* Renderer() {
+	GameEngineRenderer* Renderer()
+	{
 		return MousePoint_;
 	}
-	GameEngineCollision* Collision() {
+	GameEngineCollision* Collision() 
+	{
 		return MouseCollision_;
 	}
 
 
-	bool FixedPlayerCollMouse() {
+	bool FixedPlayerCollMouse() 
+	{
 
 		return (MouseCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect)) && 
 			GameEngineInput::GetInst()->IsDown("LeftClick");
 	}
 
 
-	bool MouseInBox() {
+	bool MouseInBox()
+	{
 
 		return (MouseCollision_->CollisionResult("Box", ColList, CollisionType::Rect, CollisionType::Rect));
 

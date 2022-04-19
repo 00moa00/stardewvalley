@@ -13,21 +13,32 @@ BusStopLevel::BusStopLevel()
 
 }
 
-void BusStopLevel::LevelChangeStart()
+void BusStopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
 
 	BackGroundFront_->GetRenderer()->SetImage("BusStop_Front.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ BUSSTOP_SIZE_WEIGHT / 2, BUSSTOP_SIZE_HEIGHT / 2 });
 
 	BackGround_->GetRenderer()->SetImage("BusStop_Back.bmp");
+
 	BackGround_->GetRenderer()->SetPivot({ BUSSTOP_SIZE_WEIGHT / 2,  BUSSTOP_SIZE_HEIGHT / 2 });
-	BackGround_->DirtTileMap_.TileRangeSetting(BUSSTOP_CHIP_NUM_X, BUSSTOP_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
 	LoadMapObject();
 
 
-	Player_->SetPosition({ (BUSSTOP_SIZE_WEIGHT/2), (BUSSTOP_SIZE_HEIGHT / 2)});
-	Player_->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	Player::MainPlayer->SetPosition({ (BUSSTOP_SIZE_WEIGHT/2), (BUSSTOP_SIZE_HEIGHT / 2)});
+	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+
+}
+
+void BusStopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	if (_NextLevel->GetNameCopy() != "TitleLevel")
+	{
+		Player::MainPlayer->NextLevelOn();
+		Inventory::MainInventory->NextLevelOn();
+
+	}
 
 }
 

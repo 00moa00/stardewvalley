@@ -24,8 +24,8 @@
 class PlayLevel : public GameEngineLevel
 {
 public:
-	static Player* MainPlayer_;
-	static Inventory* MainInventory_;
+//	static Player* MainPlayer_;
+//	static Inventory* MainInventory_;
 
 	// constrcuter destructer
 	PlayLevel();
@@ -40,14 +40,15 @@ public:
 protected:
 
 	//void LevelChangeStart() override;
-	void LevelChangeEnd() override;
+	void LevelChangeStart(GameEngineLevel* _NextLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _PrevLevel) override;
 
 	MainUI* MainUI_;
 	//std::map<int, Items*> MapObject_;
 
 	//Inventory* Inventory_;
 
-	Player* Player_;
+	//Player* Player_;
 	//Inventory* Inventory_;
 	PlayerEnergyBar* PlayerEnergyBar_;
 	PlayerEnergyFrame* PlayerEnergyFrame_;

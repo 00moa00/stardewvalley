@@ -10,7 +10,9 @@
 
 ShopLevel::ShopLevel()
 	:
-	Iter(MapObject_.begin())
+	Iter(MapObject_.begin()),
+	Shop_(nullptr)
+
 
 {
 
@@ -28,8 +30,9 @@ void ShopLevel::Loading()
 
 }
 
-void ShopLevel::LevelChangeStart()
+void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	Shop_ = CreateActor<Shop>((int)PLAYLEVEL::SHOP);
 
 	BackGroundFront_->GetRenderer()->SetImage("ShopFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
@@ -37,18 +40,23 @@ void ShopLevel::LevelChangeStart()
 	BackGround_->GetRenderer()->SetImage("ShopBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
 
-	BackGround_->DirtTileMap_.TileRangeSetting(SHOP_CHIP_NUM_X, SHOP_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
-	BackGround_->WetTileMap_.TileRangeSetting(SHOP_CHIP_NUM_X, SHOP_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
-
 	LoadMapObject();
 
 
-	Player_->SetPosition({ 310.f, 1280.f });
-	Player_->SetDirtTileMap(&BackGround_->DirtTileMap_);
-	Player_->SetWetTileMap(&BackGround_->WetTileMap_);
+	Player::MainPlayer->SetPosition({ 310.f, 1280.f });
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;
+}
+
+void ShopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	if (_NextLevel->GetNameCopy() != "TitleLevel")
+	{
+		Player::MainPlayer->NextLevelOn();
+		Inventory::MainInventory->NextLevelOn();
+
+	}
 }
 
 
@@ -116,7 +124,7 @@ void ShopLevel::LoadMapObject()
 		}
 	}
 
-	Player_->CopyList(MapObject_);
+	 Player::MainPlayer->CopyList(MapObject_);
 
 
 }

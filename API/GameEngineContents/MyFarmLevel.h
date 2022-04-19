@@ -1,6 +1,9 @@
 #pragma once
 #include"PlayLevel.h"
 
+class Player;
+class Inventory;
+
 
 // Ό³Έν :
 class MyFarmLevel : public PlayLevel
@@ -18,12 +21,8 @@ public:
 
 	void Loading() override;
 	void Update() override;
-	void LevelChangeStart() override;
-	void LevelChangeEnd() override;
-
-
-protected:
-
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 
 private:
@@ -33,5 +32,10 @@ private:
 
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;
+
+
+
+	Player* MainPlayer;
+	Inventory* MainInventory_;
 
 };

@@ -60,6 +60,9 @@ void Shop::Start()
 		ConstItmePos_.insert(std::make_pair(i, float4({ 715.f, 123.5f + (i * 76.f)})));
 	}
 
+	LevelRegist("Shop");
+
+
 }
 
 void Shop::Update()
@@ -73,7 +76,7 @@ void Shop::Update()
 	std::map<int, float4>::iterator ConstStartIter = ConstItmePos_.begin();
 	std::map<int, float4>::iterator ConstEndtIter = ConstItmePos_.end();
 
-	Player* MainPlayer = MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+	//Player* MainPlayer = MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 
 	switch (ShopUpdateState_)
 	{
@@ -147,13 +150,13 @@ void Shop::Update()
 			if (ItemStartIter->second->MouseInItem() && Mouse_->MouseClickShopIn())
 			{
 				ItemStartIter->second->InventoryNewItem();
-				MainPlayer->SubMoney(ItemStartIter->second->GetBuyPrice());
+				Player::MainPlayer->SubMoney(ItemStartIter->second->GetBuyPrice());
 			}
 		}
 
 		if (ExitBotton_->MouseClick() == true)
 		{
-			MainPlayer->SetisShopping(false);
+			Player::MainPlayer->SetisShopping(false);
 		}
 
 

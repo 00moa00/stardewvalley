@@ -31,10 +31,14 @@ private:
 	std::string StrNum_;
 
 public:
+
 	void ChangeNumUI(int _Num);
 	void ChangeNumItem(int _Num);
-
 	void ChangeWhiteColor();
+
+	//================================
+	//    Setter
+	//================================
 
 	void SetPositionUI(float4 _Pos);
 	void SetPositionItem(float4 _Pos);

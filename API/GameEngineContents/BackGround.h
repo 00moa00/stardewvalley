@@ -17,23 +17,27 @@ public:
 	BackGround& operator=(const BackGround& _Other) = delete;
 	BackGround& operator=(BackGround&& _Other) noexcept = delete;
 
+
+private:
+	void Start() override;
+
+
+private:
+
+	GameEngineRenderer* Renderer;
+
+public:
+
+	GameEngineRendererTileMap DirtTileMap_;
+	GameEngineRendererTileMap WetTileMap_;
+
+public:
+
 	GameEngineRenderer* GetRenderer()
 	{
 		return Renderer;
 	};
 
 
-	GameEngineRendererTileMap DirtTileMap_;
-	GameEngineRendererTileMap WetTileMap_;
-
-
-
-protected:
-	void Start() override;
-
-	//void Render() override;
-
-private:
-	GameEngineRenderer* Renderer;
 };
 

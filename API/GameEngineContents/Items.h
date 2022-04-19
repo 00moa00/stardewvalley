@@ -21,6 +21,7 @@ enum class ITEMTYPE
 	ITEM,
 	OBJECT,
 	TOOL,
+	FALG,
 	BLOCK,
 };
 

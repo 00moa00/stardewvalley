@@ -14,6 +14,8 @@
 #include "MoveBusStop.h"
 #include "MoveForest.h"
 #include <GameEngineBase/GameEngineTime.h>
+#include <GameEngine/GameEngine.h>
+
 
 MyFarmLevel::MyFarmLevel()
 	:
@@ -22,7 +24,6 @@ MyFarmLevel::MyFarmLevel()
 {
 
 	SetName("MyFarmLevel");
-	
 
 }
 
@@ -33,10 +34,19 @@ MyFarmLevel::~MyFarmLevel()
 
 void MyFarmLevel::Loading()
 {
-	
+	if (nullptr == Player::MainPlayer)
+	{
+		Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+	}
+
+	if (nullptr == Inventory::MainInventory)
+	{
+		Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+	}
+
 }
 
-void MyFarmLevel::LevelChangeStart()
+void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	
 	//if(MainInventory_ != nullptr) Inventory_ = MainInventory_;
@@ -49,21 +59,29 @@ void MyFarmLevel::LevelChangeStart()
 
 	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	BackGround_->GetRenderer()->CameraEffectOn();
 
-	LoadMapObject();
 	
+	LoadMapObject();
 
-	Player_->SetPosition({ FARM_SIZE_WEIGHT - 400.f, (FARM_SIZE_HEIGHT / 2) - 700.f });
-	Player_->SetDirtTileMap(&BackGround_->DirtTileMap_);
-	Player_->SetWetTileMap(&BackGround_->WetTileMap_);
+	Player::MainPlayer->SetPosition({ FARM_SIZE_WEIGHT - 400.f, (FARM_SIZE_HEIGHT / 2) - 700.f });
+	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
+	Player::MainPlayer->Renderer()->CameraEffectOn();
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;
 }
 
-void MyFarmLevel::LevelChangeEnd()
+void MyFarmLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	//MainInventory_ = Inventory_;
+	if (_NextLevel->GetNameCopy() != "TitleLevel")
+	{
+		Player::MainPlayer->NextLevelOn();
+		Inventory::MainInventory->NextLevelOn();
+
+	}
+
 }
 
 void MyFarmLevel::LoadMapObject()
@@ -204,7 +222,7 @@ void MyFarmLevel::LoadMapObject()
         }
     }
 
-	Player_->CopyList(MapObject_);
+	Player::MainPlayer->CopyList(MapObject_);
 
 
 }

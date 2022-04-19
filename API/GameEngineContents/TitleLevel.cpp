@@ -135,7 +135,7 @@ void TitleLevel::Update()
 
 }
 
-void TitleLevel::LevelChangeStart()
+void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
 	TitleBackGround_->GetRenderer()->SetImage("titleback.bmp");
 	TitleBackGround_->SetPosition(GameEngineWindow::GetScale().Half());

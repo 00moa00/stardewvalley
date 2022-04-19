@@ -27,7 +27,6 @@ public:
 		IsUpdate_ = false;
 	}
 
-
 	inline virtual bool IsUpdate()
 	{
 		return IsUpdate_ && false == IsDeath_;
@@ -36,6 +35,22 @@ public:
 	inline virtual bool IsDeath()
 	{
 		return IsDeath_;
+	}
+
+	void AddAccTime(float _DeltaTime)
+	{
+		AccTime_ += _DeltaTime;
+	}
+
+	float GetAccTime()
+	{
+		return AccTime_;
+	}
+
+
+	void ReSetAccTime()
+	{
+		AccTime_ = 0.0f;
 	}
 
 
@@ -75,13 +90,11 @@ public:
 		Order_ = _Order;
 	}
 
-
-
-
 private:
 	int Order_;
 	bool IsReleaseUpdate_;
 	float DeathTime_;
+	float AccTime_;
 
 	bool IsUpdate_;
 	bool IsDeath_;

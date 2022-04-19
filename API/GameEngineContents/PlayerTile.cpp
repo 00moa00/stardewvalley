@@ -375,12 +375,20 @@ void Player::ObjectTileColl()
 
 		for (; Iter != MapObject_.end(); ++Iter) {
 
+			if (Iter->second->GetItemType() == ITEMTYPE::FALG)
+			{
+				continue;
+			}
+		
+
 			if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true) 
 			{
 				Speed_ = 0.f;
 				TileState_ = TILE_COLL::COll;
 				break;
 			}
+
+		
 
 		}
 

@@ -13,7 +13,7 @@ std::string Player::CurrentLevel_ = "";
 std::string Player::PrevLevel_ = "";
 
 Player* Player::MainPlayer = nullptr;
-Inventory* Player::MainInventory = nullptr;
+//Inventory* Player::MainInventory = nullptr;
 
 
 
@@ -41,10 +41,9 @@ Player::Player()
 	PlayerRenderer_(nullptr),
 	PlayerCollider_(nullptr),
 	MapColImage_(nullptr),
-	Inventory_(nullptr),
+	//Inventory_(nullptr),
 	Mouse_(nullptr),
-	Shop_(nullptr),
-
+	
 	ObjectColl_(false),
 	FarmingArea_(false),
 	UsingAxe_(false),
@@ -103,10 +102,9 @@ void Player::Start()
 {
 	//------< 액터 등록 >------------------------------------------------------------------
 
-	Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
-	Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::ITEM);
-	Shop_ = GetLevel()->CreateActor<Shop>((int)PLAYLEVEL::SHOP);
+	//Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+
+
 
 	//------< 초기화 >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
@@ -116,7 +114,6 @@ void Player::Start()
 
 	SetScale({ 40, 20 });
 
-	Mouse_->Renderer()->CameraEffectOff();
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 
 
@@ -189,13 +186,13 @@ void Player::Update()
 	PlayerDirCheck();
 	ObjectTileColl();
 	SetCamera();
-
-
-
 	PlayerUpdate();
 	SetPlayerHandItemPos();
 	ChangeLevel();
-	PlayerShopping();
+	if (CurrentLevel_ == "ShopLevel")
+	{
+		PlayerShopping();
+	}
 
 }
 
@@ -204,17 +201,16 @@ void Player::Render()
 
 }
 
-void Player::LevelChangeStart()
+void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 
-	//if(MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
+	MainPlayer = this;
 
 }
 
-void Player::LevelChangeEnd()
+void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	//if (MainPlayer != nullptr) Inventory_->operator= (*MainPlayer->Inventory_);
-	MainPlayer = this;
+
 }
 
 
@@ -226,6 +222,11 @@ void Player::PlayerUpdate()
 	switch (PlayerState_)
 	{
 	case PLAYER_UPDATE::LEVELINIT:
+
+		Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
+		Mouse_->Renderer()->CameraEffectOff();
+
+		PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::ITEM);
 
 		Speed_ = 150.f;
 		CurrentLevel_ = GetCurrentLevel();
@@ -241,7 +242,7 @@ void Player::PlayerUpdate()
 
 
 		//손에 들 수 있는 아이템이라면 
-		if (Inventory_->CurrentItem()->GetisPossibleHand() == true)
+		if (Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
 		{
 			PlayerState_ = PLAYER_UPDATE::HANDITEM;
 
@@ -320,14 +321,14 @@ void Player::PlayerUpdate()
 
 
 		//손에 들 수 없는 아이템을 선택했다면 기본 상태로 돌아간다.
-		if (Inventory_->CurrentItem()->GetisPossibleHand() == false)
+		if (Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == false)
 		{
 			PlayerState_ = PLAYER_UPDATE::INIT;
 
 		}
 
 		if (isMove()
-			&& Inventory_->CurrentItem()->GetisPossibleHand() == true)
+			&& Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
 		{
 			PlayerState_ = PLAYER_UPDATE::HANDITEMWALK;
 		}

@@ -31,7 +31,7 @@ void TownLevel::Loading()
 
 }
 
-void TownLevel::LevelChangeStart()
+void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
 
 	BackGroundFront_->GetRenderer()->SetImage("TownFront.bmp");
@@ -40,18 +40,32 @@ void TownLevel::LevelChangeStart()
 	BackGround_->GetRenderer()->SetImage("TownBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });
 
-	BackGround_->DirtTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
-	BackGround_->WetTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	//BackGround_->DirtTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	//BackGround_->WetTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
 	LoadMapObject();
 
 
-	Player_->SetPosition({125.f, 2600.f });
-	Player_->SetDirtTileMap(&BackGround_->DirtTileMap_);
-	Player_->SetWetTileMap(&BackGround_->WetTileMap_);
+	Player::MainPlayer->SetPosition({125.f, 2600.f });
+	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;
+}
+
+void TownLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+
+	if (_NextLevel->GetNameCopy() != "Title")
+	{
+		Player::MainPlayer->NextLevelOn();
+	}
+
+	if (_NextLevel->GetNameCopy() != "Title")
+	{
+		Inventory::MainInventory->NextLevelOn();
+	}
 }
 
 
@@ -122,7 +136,7 @@ void TownLevel::LoadMapObject()
 		}
 	}
 
-	Player_->CopyList(MapObject_);
+	//Player_->CopyList(MapObject_);
 
 
 }

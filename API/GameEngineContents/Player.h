@@ -59,7 +59,6 @@ class Player : public GameEngineActor
 public:
 
 	static Player* MainPlayer;
-	static Inventory* MainInventory;
 
 	// constrcuter destructer
 	Player();
@@ -76,8 +75,8 @@ private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
-	void LevelChangeStart() override;
-	void LevelChangeEnd() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
 
@@ -112,8 +111,6 @@ private:
 	PlayerHandItem* PlayerHandItem_;
 	Mouse* Mouse_;
 	Hoe* Hoe_;
-	Inventory* Inventory_;
-	Shop* Shop_;
 
 	GameEngineRandom RandomItemCount;
 	GameEngineRandom RandomItemPosX;
@@ -236,14 +233,13 @@ private:
 	//================================
 	//   충돌, 타일
 	//================================
+	
 	float4 PlayerCollCheckPos();
-
 
 	void CreateDirtTile();
 	void CreateWaterTile();
 	void ChangeDirtTile();
 	void ChangeWetDirtTile();
-
 
 	void ObjectTileColl();
 	void CrushWood();

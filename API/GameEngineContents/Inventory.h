@@ -57,10 +57,10 @@ enum class INVEN_UPDATE
 // 설명 :
 class Inventory : public GameEngineActor
 {
-
 public:
 
-	//static Inventory* MainInventory;
+	static Inventory* MainInventory;
+
 	// constrcuter destructer
 	Inventory();
 	~Inventory();
@@ -76,8 +76,8 @@ private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
-	void LevelChangeStart() override;
-	void LevelChangeEnd() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+
 
 private:
 
@@ -89,34 +89,74 @@ private:
 
 public:
 
-	//Inventory& operator= (const Inventory& other)
-	//{
+	std::map<int, Items*> PlayerItemList_;
+	std::map<int, InventroyBox*> Box_;
+	
 
-	//	if (0 < other.PlayerItemList_.size())
-	//	{
-	//		PlayerItemList_.insert(other.PlayerItemList_.begin(), other.PlayerItemList_.end());
-	//	}
+private:
 
-	//	if (0 < other.Box_.size())
-	//	{
-	//		Box_.insert(other.Box_.begin(), other.Box_.end());
-	//	}
+	GameEngineRenderer* Inventory_;
 
-	//	//CurrentItemFrame_ = other.CurrentItemFrame_;
-	//	//CurrentItem_ = other.CurrentItem_;
+	InventoryCurrentFrame* CurrentItemFrame_;
+	Items* CurrentItem_;
 
-	//	UpdateState_ = INVEN_UPDATE::INIT;
-	//	MoveState_ = ITEMMOVE::INIT;
-	//	PopUpState_ = POPUPSTATE::MINI;
-	//	CurrentInvenState_ = POPUPSTATE::INIT;
+	Mouse* Mouse_;
+	ExitBotton* ExitBotton_;
+
+	Hoe* Hoe_;
+
+	ITEMMOVE MoveState_;
+	POPUPSTATE PopUpState_;
+	POPUPSTATE CurrentInvenState_;
+	INVEN_UPDATE UpdateState_;
+
+	std::map<int, Items*>::iterator PlayerItemListStartIter;
+	std::map<int, Items*>::iterator PlayerItemListEndIter;
+
+	std::map<int, InventroyBox*>::iterator BoxStartIter;
+	std::map<int, InventroyBox*>::iterator BoxEndIter;
+
+private:
+
+	void SetCurrentItemFrame(Items* item_, InventroyBox* box_);
+	void SetCurrentItemFrame(Items* item_);
+	void SetCurrentItemFrameChange(InventroyBox* box_);
+
+public:
+
+	void AllUpdateOff();
+	void AllUpdateOn();
 
 
-	//	return *this;
-	//}
+	//================================
+	//     Getter
+	//================================
+
+
+	Items* GetCurrentItem()
+	{
+		return CurrentItem_;
+	}
+
+
+	bool ExitBottonMouseClick()
+	{
+		return ExitBotton_->MouseClick();
+	}
+
+	//================================
+	//    Setter
+	//================================
+	
+	void SetMiniInven(POPUPSTATE b)
+	{
+		PopUpState_ = b;
+	}
+
 
 
 	template<typename Actor>
-	Actor* NewItem(float4 _AddPos = {0, 0})
+	Actor* NewItem(float4 _AddPos = { 0, 0 })
 	{
 		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
 
@@ -124,7 +164,6 @@ public:
 		//가지고 있는 아이템이라면 생성하고 카운팅한다.
 
 		std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
-
 		std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
 
 		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
@@ -169,82 +208,12 @@ public:
 		float4 Pos = FindIter->second->GetPosition();
 
 		Item->SetPosition({ Pos + _AddPos });
-		Item -> GetRenderer()->CameraEffectOff();
+		Item->GetRenderer()->CameraEffectOff();
 
 		//++ItemCount_;
 		return Item;
 	}
 
 
-	void AllUpdateOff();
-
-	void AllUpdateOn();
-
-	bool ExitBottonMouseClick() {
-		return ExitBotton_->MouseClick();
-	}
-
-	void SetMiniInven(POPUPSTATE b) {
-		PopUpState_ = b;
-	}
-
-
-	void SetCurrentItemFrame(Items* item_, InventroyBox* box_);
-	void SetCurrentItemFrame(Items* item_);
-
-	void SetCurrentItemFrameChange(InventroyBox* box_);
-
-	Items* CurrentItem() {
-		return CurrentItem_;
-	}
-
-	Items& CurrentItemLef() {
-		return *CurrentItem_;
-	}
-
-	//bool GetisMiniInven() {
-	//	return isMiniInven_;
-	//}
-
-
-private:
-	
-	std::map<int, Items*> PlayerItemList_;
-	std::map<int, InventroyBox*> Box_;
-
-
-
-	std::map<int, Items*>::iterator PlayerItemListStartIter;
-	std::map<int, Items*>::iterator PlayerItemListEndIter;
-
-	std::map<int, InventroyBox*>::iterator BoxStartIter;
-	std::map<int, InventroyBox*>::iterator BoxEndIter;
-
-
-	InventoryCurrentFrame* CurrentItemFrame_;
-
-	GameEngineRenderer* Inventory_;
-	// GameEngineCollision* BoxCollision_[INVENTORY_MAX_COUNT];
-	Items* CurrentItem_;
-
-	//bool isMiniInven_;
-
-
-	//int ItemCount_;
-	Mouse* Mouse_;
-	ExitBotton* ExitBotton_;
-
-	Hoe* Hoe_;
-	Watering_Can* Watering_Can_;
-	Axe* Axe_;
-	Pickaxe* Pickaxe_;
-
-	WildHorseradish* WildHorseradish_;
-	Parsnip_Seeds* Parsnip_Seeds_;
-
-	ITEMMOVE MoveState_;
-	POPUPSTATE PopUpState_;
-	POPUPSTATE CurrentInvenState_;
-	INVEN_UPDATE UpdateState_;
 };
 

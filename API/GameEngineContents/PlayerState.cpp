@@ -41,7 +41,7 @@ std::string  Player::GetCurrentLevel()
 
 TOOLTYPE Player::CurrentItemType()
 {
-	CurrentItemType_ = Player::Inventory_->CurrentItem()->GetToolType();
+	CurrentItemType_ = Inventory::MainInventory->GetCurrentItem()->GetToolType();
 	return CurrentItemType_;
 }
 
@@ -63,7 +63,7 @@ PLAYER_UPDATE Player::GetPlayerState()
 
 Inventory* Player::GetInventroy()
 {
-	return Inventory_;
+	return Inventory::MainInventory;
 }
 
 GameEngineRenderer* Player::Renderer() {
@@ -88,22 +88,28 @@ GameEngineImage* Player::CollImage() {
 
 void Player::SubMoney(int _Money)
 {
+
 	if (Money_ > 0 + _Money)
 	{
 		Money_ -= _Money;
 		MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
 		MainUI_->SetMainUIMoney(Money_);
-		Shop_->SetShopMoney(Money_);
+
+		Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
+		MainShop->SetShopMoney(Money_);
 	}
 
 }
 
 void Player::AddMoney(int _Money)
 {
+
 	Money_ += _Money;
 	MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
 	MainUI_->SetMainUIMoney(Money_);
-	Shop_->SetShopMoney(Money_);
+
+	Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
+	MainShop->SetShopMoney(Money_);
 }
 
 void Player::SetisShopping(bool b)
@@ -167,12 +173,13 @@ void  Player::CopyList(std::map<int, Items*> _OtherList)
 
 void Player::PlayerShopping()
 {
+	Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
 
 	switch (PlayerShoppingState_)
 	{
 	case PLAYER_SHOPPING::INT:
 
-		Shop_->ShopOff();
+		MainShop->ShopOff();
 
 		if (MouseClickAndColl() == true)
 		{
@@ -194,7 +201,7 @@ void Player::PlayerShopping()
 
 	case PLAYER_SHOPPING::SHOP_ON:
 
-		Shop_->ShopOn();
+		MainShop->ShopOn();
 		isShopping_ = true;
 		PlayerShoppingState_ = PLAYER_SHOPPING::SHOPPING;
 
@@ -202,10 +209,11 @@ void Player::PlayerShopping()
 
 	case PLAYER_SHOPPING::SHOP_OFF:
 
-		Shop_->ShopOff();
+		MainShop->ShopOff();
 		PlayerShoppingState_ = PLAYER_SHOPPING::INT;
 
 		break;
+
 	default:
 		break;
 	}
@@ -231,6 +239,7 @@ void Player::SetCamera()
 		CurCameraPos.x = 0;
 		GetLevel()->SetCameraPos(CurCameraPos);
 	}
+
 	if (0 > GetLevel()->GetCameraPos().y)
 	{
 		float4 CurCameraPos = GetLevel()->GetCameraPos();
@@ -239,23 +248,23 @@ void Player::SetCamera()
 	}
 
 	{
-
-
-
 		CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 
 		if (CameraPos_.x <= 0)
 		{
 			CameraPos_.x = 0;
 		}
+
 		if (CameraPos_.x >= MapSizeX_ - GameEngineWindow::GetInst().GetScale().ix())
 		{
 			CameraPos_.x = MapSizeX_ - GameEngineWindow::GetInst().GetScale().ix();
 		}
+
 		if (CameraPos_.y <= 0)
 		{
 			CameraPos_.y = 0;
 		}
+
 		if (CameraPos_.y >= MapSizeY_ - GameEngineWindow::GetInst().GetScale().iy())
 		{
 			CameraPos_.y = MapSizeY_ - GameEngineWindow::GetInst().GetScale().iy();
@@ -309,11 +318,10 @@ void Player::ChangeLevel()
 
 void Player::ChangeHandItem()
 {
-	if (Inventory_->CurrentItem()->GetisPossibleHand() == true)
+	if (Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
 	{
-		PlayerHandItem_->GetRenderer()->SetImage((Inventory_->CurrentItem()->GetFilePath()));
-		PlayerHandItem_->GetRenderer()->SetIndex((Inventory_->CurrentItem()->GetFileIndex()));
-
+		PlayerHandItem_->GetRenderer()->SetImage((Inventory::MainInventory->GetCurrentItem()->GetFilePath()));
+		PlayerHandItem_->GetRenderer()->SetIndex((Inventory::MainInventory->GetCurrentItem()->GetFileIndex()));
 	}
 
 	else
@@ -532,7 +540,6 @@ void Player::SetDirAnimation()
 	if (MoveDir_.CompareInt2D(float4::DOWN))
 	{
 		PlayerRenderer_->ChangeAnimation("FRONT_INIT");
-
 	}
 
 	if (MoveDir_.CompareInt2D(float4::UP))
@@ -571,18 +578,22 @@ std::string Player::GetDirString()
 	{
 		return "FRONT_";
 	}
+
 	else if (MoveDir_.CompareInt2D(float4::UP))
 	{
 		return "BACK_";
 	}
+
 	else if (MoveDir_.CompareInt2D(float4::LEFT))
 	{
 		return "LEFT_";
 	}
+
 	else if (MoveDir_.CompareInt2D(float4::RIGHT))
 	{
 		return "RIGHT_";
 	}
+
 	return "";
 }
 
@@ -597,28 +608,32 @@ std::string Player::GetDirString()
 
 
 
-bool Player::PlayerMouseClickCollision() {
-
+bool Player::PlayerMouseClickCollision() 
+{
 	return (PlayerCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
 		&& (Mouse_->isMouseClick());
 }
 
-bool Player::MoveFarmCollision() {
+bool Player::MoveFarmCollision()
+{
 
 	return (PlayerCollider_->CollisionResult("MoveFarm", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
-bool Player::MoveHouseCollision() {
+bool Player::MoveHouseCollision() 
+{
 
 	return (PlayerCollider_->CollisionResult("MoveHouse", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
-bool Player::MoveBusStopCollision() {
+bool Player::MoveBusStopCollision() 
+{
 
 	return (PlayerCollider_->CollisionResult("MoveBusStop", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
-bool Player::MoveTownCollision() {
+bool Player::MoveTownCollision() 
+{
 
 	return (PlayerCollider_->CollisionResult("MoveTown", ColList, CollisionType::Rect, CollisionType::Rect));
 }
@@ -628,7 +643,8 @@ bool Player::MoveShopCollision()
 	return (PlayerCollider_->CollisionResult("MoveShop", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
-bool Player::MoveBackForestCollision() {
+bool Player::MoveBackForestCollision()
+{
 
 	return (PlayerCollider_->CollisionResult("MoveForest", ColList, CollisionType::Rect, CollisionType::Rect));
 }

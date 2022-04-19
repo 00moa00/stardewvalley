@@ -28,53 +28,37 @@ MyHouseLevel::~MyHouseLevel()
 void MyHouseLevel::Loading()
 {
 
-
-	//Inventory_->AllUpdateOff();
 }
 
-void MyHouseLevel::LevelChangeStart()
+void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
-	//if (MainInventory_ != nullptr) Inventory_ = MainInventory_;
 
-	////Player_->SetPosition({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y + 100.f });
-	//Player* MainPlayer = FindActor<Player>("MainPlayer");
-	//Player_ = MainPlayer;
-	//if (MainPlayer_ != nullptr) Player_ = MainPlayer_;
-	
-	//if (MainPlayer_ != nullptr)
-	//{
-	//	Player_ = MainPlayer_;
-	//}
-
-	Player_->SetPosition({ HOUSE_SIZE_WEIGHT / 2, (HOUSE_SIZE_HEIGHT / 2 ) + 100.f});
-	Player_->Renderer()->CameraEffectOff();
-
-	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
-	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
-
+//	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
+//	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
 
 	BackGround_->GetRenderer()->SetImage("PlayerHouse.bmp");
 	BackGround_->GetRenderer()->CameraEffectOff();
 	BackGround_->GetRenderer()->SetPivot({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y });
 
-
-
-	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
-	Time = 5.0f;
-
 	LoadMapObject();
-	//BgmPlayer.Stop();
+
+	Player::MainPlayer->SetPosition({ HOUSE_SIZE_WEIGHT / 2, (HOUSE_SIZE_HEIGHT / 2) + 100.f });
+	Player::MainPlayer->Renderer()->CameraEffectOff();
 
 
 }
 
-void MyHouseLevel::LevelChangeEnd()
+void MyHouseLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	if (_NextLevel->GetNameCopy() != "TitleLevel")
+	{
+		Player::MainPlayer->NextLevelOn();
+		Inventory::MainInventory->NextLevelOn();
 
-	//MainInventory_ = Inventory_;
-
+	}
 }
+
 
 void MyHouseLevel::LoadMapObject()
 {
@@ -140,27 +124,15 @@ void MyHouseLevel::LoadMapObject()
         }
     }
 
-	Player_->CopyList(MapObject_);
+	Player::MainPlayer->CopyList(MapObject_);
 
 }
 
 
 void MyHouseLevel::Update()
 {
-	
 
-	Time -= GameEngineTime::GetDeltaTime();
-
-
-
-	if (0 >= Time)
-	{
-		//BgmPlayer.Stop();
-	}
-
-
-
-	}
+}
 
 
 
