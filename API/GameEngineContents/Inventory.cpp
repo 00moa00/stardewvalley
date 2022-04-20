@@ -111,14 +111,6 @@ void Inventory::Render()
 void Inventory::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainInventory = this;
-
-	//std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
-	//std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
-
-	//for (; StartIter != EndIter; ++StartIter)
-	//{
-	//	StartIter->second->SetReRenderer();
-	//}
 	
 }
 
@@ -369,7 +361,7 @@ void Inventory::ItemMove()
 			{
 
 				//상점일때 플레이어 툴은 팔지 않음.
-				if (Player::MainPlayer->GetPlayerShoppingStateShopping() )
+				if (Player::MainPlayer->GetPlayerShoppingStateShopping())
 				{
 					if ((PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL))
 					{
@@ -385,6 +377,7 @@ void Inventory::ItemMove()
 				SetCurrentItemFrame(PlayerItemListStartIter->second);
 				CurrentItem_ = PlayerItemListStartIter->second;
 
+
 				//미니 상태에서 툴은 이동할 수 없다.
 				if ((CurrentInvenState_ == POPUPSTATE::MINI) &&
 					(PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL))
@@ -393,7 +386,6 @@ void Inventory::ItemMove()
 					MoveState_ = ITEMMOVE::INIT;
 					break;
 				}
-
 
 
 				PlayerItemListStartIter->second->SetInBox(false);
@@ -414,9 +406,14 @@ void Inventory::ItemMove()
 	case ITEMMOVE::HOLD:
 
 		//아이템을 마우스의 위치에 고정
-		PlayerItemListStartIter->second->SetPosition(Mouse_->GetPosition());
+		PlayerItemListStartIter->second->SetPosition({Mouse_->GetPosition().x + 24.f, Mouse_->GetPosition().y + 30.f });
 		PlayerItemListStartIter->second->MouseHoldItem();
 
+		//인벤토리 밖에 클릭했다면 
+		if (Mouse_->MouseClickInventoryOut())
+		{
+			MoveState_ = ITEMMOVE::MINE;
+		}
 
 		//마우스를 다시 한번 클릭했고, 마우스가 인벤토리 박스 안에 있으면 놓아주기 시도
 		if (Mouse_->MouseClickAndItemColl())
@@ -647,9 +644,6 @@ void Inventory::InvenPopUp()
 		ExitBotton_->Off();
 		CurrentItemFrame_->Off();
 		Inventory_->Off();
-		//SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y });
-		//Inventory_->SetImage("inventory.bmp");
-
 
 		for (; ItemStartIter != ItemEndIter; ++ItemStartIter)
 		{

@@ -18,6 +18,7 @@
 #include "MiniStone.h"
 #include "MiniWood.h"
 #include "Shop.h"
+#include "Crops.h"
 
 #include <list>
 #include <map>
@@ -132,7 +133,7 @@ private:
 	std::map<int, FarmTile*> DirtList_;
 	std::map<int, FarmTile*> WetDirtList_;
 
-	std::map<int, Items*> SeedList_;
+	std::map<int, Crops*> SeedList_;
 
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;

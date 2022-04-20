@@ -1,8 +1,8 @@
 #pragma once
-#include"Items.h"
+#include"Crops.h"
 
 // Ό³Έν :
-class Parsnip_Growing : public Items
+class Parsnip_Growing : public Crops
 {
 public:
 	// constrcuter destructer

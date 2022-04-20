@@ -124,8 +124,8 @@ void Player::CreateSeed()
 	std::map<int, FarmTile*>::iterator FindDirtIter = DirtList_.find(ChangeIndex);
 	std::map<int, FarmTile*>::iterator EndDirtIter = DirtList_.end();
 
-	std::map<int, Items*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
-	std::map<int, Items*>::iterator EndSeedIter = SeedList_.end();
+	std::map<int, Crops*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
+	std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
 
 
 	//땅에 아무것도 없으면, 이미 씨앗이 있으면
@@ -141,7 +141,7 @@ void Player::CreateSeed()
 
 		//TODO: 핸드 아이템의 타입에 따라서 초기화.
 
-		Items* seed = CreateSeedActor<Parsnip_Growing>();
+		Crops* seed = CreateSeedActor<Parsnip_Growing>();
 
 		float4 TileSize_ = { 48.f, 48.f };
 		float4 WorldPos = TileSize_;

@@ -24,6 +24,13 @@ enum class WEEK
 	SUN
 };
 
+enum class MINUTE_STATE
+{
+	COUNT,
+	ADD,
+	WAIT,
+};
+
 // Ό³Έν :
 class MainUI : public GameEngineActor
 {
@@ -54,9 +61,12 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
-
+	Font* Font_;
 	//int Money_;
-	int SecondTime_;
+	float SecondTime_;
+	int SecondTimeInt_;
+	int PrevSecondTime_;
+
 	int MinuteTime_;
 	int HourTime_;
 	int Day_;
@@ -64,12 +74,19 @@ private:
 	int WeekIndex_;
 	AM_PM AmPm_;
 
+	MINUTE_STATE MinuteState_;
+
 	GameEngineRenderer* MainUIRenderer_;
 	//GameEngineRenderer* Day_;
 	GameEngineRenderer* WeekRenderer_;
 	GameEngineRenderer* AmPmRenderer_;
 
 private:
+	void UpdateMinuteTime();
+	void UpdateMinuteFont();
+	void UpdateHourTime();
+	void UpdateSetPm();
+	void UpdateAddDay();
 
 	void SetMon()
 	{
@@ -87,7 +104,6 @@ private:
 
 		++WeekIndex_;
 		WeekRenderer_->SetIndex(WeekIndex_);
-
 	}
 
 
@@ -100,6 +116,8 @@ private:
 	{
 		AmPmRenderer_->SetImage("pm.bmp");
 	}
+
+
 
 public:
 

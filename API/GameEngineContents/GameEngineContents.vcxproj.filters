@@ -242,6 +242,9 @@
     <ClCompile Include="ExitBotton.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
+    <ClCompile Include="Crops.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -502,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="ExitBotton.h">
       <Filter>Actor\01. GlobalActor</Filter>
+    </ClInclude>
+    <ClInclude Include="Crops.h">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

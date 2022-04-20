@@ -11,7 +11,6 @@
 #include "ItemCode.h"
 #include "ToolData.h"
 #include "Font.h"
-#include "CropsData.h"
 //#include "Player.h"
 
 // Ό³Έν :
@@ -140,9 +139,9 @@ public:
 
 		return ItemCollider_;
 	}
+
 	GameEngineRenderer* GetRenderer() 
 	{
-
 		return ItemRenderer_;
 	}
 
