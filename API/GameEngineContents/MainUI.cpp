@@ -148,6 +148,9 @@ void MainUI::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void MainUI::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	MoneyFont_->NextLevelOn();
+	MinuteFont_->NextLevelOn();
+	HourFont_->NextLevelOn();
+	DayFont_->NextLevelOn();
 }
 
 void MainUI::SetMainUIMoney(int _Money)
