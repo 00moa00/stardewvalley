@@ -58,6 +58,7 @@ class Player : public GameEngineActor
 
 public:
 	static Player* MainPlayer;
+	static PlayerHandItem* PlayerHandItem_;
 
 	// constrcuter destructer
 	Player();
@@ -107,7 +108,6 @@ private:
 
 	GameEngineImage* MapColImage_;
 
-	PlayerHandItem* PlayerHandItem_;
 	Mouse* Mouse_;
 	Hoe* Hoe_;
 

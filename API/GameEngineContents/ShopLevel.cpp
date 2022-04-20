@@ -26,22 +26,20 @@ ShopLevel::~ShopLevel()
 
 void ShopLevel::Loading()
 {
-	//if (nullptr == Player::MainPlayer)
-	//{
-	//	Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
-	//}
+	if (nullptr == Player::MainPlayer)
+	{
+		Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+	}
 
-	//if (nullptr == Inventory::MainInventory)
-	//{
-	//	Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
-	//}
+	if (nullptr == Inventory::MainInventory)
+	{
+		Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+	}
 
-	//if (nullptr == Inventory::MainInventory)
-	//{
-	//	MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
-	//}
-
-
+	if (nullptr == MainUI::MainMainUI)
+	{
+		MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+	}
 
 }
 

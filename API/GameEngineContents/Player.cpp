@@ -13,6 +13,7 @@ std::string Player::CurrentLevel_ = "";
 std::string Player::PrevLevel_ = "";
 
 Player* Player::MainPlayer = nullptr;
+PlayerHandItem* Player::PlayerHandItem_ = nullptr;
 //Inventory* Player::MainInventory = nullptr;
 
 
@@ -189,6 +190,7 @@ void Player::Update()
 	PlayerUpdate();
 	SetPlayerHandItemPos();
 	ChangeLevel();
+
 	if (CurrentLevel_ == "ShopLevel")
 	{
 		PlayerShopping();
@@ -205,6 +207,7 @@ void Player::Render()
 void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainPlayer = this;
+	PlayerHandItem_ = PlayerHandItem_;
 }
 
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -247,8 +250,8 @@ void Player::PlayerUpdate()
 
 		}
 
-		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
 
+		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
 		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true)
 		{
 			CheckTool();//툴에 맞게 스테이트 이동
@@ -256,7 +259,6 @@ void Player::PlayerUpdate()
 
 
 		//이동키를 눌렀다면 이동스테이트로 변경
-
 		if (isMove())
 		{
 			PlayerState_ = PLAYER_UPDATE::WALK;

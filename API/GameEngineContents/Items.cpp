@@ -114,7 +114,6 @@ bool Items::IsWall(const float4 pos, const float4 scale, float4 dir)
 void Items::MoveToPlayer()
 {
 	float4 Dir = Player::MainPlayer->GetPosition() - this->GetPosition();
-
 	float Check = Dir.Len2D();
 
 	if (Check >= 200)

@@ -1,4 +1,5 @@
 #include "GameEngineWindow.h"
+#include "GameEngineInput.h"
 
 
 // 더블버퍼링 과정
@@ -9,7 +10,7 @@
 // 5. 메모리 DC에 있는 데이터를 화면 DC로 복사한다.
 // 6. 메모리 비트맵과 메모리 DC를 삭제한다.
 
-LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK GameEngineWindow::MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
@@ -28,6 +29,11 @@ LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
     case WM_CLOSE:
     {
         GameEngineWindow::GetInst().Off();
+        break;
+    }
+    case WM_MOUSEWHEEL:
+    {
+        GameEngineInput::GetInst()->WheelValue = (SHORT)HIWORD(wParam);
         break;
     }
     default:

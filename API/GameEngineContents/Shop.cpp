@@ -63,10 +63,7 @@ void Shop::Start()
 		ConstItmePos_.insert(std::make_pair(i, float4({ 715.f, 123.5f + (i * 76.f)})));
 	}
 
-		//LevelRegist("Shop");
-	
-
-
+	//LevelRegist("Shop");
 }
 
 void Shop::Update()
@@ -164,7 +161,7 @@ void Shop::Update()
 		}
 
 
-		if (true == GameEngineInput::GetInst()->IsDown("KeyUp") )
+		if ( GameEngineInput::GetInst()->GetMouseWheel() == 120 )
 		{
 
 			if (ItemfirstFindtIter->second->GetIndex() == 0)
@@ -178,7 +175,7 @@ void Shop::Update()
 			}
 		}
 
-		if (true == GameEngineInput::GetInst()->IsDown("KeyDown"))
+		if (GameEngineInput::GetInst()->GetMouseWheel() == -120)
 		{
 
 			if (ItemfirstFindtIter->second->GetIndex() == -6)
