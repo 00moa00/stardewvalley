@@ -53,7 +53,7 @@ void MainUI::Start()
 	AmPmRenderer_->SetPivot({ 60.f, 12.f });
 
 	//1150 67
-	WeekRenderer_ = CreateRenderer("Week_Sheet .bmp");
+	WeekRenderer_ = CreateRenderer("Week_Sheet.bmp");
 	WeekRenderer_->CameraEffectOff();
 	WeekRenderer_->SetPivot({ 0.f, -60.f });
 	WeekRenderer_->SetIndex(static_cast<int>(WEEK::MON));
