@@ -10,8 +10,7 @@
 
 ShopLevel::ShopLevel()
 	:
-	Iter(MapObject_.begin()),
-	Shop_(nullptr)
+	Iter(MapObject_.begin())
 
 
 {
@@ -27,6 +26,22 @@ ShopLevel::~ShopLevel()
 
 void ShopLevel::Loading()
 {
+	//if (nullptr == Player::MainPlayer)
+	//{
+	//	Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+	//}
+
+	//if (nullptr == Inventory::MainInventory)
+	//{
+	//	Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+	//}
+
+	//if (nullptr == Inventory::MainInventory)
+	//{
+	//	MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+	//}
+
+
 
 }
 
@@ -55,8 +70,11 @@ void ShopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	{
 		Player::MainPlayer->NextLevelOn();
 		Inventory::MainInventory->NextLevelOn();
-
+		MainUI::MainMainUI->NextLevelOn();
 	}
+
+	//Player::MainPlayer->SetisShopping(false);
+	Shop_->Death();
 }
 
 

@@ -36,9 +36,4 @@ void Axe::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	MainAxe = this;
 }
 
-void Axe::ItemNextLevelOn()
-{
-	Axe::MainAxe->NextLevelOn();
-
-}
 

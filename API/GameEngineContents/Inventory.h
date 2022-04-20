@@ -162,33 +162,34 @@ public:
 		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
 
 
-		//가지고 있는 아이템이라면 생성하고 카운팅한다.
+		//가지고 있는 아이템이라면 카운팅한다.
 
 		std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
 		std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
 
-		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) {
+		for (; ItemStartIter != ItemEndIter; ++ItemStartIter) 
+		{
 			if (ItemStartIter->second->GetItemNameConstRef() == Item->GetItemNameConstRef())
 			{
 				ItemStartIter->second->SetItemStateAddItem();
 				Item->Death();
+
 				return nullptr;
 			}
 		}
 
-
 		//아이템 생성
-
 		std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
 		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
 
-		//앞에서부터 탐색해서 박스에 아이템이 없으면 그 자리에 넣기
 
+		//앞에서부터 탐색해서 박스에 아이템이 없으면 그 자리에 넣기
 		int index_ = 0;
 
 		for (int i = 0; StartIter != EndIter; ++i) {
 
 			std::map<int, Items*>::iterator ItemFindIter = PlayerItemList_.find(i);
+
 			if (ItemFindIter == PlayerItemList_.end())
 			{
 				index_ = StartIter->first;

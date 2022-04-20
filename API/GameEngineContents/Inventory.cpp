@@ -23,6 +23,7 @@ Inventory::Inventory()
 	Mouse_(nullptr),
 	CurrentItem_(nullptr),
 	Hoe_(nullptr),
+	CurrentItemFrame_(nullptr),
 
 	CurrentInvenState_(POPUPSTATE::INIT),
 	PopUpState_(POPUPSTATE::MINI),
@@ -48,7 +49,6 @@ void Inventory::Start()
 	Inventory_->CameraEffectOff();
 
 	CurrentItemFrame_ = GetLevel()->CreateActor<InventoryCurrentFrame>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
-
 	Mouse_ = GetLevel()->CreateActor<Mouse>(static_cast<int>(PLAYLEVEL::MOUSE));
 	ExitBotton_ = GetLevel()->CreateActor<ExitBotton>(static_cast<int>(PLAYLEVEL::ITEM));
 
@@ -67,10 +67,7 @@ void Inventory::Start()
 	Position.y = Inventory_->GetScale().y  + 50.f;
 	ExitBotton_->SetPosition({ Position.x ,Position.y });
 	
-
-
 	LevelRegist("MainInventory");
-
 }
 
 
@@ -108,12 +105,12 @@ void Inventory::Update()
 
 void Inventory::Render()
 {
+
 }
 
 void Inventory::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainInventory = this;
-
 
 	//std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
 	//std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
@@ -132,18 +129,29 @@ void Inventory::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 	for (; ItemStartIter != ItemEndIter; ++ItemStartIter)
 	{
-		ItemStartIter->second->ItemNextLevelOn();
+		ItemStartIter->second->NextLevelOn();
 	}
+
+	std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
+	std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
+
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		StartIter->second->NextLevelOn();
+	}
+
+	CurrentItemFrame_->NextLevelOn();
+	Mouse_->NextLevelOn();
+	NextLevelOn();
 
 }
 
 
 void Inventory::BoxInit()
 {
-	for (int i = 0; i < INVENTORY_MAX_COUNT; i++) {
-
-		Box_.insert(std::make_pair(i,
-			GetLevel()->CreateActor<InventroyBox>(static_cast<int>(PLAYLEVEL::INVENTROYBOX))));
+	for (int i = 0; i < INVENTORY_MAX_COUNT; i++) 
+	{
+		Box_.insert(std::make_pair(i, GetLevel()->CreateActor<InventroyBox>(static_cast<int>(PLAYLEVEL::INVENTROYBOX))));
 	}
 
 
@@ -335,7 +343,6 @@ void Inventory::ItemMove()
 	std::map<int, Items*>::iterator Finditer;
 	std::map<int, InventroyBox*>::iterator FindBoxiter;
 
-	//Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 
 	switch (MoveState_)
 	{

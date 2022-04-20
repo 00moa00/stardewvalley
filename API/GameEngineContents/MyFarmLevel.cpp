@@ -44,6 +44,11 @@ void MyFarmLevel::Loading()
 		Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
 	}
 
+	if (nullptr == MainUI::MainMainUI)
+	{
+		MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+	}
+
 }
 
 void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -79,7 +84,7 @@ void MyFarmLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	{
 		Player::MainPlayer->NextLevelOn();
 		Inventory::MainInventory->NextLevelOn();
-
+		MainUI::MainMainUI->NextLevelOn();
 	}
 
 }

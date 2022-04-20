@@ -5,6 +5,10 @@
 class InventoryCurrentFrame : public GameEngineActor
 {
 public:
+
+	static InventoryCurrentFrame* MainInventoryCurrentFrame;
+
+
 	// constrcuter destructer
 	InventoryCurrentFrame();
 	~InventoryCurrentFrame();
@@ -18,10 +22,11 @@ public:
 
 private:
 	void Start() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 
+private:
 
-//	GameEngineCollision* CurrentItemCollision_;
 	GameEngineRenderer* CurrentItem_;
 
 };

@@ -28,7 +28,20 @@ TownLevel::~TownLevel()
 
 void TownLevel::Loading()
 {
+	//if (nullptr == Player::MainPlayer)
+	//{
+	//	Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+	//}
 
+	//if (nullptr == Inventory::MainInventory)
+	//{
+	//	Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+	//}
+
+	//if (nullptr == Inventory::MainInventory)
+	//{
+	//	MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+	//}
 }
 
 void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
@@ -57,14 +70,11 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 void TownLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 
-	if (_NextLevel->GetNameCopy() != "Title")
+	if (_NextLevel->GetNameCopy() != "TitleLevel")
 	{
 		Player::MainPlayer->NextLevelOn();
-	}
-
-	if (_NextLevel->GetNameCopy() != "Title")
-	{
 		Inventory::MainInventory->NextLevelOn();
+		MainUI::MainMainUI->NextLevelOn();
 	}
 }
 

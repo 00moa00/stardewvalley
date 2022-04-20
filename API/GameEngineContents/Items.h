@@ -52,8 +52,6 @@ enum class MOVE
 class Items : public GameEngineActor
 {
 public:
-
-
 	// constrcuter destructer
 	Items();
 	~Items();
@@ -66,10 +64,12 @@ public:
 private:
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 public:
 	virtual void TreeOff();
-	virtual void ItemNextLevelOn();
+
 
 protected:
 	std::vector<GameEngineCollision*> ColList;
@@ -80,7 +80,6 @@ protected:
 
 	GameEngineRenderer* TreeTop_;
 
-	Font* Font_;
 
 	ITEMTYPE ItemType_;
 	TOOLTYPE ToolType_;
@@ -271,16 +270,15 @@ public:
 		InBox = _b;
 	}
 
-	void SetItemStateAddItem()
+	virtual void SetItemStateAddItem()
 	{
-		++Count_;
-		ItemState_ = ITEM_STATE::ADDITEM;
+
+
 	}
 
-	void SubItemCount()
+	virtual void SubItemCount()
 	{
-		--Count_;
-		Font_->ChangeNumItem(Count_);
+
 
 	}
 

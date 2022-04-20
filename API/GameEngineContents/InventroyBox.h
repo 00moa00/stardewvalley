@@ -9,6 +9,8 @@
 // Ό³Έν :
 class InventroyBox : public GameEngineActor
 {
+	static InventroyBox* MainInventroyBox;
+
 public:
 	
 	void CreateBoxCollision(int i, std::string box = "Box");
@@ -23,16 +25,14 @@ public:
 	InventroyBox& operator=(InventroyBox&& _Other) noexcept = delete;
 
 private:
+
 	void Start() override;
 	void Update() override;
 	void Render() override;
-
-
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 
 private:
-
-
 
 	bool InItem_;
 
@@ -43,17 +43,8 @@ private:
 
 	std::vector<GameEngineCollision*> ColList;
 
+
 public:
-
-
-	void SetReRenderer()
-	{
-		InventoryBox_ = CreateRenderer();
-		InventoryBox_ = CreateRenderer("inventoryBox.bmp");
-		InventoryBox_->CameraEffectOff();
-
-	}
-
 
 
 	GameEngineCollision* BoxCollision() 
@@ -63,22 +54,17 @@ public:
 
 	bool MouseClick() 
 	{
-
 		return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect)
 			&& (true == GameEngineInput::GetInst()->IsDown("LeftClick")));
-
 	}
 
 	bool MouseOver() 
 	{
-
 		return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
-
 	}
 
 	bool IteminBox()
 	{
-
 		return (BoxCollision_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
 	}
 

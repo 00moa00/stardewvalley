@@ -5,8 +5,9 @@
 class Parsnip_Seeds : public Items
 {
 public:
-	static Parsnip_Seeds* MainParsnipSeeds;
 
+	static Parsnip_Seeds* MainParsnipSeeds;
+	static Font* Font_;
 
 	// constrcuter destructer
 	Parsnip_Seeds();
@@ -22,6 +23,22 @@ private:
 	void Start() override;
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
-	void ItemNextLevelOn() override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
+
+
+	void SetItemStateAddItem()
+	{
+		++Count_;
+		Font_->ChangeNumItem(Count_);
+
+	}
+
+	void SubItemCount()
+	{
+		--Count_;
+		Font_->ChangeNumItem(Count_);
+
+	}
+
 };
 

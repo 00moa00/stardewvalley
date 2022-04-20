@@ -13,6 +13,24 @@ BusStopLevel::BusStopLevel()
 
 }
 
+void BusStopLevel::Loading()
+{
+	//if (nullptr == Player::MainPlayer)
+	//{
+	//	Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+	//}
+
+	//if (nullptr == Inventory::MainInventory)
+	//{
+	//	Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+	//}
+
+	//if (nullptr == Inventory::MainInventory)
+	//{
+	//	MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+	//}
+}
+
 void BusStopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
 
@@ -37,7 +55,7 @@ void BusStopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	{
 		Player::MainPlayer->NextLevelOn();
 		Inventory::MainInventory->NextLevelOn();
-
+		MainUI::MainMainUI->NextLevelOn();
 	}
 
 }
@@ -46,12 +64,11 @@ BusStopLevel::~BusStopLevel()
 {
 }
 
-void BusStopLevel::Loading()
-{
-}
+
 
 void BusStopLevel::Update()
 {
+
 }
 
 

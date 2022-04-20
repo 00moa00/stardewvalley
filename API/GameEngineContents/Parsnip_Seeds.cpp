@@ -1,13 +1,18 @@
 #include "Parsnip_Seeds.h"
 
 Parsnip_Seeds* Parsnip_Seeds::MainParsnipSeeds = nullptr;
+Font* Parsnip_Seeds::Font_ = nullptr;
+
+
 
 Parsnip_Seeds::Parsnip_Seeds() 
 {
+
 }
 
 Parsnip_Seeds::~Parsnip_Seeds() 
 {
+
 }
 
 void Parsnip_Seeds::Start()
@@ -16,10 +21,13 @@ void Parsnip_Seeds::Start()
 
 	Name_ = "Parsnip_Seeds";
 	FileName_ = "springobjects.bmp";
-
 	FileIndex_ = static_cast<size_t>(ITEM::PARSNIP_SEEDS);
 
-	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+	if (Font_ == nullptr)
+	{
+		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+	}
+
 	Font_->ChangeWhiteColor();
 	Font_->ChangeNumItem(1);
 
@@ -36,6 +44,7 @@ void Parsnip_Seeds::Start()
 
 void Parsnip_Seeds::Update()
 {
+
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
@@ -43,29 +52,17 @@ void Parsnip_Seeds::Update()
 
 		break;
 
-	case ITEM_STATE::ADDITEM:
-		//	++Count_;
-		Font_->ChangeNumItem(Count_);
-		//	Font_->SetPositionItem({ GetPosition() });
-
-		ItemState_ = ITEM_STATE::INIT;
-		break;
 	}
-
 }
 
 void Parsnip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainParsnipSeeds = this;
+	Font_ = Font_;
 }
 
-void Parsnip_Seeds::ItemNextLevelOn()
+void Parsnip_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-
-	if (MainParsnipSeeds != nullptr)
-	{
-		Parsnip_Seeds::MainParsnipSeeds->NextLevelOn();
-	}
-
+	Font_->NextLevelOn();
 }
 

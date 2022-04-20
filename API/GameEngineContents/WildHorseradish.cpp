@@ -1,5 +1,5 @@
 #include "WildHorseradish.h"
-
+WildHorseradish* WildHorseradish::MainWildHorseradish = nullptr;
 
 WildHorseradish::WildHorseradish(){
 
@@ -35,4 +35,9 @@ void WildHorseradish::Update()
 
 void WildHorseradish::Render()
 {
+}
+
+void WildHorseradish::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainWildHorseradish = this;
 }

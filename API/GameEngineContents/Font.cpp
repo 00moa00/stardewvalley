@@ -1,6 +1,7 @@
 #include "Font.h"
 #include <sstream>
 
+//Font* Font::MainFont = nullptr;
 
 Font::Font() 
 	:
@@ -31,6 +32,11 @@ void Font::Update()
 {
 
 
+}
+
+void Font::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	//MainFont = nullptr;
 }
 
 void Font::ChangeNumUI(int _Num)

@@ -2,6 +2,8 @@
 #include "GameData.h"
 #include "Player.h"
 
+//Font* Items::Font_ = nullptr;
+
 Items::Items() :
 	ItemRenderer_ (nullptr),
 	ItemCollider_ (nullptr),
@@ -39,14 +41,12 @@ Items::Items() :
 
 Items::~Items() 
 {
+
 }
 
 void Items::TreeOff()
 {
-}
 
-void Items::ItemNextLevelOn()
-{
 }
 
 void Items::Start()
@@ -62,7 +62,17 @@ void Items::Update()
 
 }
 
+void Items::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	
+	//Font_ = Font_;
+}
 
+void Items::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	//Font_->NextLevelOn();
+	NextLevelOn();
+}
 
 
 bool Items::IsWall(const float4 pos, const float4 scale, float4 dir)
@@ -103,26 +113,6 @@ bool Items::IsWall(const float4 pos, const float4 scale, float4 dir)
 
 void Items::MoveToPlayer()
 {
-
-	switch (ItemState_)
-	{
-	case ITEM_STATE::INIT:
-		Font_->SetPositionItem({ GetPosition() });
-
-		break;
-
-	case ITEM_STATE::ADDITEM:
-		//	++Count_;
-		Font_->ChangeNumItem(Count_);
-		//	Font_->SetPositionItem({ GetPosition() });
-
-		ItemState_ = ITEM_STATE::INIT;
-		break;
-
-	}
-
-
-
 
 
 	Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
@@ -192,8 +182,10 @@ void Items::MoveToPlayer()
 			}
 
 			break;
+
 		default:
 			break;
+
 		}
 	}
 }

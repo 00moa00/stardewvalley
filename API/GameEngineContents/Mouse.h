@@ -9,6 +9,7 @@
 class Mouse : public GameEngineActor
 {
 public:
+	static Mouse* MainMouse;
 
 	// constrcuter destructer
 	Mouse();
@@ -22,20 +23,21 @@ public:
 
 private:
 
-	GameEngineRenderer* MousePoint_;
-	GameEngineCollision* MouseCollision_;
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+
+private:
 
 	float4 CursorPos_;
 	POINT pt;
 
-	std::vector<GameEngineCollision*> ColList;
-
 	bool HoldingMouse_;
 
-	void Start() override;
-	void Update() override;
-	void Render() override;
-
+	GameEngineRenderer* MousePoint_;
+	GameEngineCollision* MouseCollision_;
+	std::vector<GameEngineCollision*> ColList;
 
 public:
 

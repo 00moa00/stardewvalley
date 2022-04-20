@@ -1,6 +1,9 @@
 #include "MiniWood.h"
 #include "Player.h"
 
+MiniWood* MiniWood::MainMiniWood = nullptr;
+Font* MiniWood::Font_ = nullptr;
+
 MiniWood::MiniWood() 
 {
 }
@@ -22,7 +25,11 @@ void MiniWood::Start()
 	MapItemCollider_ = CreateCollision("MapObject", { 20, 20 });
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
-	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+	if (Font_ == nullptr)
+	{
+		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+	}
+
 	Font_->ChangeWhiteColor();
 
 	Font_->ChangeNumItem(1);
@@ -43,6 +50,29 @@ void MiniWood::Update()
 		MainPlayer->GetInventroy()->NewItem<MiniWood>();
 	}
 
+
+	switch (ItemState_)
+	{
+	case ITEM_STATE::INIT:
+		Font_->SetPositionItem({ GetPosition() });
+
+		break;
+
+	}
+
+
+}
+
+void MiniWood::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainMiniWood = this;
+	Font_ = Font_;
+
+}
+
+void MiniWood::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	Font_->NextLevelOn();
 
 }
 

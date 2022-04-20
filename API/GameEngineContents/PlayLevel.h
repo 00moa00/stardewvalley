@@ -43,7 +43,7 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _NextLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _PrevLevel) override;
 
-	MainUI* MainUI_;
+	//MainUI* MainUI_;
 	//std::map<int, Items*> MapObject_;
 
 	//Inventory* Inventory_;

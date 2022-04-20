@@ -95,8 +95,8 @@ void Player::SubMoney(int _Money)
 		MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
 		MainUI_->SetMainUIMoney(Money_);
 
-		Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
-		MainShop->SetShopMoney(Money_);
+		//Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
+		Shop::MainShop->SetShopMoney(Money_);
 	}
 
 }
@@ -108,8 +108,8 @@ void Player::AddMoney(int _Money)
 	MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
 	MainUI_->SetMainUIMoney(Money_);
 
-	Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
-	MainShop->SetShopMoney(Money_);
+	//Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
+	Shop::MainShop->SetShopMoney(Money_);
 }
 
 void Player::SetisShopping(bool b)
@@ -173,13 +173,13 @@ void  Player::CopyList(std::map<int, Items*> _OtherList)
 
 void Player::PlayerShopping()
 {
-	Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
+	//Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
 
 	switch (PlayerShoppingState_)
 	{
 	case PLAYER_SHOPPING::INT:
 
-		MainShop->ShopOff();
+		Shop::MainShop->ShopOff();
 
 		if (MouseClickAndColl() == true)
 		{
@@ -201,7 +201,7 @@ void Player::PlayerShopping()
 
 	case PLAYER_SHOPPING::SHOP_ON:
 
-		MainShop->ShopOn();
+		Shop::MainShop->ShopOn();
 		isShopping_ = true;
 		PlayerShoppingState_ = PLAYER_SHOPPING::SHOPPING;
 
@@ -209,7 +209,7 @@ void Player::PlayerShopping()
 
 	case PLAYER_SHOPPING::SHOP_OFF:
 
-		MainShop->ShopOff();
+		Shop::MainShop->ShopOff();
 		PlayerShoppingState_ = PLAYER_SHOPPING::INT;
 
 		break;

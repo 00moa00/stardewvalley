@@ -33,8 +33,7 @@ private:
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;
 
-
-
+	
 	Player* MainPlayer;
 	Inventory* MainInventory_;
 

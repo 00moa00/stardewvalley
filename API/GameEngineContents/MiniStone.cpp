@@ -1,5 +1,9 @@
 #include "MiniStone.h"
 #include "Player.h"
+
+MiniStone* MiniStone::MainMiniStone = nullptr;
+Font* MiniStone::Font_;
+
 MiniStone::MiniStone() 
 
 {
@@ -23,9 +27,12 @@ void MiniStone::Start()
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
 
-	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-	Font_->ChangeWhiteColor();
+	if (Font_ == nullptr)
+	{
+		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+	}
 
+	Font_->ChangeWhiteColor();
 	Font_->ChangeNumItem(1);
 
 
@@ -45,6 +52,25 @@ void MiniStone::Update()
 		MainPlayer->GetInventroy()->NewItem<MiniStone>();
 	}
 
+	switch (ItemState_)
+	{
+	case ITEM_STATE::INIT:
+		Font_->SetPositionItem({ GetPosition() });
+
+		break;
+
+	}
+
+}
+void MiniStone::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainMiniStone = this;
+	Font_ = Font_;
+
+}
+void MiniStone::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	Font_->NextLevelOn();
 
 }
 //

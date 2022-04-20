@@ -37,6 +37,9 @@ enum class SHOP_UPDATE
 class Shop : public GameEngineActor
 {
 public:
+	static Shop* MainShop;
+	//static ExitBotton* ExitBotton_;
+
 	// constrcuter destructer
 	Shop();
 	~Shop();
@@ -51,15 +54,16 @@ private:
 
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
 
 	GameEngineRenderer* ShopRenderer_;
 
+	static Font* Font_;
 	ExitBotton* ExitBotton_;
 	Mouse* Mouse_;
-	Font* Font_;
-
 	SHOP_UPDATE ShopUpdateState_;
 	std::map<int, ShopItem*> ShopItemList_;
 	std::map<int, float4> ConstItmePos_;

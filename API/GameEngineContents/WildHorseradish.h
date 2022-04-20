@@ -5,6 +5,8 @@
 class WildHorseradish : public Items
 {
 public:
+	static WildHorseradish* MainWildHorseradish;
+
 	// constrcuter destructer
 	WildHorseradish();
 	~WildHorseradish();
@@ -19,6 +21,8 @@ protected:
 	void Start() override;
 	void Update() override;
 	void Render() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+
 
 private:
 

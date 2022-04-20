@@ -7,6 +7,9 @@
 
 #include <GameEngine/GameEngineLevel.h> 
 
+MainUI* MainUI::MainMainUI = nullptr;
+Font* MainUI::Font_ = nullptr;
+
 MainUI::MainUI() 
 {
 }
@@ -38,6 +41,17 @@ void MainUI::Update()
 
 void MainUI::Render()
 {
+}
+
+void MainUI::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainMainUI = this;
+	Font_ = Font_;
+}
+
+void MainUI::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	Font_->NextLevelOn();
 }
 
 void MainUI::SetMainUIMoney(int _Money)

@@ -1,11 +1,14 @@
 #include "Shop.h"
 #include "Player.h"
 
+Shop* Shop::MainShop = nullptr;
+//ExitBotton* Shop::ExitBotton_ = nullptr;
+Font* Shop::Font_ = nullptr;
 
 Shop::Shop() 
 	:
 	ShopRenderer_(nullptr),
-	ExitBotton_(nullptr),
+	//ExitBotton_(nullptr),
 	Mouse_(nullptr),
 
 	ShopUpdateState_(SHOP_UPDATE::SET_POS_INDEX)
@@ -60,7 +63,8 @@ void Shop::Start()
 		ConstItmePos_.insert(std::make_pair(i, float4({ 715.f, 123.5f + (i * 76.f)})));
 	}
 
-	LevelRegist("Shop");
+		//LevelRegist("Shop");
+	
 
 
 }
@@ -220,6 +224,25 @@ void Shop::Update()
 		break;
 	}
 
+}
+
+void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainShop = this;
+	Font_ = Font_;
+}
+
+void Shop::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
+	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
+
+	for (; StartIter != EndtIter; ++StartIter)
+	{
+		StartIter->second->NextLevelOn();
+	}
+
+	NextLevelOn();
 }
 
 void Shop::ShopOff()

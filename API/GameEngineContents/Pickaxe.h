@@ -6,6 +6,8 @@
 class Pickaxe : public Items
 {
 public:
+	static Pickaxe* MainPickaxe;
+
 	// constrcuter destructer
 	Pickaxe();
 	~Pickaxe();
@@ -16,11 +18,9 @@ public:
 	Pickaxe& operator=(const Pickaxe& _Other) = delete;
 	Pickaxe& operator=(Pickaxe&& _Other) noexcept = delete;
 
-protected:
-
 private:
 	void Start() override;
 	void Update() override;
-//	void Render() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 };
 

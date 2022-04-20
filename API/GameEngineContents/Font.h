@@ -6,6 +6,8 @@
 // Ό³Έν :
 class Font : public GameEngineActor
 {
+	//static Font* MainFont;
+
 public:
 	// constrcuter destructer
 	Font();
@@ -17,12 +19,12 @@ public:
 	Font& operator=(const Font& _Other) = delete;
 	Font& operator=(Font&& _Other) noexcept = delete;
 
-protected:
 
 private:
 
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
 

@@ -5,6 +5,8 @@
 class Parsnip_Shop : public ShopItem
 {
 public:
+	static Parsnip_Shop* MainParsnipShop;
+
 	// constrcuter destructer
 	Parsnip_Shop();
 	~Parsnip_Shop();
@@ -19,6 +21,7 @@ private:
 
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 public:
 

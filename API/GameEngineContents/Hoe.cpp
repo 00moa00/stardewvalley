@@ -1,5 +1,7 @@
 #include "Hoe.h"
 
+Hoe* Hoe::MainHoe = nullptr;
+
 Hoe::Hoe() 
 {
 }
@@ -10,8 +12,8 @@ Hoe::~Hoe()
 
 void Hoe::Start()
 {
-	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-	Font_->ChangeNumItem(1);
+//	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+	//Font_->ChangeNumItem(1);
 
 
 	ItemRenderer_ = CreateRenderer("tools.bmp");
@@ -39,4 +41,9 @@ void Hoe::Update()
 
 void Hoe::Render()
 {
+}
+
+void Hoe::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainHoe = this;
 }

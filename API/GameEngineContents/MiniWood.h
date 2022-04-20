@@ -5,6 +5,8 @@
 class MiniWood : public Items
 {
 public:
+	static Font* Font_;
+	static MiniWood* MainMiniWood;
 	// constrcuter destructer
 	MiniWood();
 	~MiniWood();
@@ -20,6 +22,22 @@ protected:
 private:
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
+
+	void SetItemStateAddItem()
+	{
+		++Count_;
+		Font_->ChangeNumItem(Count_);
+
+	}
+
+	void SubItemCount()
+	{
+		--Count_;
+		Font_->ChangeNumItem(Count_);
+
+	}
 	//void MoveToPlayer();
 };
 

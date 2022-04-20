@@ -43,6 +43,7 @@ Player::Player()
 	MapColImage_(nullptr),
 	//Inventory_(nullptr),
 	Mouse_(nullptr),
+//	Shop_(nullptr),
 	
 	ObjectColl_(false),
 	FarmingArea_(false),
@@ -102,8 +103,7 @@ void Player::Start()
 {
 	//------< 액터 등록 >------------------------------------------------------------------
 
-	//Inventory_ = GetLevel()->CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
-
+//	Shop_ = GetLevel()->CreateActor<Shop>((int)PLAYLEVEL::SHOP);
 
 
 	//------< 초기화 >------------------------------------------------------------------
@@ -193,6 +193,7 @@ void Player::Update()
 	{
 		PlayerShopping();
 	}
+	
 
 }
 
@@ -203,14 +204,12 @@ void Player::Render()
 
 void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-
 	MainPlayer = this;
-
 }
 
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-
+//	Shop_->NextLevelOn();
 }
 
 
