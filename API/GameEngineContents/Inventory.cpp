@@ -60,6 +60,9 @@ void Inventory::Start()
 	NewItem<Axe>();
 	NewItem<Pickaxe>();
 	NewItem<WildHorseradish>();
+	NewItem<Parsnip_Seeds>();
+	NewItem<Parsnip_Seeds>();
+
 
 	
 	float4 Position;
@@ -376,7 +379,7 @@ void Inventory::ItemMove()
 				//현재 아이템 프레임, 현재 아이템 저장
 				SetCurrentItemFrame(PlayerItemListStartIter->second);
 				CurrentItem_ = PlayerItemListStartIter->second;
-
+				//FindCurrentItemIter
 
 				//미니 상태에서 툴은 이동할 수 없다.
 				if ((CurrentInvenState_ == POPUPSTATE::MINI) &&
@@ -494,18 +497,9 @@ void Inventory::ItemMove()
 
 	case ITEMMOVE::SHOPPING:
 
-		if (PlayerItemListStartIter->second->GetCount() > 1)
-		{
-			PlayerItemListStartIter->second->SubItemCount();
-			Player::MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
-		}
+		Player::MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
+		PlayerItemListStartIter->second->SubItemCount();
 
-		else
-		{
-			Player::MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
-			PlayerItemListStartIter->second->Death();
-			PlayerItemList_.erase(PlayerItemListStartIter->first);
-		}
 
 		MoveState_ = ITEMMOVE::INIT;
 

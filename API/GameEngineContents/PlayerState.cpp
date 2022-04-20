@@ -86,6 +86,12 @@ GameEngineImage* Player::CollImage() {
 
 
 
+void Player::SetResetPlayerHandItem()
+{
+	//PlayerState_ = PLAYER_UPDATE::WALK;
+	Inventory::MainInventory->SetCurrentItemHoe();
+}
+
 void Player::SubMoney(int _Money)
 {
 

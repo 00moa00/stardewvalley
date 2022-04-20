@@ -76,6 +76,21 @@ void MiniWood::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 }
 
+void MiniWood::SubItemCount()
+{
+	if (Count_ == 1)
+	{
+		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
+		Death();
+	}
+	else
+	{
+		--Count_;
+		Font_->ChangeNumItem(Count_);
+	}
+
+}
+
 //
 //void MiniWood::MoveToPlayer()
 //{

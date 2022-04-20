@@ -1,6 +1,5 @@
 #pragma once
 #include "Items.h"
-
 // Ό³Έν :
 class MiniStone : public Items
 {
@@ -33,13 +32,6 @@ private:
 
 	}
 
-	void SubItemCount()
-	{
-		--Count_;
-		Font_->ChangeNumItem(Count_);
-
-	}
-	//void MoveToPlayer();
-
+	void SubItemCount();
 };
 

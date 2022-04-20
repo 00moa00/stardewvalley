@@ -19,3 +19,8 @@ void PlayerHandItem::Update()
 {
 }
 
+void PlayerHandItem::ResetIamge()
+{
+	ItemRenderer_->SetImage("Empty.bmp");
+}
+

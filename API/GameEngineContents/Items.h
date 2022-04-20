@@ -238,6 +238,9 @@ public:
 	virtual void SetCrushAnimation();
 	virtual void SetInitAnimation();
 
+	virtual void SetItemStateAddItem();
+	virtual void SubItemCount();
+
 	void SubDamage()
 	{
 		if (Damage_ > 0)
@@ -277,17 +280,6 @@ public:
 		InBox = _b;
 	}
 
-	virtual void SetItemStateAddItem()
-	{
-
-
-	}
-
-	virtual void SubItemCount()
-	{
-
-
-	}
 
 	void SetItemName(std::string _Name)
 	{

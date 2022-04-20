@@ -169,6 +169,8 @@ public:
 	//    Setter
 	//================================
 
+	void SetResetPlayerHandItem();
+
 	void SubMoney(int _Money);
 	void AddMoney(int _Money);
 

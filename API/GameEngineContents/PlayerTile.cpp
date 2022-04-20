@@ -115,7 +115,6 @@ void Player::CreateWaterTile()
 void Player::CreateSeed()
 {
 
-
 	float4 Pos = PlayerCollCheckPos();
 
 	TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
@@ -140,6 +139,9 @@ void Player::CreateSeed()
 	{
 
 		//TODO: 핸드 아이템의 타입에 따라서 초기화.
+
+		Inventory::MainInventory->GetCurrentItem()->SubItemCount();
+		//PlayerHandItem_->SubItemCount();
 
 		Crops* seed = CreateSeedActor<Parsnip_Growing>();
 

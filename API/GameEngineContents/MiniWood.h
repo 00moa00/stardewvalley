@@ -32,12 +32,8 @@ private:
 
 	}
 
-	void SubItemCount()
-	{
-		--Count_;
-		Font_->ChangeNumItem(Count_);
+	void SubItemCount()override;
 
-	}
 	//void MoveToPlayer();
 };
 

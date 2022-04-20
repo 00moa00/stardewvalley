@@ -1,6 +1,5 @@
 #pragma once
 #include "Items.h"
-
 // Ό³Έν :
 class Parsnip_Seeds : public Items
 {
@@ -33,12 +32,7 @@ private:
 
 	}
 
-	void SubItemCount()
-	{
-		--Count_;
-		Font_->ChangeNumItem(Count_);
-
-	}
+	void SubItemCount();
 
 };
 

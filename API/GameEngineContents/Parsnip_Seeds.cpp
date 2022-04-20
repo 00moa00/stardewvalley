@@ -1,4 +1,5 @@
 #include "Parsnip_Seeds.h"
+#include "Inventory.h"
 
 Parsnip_Seeds* Parsnip_Seeds::MainParsnipSeeds = nullptr;
 Font* Parsnip_Seeds::Font_ = nullptr;
@@ -64,5 +65,20 @@ void Parsnip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void Parsnip_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+}
+
+void Parsnip_Seeds::SubItemCount()
+{
+	if (Count_ == 1)
+	{
+		Player::MainPlayer->SetResetPlayerHandItem();
+		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
+		Death();
+	}
+	else
+	{
+		--Count_;
+		Font_->ChangeNumItem(Count_);
+	}
 }
 

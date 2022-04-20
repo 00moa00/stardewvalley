@@ -114,6 +114,8 @@ private:
 	std::map<int, Items*>::iterator PlayerItemListStartIter;
 	std::map<int, Items*>::iterator PlayerItemListEndIter;
 
+	std::map<int, Items*>::iterator FindCurrentItemIter;
+
 	std::map<int, InventroyBox*>::iterator BoxStartIter;
 	std::map<int, InventroyBox*>::iterator BoxEndIter;
 
@@ -133,6 +135,29 @@ public:
 	//     Getter
 	//================================
 
+	std::map<int, Items*>::iterator FindPlayerListByValue(std::string ItemName)
+	{
+
+		std::map<int, Items*>::iterator StartIter = PlayerItemList_.begin();
+		std::map<int, Items*>::iterator EndIter = PlayerItemList_.end();
+		
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			if (StartIter->second->GetItemNameConstRef() == ItemName)
+			{
+				return StartIter;
+			}
+		}
+
+		if (StartIter == EndIter)
+		{
+			return EndIter;
+		}
+
+	}
+
+
+
 
 	Items* GetCurrentItem()
 	{
@@ -148,12 +173,45 @@ public:
 	//================================
 	//    Setter
 	//================================
+
+
+	void SetCurrentItemHoe()
+	{
+		CurrentItem_ = Hoe_;
+		CurrentItemFrame_->SetPosition({ Hoe_->GetPosition().x,  Hoe_->GetPosition().y - 24.f });
+
+	}
+
+	void FindAndErasePlayerItemList(std::string ItemName)
+	{
+
+		std::map<int, Items*>::iterator StartIter = PlayerItemList_.begin();
+		std::map<int, Items*>::iterator EndIter = PlayerItemList_.end();
+
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			if (StartIter->second->GetItemNameConstRef() == ItemName)
+			{
+
+				PlayerItemList_.erase(StartIter->first);
+				return;
+
+
+			}
+		}
+
+		if (StartIter == EndIter)
+		{
+			return;
+		}
+
+	}
+
 	
 	void SetMiniInven(POPUPSTATE b)
 	{
 		PopUpState_ = b;
 	}
-
 
 
 	template<typename Actor>

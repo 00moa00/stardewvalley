@@ -153,3 +153,11 @@ void Items::SetInitAnimation()
 {
 }
 
+void Items::SetItemStateAddItem()
+{
+}
+
+void Items::SubItemCount()
+{
+}
+

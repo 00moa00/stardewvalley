@@ -6,6 +6,7 @@ class SmallStone : public Items
 {
 public:
 	// constrcuter destructer
+	
 	SmallStone();
 	~SmallStone();
 
