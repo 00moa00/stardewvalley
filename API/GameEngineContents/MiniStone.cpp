@@ -46,6 +46,7 @@ void MiniStone::Update()
 {
 
 	MoveToPlayer();
+
 	if (isDeath_ == true)
 	{
 		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
