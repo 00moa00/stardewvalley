@@ -122,78 +122,78 @@ void Items::MoveToPlayer()
 
 
 
-	Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+	//Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 
-	if (MoveFlag_ == true)
-	{
+	//if (MoveFlag_ == true)
+	//{
 
-		switch (State_)
-		{
-		case MOVE::INIT:
+	//	switch (State_)
+	//	{
+	//	case MOVE::INIT:
 
-			//targetPos_ = MainPlayer->GetPosition();
-			//TransformPos_ = GetPosition();
+	//		//targetPos_ = MainPlayer->GetPosition();
+	//		//TransformPos_ = GetPosition();
 
-			//Normal_ = (targetPos_ - TransformPos_);
-			//Normal_.Normal2D();
-
-
-			//ItemPosition_.x += Normal_.x * GameEngineTime::GetDeltaTime() * 4.500f;
-			//ItemPosition_.y += Normal_.y * GameEngineTime::GetDeltaTime() * 4.500f;
-
-			//SetPosition({ GetPosition().x + ItemPosition_.x,  GetPosition().y + ItemPosition_.y });
-			//Normal_ = float4::ZERO;
-
-			if (playerVSobject())
-			{
-
-				isDeath_ = true;
-				Death();
-			}
-
-			//State_ = MOVE::Y_UP;
-
-			break;
-
-		case MOVE::Y_UP:
-
-			ItemPosition_.x += GameEngineTime::GetDeltaTime() * ItemSpeed_.x;
-			ItemPosition_.y += GameEngineTime::GetDeltaTime() * ItemSpeed_.y;
-
-			SetPosition({ GetPosition().x + ItemPosition_.x, GetPosition().y - ItemPosition_.y });
-
-			ItemSpeed_.y -= GameEngineTime::GetDeltaTime() * 30.f;
-			//Gravity_.y *= GameEngineTime::GetDeltaTime() * 1.2f;
-
-			if (ItemSpeed_.y < 0)
-			{
-				State_ = MOVE::Y_DOWN;
-			}
-
-			break;
-		case MOVE::Y_DOWN:
+	//		//Normal_ = (targetPos_ - TransformPos_);
+	//		//Normal_.Normal2D();
 
 
-			ItemPosition_.x += GameEngineTime::GetDeltaTime() * ItemSpeed_.x;
-			ItemPosition_.y += GameEngineTime::GetDeltaTime() * ItemSpeed_.y;
+	//		//ItemPosition_.x += Normal_.x * GameEngineTime::GetDeltaTime() * 4.500f;
+	//		//ItemPosition_.y += Normal_.y * GameEngineTime::GetDeltaTime() * 4.500f;
 
-			SetPosition({ GetPosition().x + ItemPosition_.x, GetPosition().y + ItemPosition_.y });
+	//		//SetPosition({ GetPosition().x + ItemPosition_.x,  GetPosition().y + ItemPosition_.y });
+	//		//Normal_ = float4::ZERO;
 
-			ItemSpeed_.y += GameEngineTime::GetDeltaTime() * 30.f;
+	//		if (playerVSobject())
+	//		{
+
+	//			isDeath_ = true;
+	//			Death();
+	//		}
+
+	//		//State_ = MOVE::Y_UP;
+
+	//		break;
+
+	//	case MOVE::Y_UP:
+
+	//		ItemPosition_.x += GameEngineTime::GetDeltaTime() * ItemSpeed_.x;
+	//		ItemPosition_.y += GameEngineTime::GetDeltaTime() * ItemSpeed_.y;
+
+	//		SetPosition({ GetPosition().x + ItemPosition_.x, GetPosition().y - ItemPosition_.y });
+
+	//		ItemSpeed_.y -= GameEngineTime::GetDeltaTime() * 30.f;
+	//		//Gravity_.y *= GameEngineTime::GetDeltaTime() * 1.2f;
+
+	//		if (ItemSpeed_.y < 0)
+	//		{
+	//			State_ = MOVE::Y_DOWN;
+	//		}
+
+	//		break;
+	//	case MOVE::Y_DOWN:
 
 
-			if (ItemSpeed_.y > 5.f)
-			{
-				State_ = MOVE::INIT;
-			}
+	//		ItemPosition_.x += GameEngineTime::GetDeltaTime() * ItemSpeed_.x;
+	//		ItemPosition_.y += GameEngineTime::GetDeltaTime() * ItemSpeed_.y;
 
-			break;
+	//		SetPosition({ GetPosition().x + ItemPosition_.x, GetPosition().y + ItemPosition_.y });
 
-		default:
-			break;
+	//		ItemSpeed_.y += GameEngineTime::GetDeltaTime() * 30.f;
 
-		}
-	}
+
+	//		if (ItemSpeed_.y > 5.f)
+	//		{
+	//			State_ = MOVE::INIT;
+	//		}
+
+	//		break;
+
+	//	default:
+	//		break;
+
+	//	}
+	//}
 }
 
 void Items::SetReRenderer()
