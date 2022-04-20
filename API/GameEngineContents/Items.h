@@ -231,6 +231,9 @@ public:
 	//    Setter
 	//================================
 
+	virtual void SetCrushAnimation();
+	virtual void SetInitAnimation();
+
 	void SubDamage()
 	{
 		if (Damage_ > 0)

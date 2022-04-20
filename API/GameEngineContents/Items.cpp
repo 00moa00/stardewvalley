@@ -198,3 +198,13 @@ void Items::SetReRenderer()
 	ItemRenderer_->CameraEffectOff();
 
 }
+
+void Items::SetCrushAnimation()
+{
+
+}
+
+void Items::SetInitAnimation()
+{
+}
+

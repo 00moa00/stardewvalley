@@ -1,6 +1,14 @@
 #pragma once
 #include "Items.h"
 // Ό³Έν :
+
+enum class TREETOP
+{
+	INIT,
+	CRUSH
+};
+
+
 class TreeTop : public Items
 {
 public:
@@ -20,6 +28,12 @@ private:
 	void Update() override;
 
 private:
+	TREETOP TreeTopState_;
+
+
+private:
+	void SetInitAnimation() override;
+	void SetCrushAnimation() override;
 
 public:
 

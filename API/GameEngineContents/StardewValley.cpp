@@ -142,13 +142,11 @@ void StardewValley::GameInit()
 	HoeDirt->Cut({ 48, 48 });
 
 
-
 	//================================
 	//    ¾¾¾Ñ
 	//================================
 	GameEngineImage* crops = GameEngineImageManager::GetInst()->Find("crops.bmp");
 	crops->Cut({ 48, 96 });
-
 
 
 	//================================
@@ -163,6 +161,29 @@ void StardewValley::GameInit()
 	GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
 	WhiteFont->Cut({ 9, 16 });
 
+	//================================
+	//		OakTree
+	//================================
+	GameEngineImage* OakTree = GameEngineImageManager::GetInst()->Find("Oak_Tree_AnimaionSheet.bmp");
+	OakTree->Cut({ 152, 240 });
+
+	//================================
+	//		MapleTree
+	//================================
+	GameEngineImage* MapleTree = GameEngineImageManager::GetInst()->Find("Maple_Tree_AnimationSheet.bmp");
+	MapleTree->Cut({ 152, 228 });
+
+	//================================
+	//		MahoganyTree
+	//================================
+	GameEngineImage* MahoganyTree = GameEngineImageManager::GetInst()->Find("Mahogany_Tree_AnimaionSheet.bmp");
+	MahoganyTree->Cut({ 152, 238 });
+
+	//================================
+	//		FineTree
+	//================================
+	GameEngineImage* FineTree = GameEngineImageManager::GetInst()->Find("Fine_Tree_AnimaionSheet.bmp");
+	FineTree->Cut({ 152, 246 });
 
 	//------< ·¹º§ µî·Ï >------------------------------------------------------------------
 

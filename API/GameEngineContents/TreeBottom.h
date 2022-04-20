@@ -3,6 +3,13 @@
 
 #include "Items.h"
 #include "TreeTop.h"
+
+enum class TREESTATE
+{
+	INIT,
+	UPDATE
+};
+
 // Ό³Έν :
 class TreeBottom : public Items
 {
@@ -21,11 +28,12 @@ private:
 
 	void Start() override;
 	void Update() override;
-
+	void SetInitAnimation() override;
+	void SetCrushAnimation() override;
 
 private:
 	Items* TreeTop_;
-
+	TREESTATE TreeState_;
 
 public:
 	void TreeOff() override;

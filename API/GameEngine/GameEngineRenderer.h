@@ -251,6 +251,7 @@ public:
 	}
 
 
+
 private:
 	std::map<std::string, FrameAnimation> Animations_;
 	FrameAnimation* CurrentAnimation_;
