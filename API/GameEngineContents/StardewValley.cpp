@@ -185,6 +185,12 @@ void StardewValley::GameInit()
 	GameEngineImage* FineTree = GameEngineImageManager::GetInst()->Find("Fine_Tree_AnimaionSheet.bmp");
 	FineTree->Cut({ 152, 246 });
 
+	//================================
+	//		요일
+	//================================
+	GameEngineImage* Week_Sheet = GameEngineImageManager::GetInst()->Find("Week_Sheet.bmp");
+	Week_Sheet->Cut({ 42, 26 });
+
 	//------< 레벨 등록 >------------------------------------------------------------------
 
 	//CreateLevel<TitleLevel>("TitleLevel");

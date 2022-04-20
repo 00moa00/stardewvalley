@@ -135,11 +135,13 @@ public:
 	//     Getter
 	//================================
 
-	GameEngineCollision* GetCollision() {
+	GameEngineCollision* GetCollision() 
+	{
 
 		return ItemCollider_;
 	}
-	GameEngineRenderer* GetRenderer() {
+	GameEngineRenderer* GetRenderer() 
+	{
 
 		return ItemRenderer_;
 	}

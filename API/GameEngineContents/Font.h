@@ -3,6 +3,8 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 #include <vector>
+
+
 // Ό³Έν :
 class Font : public GameEngineActor
 {
@@ -34,6 +36,7 @@ private:
 
 public:
 
+	void ChangeNumStr(std::string _Num);
 	void ChangeNumUI(int _Num);
 	void ChangeNumItem(int _Num);
 	void ChangeWhiteColor();

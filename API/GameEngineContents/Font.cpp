@@ -39,6 +39,32 @@ void Font::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	//MainFont = nullptr;
 }
 
+void Font::ChangeNumStr(std::string _Num)
+{
+	int Count_ = 0;
+
+	StrNum_ = _Num;
+
+	for (Count_ = 0; Count_ < StrNum_.size(); ++Count_)
+	{
+		//숫자의 앞에서부터 접근
+		char String = StrNum_.at(Count_);
+
+		//int로 변환
+		int Index = String - '0';
+
+		//인덱스를 바꿈
+		FontRenderer.at(Count_)->SetIndex(Index);
+	}
+
+
+	//그 외의 숫자는 공백으로 함
+	for (; Count_ < 11; ++Count_)
+	{
+		FontRenderer.at(Count_)->SetIndex(10);
+	}
+}
+
 void Font::ChangeNumUI(int _Num)
 {
 	int Count_ = 0 ;

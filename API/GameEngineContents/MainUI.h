@@ -2,11 +2,39 @@
 #include <GameEngine/GameEngineActor.h>
 #include "Font.h"
 
+enum class TIME_STATE
+{
+	UPDATE
+};
+
+enum class AM_PM
+{
+	AM,
+	PM
+};
+
+enum class WEEK
+{
+	MON,
+	TUE,
+	WED,
+	THU,
+	FRI,
+	SAT,
+	SUN
+};
+
 // Ό³Έν :
 class MainUI : public GameEngineActor
 {
 public:
 	static MainUI* MainMainUI;
+	static Font* MoneyFont_;
+	static Font* MinuteFont_;
+	static Font* HourFont_;
+	static Font* DayFont_;
+
+
 	// constrcuter destructer
 	MainUI();
 	~MainUI();
@@ -27,13 +55,54 @@ protected:
 
 private:
 
-	int Money_;
+	//int Money_;
+	int SecondTime_;
+	int MinuteTime_;
+	int HourTime_;
+	int Day_;
 
-	GameEngineRenderer* MainUI_;
-	static Font* Font_;
+	int WeekIndex_;
+	AM_PM AmPm_;
 
+	GameEngineRenderer* MainUIRenderer_;
+	//GameEngineRenderer* Day_;
+	GameEngineRenderer* WeekRenderer_;
+	GameEngineRenderer* AmPmRenderer_;
+
+private:
+
+	void SetMon()
+	{
+		WeekRenderer_->SetImage("Mon.bmp");
+	}
+
+	void AddWeek()
+	{
+		if (WeekIndex_ == 6)
+		{
+			WeekIndex_ = 0;
+			WeekRenderer_->SetIndex(WeekIndex_);
+			return;
+		}
+
+		++WeekIndex_;
+		WeekRenderer_->SetIndex(WeekIndex_);
+
+	}
+
+
+	void SetAm()
+	{
+		AmPmRenderer_->SetImage("am.bmp");
+	}
+
+	void SetPm() 
+	{
+		AmPmRenderer_->SetImage("pm.bmp");
+	}
 
 public:
+
 	void SetMainUIMoney(int _Money);
 
 };
