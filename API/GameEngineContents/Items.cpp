@@ -113,6 +113,13 @@ bool Items::IsWall(const float4 pos, const float4 scale, float4 dir)
 
 void Items::MoveToPlayer()
 {
+	if (playerVSobject())
+	{
+
+		isDeath_ = true;
+		Death();
+	}
+
 
 
 	Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
@@ -124,21 +131,20 @@ void Items::MoveToPlayer()
 		{
 		case MOVE::INIT:
 
-			targetPos_ = MainPlayer->GetPosition();
-			TransformPos_ = GetPosition();
+			//targetPos_ = MainPlayer->GetPosition();
+			//TransformPos_ = GetPosition();
 
-			Normal_ = (targetPos_ - TransformPos_);
-			Normal_.Normal2D();
+			//Normal_ = (targetPos_ - TransformPos_);
+			//Normal_.Normal2D();
 
 
-			ItemPosition_.x += Normal_.x * GameEngineTime::GetDeltaTime() * 4.500f;
-			ItemPosition_.y += Normal_.y * GameEngineTime::GetDeltaTime() * 4.500f;
+			//ItemPosition_.x += Normal_.x * GameEngineTime::GetDeltaTime() * 4.500f;
+			//ItemPosition_.y += Normal_.y * GameEngineTime::GetDeltaTime() * 4.500f;
 
-			SetPosition({ GetPosition().x + ItemPosition_.x,  GetPosition().y + ItemPosition_.y });
-			Normal_ = float4::ZERO;
+			//SetPosition({ GetPosition().x + ItemPosition_.x,  GetPosition().y + ItemPosition_.y });
+			//Normal_ = float4::ZERO;
 
 			if (playerVSobject())
-
 			{
 
 				isDeath_ = true;

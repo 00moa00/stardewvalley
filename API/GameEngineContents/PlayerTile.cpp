@@ -302,8 +302,8 @@ void Player::CrushTree()
 							MiniItem = CreateSeedActor<MiniWood>();
 
 							float4 Pos;
-							Pos.x = RandomItemPosX.RandomFloat(-30.f, 30.f);
-							Pos.y = RamdomItemPosY.RandomFloat(-30.f, 30.f);
+							Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
+							Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);
 
 							MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
 							MiniItem->SetMoveFlag(true);
@@ -328,8 +328,8 @@ void Player::CrushTree()
 						MiniItem = CreateSeedActor<MiniWood>();
 
 						float4 Pos;
-						Pos.x = RandomItemPosX.RandomFloat(-30.f, 30.f);
-						Pos.y = RamdomItemPosY.RandomFloat(-30.f, 30.f);
+						Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
+						Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);
 
 						MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
 						MiniItem->SetMoveFlag(true);

@@ -92,9 +92,9 @@ void MyFarmLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 void MyFarmLevel::LoadMapObject()
 {
 
-    char MapOject[FARM_CHIP_NUM_Y][FARM_CHIP_NUM_X] = {
-    #include "Map/Farm.txt";
-
+    char MapOject[FARM_CHIP_NUM_Y][FARM_CHIP_NUM_X] = 
+	{
+		 #include "Map/Farm.txt";
     };
 	 
 
@@ -132,7 +132,6 @@ void MyFarmLevel::LoadMapObject()
 				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetName("Maple_Tree");
 
-
 				break;
 
 			case FARM_TILE::FINE_TREE:
@@ -151,35 +150,32 @@ void MyFarmLevel::LoadMapObject()
 				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetName("Oak_Tree");
 
-
 				break;
 
 			case FARM_TILE::MAHOGANI_TREE:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
-
-				ThisIter = MapObject_.find(ChangeIndex);
-				ThisIter->second->SetName("Mahogany_Tree");
-
-
 				break;
 
 			case FARM_TILE::SMALL_STONE:
+
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 			
 				break;
+
 			case FARM_TILE::BIG_STONE:
 				break;
 			case FARM_TILE::SMALL_WOOD1:
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallWood1>((int)PLAYLEVEL::OBJECT)));
 
-				
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallWood1>((int)PLAYLEVEL::OBJECT)));
+		
 				break;
+
 			case FARM_TILE::SMAA_WOOD2:
+
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallWood2>((int)PLAYLEVEL::OBJECT)));
 
-				
 				break;
+
 			case FARM_TILE::MIDDLE_WOOD:
 				break;
 			case FARM_TILE::BIG_WOOD:
@@ -201,14 +197,12 @@ void MyFarmLevel::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT)));
 
-
 				break;
 
 			case FARM_TILE::MOVE_HOUSE :
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveHouse>((int)PLAYLEVEL::OBJECT)));
 
-				
 				break;
 
 		

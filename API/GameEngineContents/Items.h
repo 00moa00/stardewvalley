@@ -44,6 +44,7 @@ enum class ITEM_STATE
 enum class MOVE
 {
 	INIT,
+	STOP,
 	Y_UP,
 	Y_DOWN
 };
@@ -86,10 +87,12 @@ protected:
 	ITEM_STATE ItemState_;
 	MOVE State_;
 
+	//GameEngineRandom RamdomSpeed_;
 
 	int SellPrice_;
 	int Count_;
 	int Damage_;
+	float Speed_;
 
 	float4 ItemPosition_;
 	float4 ItemSpeed_;
