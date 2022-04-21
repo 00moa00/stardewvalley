@@ -111,7 +111,7 @@ void Player::Start()
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
-	PlayerCollider_ = CreateCollision("Player", { 24, 80 });
+	PlayerCollider_ = CreateCollision("Player", { 30, 30 });
 
 	SetScale({ 40, 20 });
 
@@ -185,7 +185,7 @@ void Player::Start()
 void Player::Update()
 {
 	PlayerDirCheck();
-	ObjectTileColl();
+	//ObjectTileColl();
 	SetCamera();
 	PlayerUpdate();
 	SetPlayerHandItemPos();

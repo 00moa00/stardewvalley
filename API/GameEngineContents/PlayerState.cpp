@@ -474,6 +474,14 @@ void Player::PlayerWalk() {
 	NextPos = GetPosition() + (Move * GameEngineTime::GetDeltaTime() * Speed_);
 	CheckPos += NextPos;
 
+
+	if (PlayerCollider_->NextPostCollisionCheck("MapObject", Move * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
+	{
+		Move = float4::ZERO;
+	}
+
+
+
 	int Color = MapColImage_->GetImagePixel(CheckPos);
 
 	if ((RGB(0, 0, 0) != Color))

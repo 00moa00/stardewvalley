@@ -118,6 +118,7 @@ void GameEngine::EngineLoop()
 
     //실시간 삭제
     CurrentLevel_->ActorRelease();
+   // CurrentLevel_->Rele
 
 }
 

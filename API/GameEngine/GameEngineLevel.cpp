@@ -4,7 +4,7 @@
 #include "GameEngineRenderer.h"
 #include <GameEngineBase/GameEngineDebug.h>
 
-bool GameEngineLevel::IsDebug = false;
+bool GameEngineLevel::IsDebug = true;
 
 GameEngineLevel::GameEngineLevel()
 	: CameraPos_(float4::ZERO)
@@ -262,7 +262,6 @@ void GameEngineLevel::CollisionDebugRender()
 
 void GameEngineLevel::ActorRelease()
 {
-	// 콜리전은 레벨도 관리하고 있으므로
 	{
 		std::map<int, std::list<GameEngineRenderer*>>::iterator GroupStart = AllRenderer_.begin();
 		std::map<int, std::list<GameEngineRenderer*>>::iterator GroupEnd = AllRenderer_.end();

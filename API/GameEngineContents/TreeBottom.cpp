@@ -16,6 +16,7 @@ void TreeBottom::Start()
 {
 	ItemRenderer_ = CreateRenderer("Mahogany_Tree_Bottom.bmp");
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
+	ItemCollider_ = CreateCollision("MapObject", { 48.f, 48.f });
 
 	TreeTop_ = GetLevel()->CreateActor<TreeTop>((int)PLAYLEVEL::TOP_OBJECT);
 	//Name_ = "";

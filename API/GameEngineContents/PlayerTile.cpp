@@ -199,7 +199,6 @@ void Player::CrushWood()
 			MapObject_.erase(Iter);
 
 			TileState_ = TILE_COLL::INIT;
-			Speed_ = 150.f;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 
 			Iter = MapObject_.begin();
@@ -251,7 +250,6 @@ void Player::CrushStone()
 			MapObject_.erase(Iter);
 
 			TileState_ = TILE_COLL::INIT;
-			Speed_ = 150.f;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 
 			Iter = MapObject_.begin();
@@ -313,7 +311,6 @@ void Player::CrushTree()
 						}
 					}
 
-					Speed_ = 150.f;
 					TileState_ = TILE_COLL::INIT;
 					PlayerState_ = PLAYER_UPDATE::INIT;
 
@@ -341,7 +338,6 @@ void Player::CrushTree()
 					Iter->second->TreeOff();
 					MapObject_.erase(Iter);
 
-					Speed_ = 150.f;
 					TileState_ = TILE_COLL::INIT;
 					PlayerState_ = PLAYER_UPDATE::INIT;
 
@@ -355,7 +351,6 @@ void Player::CrushTree()
 		//ºó ¶¥À» Âï¾î´­·¶´Ù¸é
 		else
 		{
-			Speed_ = 150.f;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
