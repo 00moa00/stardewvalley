@@ -41,6 +41,11 @@ std::string  Player::GetCurrentLevel()
 
 TOOLTYPE Player::CurrentItemType()
 {
+	if (Inventory::MainInventory->GetCurrentItem() == nullptr)
+	{
+		return TOOLTYPE::OTHER;
+	}
+
 	CurrentItemType_ = Inventory::MainInventory->GetCurrentItem()->GetToolType();
 	return CurrentItemType_;
 }
@@ -88,7 +93,7 @@ GameEngineImage* Player::CollImage() {
 
 void Player::SetResetPlayerHandItem()
 {
-	//PlayerState_ = PLAYER_UPDATE::WALK;
+	PlayerState_ = PLAYER_UPDATE::WALK;
 	Inventory::MainInventory->SetCurrentItemHoe();
 }
 
@@ -324,7 +329,7 @@ void Player::ChangeLevel()
 
 void Player::ChangeHandItem()
 {
-	if (Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
+	if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
 	{
 		PlayerHandItem_->GetRenderer()->SetImage((Inventory::MainInventory->GetCurrentItem()->GetFileName()));
 		PlayerHandItem_->GetRenderer()->SetIndex((Inventory::MainInventory->GetCurrentItem()->GetFileIndex()));

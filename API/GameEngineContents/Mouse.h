@@ -71,6 +71,13 @@ public:
 		return (isMouseClick() && CursorPos_.y < 600);
 	}
 
+
+	bool MouseRightClickInventoryOut()
+	{
+		return (isMouseRightClick() && CursorPos_.y < 600);
+	}
+
+
 	bool MouseClickShopIn()
 	{
 		return (isMouseClick() && CursorPos_.y < 400);
@@ -80,6 +87,11 @@ public:
 	bool isMouseClick()
 	{
 		return (GameEngineInput::GetInst()->IsDown("LeftClick"));
+	}
+
+	bool isMouseRightClick()
+	{
+		return (GameEngineInput::GetInst()->IsDown("RightClick"));
 	}
 
 	bool isMouseHold()

@@ -21,7 +21,7 @@ void Axe::Start()
 	ItemType_ = ITEMTYPE::TOOL;
 	ToolType_ = TOOLTYPE::AXE;
 
-	Name_ = "Axe";
+	ItemName_ = "Axe";
 
 	FileName_ = "tools.bmp";
 	FileIndex_ = static_cast<size_t>(TOOL::AXE_IN_INVENTROY);

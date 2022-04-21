@@ -1,14 +1,14 @@
-#include "Parsnip_Growing.h"
+#include "Parsnip_Crops.h"
 
-Parsnip_Growing::Parsnip_Growing() 
+Parsnip_Crops::Parsnip_Crops() 
 {
 }
 
-Parsnip_Growing::~Parsnip_Growing() 
+Parsnip_Crops::~Parsnip_Crops() 
 {
 }
 
-void Parsnip_Growing::Start()
+void Parsnip_Crops::Start()
 {
 	CropRenderer_ = CreateRenderer("crops.bmp");
 	CropRenderer_->SetIndex(static_cast<size_t>(CROPS::PARSNIP_SEED));
@@ -16,10 +16,10 @@ void Parsnip_Growing::Start()
 
 	//ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
-	//Name_ = "Parsnip_Growing";
+	//Name_ = "Parsnip_Crops";
 }
 
-void Parsnip_Growing::Update()
+void Parsnip_Crops::Update()
 {
 }
 

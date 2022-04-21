@@ -244,7 +244,7 @@ void Player::PlayerUpdate()
 
 
 		//손에 들 수 있는 아이템이라면 
-		if (Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
+		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
 		{
 			PlayerState_ = PLAYER_UPDATE::HANDITEM;
 
@@ -322,7 +322,7 @@ void Player::PlayerUpdate()
 
 
 		//손에 들 수 없는 아이템을 선택했다면 기본 상태로 돌아간다.
-		if (Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == false)
+		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == false)
 		{
 			PlayerState_ = PLAYER_UPDATE::INIT;
 

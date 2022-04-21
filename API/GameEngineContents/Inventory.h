@@ -123,7 +123,7 @@ private:
 
 	void SetCurrentItemFrame(Items* item_, InventroyBox* box_);
 	void SetCurrentItemFrame(Items* item_);
-	void SetCurrentItemFrameChange(InventroyBox* box_);
+	void SetCurrentItemFrame(InventroyBox* box_);
 
 public:
 
@@ -161,7 +161,14 @@ public:
 
 	Items* GetCurrentItem()
 	{
-		return CurrentItem_;
+		if (CurrentItem_ != nullptr)
+		{
+			return CurrentItem_;
+		}
+		else
+		{
+			return nullptr;
+		}
 	}
 
 
@@ -177,8 +184,9 @@ public:
 
 	void SetCurrentItemHoe()
 	{
-		CurrentItem_ = Hoe_;
-		CurrentItemFrame_->SetPosition({ Hoe_->GetPosition().x,  Hoe_->GetPosition().y - 24.f });
+		CurrentItem_ = nullptr;
+		//CurrentItem_ = Hoe_;
+		//CurrentItemFrame_->SetPosition({ Hoe_->GetPosition().x,  Hoe_->GetPosition().y - 24.f });
 
 	}
 

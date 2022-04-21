@@ -38,7 +38,7 @@ void MiniWood::Start()
 
 	ItemType_ = ITEMTYPE::ITEM;
 
-	Name_ = "MiniWood";
+	ItemName_ = "MiniWood";
 }
 
 void MiniWood::Update()

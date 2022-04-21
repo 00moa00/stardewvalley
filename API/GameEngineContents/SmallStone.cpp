@@ -18,7 +18,7 @@ void SmallStone::Start()
 
 	ItemType_ = ITEMTYPE::ITEM;
 
-	Name_ = "SmallStone";
+	ItemName_ = "SmallStone";
 
 }
 

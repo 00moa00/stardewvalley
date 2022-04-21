@@ -21,7 +21,7 @@ void Pickaxe::Start()
 	ItemType_ = ITEMTYPE::TOOL;
 	ToolType_ = TOOLTYPE::PICKAXE;
 
-	Name_ = "Pickaxe";
+	ItemName_ = "Pickaxe";
 
 	FileName_ = "tools.bmp";
 	FileIndex_ = static_cast<size_t>(TOOL::PICKAXE_IN_INVENTROY);

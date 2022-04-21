@@ -311,7 +311,9 @@ void Inventory::SetCurrentItemFrame(Items* item_)
 
 }
 
-void Inventory::SetCurrentItemFrameChange(InventroyBox* box_)
+
+
+void Inventory::SetCurrentItemFrame(InventroyBox* box_)
 {
 
 	if (CurrentItem_ != nullptr) {
@@ -377,7 +379,8 @@ void Inventory::ItemMove()
 				}
 
 				//현재 아이템 프레임, 현재 아이템 저장
-				SetCurrentItemFrame(PlayerItemListStartIter->second);
+				SetCurrentItemFrame(  PlayerItemListStartIter->second);
+
 				CurrentItem_ = PlayerItemListStartIter->second;
 				//FindCurrentItemIter
 
@@ -412,8 +415,8 @@ void Inventory::ItemMove()
 		PlayerItemListStartIter->second->SetPosition({Mouse_->GetPosition().x + 24.f, Mouse_->GetPosition().y + 30.f });
 		PlayerItemListStartIter->second->MouseHoldItem();
 
-		//인벤토리 밖에 클릭했다면 
-		if (Mouse_->MouseClickInventoryOut())
+		//인벤토리 밖에서 오른쪽 클릭 헸다면 
+		if (Mouse_->MouseRightClickInventoryOut())
 		{
 			MoveState_ = ITEMMOVE::MINE;
 		}
@@ -472,6 +475,7 @@ void Inventory::ItemMove()
 			//마우스와 충돌한 인벤토리 박스를 찾아서 그 박스의 위치에 아이템을 넣는다.
 			if (BoxStartIter->second->MouseOver())
 			{
+
 
 				PlayerItemListStartIter->second->SetInBox(true);
 
@@ -571,7 +575,7 @@ void Inventory::InvenPopUp()
 			BoxStartIter->second->SetPosition({ (this->GetPosition().x - 352.f) + (64.f * BoxXMargin), (this->GetPosition().y) });
 			if (BoxStartIter->first == 0) 
 			{
-				SetCurrentItemFrameChange(BoxStartIter->second);
+				SetCurrentItemFrame(BoxStartIter->second);
 			}
 			
 			++BoxXMargin;

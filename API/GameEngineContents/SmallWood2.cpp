@@ -17,7 +17,7 @@ void SmallWood2::Start()
 	SetScale({ 35.f, 48.f });
 	ItemCollider_ = CreateCollision("Object", { 100, 400 });
 	ItemType_ = ITEMTYPE::ITEM;
-	Name_ = "SmallWood2";
+	ItemName_ = "SmallWood2";
 
 }
 

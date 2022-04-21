@@ -37,7 +37,7 @@ void MiniStone::Start()
 
 
 	ItemType_ = ITEMTYPE::ITEM;
-	Name_ = "MiniStone";
+	ItemName_ = "MiniStone";
 
 
 }

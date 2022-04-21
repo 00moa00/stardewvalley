@@ -29,7 +29,7 @@ Items::Items() :
 	ItemSpeed_({}),
 	ItemPosition_({}),
 
-	Name_ ({""}),
+	ItemName_({""}),
 	FileName_({""}),
 	ItemType_ (ITEMTYPE::ITEM),
 	ToolType_ (TOOLTYPE::OTHER),

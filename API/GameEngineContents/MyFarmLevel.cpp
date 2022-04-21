@@ -130,7 +130,7 @@ void MyFarmLevel::LoadMapObject()
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
 				ThisIter = MapObject_.find(ChangeIndex);
-				ThisIter->second->SetName("Maple_Tree");
+				ThisIter->second->SetItemName("Maple_Tree");
 
 				break;
 
@@ -139,7 +139,7 @@ void MyFarmLevel::LoadMapObject()
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
 				ThisIter = MapObject_.find(ChangeIndex);
-				ThisIter->second->SetName("Fine_Tree");
+				ThisIter->second->SetItemName("Fine_Tree");
 
 				break;
 
@@ -148,7 +148,7 @@ void MyFarmLevel::LoadMapObject()
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
 				ThisIter = MapObject_.find(ChangeIndex);
-				ThisIter->second->SetName("Oak_Tree");
+				ThisIter->second->SetItemName("Oak_Tree");
 
 				break;
 

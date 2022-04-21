@@ -20,7 +20,7 @@ void Parsnip_Seeds::Start()
 {
 	isPossibleHand_ = true;
 
-	Name_ = "Parsnip_Seeds";
+	ItemName_ = "Parsnip_Seeds";
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::PARSNIP_SEEDS);
 

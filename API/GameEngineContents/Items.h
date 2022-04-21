@@ -106,7 +106,7 @@ protected:
 	bool isDeath_;
 	bool MoveFlag_;
 
-	std::string Name_;
+	std::string ItemName_;
 	std::string FileName_;
 	int FileIndex_;
 
@@ -223,7 +223,7 @@ public:
 
 	const std::string& GetItemNameConstRef()
 	{
-		return Name_;
+		return ItemName_;
 	}
 
 	bool MouseHoldItem()
@@ -283,7 +283,7 @@ public:
 
 	void SetItemName(std::string _Name)
 	{
-		Name_ = _Name;
+		ItemName_ = _Name;
 	}
 
 	void SetFileName(const std::string& _Name)

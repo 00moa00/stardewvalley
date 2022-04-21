@@ -209,6 +209,7 @@ void MainUI::UpdateAddDay()
 		AmPm_ = AM_PM::PM;
 		AddWeek();
 		++Day_;
+		DayFont_->ChangeNumUI(Day_);
 	}
 
 }

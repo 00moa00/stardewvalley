@@ -41,22 +41,22 @@ void TreeTop::Update()
 	{
 	case TREETOP::INIT:
 
-		if (GetNameConstRef() == "Fine_Tree")
+		if (GetItemNameConstRef() == "Fine_Tree")
 		{
 			ItemRenderer_->ChangeAnimation("INIT_FINE");
 		}
 
-		else if (GetNameConstRef() == "Oak_Tree")
+		else if (GetItemNameConstRef() == "Oak_Tree")
 		{
 			ItemRenderer_->ChangeAnimation("INIT_OAK");
 		}
 
-		else if (GetNameConstRef() == "Maple_Tree")
+		else if (GetItemNameConstRef() == "Maple_Tree")
 		{
 			ItemRenderer_->ChangeAnimation("INIT_MAPLE");
 		}
 
-		else if (GetNameConstRef() == "Mahogany_Tree")
+		else if (GetItemNameConstRef() == "Mahogany_Tree")
 		{
 			ItemRenderer_->ChangeAnimation("INIT_MAHOGANY");
 		}
@@ -64,7 +64,7 @@ void TreeTop::Update()
 		break;
 	case TREETOP::CRUSH:
 
-		if (GetNameConstRef() == "Fine_Tree")
+		if (GetItemNameConstRef() == "Fine_Tree")
 		{
 			ItemRenderer_->ChangeAnimation("CRUSH_FINE");
 
@@ -74,7 +74,7 @@ void TreeTop::Update()
 			}
 		}
 
-		else if (GetNameConstRef() == "Oak_Tree")
+		else if (GetItemNameConstRef() == "Oak_Tree")
 		{
 			ItemRenderer_->ChangeAnimation("CRUSH_OAK");
 
@@ -84,7 +84,7 @@ void TreeTop::Update()
 			}
 		}
 
-		else if (GetNameConstRef() == "Maple_Tree")
+		else if (GetItemNameConstRef() == "Maple_Tree")
 		{
 			ItemRenderer_->ChangeAnimation("CRUSH_MAPLE");
 
@@ -94,7 +94,7 @@ void TreeTop::Update()
 			}
 		}
 
-		else if (GetNameConstRef() == "Mahogany_Tree")
+		else if (GetItemNameConstRef() == "Mahogany_Tree")
 		{
 			ItemRenderer_->ChangeAnimation("CRUSH_MAHOGANY");
 

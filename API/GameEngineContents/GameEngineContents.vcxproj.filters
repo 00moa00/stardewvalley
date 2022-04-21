@@ -167,7 +167,7 @@
     <ClCompile Include="Parsnip_Seeds.cpp">
       <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
     </ClCompile>
-    <ClCompile Include="Parsnip_Growing.cpp">
+    <ClCompile Include="Parsnip_Crops.cpp">
       <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
     </ClCompile>
     <ClCompile Include="Items.cpp">
@@ -243,6 +243,21 @@
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="Crops.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClCompile>
+    <ClCompile Include="Cauliflower_Crops.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClCompile>
+    <ClCompile Include="Bean_Crops.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClCompile>
+    <ClCompile Include="Patato_Crops.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClCompile>
+    <ClCompile Include="Jazz_Crops.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClCompile>
+    <ClCompile Include="Tulip_Crops.cpp">
       <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
     </ClCompile>
   </ItemGroup>
@@ -431,7 +446,7 @@
     <ClInclude Include="Parsnip_Seeds.h">
       <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
     </ClInclude>
-    <ClInclude Include="Parsnip_Growing.h">
+    <ClInclude Include="Parsnip_Crops.h">
       <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
     </ClInclude>
     <ClInclude Include="Items.h">
@@ -507,6 +522,21 @@
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="Crops.h">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClInclude>
+    <ClInclude Include="Cauliflower_Crops.h">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClInclude>
+    <ClInclude Include="Bean_Crops.h">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClInclude>
+    <ClInclude Include="Patato_Crops.h">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClInclude>
+    <ClInclude Include="Jazz_Crops.h">
+      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+    </ClInclude>
+    <ClInclude Include="Tulip_Crops.h">
       <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
     </ClInclude>
   </ItemGroup>

@@ -35,38 +35,38 @@ void TreeBottom::Update()
 	{
 	case TREESTATE::INIT:
 
-		if (GetNameConstRef() == "Fine_Tree")
+		if (GetItemNameConstRef() == "Fine_Tree")
 		{
-			Name_ = "Fine_Tree";
+			ItemName_ = "Fine_Tree";
 
 			ItemRenderer_->SetImage("Fine_Tree_Bottom.bmp");
 			TreeTop_->SetInitAnimation();
-			TreeTop_->SetName("Fine_Tree");
+			TreeTop_->SetItemName("Fine_Tree");
 		}
-		else if (GetNameConstRef() == "Maple_Tree")
+		else if (GetItemNameConstRef() == "Maple_Tree")
 		{
-			Name_ = "Maple_Tree";
+			ItemName_ = "Maple_Tree";
 			ItemRenderer_->SetImage("Maple_Tree_Bottom.bmp");
 			TreeTop_->SetInitAnimation();
-			TreeTop_->SetName("Maple_Tree");
+			TreeTop_->SetItemName("Maple_Tree");
 
 		}
-		else if (GetNameConstRef() == "Mahogany_Tree")
+		else if (GetItemNameConstRef() == "Mahogany_Tree")
 		{
-			Name_ = "MapMahogany_Treele_Tree";
+			ItemName_ = "MapMahogany_Treele_Tree";
 
 			ItemRenderer_->SetImage("Mahogany_Tree_Bottom.bmp");
 			TreeTop_->SetInitAnimation();
-			TreeTop_->SetName("Mahogany_Tree");
+			TreeTop_->SetItemName("Mahogany_Tree");
 
 		}
-		else if (GetNameConstRef() == "Oak_Tree")
+		else if (GetItemNameConstRef() == "Oak_Tree")
 		{
-			Name_ = "Oak_Tree";
+			ItemName_ = "Oak_Tree";
 
 			ItemRenderer_->SetImage("Oak_Tree_Bottom.bmp");
 			TreeTop_->SetInitAnimation();
-			TreeTop_->SetName("Oak_Tree");
+			TreeTop_->SetItemName("Oak_Tree");
 
 		}
 

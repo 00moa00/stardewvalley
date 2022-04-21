@@ -24,7 +24,7 @@ void Watering_Can::Start()
 	ItemType_ = ITEMTYPE::TOOL;
 	ToolType_ = TOOLTYPE::WATTERING_CAN;
 
-	Name_= "Watering_Can";
+	ItemName_ = "Watering_Can";
 
 	FileName_ = "tools.bmp";
 	FileIndex_ = static_cast<size_t>(TOOL::WATER_RIGHT00);

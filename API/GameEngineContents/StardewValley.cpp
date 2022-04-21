@@ -44,6 +44,7 @@ void StardewValley::GameInit()
 		GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
 
 		GameEngineInput::GetInst()->CreateKey("LeftClick", MK_LBUTTON);
+		GameEngineInput::GetInst()->CreateKey("RightClick", MK_RBUTTON);
 
 		GameEngineInput::GetInst()->CreateKey("KeyLeft", VK_LEFT);
 		GameEngineInput::GetInst()->CreateKey("KeyRight", VK_RIGHT);

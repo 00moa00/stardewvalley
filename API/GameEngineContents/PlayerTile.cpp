@@ -143,7 +143,7 @@ void Player::CreateSeed()
 		Inventory::MainInventory->GetCurrentItem()->SubItemCount();
 		//PlayerHandItem_->SubItemCount();
 
-		Crops* seed = CreateSeedActor<Parsnip_Growing>();
+		Crops* seed = CreateSeedActor<Parsnip_Crops>();
 
 		float4 TileSize_ = { 48.f, 48.f };
 		float4 WorldPos = TileSize_;
