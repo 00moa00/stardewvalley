@@ -180,7 +180,10 @@ public:
 	//================================
 	//    Setter
 	//================================
-
+	void SetInventoryMoveStateInit()
+	{
+		MoveState_ = ITEMMOVE::INIT;
+	}
 
 	void SetCurrentItemHoe()
 	{
@@ -192,6 +195,7 @@ public:
 
 	void FindAndErasePlayerItemList(std::string ItemName)
 	{
+		SetInventoryMoveStateInit();
 
 		std::map<int, Items*>::iterator StartIter = PlayerItemList_.begin();
 		std::map<int, Items*>::iterator EndIter = PlayerItemList_.end();

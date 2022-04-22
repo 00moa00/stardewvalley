@@ -411,11 +411,11 @@ void Inventory::ItemMove()
 
 	case ITEMMOVE::HOLD:
 
-		if (PlayerItemListStartIter->second->GetItemCount() == 1)
-		{
-			MoveState_ = ITEMMOVE::INIT;
-			break;
-		}
+		//if (PlayerItemListStartIter->second->GetItemCount() == 1)
+		//{
+		//	MoveState_ = ITEMMOVE::INIT;
+		//	break;
+		//}
 
 
 		//아이템을 마우스의 위치에 고정
