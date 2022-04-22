@@ -280,7 +280,6 @@ void Player::CrushTree()
 				)
 			{
 
-				//나무의 데미지가 0이상이면 SubDamage
 				if (Iter->second->GetDamage() > 0)
 				{
 
@@ -288,7 +287,7 @@ void Player::CrushTree()
 					Iter->second->SetCrushAnimation();
 
 
-					//나무의 데미지가 2이상이면 Top 제거와 나무조각 드랍
+					//나무의 데미지가 2면 Top 제거와 나무조각 드랍
 
 					if (Iter->second->GetDamage() == 2)
 					{

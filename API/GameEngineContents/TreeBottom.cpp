@@ -76,7 +76,7 @@ void TreeBottom::Update()
 
 		if (Damage_ == 2)
 		{
-			TreeTop_->Death();
+			TreeTop_->Off();
 		}
 
 		break;
@@ -95,7 +95,10 @@ void TreeBottom::SetInitAnimation()
 
 void TreeBottom::SetCrushAnimation()
 {
-	TreeTop_->SetCrushAnimation();
+	if (TreeTop_ != nullptr)
+	{
+		TreeTop_->SetCrushAnimation();
+	}
 }
 
 void TreeBottom::TreeOff()
