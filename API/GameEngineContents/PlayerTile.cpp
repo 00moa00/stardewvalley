@@ -59,7 +59,6 @@ void Player::CreateDirtTile()
 	if (FindIter != EndIter || ObjectFindIter != ObjectEndIter)
 	{
 			return;
-		
 	}
 
 	else {
@@ -135,30 +134,30 @@ void Player::CreateSeed()
 	}
 
 
-	//해당 땅이 파져있으면 씨앗을 심는다.
-	if (FindDirtIter != EndDirtIter)
-	{
+	////해당 땅이 파져있으면 씨앗을 심는다.
+	//if (FindDirtIter != EndDirtIter)
+	//{
 
-		//TODO: 핸드 아이템의 타입에 따라서 초기화.
+	//	//TODO: 핸드 아이템의 타입에 따라서 초기화.
 
-		Inventory::MainInventory->GetCurrentItem()->SubItemCount();
-		//PlayerHandItem_->SubItemCount();
+	//	Inventory::MainInventory->GetCurrentItem()->SubItemCount();
+	//	//PlayerHandItem_->SubItemCount();
 
-		Crops* seed = CreateMiniActor<Parsnip_Crops>();
+	//	Crops* seed = CreateMiniActor<Parsnip_Crops>();
 
-		float4 TileSize_ = { 48.f, 48.f };
-		float4 WorldPos = TileSize_;
+	//	float4 TileSize_ = { 48.f, 48.f };
+	//	float4 WorldPos = TileSize_;
 
-		WorldPos.x *= static_cast<int>(Pos.x / CHIP_SIZE);
-		WorldPos.y *= static_cast<int>(Pos.y / CHIP_SIZE);
+	//	WorldPos.x *= static_cast<int>(Pos.x / CHIP_SIZE);
+	//	WorldPos.y *= static_cast<int>(Pos.y / CHIP_SIZE);
 
-		WorldPos += TileSize_.Half();
+	//	WorldPos += TileSize_.Half();
 
-		seed->GetRenderer()->SetPivot({ WorldPos.x, WorldPos.y - 24.f });
-		seed->SetTileFindIndex(ChangeIndex);
-		SeedList_.insert(std::make_pair(ChangeIndex, seed));
+	//	seed->GetRenderer()->SetPivot({ WorldPos.x, WorldPos.y - 24.f });
+	//	seed->SetTileFindIndex(ChangeIndex);
+	//	SeedList_.insert(std::make_pair(ChangeIndex, seed));
 
-	}
+	//}
 
 
 }
@@ -171,38 +170,18 @@ void Player::CrushWood()
 
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
-			
-			int Count = RandomItemCount.RandomInt(1, 5);
- 			for (int i = 0; i < Count; ++i)
-			{
-				Items* MiniItem = nullptr;
+			//아이템 드랍
+			Iter->second->DropItemInMap();
 
-				if (Iter->second->GetItemNameConstRef() == "SmallWood1"
-					|| Iter->second->GetItemNameConstRef() == "SmallWood2")
-				{
-					MiniItem = CreateMiniActor<DropWood>();
-				}
-
-				else
-				{
-					return;
-				}
-
-				float4 Pos;
-				Pos.x = RandomItemPosX.RandomFloat(-30.f, 30.f);
-				Pos.y = RamdomItemPosY.RandomFloat(-30.f, 30.f);
-
-				MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
-				MiniItem->SetMoveFlag(true);
-			}
-
-
+			//해당 아이템 삭제
 			Iter->second->Death();
 			MapObject_.erase(Iter);
 
+			//스테이트 초기화
 			TileState_ = TILE_COLL::INIT;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 
+			//이터레이터 초기화
 			Iter = MapObject_.begin();
 
 		}
@@ -223,39 +202,19 @@ void Player::CrushStone()
 
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
+			//아이템 드랍
+			Iter->second->DropItemInMap();
 
-			int Count = RandomItemCount.RandomInt(1, 5);
-			for (int i = 0; i < Count; ++i)
-			{
-				Items* MiniItem = nullptr;
-
-				if (Iter->second->GetItemNameConstRef() == "SmallStone")
-				{
-					MiniItem = CreateMiniActor<DropStone>();
-				}
-
-				else
-				{
-					return;
-				}
-
-				float4 Pos;
-				Pos.x = RandomItemPosX.RandomFloat(-30.f, 30.f);
-				Pos.y = RamdomItemPosY.RandomFloat(-30.f, 30.f);
-
-				MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
-				MiniItem->SetMoveFlag(true);
-			}
-
-
+			//해당 아이템 삭제
 			Iter->second->Death();
 			Player::MapObject_.erase(Iter);
 
+			//스테이트 초기화
 			TileState_ = TILE_COLL::INIT;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 
+			//이터레이터 초기화
 			Iter = Player::MapObject_.begin();
-
 		}
 
 		else
@@ -282,34 +241,21 @@ void Player::CrushTree()
 				)
 			{
 
+				//나무가 살아있다
 				if (Iter->second->GetDamage() > 0)
 				{
-
+					//데미지를 깎으면서 애니메이션 변경
 					Iter->second->SubDamage();
 					Iter->second->SetCrushAnimation();
 
 
 					//나무의 데미지가 2면 Top 제거와 나무조각 드랍
-
 					if (Iter->second->GetDamage() == 2)
 					{
-
-						int Count = RandomItemCount.RandomInt(1, 5);
-						Items* MiniItem;
-						for (int i = 0; i < Count; ++i)
-						{
-							MiniItem = CreateSeedActor<DropWood>();
-
-							float4 Pos;
-							Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
-							Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);
-
-							MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
-							MiniItem->SetMoveFlag(true);
-
-						}
+						Iter->second->DropItemInMap();
 					}
 
+					//스테이트 초기화
 					TileState_ = TILE_COLL::INIT;
 					PlayerState_ = PLAYER_UPDATE::INIT;
 
@@ -319,27 +265,19 @@ void Player::CrushTree()
 				//나무의 데미지가 0이면 (주둥이까지 삭제)
 				else
 				{
-					int Count = RandomItemCount.RandomInt(1, 5);
-					Items* MiniItem;
-					for (int i = 0; i < Count; ++i)
-					{
-						MiniItem = CreateSeedActor<DropWood>();
+					//드랍 아이템
+					Iter->second->DropItemInMap();
 
-						float4 Pos;
-						Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
-						Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);
-
-						MiniItem->SetPosition({ Iter->second->GetPosition().x + Pos.x, Iter->second->GetPosition().y + Pos.y });
-						MiniItem->SetMoveFlag(true);
-
-					}
-
+					//해당 아이템 삭제
 					Iter->second->Death();
 					Player::MapObject_.erase(Iter);
 
+					//스테이트 초기화
 					TileState_ = TILE_COLL::INIT;
 					PlayerState_ = PLAYER_UPDATE::INIT;
 
+
+					//이터레이터 초기화
 					Iter = Player::MapObject_.begin();
 
 				}
@@ -357,6 +295,34 @@ void Player::CrushTree()
 
 }
 
+void Player::harvestingCrops()
+{
+	float4 Pos = PlayerCollCheckPos();
+
+	TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
+	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+	std::map<int, Crops*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
+	std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
+
+
+	//씨앗이 없으면, 씨앗이 아직 수확가능 상태가 아니라면
+	if (FindSeedIter == EndSeedIter || FindSeedIter->second->GetisHarvest() == false)
+	{
+		return;
+	}
+
+
+	Iter->second->Death();
+	Player::MapObject_.erase(Iter);
+
+	TileState_ = TILE_COLL::INIT;
+	PlayerState_ = PLAYER_UPDATE::INIT;
+
+	Iter = Player::MapObject_.begin();
+
+}
+
 void Player::ClearWetDirtTile()
 {
 	if (WetDirtList_.empty() == false)
@@ -365,7 +331,6 @@ void Player::ClearWetDirtTile()
 		{
 			WetTileMap_->DeleteTile();
 			WetDirtList_.erase(WetDirtList_.begin(), WetDirtList_.end());
-
 		}
 	}
 }

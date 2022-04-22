@@ -113,9 +113,6 @@ private:
 	Mouse* Mouse_;
 	Hoe* Hoe_;
 
-	GameEngineRandom RandomItemCount;
-	GameEngineRandom RandomItemPosX;
-	GameEngineRandom RamdomItemPosY;
 
 	TOOLTYPE CurrentItemType_;
 
@@ -251,6 +248,8 @@ private:
 	void CrushStone();
 	void CrushTree();
 
+	void harvestingCrops();
+
 	void ClearWetDirtTile();
 
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------
@@ -278,12 +277,12 @@ private:
 		return Item;
 	}
 
-	template<typename Actor>
-	Actor* CreateMiniActor()
-	{
-		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
-		return Item;
-	}
+	//template<typename Actor>
+	//Actor* CreateDropItemActor()
+	//{
+	//	Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
+	//	return Item;
+	//}
 
 };
 

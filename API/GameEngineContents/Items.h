@@ -6,6 +6,7 @@
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineNameObject.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 #include "RendererData.h"
 #include "ItemCode.h"
@@ -74,6 +75,7 @@ public:
 
 	virtual void AddItemCount();
 	virtual void SubItemCount();
+	virtual void DropItemInMap();
 
 protected:
 	std::vector<GameEngineCollision*> ColList;
@@ -83,6 +85,10 @@ protected:
 	GameEngineCollision* MapItemCollider_;
 
 	GameEngineRenderer* TreeTop_;
+
+	GameEngineRandom RandomItemCount;
+	GameEngineRandom RandomItemPosX;
+	GameEngineRandom RamdomItemPosY;
 
 
 	ITEMTYPE ItemType_;
@@ -330,6 +336,12 @@ public:
 	}
 
 
+	template<typename Actor>
+	Actor* CreateDropItemActor()
+	{
+		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
+		return Item;
+	}
 
 };
 

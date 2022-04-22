@@ -6,9 +6,11 @@
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineNameObject.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 #include "CropsData.h"
 #include "PlayerData.h"
+#include"RendererData.h"
 
 
 enum class CROPS_UPDATE
@@ -39,6 +41,9 @@ private:
 	void Start() override;
 	void Update() override;
 
+private:
+
+
 protected:
 
 	int StartDay_;
@@ -46,6 +51,12 @@ protected:
 	int DirtDay_;
 
 	int TileFindIndex_;
+
+	bool isHarvest_;
+
+	GameEngineRandom RandomItemCount;
+	GameEngineRandom RandomItemPosX;
+	GameEngineRandom RamdomItemPosY;
 
 	MINUTE_STATE MinuteState_;
 	CROPS_UPDATE CropsUpdateState_;
@@ -55,10 +66,13 @@ protected:
 private:
 
 protected:
+	virtual void CropsDeath();
 
 	void GrowingCropsTime();
 	void DeathCropsCheck();
-	
+
+	void DropCropsInMap();
+
 	bool isWetDirt();
 
 
@@ -74,11 +88,22 @@ public:
 		return GrowingDay_;
 	}
 
+	bool GetisHarvest()
+	{
+		return isHarvest_;
+	}
+
+
 	void SetTileFindIndex(int _Index)
 	{
 		TileFindIndex_ = _Index;
 	}
 
-
+	template<typename Actor>
+	Actor* CreateDropItemActor()
+	{
+		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
+		return Item;
+	}
 };
 

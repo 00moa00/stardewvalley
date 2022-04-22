@@ -1,4 +1,5 @@
 #include "SmallWood2.h"
+#include "DropWood.h"
 
 SmallWood2::SmallWood2() 
 {
@@ -20,5 +21,22 @@ void SmallWood2::Start()
 
 void SmallWood2::Update()
 {
+}
+
+void SmallWood2::DropItemInMap()
+{
+	int Count = RandomItemCount.RandomInt(1, 5);
+	Items* DropItem;
+	for (int i = 0; i < Count; ++i)
+	{
+		DropItem = CreateDropItemActor<DropWood>();
+
+		float4 Pos;
+		Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
+		Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);
+
+		DropItem->SetPosition({ this->GetPosition().x + Pos.x, this->GetPosition().y + Pos.y });
+		DropItem->SetMoveFlag(true);
+	}
 }
 

@@ -29,6 +29,11 @@ Items::Items() :
 	ItemSpeed_({}),
 	ItemPosition_({}),
 
+	RandomItemCount(),
+	RandomItemPosX(),
+	RamdomItemPosY(),
+
+
 	ItemName_({""}),
 	FileName_({""}),
 	ItemType_ (ITEMTYPE::ITEM),
@@ -74,6 +79,10 @@ void Items::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	NextLevelOn();
 }
 
+
+void Items::DropItemInMap()
+{
+}
 
 bool Items::ItemCheck(const float4 pos, const float4 scale)
 {

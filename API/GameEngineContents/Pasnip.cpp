@@ -40,12 +40,21 @@ void Pasnip::Start()
 
 void Pasnip::Update()
 {
+	MoveToPlayer();
+
+	if (isItemDeath_ == true)
+	{
+		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+		MainPlayer->GetInventroy()->NewItem<DropStone>();
+	}
+
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
 		Font_->SetPositionItem({ GetPosition() });
 
 		break;
+
 	}
 }
 
