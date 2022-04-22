@@ -79,9 +79,6 @@ void MainUI::Start()
 
 	LevelRegist("MainUI");
 
-	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONTUI);
-	Font_->ChangeNumUI(1);
-	Font_->SetPositionUI({ 500, 500 });
 
 	//1145
 }
@@ -90,7 +87,6 @@ void MainUI::Update()
 {
 	SecondTime_ = (GetAccTime());
 	SecondTimeInt_ = static_cast<int>(SecondTime_) + 253;
-	Font_->ChangeNumUI(SecondTimeInt_);
 
 
 	switch (MinuteState_)

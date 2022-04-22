@@ -44,7 +44,7 @@ void BusStopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	LoadMapObject();
 
 
-	Player::MainPlayer->SetPosition({ (BUSSTOP_SIZE_WEIGHT/2), (BUSSTOP_SIZE_HEIGHT / 2)});
+	Player::MainPlayer->SetPosition({ (1300.f), 1140.f});
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 
 }
@@ -78,7 +78,7 @@ void BusStopLevel::LoadMapObject()
 
 
 	char MapOject[BUSSTOP_CHIP_NUM_Y][BUSSTOP_CHIP_NUM_X] = {
-	#include "Map/Busstop.txt";
+	#include "Map/Busstop.txt"
 
 	};
 
