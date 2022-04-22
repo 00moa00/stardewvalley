@@ -33,7 +33,7 @@ void DropStone::Start()
 	}
 
 	Font_->ChangeWhiteColor();
-	Font_->ChangeNumItem(1);
+	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 
 
 	ItemType_ = ITEMTYPE::ITEM;
@@ -76,7 +76,7 @@ void DropStone::LevelChangeEnd(GameEngineLevel* _NextLevel)
 void DropStone::AddItemCount()
 {
 	++Count_;
-	Font_->ChangeNumItem(Count_);
+	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void DropStone::SubItemCount()
@@ -90,7 +90,7 @@ void DropStone::SubItemCount()
 	else
 	{
 		--Count_;
-		Font_->ChangeNumItem(Count_);
+		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 }

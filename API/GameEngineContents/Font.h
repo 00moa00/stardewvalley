@@ -37,15 +37,20 @@ private:
 public:
 
 	void ChangeNumStr(std::string _Num);
-	void ChangeNumUI(int _Num);
-	void ChangeNumItem(int _Num);
+
+	void ChangeNumRightSort(int _Num);
+
+	void ChangeNumItemLeftSort(int _Num, float4 _Pos);
+	void ChangeNumMoneyLeftSort(int _Num, float4 _Pos);
+	void ChangeNumLeftSort(int _Num, float4 _Pos);
+
 	void ChangeWhiteColor();
 
 	//================================
 	//    Setter
 	//================================
 
-	void SetPositionUI(float4 _Pos);
+	void SetPositionRightSort(float4 _Pos);
 	void SetPositionItem(float4 _Pos);
 };
 

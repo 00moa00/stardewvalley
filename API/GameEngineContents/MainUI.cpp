@@ -23,6 +23,7 @@ MainUI::MainUI()
 	WeekIndex_(0),
 	SecondTime_(0),
 	PrevSecondTime_(0),
+	AddTIme_(),
 
 	AmPm_(AM_PM::AM),
 
@@ -48,8 +49,7 @@ void MainUI::Start()
 	MainUIRenderer_->SetOrder((int)PLAYLEVEL::MAINUI);
 
 	MoneyFont_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONTUI);
-	MoneyFont_->ChangeNumUI(1000);
-	MoneyFont_->SetPositionUI({ 1085.f, 192.f });
+	MoneyFont_->ChangeNumMoneyLeftSort(1000, { 1230.f, 192.f });
 
 	//1188 128
 	AmPmRenderer_ = CreateRenderer("am.bmp");
@@ -64,18 +64,17 @@ void MainUI::Start()
 
 	//1119 128
 	HourFont_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONTUI);
-	HourFont_->ChangeNumUI(6);
-	HourFont_->SetPositionUI({ 1119.f, 138.f });
+	HourFont_->ChangeNumLeftSort(6, { GetPosition().x - 3.f, GetPosition().y + 1.f});
 
 	//1145 128
 	MinuteFont_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONTUI);
 	MinuteFont_->ChangeNumStr("00");
-	MinuteFont_->SetPositionUI({ 1145.f, 138.f });
+	MinuteFont_->ChangeNumLeftSort(10, { GetPosition().x + 32.f, GetPosition().y + 1.f });
 
 	//1145 128
 	DayFont_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONTUI);
-	DayFont_->ChangeNumUI(1);
-	DayFont_->SetPositionUI({ GetPosition().x + 55.f, GetPosition().y  - 55.f});
+	DayFont_->ChangeNumRightSort(1);
+	DayFont_->SetPositionRightSort({ GetPosition().x + 55.f, GetPosition().y  - 55.f});
 
 	LevelRegist("MainUI");
 
@@ -85,13 +84,28 @@ void MainUI::Start()
 
 void MainUI::Update()
 {
-	SecondTime_ = (GetAccTime());
+
+	if (true == GameEngineInput::GetInst()->IsPress("TimeAdd"))
+	{
+		AddTIme_ = 1000;
+
+	}
+	
+	else
+	{
+		AddTIme_ = 1;
+	}
+
+	SecondTime_ = (GetAccTime()) * AddTIme_;
 	SecondTimeInt_ = static_cast<int>(SecondTime_) + 253;
+
 
 
 	switch (MinuteState_)
 	{
 	case MINUTE_STATE::COUNT:
+
+
 
 		if (SecondTimeInt_ % 7 == 0)
 		{
@@ -123,7 +137,6 @@ void MainUI::Update()
 		break;
 	}
 
-	//UpdateMinuteTime();
 	UpdateMinuteFont();
 	UpdateHourTime();
 	UpdateSetPm();
@@ -153,18 +166,13 @@ void MainUI::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	DayFont_->NextLevelOn();
 }
 
-void MainUI::UpdateMinuteTime()
-{
-	//7초마다 10분이 추가됨.
-
-}
 
 void MainUI::UpdateMinuteFont()
 {
 	//10분마다 폰트 업데이트
 	if (MinuteTime_ > 0 && MinuteTime_ % 10 == 0)
 	{
-		MinuteFont_->ChangeNumUI(MinuteTime_);
+		MinuteFont_->ChangeNumLeftSort(MinuteTime_, { GetPosition().x + 32.f, GetPosition().y + 1.f });
 		return;
 
 	}
@@ -179,7 +187,7 @@ void MainUI::UpdateHourTime()
 		MinuteFont_->ChangeNumStr("00");
 
 		HourTime_ += 1;
-		HourFont_->ChangeNumUI(HourTime_);
+		HourFont_->ChangeNumLeftSort(HourTime_, { GetPosition().x - 3.f, GetPosition().y + 1.f });
 		return;
 	}
 }
@@ -205,12 +213,12 @@ void MainUI::UpdateAddDay()
 		AmPm_ = AM_PM::PM;
 		AddWeek();
 		++Day_;
-		DayFont_->ChangeNumUI(Day_);
+		DayFont_->ChangeNumRightSort(Day_);
 	}
 
 }
 
 void MainUI::SetMainUIMoney(int _Money)
 {
-	MoneyFont_->ChangeNumUI(_Money);
+	MoneyFont_->ChangeNumMoneyLeftSort(_Money, { 1230.f, 192.f });
 }

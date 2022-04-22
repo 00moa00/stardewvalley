@@ -47,6 +47,7 @@ void StardewValley::GameInit()
 		GameEngineInput::GetInst()->CreateKey("RightClick", MK_RBUTTON);
 
 		GameEngineInput::GetInst()->CreateKey("DebugRendereChange", 'R');
+		GameEngineInput::GetInst()->CreateKey("TimeAdd", 'T');
 
 
 		GameEngineInput::GetInst()->CreateKey("KeyLeft", VK_LEFT);

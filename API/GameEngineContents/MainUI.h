@@ -1,6 +1,8 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 #include "Font.h"
+#include "PlayerData.h"
+
 
 enum class TIME_STATE
 {
@@ -24,12 +26,7 @@ enum class WEEK
 	SUN
 };
 
-enum class MINUTE_STATE
-{
-	COUNT,
-	ADD,
-	WAIT,
-};
+
 
 // Ό³Έν :
 class MainUI : public GameEngineActor
@@ -62,7 +59,7 @@ protected:
 
 private:
 	Font* Font_;
-	//int Money_;
+
 	float SecondTime_;
 	int SecondTimeInt_;
 	int PrevSecondTime_;
@@ -70,6 +67,8 @@ private:
 	int MinuteTime_;
 	int HourTime_;
 	int Day_;
+
+	int AddTIme_;
 
 	int WeekIndex_;
 	AM_PM AmPm_;

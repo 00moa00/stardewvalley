@@ -8,6 +8,7 @@
 #include <GameEngineBase/GameEngineNameObject.h>
 
 #include "CropsData.h"
+#include "PlayerData.h"
 
 
 // Ό³Έν :
@@ -24,10 +25,31 @@ public:
 	Crops& operator=(const Crops& _Other) = delete;
 	Crops& operator=(Crops&& _Other) noexcept = delete;
 
+private:
+	void Start() override;
+	void Update() override;
+
 protected:
+
 	GameEngineRenderer* CropRenderer_;
 
+protected:
+
+	float SecondTime_;
+
+	int SecondTimeInt_;
+	int PrevSecondTime_;
+
+	int MinuteTime_;
+	int HourTime_;
+	int Day_;
+
+	MINUTE_STATE MinuteState_;
+
 private:
+	void UpdateMinuteTime();
+	void UpdateHourTime();
+	void UpdateAddDay();
 
 public:
 

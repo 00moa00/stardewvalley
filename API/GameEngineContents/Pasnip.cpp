@@ -24,7 +24,7 @@ void Pasnip::Start()
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItem(1);
+		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 	//핸드 아이템용
@@ -63,7 +63,7 @@ void Pasnip::LevelChangeEnd(GameEngineLevel* _NextLevel)
 void Pasnip::AddItemCount()
 {
 	++Count_;
-	Font_->ChangeNumItem(Count_);
+	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void Pasnip::SubItemCount()
@@ -78,6 +78,6 @@ void Pasnip::SubItemCount()
 	else
 	{
 		--Count_;
-		Font_->ChangeNumItem(Count_);
+		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }

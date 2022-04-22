@@ -33,3 +33,11 @@ enum class USE_TOOL
 	COLL,
 	
 };
+
+
+enum class MINUTE_STATE
+{
+	COUNT,
+	ADD,
+	WAIT,
+};

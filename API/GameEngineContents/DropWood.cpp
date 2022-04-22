@@ -32,7 +32,7 @@ void DropWood::Start()
 	}
 
 	Font_->ChangeWhiteColor();
-	Font_->ChangeNumItem(1);
+	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 
 
 	ItemType_ = ITEMTYPE::ITEM;
@@ -76,7 +76,7 @@ void DropWood::LevelChangeEnd(GameEngineLevel* _NextLevel)
 void DropWood::AddItemCount()
 {
 	++Count_;
-	Font_->ChangeNumItem(Count_);
+	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void DropWood::SubItemCount()
@@ -89,7 +89,7 @@ void DropWood::SubItemCount()
 	else
 	{
 		--Count_;
-		Font_->ChangeNumItem(Count_);
+		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 }

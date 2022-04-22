@@ -24,7 +24,7 @@ void Cauliflower_Seeds::Start()
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItem(1);
+		Font_->ChangeNumItemLeftSort( 1, {GetPosition().x + 11.f ,GetPosition().y + 11.f});
 	}
 
 	//핸드 아이템용
@@ -64,7 +64,7 @@ void Cauliflower_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 void Cauliflower_Seeds::AddItemCount()
 {
 	++Count_;
-	Font_->ChangeNumItem(Count_);
+	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void Cauliflower_Seeds::SubItemCount()
@@ -78,6 +78,6 @@ void Cauliflower_Seeds::SubItemCount()
 	else
 	{
 		--Count_;
-		Font_->ChangeNumItem(Count_);
+		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }

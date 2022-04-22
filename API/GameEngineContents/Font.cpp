@@ -65,7 +65,7 @@ void Font::ChangeNumStr(std::string _Num)
 	}
 }
 
-void Font::ChangeNumUI(int _Num)
+void Font::ChangeNumRightSort(int _Num)
 {
 	int Count_ = 0 ;
 	Num_ = _Num;
@@ -108,7 +108,7 @@ void Font::ChangeNumUI(int _Num)
 	}
 }
 
-void Font::ChangeNumItem(int _Num)
+void Font::ChangeNumItemLeftSort(int _Num, float4 _Pos)
 {
 	int Count_ = 0;
 
@@ -141,6 +141,16 @@ void Font::ChangeNumItem(int _Num)
 
 		//인덱스를 바꿈
 		FontRenderer.at(Count_)->SetIndex(Index);
+
+	}
+
+
+	float MarginX = 0;
+	for (int ChangePivotCount = Count_; ChangePivotCount > -1; --ChangePivotCount)
+	{
+		FontRenderer.at(ChangePivotCount)->SetPivot({ _Pos.x - MarginX, _Pos.y + 12.f });
+		MarginX += 17.f;
+
 	}
 
 
@@ -152,7 +162,111 @@ void Font::ChangeNumItem(int _Num)
 
 }
 
-void Font::SetPositionUI(float4 _Pos)
+void Font::ChangeNumMoneyLeftSort(int _Num, float4 _Pos)
+{
+	int Count_ = 0;
+	Num_ = _Num;
+
+	//0 이라면
+	if (Num_ == 0)
+	{
+		std::vector<GameEngineRenderer*>::iterator Iter = FontRenderer.begin();
+		for (; Iter != FontRenderer.end(); ++Iter) {
+
+			(*Iter)->SetIndex(10);
+
+		}
+		return;
+
+	}
+
+
+	std::stringstream IntToString;
+	IntToString << Num_;
+	StrNum_ = IntToString.str();
+
+	for (Count_ = 0; Count_ < StrNum_.size(); ++Count_)
+	{
+		//숫자의 앞에서부터 접근
+		char String = StrNum_.at(Count_);
+
+		//int로 변환
+		int Index = String - '0';
+
+		//인덱스를 바꿈
+		FontRenderer.at(Count_)->SetIndex(Index);
+	}
+
+	float MarginX = 0;
+	for (int ChangePivotCount = Count_; ChangePivotCount > -1; --ChangePivotCount)
+	{
+		FontRenderer.at(ChangePivotCount)->SetPivot({ _Pos.x - MarginX, _Pos.y  });
+		MarginX += 18.f;
+
+	}
+
+	//그 외의 숫자는 공백으로 함
+	for (; Count_ < 11; ++Count_)
+	{
+		FontRenderer.at(Count_)->SetIndex(10);
+	}
+}
+
+void Font::ChangeNumLeftSort(int _Num , float4 _Pos)
+{
+	int Count_ = 0;
+	Num_ = _Num;
+
+	//0 이라면
+	if (Num_ == 0)
+	{
+		std::vector<GameEngineRenderer*>::iterator Iter = FontRenderer.begin();
+		for (; Iter != FontRenderer.end(); ++Iter) {
+
+			(*Iter)->SetIndex(10);
+
+		}
+		return;
+
+	}
+
+
+	std::stringstream IntToString;
+	IntToString << Num_;
+	StrNum_ = IntToString.str();
+
+	for (Count_ = 0; Count_ < StrNum_.size(); ++Count_)
+	{
+		//숫자의 앞에서부터 접근
+		char String = StrNum_.at(Count_);
+
+		//int로 변환
+		int Index = String - '0';
+
+		//인덱스를 바꿈
+		FontRenderer.at(Count_)->SetIndex(Index);
+	}
+
+	float MarginX =0;
+	for (int ChangePivotCount = Count_; ChangePivotCount > -1; --ChangePivotCount)
+	{
+		FontRenderer.at(ChangePivotCount)->SetPivot({ _Pos.x - MarginX, _Pos.y + 12.f });
+		MarginX += 11.f;
+
+	}
+
+	//그 외의 숫자는 공백으로 함
+	for (; Count_ < 11; ++Count_)
+	{
+		FontRenderer.at(Count_)->SetIndex(10);
+	}
+}
+
+
+
+
+
+void Font::SetPositionRightSort(float4 _Pos)
 {
 	std::vector<GameEngineRenderer*>::iterator Iter = FontRenderer.begin();
 	for (int i = 0; Iter != FontRenderer.end(); ++Iter)
