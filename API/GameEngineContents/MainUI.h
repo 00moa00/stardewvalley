@@ -74,7 +74,6 @@ private:
 
 	float SecondTime_;
 
-	bool AddDay_;
 	bool isExtraDay_;
 
 	AM_PM AmPm_;
@@ -100,7 +99,6 @@ private:
 
 	void AddDay()
 	{
-		AddDay_ = true;
 
 		if (DayIndex_ == 6)
 		{
@@ -137,9 +135,14 @@ public:
 		return Day_;
 	}
 
-	bool isAddDay()
+	int GetHour()
 	{
-		if (SecondTimeInt_ % 8640 == 0)
+		return HourTime_;
+	}
+
+	bool DayOver()
+	{
+		if (HourTime_ == 25)
 		{
 			return true;
 		}

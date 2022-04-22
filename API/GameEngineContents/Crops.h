@@ -14,7 +14,8 @@
 enum class CROPS_UPDATE
 {
 	INIT,
-	ADD_GROWING_DAY
+	ADD_GROWING_DAY,
+	ADD_GROWING_DAY_INIT
 };
 
 // Ό³Έν :
@@ -49,13 +50,18 @@ private:
 
 protected:
 
-	void GrowingCrops();
+	void GrowingCropsTime();
 
 public:
 
 	GameEngineRenderer* GetRenderer()
 	{
 		return CropRenderer_;
+	}
+
+	int GetGrowingDay()
+	{
+		return GrowingDay_;
 	}
 
 

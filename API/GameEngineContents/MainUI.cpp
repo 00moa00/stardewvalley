@@ -25,7 +25,7 @@ MainUI::MainUI()
 	PrevSecondTime_(0),
 	AddTIme_(),
 
-	AddDay_(false),
+
 	isExtraDay_(false),
 
 	AmPm_(AM_PM::AM),
@@ -146,10 +146,10 @@ void MainUI::Update()
 	}
 
 	UpdateMinuteFont();
-	UpdateHourTime();
 	UpdateSetPm();
 	UpdateSetAm();
 	ExtraDayAndAddDay();
+	UpdateHourTime();
 }
 
 void MainUI::Render()
@@ -245,11 +245,12 @@ void MainUI::ExtraDayAndAddDay()
 {
 	if (isExtraDay_ == true && HourTime_ == 25)
 	{
-		isExtraDay_ = false;
-		HourTime_ = 6;
 		AddDay();
 		++Day_;
 		DayFont_->ChangeNumRightSort(Day_);
+		HourTime_ = 5;
+		MinuteTime_ = 0;
+		isExtraDay_ = false;
 	}
 }
 

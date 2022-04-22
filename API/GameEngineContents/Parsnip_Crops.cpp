@@ -1,5 +1,4 @@
 #include "Parsnip_Crops.h"
-#include "MainUI.h"
 
 Parsnip_Crops::Parsnip_Crops() 
 {
@@ -19,31 +18,36 @@ void Parsnip_Crops::Start()
 
 void Parsnip_Crops::Update()
 {
+	GrowingCropsTime();
 
-	switch (CropsUpdateState_)
+	//바뀐 순간에만 인덱스를 교체 
+	if ( GetGrowingDay() == 1 && CropsUpdateState_ == CROPS_UPDATE::ADD_GROWING_DAY)
 	{
-	case CROPS_UPDATE::INIT:
+		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::PARSNIP_GROW0));
+	}
+	
+	if (GetGrowingDay() == 2 && CropsUpdateState_ == CROPS_UPDATE::ADD_GROWING_DAY)
+	{
+		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::PARSNIP_GROW1));
 
-		if (MainUI::MainMainUI->isAddDay())
-		{
-			CropsUpdateState_ = CROPS_UPDATE::ADD_GROWING_DAY;
-			break;
-		}
-
-		break;
-	case CROPS_UPDATE::ADD_GROWING_DAY:
-
-		StartDay_ = MainUI::MainMainUI->GetDay();
-		GrowingDay_ = MainUI::MainMainUI->GetDay() - StartDay_;
-
-		CropsUpdateState_ = CROPS_UPDATE::INIT;
-
-		break;
-	default:
-		break;
 	}
 
+	if (GetGrowingDay() == 3 && CropsUpdateState_ == CROPS_UPDATE::ADD_GROWING_DAY)
+	{
+		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::PARSNIP_GROW2));
 
+	}
 
+	if (GetGrowingDay() == 4 && CropsUpdateState_ == CROPS_UPDATE::ADD_GROWING_DAY)
+	{
+		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::PARSNIP_GROW3));
+
+	}
+
+	if (GetGrowingDay() == 5 && CropsUpdateState_ == CROPS_UPDATE::ADD_GROWING_DAY)
+	{
+		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::PARSNIP_GROW4));
+
+	}
 }
 

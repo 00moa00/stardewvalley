@@ -29,6 +29,7 @@ enum class TILE_STATE
 {
 	HOE_DIRT_CREATE,
 	HOE_DIRT_WATER,
+	CLEAR,
 };
 
 class FarmTile : public Tile
@@ -240,14 +241,15 @@ private:
 
 	void CreateDirtTile();
 	void CreateWaterTile();
+
 	void ChangeDirtTile();
 	void ChangeWetDirtTile();
 
-	void ObjectTileColl();
 	void CrushWood();
 	void CrushStone();
 	void CrushTree();
 
+	void ClearWetDirtTile();
 
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------
 

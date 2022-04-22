@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "TreeTop.h"
+#include "MainUI.h"
 
 //******************************************************************************
 //
@@ -353,6 +354,30 @@ void Player::CrushTree()
 
 	}
 
+}
+
+void Player::ClearWetDirtTile()
+{
+	if (WetDirtList_.empty() == false)
+	{
+		if (MainUI::MainMainUI->DayOver() == true)
+		{
+
+			std::map<int, FarmTile*>::iterator StartIter = WetDirtList_.begin();
+			std::map<int, FarmTile*>::iterator EndIter = WetDirtList_.end();
+
+			for (; StartIter != EndIter; ++StartIter)
+			{
+				StartIter->second->SetTileState(TILE_STATE::CLEAR);
+				StartIter->second->GetRenderer()->Death();
+			}
+
+
+
+			WetDirtList_.erase(WetDirtList_.begin(), WetDirtList_.end());
+
+		}
+	}
 }
 
 
