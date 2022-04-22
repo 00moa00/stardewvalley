@@ -54,10 +54,12 @@ void Parsnip_Crops::Update()
 	}
 }
 
-void Parsnip_Crops::CropsDeath()
+
+void Parsnip_Crops::DropCropsInMap()
 {
-	int Count = RandomItemCount.RandomInt(1, 5);
+	int Count = RandomItemCount.RandomInt(1, 3);
 	Items* DropItem;
+
 	for (int i = 0; i < Count; ++i)
 	{
 		DropItem = CreateDropItemActor<Pasnip>();
@@ -66,10 +68,10 @@ void Parsnip_Crops::CropsDeath()
 		Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
 		Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);
 
-		DropItem->SetPosition({ this->GetPosition().x + Pos.x, this->GetPosition().y + Pos.y});
+		DropItem->SetPosition({ this->GetPosition().x + Pos.x, this->GetPosition().y + Pos.y });
 		DropItem->SetMoveFlag(true);
-
 	}
 
+	this->Death();
 }
 

@@ -226,7 +226,7 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::INIT:
 
 		ChangeHandItem();
-
+		harvestingCrops();
 
 		//손에 들 수 있는 아이템이라면 
 		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
@@ -325,6 +325,7 @@ void Player::PlayerUpdate()
 
 		PlayerWalk();
 		SubEnergy();
+		harvestingCrops();
 
 
 		if (isStop())

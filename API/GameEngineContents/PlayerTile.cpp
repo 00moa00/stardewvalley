@@ -134,31 +134,61 @@ void Player::CreateSeed()
 	}
 
 
-	////해당 땅이 파져있으면 씨앗을 심는다.
-	//if (FindDirtIter != EndDirtIter)
-	//{
+	//해당 땅이 파져있으면 씨앗을 심는다.
+	if (FindDirtIter != EndDirtIter)
+	{
 
-	//	//TODO: 핸드 아이템의 타입에 따라서 초기화.
+		//TODO: 핸드 아이템의 타입에 따라서 초기화.
 
-	//	Inventory::MainInventory->GetCurrentItem()->SubItemCount();
-	//	//PlayerHandItem_->SubItemCount();
+		Inventory::MainInventory->GetCurrentItem()->SubItemCount();
+		//PlayerHandItem_->SubItemCount();
 
-	//	Crops* seed = CreateMiniActor<Parsnip_Crops>();
+		Crops* seed = CreateSeedActor<Parsnip_Crops>();
 
-	//	float4 TileSize_ = { 48.f, 48.f };
-	//	float4 WorldPos = TileSize_;
+		float4 TileSize_ = { 48.f, 48.f };
+		float4 WorldPos = TileSize_;
 
-	//	WorldPos.x *= static_cast<int>(Pos.x / CHIP_SIZE);
-	//	WorldPos.y *= static_cast<int>(Pos.y / CHIP_SIZE);
+		WorldPos.x *= static_cast<int>(Pos.x / CHIP_SIZE);
+		WorldPos.y *= static_cast<int>(Pos.y / CHIP_SIZE);
 
-	//	WorldPos += TileSize_.Half();
+		WorldPos += TileSize_.Half();
 
-	//	seed->GetRenderer()->SetPivot({ WorldPos.x, WorldPos.y - 24.f });
-	//	seed->SetTileFindIndex(ChangeIndex);
-	//	SeedList_.insert(std::make_pair(ChangeIndex, seed));
+		//seed->GetRenderer()->SetPivot({ WorldPos.x, WorldPos.y - 24.f });
+		seed->SetTileFindIndex(ChangeIndex);
 
-	//}
+		seed->SetPosition({ WorldPos.x, WorldPos.y - 24.f });
 
+		SeedList_.insert(std::make_pair(ChangeIndex, seed));
+
+	}
+
+
+}
+
+void Player::harvestingCrops()
+{
+	float4 Pos = PlayerCollCheckPos();
+
+	TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
+	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+	std::map<int, Crops*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
+	std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
+
+
+	//씨앗이 없으면, 씨앗이 아직 수확가능 상태가 아니라면
+	if (FindSeedIter == EndSeedIter || FindSeedIter->second->GetisHarvest() == false)
+	{
+		return;
+	}
+
+	if (Mouse_->isMouseClick())
+	{
+		FindSeedIter->second->DropCropsInMap();
+
+		SeedList_.erase(ChangeIndex);
+		//FindSeedIter->second->Death();
+	}
 
 }
 
@@ -295,33 +325,7 @@ void Player::CrushTree()
 
 }
 
-void Player::harvestingCrops()
-{
-	float4 Pos = PlayerCollCheckPos();
 
-	TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
-	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
-
-	std::map<int, Crops*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
-	std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
-
-
-	//씨앗이 없으면, 씨앗이 아직 수확가능 상태가 아니라면
-	if (FindSeedIter == EndSeedIter || FindSeedIter->second->GetisHarvest() == false)
-	{
-		return;
-	}
-
-
-	Iter->second->Death();
-	Player::MapObject_.erase(Iter);
-
-	TileState_ = TILE_COLL::INIT;
-	PlayerState_ = PLAYER_UPDATE::INIT;
-
-	Iter = Player::MapObject_.begin();
-
-}
 
 void Player::ClearWetDirtTile()
 {

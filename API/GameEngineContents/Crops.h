@@ -41,6 +41,11 @@ private:
 	void Start() override;
 	void Update() override;
 
+public:
+
+	void CropsDeath();
+	virtual void DropCropsInMap();
+
 private:
 
 
@@ -66,12 +71,9 @@ protected:
 private:
 
 protected:
-	virtual void CropsDeath();
 
 	void GrowingCropsTime();
 	void DeathCropsCheck();
-
-	void DropCropsInMap();
 
 	bool isWetDirt();
 

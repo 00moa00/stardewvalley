@@ -14,9 +14,7 @@ DropWood::~DropWood()
 
 void DropWood::Start()
 {
-	ItemSpeed_.x = 1.f;
-	ItemSpeed_.y = 5.f;
-	Gravity_.y = 0.1f;
+
 
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
 	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::MINI_WOOD));
@@ -28,11 +26,9 @@ void DropWood::Start()
 	if (Font_ == nullptr)
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-
+		Font_->ChangeWhiteColor();
+		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
-
-	Font_->ChangeWhiteColor();
-	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 
 
 	ItemType_ = ITEMTYPE::ITEM;

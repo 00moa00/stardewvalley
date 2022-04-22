@@ -16,7 +16,7 @@ void Pasnip::Start()
 {
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
 	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::PARSNIP));
-	ItemRenderer_->CameraEffectOff();
+	ItemRenderer_->CameraEffectOn();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
@@ -27,13 +27,13 @@ void Pasnip::Start()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
+	ItemType_ = ITEMTYPE::ITEM;
+	ItemName_ = "Pasnip";
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::PARSNIP);
-
-	ItemType_ = ITEMTYPE::ITEM;
-	ItemName_ = "Pasnip";
 
 	SellPrice_ = 35;
 }
@@ -45,7 +45,7 @@ void Pasnip::Update()
 	if (isItemDeath_ == true)
 	{
 		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<DropStone>();
+		MainPlayer->GetInventroy()->NewItem<Pasnip>();
 	}
 
 	switch (ItemState_)
@@ -77,7 +77,6 @@ void Pasnip::AddItemCount()
 
 void Pasnip::SubItemCount()
 {
-
 	if (Count_ == 1)
 	{
 		Player::MainPlayer->SetResetPlayerHandItem();
