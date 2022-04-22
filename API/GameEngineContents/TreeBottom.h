@@ -7,7 +7,8 @@
 enum class TREESTATE
 {
 	INIT,
-	UPDATE
+	UPDATE,
+	TREETOP_DIE
 };
 
 // Ό³Έν :

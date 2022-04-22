@@ -76,8 +76,18 @@ void TreeBottom::Update()
 
 		if (Damage_ == 2)
 		{
-			TreeTop_->Off();
+			TreeTop_->Death();
+			TreeTop_ = nullptr;
+			TreeState_ = TREESTATE::TREETOP_DIE;
+			break;
+
 		}
+
+		break;
+
+	case TREESTATE::TREETOP_DIE:
+
+		
 
 		break;
 	default:
