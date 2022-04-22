@@ -127,8 +127,8 @@ void Player::CreateSeed()
 	std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
 
 
-	//땅에 아무것도 없으면, 이미 씨앗이 있으면
-	if (FindDirtIter == EndDirtIter&& FindSeedIter!= EndSeedIter)
+	//땅이 파져 있지 않으면, 이미 씨앗이 있으면
+	if (FindDirtIter == EndDirtIter || FindSeedIter != EndSeedIter)
 	{
 		return;
 	}
@@ -143,7 +143,7 @@ void Player::CreateSeed()
 		Inventory::MainInventory->GetCurrentItem()->SubItemCount();
 		//PlayerHandItem_->SubItemCount();
 
-		Crops* seed = CreateSeedActor<Parsnip_Crops>();
+		Crops* seed = CreateMiniActor<Parsnip_Crops>();
 
 		float4 TileSize_ = { 48.f, 48.f };
 		float4 WorldPos = TileSize_;
@@ -167,7 +167,7 @@ void Player::CrushWood()
 
 	for (Iter = MapObject_.begin(); Iter != MapObject_.end(); ++Iter) {
 
-		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
+		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
 			
 			int Count = RandomItemCount.RandomInt(1, 5);
@@ -178,7 +178,7 @@ void Player::CrushWood()
 				if (Iter->second->GetItemNameConstRef() == "SmallWood1"
 					|| Iter->second->GetItemNameConstRef() == "SmallWood2")
 				{
-					MiniItem = CreateSeedActor<MiniWood>();
+					MiniItem = CreateMiniActor<DropWood>();
 				}
 
 				else
@@ -219,7 +219,7 @@ void Player::CrushStone()
 
 	for (Iter = MapObject_.begin(); Iter != MapObject_.end(); ++Iter) {
 
-		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
+		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
 
 			int Count = RandomItemCount.RandomInt(1, 5);
@@ -229,7 +229,7 @@ void Player::CrushStone()
 
 				if (Iter->second->GetItemNameConstRef() == "SmallStone")
 				{
-					MiniItem = CreateSeedActor<MiniStone>();
+					MiniItem = CreateMiniActor<DropStone>();
 				}
 
 				else
@@ -247,12 +247,12 @@ void Player::CrushStone()
 
 
 			Iter->second->Death();
-			MapObject_.erase(Iter);
+			Player::MapObject_.erase(Iter);
 
 			TileState_ = TILE_COLL::INIT;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 
-			Iter = MapObject_.begin();
+			Iter = Player::MapObject_.begin();
 
 		}
 
@@ -261,9 +261,7 @@ void Player::CrushStone()
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
-
 	}
-
 
 }
 
@@ -271,9 +269,9 @@ void Player::CrushStone()
 void Player::CrushTree()
 {
 
-	for (Iter = MapObject_.begin(); Iter != MapObject_.end(); ++Iter) {
+	for (Iter = Player::MapObject_.begin(); Iter != Player::MapObject_.end(); ++Iter) {
 
-		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true)
+		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
 			if (Iter->second->GetItemNameConstRef() == "Maple_Tree"
 				|| Iter->second->GetItemNameConstRef() == "Fine_Tree"
@@ -299,7 +297,7 @@ void Player::CrushTree()
 						Items* MiniItem;
 						for (int i = 0; i < Count; ++i)
 						{
-							MiniItem = CreateSeedActor<MiniWood>();
+							MiniItem = CreateSeedActor<DropWood>();
 
 							float4 Pos;
 							Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
@@ -324,7 +322,7 @@ void Player::CrushTree()
 					Items* MiniItem;
 					for (int i = 0; i < Count; ++i)
 					{
-						MiniItem = CreateSeedActor<MiniWood>();
+						MiniItem = CreateSeedActor<DropWood>();
 
 						float4 Pos;
 						Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
@@ -335,13 +333,13 @@ void Player::CrushTree()
 
 					}
 
-					Iter->second->TreeOff();
-					MapObject_.erase(Iter);
+					Iter->second->Death();
+					Player::MapObject_.erase(Iter);
 
 					TileState_ = TILE_COLL::INIT;
 					PlayerState_ = PLAYER_UPDATE::INIT;
 
-					Iter = MapObject_.begin();
+					Iter = Player::MapObject_.begin();
 
 				}
 			}
@@ -359,61 +357,6 @@ void Player::CrushTree()
 }
 
 
-void Player::ObjectTileColl()
-{
-	float4 Pos = PlayerCollCheckPos();
-
-	switch (TileState_)
-	{
-	case TILE_COLL::INIT:
-		Iter = MapObject_.begin();
-		TileState_ = TILE_COLL::NOTACT;
-
-		break;
-
-	case TILE_COLL::NOTACT:
-
-
-		for (; Iter != MapObject_.end(); ++Iter) {
-
-			if (Iter->second->GetItemType() == ITEMTYPE::FALG)
-			{
-				continue;
-			}
-		
-
-			if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == true) 
-			{
-				Speed_ = 0.f;
-				TileState_ = TILE_COLL::COll;
-				break;
-			}
-
-		
-
-		}
-
-		if (Iter == MapObject_.end()) {
-			Iter = MapObject_.begin();
-		}
-		break;
-
-	case TILE_COLL::COll:
-
-		if (Iter->second->IsWall(PlayerCollCheckPos(), GetScale(), MoveDir_) == false) {
-			
-			Speed_ = 150.f;
-			//Player_->SetBreakY(false);
-
-			Iter = MapObject_.begin();
-			TileState_ = TILE_COLL::NOTACT;
-		}
-
-		break;
-
-	}
-
-}
 
 
 void Player::ChangeDirtTile()

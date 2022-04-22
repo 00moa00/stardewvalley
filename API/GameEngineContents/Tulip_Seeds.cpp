@@ -1,23 +1,21 @@
-#include "Parsnip_Seeds.h"
+#include "Tulip_Seeds.h"
 #include "Inventory.h"
 
-Parsnip_Seeds* Parsnip_Seeds::MainParsnipSeeds = nullptr;
-Font* Parsnip_Seeds::Font_ = nullptr;
+Tulip_Seeds* Tulip_Seeds::MainTulipSeeds = nullptr;
+Font* Tulip_Seeds::Font_ = nullptr;
 
-Parsnip_Seeds::Parsnip_Seeds() 
+Tulip_Seeds::Tulip_Seeds() 
 {
-
 }
 
-Parsnip_Seeds::~Parsnip_Seeds() 
+Tulip_Seeds::~Tulip_Seeds() 
 {
-
 }
 
-void Parsnip_Seeds::Start()
+void Tulip_Seeds::Start()
 {
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::PARSNIP_SEEDS));
+	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::TULIP_BULB));
 	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
@@ -32,15 +30,15 @@ void Parsnip_Seeds::Start()
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::PARSNIP_SEEDS);
+	FileIndex_ = static_cast<size_t>(ITEM::TULIP_BULB);
 
 	ItemType_ = ITEMTYPE::ITEM;
-	ItemName_ = "Parsnip_Seeds";
+	ItemName_ = "Tulip_Seeds";
 
 	SellPrice_ = 35;
 }
 
-void Parsnip_Seeds::Update()
+void Tulip_Seeds::Update()
 {
 	switch (ItemState_)
 	{
@@ -48,35 +46,34 @@ void Parsnip_Seeds::Update()
 		Font_->SetPositionItem({ GetPosition() });
 
 		break;
+
 	}
 }
 
-void Parsnip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
+void Tulip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainParsnipSeeds = this;
+	MainTulipSeeds = this;
 	Font_ = Font_;
 }
 
-void Parsnip_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
+void Tulip_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
 }
 
-void Parsnip_Seeds::AddItemCount()
+void Tulip_Seeds::AddItemCount()
 {
 	++Count_;
 	Font_->ChangeNumItem(Count_);
 }
 
-void Parsnip_Seeds::SubItemCount()
+void Tulip_Seeds::SubItemCount()
 {
 	if (Count_ == 1)
 	{
-		Count_ = 0;
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
-		Font_ = nullptr;
-		this->Death();
+		Death();
 	}
 	else
 	{
@@ -84,4 +81,3 @@ void Parsnip_Seeds::SubItemCount()
 		Font_->ChangeNumItem(Count_);
 	}
 }
-

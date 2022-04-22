@@ -84,7 +84,8 @@ void TownLevel::LoadMapObject()
 {
 
 	char MapOject[TOWN_CHIP_NUM_Y][TOWN_CHIP_NUM_X] = {
-	#include "Map/Town.txt";
+
+	#include "Map/Town.txt"
 
 	};
 

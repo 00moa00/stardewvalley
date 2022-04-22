@@ -36,8 +36,7 @@ void ParsnipSeeds_Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void ParsnipSeeds_Shop::InventoryNewItem()
 {
-	Player* MainPlayer = MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-	MainPlayer->GetInventroy()->NewItem<Parsnip_Seeds>();
+	Player::MainPlayer->GetInventroy()->NewItem<Parsnip_Seeds>();
 }
 
 bool ParsnipSeeds_Shop::MouseInItem()

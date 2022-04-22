@@ -411,6 +411,13 @@ void Inventory::ItemMove()
 
 	case ITEMMOVE::HOLD:
 
+		if (PlayerItemListStartIter->second->GetItemCount() == 0)
+		{
+			MoveState_ = ITEMMOVE::INIT;
+			break;
+		}
+
+
 		//아이템을 마우스의 위치에 고정
 		PlayerItemListStartIter->second->SetPosition({Mouse_->GetPosition().x + 24.f, Mouse_->GetPosition().y + 30.f });
 		PlayerItemListStartIter->second->MouseHoldItem();

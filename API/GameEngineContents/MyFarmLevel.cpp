@@ -222,6 +222,7 @@ void MyFarmLevel::LoadMapObject()
     }
 
 	Player::MainPlayer->CopyList(MapObject_);
+	MapObject_.erase(MapObject_.begin(), MapObject_.end());
 
 
 }

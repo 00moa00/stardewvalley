@@ -1,20 +1,21 @@
 #pragma once
-#include "Items.h"
+#include "GameEngineContents//Items.h"
+
 // Ό³Έν :
-class MiniStone : public Items
+class DropStone : public Items
 {
 public:
 	static Font* Font_;
-	static MiniStone* MainMiniStone;
+	static DropStone* MainDropStone;
 	// constrcuter destructer
-	MiniStone();
-	~MiniStone();
+	DropStone();
+	~DropStone();
 
 	// delete Function
-	MiniStone(const MiniStone& _Other) = delete;
-	MiniStone(MiniStone&& _Other) noexcept = delete;
-	MiniStone& operator=(const MiniStone& _Other) = delete;
-	MiniStone& operator=(MiniStone&& _Other) noexcept = delete;
+	DropStone(const DropStone& _Other) = delete;
+	DropStone(DropStone&& _Other) noexcept = delete;
+	DropStone& operator=(const DropStone& _Other) = delete;
+	DropStone& operator=(DropStone&& _Other) noexcept = delete;
 
 protected:
 

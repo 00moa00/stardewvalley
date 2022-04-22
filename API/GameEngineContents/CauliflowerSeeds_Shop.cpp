@@ -1,4 +1,6 @@
 #include "CauliflowerSeeds_Shop.h"
+#include "Cauliflower_Seeds.h"
+#include "Player.h"
 
 CauliflowerSeeds_Shop::CauliflowerSeeds_Shop() 
 {
@@ -27,6 +29,8 @@ void CauliflowerSeeds_Shop::Update()
 
 void CauliflowerSeeds_Shop::InventoryNewItem()
 {
+	Player::MainPlayer->GetInventroy()->NewItem<Cauliflower_Seeds>();
+
 }
 
 bool CauliflowerSeeds_Shop::MouseInItem()

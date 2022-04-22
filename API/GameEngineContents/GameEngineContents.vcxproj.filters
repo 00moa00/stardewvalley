@@ -89,12 +89,6 @@
     <ClCompile Include="Block.cpp">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
-    <ClCompile Include="Weeds.cpp">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="WildHorseradish.cpp">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
-    </ClCompile>
     <ClCompile Include="Tv.cpp">
       <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClCompile>
@@ -168,13 +162,10 @@
       <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
     </ClCompile>
     <ClCompile Include="Parsnip_Crops.cpp">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
     <ClCompile Include="Items.cpp">
       <Filter>Actor\03. Play\Obejct</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniStone.cpp">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
     <ClCompile Include="TreeTop.cpp">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
@@ -190,9 +181,6 @@
     </ClCompile>
     <ClCompile Include="SmallStone.cpp">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniWood.cpp">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
     <ClCompile Include="MoveShop.cpp">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
@@ -243,22 +231,67 @@
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
     <ClCompile Include="Crops.cpp">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
     <ClCompile Include="Cauliflower_Crops.cpp">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
     <ClCompile Include="Bean_Crops.cpp">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
     <ClCompile Include="Patato_Crops.cpp">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
     <ClCompile Include="Jazz_Crops.cpp">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
     <ClCompile Include="Tulip_Crops.cpp">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
+    </ClCompile>
+    <ClCompile Include="Cauliflower_Seeds.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClCompile>
+    <ClCompile Include="Potato_Seeds.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClCompile>
+    <ClCompile Include="Tulip_Seeds.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClCompile>
+    <ClCompile Include="Jazz_Seeds.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClCompile>
+    <ClCompile Include="Bean_Seeds.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClCompile>
+    <ClCompile Include="Kale_Seeds.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClCompile>
+    <ClCompile Include="Bean.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Daffodil.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Dandelion.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="DropStone.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="DropWood.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Pasnip.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Potato.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Weeds.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="WildHorseradish.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -365,12 +398,6 @@
     <ClInclude Include="Block.h">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
-    <ClInclude Include="Weeds.h">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="WildHorseradish.h">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
-    </ClInclude>
     <ClInclude Include="Tv.h">
       <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClInclude>
@@ -447,13 +474,10 @@
       <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
     </ClInclude>
     <ClInclude Include="Parsnip_Crops.h">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
     <ClInclude Include="Items.h">
       <Filter>Actor\03. Play\Obejct</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniStone.h">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
     <ClInclude Include="TreeTop.h">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
@@ -469,9 +493,6 @@
     </ClInclude>
     <ClInclude Include="SmallStone.h">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniWood.h">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
     <ClInclude Include="MoveShop.h">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
@@ -522,22 +543,67 @@
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
     <ClInclude Include="Crops.h">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
     <ClInclude Include="Cauliflower_Crops.h">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
     <ClInclude Include="Bean_Crops.h">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
     <ClInclude Include="Patato_Crops.h">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
     <ClInclude Include="Jazz_Crops.h">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
     <ClInclude Include="Tulip_Crops.h">
-      <Filter>Actor\03. Play\Obejct\Farming\GrowingSeed</Filter>
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
+    </ClInclude>
+    <ClInclude Include="Cauliflower_Seeds.h">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClInclude>
+    <ClInclude Include="Potato_Seeds.h">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClInclude>
+    <ClInclude Include="Tulip_Seeds.h">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClInclude>
+    <ClInclude Include="Jazz_Seeds.h">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClInclude>
+    <ClInclude Include="Bean_Seeds.h">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClInclude>
+    <ClInclude Include="Kale_Seeds.h">
+      <Filter>Actor\03. Play\Obejct\Farming\Seed</Filter>
+    </ClInclude>
+    <ClInclude Include="Bean.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Daffodil.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Dandelion.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="DropStone.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="DropWood.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Pasnip.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Potato.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Weeds.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="WildHorseradish.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -571,9 +637,6 @@
     <Filter Include="Actor\01. GlobalActor">
       <UniqueIdentifier>{b63f880a-300f-4acf-a371-24a83b8253d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\GameTime">
-      <UniqueIdentifier>{76837e91-0396-4cd9-ba19-b24879c1900a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\03. Play\Inventory">
       <UniqueIdentifier>{0c93c102-3041-46d1-9ab5-18ae840e954d}</UniqueIdentifier>
     </Filter>
@@ -598,9 +661,6 @@
     <Filter Include="Actor\03. Play\Obejct\Farming\Seed">
       <UniqueIdentifier>{fdd2d070-ae77-4508-ac68-5b9b814032c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\Obejct\Farming\GrowingSeed">
-      <UniqueIdentifier>{67fa58fc-eb51-4124-b642-16508260f0d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\03. Play\Obejct\MapObject">
       <UniqueIdentifier>{c15f9684-5260-4222-bee4-d446efaf9813}</UniqueIdentifier>
     </Filter>
@@ -618,6 +678,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Obejct\MapCollisionBlock">
       <UniqueIdentifier>{2fb373cf-46c0-4a11-8b84-fa6589acc391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\Farming\Crops">
+      <UniqueIdentifier>{67fa58fc-eb51-4124-b642-16508260f0d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

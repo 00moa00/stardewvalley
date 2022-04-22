@@ -1,4 +1,6 @@
 #include "Dandelion_Shop.h"
+#include "Dandelion.h"
+#include "Player.h"
 
 Dandelion_Shop::Dandelion_Shop() 
 {
@@ -26,6 +28,8 @@ void Dandelion_Shop::Update()
 
 void Dandelion_Shop::InventoryNewItem()
 {
+	Player::MainPlayer->GetInventroy()->NewItem<Dandelion>();
+
 }
 
 bool Dandelion_Shop::MouseInItem()

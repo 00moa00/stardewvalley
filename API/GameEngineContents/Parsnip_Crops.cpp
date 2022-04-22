@@ -14,9 +14,6 @@ void Parsnip_Crops::Start()
 	CropRenderer_->SetIndex(static_cast<size_t>(CROPS::PARSNIP_SEED));
 	CropRenderer_->CameraEffectOn();
 
-	//ItemCollider_ = CreateCollision("Item", { 40, 40 });
-
-	//Name_ = "Parsnip_Crops";
 }
 
 void Parsnip_Crops::Update()

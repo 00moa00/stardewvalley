@@ -1,6 +1,7 @@
 #pragma once
 //#include "ItemData.h"
 #include "Items.h"
+
 // Ό³Έν :
 class Weeds : public Items
 {
@@ -15,12 +16,12 @@ public:
 	Weeds& operator=(const Weeds& _Other) = delete;
 	Weeds& operator=(Weeds&& _Other) noexcept = delete;
 
-protected:
+private:
+
 	void Start() override;
 	void Update() override;
 	void Render() override;
 
-private:
 
 };
 

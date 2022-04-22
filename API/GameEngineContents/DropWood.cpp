@@ -1,18 +1,18 @@
-#include "MiniWood.h"
+#include "DropWood.h"
 #include "Player.h"
 
-MiniWood* MiniWood::MainMiniWood = nullptr;
-Font* MiniWood::Font_ = nullptr;
+DropWood* DropWood::MainDropWood = nullptr;
+Font* DropWood::Font_ = nullptr;
 
-MiniWood::MiniWood() 
+DropWood::DropWood() 
 {
 }
 
-MiniWood::~MiniWood() 
+DropWood::~DropWood() 
 {
 }
 
-void MiniWood::Start()
+void DropWood::Start()
 {
 	ItemSpeed_.x = 1.f;
 	ItemSpeed_.y = 5.f;
@@ -23,31 +23,29 @@ void MiniWood::Start()
 	ItemRenderer_->CameraEffectOn();
 
 	MapItemCollider_ = CreateCollision("MapObject", { 20, 10 });
-	ItemCollider_ = CreateCollision("Item", { 40, 40 });
+	ItemCollider_ = CreateCollision("Item", { 40.f , 40.f });
 
 	if (Font_ == nullptr)
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+
 	}
 
 	Font_->ChangeWhiteColor();
-
 	Font_->ChangeNumItem(1);
 
 
-
 	ItemType_ = ITEMTYPE::ITEM;
-
-	ItemName_ = "MiniWood";
+	ItemName_ = "DropWood";
 }
 
-void MiniWood::Update()
+void DropWood::Update()
 {
 	MoveToPlayer();
-	if (isDeath_ == true)
+	if (isItemDeath_ == true)
 	{
 		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<MiniWood>();
+		MainPlayer->GetInventroy()->NewItem<DropWood>();
 	}
 
 
@@ -60,23 +58,22 @@ void MiniWood::Update()
 
 	}
 
-
 }
 
-void MiniWood::LevelChangeStart(GameEngineLevel* _PrevLevel)
+void DropWood::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainMiniWood = this;
+	MainDropWood = this;
 	Font_ = Font_;
 
 }
 
-void MiniWood::LevelChangeEnd(GameEngineLevel* _NextLevel)
+void DropWood::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
 
 }
 
-void MiniWood::SubItemCount()
+void DropWood::SubItemCount()
 {
 	if (Count_ == 1)
 	{
@@ -92,7 +89,7 @@ void MiniWood::SubItemCount()
 }
 
 //
-//void MiniWood::MoveToPlayer()
+//void DropWood::MoveToPlayer()
 //{
 //
 //	switch (ItemState_)
@@ -136,7 +133,7 @@ void MiniWood::SubItemCount()
 //			if (playerVSobject())
 //
 //			{
-//				MainPlayer->GetInventroy()->NewItem<MiniWood>();
+//				MainPlayer->GetInventroy()->NewItem<DropWood>();
 //
 //				Death();
 //			}

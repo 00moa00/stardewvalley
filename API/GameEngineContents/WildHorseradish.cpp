@@ -1,4 +1,5 @@
 #include "WildHorseradish.h"
+
 WildHorseradish* WildHorseradish::MainWildHorseradish = nullptr;
 
 WildHorseradish::WildHorseradish(){

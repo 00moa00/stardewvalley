@@ -69,7 +69,11 @@ private:
 
 public:
 	virtual void TreeOff();
+	virtual void SetCrushAnimation();
+	virtual void SetInitAnimation();
 
+	virtual void AddItemCount();
+	virtual void SubItemCount();
 
 protected:
 	std::vector<GameEngineCollision*> ColList;
@@ -103,7 +107,7 @@ protected:
 
 	bool MouseHoldItem_;
 	bool isPossibleHand_;
-	bool isDeath_;
+	bool isItemDeath_;
 	bool MoveFlag_;
 
 	std::string ItemName_;
@@ -126,9 +130,8 @@ protected:
 
 
 public:
-	bool IsWall(const float4 pos, const float4 scale, float4 dir);
+	bool ItemCheck(const float4 pos, const float4 scale);
 	void MoveToPlayer();
-	void SetReRenderer();
 
 	//================================
 	//     Getter
@@ -148,6 +151,11 @@ public:
 	GameEngineRenderer* GetTreeTop()
 	{
 		return TreeTop_;
+	}
+
+	int GetItemCount()
+	{
+		return Count_;
 	}
 
 	int GetSellPrice()
@@ -190,9 +198,9 @@ public:
 		return Count_;
 	}
 
-	bool IsDeath()
+	bool IsItemDeath()
 	{
-		return isDeath_;
+		return isItemDeath_;
 	}
 
 
@@ -235,11 +243,7 @@ public:
 	//    Setter
 	//================================
 
-	virtual void SetCrushAnimation();
-	virtual void SetInitAnimation();
 
-	virtual void SetItemStateAddItem();
-	virtual void SubItemCount();
 
 	void SubDamage()
 	{
@@ -259,9 +263,9 @@ public:
 		MoveFlag_ = _flag;
 	}
 
-	void SetDeath(bool _flag)
+	void SetItemDeath(bool _flag)
 	{
-		isDeath_ = _flag;
+		isItemDeath_ = _flag;
 	}
 
 	void SetRenderer(GameEngineRenderer& _Renderer) {

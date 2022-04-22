@@ -62,6 +62,7 @@ void TreeTop::Update()
 		}
 
 		break;
+
 	case TREETOP::CRUSH:
 
 		if (GetItemNameConstRef() == "Fine_Tree")

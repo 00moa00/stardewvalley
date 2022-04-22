@@ -29,9 +29,6 @@ void TreeBottom::Start()
 
 void TreeBottom::Update()
 {
-
-
-
 	switch (TreeState_)
 	{
 	case TREESTATE::INIT:
@@ -79,7 +76,7 @@ void TreeBottom::Update()
 
 		if (Damage_ == 2)
 		{
-			TreeTop_->Off();
+			TreeTop_->Death();
 		}
 
 		break;
@@ -99,12 +96,11 @@ void TreeBottom::SetInitAnimation()
 void TreeBottom::SetCrushAnimation()
 {
 	TreeTop_->SetCrushAnimation();
-
 }
 
 void TreeBottom::TreeOff()
 {
-	this->Off();
-	TreeTop_->Off();
+	this->Death();
+	TreeTop_->Death();
 }
 

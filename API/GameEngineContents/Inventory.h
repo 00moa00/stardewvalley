@@ -237,7 +237,7 @@ public:
 		{
 			if (ItemStartIter->second->GetItemNameConstRef() == Item->GetItemNameConstRef())
 			{
-				ItemStartIter->second->SetItemStateAddItem();
+				ItemStartIter->second->AddItemCount();
 				Item->Death();
 
 				return nullptr;

@@ -1,23 +1,21 @@
-#include "Parsnip_Seeds.h"
+#include "Dandelion.h"
 #include "Inventory.h"
 
-Parsnip_Seeds* Parsnip_Seeds::MainParsnipSeeds = nullptr;
-Font* Parsnip_Seeds::Font_ = nullptr;
+Dandelion* Dandelion::MainDandelion = nullptr;
+Font* Dandelion::Font_ = nullptr;
 
-Parsnip_Seeds::Parsnip_Seeds() 
+Dandelion::Dandelion() 
 {
-
 }
 
-Parsnip_Seeds::~Parsnip_Seeds() 
+Dandelion::~Dandelion() 
 {
-
 }
 
-void Parsnip_Seeds::Start()
+void Dandelion::Start()
 {
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::PARSNIP_SEEDS));
+	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::DANDELION));
 	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
@@ -32,15 +30,15 @@ void Parsnip_Seeds::Start()
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::PARSNIP_SEEDS);
+	FileIndex_ = static_cast<size_t>(ITEM::DANDELION);
 
 	ItemType_ = ITEMTYPE::ITEM;
-	ItemName_ = "Parsnip_Seeds";
+	ItemName_ = "Dandelion";
 
 	SellPrice_ = 35;
 }
 
-void Parsnip_Seeds::Update()
+void Dandelion::Update()
 {
 	switch (ItemState_)
 	{
@@ -51,32 +49,30 @@ void Parsnip_Seeds::Update()
 	}
 }
 
-void Parsnip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
+void Dandelion::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainParsnipSeeds = this;
+	MainDandelion = this;
 	Font_ = Font_;
 }
 
-void Parsnip_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
+void Dandelion::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
 }
 
-void Parsnip_Seeds::AddItemCount()
+void Dandelion::AddItemCount()
 {
 	++Count_;
 	Font_->ChangeNumItem(Count_);
 }
 
-void Parsnip_Seeds::SubItemCount()
+void Dandelion::SubItemCount()
 {
 	if (Count_ == 1)
 	{
-		Count_ = 0;
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
-		Font_ = nullptr;
-		this->Death();
+		Death();
 	}
 	else
 	{
@@ -84,4 +80,3 @@ void Parsnip_Seeds::SubItemCount()
 		Font_->ChangeNumItem(Count_);
 	}
 }
-

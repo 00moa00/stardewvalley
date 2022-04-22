@@ -15,8 +15,8 @@
 #include "Font.h"
 #include "PlayerHandItem.h"
 #include "Parsnip_Crops.h"
-#include "MiniStone.h"
-#include "MiniWood.h"
+#include "DropStone.h"
+#include "DropWood.h"
 #include "Shop.h"
 #include "Crops.h"
 
@@ -269,6 +269,13 @@ private:
 
 	template<typename Actor>
 	Actor* CreateSeedActor()
+	{
+		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
+		return Item;
+	}
+
+	template<typename Actor>
+	Actor* CreateMiniActor()
 	{
 		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
 		return Item;

@@ -1,4 +1,6 @@
 #include "KaleSeeds_Shop.h"
+#include "Kale_Seeds.h"
+#include "Player.h"
 
 KaleSeeds_Shop::KaleSeeds_Shop() 
 {
@@ -27,6 +29,7 @@ void KaleSeeds_Shop::Update()
 
 void KaleSeeds_Shop::InventoryNewItem()
 {
+	Player::MainPlayer->GetInventroy()->NewItem<Kale_Seeds>();
 }
 
 bool KaleSeeds_Shop::MouseInItem()

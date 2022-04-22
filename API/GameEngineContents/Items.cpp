@@ -12,7 +12,7 @@ Items::Items() :
 	MouseHoldItem_ (false),
 	InMouse (false),
 	isPossibleHand_(false),
-	isDeath_(false),
+	isItemDeath_(false),
 	MoveFlag_(false),
 	InBox (true),
 
@@ -75,8 +75,13 @@ void Items::LevelChangeEnd(GameEngineLevel* _NextLevel)
 }
 
 
-bool Items::IsWall(const float4 pos, const float4 scale, float4 dir)
+bool Items::ItemCheck(const float4 pos, const float4 scale)
 {
+
+
+//	return ItemCollider_->NextPostCollisionCheck("Player", pos, CollisionType::Rect, CollisionType::Rect);
+		
+
 
 	int OtherLeft = pos.ix() - scale.hix();
 	int OtherRight = pos.ix() + scale.hix();
@@ -124,7 +129,7 @@ void Items::MoveToPlayer()
 
 	if (Check <= 20)
 	{
-		isDeath_ = true;
+		isItemDeath_ = true;
 		Death();
 		return;
 	}
@@ -132,15 +137,6 @@ void Items::MoveToPlayer()
 	Dir.Normal2D();
 	SetMove(Dir * GameEngineTime::GetDeltaTime() * 70.0f);
 
-
-}
-
-void Items::SetReRenderer()
-{
-	ItemRenderer_ = CreateRenderer();
-	ItemRenderer_ = CreateRenderer(FileName_);
-	ItemRenderer_->SetIndex(FileIndex_);
-	ItemRenderer_->CameraEffectOff();
 
 }
 
@@ -153,7 +149,7 @@ void Items::SetInitAnimation()
 {
 }
 
-void Items::SetItemStateAddItem()
+void Items::AddItemCount()
 {
 }
 

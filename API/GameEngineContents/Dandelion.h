@@ -1,22 +1,22 @@
 #pragma once
 #include "Items.h"
+
 // Ό³Έν :
-class Parsnip_Seeds : public Items
+class Dandelion : public Items
 {
 public:
-
-	static Parsnip_Seeds* MainParsnipSeeds;
+	static Dandelion* MainDandelion;
 	static Font* Font_;
 
 	// constrcuter destructer
-	Parsnip_Seeds();
-	~Parsnip_Seeds();
+	Dandelion();
+	~Dandelion();
 
 	// delete Function
-	Parsnip_Seeds(const Parsnip_Seeds& _Other) = delete;
-	Parsnip_Seeds(Parsnip_Seeds&& _Other) noexcept = delete;
-	Parsnip_Seeds& operator=(const Parsnip_Seeds& _Other) = delete;
-	Parsnip_Seeds& operator=(Parsnip_Seeds&& _Other) noexcept = delete;
+	Dandelion(const Dandelion& _Other) = delete;
+	Dandelion(Dandelion&& _Other) noexcept = delete;
+	Dandelion& operator=(const Dandelion& _Other) = delete;
+	Dandelion& operator=(Dandelion&& _Other) noexcept = delete;
 
 private:
 	void Start() override;

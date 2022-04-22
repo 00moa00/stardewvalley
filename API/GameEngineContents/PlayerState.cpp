@@ -480,8 +480,6 @@ void Player::PlayerWalk() {
 		Move = float4::ZERO;
 	}
 
-
-
 	int Color = MapColImage_->GetImagePixel(CheckPos);
 
 	if ((RGB(0, 0, 0) != Color))
@@ -535,8 +533,6 @@ void Player::SetPlayerHandItemPos()
 	PlayerHandItem_->SetPosition({ this->GetPosition().x, this->GetPosition().y - 92.f });
 
 }
-
-
 
 
 //******************************************************************************

@@ -1,4 +1,6 @@
 #include "Daffodil_Shop.h"
+#include "Daffodil.h"
+#include "Player.h"
 
 Daffodil_Shop::Daffodil_Shop() 
 {
@@ -26,6 +28,8 @@ void Daffodil_Shop::Update()
 
 void Daffodil_Shop::InventoryNewItem()
 {
+	Player::MainPlayer->GetInventroy()->NewItem<Daffodil>();
+
 }
 
 bool Daffodil_Shop::MouseInItem()

@@ -1,4 +1,6 @@
 #include "JazzSeeds_Shop.h"
+#include "Jazz_Seeds.h"
+#include "Player.h"
 
 JazzSeeds_Shop::JazzSeeds_Shop() 
 {
@@ -27,6 +29,8 @@ void JazzSeeds_Shop::Update()
 
 void JazzSeeds_Shop::InventoryNewItem()
 {
+	Player::MainPlayer->GetInventroy()->NewItem<Jazz_Seeds>();
+
 }
 
 bool JazzSeeds_Shop::MouseInItem()

@@ -1,19 +1,19 @@
-#include "MiniStone.h"
+#include "DropStone.h"
 #include "Player.h"
 
-MiniStone* MiniStone::MainMiniStone = nullptr;
-Font* MiniStone::Font_;
+DropStone* DropStone::MainDropStone = nullptr;
+Font* DropStone::Font_;
 
-MiniStone::MiniStone() 
+DropStone::DropStone() 
 
 {
 }
 
-MiniStone::~MiniStone() 
+DropStone::~DropStone() 
 {
 }
 
-void MiniStone::Start()
+void DropStone::Start()
 {
 	ItemSpeed_.x = 1.f;
 	ItemSpeed_.y = 5.f;
@@ -24,7 +24,7 @@ void MiniStone::Start()
 	ItemRenderer_->CameraEffectOn();
 
 	MapItemCollider_ = CreateCollision("MapObject", { 20, 10 });
-	ItemCollider_ = CreateCollision("Item", { 40, 40 });
+	ItemCollider_ = CreateCollision("Item", { 40.f , 40.f });
 
 
 	if (Font_ == nullptr)
@@ -37,20 +37,19 @@ void MiniStone::Start()
 
 
 	ItemType_ = ITEMTYPE::ITEM;
-	ItemName_ = "MiniStone";
-
+	ItemName_ = "DropStone";
 
 }
 
-void MiniStone::Update()
+void DropStone::Update()
 {
 
 	MoveToPlayer();
 
-	if (isDeath_ == true)
+	if (isItemDeath_ == true)
 	{
 		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<MiniStone>();
+		MainPlayer->GetInventroy()->NewItem<DropStone>();
 	}
 
 	switch (ItemState_)
@@ -63,18 +62,18 @@ void MiniStone::Update()
 	}
 
 }
-void MiniStone::LevelChangeStart(GameEngineLevel* _PrevLevel)
+void DropStone::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainMiniStone = this;
+	MainDropStone = this;
 	Font_ = Font_;
 
 }
-void MiniStone::LevelChangeEnd(GameEngineLevel* _NextLevel)
+void DropStone::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
 
 }
-void MiniStone::SubItemCount()
+void DropStone::SubItemCount()
 {
 	if (Count_ == 1)
 	{

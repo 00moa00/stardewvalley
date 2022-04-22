@@ -1,4 +1,5 @@
 #include "TulipBulb_Shop.h"
+#include "Tulip_Seeds.h"
 #include "Player.h"
 
 TulipBulb_Shop::TulipBulb_Shop() 
@@ -28,8 +29,7 @@ void TulipBulb_Shop::Update()
 
 void TulipBulb_Shop::InventoryNewItem()
 {
-	//Player* MainPlayer = MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-	//MainPlayer->GetInventroy()->NewItem<TulipBulb_Shop>();
+	Player::MainPlayer->GetInventroy()->NewItem<Tulip_Seeds>();
 
 }
 

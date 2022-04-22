@@ -1,21 +1,21 @@
 #pragma once
-#include "Items.h"
+#include "GameEngineContents//Items.h"
 
 // Ό³Έν :
-class MiniWood : public Items
+class DropWood : public Items
 {
 public:
 	static Font* Font_;
-	static MiniWood* MainMiniWood;
+	static DropWood* MainDropWood;
 	// constrcuter destructer
-	MiniWood();
-	~MiniWood();
+	DropWood();
+	~DropWood();
 
 	// delete Function
-	MiniWood(const MiniWood& _Other) = delete;
-	MiniWood(MiniWood&& _Other) noexcept = delete;
-	MiniWood& operator=(const MiniWood& _Other) = delete;
-	MiniWood& operator=(MiniWood&& _Other) noexcept = delete;
+	DropWood(const DropWood& _Other) = delete;
+	DropWood(DropWood&& _Other) noexcept = delete;
+	DropWood& operator=(const DropWood& _Other) = delete;
+	DropWood& operator=(DropWood&& _Other) noexcept = delete;
 
 protected:
 

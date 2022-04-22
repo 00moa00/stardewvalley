@@ -1,4 +1,6 @@
 #include "BeanStarter_Shop.h"
+#include "Bean_Seeds.h"
+#include "Player.h"
 
 BeanStarter_Shop::BeanStarter_Shop() 
 {
@@ -27,6 +29,8 @@ void BeanStarter_Shop::Update()
 
 void BeanStarter_Shop::InventoryNewItem()
 {
+	Player::MainPlayer->GetInventroy()->NewItem<Bean_Seeds>();
+
 }
 
 bool BeanStarter_Shop::MouseInItem()
