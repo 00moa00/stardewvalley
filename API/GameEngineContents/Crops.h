@@ -11,6 +11,12 @@
 #include "PlayerData.h"
 
 
+enum class CROPS_UPDATE
+{
+	INIT,
+	ADD_GROWING_DAY
+};
+
 // Ό³Έν :
 class Crops : public GameEngineActor
 {
@@ -31,25 +37,19 @@ private:
 
 protected:
 
+	int StartDay_;
+	int GrowingDay_;
+
+	MINUTE_STATE MinuteState_;
+	CROPS_UPDATE CropsUpdateState_;
+
 	GameEngineRenderer* CropRenderer_;
+
+private:
 
 protected:
 
-	float SecondTime_;
-
-	int SecondTimeInt_;
-	int PrevSecondTime_;
-
-	int MinuteTime_;
-	int HourTime_;
-	int Day_;
-
-	MINUTE_STATE MinuteState_;
-
-private:
-	void UpdateMinuteTime();
-	void UpdateHourTime();
-	void UpdateAddDay();
+	void GrowingCrops();
 
 public:
 
@@ -57,6 +57,7 @@ public:
 	{
 		return CropRenderer_;
 	}
+
 
 };
 

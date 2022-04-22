@@ -1,4 +1,5 @@
 #include "Parsnip_Crops.h"
+#include "MainUI.h"
 
 Parsnip_Crops::Parsnip_Crops() 
 {
@@ -18,42 +19,31 @@ void Parsnip_Crops::Start()
 
 void Parsnip_Crops::Update()
 {
-	SecondTime_ = (GetAccTime());
-	SecondTimeInt_ = static_cast<int>(SecondTime_);
 
-	switch (MinuteState_)
+	switch (CropsUpdateState_)
 	{
-	case MINUTE_STATE::COUNT:
+	case CROPS_UPDATE::INIT:
 
-		if (SecondTimeInt_ % 7 == 0)
+		if (MainUI::MainMainUI->isAddDay())
 		{
-			MinuteState_ = MINUTE_STATE::ADD;
+			CropsUpdateState_ = CROPS_UPDATE::ADD_GROWING_DAY;
 			break;
 		}
 
 		break;
+	case CROPS_UPDATE::ADD_GROWING_DAY:
 
-	case MINUTE_STATE::ADD:
+		StartDay_ = MainUI::MainMainUI->GetDay();
+		GrowingDay_ = MainUI::MainMainUI->GetDay() - StartDay_;
 
-		MinuteTime_ += 10;
-		PrevSecondTime_ = SecondTimeInt_;
-
-		MinuteState_ = MINUTE_STATE::WAIT;
-
-		break;
-
-	case MINUTE_STATE::WAIT:
-
-		if (PrevSecondTime_ != SecondTimeInt_)
-		{
-			MinuteState_ = MINUTE_STATE::COUNT;
-			break;
-		}
+		CropsUpdateState_ = CROPS_UPDATE::INIT;
 
 		break;
 	default:
 		break;
 	}
+
+
 
 }
 

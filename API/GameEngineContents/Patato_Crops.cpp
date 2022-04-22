@@ -17,5 +17,9 @@ void Patato_Crops::Start()
 
 void Patato_Crops::Update()
 {
+
+
+
+
 }
 

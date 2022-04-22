@@ -15,16 +15,16 @@ enum class AM_PM
 	PM
 };
 
-enum class WEEK
-{
-	MON,
-	TUE,
-	WED,
-	THU,
-	FRI,
-	SAT,
-	SUN
-};
+//enum class DAY
+//{
+//	MON,
+//	TUE,
+//	WED,
+//	THU,
+//	FRI,
+//	SAT,
+//	SUN
+//};
 
 
 
@@ -60,49 +60,61 @@ protected:
 private:
 	Font* Font_;
 
-	float SecondTime_;
+
 	int SecondTimeInt_;
 	int PrevSecondTime_;
-
 	int MinuteTime_;
 	int HourTime_;
+	
+	int ExtraHourTime_;
+
 	int Day_;
-
 	int AddTIme_;
+	int DayIndex_;
 
-	int WeekIndex_;
+	float SecondTime_;
+
+	bool AddDay_;
+	bool isExtraDay_;
+
 	AM_PM AmPm_;
 
 	MINUTE_STATE MinuteState_;
 
 	GameEngineRenderer* MainUIRenderer_;
 	//GameEngineRenderer* Day_;
-	GameEngineRenderer* WeekRenderer_;
+	GameEngineRenderer* DayRenderer_;
 	GameEngineRenderer* AmPmRenderer_;
 
 private:
-	void UpdateMinuteTime();
 	void UpdateMinuteFont();
 	void UpdateHourTime();
 	void UpdateSetPm();
-	void UpdateAddDay();
+	void UpdateSetAm();
+	void ExtraDayAndAddDay();
 
 	void SetMon()
 	{
-		WeekRenderer_->SetImage("Mon.bmp");
+		DayRenderer_->SetImage("Mon.bmp");
 	}
 
-	void AddWeek()
+	void AddDay()
 	{
-		if (WeekIndex_ == 6)
+		AddDay_ = true;
+
+		if (DayIndex_ == 6)
 		{
-			WeekIndex_ = 0;
-			WeekRenderer_->SetIndex(WeekIndex_);
+			DayIndex_ = 0;
+			DayRenderer_->SetIndex(DayIndex_);
+			//AddDay_ = false;
+
 			return;
 		}
 
-		++WeekIndex_;
-		WeekRenderer_->SetIndex(WeekIndex_);
+		++DayIndex_;
+		DayRenderer_->SetIndex(DayIndex_);
+		//AddDay_ = false;
+
 	}
 
 
@@ -120,7 +132,26 @@ private:
 
 public:
 
+	int GetDay()
+	{
+		return Day_;
+	}
+
+	bool isAddDay()
+	{
+		if (SecondTimeInt_ % 8640 == 0)
+		{
+			return true;
+		}
+
+		else
+		{
+			return false;
+		}
+	}
+
 	void SetMainUIMoney(int _Money);
+	
 
 };
 

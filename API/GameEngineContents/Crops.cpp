@@ -2,12 +2,9 @@
 
 Crops::Crops() 
 	:
-	MinuteTime_(0),
-	HourTime_(6),
-	Day_(1),
-	SecondTime_(0),
-	PrevSecondTime_(0),
-
+	StartDay_(0),
+	GrowingDay_(0),
+	CropsUpdateState_(CROPS_UPDATE::ADD_GROWING_DAY),
 	MinuteState_(MINUTE_STATE::COUNT),
 
 	CropRenderer_(nullptr)
@@ -26,18 +23,11 @@ void Crops::Update()
 {
 
 
-
 }
 
-void Crops::UpdateMinuteTime()
-{
-}
 
-void Crops::UpdateHourTime()
+void Crops::GrowingCrops()
 {
-}
 
-void Crops::UpdateAddDay()
-{
 }
 

@@ -20,17 +20,20 @@ MainUI::MainUI()
 	MinuteTime_(0),
 	HourTime_(6),
 	Day_(1),
-	WeekIndex_(0),
+	DayIndex_(0),
 	SecondTime_(0),
 	PrevSecondTime_(0),
 	AddTIme_(),
+
+	AddDay_(false),
+	isExtraDay_(false),
 
 	AmPm_(AM_PM::AM),
 
 	MinuteState_(MINUTE_STATE::COUNT),
 
 	MainUIRenderer_(nullptr),
-	WeekRenderer_(nullptr),
+	DayRenderer_(nullptr),
 	AmPmRenderer_(nullptr)
 {
 }
@@ -57,10 +60,10 @@ void MainUI::Start()
 	AmPmRenderer_->SetPivot({ 60.f, 12.f });
 
 	//1150 67
-	WeekRenderer_ = CreateRenderer("Week_Sheet.bmp");
-	WeekRenderer_->CameraEffectOff();
-	WeekRenderer_->SetPivot({ 20.f, -60.f });
-	WeekRenderer_->SetIndex(static_cast<int>(WEEK::MON));
+	DayRenderer_ = CreateRenderer("Week_Sheet.bmp");
+	DayRenderer_->CameraEffectOff();
+	DayRenderer_->SetPivot({ 20.f, -60.f });
+	DayRenderer_->SetIndex(0);
 
 	//1119 128
 	HourFont_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONTUI);
@@ -100,7 +103,6 @@ void MainUI::Update()
 	SecondTimeInt_ = static_cast<int>(SecondTime_) + 253;
 
 
-
 	switch (MinuteState_)
 	{
 	case MINUTE_STATE::COUNT:
@@ -117,10 +119,16 @@ void MainUI::Update()
 
 	case MINUTE_STATE::ADD:
 
-		MinuteTime_ += 10;
-		PrevSecondTime_ = SecondTimeInt_;
+		if (SecondTimeInt_ % 7 == 0)
+		{
+			MinuteTime_ += 10;
+			PrevSecondTime_ = SecondTimeInt_;
+			MinuteState_ = MINUTE_STATE::WAIT;
 
-		MinuteState_ = MINUTE_STATE::WAIT;
+			break;
+		}
+
+
 
 		break;
 
@@ -140,7 +148,8 @@ void MainUI::Update()
 	UpdateMinuteFont();
 	UpdateHourTime();
 	UpdateSetPm();
-	UpdateAddDay();
+	UpdateSetAm();
+	ExtraDayAndAddDay();
 }
 
 void MainUI::Render()
@@ -174,7 +183,6 @@ void MainUI::UpdateMinuteFont()
 	{
 		MinuteFont_->ChangeNumLeftSort(MinuteTime_, { GetPosition().x + 32.f, GetPosition().y + 1.f });
 		return;
-
 	}
 }
 
@@ -187,35 +195,62 @@ void MainUI::UpdateHourTime()
 		MinuteFont_->ChangeNumStr("00");
 
 		HourTime_ += 1;
-		HourFont_->ChangeNumLeftSort(HourTime_, { GetPosition().x - 3.f, GetPosition().y + 1.f });
-		return;
+
+
+		if (isExtraDay_ == false && AmPm_ == AM_PM::AM)
+		{
+			HourFont_->ChangeNumLeftSort(HourTime_, { GetPosition().x - 3.f, GetPosition().y + 1.f });
+			return;
+		}
+
+		if (AmPm_ == AM_PM::PM)
+		{
+			HourFont_->ChangeNumLeftSort(HourTime_ - 11, { GetPosition().x - 3.f, GetPosition().y + 1.f });
+			return;
+		}
+
+		//am && 진짜 데이가 지났다.
+
+		if (isExtraDay_ == true && AmPm_ == AM_PM::AM)
+		{
+			HourFont_->ChangeNumLeftSort(HourTime_ - 23, { GetPosition().x - 3.f, GetPosition().y + 1.f });
+			return;
+		}
 	}
+
 }
 
 void MainUI::UpdateSetPm()
 {
-	//12시가 되면 오후로 바뀌고 1시로 다시 카운팅
 	if (HourTime_ == 12 && AmPm_ == AM_PM::AM)
 	{
-		HourTime_ = 1;
 		SetPm();
 		AmPm_ = AM_PM::PM;
 	}
 }
 
-void MainUI::UpdateAddDay()
+void MainUI::UpdateSetAm()
 {
-	//오후 12시가 지나면 하루가 바뀜
-	if (HourTime_ == 12 && AmPm_ == AM_PM::PM)
+	if (HourTime_ == 23 && AmPm_ == AM_PM::PM)
 	{
-		HourTime_ = 1;
 		SetAm();
-		AmPm_ = AM_PM::PM;
-		AddWeek();
+		AmPm_ = AM_PM::AM;
+		isExtraDay_ = true;
+		//HourTime_ = 0;
+	}
+
+}
+
+void MainUI::ExtraDayAndAddDay()
+{
+	if (isExtraDay_ == true && HourTime_ == 25)
+	{
+		isExtraDay_ = false;
+		HourTime_ = 6;
+		AddDay();
 		++Day_;
 		DayFont_->ChangeNumRightSort(Day_);
 	}
-
 }
 
 void MainUI::SetMainUIMoney(int _Money)
