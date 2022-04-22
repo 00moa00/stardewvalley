@@ -411,7 +411,7 @@ void Inventory::ItemMove()
 
 	case ITEMMOVE::HOLD:
 
-		if (PlayerItemListStartIter->second->GetItemCount() == 0)
+		if (PlayerItemListStartIter->second->GetItemCount() == 1)
 		{
 			MoveState_ = ITEMMOVE::INIT;
 			break;
