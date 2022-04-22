@@ -73,6 +73,12 @@ void DropWood::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 }
 
+void DropWood::AddItemCount()
+{
+	++Count_;
+	Font_->ChangeNumItem(Count_);
+}
+
 void DropWood::SubItemCount()
 {
 	if (Count_ == 1)

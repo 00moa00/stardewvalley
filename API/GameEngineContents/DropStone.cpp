@@ -73,6 +73,12 @@ void DropStone::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	Font_->NextLevelOn();
 
 }
+void DropStone::AddItemCount()
+{
+	++Count_;
+	Font_->ChangeNumItem(Count_);
+}
+
 void DropStone::SubItemCount()
 {
 	if (Count_ == 1)

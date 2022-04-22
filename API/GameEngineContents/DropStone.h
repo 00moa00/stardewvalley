@@ -26,13 +26,8 @@ private:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 
-	void SetItemStateAddItem()
-	{
-		++Count_;
-		Font_->ChangeNumItem(Count_);
 
-	}
-
-	void SubItemCount();
+	void AddItemCount() override;
+	void SubItemCount() override;
 };
 
