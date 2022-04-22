@@ -27,7 +27,7 @@ public:
 
 	virtual ~Tile() = 0
 	{
-
+		Renderer->Death();
 	}
 };
 
@@ -145,7 +145,22 @@ public:
 
 	void DeleteTile(int _X, int _Y);
 
+	void DeleteTile()
+	{
+		for (size_t y = 0; y < Tiles_.size(); y++)
+		{
+			for (size_t x = 0; x < Tiles_[y].size(); x++)
+			{
+				if (nullptr == Tiles_[y][x])
+				{
+					continue;
+				}
+				delete Tiles_[y][x];
+				Tiles_[y][x] = nullptr;
+			}
+		}
 
+	}
 
 	// 0,0(원점) 기준으로 위치해야하는 포지션을 
 	float4 GetWorldPostion(int _X, int _Y);
@@ -174,6 +189,8 @@ public:
 				Tiles_[y][x] = nullptr;
 			}
 		}
+
+	
 	}
 };
 

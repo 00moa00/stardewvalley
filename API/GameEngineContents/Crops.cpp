@@ -5,6 +5,7 @@ Crops::Crops()
 	:
 	StartDay_(0),
 	GrowingDay_(0),
+	TileFindIndex_(0),
 	CropsUpdateState_(CROPS_UPDATE::ADD_GROWING_DAY_INIT),
 	MinuteState_(MINUTE_STATE::COUNT),
 

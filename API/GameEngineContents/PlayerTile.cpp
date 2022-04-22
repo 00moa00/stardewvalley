@@ -90,18 +90,18 @@ void Player::CreateWaterTile()
 	std::map<int, FarmTile*>::iterator EndIter = WetDirtList_.end();
 
 
-	std::map<int, FarmTile*>::iterator FindDIrtIter = DirtList_.find(ChangeIndex);
-	std::map<int, FarmTile*>::iterator EndDIrtIter = DirtList_.end();
+	std::map<int, FarmTile*>::iterator FindDirtIter = DirtList_.find(ChangeIndex);
+	std::map<int, FarmTile*>::iterator EndDirtIter = DirtList_.end();
 
 
 	//해당 땅이 이미 젖어있다면 + 땅이 파져있지 않으면 패스
 
-	if (FindIter != EndIter && FindDIrtIter == EndDIrtIter)
+	if (FindIter != EndIter && FindDirtIter == EndDirtIter)
 	{
 		return;
 	}
 
-	if(FindIter == EndIter && FindDIrtIter != EndDIrtIter)
+	if(FindIter == EndIter && FindDirtIter != EndDirtIter)
 	{
 		FarmTile* Tile = WetTileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
 			, "hoeDirt.bmp",static_cast<int>(TILE_DIRT::BASIC_WET), (int)PLAYLEVEL::WETDIRT);
@@ -155,6 +155,7 @@ void Player::CreateSeed()
 		WorldPos += TileSize_.Half();
 
 		seed->GetRenderer()->SetPivot({ WorldPos.x, WorldPos.y - 24.f });
+		seed->SetTileFindIndex(ChangeIndex);
 		SeedList_.insert(std::make_pair(ChangeIndex, seed));
 
 	}
@@ -362,18 +363,7 @@ void Player::ClearWetDirtTile()
 	{
 		if (MainUI::MainMainUI->DayOver() == true)
 		{
-
-			std::map<int, FarmTile*>::iterator StartIter = WetDirtList_.begin();
-			std::map<int, FarmTile*>::iterator EndIter = WetDirtList_.end();
-
-			for (; StartIter != EndIter; ++StartIter)
-			{
-				StartIter->second->SetTileState(TILE_STATE::CLEAR);
-				StartIter->second->GetRenderer()->Death();
-			}
-
-
-
+			WetTileMap_->DeleteTile();
 			WetDirtList_.erase(WetDirtList_.begin(), WetDirtList_.end());
 
 		}

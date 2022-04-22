@@ -164,7 +164,7 @@ public:
 	Inventory* GetInventroy();
 	GameEngineRenderer* Renderer();
 	GameEngineImage* CollImage();
-
+	bool isWetDirt(int _Index);
 
 	//================================
 	//    Setter

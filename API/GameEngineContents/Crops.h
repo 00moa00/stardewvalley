@@ -40,6 +40,7 @@ protected:
 
 	int StartDay_;
 	int GrowingDay_;
+	int TileFindIndex_;
 
 	MINUTE_STATE MinuteState_;
 	CROPS_UPDATE CropsUpdateState_;
@@ -62,6 +63,11 @@ public:
 	int GetGrowingDay()
 	{
 		return GrowingDay_;
+	}
+
+	void SetTileFindIndex(int _Index)
+	{
+		TileFindIndex_ = _Index;
 	}
 
 

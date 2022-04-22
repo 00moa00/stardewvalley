@@ -81,23 +81,7 @@ Player::~Player()
 {
 	CurrentLevel_ = "";
 
-	//std::map<int, FarmTile*>::iterator StartDirtIter = DirtList_.begin();
-	//std::map<int, FarmTile*>::iterator EndDirtIter = DirtList_.end();
 
-
-	////for (; StartDirtIter != EndDirtIter; ++StartDirtIter)
-	////{
-	////	delete StartDirtIter->second->GetTile();
-	////}
-
-	//std::map<int, FarmTile*>::iterator StartWetIter = WetDirtList_.begin();
-	//std::map<int, FarmTile*>::iterator EndWetIter = WetDirtList_.end();
-
-
-	//for (; StartWetIter != EndWetIter; ++StartWetIter)
-	//{
-	//	delete StartWetIter->second->GetTile();
-	//}
 }
 
 void Player::Start()
