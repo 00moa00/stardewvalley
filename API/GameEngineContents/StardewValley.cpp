@@ -46,6 +46,9 @@ void StardewValley::GameInit()
 		GameEngineInput::GetInst()->CreateKey("LeftClick", MK_LBUTTON);
 		GameEngineInput::GetInst()->CreateKey("RightClick", MK_RBUTTON);
 
+		GameEngineInput::GetInst()->CreateKey("DebugRendereChange", 'R');
+
+
 		GameEngineInput::GetInst()->CreateKey("KeyLeft", VK_LEFT);
 		GameEngineInput::GetInst()->CreateKey("KeyRight", VK_RIGHT);
 		GameEngineInput::GetInst()->CreateKey("KeyUp", VK_UP);
@@ -208,7 +211,6 @@ void StardewValley::GameInit()
 
 void StardewValley::GameLoop()
 {
-	
 }
 void StardewValley::GameEnd()
 {

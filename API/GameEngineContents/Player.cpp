@@ -185,7 +185,6 @@ void Player::Start()
 void Player::Update()
 {
 	PlayerDirCheck();
-	//ObjectTileColl();
 	SetCamera();
 	PlayerUpdate();
 	SetPlayerHandItemPos();
@@ -196,6 +195,11 @@ void Player::Update()
 		PlayerShopping();
 	}
 	
+
+	if (true == GameEngineInput::GetInst()->IsDown("DebugRendereChange"))
+	{
+		GetLevel()->IsDebugModeSwitch();
+	}
 
 }
 
@@ -290,7 +294,6 @@ void Player::PlayerUpdate()
 
 		break;
 
-
 	case PLAYER_UPDATE::AXE:
 
 		if (PlayerRenderer_->IsEndAnimation())
@@ -319,7 +322,6 @@ void Player::PlayerUpdate()
 		{
 			CreateSeed();
 		}
-
 
 		//손에 들 수 없는 아이템을 선택했다면 기본 상태로 돌아간다.
 		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == false)
