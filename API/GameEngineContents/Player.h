@@ -129,14 +129,14 @@ private:
 	static std::string PrevLevel_;
 
 
-	std::vector<GameEngineCollision*> ColList;
 
 	std::map<int, FarmTile*> DirtList_;
 	std::map<int, FarmTile*> WetDirtList_;
-
 	std::map<int, Crops*> SeedList_;
 
 	std::map<int, Items*> MapObject_;
+
+	std::vector<GameEngineCollision*> ColList;
 	std::map<int, Items*>::iterator Iter;
 
 
@@ -149,22 +149,23 @@ public:
 	//     Getter
 	//================================
 
-	bool GetObjectColl();
-	bool GetisShopping();
+	int GetMoney();
 
 	float GetEnergy();
-	int GetMoney();
+
+	bool GetObjectColl();
+	bool GetisShopping();
+	bool FindWetDirt(int _Index);
+	bool GetPlayerShoppingStateShopping();
 
 	std::string GetCurrentLevel();
 
 	TOOLTYPE CurrentItemType();
 	PLAYER_SHOPPING GetPlayerShoppingState();
-	bool GetPlayerShoppingStateShopping();
 	PLAYER_UPDATE GetPlayerState();
 	Inventory* GetInventroy();
 	GameEngineRenderer* Renderer();
 	GameEngineImage* CollImage();
-	bool isWetDirt(int _Index);
 
 	//================================
 	//    Setter
@@ -183,6 +184,7 @@ public:
 	void SetDirtTileMap(GameEngineRendererTileMap* _TileMap);
 	void SetWetTileMap(GameEngineRendererTileMap* _TileMap);
 
+	void DeleteSeedList(int _Index);
 
 	//================================
 	//    Etc

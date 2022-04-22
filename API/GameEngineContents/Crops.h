@@ -13,7 +13,9 @@
 
 enum class CROPS_UPDATE
 {
-	INIT,
+	WAIT,
+	DAY_END_WETDIRT_CHECK,
+	DAY_OVER_WAIT,
 	ADD_GROWING_DAY,
 	ADD_GROWING_DAY_INIT
 };
@@ -33,6 +35,7 @@ public:
 	Crops& operator=(Crops&& _Other) noexcept = delete;
 
 private:
+
 	void Start() override;
 	void Update() override;
 
@@ -40,6 +43,8 @@ protected:
 
 	int StartDay_;
 	int GrowingDay_;
+	int DirtDay_;
+
 	int TileFindIndex_;
 
 	MINUTE_STATE MinuteState_;
@@ -52,6 +57,10 @@ private:
 protected:
 
 	void GrowingCropsTime();
+	void DeathCropsCheck();
+	
+	bool isWetDirt();
+
 
 public:
 

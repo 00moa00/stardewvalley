@@ -153,6 +153,19 @@ public:
 		}
 	}
 
+	bool DayEnd()
+	{
+		if (HourTime_ == 24 && MinuteTime_ == 50)
+		{
+			return true;
+		}
+
+		else
+		{
+			return false;
+		}
+	}
+
 	void SetMainUIMoney(int _Money);
 	
 

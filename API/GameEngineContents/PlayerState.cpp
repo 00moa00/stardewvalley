@@ -79,6 +79,25 @@ GameEngineImage* Player::CollImage() {
 	return MapColImage_;
 }
 
+bool Player::FindWetDirt(int _Index)
+{
+	std::map<int, FarmTile*>::iterator FindtIter = WetDirtList_.find(_Index);
+	std::map<int, FarmTile*>::iterator EndIter = WetDirtList_.end();
+
+	if (FindtIter != EndIter)
+	{
+		return true;
+	}
+
+	else
+	{
+		return false;
+	}
+
+
+	
+}
+
 
 
 //******************************************************************************
@@ -153,6 +172,11 @@ void  Player::SetWetTileMap(GameEngineRendererTileMap* _TileMap)
 {
 	WetTileMap_ = _TileMap;
 
+}
+
+void Player::DeleteSeedList(int _Index)
+{
+	SeedList_.erase(_Index);
 }
 
 
