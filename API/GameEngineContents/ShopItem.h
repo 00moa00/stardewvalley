@@ -50,6 +50,9 @@ protected:
 	GameEngineCollision* ShopItemListCollider_;
 	std::vector<GameEngineCollision*> ColList;
 
+	bool isHide_;
+
+
 	int Index_;
 	int BuyPrice_;
 
@@ -61,6 +64,11 @@ public:
 	//     Getter
 	//================================
 
+	GameEngineCollision* GetCollider()
+	{
+		return ShopItemListCollider_;
+	}
+
 	int GetBuyPrice()
 	{
 		return BuyPrice_;
@@ -69,6 +77,11 @@ public:
 	int GetIndex()
 	{
 		return Index_;
+	}
+
+	bool GetisHide()
+	{
+		return isHide_;
 	}
 
 	//================================
@@ -88,6 +101,11 @@ public:
 	void SubIndex()
 	{
 		--Index_;
+	}
+
+	void SetisHide(bool _Flag)
+	{
+		isHide_ = _Flag;
 	}
 
 };

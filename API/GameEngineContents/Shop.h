@@ -65,8 +65,11 @@ private:
 	ExitBotton* ExitBotton_;
 	Mouse* Mouse_;
 	SHOP_UPDATE ShopUpdateState_;
+
 	std::map<int, ShopItem*> ShopItemList_;
 	std::map<int, float4> ConstItmePos_;
+
+
 
 private:
 

@@ -12,10 +12,13 @@ Daffodil_Shop::~Daffodil_Shop()
 
 void Daffodil_Shop::Start()
 {
+	SetPosition({ 0.f,0.f });
+
 	ShopItemListRenderer_ = CreateRenderer("Daffodil_Shop.bmp");
 	ShopItemListRenderer_->CameraEffectOff();
 
-	ShopItemListCollider_ = CreateCollision("Daffodil_Shop", { 760, 73 });
+	ShopItemListCollider_ = CreateCollision("Daffodil_Shop", { 760.f, 73.f });
+	ShopItemListCollider_->SetPivot({ 0, +50.f / 2 });
 
 	Index_ = static_cast<int>(SHOP_LIST::DAFFODIL);
 

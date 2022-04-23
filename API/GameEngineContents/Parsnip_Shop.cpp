@@ -11,10 +11,13 @@ Parsnip_Shop::~Parsnip_Shop()
 
 void Parsnip_Shop::Start()
 {
+	SetPosition({ 0.f,0.f });
+
 	ShopItemListRenderer_ = CreateRenderer("Parsnip_Shop.bmp");
 	ShopItemListRenderer_->CameraEffectOff();
 
-	ShopItemListCollider_ = CreateCollision("Parsnip_Shop", { 760, 73 });
+	ShopItemListCollider_ = CreateCollision("Parsnip_Shop", { 760, 60 });
+	ShopItemListCollider_->SetPivot({ 0, +50.f / 2 });
 
 	Index_ = static_cast<int>(SHOP_LIST::PARSNIP);
 

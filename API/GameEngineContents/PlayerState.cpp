@@ -116,7 +116,7 @@ void Player::SetResetPlayerHandItem()
 	Inventory::MainInventory->SetCurrentItemHoe();
 }
 
-void Player::SubMoney(int _Money)
+bool Player::SubMoney(int _Money)
 {
 
 	if (Money_ > 0 + _Money)
@@ -127,6 +127,13 @@ void Player::SubMoney(int _Money)
 
 		//Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
 		Shop::MainShop->SetShopMoney(Money_);
+
+		return true;
+	}
+
+	else
+	{
+		return false;
 	}
 
 }

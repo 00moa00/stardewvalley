@@ -63,7 +63,7 @@ void Parsnip_Crops::DropCropsInMap()
 	for (int i = 0; i < Count; ++i)
 	{
 		DropItem = CreateDropItemActor<Pasnip>();
-
+		DropItem->GetRenderer()->CameraEffectOn();
 		float4 Pos;
 		Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
 		Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);

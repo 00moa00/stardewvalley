@@ -12,10 +12,13 @@ KaleSeeds_Shop::~KaleSeeds_Shop()
 
 void KaleSeeds_Shop::Start()
 {
+	SetPosition({ 0.f,0.f });
+
 	ShopItemListRenderer_ = CreateRenderer("KaleSeeds_Shop.bmp");
 	ShopItemListRenderer_->CameraEffectOff();
 
-	ShopItemListCollider_ = CreateCollision("KaleSeeds_Shop", { 760, 73 });
+	ShopItemListCollider_ = CreateCollision("KaleSeeds_Shop", { 760.f, 60.f });
+	ShopItemListCollider_->SetPivot({ 0, +50.f / 2 });
 
 	Index_ = static_cast<int>(SHOP_LIST::KALESEEDS);
 

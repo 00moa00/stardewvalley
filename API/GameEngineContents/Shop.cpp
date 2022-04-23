@@ -101,6 +101,7 @@ void Shop::Update()
 				if (ItemStartIter->second->GetIndex() == ConstStartIter->first)
 				{
 					ItemStartIter->second->SetPosition(ConstStartIter->second);
+
 					//변경하면 for문 종료
 					++ItemStartIter;
 					break;
@@ -130,11 +131,14 @@ void Shop::Update()
 			if (ItemStartIter->second->GetIndex() > 3 || ItemStartIter->second->GetIndex() < 0)
 			{
 				ItemStartIter->second->Off();
+				ItemStartIter->second->SetisHide(true);
 			}
 
 			else
 			{
 				ItemStartIter->second->On();
+				ItemStartIter->second->SetisHide(false);
+
 			}
 		}
 
@@ -144,14 +148,23 @@ void Shop::Update()
 	case SHOP_UPDATE::INIT:
 
 		ItemStartIter = ShopItemList_.begin();
-		ItemEndtIter = ShopItemList_.end();
 
 		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
 		{
-			if (ItemStartIter->second->MouseInItem() && Mouse_->MouseClickShopIn())
+			if (ItemStartIter->second->MouseInItem() 
+				&& Mouse_->MouseClickShopIn() 
+				&& ItemStartIter->second->GetisHide() == false)
 			{
-				ItemStartIter->second->InventoryNewItem();
-				Player::MainPlayer->SubMoney(ItemStartIter->second->GetBuyPrice());
+				if (Player::MainPlayer->SubMoney(ItemStartIter->second->GetBuyPrice()) == true)
+				{
+					ItemStartIter->second->InventoryNewItem();
+				}
+
+				else
+				{
+					ShopUpdateState_ = SHOP_UPDATE::INIT;
+					break;
+				}
 			}
 		}
 

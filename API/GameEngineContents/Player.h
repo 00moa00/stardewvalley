@@ -172,7 +172,7 @@ public:
 
 	void SetResetPlayerHandItem();
 
-	void SubMoney(int _Money);
+	bool SubMoney(int _Money);
 	void AddMoney(int _Money);
 
 	void SetisShopping(bool b);

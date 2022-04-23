@@ -16,7 +16,7 @@ void Pasnip::Start()
 {
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
 	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::PARSNIP));
-	ItemRenderer_->CameraEffectOn();
+	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
