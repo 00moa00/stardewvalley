@@ -35,6 +35,7 @@ bool GameEngineFont::Load(const std::string& _Path)
 void GameEngineFont::Draw(const std::string& _Text, float4 _Postion, float _Size, float _Weight)
 {
 	hFont = CreateFontA(static_cast<int>(_Size), 0, 0, 0, static_cast<int>(_Weight), 0, 0, 0, JOHAB_CHARSET, 0, 0, 0, VARIABLE_PITCH || FF_ROMAN, FontName.c_str());
+	//SetTextColor();
 
 	if (nullptr == hFont)
 	{

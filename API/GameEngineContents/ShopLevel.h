@@ -29,8 +29,8 @@ private:
 
 	Shop* Shop_;
 
+	std::vector<Npc*> NpcList_;
 	std::map<int, Items*> MapObject_;
-	std::map<int, Items*>::iterator Iter;
 
 private:
 

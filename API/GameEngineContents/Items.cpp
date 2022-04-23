@@ -92,11 +92,6 @@ Crops* Items::CreateCrops()
 bool Items::ItemCheck(const float4 pos, const float4 scale)
 {
 
-
-//	return ItemCollider_->NextPostCollisionCheck("Player", pos, CollisionType::Rect, CollisionType::Rect);
-		
-
-
 	int OtherLeft = pos.ix() - scale.hix();
 	int OtherRight = pos.ix() + scale.hix();
 	int OtherTop = pos.iy() - scale.hiy();

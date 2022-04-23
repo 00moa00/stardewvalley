@@ -344,8 +344,6 @@ public:
 	}
 
 
-
-
 	template<typename Actor>
 	Actor* CreateDropItemActor()
 	{

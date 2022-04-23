@@ -58,6 +58,7 @@ enum class FARM_TILE {
 	WEED1,
 	WEED2,
 	MY_HOUSE,
+	PIERRE, 
 	SHOP_FLAG = 22,
 	MOVE_SHOP = 23,
 	MOVE_FOREST = 24,

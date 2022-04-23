@@ -314,6 +314,9 @@
     <ClCompile Include="Npc.cpp">
       <Filter>Actor\03. Play\Obejct</Filter>
     </ClCompile>
+    <ClCompile Include="DialogueBox.cpp">
+      <Filter>Actor\03. Play\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -646,6 +649,9 @@
     </ClInclude>
     <ClInclude Include="Npc.h">
       <Filter>Actor\03. Play\Obejct</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogueBox.h">
+      <Filter>Actor\03. Play\NPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

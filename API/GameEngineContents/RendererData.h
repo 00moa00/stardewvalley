@@ -8,6 +8,7 @@ enum class PLAYLEVEL {
 	DIRT,
 	WETDIRT,
 	SEED,
+	NPC,
 	PLAYER,
 	TOP_OBJECT,
 	USE_TOOL,

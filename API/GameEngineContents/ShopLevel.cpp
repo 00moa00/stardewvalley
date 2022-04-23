@@ -6,13 +6,11 @@
 #include "GameData.h"
 
 #include "MoveTown.h"
-#include "ShopFlag.h"
+#include "ShopFlag.h"]
+#include "Pierre.h"
 
 ShopLevel::ShopLevel()
-	:
-	Iter(MapObject_.begin())
-
-
+	
 {
 
 	SetName("ShopLevel");
@@ -45,13 +43,15 @@ void ShopLevel::Loading()
 
 void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
-	Shop_ = CreateActor<Shop>((int)PLAYLEVEL::SHOP);
+	Shop_ = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 
-	BackGroundFront_->GetRenderer()->SetImage("ShopFront.bmp");
+	BackGroundFront_->GetRenderer()->SetImage("Shop_Front.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
+	BackGroundFront_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND_FRONT));
 
 	BackGround_->GetRenderer()->SetImage("ShopBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
+	BackGround_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND));
 
 	LoadMapObject();
 
@@ -100,7 +100,7 @@ void ShopLevel::LoadMapObject()
 
 			FARM_TILE TileState_ = static_cast<FARM_TILE>(chip);
 			std::map<int, Items*>::iterator ThisIter;
-
+			std::vector<Npc*>::iterator NpcIter;
 
 			const float4 IndexPos = {
 			  x * CHIP_SIZE ,
@@ -115,17 +115,24 @@ void ShopLevel::LoadMapObject()
 			switch (TileState_)
 			{
 
+			case FARM_TILE::PIERRE:
+				NpcList_.push_back(CreateActor<Pierre>((int)PLAYLEVEL::NPC));
+				NpcIter = --NpcList_.end();
+				(*NpcIter)->SetPosition(pos);
+				break;
 
 			case FARM_TILE::SHOP_FLAG:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<ShopFlag>((int)PLAYLEVEL::OBJECT)));
-
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
 				break;
 
 			case FARM_TILE::MOVE_TOWN:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveTown>((int)PLAYLEVEL::OBJECT)));
-
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
 				break;
 
 
@@ -133,8 +140,7 @@ void ShopLevel::LoadMapObject()
 				break;
 
 			}
-			ThisIter = --MapObject_.end();
-			ThisIter->second->SetPosition(pos);
+
 
 
 		}

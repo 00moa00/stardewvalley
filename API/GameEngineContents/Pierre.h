@@ -1,9 +1,12 @@
 #pragma once
+#include "Npc.h"
 
 // Ό³Έν :
-class Pierre
+class Pierre : public Npc
 {
 public:
+	static Pierre* MainPierre;
+
 	// constrcuter destructer
 	Pierre();
 	~Pierre();
@@ -17,6 +20,12 @@ public:
 protected:
 
 private:
+	void Start() override;
+	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
+
+
 
 };
 

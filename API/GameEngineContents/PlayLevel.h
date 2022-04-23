@@ -15,6 +15,7 @@
 #include "Player.h"
 #include "Inventory.h"
 #include "Items.h"
+#include "Npc.h"
 #include "Mouse.h"
 
 #include <list>
