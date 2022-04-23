@@ -1,23 +1,21 @@
-#include "Jazz_Seeds.h"
-#include "Jazz_Crops.h"
+#include "Tulip.h"
 #include "Inventory.h"
 
-Jazz_Seeds* Jazz_Seeds::MainJazzSeeds = nullptr;
-Font* Jazz_Seeds::Font_ = nullptr;
+Tulip* Tulip::MainTulip = nullptr;
+Font* Tulip::Font_ = nullptr;
 
-Jazz_Seeds::Jazz_Seeds() 
+Tulip::Tulip() 
 {
 }
 
-Jazz_Seeds::~Jazz_Seeds() 
+Tulip::~Tulip() 
 {
 }
 
-void Jazz_Seeds::Start()
+void Tulip::Start()
 {
-
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::JAZZ_SEEDS));
+	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::TULIP));
 	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
@@ -29,61 +27,60 @@ void Jazz_Seeds::Start()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
+	ItemName_ = "Tulip";
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::JAZZ_SEEDS);
+	FileIndex_ = static_cast<size_t>(ITEM::TULIP);
 
-	SeedType_ = SEEDTYPE::JAZZ_SEED;
-	ItemName_ = "Jazz_Seeds";
 	SellPrice_ = 35;
-
 }
 
-void Jazz_Seeds::Update()
+void Tulip::Update()
 {
+	MoveToPlayer();
+
+	if (isItemDeath_ == true)
+	{
+		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+		MainPlayer->GetInventroy()->NewItem<Tulip>();
+	}
+
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
 		Font_->SetPositionItem({ GetPosition() });
 
 		break;
-
 	}
 }
 
-void Jazz_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
+void Tulip::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainJazzSeeds = this;
+	MainTulip = this;
 	Font_ = Font_;
 }
 
-void Jazz_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
+void Tulip::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+
 }
 
-Crops* Jazz_Seeds::CreateCrops()
-{
-	Crops* Crops_ = GetLevel()->CreateActor<Jazz_Crops>(static_cast<int>(PLAYLEVEL::SEED));
-	return Crops_;
-}
-
-void Jazz_Seeds::AddItemCount()
+void Tulip::AddItemCount()
 {
 	++Count_;
 	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
-void Jazz_Seeds::SubItemCount()
+void Tulip::SubItemCount()
 {
 	if (Count_ == 1)
 	{
-		Count_ = 0;
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
-		Font_ = nullptr;
-		this->Death();
+		Death();
 	}
 	else
 	{

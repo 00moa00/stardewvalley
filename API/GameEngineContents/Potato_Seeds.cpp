@@ -1,5 +1,5 @@
 #include "Potato_Seeds.h"
-#include"Patato_Crops.h"
+#include"Potato_Crops.h"
 #include "Inventory.h"
 
 Potato_Seeds* Potato_Seeds::MainPotatoSeeds = nullptr;
@@ -65,7 +65,7 @@ void Potato_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 Crops* Potato_Seeds::CreateCrops()
 {
-	Crops* Crops_ = GetLevel()->CreateActor<Patato_Crops>(static_cast<int>(PLAYLEVEL::SEED));
+	Crops* Crops_ = GetLevel()->CreateActor<Potato_Crops>(static_cast<int>(PLAYLEVEL::SEED));
 	return Crops_;
 }
 

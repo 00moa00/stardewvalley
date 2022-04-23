@@ -195,6 +195,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Cauliflower.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CauliflowerSeeds_Shop.h">
       <SubType>
       </SubType>
@@ -259,6 +263,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Items.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Jazz.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -344,7 +352,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Patato_Crops.h">
+    <ClInclude Include="Potato_Crops.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -496,6 +504,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Tulip.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TulipBulb_Shop.h">
       <SubType>
       </SubType>
@@ -555,6 +567,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BusStopLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Cauliflower.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -624,6 +640,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Items.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Jazz.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -733,7 +753,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Patato_Crops.cpp">
+    <ClCompile Include="Potato_Crops.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -851,6 +871,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TreeTop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Tulip.cpp">
       <SubType>
       </SubType>
     </ClCompile>

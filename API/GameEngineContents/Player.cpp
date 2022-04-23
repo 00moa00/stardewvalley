@@ -157,8 +157,8 @@ void Player::Start()
 
 	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_WATER", static_cast<int>(PLAYER::WATER_FRONT0), static_cast<int>(PLAYER::WATER_FRONT2), 0.200f, true);
 	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0, PLAYER::WATER_LEFT2), 0.200f, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0, PLAYER::WATER_BACK2), 0.200f, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0),  static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0),  static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
 
 
 
@@ -204,10 +204,10 @@ void Player::Start()
 	//     플레이어 물뿌리개 사용
 	//================================
 
-	ToolRenderer_->CreateAnimation("wateringcan_right.bmp", "RIGHT_WATER", static_cast<int>(WATERINGCAN_RIGHT::WATERINGCAN_RIGHT0), static_cast<int>(WATERINGCAN_RIGHT::WATERINGCAN_RIGHT2), 0.200f, true);
-	ToolRenderer_->CreateAnimation("wateringcan_left.bmp", "LEFT_WATER",  static_cast<int>(WATERINGCAN_LEFT::WATERINGCAN_LEFT0), static_cast<int>(WATERINGCAN_LEFT::WATERINGCAN_LEFT2), 0.200f, true);
-	ToolRenderer_->CreateAnimation("wateringcan_front.bmp", "FRONT_WATER",  static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT0), static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT2), 0.200f, true);
-	ToolRenderer_->CreateAnimation("wateringcan_back.bmp", "BACK_WATER", static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK0), static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK2), 0.200f, true);
+	ToolRenderer_->CreateAnimation("wateringcan_right.bmp", "RIGHT_WATER", static_cast<int>(WATERINGCAN_RIGHT::WATERINGCAN_RIGHT0), static_cast<int>(WATERINGCAN_RIGHT::WATERINGCAN_RIGHT2), 0.200f, false);
+	ToolRenderer_->CreateAnimation("wateringcan_left.bmp", "LEFT_WATER",  static_cast<int>(WATERINGCAN_LEFT::WATERINGCAN_LEFT0), static_cast<int>(WATERINGCAN_LEFT::WATERINGCAN_LEFT2), 0.200f, false);
+	ToolRenderer_->CreateAnimation("wateringcan_front.bmp", "FRONT_WATER",  static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT0), static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT2), 0.200f, false);
+	ToolRenderer_->CreateAnimation("wateringcan_back.bmp", "BACK_WATER", static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK0), static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK2), 0.200f, false);
 
 
 	//------< 애니메이션 초기화 >------------------------------------------------------------------

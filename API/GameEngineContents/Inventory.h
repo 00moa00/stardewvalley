@@ -165,6 +165,7 @@ public:
 		{
 			return CurrentItem_;
 		}
+
 		else
 		{
 			return nullptr;

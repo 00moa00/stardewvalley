@@ -1,22 +1,23 @@
 #pragma once
 #include "Items.h"
 
+
 // Ό³Έν :
-class Bean : public Items
+class Cauliflower : public Items
 {
 public:
-	static Bean* MainBean;
+	static Cauliflower* MainCauliflower;
 	static Font* Font_;
 
 	// constrcuter destructer
-	Bean();
-	~Bean();
+	Cauliflower();
+	~Cauliflower();
 
 	// delete Function
-	Bean(const Bean& _Other) = delete;
-	Bean(Bean&& _Other) noexcept = delete;
-	Bean& operator=(const Bean& _Other) = delete;
-	Bean& operator=(Bean&& _Other) noexcept = delete;
+	Cauliflower(const Cauliflower& _Other) = delete;
+	Cauliflower(Cauliflower&& _Other) noexcept = delete;
+	Cauliflower& operator=(const Cauliflower& _Other) = delete;
+	Cauliflower& operator=(Cauliflower&& _Other) noexcept = delete;
 
 private:
 	void Start() override;

@@ -118,7 +118,7 @@ bool Player::FindWetDirt(int _Index)
 void Player::SetResetPlayerHandItem()
 {
 	PlayerState_ = PLAYER_UPDATE::WALK;
-	Inventory::MainInventory->SetCurrentItemHoe();
+	//Inventory::MainInventory->SetCurrentItemHoe();
 }
 
 bool Player::SubMoney(int _Money)

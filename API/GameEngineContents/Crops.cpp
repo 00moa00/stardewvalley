@@ -54,6 +54,12 @@ void Crops::GrowingCropsTime()
 
 	case CROPS_UPDATE::DAY_END_WETDIRT_CHECK:
 
+		//만약 첫날에 물이 뿌려져있으면 성장
+		if (GrowingDay_ == 0 && isWetDirt())
+		{
+			StartDay_ -= 1;
+		}
+
 		DeathCropsCheck();
 		CropsUpdateState_ = CROPS_UPDATE::DAY_OVER_WAIT;
 
@@ -71,7 +77,15 @@ void Crops::GrowingCropsTime()
 
 	case CROPS_UPDATE::ADD_GROWING_DAY:
 
+
 		GrowingDay_ = (MainUI::MainMainUI->GetDay()) - StartDay_;
+		CropsUpdateState_ = CROPS_UPDATE::GROWING_CROPS;
+
+		break;
+
+	case CROPS_UPDATE::GROWING_CROPS:
+
+
 		CropsUpdateState_ = CROPS_UPDATE::WAIT;
 
 		break;

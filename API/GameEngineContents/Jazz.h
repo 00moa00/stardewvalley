@@ -1,22 +1,21 @@
 #pragma once
 #include "Items.h"
-
 // Ό³Έν :
-class Bean : public Items
+class Jazz : public Items
 {
 public:
-	static Bean* MainBean;
+	static Jazz* MainJazz;
 	static Font* Font_;
 
 	// constrcuter destructer
-	Bean();
-	~Bean();
+	Jazz();
+	~Jazz();
 
 	// delete Function
-	Bean(const Bean& _Other) = delete;
-	Bean(Bean&& _Other) noexcept = delete;
-	Bean& operator=(const Bean& _Other) = delete;
-	Bean& operator=(Bean&& _Other) noexcept = delete;
+	Jazz(const Jazz& _Other) = delete;
+	Jazz(Jazz&& _Other) noexcept = delete;
+	Jazz& operator=(const Jazz& _Other) = delete;
+	Jazz& operator=(Jazz&& _Other) noexcept = delete;
 
 private:
 	void Start() override;

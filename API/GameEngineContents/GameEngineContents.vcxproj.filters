@@ -230,16 +230,13 @@
     <ClCompile Include="ExitBotton.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
-    <ClCompile Include="Crops.cpp">
-      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
-    </ClCompile>
     <ClCompile Include="Cauliflower_Crops.cpp">
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
     <ClCompile Include="Bean_Crops.cpp">
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
-    <ClCompile Include="Patato_Crops.cpp">
+    <ClCompile Include="Potato_Crops.cpp">
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
     <ClCompile Include="Jazz_Crops.cpp">
@@ -297,6 +294,18 @@
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
     <ClCompile Include="Kale.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Crops.cpp">
+      <Filter>Actor\03. Play\Obejct</Filter>
+    </ClCompile>
+    <ClCompile Include="Jazz.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Tulip.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Cauliflower.cpp">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
   </ItemGroup>
@@ -548,16 +557,13 @@
     <ClInclude Include="ExitBotton.h">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
-    <ClInclude Include="Crops.h">
-      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
-    </ClInclude>
     <ClInclude Include="Cauliflower_Crops.h">
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
     <ClInclude Include="Bean_Crops.h">
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
-    <ClInclude Include="Patato_Crops.h">
+    <ClInclude Include="Potato_Crops.h">
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
     <ClInclude Include="Jazz_Crops.h">
@@ -615,6 +621,18 @@
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
     <ClInclude Include="Kale.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Crops.h">
+      <Filter>Actor\03. Play\Obejct</Filter>
+    </ClInclude>
+    <ClInclude Include="Jazz.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Tulip.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Cauliflower.h">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
   </ItemGroup>

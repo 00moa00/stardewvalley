@@ -79,9 +79,11 @@ void Kale::SubItemCount()
 {
 	if (Count_ == 1)
 	{
+		Count_ = 0;
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
-		Death();
+		Font_ = nullptr;
+		this->Death();
 	}
 	else
 	{

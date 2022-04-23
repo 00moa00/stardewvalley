@@ -2,21 +2,21 @@
 #include "Items.h"
 
 // Ό³Έν :
-class Bean : public Items
+class Tulip : public Items
 {
 public:
-	static Bean* MainBean;
+	static Tulip* MainTulip;
 	static Font* Font_;
 
 	// constrcuter destructer
-	Bean();
-	~Bean();
+	Tulip();
+	~Tulip();
 
 	// delete Function
-	Bean(const Bean& _Other) = delete;
-	Bean(Bean&& _Other) noexcept = delete;
-	Bean& operator=(const Bean& _Other) = delete;
-	Bean& operator=(Bean&& _Other) noexcept = delete;
+	Tulip(const Tulip& _Other) = delete;
+	Tulip(Tulip&& _Other) noexcept = delete;
+	Tulip& operator=(const Tulip& _Other) = delete;
+	Tulip& operator=(Tulip&& _Other) noexcept = delete;
 
 private:
 	void Start() override;
