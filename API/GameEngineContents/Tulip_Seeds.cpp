@@ -1,4 +1,5 @@
 #include "Tulip_Seeds.h"
+#include "Tulip_Crops.h"
 #include "Inventory.h"
 
 Tulip_Seeds* Tulip_Seeds::MainTulipSeeds = nullptr;
@@ -32,9 +33,8 @@ void Tulip_Seeds::Start()
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::TULIP_BULB);
 
-	ItemType_ = ITEMTYPE::ITEM;
+	SeedType_ = SEEDTYPE::TULIP_SEED;
 	ItemName_ = "Tulip_Seeds";
-
 	SellPrice_ = 35;
 }
 
@@ -59,6 +59,12 @@ void Tulip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void Tulip_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+}
+
+Crops* Tulip_Seeds::CreateCrops()
+{
+	Crops* Crops_ = GetLevel()->CreateActor<Tulip_Crops>(static_cast<int>(PLAYLEVEL::SEED));
+	return Crops_;
 }
 
 void Tulip_Seeds::AddItemCount()

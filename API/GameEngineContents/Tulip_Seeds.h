@@ -24,8 +24,8 @@ private:
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
-
-
+	
+	Crops* CreateCrops() override;
 	void AddItemCount() override;
 	void SubItemCount() override;
 

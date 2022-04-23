@@ -12,9 +12,20 @@
 #include "ItemCode.h"
 #include "ToolData.h"
 #include "Font.h"
+#include "Crops.h"
 //#include "Player.h"
 
-// Ό³Έν :
+enum class SEEDTYPE
+{
+	NONE,
+	PARSNIP_SEED,
+	BEAN_SEED,
+	CAULIFLOWER_SEED,
+	POTATO_SEED,
+	TULIP_SEED,
+	KALE_SEED,
+	JAZZ_SEED,
+};
 
 enum class ITEMTYPE
 {
@@ -76,6 +87,7 @@ public:
 	virtual void AddItemCount();
 	virtual void SubItemCount();
 	virtual void DropItemInMap();
+	virtual Crops* CreateCrops();
 
 protected:
 	std::vector<GameEngineCollision*> ColList;
@@ -91,6 +103,7 @@ protected:
 	GameEngineRandom RamdomItemPosY;
 
 
+	SEEDTYPE SeedType_;
 	ITEMTYPE ItemType_;
 	TOOLTYPE ToolType_;
 	ITEM_STATE ItemState_;
@@ -134,11 +147,9 @@ protected:
 	}
 
 
-
 public:
 	bool ItemCheck(const float4 pos, const float4 scale);
 	void MoveToPlayer();
-
 	//================================
 	//     Getter
 	//================================
@@ -218,6 +229,11 @@ public:
 	bool GetisPossibleHand()
 	{
 		return isPossibleHand_;
+	}
+
+	SEEDTYPE GetSeedType()
+	{
+		return SeedType_;
 	}
 
 	ITEMTYPE GetItemType()

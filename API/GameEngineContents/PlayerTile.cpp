@@ -139,12 +139,11 @@ void Player::CreateSeed()
 	{
 
 		//TODO: 핸드 아이템의 타입에 따라서 초기화.
+		
+		GetCurrentItem()->SubItemCount();
 
-		Inventory::MainInventory->GetCurrentItem()->SubItemCount();
-		//PlayerHandItem_->SubItemCount();
-
-		Crops* seed = CreateSeedActor<Parsnip_Crops>();
-
+		Crops* seed = GetCurrentItem()->CreateCrops();
+			
 		float4 TileSize_ = { 48.f, 48.f };
 		float4 WorldPos = TileSize_;
 
@@ -155,7 +154,6 @@ void Player::CreateSeed()
 
 		//seed->GetRenderer()->SetPivot({ WorldPos.x, WorldPos.y - 24.f });
 		seed->SetTileFindIndex(ChangeIndex);
-
 		seed->SetPosition({ WorldPos.x, WorldPos.y - 24.f });
 
 		SeedList_.insert(std::make_pair(ChangeIndex, seed));

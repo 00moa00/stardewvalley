@@ -1,5 +1,6 @@
 #include "Inventory.h"
 #include "Player.h"
+#include "Potato_Seeds.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -62,7 +63,9 @@ void Inventory::Start()
 	NewItem<WildHorseradish>();
 	NewItem<Parsnip_Seeds>();
 	NewItem<Parsnip_Seeds>();
-
+	NewItem<Potato_Seeds>();
+	NewItem<Potato_Seeds>();
+	NewItem<Potato_Seeds>();
 
 	
 	float4 Position;

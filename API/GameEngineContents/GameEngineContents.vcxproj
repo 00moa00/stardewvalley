@@ -274,7 +274,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Kale.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="KaleSeeds_Shop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Kale_Crops.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -631,7 +639,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Kale.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="KaleSeeds_Shop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Kale_Crops.cpp">
       <SubType>
       </SubType>
     </ClCompile>

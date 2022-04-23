@@ -36,7 +36,6 @@ void DropStone::Start()
 	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 
 
-	ItemType_ = ITEMTYPE::ITEM;
 	ItemName_ = "DropStone";
 
 }

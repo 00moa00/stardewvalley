@@ -293,6 +293,12 @@
     <ClCompile Include="WildHorseradish.cpp">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Kale_Crops.cpp">
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
+    </ClCompile>
+    <ClCompile Include="Kale.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -603,6 +609,12 @@
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
     <ClInclude Include="WildHorseradish.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Kale_Crops.h">
+      <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
+    </ClInclude>
+    <ClInclude Include="Kale.h">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
   </ItemGroup>

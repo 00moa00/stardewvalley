@@ -159,6 +159,7 @@ public:
 
 	std::string GetCurrentLevel();
 
+	Items* GetCurrentItem();
 	TOOLTYPE CurrentItemType();
 	PLAYER_SHOPPING GetPlayerShoppingState();
 	PLAYER_UPDATE GetPlayerState();
@@ -272,19 +273,6 @@ private:
 
 	void CreateSeed();
 
-	template<typename Actor>
-	Actor* CreateSeedActor()
-	{
-		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
-		return Item;
-	}
-
-	//template<typename Actor>
-	//Actor* CreateDropItemActor()
-	//{
-	//	Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
-	//	return Item;
-	//}
 
 };
 

@@ -32,7 +32,6 @@ void Daffodil::Start()
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::DAFFODIL);
 
-	ItemType_ = ITEMTYPE::ITEM;
 	ItemName_ = "Daffodil";
 
 	SellPrice_ = 35;

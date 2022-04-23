@@ -1,21 +1,21 @@
-#include "Dandelion.h"
+#include "Kale.h"
 #include "Inventory.h"
 
-Dandelion* Dandelion::MainDandelion = nullptr;
-Font* Dandelion::Font_ = nullptr;
+Kale* Kale::MainKale = nullptr;
+Font* Kale::Font_ = nullptr;
 
-Dandelion::Dandelion() 
+Kale::Kale() 
 {
 }
 
-Dandelion::~Dandelion() 
+Kale::~Kale() 
 {
 }
 
-void Dandelion::Start()
+void Kale::Start()
 {
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::DANDELION));
+	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::KALE));
 	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
@@ -27,45 +27,55 @@ void Dandelion::Start()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
+	ItemName_ = "Kale";
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::DANDELION);
-
-	ItemName_ = "Dandelion";
+	FileIndex_ = static_cast<size_t>(ITEM::KALE);
 
 	SellPrice_ = 35;
 }
 
-void Dandelion::Update()
+void Kale::Update()
 {
+	MoveToPlayer();
+
+	if (isItemDeath_ == true)
+	{
+		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+		MainPlayer->GetInventroy()->NewItem<Kale>();
+	}
+
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
 		Font_->SetPositionItem({ GetPosition() });
 
 		break;
+
 	}
 }
 
-void Dandelion::LevelChangeStart(GameEngineLevel* _PrevLevel)
+void Kale::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainDandelion = this;
+	MainKale = this;
 	Font_ = Font_;
 }
 
-void Dandelion::LevelChangeEnd(GameEngineLevel* _NextLevel)
+void Kale::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+
 }
 
-void Dandelion::AddItemCount()
+void Kale::AddItemCount()
 {
 	++Count_;
 	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
-void Dandelion::SubItemCount()
+void Kale::SubItemCount()
 {
 	if (Count_ == 1)
 	{

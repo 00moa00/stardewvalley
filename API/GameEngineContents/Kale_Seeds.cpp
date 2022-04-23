@@ -1,4 +1,5 @@
 #include "Kale_Seeds.h"
+#include "Kale_Crops.h"
 #include "Inventory.h"
 
 Kale_Seeds* Kale_Seeds::MainKaleSeeds = nullptr;
@@ -32,9 +33,8 @@ void Kale_Seeds::Start()
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::KALE_SEEDS);
 
-	ItemType_ = ITEMTYPE::ITEM;
+	SeedType_ = SEEDTYPE::KALE_SEED;
 	ItemName_ = "KALE_SEEDS";
-
 	SellPrice_ = 35;
 }
 
@@ -59,6 +59,12 @@ void Kale_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void Kale_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+}
+
+Crops* Kale_Seeds::CreateCrops()
+{
+	Crops* Crops_ = GetLevel()->CreateActor<Kale_Crops>(static_cast<int>(PLAYLEVEL::SEED));
+	return Crops_;
 }
 
 void Kale_Seeds::AddItemCount()

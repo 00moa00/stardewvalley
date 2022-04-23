@@ -15,7 +15,6 @@ void Weeds::Start()
 	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
-	ItemType_ = ITEMTYPE::ITEM;
 }
 
 void Weeds::Update()

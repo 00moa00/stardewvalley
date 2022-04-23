@@ -36,6 +36,7 @@ Items::Items() :
 
 	ItemName_({""}),
 	FileName_({""}),
+	SeedType_(SEEDTYPE::NONE),
 	ItemType_ (ITEMTYPE::ITEM),
 	ToolType_ (TOOLTYPE::OTHER),
 	ItemState_(ITEM_STATE::INIT)
@@ -82,6 +83,11 @@ void Items::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Items::DropItemInMap()
 {
+}
+
+Crops* Items::CreateCrops()
+{
+	return nullptr;
 }
 
 bool Items::ItemCheck(const float4 pos, const float4 scale)

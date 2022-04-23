@@ -15,9 +15,6 @@ void TreeTop::Start()
 	ItemRenderer_ = CreateRenderer("Mahogany_Tree.bmp");
 	ItemRenderer_->SetPivotType(RenderPivot::BOT);
 
-	ItemType_ = ITEMTYPE::ITEM;
-
-
 	ItemRenderer_->CreateAnimation("Oak_Tree_AnimaionSheet.bmp", "INIT_OAK", 0, 0, 0.200f, true);
 	ItemRenderer_->CreateAnimation("Oak_Tree_AnimaionSheet.bmp", "CRUSH_OAK", 1,6, 0.150f, true);
 

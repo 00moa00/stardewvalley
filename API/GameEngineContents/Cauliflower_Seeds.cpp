@@ -1,4 +1,5 @@
 #include "Cauliflower_Seeds.h"
+#include "Cauliflower_Crops.h"
 #include "Inventory.h"
 
 Cauliflower_Seeds* Cauliflower_Seeds:: MainCauliflowerSeeds = nullptr;
@@ -32,9 +33,8 @@ void Cauliflower_Seeds::Start()
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::CAULIFLOWER_SEEDS);
 
-	ItemType_ = ITEMTYPE::ITEM;
+	SeedType_ = SEEDTYPE::CAULIFLOWER_SEED;
 	ItemName_ = "Cauliflower_Seeds";
-
 	SellPrice_ = 35;
 }
 
@@ -59,6 +59,12 @@ void Cauliflower_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void Cauliflower_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+}
+
+Crops* Cauliflower_Seeds::CreateCrops()
+{
+	Crops* Crops_ = GetLevel()->CreateActor<Cauliflower_Crops>(static_cast<int>(PLAYLEVEL::SEED));
+	return Crops_;
 }
 
 void Cauliflower_Seeds::AddItemCount()

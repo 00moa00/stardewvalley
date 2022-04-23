@@ -1,4 +1,5 @@
 #include "Parsnip_Seeds.h"
+#include "Parsnip_Crops.h"
 #include "Inventory.h"
 
 Parsnip_Seeds* Parsnip_Seeds::MainParsnipSeeds = nullptr;
@@ -34,9 +35,8 @@ void Parsnip_Seeds::Start()
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::PARSNIP_SEEDS);
 
-	ItemType_ = ITEMTYPE::ITEM;
+	SeedType_ = SEEDTYPE::PARSNIP_SEED;
 	ItemName_ = "Parsnip_Seeds";
-
 	SellPrice_ = 35;
 }
 
@@ -60,6 +60,12 @@ void Parsnip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void Parsnip_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+}
+
+Crops* Parsnip_Seeds::CreateCrops()
+{
+	Crops* Crops_ = GetLevel()->CreateActor<Parsnip_Crops>(static_cast<int>(PLAYLEVEL::SEED));
+	return Crops_;
 }
 
 void Parsnip_Seeds::AddItemCount()

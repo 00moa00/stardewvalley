@@ -19,8 +19,6 @@ void WildHorseradish::Start()
 
 	ItemCollider_= CreateCollision("Item", { 40, 40 });
 	
-	ItemType_ = ITEMTYPE::ITEM;
-
 	SetItemName("WildHorseradish");
 
 	SellPrice_ = 40;

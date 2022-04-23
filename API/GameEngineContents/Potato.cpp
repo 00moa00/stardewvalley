@@ -32,7 +32,6 @@ void Potato::Start()
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::POTATO);
 
-	ItemType_ = ITEMTYPE::ITEM;
 	ItemName_ = "Potato";
 
 	SellPrice_ = 35;

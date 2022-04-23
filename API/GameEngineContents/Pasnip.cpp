@@ -27,7 +27,6 @@ void Pasnip::Start()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
-	ItemType_ = ITEMTYPE::ITEM;
 	ItemName_ = "Pasnip";
 
 	//핸드 아이템용

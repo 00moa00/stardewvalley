@@ -1,4 +1,5 @@
 #include "Potato_Seeds.h"
+#include"Patato_Crops.h"
 #include "Inventory.h"
 
 Potato_Seeds* Potato_Seeds::MainPotatoSeeds = nullptr;
@@ -33,9 +34,8 @@ void Potato_Seeds::Start()
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::POTATO_SEEDS);
 
-	ItemType_ = ITEMTYPE::ITEM;
+	SeedType_ = SEEDTYPE::POTATO_SEED;
 	ItemName_ = "Potato_Seeds";
-
 	SellPrice_ = 35;
 
 }
@@ -61,6 +61,12 @@ void Potato_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void Potato_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+}
+
+Crops* Potato_Seeds::CreateCrops()
+{
+	Crops* Crops_ = GetLevel()->CreateActor<Patato_Crops>(static_cast<int>(PLAYLEVEL::SEED));
+	return Crops_;
 }
 
 void Potato_Seeds::AddItemCount()

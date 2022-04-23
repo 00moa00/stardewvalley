@@ -21,7 +21,6 @@ void TreeBottom::Start()
 
 	TreeTop_ = GetLevel()->CreateActor<TreeTop>((int)PLAYLEVEL::TOP_OBJECT);
 	Damage_ = 5;
-	ItemType_ = ITEMTYPE::ITEM;
 
 	SetScale({ 48.f, 48.f });
 

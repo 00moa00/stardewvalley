@@ -39,6 +39,11 @@ std::string  Player::GetCurrentLevel()
 	return GetLevel()->GetNameConstRef();
 }
 
+Items* Player::GetCurrentItem()
+{
+	return Inventory::MainInventory->GetCurrentItem();
+}
+
 TOOLTYPE Player::CurrentItemType()
 {
 	if (Inventory::MainInventory->GetCurrentItem() == nullptr)

@@ -1,20 +1,21 @@
 #pragma once
 #include "Items.h"
 // Ό³Έν :
-class Bean_Seeds : public Items
+class Kale : public Items
 {
 public:
-	static Bean_Seeds* MainBeanSeeds;
+	static Kale* MainKale;
 	static Font* Font_;
+
 	// constrcuter destructer
-	Bean_Seeds();
-	~Bean_Seeds();
+	Kale();
+	~Kale();
 
 	// delete Function
-	Bean_Seeds(const Bean_Seeds& _Other) = delete;
-	Bean_Seeds(Bean_Seeds&& _Other) noexcept = delete;
-	Bean_Seeds& operator=(const Bean_Seeds& _Other) = delete;
-	Bean_Seeds& operator=(Bean_Seeds&& _Other) noexcept = delete;
+	Kale(const Kale& _Other) = delete;
+	Kale(Kale&& _Other) noexcept = delete;
+	Kale& operator=(const Kale& _Other) = delete;
+	Kale& operator=(Kale&& _Other) noexcept = delete;
 
 private:
 	void Start() override;
@@ -22,7 +23,7 @@ private:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
-	Crops* CreateCrops() override;
+
 	void AddItemCount() override;
 	void SubItemCount() override;
 

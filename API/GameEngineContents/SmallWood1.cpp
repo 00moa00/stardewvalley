@@ -16,7 +16,6 @@ void SmallWood1::Start()
 	
 	SetScale({ 48.f, 48.f });
 
-	ItemType_ = ITEMTYPE::ITEM;
 	ItemName_ = "SmallWood1";
 
 }
