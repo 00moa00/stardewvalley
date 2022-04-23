@@ -59,29 +59,6 @@ void StardewValley::GameInit()
 
 
 	{
-		//------< 이미지 현재 디렉토리 >------------------------------------------------------------------
-
-		GameEngineDirectory ResourcesDir;
-		ResourcesDir.MoveParent("API");
-		ResourcesDir.Move("Resources");
-		ResourcesDir.Move("All");
-
-
-		//------< 이미지 파일 찾기 >------------------------------------------------------------------
-
-		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
-
-		for (size_t i = 0; i < AllImageFileList.size(); i++)
-		{
-			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
-		}
-
-		//------< 이미지 Cut >------------------------------------------------------------------
-	}
-
-
-
-	{
 		//------< 사운드 현재 디렉토리 >------------------------------------------------------------------
 
 		GameEngineDirectory ResourcesDir;
@@ -101,100 +78,213 @@ void StardewValley::GameInit()
 
 	}
 
+	//------< 이미지 현재 디렉토리 >------------------------------------------------------------------
 
-
-	//------< 이미지 Cut >------------------------------------------------------------------
-
-	//================================
-	//     타이틀 메뉴 148 116
-	//================================
-	GameEngineImage* TitleImage = GameEngineImageManager::GetInst()->Find("TitleButtons.ko-KR.bmp");
-
-	for (int j = 0; j < 2; j++) 
 	{
-		for (int i = 0; i < 4; i++) 
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
+		ResourcesDir.Move("Player");
+
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
 		{
-			if (i == 2) continue; // 협동플레이 버튼 스킵
-			TitleImage->Cut({ 148, 116 }, { 148 * (float)i, 374.f + (116.f * j) });//1 2 3
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
+
+		//================================
+		//     플레이어 48 96
+		//================================
+		GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("Player.bmp");
+		PlayerBody->Cut({ 48, 96 });
+
+
+
+		//================================
+		//     플레이어 호미 250	150
+		//================================
+		GameEngineImage* PlayerHoeRight = GameEngineImageManager::GetInst()->Find("hoe_right.bmp");
+		PlayerHoeRight->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerHoeLeft = GameEngineImageManager::GetInst()->Find("hoe_left.bmp");
+		PlayerHoeLeft->Cut({ 250, 150 });
+
+
+		GameEngineImage* PlayerHoeFront = GameEngineImageManager::GetInst()->Find("hoe_front.bmp");
+		PlayerHoeFront->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerHoeBack = GameEngineImageManager::GetInst()->Find("hoe_back.bmp");
+		PlayerHoeBack->Cut({ 250, 150 });
+
+
+		//================================
+		//     플레이어 도끼 250	150
+		//================================
+		GameEngineImage* PlayerAxeRight = GameEngineImageManager::GetInst()->Find("axe_right.bmp");
+		PlayerAxeRight->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerAxeLeft = GameEngineImageManager::GetInst()->Find("axe_left.bmp");
+		PlayerAxeLeft->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerAxeFront = GameEngineImageManager::GetInst()->Find("axe_front.bmp");
+		PlayerAxeFront->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerAxeBack = GameEngineImageManager::GetInst()->Find("axe_back.bmp");
+		PlayerAxeBack->Cut({ 250, 150 });
+
+
+
+		//================================
+		//     플레이어 곡괭이 250	150
+		//================================
+
+		GameEngineImage* PlayerPiRight = GameEngineImageManager::GetInst()->Find("pickaxe_front.bmp");
+		PlayerPiRight->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerPiLeft = GameEngineImageManager::GetInst()->Find("pickaxe_left.bmp");
+		PlayerPiLeft->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerPiFront = GameEngineImageManager::GetInst()->Find("pickaxe_front.bmp");
+		PlayerPiFront->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerPiBack = GameEngineImageManager::GetInst()->Find("pickaxe_back.bmp");
+		PlayerPiBack->Cut({ 250, 150 });
+
+
+		//================================
+		//     플레이어 물 250	150
+		//================================
+		GameEngineImage* PlayeWaterRight = GameEngineImageManager::GetInst()->Find("wateringcan_right.bmp");
+		PlayeWaterRight->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerWaterLeft = GameEngineImageManager::GetInst()->Find("wateringcan_left.bmp");
+		PlayerWaterLeft->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerWaterFront = GameEngineImageManager::GetInst()->Find("wateringcan_front.bmp");
+		PlayerWaterFront->Cut({ 250, 150 });
+
+		GameEngineImage* PlayerWaterBack = GameEngineImageManager::GetInst()->Find("wateringcan_back.bmp");
+		PlayerWaterBack->Cut({ 250, 150 });
+
+
 	}
 
-	//================================
-	//     플레이어 48 96
-	//================================
-	GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("Player.bmp");
-	PlayerBody->Cut({ 48, 96 });
+
+	{
+		//------< 이미지 현재 디렉토리 >------------------------------------------------------------------
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
 
 
-	//================================
-	//     봄 아이템 48 48
-	//================================
-	GameEngineImage* SpringObjects = GameEngineImageManager::GetInst()->Find("springobjects.bmp");
-	SpringObjects->Cut({ 48, 48 });
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
 
 
-	//================================
-	//     플레이어 툴 48 96
-	//================================
-	GameEngineImage* PlayerTool = GameEngineImageManager::GetInst()->Find("tools.bmp");
-	PlayerTool->Cut({ 48, 96 });
+		//================================
+		//     타이틀 메뉴 148 116
+		//================================
+		GameEngineImage* TitleImage = GameEngineImageManager::GetInst()->Find("TitleButtons.ko-KR.bmp");
+
+		for (int j = 0; j < 2; j++)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				if (i == 2) continue; // 협동플레이 버튼 스킵
+				TitleImage->Cut({ 148, 116 }, { 148 * (float)i, 374.f + (116.f * j) });//1 2 3
+			}
+		}
 
 
-	//================================
-	//    호미로 판 땅
-	//================================
-	GameEngineImage* HoeDirt = GameEngineImageManager::GetInst()->Find("hoeDirt.bmp");
-	HoeDirt->Cut({ 48, 48 });
+		//================================
+		//     봄 아이템 48 48
+		//================================
+		GameEngineImage* SpringObjects = GameEngineImageManager::GetInst()->Find("springobjects.bmp");
+		SpringObjects->Cut({ 48, 48 });
 
 
-	//================================
-	//    씨앗
-	//================================
-	GameEngineImage* crops = GameEngineImageManager::GetInst()->Find("crops.bmp");
-	crops->Cut({ 48, 96 });
+		//================================
+		//     플레이어 툴 48 96
+		//================================
+		GameEngineImage* PlayerTool = GameEngineImageManager::GetInst()->Find("tools.bmp");
+		PlayerTool->Cut({ 48, 96 });
 
 
-	//================================
-	//		폰트 블랙
-	//================================
-	GameEngineImage* Font = GameEngineImageManager::GetInst()->Find("font_colored.bmp");
-	Font->Cut({ 12, 21 });
+		//================================
+		//    호미로 판 땅
+		//================================
+		GameEngineImage* HoeDirt = GameEngineImageManager::GetInst()->Find("hoeDirt.bmp");
+		HoeDirt->Cut({ 48, 48 });
 
-	//================================
-	//		폰트 화이트
-	//================================
-	GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
-	WhiteFont->Cut({ 9, 16 });
 
-	//================================
-	//		OakTree
-	//================================
-	GameEngineImage* OakTree = GameEngineImageManager::GetInst()->Find("Oak_Tree_AnimaionSheet.bmp");
-	OakTree->Cut({ 152, 240 });
+		//================================
+		//    씨앗
+		//================================
+		GameEngineImage* crops = GameEngineImageManager::GetInst()->Find("crops.bmp");
+		crops->Cut({ 48, 96 });
 
-	//================================
-	//		MapleTree
-	//================================
-	GameEngineImage* MapleTree = GameEngineImageManager::GetInst()->Find("Maple_Tree_AnimationSheet.bmp");
-	MapleTree->Cut({ 152, 228 });
 
-	//================================
-	//		MahoganyTree
-	//================================
-	GameEngineImage* MahoganyTree = GameEngineImageManager::GetInst()->Find("Mahogany_Tree_AnimaionSheet.bmp");
-	MahoganyTree->Cut({ 152, 238 });
+		//================================
+		//		폰트 블랙
+		//================================
+		GameEngineImage* Font = GameEngineImageManager::GetInst()->Find("font_colored.bmp");
+		Font->Cut({ 12, 21 });
 
-	//================================
-	//		FineTree
-	//================================
-	GameEngineImage* FineTree = GameEngineImageManager::GetInst()->Find("Fine_Tree_AnimaionSheet.bmp");
-	FineTree->Cut({ 152, 246 });
+		//================================
+		//		폰트 화이트
+		//================================
+		GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
+		WhiteFont->Cut({ 9, 16 });
 
-	//================================
-	//		요일
-	//================================
-	GameEngineImage* Week_Sheet = GameEngineImageManager::GetInst()->Find("Week_Sheet.bmp");
-	Week_Sheet->Cut({ 42, 26 });
+		//================================
+		//		OakTree
+		//================================
+		GameEngineImage* OakTree = GameEngineImageManager::GetInst()->Find("Oak_Tree_AnimaionSheet.bmp");
+		OakTree->Cut({ 152, 240 });
+
+		//================================
+		//		MapleTree
+		//================================
+		GameEngineImage* MapleTree = GameEngineImageManager::GetInst()->Find("Maple_Tree_AnimationSheet.bmp");
+		MapleTree->Cut({ 152, 228 });
+
+		//================================
+		//		MahoganyTree
+		//================================
+		GameEngineImage* MahoganyTree = GameEngineImageManager::GetInst()->Find("Mahogany_Tree_AnimaionSheet.bmp");
+		MahoganyTree->Cut({ 152, 238 });
+
+		//================================
+		//		FineTree
+		//================================
+		GameEngineImage* FineTree = GameEngineImageManager::GetInst()->Find("Fine_Tree_AnimaionSheet.bmp");
+		FineTree->Cut({ 152, 246 });
+
+		//================================
+		//		요일
+		//================================
+		GameEngineImage* Week_Sheet = GameEngineImageManager::GetInst()->Find("Week_Sheet.bmp");
+		Week_Sheet->Cut({ 42, 26 });
+	}
+
+
 
 	//------< 레벨 등록 >------------------------------------------------------------------
 
