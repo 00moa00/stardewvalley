@@ -145,7 +145,7 @@ void StardewValley::GameInit()
 		//     ÇÃ·¹ÀÌ¾î °î±ªÀÌ 250	150
 		//================================
 
-		GameEngineImage* PlayerPiRight = GameEngineImageManager::GetInst()->Find("pickaxe_front.bmp");
+		GameEngineImage* PlayerPiRight = GameEngineImageManager::GetInst()->Find("pickaxe_right.bmp");
 		PlayerPiRight->Cut({ 250, 150 });
 
 		GameEngineImage* PlayerPiLeft = GameEngineImageManager::GetInst()->Find("pickaxe_left.bmp");

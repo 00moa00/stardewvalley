@@ -607,6 +607,7 @@ void Player::DirAnimationChange()
 
 
 	PlayerRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+	ToolRenderer_->ChangeAnimation(GetDirString() + ArrAnimationToolName[static_cast<int>(PlayerState_)]);
 
 
 }

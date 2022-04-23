@@ -1,5 +1,6 @@
 #include "TreeBottom.h"
 #include "TreeTop.h"
+#include "DropWood.h"
 
 TreeBottom::TreeBottom() 
 	:
@@ -19,8 +20,7 @@ void TreeBottom::Start()
 	ItemCollider_ = CreateCollision("MapObject", { 48.f, 48.f });
 
 	TreeTop_ = GetLevel()->CreateActor<TreeTop>((int)PLAYLEVEL::TOP_OBJECT);
-	//Name_ = "";
-
+	Damage_ = 5;
 	ItemType_ = ITEMTYPE::ITEM;
 
 	SetScale({ 48.f, 48.f });
@@ -108,6 +108,23 @@ void TreeBottom::SetCrushAnimation()
 	if (TreeTop_ != nullptr)
 	{
 		TreeTop_->SetCrushAnimation();
+	}
+}
+
+void TreeBottom::DropItemInMap()
+{
+	int Count = RandomItemCount.RandomInt(1, 5);
+	Items* DropItem;
+	for (int i = 0; i < Count; ++i)
+	{
+		DropItem = CreateDropItemActor<DropWood>();
+
+		float4 Pos;
+		Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
+		Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);
+
+		DropItem->SetPosition({ this->GetPosition().x + Pos.x, this->GetPosition().y + Pos.y });
+		DropItem->SetMoveFlag(true);
 	}
 }
 

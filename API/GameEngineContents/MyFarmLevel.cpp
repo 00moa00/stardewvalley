@@ -107,7 +107,7 @@ void MyFarmLevel::LoadMapObject()
 
             const float4 pos = {
                 x * CHIP_SIZE + CHIP_SIZE * 0.5f,
-                y * CHIP_SIZE + CHIP_SIZE,
+                y * CHIP_SIZE + CHIP_SIZE * 0.5f,
             };
 
 			FARM_TILE TileState_ = static_cast<FARM_TILE>(chip);

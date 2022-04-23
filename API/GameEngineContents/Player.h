@@ -83,6 +83,7 @@ private:
 private:
 
 	const char* ArrAnimationName[static_cast<int>(PLAYER_UPDATE::MAX)];
+	const char* ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::MAX)];
 
 	int Money_;
 
@@ -103,6 +104,7 @@ private:
 	bool isShopping_;
 
 	GameEngineRenderer* PlayerRenderer_;
+	GameEngineRenderer* ToolRenderer_;
 	GameEngineCollision* PlayerCollider_;
 
 	GameEngineRendererTileMap* DirtTileMap_;

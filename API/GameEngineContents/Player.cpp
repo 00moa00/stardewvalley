@@ -14,16 +14,7 @@ std::string Player::PrevLevel_ = "";
 
 Player* Player::MainPlayer = nullptr;
 PlayerHandItem* Player::PlayerHandItem_ = nullptr;
-//Inventory* Player::MainInventory = nullptr;
 
-
-
-//PLAYER_UPDATE Player::PlayerState_ = PLAYER_UPDATE::INIT;
-//GameEngineRenderer* Player::PlayerRenderer_ = nullptr;
-//GameEngineCollision* Player::PlayerCollider_ = nullptr;
-//Inventory* Player::Inventory_ = nullptr;
-//Mouse* Player::Mouse_ = nullptr;
-//FixedPlayerColl* Player::FixedPlayerColl_ = nullptr;
 
 Player::Player()
 	:
@@ -36,6 +27,7 @@ Player::Player()
 	MapSizeY_(0.f),
 
 	PlayerRenderer_(nullptr),
+	ToolRenderer_(nullptr),
 	PlayerCollider_(nullptr),
 	MapColImage_(nullptr),
 	//Inventory_(nullptr),
@@ -61,14 +53,24 @@ Player::Player()
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::WALK)] = "WALK";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::WATER)] = "WATER";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
-
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::AXE)] = "HOE";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "HOE";
-
-
-
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "HANDITEM";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "HANDITEMWALK";
+
+
+
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::INIT)] = "INIT";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::WALK)] = "INIT";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "INIT";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "INIT";
+
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::WATER)] = "WATER";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "PICKAXE";
+
+
 
 }
 
@@ -91,6 +93,11 @@ void Player::Start()
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	PlayerRenderer_ = CreateRenderer();
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
+
+	ToolRenderer_ = CreateRenderer();
+	ToolRenderer_ ->SetPivotType(RenderPivot::BOT);
+	ToolRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::USE_TOOL));
+
 	PlayerCollider_ = CreateCollision("Player", { 40.f, 30 });
 
 	SetScale({ 40.f, 40.f });
@@ -103,59 +110,110 @@ void Player::Start()
 	//================================
 	//     플레이어 대기
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_INIT", PLAYER::FRONT_INIT, PLAYER::FRONT_INIT, 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_INIT", PLAYER::RIGHT_INIT, PLAYER::RIGHT_INIT, 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_INIT", PLAYER::LEFT_INIT, PLAYER::LEFT_INIT, 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_INIT", PLAYER::BACK_INIT, PLAYER::BACK_INIT, 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_INIT", static_cast<int>(PLAYER::RIGHT_INIT), static_cast<int>(PLAYER::RIGHT_INIT), 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_INIT", static_cast<int>(PLAYER::LEFT_INIT),  static_cast<int>(PLAYER::LEFT_INIT), 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_INIT", static_cast<int>(PLAYER::FRONT_INIT), static_cast<int>(PLAYER::FRONT_INIT), 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_INIT", static_cast<int>(PLAYER::BACK_INIT),  static_cast<int>(PLAYER::BACK_INIT), 0.0f, false);
 
 	//================================
 	//     플레이어 이동 
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_WALK", PLAYER::FRONT_WALK0, PLAYER::FRONT_WALK3, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WALK", PLAYER::RIGHT_WALK0, PLAYER::RIGHT_WALK5, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WALK", PLAYER::LEFT_WALK0, PLAYER::LEFT_WALK5, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WALK", PLAYER::BACK_WALK0, PLAYER::BACK_WALK3, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WALK",  static_cast<int>(PLAYER::RIGHT_WALK0),  static_cast<int>(PLAYER::RIGHT_WALK5), AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WALK",   static_cast<int>(PLAYER::LEFT_WALK0),  static_cast<int>(PLAYER::LEFT_WALK5), AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_WALK",  static_cast<int>(PLAYER::FRONT_WALK0),  static_cast<int>(PLAYER::FRONT_WALK3), AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WALK",   static_cast<int>(PLAYER::BACK_WALK0),  static_cast<int>(PLAYER::BACK_WALK3), AnimationFrame_, true);
 
 
 	//================================
 	//     플레이어 손 번쩍! 대기
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HANDITEM", PLAYER::FRONT_HAND_INIT, PLAYER::FRONT_HAND_INIT, 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HANDITEM", PLAYER::RIGHT_HAND_INIT, PLAYER::RIGHT_HAND_INIT, 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HANDITEM", PLAYER::LEFT_HAND_INIT, PLAYER::LEFT_HAND_INIT, 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HANDITEM", PLAYER::BACK_HAND_INIT, PLAYER::BACK_HAND_INIT, 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HANDITEM",  static_cast<int>(PLAYER::RIGHT_HAND_INIT), static_cast<int>(PLAYER::RIGHT_HAND_INIT), 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HANDITEM",  static_cast<int>(PLAYER::LEFT_HAND_INIT), static_cast<int>(PLAYER::LEFT_HAND_INIT), 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HANDITEM", static_cast<int>(PLAYER::FRONT_HAND_INIT), static_cast<int>(PLAYER::FRONT_HAND_INIT), 0.0f, false);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HANDITEM", static_cast<int>(PLAYER::BACK_HAND_INIT), static_cast<int>(PLAYER::BACK_HAND_INIT), 0.0f, false);
 
 
 	//================================
 	//     플레이어 이동 
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HANDITEMWALK", PLAYER::FRONT_WALK_HAND0, PLAYER::FRONT_WALK_HAND3, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HANDITEMWALK", PLAYER::RIGHT_WALK_HAND0, PLAYER::RIGHT_WALK_HAND5, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HANDITEMWALK", PLAYER::LEFT_WALK_HAND0, PLAYER::LEFT_WALK_HAND5, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HANDITEMWALK", PLAYER::BACK_WALK_HAND0, PLAYER::BACK_WALK_HAND3, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HANDITEMWALK", static_cast<int>(PLAYER::RIGHT_WALK_HAND0), static_cast<int>(PLAYER::RIGHT_WALK_HAND5), AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HANDITEMWALK", static_cast<int>(PLAYER::LEFT_WALK_HAND0), static_cast<int>(PLAYER::LEFT_WALK_HAND5), AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HANDITEMWALK",  static_cast<int>(PLAYER::FRONT_WALK_HAND0), static_cast<int>(PLAYER::FRONT_WALK_HAND3), AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HANDITEMWALK", static_cast<int>(PLAYER::BACK_WALK_HAND0), static_cast<int>(PLAYER::BACK_WALK_HAND3), AnimationFrame_, true);
 
 
 	//================================
 	//     플레이어 호미 사용
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HOE", PLAYER::HOE_FRONT0, PLAYER::HOE_FRONT5, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HOE", PLAYER::HOE_RIGHT0, PLAYER::HOE_RIGHT4, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HOE", PLAYER::HOE_LEFT0, PLAYER::HOE_LEFT4, AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HOE", PLAYER::HOE_BACK0, PLAYER::HOE_BACK2, AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), AnimationFrame_, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), AnimationFrame_, true);
 
 
 	//================================
 	//     플레이어 물뿌리개 사용
 	//================================
 
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_WATER", PLAYER::WATER_FRONT0, PLAYER::WATER_FRONT2, 0.200f, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WATER", PLAYER::WATER_RIGHT0, PLAYER::WATER_RIGHT2, 0.200f, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WATER", PLAYER::WATER_LEFT0, PLAYER::WATER_LEFT2, 0.200f, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WATER", PLAYER::WATER_BACK0, PLAYER::WATER_BACK2, 0.200f, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_WATER", static_cast<int>(PLAYER::WATER_FRONT0), static_cast<int>(PLAYER::WATER_FRONT2), 0.200f, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0, PLAYER::WATER_LEFT2), 0.200f, true);
+	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0, PLAYER::WATER_BACK2), 0.200f, true);
+
+
+
+	//------< 툴 애니메이션 >------------------------------------------------------------------
+
+	//================================
+	//     플레이어 툴 대기
+	//================================
+	ToolRenderer_->CreateAnimation("axe_back.bmp", "LEFT_INIT", static_cast<int>(HOE_BACK::HOE_BACK2), static_cast<int>(HOE_BACK::HOE_BACK2), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("axe_back.bmp", "RIGHT_INIT", static_cast<int>(HOE_BACK::HOE_BACK2), static_cast<int>(HOE_BACK::HOE_BACK2), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("axe_back.bmp", "FRONT_INIT", static_cast<int>(HOE_BACK::HOE_BACK2), static_cast<int>(HOE_BACK::HOE_BACK2), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("axe_back.bmp", "BACK_INIT", static_cast<int>(HOE_BACK::HOE_BACK2), static_cast<int>(HOE_BACK::HOE_BACK2), AnimationFrame_, false);
+
+
+
+	//================================
+	//     플레이어 호미 사용
+	//================================
+	ToolRenderer_->CreateAnimation("hoe_left.bmp", "LEFT_HOE", static_cast<int>(HOE_LEFT::HOE_LEFT0), static_cast<int>(HOE_LEFT::HOE_LEFT4), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("hoe_right.bmp", "RIGHT_HOE", static_cast<int>(HOE_RIGHT::HOE_RIGHT0), static_cast<int>(HOE_RIGHT::HOE_RIGHT4), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("hoe_front.bmp", "FRONT_HOE", static_cast<int>(HOE_FRONT::HOE_FRONT0), static_cast<int>(HOE_FRONT::HOE_FRONT4), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("hoe_back.bmp", "BACK_HOE", static_cast<int>(HOE_BACK::HOE_BACK0), static_cast<int>(HOE_BACK::HOE_BACK2), AnimationFrame_, false);
+
+	//================================
+	//     플레이어 도끼 사용
+	//================================
+	ToolRenderer_->CreateAnimation("axe_left.bmp", "LEFT_AXE", static_cast<int>(AXE_LEFT::AXE_LEFT0), static_cast<int>(AXE_LEFT::AXE_LEFT4), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("axe_right.bmp", "RIGHT_AXE", static_cast<int>(AXE_RIGHT::AXE_RIGHT0), static_cast<int>(AXE_RIGHT::AXE_RIGHT4), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("axe_front.bmp", "FRONT_AXE", static_cast<int>(AXE_FRONT::AXE_FRONT0), static_cast<int>(AXE_FRONT::AXE_FRONT4), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("axe_back.bmp", "BACK_AXE", static_cast<int>(AXE_BACK::AXE_BACK0), static_cast<int>(AXE_BACK::AXE_BACK2), AnimationFrame_, false);
+
+
+	//================================
+	//     플레이어 곡괭이 사용
+	//================================
+	ToolRenderer_->CreateAnimation("pickaxe_left.bmp", "LEFT_PICKAXE", static_cast<int>(PICKAXE_LEFT::PICKAXE_LEFT0), static_cast<int>(PICKAXE_LEFT::PICKAXE_LEFT4), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("pickaxe_right.bmp", "RIGHT_PICKAXE", static_cast<int>(PICKAXE_RIGHT::PICKAXE_RIGHT0), static_cast<int>(PICKAXE_RIGHT::PICKAXE_RIGHT4), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("pickaxe_front.bmp", "FRONT_PICKAXE", static_cast<int>(PICKAXE_FRONT::PICKAXE_FRONT0), static_cast<int>(PICKAXE_FRONT::PICKAXE_FRONT4), AnimationFrame_, false);
+	ToolRenderer_->CreateAnimation("pickaxe_back.bmp", "BACK_PICKAXE", static_cast<int>(PICKAXE_BACK::PICKAXE_BACK0), static_cast<int>(PICKAXE_BACK::PICKAXE_BACK2), AnimationFrame_, false);
+
+
+	//================================
+	//     플레이어 물뿌리개 사용
+	//================================
+
+	ToolRenderer_->CreateAnimation("wateringcan_right.bmp", "RIGHT_WATER", static_cast<int>(WATERINGCAN_RIGHT::WATERINGCAN_RIGHT0), static_cast<int>(WATERINGCAN_RIGHT::WATERINGCAN_RIGHT2), 0.200f, true);
+	ToolRenderer_->CreateAnimation("wateringcan_left.bmp", "LEFT_WATER",  static_cast<int>(WATERINGCAN_LEFT::WATERINGCAN_LEFT0), static_cast<int>(WATERINGCAN_LEFT::WATERINGCAN_LEFT2), 0.200f, true);
+	ToolRenderer_->CreateAnimation("wateringcan_front.bmp", "FRONT_WATER",  static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT0), static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT2), 0.200f, true);
+	ToolRenderer_->CreateAnimation("wateringcan_back.bmp", "BACK_WATER", static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK0), static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK2), 0.200f, true);
+
 
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
 	PlayerRenderer_->ChangeAnimation("FRONT_INIT");
+	ToolRenderer_->ChangeAnimation("LEFT_INIT");
 	//PlayerMove_.SetFrontDir(true);
 	LevelRegist("MainPlayer");
 }

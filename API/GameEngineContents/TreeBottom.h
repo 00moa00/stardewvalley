@@ -31,6 +31,7 @@ private:
 	void Update() override;
 	void SetInitAnimation() override;
 	void SetCrushAnimation() override;
+	void DropItemInMap() override;
 
 private:
 	Items* TreeTop_;
