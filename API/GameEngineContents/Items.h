@@ -94,9 +94,8 @@ protected:
 
 	GameEngineRenderer* ItemRenderer_;
 	GameEngineCollision* ItemCollider_;
-	GameEngineCollision* MapItemCollider_;
 
-	GameEngineRenderer* TreeTop_;
+	GameEngineRenderer* SubRenderer;
 
 	GameEngineRandom RandomItemCount;
 	GameEngineRandom RandomItemPosX;
@@ -165,9 +164,9 @@ public:
 		return ItemRenderer_;
 	}
 
-	GameEngineRenderer* GetTreeTop()
+	GameEngineRenderer* GetSubRenderer()
 	{
-		return TreeTop_;
+		return SubRenderer;
 	}
 
 	int GetItemCount()
@@ -345,11 +344,6 @@ public:
 	}
 
 
-	bool playerVSobject() 
-	{
-
-		return (MapItemCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
 
 
 	template<typename Actor>

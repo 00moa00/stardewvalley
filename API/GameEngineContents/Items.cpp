@@ -7,7 +7,6 @@
 Items::Items() :
 	ItemRenderer_ (nullptr),
 	ItemCollider_ (nullptr),
-	MapItemCollider_(nullptr),
 
 	MouseHoldItem_ (false),
 	InMouse (false),

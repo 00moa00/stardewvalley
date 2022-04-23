@@ -308,6 +308,12 @@
     <ClCompile Include="Cauliflower.cpp">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Pierre.cpp">
+      <Filter>Actor\03. Play\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Npc.cpp">
+      <Filter>Actor\03. Play\Obejct</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -634,6 +640,12 @@
     </ClInclude>
     <ClInclude Include="Cauliflower.h">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Pierre.h">
+      <Filter>Actor\03. Play\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Npc.h">
+      <Filter>Actor\03. Play\Obejct</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

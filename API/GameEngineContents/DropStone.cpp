@@ -23,7 +23,6 @@ void DropStone::Start()
 	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::MINI_STONE));
 	ItemRenderer_->CameraEffectOn();
 
-	MapItemCollider_ = CreateCollision("MapObject", { 20, 10 });
 	ItemCollider_ = CreateCollision("Item", { 40.f , 40.f });
 
 
