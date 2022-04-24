@@ -80,3 +80,15 @@ void Potato::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Potato::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Potato::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

@@ -232,7 +232,6 @@ void Inventory::ItemPosFocusInvenBox()
 
 void Inventory::AllUpdateOff()
 {
-
 	this->Off();
 
 	std::map<int, InventroyBox*>::iterator BoxStartIter = Box_.begin();
@@ -249,13 +248,12 @@ void Inventory::AllUpdateOff()
 
 	for (; ItemStartIter != ItemEndIter; ++ItemStartIter)
 	{
-		ItemStartIter->second->Off();
+		ItemStartIter->second->UpdateOff();
 	}
 
 	ExitBotton_->Off();
 
 }
-
 
 void Inventory::AllUpdateOn()
 {
@@ -274,7 +272,7 @@ void Inventory::AllUpdateOn()
 
 	for (; ItemStartIter != ItemEndIter; ++ItemStartIter) 
 	{
-		ItemStartIter->second->On();
+		ItemStartIter->second->UpdateOn();
 	}
 
 	ExitBotton_->On();
@@ -562,6 +560,7 @@ void Inventory::InvenPopUp()
 
 
 	int BoxXMargin = 0;
+	int BoxYMargin = 0;
 
 	switch (PopUpState_)
 	{
@@ -606,7 +605,7 @@ void Inventory::InvenPopUp()
 
 			if (ItemStartIter->first > 11)
 			{
-				ItemStartIter->second->Off();
+				ItemStartIter->second->UpdateOff();
 			}
 		}
 
@@ -632,7 +631,7 @@ void Inventory::InvenPopUp()
 				continue;
 			}
 
-			ItemStartIter->second->On();
+			ItemStartIter->second->UpdateOn();
 		}
 
 		for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
@@ -660,37 +659,33 @@ void Inventory::InvenPopUp()
 				continue;
 			}
 
-			ItemStartIter->second->On();
+			ItemStartIter->second->UpdateOn();
 		}
+
+		BoxYMargin = 0;
+		BoxXMargin = 0;
+
+		BoxStartIter = Box_.begin();
+		BoxEndIter = Box_.end();
+
 
 		for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
 		{
 			BoxStartIter->second->On();
 
-		}
-
-
-		std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
-		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
-
-		int BoxYMargin = 0;
-		int BoxXMargin = 0;
-
-		for (; StartIter != EndIter; ++StartIter)
-		{
-			if (StartIter->first == 12)
+			if (BoxStartIter->first == 12)
 			{
 				BoxYMargin = 1;
 				BoxXMargin = 0;
 			}
 
-			if (StartIter->first == 24)
+			if (BoxStartIter->first == 24)
 			{
 				BoxYMargin = 2;
 				BoxXMargin = 0;
 			}
 
-			StartIter->second->SetPosition({ (362.f) + (64.f * BoxXMargin), (459.f) + (64.f * BoxYMargin ) });
+			BoxStartIter->second->SetPosition({ (362.f) + (64.f * BoxXMargin), (459.f) + (64.f * BoxYMargin ) });
 
 			++BoxXMargin;
 		}
@@ -698,6 +693,32 @@ void Inventory::InvenPopUp()
 		PopUpState_ = POPUPSTATE::INIT;
 		break;
 
+	case POPUPSTATE::OFF:
+
+		CurrentInvenState_ = POPUPSTATE::OFF;
+		ExitBotton_->Off();
+		CurrentItemFrame_->Off();
+		Inventory_->Off();
+
+
+		for (; ItemStartIter != ItemEndIter; ++ItemStartIter)
+		{
+			if (ItemStartIter == ItemEndIter)
+			{
+				continue;
+			}
+
+			ItemStartIter->second->UpdateOff();
+		}
+
+		for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
+		{
+			BoxStartIter->second->Off();
+
+		}
+
+		PopUpState_ = POPUPSTATE::INIT;
+		break;
 	}
 
 

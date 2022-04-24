@@ -91,3 +91,15 @@ void Parsnip_Seeds::SubItemCount()
 	}
 }
 
+void Parsnip_Seeds::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Parsnip_Seeds::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}
+

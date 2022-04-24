@@ -12,7 +12,7 @@ Items::Items() :
 	InMouse (false),
 	isPossibleHand_(false),
 	isItemDeath_(false),
-	MoveFlag_(false),
+	isMove_(false),
 	InBox (true),
 
 	State_(MOVE::Y_UP),

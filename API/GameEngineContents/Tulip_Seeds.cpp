@@ -87,3 +87,15 @@ void Tulip_Seeds::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Tulip_Seeds::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Tulip_Seeds::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

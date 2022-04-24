@@ -259,6 +259,7 @@ void Shop::ShopOff()
 {
 	this->Off();
 	ExitBotton_->Off();
+	Font_->Off();
 
 	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
 	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
@@ -274,6 +275,7 @@ void Shop::ShopOn()
 {
 	this->On();
 	ExitBotton_->On();
+	Font_->On();
 
 	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
 	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();

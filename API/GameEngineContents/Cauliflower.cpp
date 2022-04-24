@@ -90,3 +90,15 @@ void Cauliflower::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Cauliflower::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Cauliflower::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

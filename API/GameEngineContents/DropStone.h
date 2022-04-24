@@ -29,5 +29,8 @@ private:
 
 	void AddItemCount() override;
 	void SubItemCount() override;
+	void UpdateOff() override;
+	void UpdateOn() override;
+
 };
 

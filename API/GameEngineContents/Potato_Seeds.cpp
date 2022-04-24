@@ -89,3 +89,15 @@ void Potato_Seeds::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Potato_Seeds::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Potato_Seeds::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

@@ -88,3 +88,9 @@ void Tulip::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Tulip::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}

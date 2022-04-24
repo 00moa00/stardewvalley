@@ -90,3 +90,15 @@ void Bean::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Bean::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Bean::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

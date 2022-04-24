@@ -91,3 +91,15 @@ void Jazz::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Jazz::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Jazz::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

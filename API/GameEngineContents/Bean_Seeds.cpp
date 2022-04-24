@@ -88,3 +88,15 @@ void Bean_Seeds::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Bean_Seeds::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Bean_Seeds::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

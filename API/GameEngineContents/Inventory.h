@@ -42,7 +42,8 @@ enum class POPUPSTATE
 	INIT,
 	MINI,
 	MAIN,
-	SHOP
+	SHOP,
+	OFF
 };
 
 enum class INVEN_UPDATE
@@ -181,6 +182,13 @@ public:
 	//================================
 	//    Setter
 	//================================
+
+
+	void SetPopUpStateMini()
+	{
+		PopUpState_ = POPUPSTATE::MINI;
+	}
+
 	void SetInventoryMoveStateInit()
 	{
 		MoveState_ = ITEMMOVE::INIT;

@@ -81,3 +81,15 @@ void Daffodil::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Daffodil::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Daffodil::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

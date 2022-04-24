@@ -27,6 +27,8 @@ private:
 	Crops* CreateCrops() override;
 	void AddItemCount() override;
 	void SubItemCount() override;
+	void UpdateOff() override;
+	void UpdateOn() override;
 
 };
 

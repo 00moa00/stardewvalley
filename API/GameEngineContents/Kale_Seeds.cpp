@@ -89,3 +89,15 @@ void Kale_Seeds::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Kale_Seeds::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Kale_Seeds::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

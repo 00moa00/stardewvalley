@@ -81,3 +81,15 @@ void Dandelion::SubItemCount()
 		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
+
+void Dandelion::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void Dandelion::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

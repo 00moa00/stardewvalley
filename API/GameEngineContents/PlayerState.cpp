@@ -257,6 +257,7 @@ void Player::PlayerShopping()
 
 		Shop::MainShop->ShopOn();
 		isShopping_ = true;
+		isEvent_ = true;
 		PlayerShoppingState_ = PLAYER_SHOPPING::SHOPPING;
 
 		break;
@@ -264,6 +265,7 @@ void Player::PlayerShopping()
 	case PLAYER_SHOPPING::SHOP_OFF:
 
 		Shop::MainShop->ShopOff();
+		isEvent_ = false;
 		PlayerShoppingState_ = PLAYER_SHOPPING::INT;
 
 		break;
@@ -465,6 +467,20 @@ void Player::NpcCollCheck()
 	if (PlayerCollider_->NextPostCollisionCheck("Pierre", MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true
 		&& Mouse_->isMouseClick())
 	{
+		isEvent_ = !isEvent_;
+
+		if (isEvent_ == true)
+		{
+			Inventory::MainInventory->AllUpdateOff();
+		}
+		else
+		{
+			Inventory::MainInventory->AllUpdateOn();
+			Inventory::MainInventory->SetPopUpStateMini();
+		}
+
+
+
 		NpcList_[static_cast<int>(NPC::PIERRE)]->OpenDialogue();
 
 	}
@@ -561,25 +577,27 @@ void Player::PlayerWalk() {
 
 void Player::PlayerDirCheck()
 {
-	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+	if (isEvent_ == false)
 	{
-		MoveDir_ = float4::LEFT;
-	}
-	else if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
-	{
-		MoveDir_ = float4::RIGHT;
-	}
+		if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+		{
+			MoveDir_ = float4::LEFT;
+		}
+		else if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
+		{
+			MoveDir_ = float4::RIGHT;
+		}
 
-	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
-	{
-		MoveDir_ = float4::UP;
+		if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
+		{
+			MoveDir_ = float4::UP;
+		}
+		else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
+		{
+			MoveDir_ = float4::DOWN;
+		}
 	}
-	else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
-	{
-		MoveDir_ = float4::DOWN;
-	}
-
-	DirAnimationChange();
+		DirAnimationChange();
 
 }
 

@@ -102,6 +102,7 @@ private:
 	bool UsingAxe_;
 	bool UsingPickaxe_;
 	bool isShopping_;
+	bool isEvent_;
 
 	GameEngineRenderer* PlayerRenderer_;
 	GameEngineRenderer* ToolRenderer_;
@@ -216,6 +217,7 @@ private:
 
 	// 메인 업데이트 함수
 	void PlayerUpdate();
+	void PlayerDoingEvent();
 
 	//================================
 	//    플레이어 기본

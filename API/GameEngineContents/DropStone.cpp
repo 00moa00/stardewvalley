@@ -94,3 +94,15 @@ void DropStone::SubItemCount()
 	}
 
 }
+
+void DropStone::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void DropStone::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}

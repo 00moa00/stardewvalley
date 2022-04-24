@@ -87,6 +87,18 @@ void DropWood::SubItemCount()
 
 }
 
+void DropWood::UpdateOff()
+{
+	this->Off();
+	Font_->Off();
+}
+
+void DropWood::UpdateOn()
+{
+	this->On();
+	Font_->On();
+}
+
 //
 //void DropWood::MoveToPlayer()
 //{
@@ -109,7 +121,7 @@ void DropWood::SubItemCount()
 //
 //	Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 //
-//	if (MoveFlag_ == true)
+//	if (isEvent_ == true)
 //	{
 //
 //		switch (State_)

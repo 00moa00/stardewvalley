@@ -89,6 +89,18 @@ public:
 	virtual void DropItemInMap();
 	virtual Crops* CreateCrops();
 
+	virtual void UpdateOff()
+	{
+		this->Off();
+	}
+
+	virtual void UpdateOn()
+	{
+		this->On();
+	}
+
+
+
 protected:
 	std::vector<GameEngineCollision*> ColList;
 
@@ -126,7 +138,7 @@ protected:
 	bool MouseHoldItem_;
 	bool isPossibleHand_;
 	bool isItemDeath_;
-	bool MoveFlag_;
+	bool isMove_;
 
 	std::string ItemName_;
 	std::string FileName_;
@@ -139,11 +151,6 @@ private:
 	bool InBox;
 
 protected:
-
-	virtual void UpdateOff()
-	{
-		this->Off();
-	}
 
 
 public:
@@ -265,7 +272,6 @@ public:
 	//================================
 
 
-
 	void SubDamage()
 	{
 		if (Damage_ > 0)
@@ -281,7 +287,7 @@ public:
 
 	void SetMoveFlag(bool _flag)
 	{
-		MoveFlag_ = _flag;
+		isMove_ = _flag;
 	}
 
 	void SetItemDeath(bool _flag)

@@ -32,12 +32,13 @@ Player::Player()
 	MapColImage_(nullptr),
 	//Inventory_(nullptr),
 	Mouse_(nullptr),
-//	Shop_(nullptr),
-	
+	//	Shop_(nullptr),
+
 	ObjectColl_(false),
 	FarmingArea_(false),
 	UsingAxe_(false),
 	isShopping_(false),
+	isEvent_(false),
 
 	MoveDir_(float4::DOWN),
 
@@ -287,12 +288,6 @@ void Player::PlayerUpdate()
 		ChangeHandItem();
 		harvestingCrops();
 
-		if (isShopping_ == true)
-		{
-			PlayerState_ = PLAYER_UPDATE::INIT;
-
-		}
-
 		//손에 들 수 있는 아이템이라면 
 		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
 		{
@@ -309,7 +304,7 @@ void Player::PlayerUpdate()
 
 
 		//이동키를 눌렀다면 이동스테이트로 변경
-		if (isMove())
+		if (isMove() && isEvent_ == false)
 		{
 			PlayerState_ = PLAYER_UPDATE::WALK;
 		}
@@ -393,7 +388,8 @@ void Player::PlayerUpdate()
 		harvestingCrops();
 
 
-		if (isStop())
+
+		if (isStop() || isEvent_ == true)
 		{
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
