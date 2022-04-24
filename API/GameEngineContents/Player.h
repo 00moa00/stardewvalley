@@ -217,7 +217,6 @@ private:
 
 	// 메인 업데이트 함수
 	void PlayerUpdate();
-	void PlayerDoingEvent();
 
 	//================================
 	//    플레이어 기본

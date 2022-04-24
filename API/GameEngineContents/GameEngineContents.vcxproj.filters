@@ -11,12 +11,6 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Actor\03. Play</Filter>
     </ClCompile>
-    <ClCompile Include="TitleBackGround.cpp">
-      <Filter>Actor\02. Title</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleCloud.cpp">
-      <Filter>Actor\02. Title</Filter>
-    </ClCompile>
     <ClCompile Include="MenuExit.cpp">
       <Filter>Actor\02. Title\Menu</Filter>
     </ClCompile>
@@ -317,6 +311,9 @@
     <ClCompile Include="DialogueBox.cpp">
       <Filter>Actor\03. Play\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Actor\02. Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -328,12 +325,6 @@
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>Actor\03. Play</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleBackGround.h">
-      <Filter>Actor\02. Title</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleCloud.h">
-      <Filter>Actor\02. Title</Filter>
     </ClInclude>
     <ClInclude Include="MenuExit.h">
       <Filter>Actor\02. Title\Menu</Filter>
@@ -655,6 +646,9 @@
     </ClInclude>
     <ClInclude Include="NpcData.h">
       <Filter>Actor\00. GlobalData</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Actor\02. Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

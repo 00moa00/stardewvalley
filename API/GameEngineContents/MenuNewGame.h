@@ -15,8 +15,6 @@ public:
 	MenuNewGame& operator=(const MenuNewGame& _Other) = delete;
 	MenuNewGame& operator=(MenuNewGame&& _Other) noexcept = delete;
 
-
-
 	void MouseEvent();
 	bool MouseOver();
 

@@ -7,7 +7,7 @@
 #include "MenuNewGame.h"
 #include "Mouse.h"
 #include "Player.h"
-
+#include "Title.h"
 #include "BackGround.h"
 
 //자른 이미지 인덱스용
@@ -53,12 +53,26 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _NextLevel) override;
 
 private:
+
+	Title* Title_;
+
 	TitleLogo* TitleLogo_;
+
 	MenuNewGame* MenuNewGame_;
 	MenuLoad* MenuLoad_;
 	MenuExit* MenuExit_;
+
 	Mouse* Mouse_;
+
 	BackGround* TitleBackGround_;
+	BackGround* TitleRightFrontMount;
+	BackGround* TitleLeftFrontMout;
+	BackGround* TitleBackMountBlue;
+	BackGround* TitleBackMountGreen;
+
+	BackGround* TitleCloud_[2];
+
+
 
 	Player* Player_;
 

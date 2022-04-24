@@ -16,7 +16,6 @@ TitleLevel::TitleLevel()
 		MenuExit_(nullptr),
 		MenuLoad_(nullptr),
 		MenuNewGame_(nullptr),
- 		/*Player_(nullptr),*/
 		TitleBackGround_(nullptr),
 		Mouse_(nullptr),
 		isPopup_(false),
@@ -31,22 +30,74 @@ TitleLevel::~TitleLevel()
 {
 }
 
-void TitleLevel::Loading() 
+void TitleLevel::Loading()
 {
 
-	TitleLogo_ = CreateActor<TitleLogo>((int)TITLELEVEL::TITLELOGO);
 
-	Mouse_= CreateActor<Mouse>((int)TITLELEVEL::MOUSE);
+}
+
+void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
+{
+	Title_ = CreateActor<Title>((int)TITLELEVEL::TITLELOGO);
+	TitleLogo_ = CreateActor<TitleLogo>((int)TITLELEVEL::TITLELOGO);
+	Mouse_ = CreateActor<Mouse>((int)TITLELEVEL::MOUSE);
+
+
+	TitleCloud_[0] = CreateActor<BackGround>((int)TITLELEVEL::CLOUD);
+	TitleCloud_[0]->GetRenderer()->SetImage("Title_Cloud.bmp");
+	TitleCloud_[0]->SetPosition({ 1280.f, 720.f/2 });
+
+	TitleCloud_[1] = CreateActor<BackGround>((int)TITLELEVEL::CLOUD);
+	TitleCloud_[1]->GetRenderer()->SetImage("Title_Cloud.bmp");
+	TitleCloud_[1]->SetPosition({ 1280.f + 1280.f,  720.f / 2 });
+
 
 	TitleBackGround_ = CreateActor<BackGround>((int)TITLELEVEL::BACKGROUND);
+	TitleBackGround_->GetRenderer()->SetImage("Title_Back.bmp");
+	TitleBackGround_->SetPosition({ 1280.f / 2, 1500.f / 2 });
+
+	TitleRightFrontMount = CreateActor<BackGround>((int)TITLELEVEL::FRONTMOUNT);
+	TitleRightFrontMount->GetRenderer()->SetImage("FrontMountRight.bmp");
+	TitleRightFrontMount-> SetPosition({ 1280.f / 2, 1500.f / 2 });
 
 
-	//TitleBackGround_->GetRenderer()->SetImage();
+	TitleLeftFrontMout = CreateActor<BackGround>((int)TITLELEVEL::FRONTMOUNT);
+	TitleLeftFrontMout->GetRenderer()->SetImage("FrontMountLeft.bmp");
+	TitleLeftFrontMout->SetPosition({ 1280.f / 2, 1500.f / 2 });
+
+	TitleBackMountBlue = CreateActor<BackGround>((int)TITLELEVEL::BACKMOUNTBLUE);
+	TitleBackMountBlue->GetRenderer()->SetImage("BackMountBlue.bmp");
+	TitleBackMountBlue->SetPosition({ 1280.f / 2, 1500.f / 2 });
+
+	TitleBackMountGreen = CreateActor<BackGround>((int)TITLELEVEL::BACKMOUNTGREEN);
+	TitleBackMountGreen->GetRenderer()->SetImage("BackMountGreen.bmp");
+	TitleBackMountGreen->SetPosition({ 1280.f / 2, 1500.f / 2 });
 }
+
+
 
 void TitleLevel::Update()
 {
 	//¸Å´º¹Ù ÆË¾÷
+
+	float4 Move = float4::LEFT;
+	TitleCloud_[0]->SetMove(Move * GameEngineTime::GetDeltaTime() * 100.f);
+
+	TitleCloud_[1]->SetMove(Move * GameEngineTime::GetDeltaTime() * 100.f);
+
+
+	if (TitleCloud_[0]->GetPosition().x < -1280.f/2)
+	{
+		TitleCloud_[0]->SetPosition({ 1280.f + 1280.f/2, 720.f / 2 });
+	}
+
+	if (TitleCloud_[1]->GetPosition().x < -1280.f / 2)
+	{
+		TitleCloud_[1]->SetPosition({ 1280.f + 1280.f / 2  ,  720.f / 2 });
+	}
+
+
+
 
 	if ((TitleLogo_->GetPosition().y > GameEngineWindow::GetScale().Half().y - 100.f)
 		&& isPopup_ == false) {
@@ -71,73 +122,7 @@ void TitleLevel::Update()
 		}
 	}
 
-	if (true == GameEngineInput::GetInst()->IsDown("MoveRight") && CurrentMenu_ < KEYBOARD::MAX) 
-	{
-		++MoveMenu_;
-		KeyFlag_ = true;
-	}
-
-	if (true == GameEngineInput::GetInst()->IsDown("MoveLeft") && CurrentMenu_ > KEYBOARD::MenuNewGame) {
-		--MoveMenu_;
-		KeyFlag_ = true;
-
-	}
-
-	CurrentMenu_ = static_cast<KEYBOARD>(MoveMenu_);
-
-	//	if (GetAsyncKeyState(MK_LBUTTON))
-	//{
-	//	GameEngine::GetInst().ChangeLevel("Play");
-	//}
-
-	//switch (CurrentMenu_)
-	//{
-
-	//case KEYBOARD::MenuNewGame :
-
-	//	if(KeyFlag_) {
-	//		MenuNewGame_->SetIsClick(true);
-	//		MenuLoad_->SetIsClick(false);
-	//		MenuExit_->SetIsClick(false);
-	//		KeyFlag_ = false;
-	//	}
-
-	//	if (true == GameEngineInput::GetInst()->IsDown("LeftClick") && isPopup_ == true)
-	//	{
-	//		GameEngine::GetInst().ChangeLevel("Play");
-	//	}
-
-	//	break;
-
-	//case KEYBOARD::MenuLoad :
-	//	if (KeyFlag_) {
-	//		MenuNewGame_->SetIsClick(false);
-	//		MenuLoad_->SetIsClick(true);
-	//		MenuExit_->SetIsClick(false);
-	//		KeyFlag_ = false;
-	//	}
-	//	break;
-
-	//case KEYBOARD::MenuExit :
-	//	if (KeyFlag_) {
-	//		MenuNewGame_->SetIsClick(false);
-	//		MenuLoad_->SetIsClick(false);
-	//		MenuExit_->SetIsClick(true);
-	//		KeyFlag_ = false;
-	//	}
-	//	break;
-
-
-	//default:
-	//	break;
-	//}
 
 
 }
 
-void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
-{
-	TitleBackGround_->GetRenderer()->SetImage("titleback.bmp");
-	TitleBackGround_->SetPosition(GameEngineWindow::GetScale().Half());
-
-}

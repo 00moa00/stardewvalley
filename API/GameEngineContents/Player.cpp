@@ -275,7 +275,6 @@ void Player::PlayerUpdate()
 
 		PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::ITEM);
 
-		Speed_ = 150.f;
 		CurrentLevel_ = GetCurrentLevel();
 
 		CollInit();

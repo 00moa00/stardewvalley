@@ -33,10 +33,9 @@ void TitleLogo::Start()
 {
 	SetPosition({ GameEngineWindow::GetScale().Half().x, 0 });
 
-	Logo_ = CreateRenderer("logo.bmp");
-	//Logo_->SetIndex(0);
-	Logo_->SetScale({ 600, 330 }); 	//800, 440  로고 원본 크기
-	//Logo_->
+	Logo_ = CreateRenderer("logo_Sheet.bmp");
+	Logo_->SetIndex(0);
+	Logo_->SetScale({640,295});
 
 }
 
@@ -52,7 +51,7 @@ void TitleLogo::Update()
 		Speed_ = 0.0f;
 	}
 
-	if (true == GameEngineInput::GetInst()->IsDown("Enter")) {
+	if (true == GameEngineInput::GetInst()->IsDown("LeftClick")) {
 
 		SetPosition({ GameEngineWindow::GetScale().Half().x,GameEngineWindow::GetScale().Half().y - 100.f });
 
