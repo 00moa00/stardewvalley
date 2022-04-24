@@ -1,6 +1,6 @@
 #include  "Player.h"
 #include "MainUI.h"
-
+#include "NpcData.h"
 
 //------< 공개 함수 >------------------------------------------------------------------
 
@@ -205,6 +205,13 @@ void Player::DeleteSeedList(int _Index)
 void  Player::CopyList(std::map<int, Items*> _OtherList)
 {
 	std::copy(_OtherList.begin(), _OtherList.end(), std::inserter(MapObject_, MapObject_.begin()));
+}
+
+void Player::CopyList(std::vector<Npc*> _OtherList)
+{
+	NpcList_.resize(_OtherList.size());
+	std::copy(_OtherList.begin(), _OtherList.end(), NpcList_.begin());
+
 }
 
 
@@ -452,6 +459,18 @@ void Player::CheckTool()
 
 }
 
+void Player::NpcCollCheck()
+{
+
+	if (PlayerCollider_->NextPostCollisionCheck("Pierre", MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true
+		&& Mouse_->isMouseClick())
+	{
+		NpcList_[static_cast<int>(NPC::PIERRE)]->OpenDialogue();
+
+	}
+
+}
+
 
 
 //******************************************************************************
@@ -516,6 +535,11 @@ void Player::PlayerWalk() {
 		Move = float4::ZERO;
 	}
 
+	if (PlayerCollider_->NextPostCollisionCheck("NPC", Move * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
+	{
+		Move = float4::ZERO;
+	}
+
 	int Color = MapColImage_->GetImagePixel(CheckPos);
 
 	if ((RGB(0, 0, 0) != Color))
@@ -555,7 +579,6 @@ void Player::PlayerDirCheck()
 		MoveDir_ = float4::DOWN;
 	}
 
-	MovePrevDir_ = MoveDir_;
 	DirAnimationChange();
 
 }

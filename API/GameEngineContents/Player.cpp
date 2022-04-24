@@ -228,6 +228,7 @@ void Player::Update()
 	SetPlayerHandItemPos();
 	ClearWetDirtTile();
 	ChangeLevel();
+	NpcCollCheck();
 
 	if (CurrentLevel_ == "ShopLevel")
 	{
@@ -285,6 +286,12 @@ void Player::PlayerUpdate()
 
 		ChangeHandItem();
 		harvestingCrops();
+
+		if (isShopping_ == true)
+		{
+			PlayerState_ = PLAYER_UPDATE::INIT;
+
+		}
 
 		//손에 들 수 있는 아이템이라면 
 		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)

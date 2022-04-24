@@ -24,6 +24,7 @@ LRESULT CALLBACK GameEngineWindow::MessageProcess(HWND hWnd, UINT message, WPARA
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
         EndPaint(hWnd, &ps);
+
         break;
     }
     case WM_CLOSE:

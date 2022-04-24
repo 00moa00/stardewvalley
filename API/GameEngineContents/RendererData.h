@@ -24,9 +24,8 @@ enum class PLAYLEVEL {
 	ITEM,
 	TOOL,
 	FONT,
-
-
 	CURRENTITEM,
+	DIALOGUEBOX,
 	MOUSE
 
 

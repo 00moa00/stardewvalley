@@ -339,6 +339,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="NpcData.h" />
     <ClInclude Include="ParsnipSeeds_Shop.h">
       <SubType>
       </SubType>

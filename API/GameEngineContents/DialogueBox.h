@@ -4,9 +4,10 @@
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineCollision.h>
 #include <GameEngine/GameEngine.h>
-#include <GameEngineBase/GameEngineInput.h>
-#include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngine/GameEngineFont.h>
+#include <GameEngineBase/GameEngineRandom.h>
+
+#include "NpcData.h"
 
 // Ό³Έν :
 class DialogueBox : public GameEngineActor
@@ -28,12 +29,12 @@ private:
 	void Render() override;
 
 private:
-	GameEngineRenderer* DialogueRenderer_;
+	GameEngineRenderer* DialogueBoxRenderer_;
 	GameEngineRenderer* PortraitRenderer_;
+	GameEngineRenderer* DialogueRenderer_;
+	GameEngineRenderer* DialogueName_;
 
-	GameEngineFont DialogueFont_1;
-
-	std::string Dialogue_1;
+	GameEngineRandom DialogueRandom_;
 
 private:
 public:
@@ -41,6 +42,11 @@ public:
 
 	void SetPierre();
 	void SetLewis();
+
+	void DialogueOn();
+	void DialogueOff();
+
+
 
 };
 

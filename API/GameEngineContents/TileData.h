@@ -34,6 +34,7 @@ enum class BUSSTOP_TILE {
 enum class TOWN_TILE {
 
 	MOVE_BUSSTOP = 26,
+	MOVE_SHOP = 23,
 
 };
 
@@ -60,7 +61,6 @@ enum class FARM_TILE {
 	MY_HOUSE,
 	PIERRE, 
 	SHOP_FLAG = 22,
-	MOVE_SHOP = 23,
 	MOVE_FOREST = 24,
 	MOVE_TOWN = 25,
 	MOVE_BUSSTOP = 26,

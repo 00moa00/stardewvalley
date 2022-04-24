@@ -653,6 +653,9 @@
     <ClInclude Include="DialogueBox.h">
       <Filter>Actor\03. Play\NPC</Filter>
     </ClInclude>
+    <ClInclude Include="NpcData.h">
+      <Filter>Actor\00. GlobalData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">

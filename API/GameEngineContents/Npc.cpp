@@ -1,12 +1,19 @@
 #include "Npc.h"
 
 Npc::Npc() 
+	:
+	DialogueUpdate_(false)
 {
 }
 
 Npc::~Npc() 
 {
 }
+
+void Npc::OpenDialogue()
+{
+}
+
 
 bool Npc::NPCCheck(const float4 pos, const float4 scale)
 {

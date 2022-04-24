@@ -2,6 +2,7 @@
 #include "GameEngine.h"
 #include <GameEngineBase/GameEnginePath.h>
 #include <GameEngineBase/GameEngineString.h>
+#include <GameEngineBase/GameEngineWindow.h>
 #include <Windows.h>
 
 GameEngineFont::GameEngineFont()

@@ -12,8 +12,6 @@ void ShopFlag::Start()
 {
 	ItemRenderer_ = CreateRenderer("block.bmp");
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
-	ItemCollider_ = CreateCollision("ShopFlag", { 40, 40 });
-	
-	ItemType_ = ITEMTYPE::FALG;
-}
+	ItemCollider_ = CreateCollision("ShopFlag", { 48, 48 });
+	}
 

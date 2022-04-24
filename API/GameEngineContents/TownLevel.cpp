@@ -102,7 +102,7 @@ void TownLevel::LoadMapObject()
 				y * CHIP_SIZE + CHIP_SIZE,
 			};
 
-			FARM_TILE TileState_ = static_cast<FARM_TILE>(chip);
+			TOWN_TILE TileState_ = static_cast<TOWN_TILE>(chip);
 			std::map<int, Items*>::iterator ThisIter;
 
 
@@ -121,14 +121,14 @@ void TownLevel::LoadMapObject()
 
 
 
-			case FARM_TILE::MOVE_SHOP:
+			case TOWN_TILE::MOVE_SHOP:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveShop>((int)PLAYLEVEL::OBJECT)));
 
 
 				break;
 
-			case FARM_TILE::MOVE_BUSSTOP:
+			case TOWN_TILE::MOVE_BUSSTOP:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT)));
 

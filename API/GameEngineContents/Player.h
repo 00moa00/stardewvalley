@@ -19,8 +19,9 @@
 #include "DropWood.h"
 #include "Shop.h"
 #include "Crops.h"
+#include "Npc.h"
 
-#include <list>
+#include <vector>
 #include <map>
 #include <algorithm>
 #include <iterator>
@@ -94,7 +95,6 @@ private:
 	float Energy_;
 
 	float4 MoveDir_;
-	float4 MovePrevDir_;
 	float4 CameraPos_;
 
 	bool FarmingArea_;
@@ -128,12 +128,12 @@ private:
 	static std::string PrevLevel_;
 
 
-
 	std::map<int, FarmTile*> DirtList_;
 	std::map<int, FarmTile*> WetDirtList_;
 	std::map<int, Crops*> SeedList_;
 
 	std::map<int, Items*> MapObject_;
+	std::vector<Npc*> NpcList_;
 
 	std::vector<GameEngineCollision*> ColList;
 	std::map<int, Items*>::iterator Iter;
@@ -191,7 +191,7 @@ public:
 	//================================
 
 	void CopyList(std::map<int, Items*> _OtherList);
-
+	void CopyList(std::vector<Npc*> _OtherList);
 
 private:
 
@@ -211,6 +211,8 @@ private:
 
 	void CollInit();
 	void CheckTool();
+
+	void NpcCollCheck();
 
 	// 메인 업데이트 함수
 	void PlayerUpdate();
