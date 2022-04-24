@@ -201,16 +201,8 @@ void StardewValley::GameInit()
 		//================================
 		//     타이틀 메뉴 148 116
 		//================================
-		GameEngineImage* TitleImage = GameEngineImageManager::GetInst()->Find("TitleButtons.ko-KR.bmp");
-
-		for (int j = 0; j < 2; j++)
-		{
-			for (int i = 0; i < 4; i++)
-			{
-				if (i == 2) continue; // 협동플레이 버튼 스킵
-				TitleImage->Cut({ 148, 116 }, { 148 * (float)i, 374.f + (116.f * j) });//1 2 3
-			}
-		}
+		GameEngineImage* TitleMenuButtons = GameEngineImageManager::GetInst()->Find("TitleMenuButtons.bmp");
+		TitleMenuButtons -> Cut({ 222, 174 });
 
 
 		//================================
@@ -218,6 +210,12 @@ void StardewValley::GameInit()
 		//================================
 		GameEngineImage* logo_Sheet = GameEngineImageManager::GetInst()->Find("logo_Sheet.bmp");
 		logo_Sheet->Cut({ 800, 369 });
+
+		//================================
+		//    타이틀 새
+		//================================
+		GameEngineImage* TitleBird = GameEngineImageManager::GetInst()->Find("TitleBird.bmp");
+		TitleBird->Cut({ 78, 78 });
 
 
 		//================================

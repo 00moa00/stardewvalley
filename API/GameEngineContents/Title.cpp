@@ -28,6 +28,7 @@ void Title::Update()
 	SetCamera();
 	float4 Move = float4::UP;
 	SetMove((Move * GameEngineTime::GetDeltaTime() * 150.f));
+
 }
 
 void Title::SetCamera()

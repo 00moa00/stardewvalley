@@ -3,6 +3,8 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <GameEngineBase/GameEngineTime.h>
+
 
 BackGround::BackGround() 
 	: DirtTileMap_(this),
@@ -18,5 +20,9 @@ void BackGround::Start()
 {
 	Renderer = CreateRenderer("Empty.bmp");
 
+}
+
+void BackGround::Update()
+{
 }
 

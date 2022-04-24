@@ -43,6 +43,8 @@ enum class TITLELEVEL {
 
 	CLOUD,
 
+	BIRD,
+
 	TITLELOGO,
 
 	MOUSE

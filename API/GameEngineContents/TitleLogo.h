@@ -1,5 +1,14 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngineBase/GameEngineRandom.h>
+
+enum class ANIMATION_UPDATE
+{
+	RAMDOM,
+	INIT,
+	RIGHT,
+	LEFT
+};
 
 // Ό³Έν :
 class TitleLogo : public GameEngineActor
@@ -21,9 +30,15 @@ private:
 	void Update() override;
 
 private:
-	float Speed_;
-	float4 ScaleSpeed_;
+
+	int Animation_;
+	int DelayTIme_;
+
+	ANIMATION_UPDATE UpdateState_;
+	
 	GameEngineRenderer* Logo_;
+	GameEngineRandom RamdomAnimation_;
+	GameEngineRandom RamdomInitFrame_;
 
 };
 

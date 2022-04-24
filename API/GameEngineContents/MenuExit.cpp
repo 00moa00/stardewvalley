@@ -20,12 +20,13 @@ MenuExit::~MenuExit()
 
 void MenuExit::Start()
 {
-	SetPosition( { GameEngineWindow::GetScale().Half().x + 214.f , GameEngineWindow::GetScale().Half().y + 150.f });
+	SetPosition( { GameEngineWindow::GetScale().Half().x + 250.f , GameEngineWindow::GetScale().Half().y + 250.f });
 
 
-	MenuExit_ = CreateRenderer("TitleButtons.ko-KR.bmp");
-	MenuExit_->SetIndex(static_cast<size_t>(MENU::MenuExit));
+	MenuExit_ = CreateRenderer("TitleMenuButtons.bmp");
+	MenuExit_->SetIndex(3);
 
+	NewGameCollision_ = CreateCollision("MenuExit", {222,174});
 }
 
 void MenuExit::Render()
@@ -35,11 +36,13 @@ void MenuExit::Render()
 
 void MenuExit::Update()
 {
-	if (GetIsClick() == true) {
-		MenuExit_->SetIndex(static_cast<size_t>(MENU::ClickMenuExit));
+	if (isMouseOver() == true)
+	{
+		MenuExit_->SetIndex(3 + 4);
 	}
-	else {
-		MenuExit_->SetIndex(static_cast<size_t>(MENU::MenuExit));
+	else 
+	{
+		MenuExit_->SetIndex(3 );
 
 	}
 

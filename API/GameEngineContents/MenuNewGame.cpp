@@ -12,8 +12,8 @@
 
 
 MenuNewGame::MenuNewGame()
-	:	NewGame_(nullptr),
-		isMouseOver_(false),
+	:	
+		NewGame_(nullptr),
 		NewGameCollision_(nullptr)
 {
 }
@@ -25,12 +25,12 @@ MenuNewGame::~MenuNewGame()
 
 void MenuNewGame::Start()
 {
-	SetPosition({ GameEngineWindow::GetScale().Half().x - 214.f,GameEngineWindow::GetScale().Half().y + 150.f});
+	SetPosition({ GameEngineWindow::GetScale().Half().x - 250.f,GameEngineWindow::GetScale().Half().y + 250.f});
 
-	NewGame_ = CreateRenderer("TitleButtons.ko-KR.bmp");
-	NewGame_->SetIndex(static_cast<size_t>(MENU::MenuNewGame));
+	NewGame_ = CreateRenderer("TitleMenuButtons.bmp");
+	NewGame_->SetIndex(0);
 
-	NewGameCollision_ = CreateCollision("NewGame", { 148, 116 });
+	NewGameCollision_ = CreateCollision("NewGame", { 222,174 });
 
 }
 
@@ -42,28 +42,20 @@ void MenuNewGame::Render()
 
 void MenuNewGame::Update()
 {
-	if (isMouseOver_) NewGame_->SetIndex(static_cast<size_t>(MENU::ClickMenuNewGame));
-	else NewGame_->SetIndex(static_cast<size_t>(MENU::MenuNewGame));
-
-	MouseEvent();
-
-}
-
-
-void MenuNewGame::MouseEvent()
-{
-
-	if (MouseOver() && (true == GameEngineInput::GetInst()->IsDown("LeftClick"))) {
-		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
+	if (isMouseOver() == true)
+	{
+		NewGame_->SetIndex(0 + 4);
 	}
-	
-	if (MouseOver()) isMouseOver_ = true;
+	else
+	{
+		NewGame_->SetIndex(0);
+	}
+
+	if (isMouseOver() == true && true == GameEngineInput::GetInst()->IsDown("LeftClick"))
+	{
+		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
+
+	}
 
 }
 
-bool MenuNewGame::MouseOver()
-{
-	std::vector<GameEngineCollision*> ColList;
-
-	return (NewGameCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
-}

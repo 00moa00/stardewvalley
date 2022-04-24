@@ -23,7 +23,6 @@ private:
 	void Update() override;
 
 private:
-	bool isMouseOver_;
 
 	float4 CameraPos_;
 	float4 Speed_;

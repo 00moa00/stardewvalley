@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngine/GameEngineCollision.h>
 
 // Ό³Έν :
 class MenuNewGame : public GameEngineActor
@@ -15,10 +16,7 @@ public:
 	MenuNewGame& operator=(const MenuNewGame& _Other) = delete;
 	MenuNewGame& operator=(MenuNewGame&& _Other) noexcept = delete;
 
-	void MouseEvent();
-	bool MouseOver();
-
-protected:
+private:
 
 	void Start()override;
 	void Render()override;
@@ -31,6 +29,15 @@ private:
 
 	GameEngineRenderer* NewGame_;
 	GameEngineCollision* NewGameCollision_;
+
+	std::vector<GameEngineCollision*> ColList;
+
+
+private:
+	bool isMouseOver()
+	{
+		return (NewGameCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
 
 };
 

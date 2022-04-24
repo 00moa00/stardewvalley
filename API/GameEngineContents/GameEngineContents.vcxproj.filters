@@ -314,6 +314,9 @@
     <ClCompile Include="Title.cpp">
       <Filter>Actor\02. Title</Filter>
     </ClCompile>
+    <ClCompile Include="Bird.cpp">
+      <Filter>Actor\02. Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -648,6 +651,9 @@
       <Filter>Actor\00. GlobalData</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
+      <Filter>Actor\02. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Bird.h">
       <Filter>Actor\02. Title</Filter>
     </ClInclude>
   </ItemGroup>
