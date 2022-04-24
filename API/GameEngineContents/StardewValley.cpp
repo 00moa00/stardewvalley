@@ -59,7 +59,9 @@ void StardewValley::GameInit()
 
 
 	{
+		//----------------------------------------------------------------------------------------------
 		//------< 사운드 현재 디렉토리 >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
 
 		GameEngineDirectory ResourcesDir;
 		ResourcesDir.MoveParent("API");
@@ -78,9 +80,17 @@ void StardewValley::GameInit()
 
 	}
 
-	//------< 이미지 현재 디렉토리 >------------------------------------------------------------------
+
+
+
+
 
 	{
+
+		//----------------------------------------------------------------------------------------------
+		//------< Player >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
+
 		GameEngineDirectory ResourcesDir;
 		ResourcesDir.MoveParent("API");
 		ResourcesDir.Move("Resources");
@@ -173,17 +183,24 @@ void StardewValley::GameInit()
 		GameEngineImage* PlayerWaterBack = GameEngineImageManager::GetInst()->Find("wateringcan_back.bmp");
 		PlayerWaterBack->Cut({ 250, 150 });
 
+		//================================
+		//     플레이어 툴 48 96
+		//================================
+			GameEngineImage* PlayerTool = GameEngineImageManager::GetInst()->Find("tools.bmp");
+			PlayerTool->Cut({ 48, 96 });
 
 	}
 
-
 	{
-		//------< 이미지 현재 디렉토리 >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
+		//------< Title >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
 
 		GameEngineDirectory ResourcesDir;
 		ResourcesDir.MoveParent("API");
 		ResourcesDir.Move("Resources");
 		ResourcesDir.Move("Sprite");
+		ResourcesDir.Move("Title");
 
 
 		//------< 이미지 파일 찾기 >------------------------------------------------------------------
@@ -202,7 +219,7 @@ void StardewValley::GameInit()
 		//     타이틀 메뉴 148 116
 		//================================
 		GameEngineImage* TitleMenuButtons = GameEngineImageManager::GetInst()->Find("TitleMenuButtons.bmp");
-		TitleMenuButtons -> Cut({ 222, 174 });
+		TitleMenuButtons->Cut({ 222, 174 });
 
 
 		//================================
@@ -218,6 +235,104 @@ void StardewValley::GameInit()
 		TitleBird->Cut({ 78, 78 });
 
 
+	}
+
+	{
+		//----------------------------------------------------------------------------------------------
+		//------< UI >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
+		ResourcesDir.Move("UI");
+
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
+
+		//================================
+		//		폰트 블랙
+		//================================
+		GameEngineImage* Font = GameEngineImageManager::GetInst()->Find("font_colored.bmp");
+		Font->Cut({ 12, 21 });
+
+		//================================
+		//		폰트 화이트
+		//================================
+		GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
+		WhiteFont->Cut({ 9, 16 });
+
+		//================================
+		//		요일
+		//================================
+		GameEngineImage* Week_Sheet = GameEngineImageManager::GetInst()->Find("Week_Sheet.bmp");
+		Week_Sheet->Cut({ 42, 26 });
+
+	}
+
+
+
+
+	{
+		//----------------------------------------------------------------------------------------------
+		//------< Furniture >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
+		ResourcesDir.Move("Furniture");
+
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
+
+	}
+
+
+	{
+		//----------------------------------------------------------------------------------------------
+		//------< Object >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
+		ResourcesDir.Move("Obejct");
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
+
+
+
 		//================================
 		//     봄 아이템 48 48
 		//================================
@@ -225,11 +340,6 @@ void StardewValley::GameInit()
 		SpringObjects->Cut({ 48, 48 });
 
 
-		//================================
-		//     플레이어 툴 48 96
-		//================================
-		GameEngineImage* PlayerTool = GameEngineImageManager::GetInst()->Find("tools.bmp");
-		PlayerTool->Cut({ 48, 96 });
 
 
 		//================================
@@ -246,17 +356,6 @@ void StardewValley::GameInit()
 		crops->Cut({ 48, 96 });
 
 
-		//================================
-		//		폰트 블랙
-		//================================
-		GameEngineImage* Font = GameEngineImageManager::GetInst()->Find("font_colored.bmp");
-		Font->Cut({ 12, 21 });
-
-		//================================
-		//		폰트 화이트
-		//================================
-		GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
-		WhiteFont->Cut({ 9, 16 });
 
 		//================================
 		//		OakTree
@@ -282,12 +381,9 @@ void StardewValley::GameInit()
 		GameEngineImage* FineTree = GameEngineImageManager::GetInst()->Find("Fine_Tree_AnimaionSheet.bmp");
 		FineTree->Cut({ 152, 246 });
 
-		//================================
-		//		요일
-		//================================
-		GameEngineImage* Week_Sheet = GameEngineImageManager::GetInst()->Find("Week_Sheet.bmp");
-		Week_Sheet->Cut({ 42, 26 });
+
 	}
+
 
 
 	{
@@ -329,6 +425,87 @@ void StardewValley::GameInit()
 		Name_Sheet->Cut({ 170, 50 });
 
 	}
+
+
+
+
+	{
+		//----------------------------------------------------------------------------------------------
+		//------< Shop >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
+		ResourcesDir.Move("Shop");
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
+
+	}
+
+
+	{
+		//----------------------------------------------------------------------------------------------
+		//------< Map >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
+		ResourcesDir.Move("Map");
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
+
+	}
+
+
+	{
+		//----------------------------------------------------------------------------------------------
+		//------< Sprite >------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
+
+	}
+
+
+
+
+
 
 	//------< 레벨 등록 >------------------------------------------------------------------
 

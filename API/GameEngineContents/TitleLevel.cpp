@@ -226,7 +226,6 @@ void TitleLevel::MoveBird()
 	float4 Move = float4::LEFT;
 	Bird_[0]->SetMove(Move * GameEngineTime::GetDeltaTime() * 50.f);
 	Bird_[1]->SetMove(Move * GameEngineTime::GetDeltaTime() * 50.f);
-
 }
 
 void TitleLevel::SkipTitle()
