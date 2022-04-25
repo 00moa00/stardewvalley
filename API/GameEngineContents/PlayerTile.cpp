@@ -3,6 +3,7 @@
 #include "MainUI.h"
 #include "StoneEffect.h"
 #include "WoodEffect.h"
+#include "WateringCanEffect.h"
 
 //******************************************************************************
 //
@@ -80,7 +81,6 @@ void Player::CreateWaterTile()
 
 	float4 Pos = PlayerCollCheckPos();
 
-
 	TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
 	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
 
@@ -101,6 +101,9 @@ void Player::CreateWaterTile()
 
 	if(FindIter == EndIter && FindDirtIter != EndDirtIter)
 	{
+		
+
+
 		FarmTile* Tile = WetTileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
 			, "hoeDirt.bmp",static_cast<int>(TILE_DIRT::BASIC_WET), (int)PLAYLEVEL::WETDIRT);
 		Tile->TileState_ = TILE_STATE::HOE_DIRT_WATER;
@@ -108,6 +111,20 @@ void Player::CreateWaterTile()
 		WetDirtList_.insert(std::make_pair(ChangeIndex, Tile));
 	}
 
+
+}
+
+void Player::CreateWaterEffet()
+{
+	float4 Pos = PlayerCollCheckPos();
+
+	WateringCanEffect* WateringCanEffect_ = GetLevel()->CreateActor<WateringCanEffect>(static_cast<int>(PLAYLEVEL::EFFECT));
+	WateringCanEffect_->SetPosition({ Pos.x, Pos.y });
+
+	if (GetCurrentLevel() == "MyHouseLevel")
+	{
+		WateringCanEffect_->GetRenderer()->CameraEffectOff();
+	}
 
 }
 
@@ -350,7 +367,6 @@ void Player::GetItem()
 		{
 			//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
 			Iter->second->GetItemAndAddInventory();
-
 		}
 
 		else

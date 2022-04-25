@@ -517,12 +517,17 @@ void StardewValley::GameInit()
 
 		//------< ÀÌ¹ÌÁö Cut >------------------------------------------------------------------
 
-		// 
 		//================================
 		//		KiraAnimation
 		//================================
 		GameEngineImage* KiraAnimation = GameEngineImageManager::GetInst()->Find("KiraAnimation.bmp");
 		KiraAnimation->Cut({ 48, 48 });
+
+		//================================
+		//		Waterin
+		//================================
+		GameEngineImage* WateringCanAnimations = GameEngineImageManager::GetInst()->Find("WateringCanAnimations.bmp");
+		WateringCanAnimations->Cut({ 48, 48 });
 
 	}
 

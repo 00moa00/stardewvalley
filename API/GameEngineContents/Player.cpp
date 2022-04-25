@@ -322,11 +322,9 @@ void Player::PlayerUpdate()
 
 		if (PlayerRenderer_->IsEndAnimation())
 		{
-			if (FarmingArea_ == true)
-			{
-				CreateWaterTile();
-				ChangeWetDirtTile();
-			}
+			CreateWaterEffet();
+			CreateWaterTile();
+			ChangeWetDirtTile();
 
 			isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
