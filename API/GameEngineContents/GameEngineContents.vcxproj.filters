@@ -317,6 +317,9 @@
     <ClCompile Include="Bird.cpp">
       <Filter>Actor\02. Title</Filter>
     </ClCompile>
+    <ClCompile Include="GiftBox.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -655,6 +658,9 @@
     </ClInclude>
     <ClInclude Include="Bird.h">
       <Filter>Actor\02. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="GiftBox.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

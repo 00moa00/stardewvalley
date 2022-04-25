@@ -249,6 +249,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameData.h" />
+    <ClInclude Include="GiftBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Hitter.h">
       <SubType>
       </SubType>
@@ -638,6 +642,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Font.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GiftBox.cpp">
       <SubType>
       </SubType>
     </ClCompile>

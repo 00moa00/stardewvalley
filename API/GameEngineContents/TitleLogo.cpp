@@ -62,19 +62,19 @@ void TitleLogo::Update()
 		ReSetAccTime();
 	
 
-		if (RamdomAnimation_.RandomInt(0, 2) == 0)
+		if (RamdomAnimation_.RandomInt(0, 5) == 0)
 		{
 			UpdateState_ = ANIMATION_UPDATE::INIT;
 			break;
 		}
 
-		if (RamdomAnimation_.RandomInt(0, 2) == 0)
+		if (RamdomAnimation_.RandomInt(0, 1) == 0)
 		{
 			UpdateState_ = ANIMATION_UPDATE::RIGHT;
 			break;
 		}
 
-		if (RamdomAnimation_.RandomInt(0, 2) == 0)
+		if (RamdomAnimation_.RandomInt(0, 1) == 0)
 		{
 			UpdateState_ = ANIMATION_UPDATE::LEFT;
 			break;
@@ -86,7 +86,7 @@ void TitleLogo::Update()
 		Logo_->ChangeAnimation("LOGO_INIT");
 		if (Logo_->IsEndAnimation())
 		{
-			DelayTIme_ = GetAccTime() + RamdomInitFrame_.RandomInt(0, 5);
+			DelayTIme_ = GetAccTime() + RamdomInitFrame_.RandomInt(2, 8);
 
 			if (DelayTIme_ > 10)
 			{
