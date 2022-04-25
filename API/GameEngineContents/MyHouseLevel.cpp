@@ -45,6 +45,10 @@ void MyHouseLevel::Loading()
 		MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	}
 
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
 }
 
 void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
@@ -61,7 +65,6 @@ void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	
-	LoadMapObject();
 
 	Player::MainPlayer->SetPosition({ HOUSE_SIZE_WEIGHT / 2, (HOUSE_SIZE_HEIGHT / 2) + 100.f });
 	Player::MainPlayer->Renderer()->CameraEffectOff();

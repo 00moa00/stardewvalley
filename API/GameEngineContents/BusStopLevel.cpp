@@ -29,6 +29,12 @@ void BusStopLevel::Loading()
 	//{
 	//	MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	//}
+
+	if(MapObject_.empty()== true)
+	{
+		LoadMapObject();
+	}
+
 }
 
 void BusStopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
@@ -41,7 +47,6 @@ void BusStopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	BackGround_->GetRenderer()->SetPivot({ BUSSTOP_SIZE_WEIGHT / 2,  BUSSTOP_SIZE_HEIGHT / 2 });
 
-	LoadMapObject();
 
 
 	Player::MainPlayer->SetPosition({ (1300.f), 1140.f});

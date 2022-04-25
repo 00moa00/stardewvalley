@@ -4,6 +4,8 @@
 class SmallWood2 : public Items
 {
 public:
+	static SmallWood2* MainSmallWood;
+
 	// constrcuter destructer
 	SmallWood2();
 	~SmallWood2();
@@ -19,6 +21,8 @@ protected:
 private:
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+
 	void DropItemInMap() override;
 };
 

@@ -15,6 +15,8 @@ enum class TREESTATE
 class TreeBottom : public Items
 {
 public:
+	static TreeBottom* MainTreeBottom;
+
 	// constrcuter destructer
 	TreeBottom();
 	~TreeBottom();
@@ -29,6 +31,8 @@ private:
 
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+
 	void SetInitAnimation() override;
 	void SetCrushAnimation() override;
 	void DropItemInMap() override;

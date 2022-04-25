@@ -1,5 +1,7 @@
 #include "SmallWood2.h"
 #include "DropWood.h"
+SmallWood2* SmallWood2::MainSmallWood = nullptr;
+
 
 SmallWood2::SmallWood2() 
 {
@@ -22,6 +24,11 @@ void SmallWood2::Start()
 
 void SmallWood2::Update()
 {
+}
+
+void SmallWood2::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainSmallWood = this;
 }
 
 void SmallWood2::DropItemInMap()

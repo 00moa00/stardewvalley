@@ -41,6 +41,10 @@ void ShopLevel::Loading()
 	//	MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	//}
 
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
 }
 
 void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
@@ -54,9 +58,6 @@ void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->GetRenderer()->SetImage("ShopBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
 	BackGround_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND));
-
-	LoadMapObject();
-
 
 	Player::MainPlayer->SetPosition({ 310.f, 1280.f });
 

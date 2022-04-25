@@ -261,6 +261,14 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	MainMouse_->NextLevelOn();
 	PlayerHandItem_->NextLevelOn();
+
+	//std::map<int, Items*>::iterator StartIter = MapObject_.begin();
+	//std::map<int, Items*>::iterator EndIter = MapObject_.end();
+
+	//for (; StartIter != EndIter; ++StartIter)
+	//{
+	//	StartIter->second->NextLevelOn();
+	//}
 }
 
 

@@ -3,6 +3,7 @@
 #include "Parsnip_Seeds.h"
 #include "KiraEffect.h"
 
+GiftBox* GiftBox::MainGiftBox;
 
 GiftBox::GiftBox() 
 	:
@@ -95,6 +96,7 @@ void GiftBox::Update()
 
 void GiftBox::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+	MainGiftBox = this;
 }
 
 void GiftBox::LevelChangeEnd(GameEngineLevel* _NextLevel)

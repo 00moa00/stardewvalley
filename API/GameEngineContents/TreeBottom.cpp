@@ -2,6 +2,8 @@
 #include "TreeTop.h"
 #include "DropWood.h"
 
+TreeBottom* TreeBottom::MainTreeBottom = nullptr;
+
 TreeBottom::TreeBottom() 
 	:
 	TreeState_(TREESTATE::INIT)
@@ -98,6 +100,11 @@ void TreeBottom::Update()
 
 
 
+}
+
+void TreeBottom::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainTreeBottom = this;
 }
 
 void TreeBottom::SetInitAnimation()

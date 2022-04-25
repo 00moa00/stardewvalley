@@ -12,6 +12,8 @@ enum class TREETOP
 class TreeTop : public Items
 {
 public:
+	static TreeTop* MainTreeTop;
+
 	// constrcuter destructer
 	TreeTop();
 	~TreeTop();
@@ -26,14 +28,14 @@ private:
 
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	
+public:
+	void SetInitAnimation() override;
+	void SetCrushAnimation() override;
 
 private:
 	TREETOP TreeTopState_;
-
-
-private:
-	void SetInitAnimation() override;
-	void SetCrushAnimation() override;
 
 public:
 

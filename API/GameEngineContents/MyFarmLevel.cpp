@@ -50,6 +50,11 @@ void MyFarmLevel::Loading()
 		MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	}
 
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
+
 }
 
 void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -68,7 +73,6 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	BackGround_->GetRenderer()->CameraEffectOn();
 
 	
-	LoadMapObject();
 
 	Player::MainPlayer->SetPosition({ FARM_SIZE_WEIGHT - 400.f, (FARM_SIZE_HEIGHT / 2) - 700.f });
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
@@ -153,10 +157,6 @@ void MyFarmLevel::LoadMapObject()
 
 				break;
 
-			case FARM_TILE::MAHOGANI_TREE:
-
-				break;
-
 			case FARM_TILE::SMALL_STONE:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -186,6 +186,13 @@ void MyFarmLevel::LoadMapObject()
 			case FARM_TILE::WEED2:
 				break;
 
+			case FARM_TILE::SHIPPING_BOX:
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveForest>((int)PLAYLEVEL::OBJECT)));
+
+				break;
+
+
+				break;
 
 			case FARM_TILE::MOVE_FOREST:
 

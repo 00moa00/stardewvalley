@@ -6,7 +6,8 @@ class SmallStone : public Items
 {
 public:
 	// constrcuter destructer
-	
+	static SmallStone* MainSmallStone;
+
 	SmallStone();
 	~SmallStone();
 
@@ -21,6 +22,9 @@ protected:
 private:
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+
+
 	void DropItemInMap() override;
 };
 

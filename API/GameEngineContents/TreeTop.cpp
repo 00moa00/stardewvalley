@@ -1,5 +1,7 @@
 #include "TreeTop.h"
 
+TreeTop* TreeTop::MainTreeTop = nullptr;
+
 TreeTop::TreeTop() 
 	:
 	TreeTopState_(TREETOP::INIT)
@@ -108,6 +110,12 @@ void TreeTop::Update()
 		break;
 	}
 
+
+}
+
+void TreeTop::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainTreeTop = this;
 
 }
 

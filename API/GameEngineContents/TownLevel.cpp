@@ -42,6 +42,11 @@ void TownLevel::Loading()
 	//{
 	//	MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	//}
+
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
 }
 
 void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
@@ -55,8 +60,6 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	//BackGround_->DirtTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	//BackGround_->WetTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
-
-	LoadMapObject();
 
 
 	Player::MainPlayer->SetPosition({125.f, 2600.f });
@@ -118,9 +121,6 @@ void TownLevel::LoadMapObject()
 
 			switch (TileState_)
 			{
-
-
-
 			case TOWN_TILE::MOVE_SHOP:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveShop>((int)PLAYLEVEL::OBJECT)));

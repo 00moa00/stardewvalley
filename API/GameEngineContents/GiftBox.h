@@ -13,7 +13,7 @@ enum class OPEN_UPDATE
 class GiftBox : public Items
 {
 public:
-
+	static GiftBox* MainGiftBox;
 	// constrcuter destructer
 	GiftBox();
 	~GiftBox();

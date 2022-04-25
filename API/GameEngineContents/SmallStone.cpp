@@ -1,6 +1,9 @@
 #include "SmallStone.h"
 #include "DropStone.h"
 
+SmallStone* SmallStone::MainSmallStone = nullptr;
+
+
 SmallStone::SmallStone() 
 {
 }
@@ -26,6 +29,11 @@ void SmallStone::Update()
 {
 
 
+}
+
+void SmallStone::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainSmallStone = this;
 }
 
 void SmallStone::DropItemInMap()
