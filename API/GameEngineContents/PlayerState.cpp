@@ -99,8 +99,6 @@ bool Player::FindWetDirt(int _Index)
 		return false;
 	}
 
-
-	
 }
 
 
@@ -112,8 +110,6 @@ bool Player::FindWetDirt(int _Index)
 //
 //
 //******************************************************************************
-
-
 
 void Player::SetResetPlayerHandItem()
 {
@@ -189,6 +185,17 @@ void  Player::SetWetTileMap(GameEngineRendererTileMap* _TileMap)
 void Player::DeleteSeedList(int _Index)
 {
 	SeedList_.erase(_Index);
+}
+
+void Player::SetPlayerDirDown()
+{
+	MoveDir_ = float4::DOWN;
+
+}
+
+void Player::SetisEvent(bool _Flag)
+{
+	isEvent_ = _Flag;
 }
 
 

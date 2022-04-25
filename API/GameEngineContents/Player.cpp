@@ -275,16 +275,15 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::INIT:
 
+		GetItem();
 		ChangeHandItem();
 		harvestingCrops();
-		GetItem();
 		//손에 들 수 있는 아이템이라면 
 		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
 		{
 			PlayerState_ = PLAYER_UPDATE::HANDITEM;
 
 		}
-
 
 		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
 		if (MainMouse_->MouseClickInventoryOut())
@@ -421,19 +420,26 @@ void Player::LevelInit()
 	MainMouse_->Renderer()->CameraEffectOff();
 	CurrentLevel_ = GetCurrentLevel();
 
+	if (CurrentLevel_ == "MyHouseLevel")
+	{
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+		ToolRenderer_->CameraEffectOff();
+		PlayerHandItem_->GetRenderer()->CameraEffectOff();
+	}
+
+
 	if (CurrentLevel_ == "MyFarmLevel")
 	{
 		MapSizeX_ = FARM_SIZE_WEIGHT;
 		MapSizeY_ = FARM_SIZE_HEIGHT;
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
-	}
+		ToolRenderer_->CameraEffectOn();
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
 
 
-	if (CurrentLevel_ == "MyHouseLevel")
-	{
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	}
+
 
 
 	if (CurrentLevel_ == "BusStopLevel")
@@ -442,6 +448,9 @@ void Player::LevelInit()
 		MapSizeY_ = BUSSTOP_SIZE_HEIGHT;
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
+		ToolRenderer_->CameraEffectOn();
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
 	}
 
 
@@ -451,6 +460,9 @@ void Player::LevelInit()
 		MapSizeY_ = TOWN_SIZE_HEIGHT;
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("Town_Col.bmp");
+		ToolRenderer_->CameraEffectOn();
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
 	}
 
 	if (CurrentLevel_ == "ShopLevel")
@@ -459,17 +471,11 @@ void Player::LevelInit()
 		MapSizeY_ = SHOP_SIZE_HEIGHT;
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("Shop_Coll.bmp");
-	}
-
-	if (GetCurrentLevel() == "MyHouseLevel")
-	{
-		PlayerHandItem_->GetRenderer()->CameraEffectOff();
-	}
-
-	else
-	{
+		ToolRenderer_->CameraEffectOn();
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
 
 	}
+
+
 }
 

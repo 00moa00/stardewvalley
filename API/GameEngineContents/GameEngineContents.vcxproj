@@ -240,6 +240,10 @@
     </ClInclude>
     <ClInclude Include="DropStone.h" />
     <ClInclude Include="DropWood.h" />
+    <ClInclude Include="EmptyItem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FixedPlayerColl.h">
       <SubType>
       </SubType>
@@ -637,6 +641,10 @@
     </ClCompile>
     <ClCompile Include="DropStone.cpp" />
     <ClCompile Include="DropWood.cpp" />
+    <ClCompile Include="EmptyItem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FixedPlayerColl.cpp">
       <SubType>
       </SubType>

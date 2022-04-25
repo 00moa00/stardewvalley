@@ -16,6 +16,7 @@
 
 //기본 아이템
 #include "Hoe.h"
+#include "EmptyItem.h"
 #include "Axe.h"
 #include "Pickaxe.h"
 #include "Watering_Can.h"
@@ -34,6 +35,7 @@ enum class ITEMMOVE
 	HOLD,
 	FREE,
 	MINE,
+	SWAP,
 	SHOPPING
 };
 
@@ -89,6 +91,7 @@ private:
 	void BoxInit();
 	void InventoryPosInit();
 	void ItemPosFocusInvenBox();
+	void CurrentItemFrameFocusBox();
 
 public:
 
@@ -106,7 +109,7 @@ private:
 	Mouse* Mouse_;
 
 	Hoe* Hoe_;
-
+	EmptyItem* EmptyItem_;
 	ITEMMOVE MoveState_;
 	POPUPSTATE PopUpState_;
 	POPUPSTATE CurrentInvenState_;

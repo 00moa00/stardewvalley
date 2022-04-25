@@ -2,11 +2,11 @@
 #include "Inventory.h"
 #include "Parsnip_Seeds.h"
 
-GiftBox* GiftBox::MainGiftBox = nullptr;
 
 GiftBox::GiftBox() 
 	:
-	OpenUpdate_(OPEN_UPDATE::WAIT)
+	OpenUpdate_(OPEN_UPDATE::WAIT),
+	MoveItem(nullptr)
 {
 }
 
@@ -43,6 +43,7 @@ void GiftBox::Update()
 	case OPEN_UPDATE::OPEN:
 
 		ItemRenderer_->ChangeAnimation("OPEN");
+		Player::MainPlayer->SetisEvent(true);
 		OpenUpdate_ = OPEN_UPDATE::GET;
 		break;
 
@@ -50,10 +51,35 @@ void GiftBox::Update()
 
 		if (ItemRenderer_->IsEndAnimation())
 		{
-			Inventory::MainInventory->NewItem<Parsnip_Seeds>(15);
+			MoveItem = GetLevel()->CreateActor<Parsnip_Seeds>(static_cast<int>(PLAYLEVEL::ITEM));
+			MoveItem->SetPosition({ Player::MainPlayer->GetPosition().x, Player::MainPlayer->GetPosition().y -80.f });
+			Player::MainPlayer->SetPlayerDirDown();
 
+			ItemRenderer_->Off();
+
+			OpenUpdate_ = OPEN_UPDATE::MOVE_ITEM;
+		}
+
+		break;
+
+	case OPEN_UPDATE::MOVE_ITEM:
+
+		MoveItem->SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 30.f);
+
+
+		if (MoveItem->GetPosition().y < Player::MainPlayer->GetPosition().y - 100.f)
+		{
+			Items* HandItem = Inventory::MainInventory->NewItem<Parsnip_Seeds>(15);
+			Inventory::MainInventory->SetCurrentItem(HandItem);
+			Player::MainPlayer->SetPlayerDirDown();
+			Player::MainPlayer->SetisEvent(false);
+
+			MoveItem->Death();
 			this->Death();
 		}
+	
+
+		break;
 
 	default:
 		break;
@@ -62,7 +88,6 @@ void GiftBox::Update()
 
 void GiftBox::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainGiftBox = this;
 }
 
 void GiftBox::LevelChangeEnd(GameEngineLevel* _NextLevel)

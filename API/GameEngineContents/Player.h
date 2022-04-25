@@ -183,6 +183,8 @@ public:
 
 	void DeleteSeedList(int _Index);
 
+	void SetPlayerDirDown();
+	void SetisEvent(bool _Flag);
 	//================================
 	//    Etc
 	//================================

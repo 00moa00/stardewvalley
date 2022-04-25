@@ -320,6 +320,9 @@
     <ClCompile Include="GiftBox.cpp">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
+    <ClCompile Include="EmptyItem.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -660,6 +663,9 @@
       <Filter>Actor\02. Title</Filter>
     </ClInclude>
     <ClInclude Include="GiftBox.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="EmptyItem.h">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
   </ItemGroup>

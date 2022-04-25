@@ -55,7 +55,7 @@ void Inventory::Start()
 
 	BoxInit();
 
-
+	EmptyItem_ = GetLevel()->CreateActor<EmptyItem>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
 	Hoe_ = NewItem<Hoe>();
 	NewItem<Watering_Can>();
 	NewItem<Axe>();
@@ -86,7 +86,7 @@ void Inventory::Update()
 		ItemPosFocusInvenBox();
 
 		CurrentItem_ = Hoe_;
-		CurrentItemFrame_->SetPosition(CurrentItem_->GetPosition());
+		//CurrentItemFrame_->SetPosition(CurrentItem_->GetPosition());
 
 		UpdateState_ = INVEN_UPDATE::UPDATE;
 		break;
@@ -96,6 +96,7 @@ void Inventory::Update()
 		//ItemPosFocusInvenBox();
 		InvenPopUp();
 		ItemMove();
+		CurrentItemFrameFocusBox();
 
 		break;
 	default:
@@ -183,13 +184,6 @@ void Inventory::InventoryPosInit()
 		}
 
 		StartIter->second->SetPosition({ (GetPosition().x - 352.f) + (64.f * BoxXMargin), (GetPosition().y - 200.f) + (64.f * BoxYMargin + BoxMargin) });
-		
-		//박스 충돌체
-		if (StartIter->second->BoxCollision() == nullptr) 
-		{
-			StartIter->second->CreateBoxCollision(StartIter->first);
-		}
-
 		++BoxXMargin;
 	}
 }
@@ -225,6 +219,31 @@ void Inventory::ItemPosFocusInvenBox()
 
 		}
 		
+	}
+}
+
+void Inventory::CurrentItemFrameFocusBox()
+{
+
+	std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
+	std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
+
+	std::map<int, Items*>::iterator FindIter;
+	std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
+
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		if (StartIter->second->MouseOverAndClick())
+		{
+			SetCurrentItemFrame(StartIter->second);
+
+			FindIter = PlayerItemList_.find(StartIter->first);
+			if (FindIter == ItemEndIter)
+			{
+				CurrentItem_ = EmptyItem_;
+			}
+		}
+
 	}
 }
 
@@ -315,21 +334,9 @@ void Inventory::SetCurrentItemFrame(Items* item_)
 void Inventory::SetCurrentItemFrame(InventroyBox* box_)
 {
 
-	if (CurrentItem_ != nullptr) {
+	float4 Pos = { box_->GetPosition().x, box_->GetPosition().y };
+	CurrentItemFrame_->SetPosition(Pos);
 
-		if (CurrentItem_->GetItemType() == ITEMTYPE::TOOL) 
-		{
-
-			float4 Pos = { CurrentItemFrame_->GetPosition().x, box_->GetPosition().y};
-			CurrentItemFrame_->SetPosition(Pos);
-		}
-
-		else 
-		{
-			CurrentItemFrame_->SetPosition({ CurrentItemFrame_->GetPosition().x,  box_->GetPosition().y });
-
-		}
-	}
 
 }
 
@@ -357,6 +364,7 @@ void Inventory::ItemMove()
 	case ITEMMOVE::NOTACT:
 
 		ItemPosFocusInvenBox();
+
 
 		for (; PlayerItemListStartIter != PlayerItemListEndIter; ++PlayerItemListStartIter)
 		{
@@ -400,6 +408,9 @@ void Inventory::ItemMove()
 
 		}
 
+
+
+
 		if (PlayerItemListStartIter == PlayerItemListEndIter)
 		{
 			PlayerItemListStartIter = PlayerItemList_.begin();
@@ -410,16 +421,10 @@ void Inventory::ItemMove()
 
 	case ITEMMOVE::HOLD:
 
-		//if (PlayerItemListStartIter->second->GetItemCount() == 1)
-		//{
-		//	MoveState_ = ITEMMOVE::INIT;
-		//	break;
-		//}
-
 
 		//아이템을 마우스의 위치에 고정
 		PlayerItemListStartIter->second->SetPosition({Mouse_->GetPosition().x + 24.f, Mouse_->GetPosition().y + 30.f });
-		PlayerItemListStartIter->second->MouseHoldItem();
+	//	PlayerItemListStartIter->second->MouseHoldItem();
 
 		//인벤토리 밖에서 오른쪽 클릭 헸다면 
 		if (Mouse_->MouseRightClickInventoryOut())
@@ -438,8 +443,6 @@ void Inventory::ItemMove()
 
 				if (BoxStartIter->second->MouseOver())
 				{
-
-					//지정위치의 아이템이 해당 박스 안에 있다면 넘어가지 않는다.
 					Finditer = PlayerItemList_.find(BoxStartIter->first);
 
 					//해당 위치에 아이템이 없다면 
@@ -453,7 +456,9 @@ void Inventory::ItemMove()
 					//놓으려는 자리에 아이템이 있다면
 					if (Finditer->second->GetInBox())
 					{
-						MoveState_ = ITEMMOVE::HOLD;
+						
+						MoveState_ = ITEMMOVE::MINE;
+						break;
 					}
 
 					//잡은 자리에 그대로 넣는다면
@@ -469,6 +474,10 @@ void Inventory::ItemMove()
 
 		break;
 
+	case ITEMMOVE::SWAP:
+
+
+		break;
 
 	case ITEMMOVE::FREE:
 
@@ -481,8 +490,6 @@ void Inventory::ItemMove()
 			//마우스와 충돌한 인벤토리 박스를 찾아서 그 박스의 위치에 아이템을 넣는다.
 			if (BoxStartIter->second->MouseOver())
 			{
-
-
 				PlayerItemListStartIter->second->SetInBox(true);
 
 				//키값 변경
@@ -500,6 +507,7 @@ void Inventory::ItemMove()
 
 		FindBoxiter = Box_.find(PlayerItemListStartIter->first);
 		PlayerItemListStartIter->second->SetPosition(FindBoxiter->second->GetPosition());
+		PlayerItemListStartIter->second->SetInBox(true);
 
 		MoveState_ = ITEMMOVE::INIT;
 		break;

@@ -6,13 +6,13 @@ enum class OPEN_UPDATE
 	WAIT,
 	OPEN,
 	GET,
+	MOVE_ITEM,
 };
 
 // Ό³Έν :
 class GiftBox : public Items
 {
 public:
-	static GiftBox* MainGiftBox;
 
 	// constrcuter destructer
 	GiftBox();
@@ -33,7 +33,7 @@ private:
 
 	void GetItemAndAddInventory() override;
 private:
-
+	Items* MoveItem;
 	OPEN_UPDATE OpenUpdate_;
 };
 

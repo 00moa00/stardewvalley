@@ -34,8 +34,6 @@ private:
 
 private:
 
-	bool InItem_;
-
 	GameEngineCollision* BoxCollision_;
 	GameEngineRenderer* InventoryBox_;
 
@@ -52,7 +50,7 @@ public:
 		return BoxCollision_;
 	}
 
-	bool MouseClick() 
+	bool MouseOverAndClick() 
 	{
 		return (BoxCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect)
 			&& (true == GameEngineInput::GetInst()->IsDown("LeftClick")));
@@ -66,16 +64,6 @@ public:
 	bool IteminBox()
 	{
 		return (BoxCollision_->CollisionResult("Item", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
-
-	bool GetInItem()
-	{
-		return InItem_;
-	}
-
-	void SetInItem(bool b) 
-	{
-		InItem_ = b;
 	}
 
 

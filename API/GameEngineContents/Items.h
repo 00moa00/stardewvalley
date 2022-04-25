@@ -225,6 +225,7 @@ public:
 	}
 
 
+
 	bool IsMapItemDeath()
 	{
 		return isMapItemDeath_;

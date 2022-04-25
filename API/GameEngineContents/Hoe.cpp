@@ -46,4 +46,6 @@ void Hoe::Render()
 void Hoe::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainHoe = this;
+
+
 }
