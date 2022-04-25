@@ -10,6 +10,8 @@
 #include "Pierre.h"
 
 ShopLevel::ShopLevel()
+	:
+	Shop_(nullptr)
 	
 {
 
@@ -81,7 +83,7 @@ void ShopLevel::LoadMapObject()
 {
 
 	char MapOject[SHOP_CHIP_NUM_Y][SHOP_CHIP_NUM_X] = {
-	#include "Map/Shop.txt";
+	#include "Map/Shop.txt"
 
 	};
 

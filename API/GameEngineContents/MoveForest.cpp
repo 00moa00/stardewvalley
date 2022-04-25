@@ -21,6 +21,6 @@ void MoveForest::Start()
 
 void MoveForest::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MoveForest = this;
+	MainMoveForest = this;
 }
 

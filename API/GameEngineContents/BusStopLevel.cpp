@@ -122,7 +122,7 @@ void BusStopLevel::LoadMapObject()
 			case BUSSTOP_TILE::MOVE_FARM:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFarm>((int)PLAYLEVEL::OBJECT)));
-
+				break;
 		
 			default:
 				break;

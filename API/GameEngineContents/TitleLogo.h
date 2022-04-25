@@ -31,7 +31,6 @@ private:
 
 private:
 
-	int Animation_;
 	int DelayTIme_;
 
 	ANIMATION_UPDATE UpdateState_;

@@ -13,6 +13,8 @@
 
 MenuNewGame::MenuNewGame()
 	:	
+		isMouseOver_(false),
+
 		NewGame_(nullptr),
 		NewGameCollision_(nullptr)
 {

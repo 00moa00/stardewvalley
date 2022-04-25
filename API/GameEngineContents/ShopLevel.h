@@ -24,9 +24,6 @@ private:
 
 
 private:
-
-	float Time;
-
 	Shop* Shop_;
 
 	std::vector<Npc*> NpcList_;

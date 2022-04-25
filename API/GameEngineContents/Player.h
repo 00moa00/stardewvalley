@@ -99,8 +99,6 @@ private:
 
 	bool FarmingArea_;
 	bool ObjectColl_;
-	bool UsingAxe_;
-	bool UsingPickaxe_;
 	bool isShopping_;
 	bool isEvent_;
 
@@ -114,8 +112,6 @@ private:
 	GameEngineImage* MapColImage_;
 
 	Mouse* Mouse_;
-	Hoe* Hoe_;
-
 
 	TOOLTYPE CurrentItemType_;
 

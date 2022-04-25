@@ -23,6 +23,6 @@ void MoveBusStop::Start()
 
 void MoveBusStop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MoveBusStop = this;
+	MainMoveBusStop = this;
 }
 

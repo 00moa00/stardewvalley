@@ -22,6 +22,6 @@ void MoveTown::Start()
 
 void MoveTown::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MoveTown = this;
+	MainMoveTown = this;
 }
 

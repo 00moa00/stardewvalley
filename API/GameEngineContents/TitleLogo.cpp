@@ -18,12 +18,14 @@ GameEngineLevel* MenuExit_ = nullptr;
 
 TitleLogo::TitleLogo()
 	:	
-		DelayTIme_(0),
+	DelayTIme_(0),
 
-		RamdomAnimation_(),
-		RamdomInitFrame_(),
+	RamdomAnimation_(),
+	RamdomInitFrame_(),
 
-		Logo_(nullptr)
+	Logo_(nullptr),
+
+	UpdateState_(ANIMATION_UPDATE::RAMDOM)
 {
 }
 
@@ -86,7 +88,7 @@ void TitleLogo::Update()
 		Logo_->ChangeAnimation("LOGO_INIT");
 		if (Logo_->IsEndAnimation())
 		{
-			DelayTIme_ = GetAccTime() + RamdomInitFrame_.RandomInt(2, 8);
+			DelayTIme_ = static_cast<int>(GetAccTime() + RamdomInitFrame_.RandomInt(2, 8));
 
 			if (DelayTIme_ > 10)
 			{

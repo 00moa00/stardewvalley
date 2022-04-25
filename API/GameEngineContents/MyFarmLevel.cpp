@@ -19,7 +19,8 @@
 
 MyFarmLevel::MyFarmLevel()
 	:
-	Iter(MapObject_.begin())
+	Iter(MapObject_.begin()),
+	Time(0.f)
 	
 {
 
@@ -94,7 +95,7 @@ void MyFarmLevel::LoadMapObject()
 
     char MapOject[FARM_CHIP_NUM_Y][FARM_CHIP_NUM_X] = 
 	{
-		 #include "Map/Farm.txt";
+		 #include "Map/Farm.txt"
     };
 	 
 

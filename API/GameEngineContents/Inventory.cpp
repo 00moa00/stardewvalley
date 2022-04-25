@@ -173,7 +173,7 @@ void Inventory::InventoryPosInit()
 	{
 		if (StartIter->first == 12) 
 		{
-			BoxMargin = 10.f;
+			BoxMargin = 10;
 			BoxYMargin = 1;
 			BoxXMargin = 0;
 		}
@@ -515,6 +515,7 @@ void Inventory::ItemMove()
 
 		MoveState_ = ITEMMOVE::INIT;
 
+		break;
 
 	default:
 

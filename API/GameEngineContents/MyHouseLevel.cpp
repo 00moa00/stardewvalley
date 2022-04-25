@@ -16,7 +16,9 @@
 
 MyHouseLevel::MyHouseLevel()
 	:
-	Iter(MapObject_.begin())
+	Iter(MapObject_.begin()),
+	Time(0.f)
+
 {
 	SetName("MyHouseLevel");
 
@@ -84,7 +86,7 @@ void MyHouseLevel::LoadMapObject()
 {
 
     char MapOject[MYHOUSE_CHIP_NUM_Y][MYHOUSE_CHIP_NUM_X] = {
-    #include "Map/FarmerHouse.txt";
+    #include "Map/FarmerHouse.txt"
 
     };
 	 

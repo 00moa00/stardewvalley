@@ -21,6 +21,6 @@ void MoveShop::Start()
 
 void MoveShop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MoveShop = this;
+	MainMoveShop = this;
 }
 

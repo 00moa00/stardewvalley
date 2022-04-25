@@ -12,12 +12,20 @@
 
 
 TitleLevel::TitleLevel() 
-	:	TitleLogo_(nullptr),
+	:	
+		TitleLogo_(nullptr),
+		Title_(nullptr),
 		MenuExit_(nullptr),
 		MenuLoad_(nullptr),
 		MenuNewGame_(nullptr),
 		TitleBackGround_(nullptr),
+		TitleBackMountGreen(nullptr),
+		TitleBackMountBlue(nullptr),
+		TitleLeftFrontMount(nullptr),
+		TitleRightFrontMount(nullptr),
 		Mouse_(nullptr),
+		Bird_(),
+		TitleCloud_(),
 		isPopup_(false),
 		Timer_(0),
 		KeyFlag_(false)
@@ -194,7 +202,7 @@ void TitleLevel::PopUpMenu()
 	{
 
 
-		AddTimer(GameEngineTime::GetDeltaTime() + 1.f);
+		AddTimer(static_cast<int>(GameEngineTime::GetDeltaTime() + 1.f));
 
 		if (getTimer() > 150 && MenuNewGame_ == nullptr)
 		{

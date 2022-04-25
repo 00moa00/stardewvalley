@@ -30,18 +30,18 @@ Player::Player()
 	ToolRenderer_(nullptr),
 	PlayerCollider_(nullptr),
 	MapColImage_(nullptr),
-	//Inventory_(nullptr),
 	Mouse_(nullptr),
-	//	Shop_(nullptr),
 
 	ObjectColl_(false),
 	FarmingArea_(false),
-	UsingAxe_(false),
 	isShopping_(false),
 	isEvent_(false),
 
+	WetTileMap_(nullptr),
+	DirtTileMap_(nullptr),
 	MoveDir_(float4::DOWN),
 
+	CurrentItemType_(TOOLTYPE::OTHER),
 	UseToolState_(USE_TOOL::INIT),
 	TileState_(TILE_COLL::INIT),
 	PlayerState_(PLAYER_UPDATE::LEVELINIT),
