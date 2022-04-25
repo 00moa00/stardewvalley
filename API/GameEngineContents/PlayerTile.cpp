@@ -337,7 +337,6 @@ void Player::GetItem()
 			&& MainMouse_->isMouseClick() == true)
 		{
 			Iter->second->GetItemAndAddInventory();
-			//Inventory::MainInventory->SetCurrentItem(Iter->second);
 		}
 
 		else

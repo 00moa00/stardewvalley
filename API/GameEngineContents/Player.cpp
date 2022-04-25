@@ -260,7 +260,8 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-
+	MainMouse_->NextLevelOn();
+	PlayerHandItem_->NextLevelOn();
 }
 
 
@@ -286,7 +287,7 @@ void Player::PlayerUpdate()
 
 
 		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
-		if (MainMouse_->MouseClickInventoryOut() && FarmingArea_ == true)
+		if (MainMouse_->MouseClickInventoryOut())
 		{
 			CheckTool();//툴에 맞게 스테이트 이동
 		}
@@ -305,8 +306,11 @@ void Player::PlayerUpdate()
 
 		if (PlayerRenderer_->IsEndAnimation())
 		{
-			CreateDirtTile();
-			ChangeDirtTile();
+			if (FarmingArea_ == true)
+			{
+				CreateDirtTile();
+				ChangeDirtTile();
+			}
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -316,8 +320,11 @@ void Player::PlayerUpdate()
 
 		if (PlayerRenderer_->IsEndAnimation())
 		{
-			CreateWaterTile();
-			ChangeWetDirtTile();
+			if (FarmingArea_ == true)
+			{
+				CreateWaterTile();
+				ChangeWetDirtTile();
+			}
 
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
