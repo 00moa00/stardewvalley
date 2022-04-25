@@ -400,7 +400,6 @@ void Inventory::ItemMove()
 					break;
 				}
 
-
 				PlayerItemListStartIter->second->SetInBox(false);
 				MoveState_ = ITEMMOVE::HOLD;
 				break;
@@ -424,7 +423,6 @@ void Inventory::ItemMove()
 
 		//아이템을 마우스의 위치에 고정
 		PlayerItemListStartIter->second->SetPosition({Mouse_->GetPosition().x + 24.f, Mouse_->GetPosition().y + 30.f });
-	//	PlayerItemListStartIter->second->MouseHoldItem();
 
 		//인벤토리 밖에서 오른쪽 클릭 헸다면 
 		if (Mouse_->MouseRightClickInventoryOut())
@@ -454,9 +452,12 @@ void Inventory::ItemMove()
 					}
 
 					//놓으려는 자리에 아이템이 있다면
-					if (Finditer->second->GetInBox())
+					if (Finditer->second->GetInBox() || Finditer->second->GetItemType() == ITEMTYPE::TOOL)
 					{
-						
+
+						SetCurrentItemFrame(PlayerItemListStartIter->second, BoxStartIter->second);
+						CurrentItem_ = Finditer->second;
+
 						MoveState_ = ITEMMOVE::MINE;
 						break;
 					}
@@ -508,6 +509,7 @@ void Inventory::ItemMove()
 		FindBoxiter = Box_.find(PlayerItemListStartIter->first);
 		PlayerItemListStartIter->second->SetPosition(FindBoxiter->second->GetPosition());
 		PlayerItemListStartIter->second->SetInBox(true);
+
 
 		MoveState_ = ITEMMOVE::INIT;
 		break;
