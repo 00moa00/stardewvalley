@@ -389,6 +389,14 @@ void StardewValley::GameInit()
 		GameEngineImage* Giftbox = GameEngineImageManager::GetInst()->Find("Giftbox.bmp");
 		Giftbox->Cut({ 48, 96 });
 
+		//================================
+		//		Box
+		//================================
+		GameEngineImage* BoxOpen = GameEngineImageManager::GetInst()->Find("BoxOpen.bmp");
+		BoxOpen->Cut({ 90, 75 });
+
+		GameEngineImage* BoxClose = GameEngineImageManager::GetInst()->Find("BoxClose.bmp");
+		BoxClose->Cut({ 90, 75 });
 
 	}
 

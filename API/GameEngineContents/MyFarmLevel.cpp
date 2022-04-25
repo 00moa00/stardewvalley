@@ -8,11 +8,14 @@
 #include "TreeBottom.h"
 
 #include "PlayerHouse.h"
+#include "ShippingBox.h"
 #include "Block.h"
 
 #include "MoveHouse.h"
 #include "MoveBusStop.h"
 #include "MoveForest.h"
+
+
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngine.h>
 
@@ -187,12 +190,10 @@ void MyFarmLevel::LoadMapObject()
 				break;
 
 			case FARM_TILE::SHIPPING_BOX:
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveForest>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<ShippingBox>((int)PLAYLEVEL::OBJECT)));
 
 				break;
 
-
-				break;
 
 			case FARM_TILE::MOVE_FOREST:
 

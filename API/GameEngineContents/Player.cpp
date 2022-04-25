@@ -272,8 +272,6 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 }
 
 
-
-
 void Player::PlayerUpdate()
 {
 
@@ -284,6 +282,7 @@ void Player::PlayerUpdate()
 
 
 		GetItem();
+		CheckShippingBox();
 		ChangeHandItem();
 		harvestingCrops();
 

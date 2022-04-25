@@ -5,8 +5,8 @@
 class SmallStone : public Items
 {
 public:
-	// constrcuter destructer
 	static SmallStone* MainSmallStone;
+	// constrcuter destructer
 
 	SmallStone();
 	~SmallStone();

@@ -344,6 +344,9 @@
     <ClCompile Include="ShippingBox.cpp">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClCompile>
+    <ClCompile Include="ShippingBoxTop.cpp">
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -708,6 +711,9 @@
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
     <ClInclude Include="ShippingBox.h">
+      <Filter>Actor\03. Play\Obejct\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ShippingBoxTop.h">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClInclude>
   </ItemGroup>

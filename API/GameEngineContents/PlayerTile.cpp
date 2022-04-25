@@ -366,11 +366,30 @@ void Player::GetItem()
 			&& GetCurrentItem()->GetItemType() != ITEMTYPE::TOOL)
 		{
 			//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
-			Iter->second->GetItemAndAddInventory();
+			Iter->second->ItemCollPlayer();
 		}
 
 		else
 		{
+			PlayerState_ = PLAYER_UPDATE::INIT;
+		}
+	}
+}
+
+void Player::CheckShippingBox()
+{
+	for (Iter = Player::MapObject_.begin(); Iter != Player::MapObject_.end(); ++Iter) {
+
+		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
+			&& Iter->second->GetItemType() == ITEMTYPE::SHIPPINGBOX)
+		{
+			//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
+			Iter->second->ItemCollPlayer();
+		}
+
+		else
+		{
+			Iter->second->ItemCollFalsePlayer();
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 	}

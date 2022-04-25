@@ -87,7 +87,11 @@ Crops* Items::CreateCrops()
 	return nullptr;
 }
 
-void Items::GetItemAndAddInventory()
+void Items::ItemCollPlayer()
+{
+}
+
+void Items::ItemCollFalsePlayer()
 {
 }
 

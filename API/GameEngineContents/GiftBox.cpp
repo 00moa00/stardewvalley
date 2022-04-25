@@ -103,9 +103,8 @@ void GiftBox::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 }
 
-void GiftBox::GetItemAndAddInventory()
+void GiftBox::ItemCollPlayer()
 {
 	 OpenUpdate_ = OPEN_UPDATE::OPEN;
-
 
 }

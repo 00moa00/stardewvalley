@@ -254,6 +254,7 @@ private:
 	void CrushTree();
 
 	void GetItem();
+	void CheckShippingBox();
 
 	void harvestingCrops();
 

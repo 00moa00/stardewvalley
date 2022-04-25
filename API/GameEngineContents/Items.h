@@ -36,6 +36,7 @@ enum class ITEMTYPE
 	WOOD,
 	TOOL,
 	GETITEM,
+	SHIPPINGBOX,
 	FLAG,
 	BLOCK,
 };
@@ -95,7 +96,8 @@ public:
 	virtual void DropItemInMap();
 	virtual Crops* CreateCrops();
 
-	virtual void GetItemAndAddInventory();
+	virtual void ItemCollPlayer();
+	virtual void ItemCollFalsePlayer();
 
 	virtual void UpdateOff()
 	{
