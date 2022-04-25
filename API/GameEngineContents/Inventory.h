@@ -61,6 +61,7 @@ class Inventory : public GameEngineActor
 public:
 
 	static Inventory* MainInventory;
+	static ExitBotton* MainExitBotton;
 
 	// constrcuter destructer
 	Inventory();
@@ -103,7 +104,6 @@ private:
 	Items* CurrentItem_;
 
 	Mouse* Mouse_;
-	ExitBotton* ExitBotton_;
 
 	Hoe* Hoe_;
 
@@ -176,13 +176,17 @@ public:
 
 	bool ExitBottonMouseClick()
 	{
-		return ExitBotton_->MouseClick();
+		return MainExitBotton->MouseClick();
 	}
 
 	//================================
 	//    Setter
 	//================================
 
+	void SetCurrentItem(Items* _SetItem)
+	{
+		CurrentItem_ = _SetItem;
+	}
 
 	void SetPopUpStateMini()
 	{

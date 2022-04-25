@@ -9,6 +9,7 @@
 //
 
 Inventory* Inventory::MainInventory = nullptr;
+ExitBotton* Inventory::MainExitBotton = nullptr;
 
 enum class UPDATE {
 	POPUPINIT,
@@ -20,7 +21,6 @@ Inventory::Inventory()
 	:
 	
 	Inventory_(nullptr),
-	ExitBotton_(nullptr),
 	Mouse_(nullptr),
 	CurrentItem_(nullptr),
 	Hoe_(nullptr),
@@ -51,7 +51,7 @@ void Inventory::Start()
 
 	CurrentItemFrame_ = GetLevel()->CreateActor<InventoryCurrentFrame>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
 	Mouse_ = GetLevel()->CreateActor<Mouse>(static_cast<int>(PLAYLEVEL::MOUSE));
-	ExitBotton_ = GetLevel()->CreateActor<ExitBotton>(static_cast<int>(PLAYLEVEL::ITEM));
+	MainExitBotton = GetLevel()->CreateActor<ExitBotton>(static_cast<int>(PLAYLEVEL::ITEM));
 
 	BoxInit();
 
@@ -61,15 +61,14 @@ void Inventory::Start()
 	NewItem<Axe>();
 	NewItem<Pickaxe>();
 	NewItem<WildHorseradish>();
-	NewItem<Potato_Seeds>();
-	NewItem<Potato_Seeds>();
-	NewItem<Potato_Seeds>();
+	NewItem<Potato_Seeds>(3);
+
 
 	
 	float4 Position;
 	Position.x = Inventory_->GetScale().x  + 250.f;
 	Position.y = Inventory_->GetScale().y  + 50.f;
-	ExitBotton_->SetPosition({ Position.x ,Position.y });
+	MainExitBotton->SetPosition({ Position.x ,Position.y });
 	
 	LevelRegist("MainInventory");
 }
@@ -115,7 +114,7 @@ void Inventory::Render()
 void Inventory::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainInventory = this;
-	
+	MainExitBotton = MainExitBotton;
 }
 
 void Inventory::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -136,6 +135,7 @@ void Inventory::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		StartIter->second->NextLevelOn();
 	}
 
+	MainExitBotton->NextLevelOn();
 	CurrentItemFrame_->NextLevelOn();
 	Mouse_->NextLevelOn();
 	NextLevelOn();
@@ -249,7 +249,7 @@ void Inventory::AllUpdateOff()
 		ItemStartIter->second->UpdateOff();
 	}
 
-	ExitBotton_->Off();
+	MainExitBotton->Off();
 
 }
 
@@ -273,7 +273,7 @@ void Inventory::AllUpdateOn()
 		ItemStartIter->second->UpdateOn();
 	}
 
-	ExitBotton_->On();
+	MainExitBotton->On();
 
 }
 
@@ -531,7 +531,7 @@ void Inventory::InvenPopUp()
 	}
 
 	if (((CurrentInvenState_ == POPUPSTATE::MAIN) 
-		&& true == GameEngineInput::GetInst()->IsDown("Enter")) || (ExitBotton_->MouseClick()))
+		&& true == GameEngineInput::GetInst()->IsDown("Enter")) || (MainExitBotton->MouseClick()))
 	{
 		PopUpState_ = POPUPSTATE::MINI;
 	}
@@ -571,7 +571,7 @@ void Inventory::InvenPopUp()
 
 		CurrentInvenState_ = POPUPSTATE::MINI;
 
-		ExitBotton_->Off();
+		MainExitBotton->Off();
 		CurrentItemFrame_->On();
 		Inventory_->On();
 
@@ -616,7 +616,7 @@ void Inventory::InvenPopUp()
 	case POPUPSTATE::MAIN:
 
 		CurrentInvenState_ = POPUPSTATE::MAIN;
-		ExitBotton_->On();
+		MainExitBotton->On();
 		CurrentItemFrame_->Off();
 
 		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y});
@@ -647,7 +647,7 @@ void Inventory::InvenPopUp()
 	case POPUPSTATE::SHOP:
 
 		CurrentInvenState_ = POPUPSTATE::SHOP;
-		ExitBotton_->Off();
+		MainExitBotton->Off();
 		CurrentItemFrame_->Off();
 		Inventory_->Off();
 
@@ -695,7 +695,7 @@ void Inventory::InvenPopUp()
 	case POPUPSTATE::OFF:
 
 		CurrentInvenState_ = POPUPSTATE::OFF;
-		ExitBotton_->Off();
+		MainExitBotton->Off();
 		CurrentItemFrame_->Off();
 		Inventory_->Off();
 

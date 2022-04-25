@@ -14,7 +14,7 @@ std::string Player::PrevLevel_ = "";
 
 Player* Player::MainPlayer = nullptr;
 PlayerHandItem* Player::PlayerHandItem_ = nullptr;
-
+Mouse* Player::MainMouse_ = nullptr;
 
 Player::Player()
 	:
@@ -30,7 +30,6 @@ Player::Player()
 	ToolRenderer_(nullptr),
 	PlayerCollider_(nullptr),
 	MapColImage_(nullptr),
-	Mouse_(nullptr),
 
 	ObjectColl_(false),
 	FarmingArea_(false),
@@ -44,7 +43,7 @@ Player::Player()
 	CurrentItemType_(TOOLTYPE::OTHER),
 	UseToolState_(USE_TOOL::INIT),
 	TileState_(TILE_COLL::INIT),
-	PlayerState_(PLAYER_UPDATE::LEVELINIT),
+	PlayerState_(PLAYER_UPDATE::INIT),
 	PlayerShoppingState_(PLAYER_SHOPPING::INT)
 
 
@@ -87,8 +86,10 @@ void Player::Start()
 {
 	//------< 액터 등록 >------------------------------------------------------------------
 
-//	Shop_ = GetLevel()->CreateActor<Shop>((int)PLAYLEVEL::SHOP);
+	//	Shop_ = GetLevel()->CreateActor<Shop>((int)PLAYLEVEL::SHOP);
 
+	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::HAND_ITEM);
+	MainMouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
 
 	//------< 초기화 >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
@@ -251,10 +252,10 @@ void Player::Render()
 
 void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-
-
+	LevelInit();
 	MainPlayer = this;
 	PlayerHandItem_ = PlayerHandItem_;
+	MainMouse_ = MainMouse_;
 }
 
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -270,19 +271,6 @@ void Player::PlayerUpdate()
 
 	switch (PlayerState_)
 	{
-	case PLAYER_UPDATE::LEVELINIT:
-
-		Mouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-		Mouse_->Renderer()->CameraEffectOff();
-
-		PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::ITEM);
-
-		CurrentLevel_ = GetCurrentLevel();
-
-		CollInit();
-
-		PlayerState_ = PLAYER_UPDATE::INIT;
-		break;
 
 	case PLAYER_UPDATE::INIT:
 
@@ -298,7 +286,7 @@ void Player::PlayerUpdate()
 
 
 		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
-		if (Mouse_->MouseClickInventoryOut() && FarmingArea_ == true)
+		if (MainMouse_->MouseClickInventoryOut() && FarmingArea_ == true)
 		{
 			CheckTool();//툴에 맞게 스테이트 이동
 		}
@@ -360,7 +348,7 @@ void Player::PlayerUpdate()
 		ChangeLevel();
 		ChangeHandItem();
 
-		if (Mouse_->MouseClickInventoryOut())
+		if (MainMouse_->MouseClickInventoryOut())
 		{
 			CreateSeed();
 		}
@@ -402,7 +390,7 @@ void Player::PlayerUpdate()
 		PlayerWalk();
 		SubEnergy();
 
-		if (Mouse_->MouseClickInventoryOut())
+		if (MainMouse_->MouseClickInventoryOut())
 		{
 			CreateSeed();
 		}
@@ -418,5 +406,63 @@ void Player::PlayerUpdate()
 		break;
 	}
 
+}
+
+void Player::LevelInit()
+{
+
+	MainMouse_->Renderer()->CameraEffectOff();
+	CurrentLevel_ = GetCurrentLevel();
+
+	if (CurrentLevel_ == "MyFarmLevel")
+	{
+		MapSizeX_ = FARM_SIZE_WEIGHT;
+		MapSizeY_ = FARM_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
+	}
+
+
+	if (CurrentLevel_ == "MyHouseLevel")
+	{
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+	}
+
+
+	if (CurrentLevel_ == "BusStopLevel")
+	{
+		MapSizeX_ = BUSSTOP_SIZE_WEIGHT;
+		MapSizeY_ = BUSSTOP_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
+	}
+
+
+	if (CurrentLevel_ == "TownLevel")
+	{
+		MapSizeX_ = TOWN_SIZE_WEIGHT;
+		MapSizeY_ = TOWN_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("Town_Col.bmp");
+	}
+
+	if (CurrentLevel_ == "ShopLevel")
+	{
+		MapSizeX_ = SHOP_SIZE_WEIGHT;
+		MapSizeY_ = SHOP_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("Shop_Coll.bmp");
+	}
+
+	if (GetCurrentLevel() == "MyHouseLevel")
+	{
+		PlayerHandItem_->GetRenderer()->CameraEffectOff();
+	}
+
+	else
+	{
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
+	}
 }
 

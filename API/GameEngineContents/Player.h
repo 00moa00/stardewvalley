@@ -62,7 +62,7 @@ class Player : public GameEngineActor
 public:
 	static Player* MainPlayer;
 	static PlayerHandItem* PlayerHandItem_;
-
+	static Mouse* MainMouse_;
 	// constrcuter destructer
 	Player();
 	~Player();
@@ -111,7 +111,7 @@ private:
 
 	GameEngineImage* MapColImage_;
 
-	Mouse* Mouse_;
+	//Mouse* Mouse_;
 
 	TOOLTYPE CurrentItemType_;
 
@@ -206,13 +206,13 @@ private:
 	void ChangeLevel();
 	void ChangeHandItem();
 
-	void CollInit();
 	void CheckTool();
 
 	void NpcCollCheck();
 
 	// 메인 업데이트 함수
 	void PlayerUpdate();
+	void LevelInit();
 
 	//================================
 	//    플레이어 기본

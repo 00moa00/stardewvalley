@@ -342,31 +342,26 @@ void Player::ChangeLevel()
 {
 	if (MoveFarmCollision())
 	{
-		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
 	}
 
 	if (MoveHouseCollision())
 	{
-		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	}
 
 	if (MoveBusStopCollision())
 	{
-		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("BusStopLevel");
 	}
 
 	if (MoveTownCollision())
 	{
-		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("TownLevel");
 	}
 
 	if (MoveShopCollision())
 	{
-		PlayerState_ = PLAYER_UPDATE::LEVELINIT;
 		GameEngine::GetInst().ChangeLevel("ShopLevel");
 	}
 
@@ -386,48 +381,7 @@ void Player::ChangeHandItem()
 	}
 }
 
-void Player::CollInit()
-{
-	if (CurrentLevel_ == "MyFarmLevel")
-	{
-		MapSizeX_ = FARM_SIZE_WEIGHT;
-		MapSizeY_ = FARM_SIZE_HEIGHT;
 
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
-	}
-
-
-	if (CurrentLevel_ == "MyHouseLevel")
-	{
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
-	}
-
-
-	if (CurrentLevel_ == "BusStopLevel")
-	{
-		MapSizeX_ = BUSSTOP_SIZE_WEIGHT;
-		MapSizeY_ = BUSSTOP_SIZE_HEIGHT;
-
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
-	}
-
-
-	if (CurrentLevel_ == "TownLevel")
-	{
-		MapSizeX_ = TOWN_SIZE_WEIGHT;
-		MapSizeY_ = TOWN_SIZE_HEIGHT;
-
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("Town_Col.bmp");
-	}
-
-	if (CurrentLevel_ == "ShopLevel")
-	{
-		MapSizeX_ = SHOP_SIZE_WEIGHT;
-		MapSizeY_ = SHOP_SIZE_HEIGHT;
-
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("Shop_Coll.bmp");
-	}
-}
 
 void Player::CheckTool()
 {
@@ -465,7 +419,7 @@ void Player::NpcCollCheck()
 {
 
 	if (PlayerCollider_->NextPostCollisionCheck("Pierre", MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true
-		&& Mouse_->isMouseClick())
+		&& MainMouse_->isMouseClick())
 	{
 		isEvent_ = !isEvent_;
 
@@ -704,7 +658,7 @@ std::string Player::GetDirString()
 bool Player::PlayerMouseClickCollision() 
 {
 	return (PlayerCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
-		&& (Mouse_->isMouseClick());
+		&& (MainMouse_->isMouseClick());
 }
 
 bool Player::MoveFarmCollision()
@@ -745,6 +699,6 @@ bool Player::MoveBackForestCollision()
 bool Player::MouseClickAndColl()
 {
 	return ((PlayerCollider_->CollisionResult("ShopFlag", ColList, CollisionType::Rect, CollisionType::Rect))
-		&& (Mouse_->isMouseClick()));
+		&& (MainMouse_->isMouseClick()));
 }
 

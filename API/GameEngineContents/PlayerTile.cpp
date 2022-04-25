@@ -37,7 +37,6 @@ float4 Player::PlayerCollCheckPos()
 
 }
 
-
 void Player::CreateDirtTile()
 {
 	
@@ -73,8 +72,6 @@ void Player::CreateDirtTile()
 	}
 	//delete Tile;
 }
-
-
 
 void Player::CreateWaterTile()
 {
@@ -180,7 +177,7 @@ void Player::harvestingCrops()
 		return;
 	}
 
-	if (Mouse_->isMouseClick())
+	if (MainMouse_->isMouseClick())
 	{
 		FindSeedIter->second->DropCropsInMap();
 
@@ -189,7 +186,6 @@ void Player::harvestingCrops()
 	}
 
 }
-
 
 void Player::CrushWood()
 {
@@ -201,7 +197,6 @@ void Player::CrushWood()
 			if (Iter->second->GetItemType() == ITEMTYPE::WOOD)
 
 			{
-
 				//아이템 드랍
 				Iter->second->DropItemInMap();
 
@@ -271,7 +266,6 @@ void Player::CrushStone()
 
 }
 
-
 void Player::CrushTree()
 {
 
@@ -334,27 +328,24 @@ void Player::CrushTree()
 	}
 }
 
-
 void Player::GetItem()
 {
 	for (Iter = Player::MapObject_.begin(); Iter != Player::MapObject_.end(); ++Iter) {
 
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
 			&& Iter->second->GetItemType() == ITEMTYPE::GETITEM
-			&& Mouse_->isMouseClick() == true)
+			&& MainMouse_->isMouseClick() == true)
 		{
 			Iter->second->GetItemAndAddInventory();
+			//Inventory::MainInventory->SetCurrentItem(Iter->second);
 		}
 
 		else
 		{
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
-
 	}
 }
-
-
 
 void Player::ClearWetDirtTile()
 {
@@ -367,9 +358,6 @@ void Player::ClearWetDirtTile()
 		}
 	}
 }
-
-
-
 
 void Player::ChangeDirtTile()
 {
@@ -604,7 +592,6 @@ void Player::ChangeDirtTile()
 
 
 }
-
 
 void Player::ChangeWetDirtTile()
 {

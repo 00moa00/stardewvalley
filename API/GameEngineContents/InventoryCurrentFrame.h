@@ -8,7 +8,6 @@ public:
 
 	static InventoryCurrentFrame* MainInventoryCurrentFrame;
 
-
 	// constrcuter destructer
 	InventoryCurrentFrame();
 	~InventoryCurrentFrame();
