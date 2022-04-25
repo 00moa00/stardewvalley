@@ -4,6 +4,7 @@
 class MoveHouse : public Items
 {
 public:
+	static MoveHouse* MainMoveHouse;
 	// constrcuter destructer
 	MoveHouse();
 	~MoveHouse();
@@ -14,10 +15,9 @@ public:
 	MoveHouse& operator=(const MoveHouse& _Other) = delete;
 	MoveHouse& operator=(MoveHouse&& _Other) noexcept = delete;
 
-protected:
-
 private:
 	void Start() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 };
 

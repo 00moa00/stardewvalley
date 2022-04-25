@@ -1,6 +1,12 @@
 #pragma once
 #include "Items.h"
 
+enum class OPEN_UPDATE
+{
+	WAIT,
+	OPEN
+};
+
 // Ό³Έν :
 class GiftBox : public Items
 {
@@ -21,6 +27,11 @@ private:
 
 	void Start() override;
 	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
+private:
+
+	OPEN_UPDATE OpenUpdate_;
 };
 

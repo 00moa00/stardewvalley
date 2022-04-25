@@ -4,6 +4,8 @@
 class MoveTown : public Items
 {
 public:
+	static MoveTown* MainMoveTown;
+
 	// constrcuter destructer
 	MoveTown();
 	~MoveTown();
@@ -18,6 +20,7 @@ protected:
 
 private:
 	void Start() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 };
 

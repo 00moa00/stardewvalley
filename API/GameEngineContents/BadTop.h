@@ -6,6 +6,8 @@
 class BadTop : public Items
 {
 public:
+
+
 	// constrcuter destructer
 	BadTop();
 	~BadTop();
@@ -18,6 +20,9 @@ public:
 
 protected:
 	void Start() override;
+
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
 

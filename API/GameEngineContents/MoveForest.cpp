@@ -1,4 +1,5 @@
 #include "MoveForest.h"
+MoveForest* MoveForest::MainMoveForest;
 
 MoveForest::MoveForest() 
 {
@@ -16,5 +17,10 @@ void MoveForest::Start()
 	//SetScale({ 48.f, 48.f });
 	ItemCollider_ = CreateCollision("MoveForest", { 48, 48 });
 	ItemType_ = ITEMTYPE::FALG;
+}
+
+void MoveForest::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MoveForest = this;
 }
 

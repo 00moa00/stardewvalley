@@ -1,5 +1,8 @@
 #include "BadBottom.h"
 
+BadBottom* BadBottom::MainBadBottom;
+
+
 BadBottom::BadBottom() 
 {
 }
@@ -18,5 +21,14 @@ void BadBottom::Start()
 	//ItemCollider_ = CreateCollision("Item", { 40, 40 });
 	ItemRenderer_->SetPivot({ GetPosition().x , GetPosition().y - 24.f });
 	ItemType_ = ITEMTYPE::TOOL;
+}
+
+void BadBottom::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MainBadBottom = this;
+}
+
+void BadBottom::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
 }
 

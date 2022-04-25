@@ -4,6 +4,8 @@
 class MoveFarm : public Items
 {
 public:
+	static MoveFarm* MainMoveFarm;
+
 	// constrcuter destructer
 	MoveFarm();
 	~MoveFarm();
@@ -14,9 +16,9 @@ public:
 	MoveFarm& operator=(const MoveFarm& _Other) = delete;
 	MoveFarm& operator=(MoveFarm&& _Other) noexcept = delete;
 
-protected:
-
 private:
 	void Start() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+
 };
 

@@ -14,7 +14,7 @@ enum class TILE_COLL {
 enum class MYHOUSE_TILE {
 
 	BAD_BOTTOM,
-	BAD,
+	GIFT,
 	TV,
 	HITTER,
 	TABLE,

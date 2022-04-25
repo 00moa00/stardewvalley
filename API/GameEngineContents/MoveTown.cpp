@@ -1,4 +1,5 @@
 #include "MoveTown.h"
+MoveTown* MoveTown::MainMoveTown;
 
 MoveTown::MoveTown() 
 {
@@ -17,5 +18,10 @@ void MoveTown::Start()
 	ItemCollider_ = CreateCollision("MoveTown", { 48, 48 });
 	ItemType_ = ITEMTYPE::FALG;
 
+}
+
+void MoveTown::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MoveTown = this;
 }
 

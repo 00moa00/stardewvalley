@@ -1,4 +1,5 @@
 #include "MoveShop.h"
+MoveShop* MoveShop::MainMoveShop;
 
 MoveShop::MoveShop() 
 {
@@ -16,5 +17,10 @@ void MoveShop::Start()
 	ItemCollider_ = CreateCollision("MoveShop", { 48, 48 });
 	ItemType_ = ITEMTYPE::FALG;
 
+}
+
+void MoveShop::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MoveShop = this;
 }
 

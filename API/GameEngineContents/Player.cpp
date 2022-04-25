@@ -251,13 +251,15 @@ void Player::Render()
 
 void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+
+
 	MainPlayer = this;
 	PlayerHandItem_ = PlayerHandItem_;
 }
 
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-//	Shop_->NextLevelOn();
+
 }
 
 

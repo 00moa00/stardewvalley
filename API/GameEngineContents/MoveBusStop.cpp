@@ -1,4 +1,5 @@
 #include "MoveBusStop.h"
+MoveBusStop* MoveBusStop::MainMoveBusStop;
 
 MoveBusStop::MoveBusStop() 
 {
@@ -18,5 +19,10 @@ void MoveBusStop::Start()
 
 	ItemType_ = ITEMTYPE::FALG;
 
+}
+
+void MoveBusStop::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	MoveBusStop = this;
 }
 

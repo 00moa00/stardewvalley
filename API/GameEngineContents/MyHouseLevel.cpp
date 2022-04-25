@@ -9,6 +9,7 @@
 #include "Tv.h"
 #include "Hitter.h"
 #include "MoveFarm.h"
+#include "GiftBox.h"
 
 #include <GameEngineBase/GameEngineTime.h>
 
@@ -27,20 +28,21 @@ MyHouseLevel::~MyHouseLevel()
 
 void MyHouseLevel::Loading()
 {
-	//if (nullptr == Player::MainPlayer)
-	//{
-	//	Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
-	//}
+	if (nullptr == Player::MainPlayer)
+	{
+		Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+	}
 
-	//if (nullptr == Inventory::MainInventory)
-	//{
-	//	Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
-	//}
+	if (nullptr == Inventory::MainInventory)
+	{
+		Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+	}
 
-	//if (nullptr == Inventory::MainInventory)
-	//{
-	//	MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
-	//}
+	if (nullptr == MainUI::MainMainUI)
+	{
+		MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+	}
+
 }
 
 void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
@@ -54,11 +56,15 @@ void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->GetRenderer()->CameraEffectOff();
 	BackGround_->GetRenderer()->SetPivot({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y });
 
+	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	
 	LoadMapObject();
 
 	Player::MainPlayer->SetPosition({ HOUSE_SIZE_WEIGHT / 2, (HOUSE_SIZE_HEIGHT / 2) + 100.f });
 	Player::MainPlayer->Renderer()->CameraEffectOff();
-
+	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 
 }
 
@@ -68,6 +74,7 @@ void MyHouseLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	{
 		Player::MainPlayer->NextLevelOn();
 		Inventory::MainInventory->NextLevelOn();
+		MainUI::MainMainUI->NextLevelOn();
 
 	}
 }
@@ -116,7 +123,15 @@ void MyHouseLevel::LoadMapObject()
 				ThisIter->second->SetPosition({ pos.x, pos.y });
 
 				break;
-		
+
+			case MYHOUSE_TILE::GIFT:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<GiftBox>((int)PLAYLEVEL::TOP_OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition({ pos.x, pos.y });
+
+				break;
 
 			case MYHOUSE_TILE::MOVE_FARM:
 

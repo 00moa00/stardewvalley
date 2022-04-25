@@ -4,6 +4,8 @@
 class MoveBusStop : public Items
 {
 public:
+	static MoveBusStop* MainMoveBusStop;
+
 	// constrcuter destructer
 	MoveBusStop();
 	~MoveBusStop();
@@ -14,10 +16,9 @@ public:
 	MoveBusStop& operator=(const MoveBusStop& _Other) = delete;
 	MoveBusStop& operator=(MoveBusStop&& _Other) noexcept = delete;
 
-protected:
-
 private:
 	void Start() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 };
 

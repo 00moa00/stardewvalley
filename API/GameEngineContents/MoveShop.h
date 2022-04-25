@@ -5,6 +5,8 @@
 class MoveShop : public Items
 {
 public:
+	static MoveShop* MainMoveShop;
+
 	// constrcuter destructer
 	MoveShop();
 	~MoveShop();
@@ -15,8 +17,9 @@ public:
 	MoveShop& operator=(const MoveShop& _Other) = delete;
 	MoveShop& operator=(MoveShop&& _Other) noexcept = delete;
 
-protected:
+private:
 	void Start() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
 

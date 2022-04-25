@@ -5,6 +5,8 @@
 class BadBottom : public Items
 {
 public:
+	static BadBottom* MainBadBottom;
+
 	// constrcuter destructer
 	BadBottom();
 	~BadBottom();
@@ -15,10 +17,11 @@ public:
 	BadBottom& operator=(const BadBottom& _Other) = delete;
 	BadBottom& operator=(BadBottom&& _Other) noexcept = delete;
 
-protected:
-	void Start() override;
-
 private:
 
+	void Start() override;
+
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 };
 
