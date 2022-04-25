@@ -69,15 +69,15 @@ Crops* Cauliflower_Seeds::CreateCrops()
 
 void Cauliflower_Seeds::AddItemCount()
 {
-	++Count_;
-	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	++ItemCount_;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void Cauliflower_Seeds::SubItemCount()
 {
-	if (Count_ == 1)
+	if (ItemCount_ == 1)
 	{
-		Count_ = 0;
+		ItemCount_ = 0;
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
 		Font_ = nullptr;
@@ -85,8 +85,8 @@ void Cauliflower_Seeds::SubItemCount()
 	}
 	else
 	{
-		--Count_;
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		--ItemCount_;
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
 

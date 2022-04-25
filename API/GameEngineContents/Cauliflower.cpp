@@ -25,7 +25,7 @@ void Cauliflower::Start()
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 	ItemName_ = "Cauliflower";
@@ -42,7 +42,7 @@ void Cauliflower::Update()
 {
 	MoveToPlayer();
 
-	if (isItemDeath_ == true)
+	if (isMapItemDeath_ == true)
 	{
 		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 		MainPlayer->GetInventroy()->NewItem<Cauliflower>();
@@ -70,15 +70,15 @@ void Cauliflower::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Cauliflower::AddItemCount()
 {
-	++Count_;
-	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	++ItemCount_;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void Cauliflower::SubItemCount()
 {
-	if (Count_ == 1)
+	if (ItemCount_ == 1)
 	{
-		Count_ = 0;
+		ItemCount_ = 0;
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
 		Font_ = nullptr;
@@ -86,8 +86,8 @@ void Cauliflower::SubItemCount()
 	}
 	else
 	{
-		--Count_;
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		--ItemCount_;
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
 

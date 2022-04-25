@@ -198,8 +198,8 @@ void Player::CrushWood()
 
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
-			if (Iter->second->GetItemNameConstRef() == "SmallWood1"
-				|| Iter->second->GetItemNameConstRef() == "SmallWood2")
+			if (Iter->second->GetItemType() == ITEMTYPE::WOOD)
+
 			{
 
 				//아이템 드랍
@@ -239,7 +239,7 @@ void Player::CrushStone()
 
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
-			if (Iter->second->GetItemNameConstRef() == "SmallStone") 
+			if (Iter->second->GetItemType() == ITEMTYPE::STONE)
 			{
 				//아이템 드랍
 				Iter->second->DropItemInMap();
@@ -275,57 +275,52 @@ void Player::CrushStone()
 void Player::CrushTree()
 {
 
-	for (Iter = Player::MapObject_.begin(); Iter != Player::MapObject_.end(); ++Iter) {
+	for (Iter = Player::MapObject_.begin(); Iter != Player::MapObject_.end(); ++Iter)
+	{
 
-		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
+		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
+			&& Iter->second->GetItemType() == ITEMTYPE::TREE)
 		{
-			if (Iter->second->GetItemNameConstRef() == "Maple_Tree"
-				|| Iter->second->GetItemNameConstRef() == "Fine_Tree"
-				|| Iter->second->GetItemNameConstRef() == "Oak_Tree"
-				|| Iter->second->GetItemNameConstRef() == "Mahogany_Tree"
-				)
+
+			//나무가 살아있다
+			if (Iter->second->GetDamage() > 0)
 			{
+				//데미지를 깎으면서 애니메이션 변경
+				Iter->second->SubDamage();
+				Iter->second->SetCrushAnimation();
 
-				//나무가 살아있다
-				if (Iter->second->GetDamage() > 0)
+
+				//나무의 데미지가 2면 Top 제거(해당 업데이트 함수)와 나무조각 드랍
+				if (Iter->second->GetDamage() == 2)
 				{
-					//데미지를 깎으면서 애니메이션 변경
-					Iter->second->SubDamage();
-					Iter->second->SetCrushAnimation();
-
-
-					//나무의 데미지가 2면 Top 제거(해당 업데이트 함수)와 나무조각 드랍
-					if (Iter->second->GetDamage() == 2)
-					{
-						Iter->second->DropItemInMap();
-					}
-
-					//스테이트 초기화
-					TileState_ = TILE_COLL::INIT;
-					PlayerState_ = PLAYER_UPDATE::INIT;
-
-					return;
-				}
-
-				//나무의 데미지가 0이면 (주둥이까지 삭제)
-				else
-				{
-					//드랍 아이템
 					Iter->second->DropItemInMap();
-
-					//해당 아이템 삭제
-					Iter->second->Death();
-					Player::MapObject_.erase(Iter);
-
-					//스테이트 초기화
-					TileState_ = TILE_COLL::INIT;
-					PlayerState_ = PLAYER_UPDATE::INIT;
-
-
-					//이터레이터 초기화
-					Iter = Player::MapObject_.begin();
-
 				}
+
+				//스테이트 초기화
+				TileState_ = TILE_COLL::INIT;
+				PlayerState_ = PLAYER_UPDATE::INIT;
+
+				return;
+			}
+
+			//나무의 데미지가 0이면 (주둥이까지 삭제)
+			else
+			{
+				//드랍 아이템
+				Iter->second->DropItemInMap();
+
+				//해당 아이템 삭제
+				Iter->second->Death();
+				Player::MapObject_.erase(Iter);
+
+				//스테이트 초기화
+				TileState_ = TILE_COLL::INIT;
+				PlayerState_ = PLAYER_UPDATE::INIT;
+
+
+				//이터레이터 초기화
+				Iter = Player::MapObject_.begin();
+
 			}
 
 		}
@@ -337,7 +332,26 @@ void Player::CrushTree()
 		}
 
 	}
+}
 
+
+void Player::GetItem()
+{
+	for (Iter = Player::MapObject_.begin(); Iter != Player::MapObject_.end(); ++Iter) {
+
+		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
+			&& Iter->second->GetItemType() == ITEMTYPE::GETITEM
+			&& Mouse_->isMouseClick() == true)
+		{
+			Iter->second->GetItemAndAddInventory();
+		}
+
+		else
+		{
+			PlayerState_ = PLAYER_UPDATE::INIT;
+		}
+
+	}
 }
 
 

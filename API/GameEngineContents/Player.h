@@ -250,6 +250,8 @@ private:
 	void CrushStone();
 	void CrushTree();
 
+	void GetItem();
+
 	void harvestingCrops();
 
 	void ClearWetDirtTile();

@@ -24,7 +24,7 @@ void Daffodil::Start()
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 	//핸드 아이템용
@@ -61,15 +61,15 @@ void Daffodil::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Daffodil::AddItemCount()
 {
-	++Count_;
-	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	++ItemCount_;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void Daffodil::SubItemCount()
 {
-	if (Count_ == 1)
+	if (ItemCount_ == 1)
 	{
-		Count_ = 0;
+		ItemCount_ = 0;
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
 		Font_ = nullptr;
@@ -77,8 +77,8 @@ void Daffodil::SubItemCount()
 	}
 	else
 	{
-		--Count_;
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		--ItemCount_;
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
 

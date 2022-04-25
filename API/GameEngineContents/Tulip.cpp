@@ -24,7 +24,7 @@ void Tulip::Start()
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 	ItemName_ = "Tulip";
@@ -41,7 +41,7 @@ void Tulip::Update()
 {
 	MoveToPlayer();
 
-	if (isItemDeath_ == true)
+	if (isMapItemDeath_ == true)
 	{
 		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 		MainPlayer->GetInventroy()->NewItem<Tulip>();
@@ -70,13 +70,13 @@ void Tulip::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Tulip::AddItemCount()
 {
-	++Count_;
-	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	++ItemCount_;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void Tulip::SubItemCount()
 {
-	if (Count_ == 1)
+	if (ItemCount_ == 1)
 	{
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
@@ -84,8 +84,8 @@ void Tulip::SubItemCount()
 	}
 	else
 	{
-		--Count_;
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		--ItemCount_;
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
 

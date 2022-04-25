@@ -86,7 +86,7 @@ void MyHouseLevel::LoadMapObject()
 {
 
     char MapOject[MYHOUSE_CHIP_NUM_Y][MYHOUSE_CHIP_NUM_X] = {
-    #include "Map/FarmerHouse.txt"
+	  #include "Map/FarmerHouse.txt"
 
     };
 	 
@@ -128,7 +128,7 @@ void MyHouseLevel::LoadMapObject()
 
 			case MYHOUSE_TILE::GIFT:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<GiftBox>((int)PLAYLEVEL::TOP_OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<GiftBox>((int)PLAYLEVEL::OBJECT)));
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition({ pos.x, pos.y });

@@ -32,7 +32,7 @@ void DropStone::Start()
 	}
 
 	Font_->ChangeWhiteColor();
-	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 
 
 	ItemName_ = "DropStone";
@@ -44,7 +44,7 @@ void DropStone::Update()
 
 	MoveToPlayer();
 
-	if (isItemDeath_ == true)
+	if (isMapItemDeath_ == true)
 	{
 		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 		MainPlayer->GetInventroy()->NewItem<DropStone>();
@@ -73,15 +73,15 @@ void DropStone::LevelChangeEnd(GameEngineLevel* _NextLevel)
 }
 void DropStone::AddItemCount()
 {
-	++Count_;
-	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	++ItemCount_;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void DropStone::SubItemCount()
 {
-	if (Count_ == 1)
+	if (ItemCount_ == 1)
 	{
-		Count_ = 0;
+		ItemCount_ = 0;
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
 		Font_ = nullptr;
@@ -89,8 +89,8 @@ void DropStone::SubItemCount()
 	}
 	else
 	{
-		--Count_;
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		--ItemCount_;
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 }

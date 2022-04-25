@@ -16,7 +16,7 @@ void MoveFarm::Start()
 
 	ItemCollider_ = CreateCollision("MoveFarm", { 48, 48 });
 
-	ItemType_ = ITEMTYPE::FALG;
+	ItemType_ = ITEMTYPE::FLAG;
 }
 
 void MoveFarm::LevelChangeStart(GameEngineLevel* _PrevLevel)

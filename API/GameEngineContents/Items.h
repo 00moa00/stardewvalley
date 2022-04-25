@@ -30,9 +30,13 @@ enum class SEEDTYPE
 enum class ITEMTYPE
 {
 	ITEM,
-	OBJECT,
+	MAPOBJECT,
+	TREE,
+	STONE,
+	WOOD,
 	TOOL,
-	FALG,
+	GETITEM,
+	FLAG,
 	BLOCK,
 };
 
@@ -86,8 +90,12 @@ public:
 
 	virtual void AddItemCount();
 	virtual void SubItemCount();
+	virtual void SetItemCount(int _Count);
+
 	virtual void DropItemInMap();
 	virtual Crops* CreateCrops();
+
+	virtual void GetItemAndAddInventory();
 
 	virtual void UpdateOff()
 	{
@@ -123,7 +131,7 @@ protected:
 	//GameEngineRandom RamdomSpeed_;
 
 	int SellPrice_;
-	int Count_;
+	int ItemCount_;
 	int Damage_;
 	float Speed_;
 
@@ -137,7 +145,7 @@ protected:
 
 	bool MouseHoldItem_;
 	bool isPossibleHand_;
-	bool isItemDeath_;
+	bool isMapItemDeath_;
 	bool isMove_;
 
 	std::string ItemName_;
@@ -178,7 +186,7 @@ public:
 
 	int GetItemCount()
 	{
-		return Count_;
+		return ItemCount_;
 	}
 
 	int GetSellPrice()
@@ -216,14 +224,10 @@ public:
 		return FileIndex_;
 	}
 
-	int GetCount()
-	{
-		return Count_;
-	}
 
-	bool IsItemDeath()
+	bool IsMapItemDeath()
 	{
-		return isItemDeath_;
+		return isMapItemDeath_;
 	}
 
 
@@ -290,9 +294,9 @@ public:
 		isMove_ = _flag;
 	}
 
-	void SetItemDeath(bool _flag)
+	void SetMapItemDeath(bool _flag)
 	{
-		isItemDeath_ = _flag;
+		isMapItemDeath_ = _flag;
 	}
 
 	void SetRenderer(GameEngineRenderer& _Renderer) {
@@ -301,10 +305,6 @@ public:
 	}
 
 
-	void AddCount()
-	{
-		++Count_;
-	}
 
 	void SetInBox(bool _b)
 	{

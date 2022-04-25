@@ -24,7 +24,7 @@ void Pasnip::Start()
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 	ItemName_ = "Pasnip";
@@ -41,10 +41,9 @@ void Pasnip::Update()
 {
 	MoveToPlayer();
 
-	if (isItemDeath_ == true)
+	if (isMapItemDeath_ == true)
 	{
-		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<Pasnip>();
+		Inventory::MainInventory->NewItem<Pasnip>();
 	}
 
 	switch (ItemState_)
@@ -69,15 +68,15 @@ void Pasnip::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Pasnip::AddItemCount()
 {
-	++Count_;
-	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	++ItemCount_;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void Pasnip::SubItemCount()
 {
-	if (Count_ == 1)
+	if (ItemCount_ == 1)
 	{
-		Count_ = 0;
+		ItemCount_ = 0;
 		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
 		Font_ = nullptr;
@@ -85,8 +84,8 @@ void Pasnip::SubItemCount()
 	}
 	else
 	{
-		--Count_;
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		--ItemCount_;
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 }
 

@@ -25,6 +25,8 @@ void TreeBottom::Start()
 
 	SetScale({ 48.f, 48.f });
 
+	ItemType_ = ITEMTYPE::TREE;
+
 }
 
 void TreeBottom::Update()

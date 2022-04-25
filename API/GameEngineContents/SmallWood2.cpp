@@ -16,6 +16,8 @@ void SmallWood2::Start()
 	ItemCollider_ = CreateCollision("MapObject", { 48.f, 48.f });
 	ItemName_ = "SmallWood2";
 
+	ItemType_ = ITEMTYPE::WOOD;
+
 }
 
 void SmallWood2::Update()

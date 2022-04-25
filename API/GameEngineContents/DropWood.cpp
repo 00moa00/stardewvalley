@@ -26,7 +26,7 @@ void DropWood::Start()
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 	ItemName_ = "DropWood";
@@ -35,7 +35,7 @@ void DropWood::Start()
 void DropWood::Update()
 {
 	MoveToPlayer();
-	if (isItemDeath_ == true)
+	if (isMapItemDeath_ == true)
 	{
 		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 		MainPlayer->GetInventroy()->NewItem<DropWood>();
@@ -68,21 +68,21 @@ void DropWood::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void DropWood::AddItemCount()
 {
-	++Count_;
-	Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	++ItemCount_;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void DropWood::SubItemCount()
 {
-	if (Count_ == 1)
+	if (ItemCount_ == 1)
 	{
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
 		Death();
 	}
 	else
 	{
-		--Count_;
-		Font_->ChangeNumItemLeftSort(Count_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+		--ItemCount_;
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
 }
@@ -111,8 +111,8 @@ void DropWood::UpdateOn()
 //		break;
 //
 //	case ITEM_STATE::ADDITEM:
-//		//	++Count_;
-//		Font_->ChangeNumItem(Count_);
+//		//	++ItemCount_;
+//		Font_->ChangeNumItem(ItemCount_);
 //		//	Font_->SetPositionItem({ GetPosition() });
 //
 //		ItemState_ = ITEM_STATE::INIT;

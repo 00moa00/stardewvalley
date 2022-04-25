@@ -17,7 +17,7 @@ void MoveBusStop::Start()
 
 	ItemCollider_ = CreateCollision("MoveBusStop", { 48, 48 });
 
-	ItemType_ = ITEMTYPE::FALG;
+	ItemType_ = ITEMTYPE::FLAG;
 
 }
 

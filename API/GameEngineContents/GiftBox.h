@@ -4,7 +4,8 @@
 enum class OPEN_UPDATE
 {
 	WAIT,
-	OPEN
+	OPEN,
+	GET,
 };
 
 // Ό³Έν :
@@ -30,6 +31,7 @@ private:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
+	void GetItemAndAddInventory() override;
 private:
 
 	OPEN_UPDATE OpenUpdate_;

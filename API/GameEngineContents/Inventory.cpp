@@ -61,8 +61,6 @@ void Inventory::Start()
 	NewItem<Axe>();
 	NewItem<Pickaxe>();
 	NewItem<WildHorseradish>();
-	NewItem<Parsnip_Seeds>();
-	NewItem<Parsnip_Seeds>();
 	NewItem<Potato_Seeds>();
 	NewItem<Potato_Seeds>();
 	NewItem<Potato_Seeds>();

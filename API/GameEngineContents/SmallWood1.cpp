@@ -18,6 +18,8 @@ void SmallWood1::Start()
 
 	ItemName_ = "SmallWood1";
 
+	ItemType_ = ITEMTYPE::WOOD;
+
 }
 
 void SmallWood1::Update()

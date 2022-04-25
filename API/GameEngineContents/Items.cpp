@@ -11,7 +11,7 @@ Items::Items() :
 	MouseHoldItem_ (false),
 	InMouse (false),
 	isPossibleHand_(false),
-	isItemDeath_(false),
+	isMapItemDeath_(false),
 	isMove_(false),
 	InBox (true),
 
@@ -21,7 +21,7 @@ Items::Items() :
 	TransformPos_({}),
 	FileIndex_(0),
 	SellPrice_(0),
-	Count_ (1),
+	ItemCount_ (1),
 	Damage_(5),
 
 	Gravity_({}),
@@ -89,6 +89,10 @@ Crops* Items::CreateCrops()
 	return nullptr;
 }
 
+void Items::GetItemAndAddInventory()
+{
+}
+
 bool Items::ItemCheck(const float4 pos, const float4 scale)
 {
 
@@ -138,7 +142,7 @@ void Items::MoveToPlayer()
 
 	if (Check <= 20)
 	{
-		isItemDeath_ = true;
+		isMapItemDeath_ = true;
 		Death();
 		return;
 	}
@@ -163,6 +167,10 @@ void Items::AddItemCount()
 }
 
 void Items::SubItemCount()
+{
+}
+
+void Items::SetItemCount(int _Count)
 {
 }
 

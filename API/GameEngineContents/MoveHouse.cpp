@@ -14,7 +14,7 @@ void MoveHouse::Start()
 	ItemRenderer_ = CreateRenderer("block.bmp");
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	ItemCollider_ = CreateCollision("MoveHouse", { 48, 48 });
-	ItemType_ = ITEMTYPE::FALG;
+	ItemType_ = ITEMTYPE::FLAG;
 }
 
 void MoveHouse::LevelChangeStart(GameEngineLevel* _PrevLevel)

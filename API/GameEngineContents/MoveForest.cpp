@@ -16,7 +16,7 @@ void MoveForest::Start()
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	//SetScale({ 48.f, 48.f });
 	ItemCollider_ = CreateCollision("MoveForest", { 48, 48 });
-	ItemType_ = ITEMTYPE::FALG;
+	ItemType_ = ITEMTYPE::FLAG;
 }
 
 void MoveForest::LevelChangeStart(GameEngineLevel* _PrevLevel)

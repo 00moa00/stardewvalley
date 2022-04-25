@@ -1,4 +1,7 @@
 #include "GiftBox.h"
+#include "Inventory.h"
+#include "Parsnip_Seeds.h"
+
 GiftBox* GiftBox::MainGiftBox = nullptr;
 
 GiftBox::GiftBox() 
@@ -14,46 +17,47 @@ GiftBox::~GiftBox()
 void GiftBox::Start()
 {
 	ItemRenderer_ = CreateRenderer("Giftbox.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::PARSNIP));
-	ItemRenderer_->CameraEffectOn();
+	ItemRenderer_->SetIndex(0);
+	ItemRenderer_->CameraEffectOff();
+	ItemRenderer_->SetPivotType(RenderPivot::BOT);
 
 	ItemRenderer_->CreateAnimation("Giftbox.bmp", "OPEN", 0, 9 , 0.200f, false);
 	ItemRenderer_->CreateAnimation("Giftbox.bmp", "INIT", 0, 0, 0.200f, false);
 	ItemRenderer_->ChangeAnimation("INIT");
 
 
-	ItemCollider_ = CreateCollision("GiftBox", { 60, 40 });
+	ItemCollider_ = CreateCollision("MapObject", { 48, 48 });
 
 	ItemName_ = "GiftBox";
+
+	ItemType_ = ITEMTYPE::GETITEM;
+
 }
 
 void GiftBox::Update()
 {
-
 	switch (OpenUpdate_)
 	{
 	case OPEN_UPDATE::WAIT:
-
-		if (ItemCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect)
-			&& GameEngineInput::GetInst()->IsDown("LeftClick"))
-		{
-			OpenUpdate_ = OPEN_UPDATE::OPEN;
-			ItemRenderer_->ChangeAnimation("OPEN");
-		}
-
 		break;
 	case OPEN_UPDATE::OPEN:
 
+		ItemRenderer_->ChangeAnimation("OPEN");
+		OpenUpdate_ = OPEN_UPDATE::GET;
+		break;
+
+	case OPEN_UPDATE::GET:
+
 		if (ItemRenderer_->IsEndAnimation())
 		{
+			Inventory::MainInventory->NewItem<Parsnip_Seeds>(15);
+
 			this->Death();
 		}
 
-		break;
 	default:
 		break;
 	}
-	
 }
 
 void GiftBox::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -63,4 +67,11 @@ void GiftBox::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void GiftBox::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+}
+
+void GiftBox::GetItemAndAddInventory()
+{
+	 OpenUpdate_ = OPEN_UPDATE::OPEN;
+
+
 }

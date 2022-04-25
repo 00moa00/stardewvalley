@@ -387,7 +387,7 @@ void StardewValley::GameInit()
 		//		Giftbox
 		//================================
 		GameEngineImage* Giftbox = GameEngineImageManager::GetInst()->Find("Giftbox.bmp");
-		Giftbox->Cut({ 24, 48 });
+		Giftbox->Cut({ 48, 96 });
 
 
 	}
@@ -529,7 +529,7 @@ void StardewValley::GameInit()
 	CreateLevel<TownLevel>("TownLevel");
 	CreateLevel<ShopLevel>("ShopLevel");
 
-	ChangeLevel("TitleLevel");
+	ChangeLevel("MyHouseLevel");
 
 
 }

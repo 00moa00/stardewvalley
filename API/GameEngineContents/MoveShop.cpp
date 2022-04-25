@@ -15,7 +15,7 @@ void MoveShop::Start()
 
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	ItemCollider_ = CreateCollision("MoveShop", { 48, 48 });
-	ItemType_ = ITEMTYPE::FALG;
+	ItemType_ = ITEMTYPE::FLAG;
 
 }
 

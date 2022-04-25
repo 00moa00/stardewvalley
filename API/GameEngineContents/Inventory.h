@@ -296,5 +296,62 @@ public:
 	}
 
 
+	template<typename Actor>
+	Actor* NewItem(int _Count)
+	{
+		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::ITEM));
+
+		//가지고 있는 아이템이라면 카운팅한다.
+
+		std::map<int, Items*>::iterator ItemStartIter = PlayerItemList_.begin();
+		std::map<int, Items*>::iterator ItemEndIter = PlayerItemList_.end();
+
+		for (; ItemStartIter != ItemEndIter; ++ItemStartIter)
+		{
+			if (ItemStartIter->second->GetItemNameConstRef() == Item->GetItemNameConstRef())
+			{
+				Item->SetItemCount(_Count);
+				Item->Death();
+
+				return nullptr;
+			}
+		}
+
+		//아이템 생성
+		std::map<int, InventroyBox*>::iterator StartIter = Box_.begin();
+		std::map<int, InventroyBox*>::iterator EndIter = Box_.end();
+
+
+		//앞에서부터 탐색해서 박스에 아이템이 없으면 그 자리에 넣기
+		int index_ = 0;
+
+		for (int i = 0; StartIter != EndIter; ++i) {
+
+			std::map<int, Items*>::iterator ItemFindIter = PlayerItemList_.find(i);
+
+			if (ItemFindIter == PlayerItemList_.end())
+			{
+				index_ = StartIter->first;
+				break;
+			}
+			else
+			{
+				++StartIter;
+			}
+
+		}
+
+		//플레이어 아이템리스트에 추가
+		PlayerItemList_.insert(std::make_pair(index_, Item));
+
+		//박스의 위치를 찾아서 등록
+		std::map<int, InventroyBox*>::iterator FindIter = Box_.find(static_cast<const int>(index_));
+		float4 Pos = FindIter->second->GetPosition();
+
+		Item->SetPosition({ Pos});
+		Item->GetRenderer()->CameraEffectOff();
+		Item->SetItemCount(_Count);
+		return Item;
+	}
 };
 
