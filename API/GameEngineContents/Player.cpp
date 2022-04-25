@@ -64,7 +64,6 @@ Player::Player()
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::WALK)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "INIT";
-
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::WATER)] = "WATER";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";

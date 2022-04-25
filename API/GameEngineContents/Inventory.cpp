@@ -408,8 +408,6 @@ void Inventory::ItemMove()
 		}
 
 
-
-
 		if (PlayerItemListStartIter == PlayerItemListEndIter)
 		{
 			PlayerItemListStartIter = PlayerItemList_.begin();
