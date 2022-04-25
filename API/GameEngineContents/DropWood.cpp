@@ -30,26 +30,52 @@ void DropWood::Start()
 	}
 
 	ItemName_ = "DropWood";
+
+
 }
 
 void DropWood::Update()
 {
-	MoveToPlayer();
-	if (isMapItemDeath_ == true)
-	{
-		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<DropWood>();
-	}
-
 
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
 		Font_->SetPositionItem({ GetPosition() });
 
-		break;
+		if (isMove_ == true)
+		{
 
+			PrePosition_ = this->GetPosition();
+			ItemState_ = ITEM_STATE::ANIMATION;
+		}
+
+		break;
+	case ITEM_STATE::ANIMATION:
+
+		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 700.0f;
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
+
+		if (this->GetPosition().y > PrePosition_.y )
+		{
+			ItemState_ = ITEM_STATE::MOVETOPLAYER;
+
+		}
+
+		break;
+	case ITEM_STATE::MOVETOPLAYER:
+
+		MoveToPlayer();
+		if (isMapItemDeath_ == true)
+		{
+			Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+			MainPlayer->GetInventroy()->NewItem<DropWood>();
+		}
+
+		break;
+	default:
+		break;
 	}
+
 
 }
 

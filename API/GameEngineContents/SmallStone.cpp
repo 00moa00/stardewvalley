@@ -30,18 +30,25 @@ void SmallStone::Update()
 
 void SmallStone::DropItemInMap()
 {
-	int Count = RandomItemCount.RandomInt(1, 5);
-	Items* DropItem;
-	for (int i = 0; i < Count; ++i)
+	Items* DropItem = GetLevel()->CreateActor<DropStone>(static_cast<int>(PLAYLEVEL::TOP_TOP_OBJECT));
+
+
+	DropItem->SetPosition({ this->GetPosition().x + 15.f , this->GetPosition().y });
+	DropItem->SetMoveFlag(true);
+	DropItem->GetRenderer()->SetScale({ 35.f, 35.f });
+
+	GameEngineRandom RandomDir;
+	int RamdomDir = RandomDir.RandomInt(1, 2);
+
+	if (RamdomDir == 1)
 	{
-		DropItem = CreateDropItemActor<DropStone>();
+		DropItem->SetMoveDir({ 0, -120 });
 
-		float4 Pos;
-		Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
-		Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);
+	}
+	if (RamdomDir == 2)
+	{
+		DropItem->SetMoveDir({ 0, -120 });
 
-		DropItem->SetPosition({ this->GetPosition().x + Pos.x, this->GetPosition().y + Pos.y });
-		DropItem->SetMoveFlag(true);
 	}
 
 }

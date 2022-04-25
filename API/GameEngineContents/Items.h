@@ -52,8 +52,8 @@ enum class TOOLTYPE
 enum class ITEM_STATE
 {
 	INIT,
-	ADDITEM,
-	SUBITEM
+	ANIMATION,
+	MOVETOPLAYER
 };
 
 enum class MOVE
@@ -107,7 +107,10 @@ public:
 		this->On();
 	}
 
-
+	virtual void SetMoveDir(float4 _Dir)
+	{
+		MoveDir_ = _Dir;
+	}
 
 protected:
 	std::vector<GameEngineCollision*> ColList;
@@ -118,6 +121,8 @@ protected:
 	GameEngineRenderer* SubRenderer;
 
 	GameEngineRandom RandomItemCount;
+
+
 	GameEngineRandom RandomItemPosX;
 	GameEngineRandom RamdomItemPosY;
 
@@ -134,12 +139,12 @@ protected:
 	int ItemCount_;
 	int Damage_;
 	float Speed_;
+	int RamdomDir_;
 
 	float4 ItemPosition_;
 	float4 ItemSpeed_;
-	float4 Gravity_;
-	float4 targetPos_;
-	float4 TransformPos_;
+	float4 MoveDir_;
+	float4 PrePosition_;
 	float4 Normal_;
 
 
@@ -225,7 +230,6 @@ public:
 	}
 
 
-
 	bool IsMapItemDeath()
 	{
 		return isMapItemDeath_;
@@ -275,6 +279,7 @@ public:
 	//================================
 	//    Setter
 	//================================
+
 
 
 	void SubDamage()
@@ -351,12 +356,7 @@ public:
 	}
 
 
-	template<typename Actor>
-	Actor* CreateDropItemActor()
-	{
-		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SEED));
-		return Item;
-	}
+
 
 };
 

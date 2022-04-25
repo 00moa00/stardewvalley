@@ -162,7 +162,7 @@ void GameEngineRenderer::SetIndex(size_t _Index, float4 _Scale)
 	RenderImageScale_ = Image_->GetCutScale(_Index);			// 
 }
 
-// Animation
+// Effect
 void GameEngineRenderer::CreateAnimation(
 	const std::string& _Image,
 	const std::string& _Name,

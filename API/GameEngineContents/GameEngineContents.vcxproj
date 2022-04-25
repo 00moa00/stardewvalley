@@ -158,6 +158,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Effect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Axe.h">
       <SubType>
       </SubType>
@@ -497,6 +501,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="StoneEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Particles.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Table.h">
       <SubType>
       </SubType>
@@ -558,8 +570,16 @@
     <ClInclude Include="ItemCode.h" />
     <ClInclude Include="Weeds.h" />
     <ClInclude Include="WildHorseradish.h" />
+    <ClInclude Include="WoodEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Effect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Axe.cpp">
       <SubType>
       </SubType>
@@ -895,6 +915,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="StoneEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Particles.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Table.cpp">
       <SubType>
       </SubType>
@@ -953,6 +981,10 @@
     </ClCompile>
     <ClCompile Include="Weeds.cpp" />
     <ClCompile Include="WildHorseradish.cpp" />
+    <ClCompile Include="WoodEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngineBase\GameEngineBase.vcxproj">

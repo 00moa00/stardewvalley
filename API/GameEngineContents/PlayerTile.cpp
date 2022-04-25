@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "TreeTop.h"
 #include "MainUI.h"
+#include "StoneEffect.h"
+#include "WoodEffect.h"
 
 //******************************************************************************
 //
@@ -197,6 +199,10 @@ void Player::CrushWood()
 			if (Iter->second->GetItemType() == ITEMTYPE::WOOD)
 
 			{
+
+				WoodEffect* StoneAnimation_ = GetLevel()->CreateActor<WoodEffect>();
+				StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x , Iter->second->GetPosition().y });
+
 				//아이템 드랍
 				Iter->second->DropItemInMap();
 
@@ -236,6 +242,10 @@ void Player::CrushStone()
 		{
 			if (Iter->second->GetItemType() == ITEMTYPE::STONE)
 			{
+
+				StoneEffect* StoneAnimation_ = GetLevel()->CreateActor<StoneEffect>();
+				StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x ,   Iter->second->GetPosition().y });
+
 				//아이템 드랍
 				Iter->second->DropItemInMap();
 
@@ -275,6 +285,9 @@ void Player::CrushTree()
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
 			&& Iter->second->GetItemType() == ITEMTYPE::TREE)
 		{
+			Iter->second->DropItemInMap();
+			WoodEffect* StoneAnimation_ = GetLevel()->CreateActor<WoodEffect>();
+			StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x , Iter->second->GetPosition().y });
 
 			//나무가 살아있다
 			if (Iter->second->GetDamage() > 0)
@@ -287,7 +300,6 @@ void Player::CrushTree()
 				//나무의 데미지가 2면 Top 제거(해당 업데이트 함수)와 나무조각 드랍
 				if (Iter->second->GetDamage() == 2)
 				{
-					Iter->second->DropItemInMap();
 				}
 
 				//스테이트 초기화
@@ -301,7 +313,6 @@ void Player::CrushTree()
 			else
 			{
 				//드랍 아이템
-				Iter->second->DropItemInMap();
 
 				//해당 아이템 삭제
 				Iter->second->Death();

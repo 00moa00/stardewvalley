@@ -17,14 +17,12 @@ Items::Items() :
 
 	State_(MOVE::Y_UP),
 	Normal_(float4::ZERO),
-	targetPos_({}),
-	TransformPos_({}),
+
 	FileIndex_(0),
 	SellPrice_(0),
 	ItemCount_ (1),
 	Damage_(5),
 
-	Gravity_({}),
 	ItemSpeed_({}),
 	ItemPosition_({}),
 
@@ -134,7 +132,7 @@ void Items::MoveToPlayer()
 	float4 Dir = Player::MainPlayer->GetPosition() - this->GetPosition();
 	float Check = Dir.Len2D();
 
-	if (Check >= 200)
+	if (Check >= 100)
 	{
 		return;
 	}
@@ -148,7 +146,7 @@ void Items::MoveToPlayer()
 	}
 
 	Dir.Normal2D();
-	SetMove(Dir * GameEngineTime::GetDeltaTime() * 70.0f);
+	SetMove(Dir * GameEngineTime::GetDeltaTime() * 150.0f);
 
 
 }

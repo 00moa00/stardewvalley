@@ -17,7 +17,7 @@ public:
 	DropWood& operator=(const DropWood& _Other) = delete;
 	DropWood& operator=(DropWood&& _Other) noexcept = delete;
 
-protected:
+private:
 
 private:
 	void Start() override;

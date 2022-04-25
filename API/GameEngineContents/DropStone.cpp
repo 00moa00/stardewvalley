@@ -17,7 +17,6 @@ void DropStone::Start()
 {
 	ItemSpeed_.x = 1.f;
 	ItemSpeed_.y = 5.f;
-	Gravity_.y = 0.1f;
 
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
 	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::MINI_STONE));
@@ -42,21 +41,43 @@ void DropStone::Start()
 void DropStone::Update()
 {
 
-	MoveToPlayer();
-
-	if (isMapItemDeath_ == true)
-	{
-		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<DropStone>();
-	}
-
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
 		Font_->SetPositionItem({ GetPosition() });
 
-		break;
+		if (isMove_ == true)
+		{
 
+			PrePosition_ = this->GetPosition();
+			ItemState_ = ITEM_STATE::ANIMATION;
+		}
+
+		break;
+	case ITEM_STATE::ANIMATION:
+
+		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 700.0f;
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
+
+		if (this->GetPosition().y > PrePosition_.y)
+		{
+			ItemState_ = ITEM_STATE::MOVETOPLAYER;
+
+		}
+
+		break;
+	case ITEM_STATE::MOVETOPLAYER:
+
+		MoveToPlayer();
+		if (isMapItemDeath_ == true)
+		{
+			Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+			MainPlayer->GetInventroy()->NewItem<DropStone>();
+		}
+
+		break;
+	default:
+		break;
 	}
 
 }
