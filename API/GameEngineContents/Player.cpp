@@ -224,9 +224,9 @@ void Player::Start()
 
 void Player::Update()
 {
-	PlayerDirCheck();
 	SetCamera();
 	PlayerUpdate();
+	PlayerDirCheck();
 	SetPlayerHandItemPos();
 	ClearWetDirtTile();
 	ChangeLevel();
@@ -275,9 +275,11 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::INIT:
 
+
 		GetItem();
 		ChangeHandItem();
 		harvestingCrops();
+
 		//손에 들 수 있는 아이템이라면 
 		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
 		{
@@ -288,6 +290,7 @@ void Player::PlayerUpdate()
 		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
 		if (MainMouse_->MouseClickInventoryOut())
 		{
+			isEvent_ = true;
 			CheckTool();//툴에 맞게 스테이트 이동
 		}
 
@@ -310,6 +313,7 @@ void Player::PlayerUpdate()
 				CreateDirtTile();
 				ChangeDirtTile();
 			}
+			isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -325,6 +329,7 @@ void Player::PlayerUpdate()
 				ChangeWetDirtTile();
 			}
 
+			isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -336,7 +341,11 @@ void Player::PlayerUpdate()
 		{
 			CrushTree();
 			CrushWood();
+
+			isEvent_ = false;
+			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
+
 
 		break;
 
@@ -345,7 +354,10 @@ void Player::PlayerUpdate()
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CrushStone();
+			isEvent_ = false;
+			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
+
 
 		break;
 
