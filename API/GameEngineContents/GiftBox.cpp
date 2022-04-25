@@ -1,6 +1,7 @@
 #include "GiftBox.h"
 #include "Inventory.h"
 #include "Parsnip_Seeds.h"
+#include "KiraEffect.h"
 
 
 GiftBox::GiftBox() 
@@ -36,6 +37,7 @@ void GiftBox::Start()
 
 void GiftBox::Update()
 {
+	KiraEffect* KiraEffect_;
 	switch (OpenUpdate_)
 	{
 	case OPEN_UPDATE::WAIT:
@@ -53,6 +55,11 @@ void GiftBox::Update()
 		{
 			MoveItem = GetLevel()->CreateActor<Parsnip_Seeds>(static_cast<int>(PLAYLEVEL::ITEM));
 			MoveItem->SetPosition({ Player::MainPlayer->GetPosition().x, Player::MainPlayer->GetPosition().y -80.f });
+			
+			KiraEffect_ = GetLevel()->CreateActor<KiraEffect>(static_cast<int>(PLAYLEVEL::EFFECT));
+			KiraEffect_->SetPosition({ Player::MainPlayer->GetPosition().x, Player::MainPlayer->GetPosition().y - 80.f });
+			KiraEffect_->GetRenderer()->CameraEffectOff();
+			
 			Player::MainPlayer->SetPlayerDirDown();
 
 			ItemRenderer_->Off();

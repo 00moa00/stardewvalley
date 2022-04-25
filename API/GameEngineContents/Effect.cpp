@@ -2,7 +2,7 @@
 
 Effect::Effect() 
 	:
-	AnimationRenderer_(nullptr),
+	EffectRenderer_(nullptr),
 	MoveDir_(float4::ZERO)
 {
 }

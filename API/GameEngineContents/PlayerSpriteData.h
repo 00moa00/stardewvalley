@@ -49,8 +49,6 @@ enum class PLAYER
 
 
 
-
-
 enum class HOE_RIGHT
 {
 	HOE_RIGHT0, HOE_RIGHT1, HOE_RIGHT2, HOE_RIGHT3, HOE_RIGHT4,

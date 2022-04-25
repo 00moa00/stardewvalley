@@ -51,12 +51,12 @@ protected:
 
 	ANIMATION_STATE AnimationState_;
 
-	GameEngineRenderer* AnimationRenderer_;
+	GameEngineRenderer* EffectRenderer_;
 
 public:
 	GameEngineRenderer* GetRenderer()
 	{
-		return AnimationRenderer_;
+		return EffectRenderer_;
 	}
 
 };

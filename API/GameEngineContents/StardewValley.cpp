@@ -488,6 +488,8 @@ void StardewValley::GameInit()
 
 		//------< 이미지 Cut >------------------------------------------------------------------
 
+
+
 	}
 	
 
@@ -514,6 +516,13 @@ void StardewValley::GameInit()
 		}
 
 		//------< 이미지 Cut >------------------------------------------------------------------
+
+		// 
+		//================================
+		//		KiraAnimation
+		//================================
+		GameEngineImage* KiraAnimation = GameEngineImageManager::GetInst()->Find("KiraAnimation.bmp");
+		KiraAnimation->Cut({ 48, 48 });
 
 	}
 

@@ -345,7 +345,8 @@ void Player::GetItem()
 
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
 			&& Iter->second->GetItemType() == ITEMTYPE::GETITEM
-			&& MainMouse_->isMouseClick() == true)
+			&& MainMouse_->isMouseClick() == true
+			&& GetCurrentItem()->GetItemType() != ITEMTYPE::TOOL)
 		{
 			//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
 			Iter->second->GetItemAndAddInventory();

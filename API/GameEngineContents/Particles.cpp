@@ -11,7 +11,7 @@ Particles::~Particles()
 
 void Particles::Start()
 {
-	AnimationRenderer_ = CreateRenderer("WoodParticle1.bmp");
+	EffectRenderer_ = CreateRenderer("WoodParticle1.bmp");
 }
 
 void Particles::Update()

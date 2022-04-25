@@ -335,6 +335,9 @@
     <ClCompile Include="WoodEffect.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="KiraEffect.cpp">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -690,6 +693,9 @@
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
     <ClInclude Include="WoodEffect.h">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="KiraEffect.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
   </ItemGroup>
