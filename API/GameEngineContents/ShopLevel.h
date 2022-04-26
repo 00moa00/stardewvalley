@@ -43,7 +43,7 @@ private:
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
 
-	std::vector<Npc*> NpcList_;
+	std::map<std::string, Npc*> NpcList_;
 	std::map<int, Items*> MapObject_;
 
 private:

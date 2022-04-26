@@ -1,14 +1,13 @@
 #include <GameEngineBase/GameEngineTime.h>
 
-
 #include "TownLevel.h"
 
 #include "GameData.h"
 
 #include "Block.h"
 #include "MoveBusStop.h"
-
 #include "MoveShop.h"
+#include "Lewis.h"
 
 TownLevel::TownLevel()
 	:
@@ -108,7 +107,7 @@ void TownLevel::LoadMapObject()
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
 			std::map<int, Items*>::iterator ThisIter;
-
+			std::map<std::string, Npc*>::iterator NpcIter;
 
 			const float4 IndexPos = {
 			  x * CHIP_SIZE ,
@@ -122,34 +121,38 @@ void TownLevel::LoadMapObject()
 
 			switch (TileState_)
 			{
+			case TILE_LIST::LEWIS:
+
+				NpcList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::OBJECT)));
+				NpcIter = --NpcList_.end();
+				NpcIter->second->SetPosition(pos);
+
+				break;
 			case TILE_LIST::MOVE_SHOP:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveShop>((int)PLAYLEVEL::OBJECT)));
-
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
 
 				break;
-
 			case TILE_LIST::MOVE_BUSSTOP:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT)));
-
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
 
 				break;
-
 
 			default:
 				break;
 
 			}
-			ThisIter = --MapObject_.end();
-			ThisIter->second->SetPosition(pos);
-
 
 		}
 	}
 
-	//Player_->CopyList(MapObject_);
-
+	Player::MainPlayer->CopyList(MapObject_);
+	Player::MainPlayer->CopyList(NpcList_);
 
 }
 

@@ -2,6 +2,7 @@
 #include "Player.h"
 
 Lewis* Lewis::MainLewis = nullptr;
+DialogueBox* Lewis::MainDialogueBox_ = nullptr;
 
 Lewis::Lewis() 
 {
@@ -19,8 +20,8 @@ void Lewis::Start()
 	PersonalCollider_ = CreateCollision("Lewis", { 48.f, 96.f });
 	NpcCollider_ = CreateCollision("NPC", { 48.f, 96.f });
 
-	DialogueBox_ = GetLevel()->CreateActor<DialogueBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
-	DialogueBox_->DialogueOff();
+	MainDialogueBox_ = GetLevel()->CreateActor<DialogueBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+	MainDialogueBox_->DialogueOff();
 
 	NpcRenderer_->CreateAnimation("Lewis.bmp", "RIGHT_INIT", static_cast<int>(NPC_INDEX::RIGHT_WALK00), static_cast<int>(NPC_INDEX::RIGHT_WALK00), 0.0f, false);
 	NpcRenderer_->CreateAnimation("Lewis.bmp", "LEFT_INIT", static_cast<int>(NPC_INDEX::LEFT_WALK00), static_cast<int>(NPC_INDEX::LEFT_WALK00), 0.0f, false);
@@ -28,6 +29,8 @@ void Lewis::Start()
 	NpcRenderer_->CreateAnimation("Lewis.bmp", "BACK_INIT", static_cast<int>(NPC_INDEX::BACK_WALK00), static_cast<int>(NPC_INDEX::BACK_WALK00), 0.0f, false);
 
 	NpcRenderer_->ChangeAnimation("FRONT_INIT");
+
+	SetScale({ 48,96 });
 }
 
 void Lewis::Update()
@@ -55,10 +58,13 @@ void Lewis::Update()
 
 void Lewis::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+	MainLewis = this;
+	MainDialogueBox_ = MainDialogueBox_;
 }
 
 void Lewis::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	MainDialogueBox_->NextLevelOn();
 }
 
 void Lewis::OpenDialogue()
@@ -68,15 +74,22 @@ void Lewis::OpenDialogue()
 
 	if (DialogueUpdate_ == true)
 	{
-		DialogueBox_->DialogueOn();
-		DialogueBox_->SetPierre();
+
+		Inventory::MainInventory->AllUpdateOff();
+
+		MainDialogueBox_->DialogueOn();
+		MainDialogueBox_->SetLewis();
+
 		MoveDir_ = -Player::MainPlayer->GetMoveDir();
 	}
 
 
 	if (DialogueUpdate_ == false)
 	{
-		DialogueBox_->DialogueOff();
+		Inventory::MainInventory->AllUpdateOn();
+		Inventory::MainInventory->SetPopUpStateMini();
+
+		MainDialogueBox_->DialogueOff();
 	}
 }
 

@@ -17,7 +17,7 @@ DialogueBox::DialogueBox()
 
 
 	LewiseDialogue[0] = "If you plant a certain kind /of flower near your beehouse, /it will produce a different /honey type.";
-	LewiseDialogue[1] = "I hope the river doesn't overflow...";
+	LewiseDialogue[1] = "I hope the river doesn't /overflow...";
 	LewiseDialogue[2] = "Gardening is a hobby of mine, /so I'm excited for this warm /weather.";
 	LewiseDialogue[3] = "Hi! How're you doing today? /If you see Marnie, tell /her I said 'hi'";
 

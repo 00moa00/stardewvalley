@@ -6,6 +6,8 @@ class Lewis : public Npc
 {
 public:
 	static Lewis* MainLewis;
+	static 	DialogueBox* MainDialogueBox_;
+
 
 	// constrcuter destructer
 	Lewis();

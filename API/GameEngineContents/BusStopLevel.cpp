@@ -82,7 +82,7 @@ void BusStopLevel::LoadMapObject()
 
 
 	char MapOject[BUSSTOP_CHIP_NUM_Y][BUSSTOP_CHIP_NUM_X] = {
-	#include "Map/Busstop.txt"
+		#include "Map/Busstop.txt"
 
 	};
 

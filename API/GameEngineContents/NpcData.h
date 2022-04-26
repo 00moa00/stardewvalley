@@ -1,5 +1,8 @@
 #pragma once
 
+
+
+
 enum class NPC
 {
 	PIERRE,
@@ -8,6 +11,18 @@ enum class NPC
 	SAM,
 	SEBASTIAN,
 	ABIGAIL
+};
+
+enum class TOWN_NPC
+{	
+	LEWIS,
+
+};
+
+enum class SHOP_NPC
+{
+	PIERRE,
+
 };
 
 enum class NPC_INDEX

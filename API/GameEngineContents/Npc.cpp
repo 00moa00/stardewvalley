@@ -8,8 +8,7 @@ Npc::Npc()
 	NpcUpdateState_(NPC_STATE::INIT),
 	NpcRenderer_(nullptr),
 	NpcCollider_(nullptr),
-	PersonalCollider_(nullptr),
-	DialogueBox_(nullptr)
+	PersonalCollider_(nullptr)
 
 {
 	ArrAnimationName[static_cast<int>(NPC_STATE::INIT)] = "INIT";

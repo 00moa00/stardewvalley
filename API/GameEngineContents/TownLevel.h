@@ -42,7 +42,9 @@ private:
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
 
+	std::map<std::string, Npc*> NpcList_;
 	std::map<int, Items*> MapObject_;
+	
 	std::map<int, Items*>::iterator Iter;
 };
 

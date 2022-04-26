@@ -269,6 +269,7 @@ void Inventory::AllUpdateOff()
 	}
 
 	MainExitBotton->Off();
+	CurrentItemFrame_->Off();
 
 }
 
@@ -293,6 +294,7 @@ void Inventory::AllUpdateOn()
 	}
 
 	MainExitBotton->On();
+	CurrentItemFrame_->On();
 
 }
 

@@ -222,10 +222,9 @@ void  Player::CopyList(std::map<int, Items*> _OtherList)
 	std::copy(_OtherList.begin(), _OtherList.end(), std::inserter(MapObject_, MapObject_.begin()));
 }
 
-void Player::CopyList(std::vector<Npc*> _OtherList)
+void Player::CopyList(std::map<std::string, Npc*> _OtherList)
 {
-	NpcList_.resize(_OtherList.size());
-	std::copy(_OtherList.begin(), _OtherList.end(), NpcList_.begin());
+	std::copy(_OtherList.begin(), _OtherList.end(), std::inserter(NpcList_, NpcList_.begin()));
 
 }
 
@@ -433,24 +432,23 @@ void Player::CheckTool()
 void Player::NpcCollCheck()
 {
 
-	if (PlayerCollider_->NextPostCollisionCheck("Pierre", MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true
-		&& MainMouse_->isMouseClick())
-	{
-		isEvent_ = !isEvent_;
+	std::map<std::string, Npc*>::iterator NpcIter = NpcList_.begin();
+	std::map<std::string, Npc*>::iterator NpcEndIter = NpcList_.end();
 
-		if (isEvent_ == true)
-		{
-			Inventory::MainInventory->AllUpdateOff();
-		}
-		else
-		{
-			Inventory::MainInventory->AllUpdateOn();
-			Inventory::MainInventory->SetPopUpStateMini();
-		}
 
-		NpcList_[static_cast<int>(NPC::PIERRE)]->OpenDialogue();
+	for (; NpcIter != NpcEndIter; ++NpcIter) {
+
+		if (NpcIter->second->NPCCheck(PlayerCollCheckPos(), GetScale()) == true
+			&& MainMouse_->isMouseClick() == true)
+		{
+			isEvent_ = !isEvent_;
+
+			NpcIter->second->OpenDialogue();
+
+		}
 
 	}
+
 
 }
 

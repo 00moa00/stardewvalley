@@ -104,7 +104,7 @@ void ShopLevel::LoadMapObject()
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
 			std::map<int, Items*>::iterator ThisIter;
-			std::vector<Npc*>::iterator NpcIter;
+			std::map<std::string, Npc*>::iterator NpcIter;
 
 			const float4 IndexPos = {
 			  x * CHIP_SIZE ,
@@ -120,9 +120,10 @@ void ShopLevel::LoadMapObject()
 			{
 
 			case TILE_LIST::PIERRE:
-				NpcList_.push_back(CreateActor<Pierre>((int)PLAYLEVEL::NPC));
+
+				NpcList_.insert(std::make_pair("Pierre", CreateActor<Pierre>((int)PLAYLEVEL::OBJECT)));
 				NpcIter = --NpcList_.end();
-				(*NpcIter)->SetPosition(pos);
+				NpcIter->second->SetPosition(pos);
 				break;
 
 			case TILE_LIST::SHOP_FLAG:

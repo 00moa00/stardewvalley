@@ -53,7 +53,6 @@ protected:
 	GameEngineCollision* NpcCollider_;		//충돌체크용
 	GameEngineCollision* PersonalCollider_;	//개인 클릭 용
 
-	DialogueBox* DialogueBox_;
 
 private:
 

@@ -6,6 +6,7 @@ class Pierre : public Npc
 {
 public:
 	static Pierre* MainPierre;
+	static 	DialogueBox* MainDialogueBox_;
 
 	// constrcuter destructer
 	Pierre();

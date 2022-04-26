@@ -503,14 +503,20 @@ void Font::ChangeFont(std::string _Font, float4 _Pos)
 		case '-':
 			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::_));
 			break;
-		case ' ':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::EMPTY));
+		case '.':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::DecimalPoint));
 			break;
 		case '/':
 			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::EMPTY));
 			MarginY += 40.f;
 			MarginX = 0;
 			break;
+		case ' ':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::EMPTY));
+			break;
+
+		default:
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::EMPTY));
 		}
 
 

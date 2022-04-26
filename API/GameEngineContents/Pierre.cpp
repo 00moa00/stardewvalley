@@ -2,6 +2,8 @@
 #include "Player.h"
 
 Pierre* Pierre::MainPierre = nullptr;
+DialogueBox* Pierre::MainDialogueBox_ = nullptr;
+
 
 Pierre::Pierre() 
 {
@@ -19,8 +21,8 @@ void Pierre::Start()
 	PersonalCollider_ = CreateCollision("Pierre", { 48.f, 96.f });
 	NpcCollider_ = CreateCollision("NPC", { 48.f, 96.f });
 
-	DialogueBox_ = GetLevel()->CreateActor<DialogueBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
-	DialogueBox_ -> DialogueOff();
+	MainDialogueBox_ = GetLevel()->CreateActor<DialogueBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+	MainDialogueBox_-> DialogueOff();
 
 	NpcRenderer_->CreateAnimation("Pierre.bmp", "RIGHT_INIT", static_cast<int>(NPC_INDEX::RIGHT_WALK00), static_cast<int>(NPC_INDEX::RIGHT_WALK00), 0.0f, false);
 	NpcRenderer_->CreateAnimation("Pierre.bmp", "LEFT_INIT", static_cast<int>(NPC_INDEX::LEFT_WALK00), static_cast<int>(NPC_INDEX::LEFT_WALK00), 0.0f, false);
@@ -28,6 +30,7 @@ void Pierre::Start()
 	NpcRenderer_->CreateAnimation("Pierre.bmp", "BACK_INIT", static_cast<int>(NPC_INDEX::BACK_WALK00), static_cast<int>(NPC_INDEX::BACK_WALK00), 0.0f, false);
 
 	NpcRenderer_->ChangeAnimation("FRONT_INIT");
+	SetScale({ 48,96 });
 
 }
 
@@ -57,10 +60,12 @@ void Pierre::Update()
 void Pierre::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainPierre = this;
+	MainDialogueBox_ = MainDialogueBox_;
 }
 
 void Pierre::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	MainDialogueBox_->NextLevelOn();
 }
 
 void Pierre::OpenDialogue()
@@ -70,15 +75,15 @@ void Pierre::OpenDialogue()
 
 	if (DialogueUpdate_ == true)
 	{
-		DialogueBox_ ->DialogueOn();
-		DialogueBox_->SetPierre();
+		MainDialogueBox_->DialogueOn();
+		MainDialogueBox_->SetPierre();
 		MoveDir_ = - Player::MainPlayer->GetMoveDir();
 	}
 
 
 	if (DialogueUpdate_ == false)
 	{
-		DialogueBox_->DialogueOff();
+		MainDialogueBox_->DialogueOff();
 	}
 }
 

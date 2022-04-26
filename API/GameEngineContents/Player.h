@@ -130,7 +130,7 @@ private:
 	std::map<int, Crops*> SeedList_;
 
 	std::map<int, Items*> MapObject_;
-	std::vector<Npc*> NpcList_;
+	std::map<std::string, Npc*> NpcList_;
 
 	std::vector<GameEngineCollision*> ColList;
 	std::map<int, Items*>::iterator Iter;
@@ -193,7 +193,7 @@ public:
 	//================================
 
 	void CopyList(std::map<int, Items*> _OtherList);
-	void CopyList(std::vector<Npc*> _OtherList);
+	void CopyList(std::map<std::string, Npc*> _OtherList);
 
 private:
 

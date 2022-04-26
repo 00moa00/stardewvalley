@@ -65,6 +65,7 @@ public:
 enum class FONT
 {
 	Question,
+	DecimalPoint=2,
 	_ = 3,
 	Astrerrisk = 6,
 	Square_Bracket_Right,
