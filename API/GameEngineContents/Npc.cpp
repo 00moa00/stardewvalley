@@ -24,7 +24,7 @@ Npc::Npc()
 	ArrAnimationName[static_cast<int>(NPC_STATE::WALK)] = "WALK";
 	ArrAnimationName[static_cast<int>(NPC_STATE::DIALOGUE_IDLE)] = "INIT";
 	ArrAnimationName[static_cast<int>(NPC_STATE::DIALOGUE_WAIT)] = "INIT";
-	ArrAnimationName[static_cast<int>(NPC_STATE::WAIT)] = "INIT";
+	ArrAnimationName[static_cast<int>(NPC_STATE::WAIT_COUNT)] = "INIT";
 
 }
 

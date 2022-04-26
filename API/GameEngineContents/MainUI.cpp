@@ -199,7 +199,7 @@ void MainUI::UpdateHourTime()
 
 		if (AmPm_ == AM_PM::PM)
 		{
-			HourFont_->ChangeNumLeftSort(HourTime_ - 11, { GetPosition().x - 3.f, GetPosition().y + 1.f });
+			HourFont_->ChangeNumLeftSort(HourTime_ - 12, { GetPosition().x - 3.f, GetPosition().y + 1.f });
 			return;
 		}
 

@@ -34,3 +34,8 @@ void NpcMove::SetNPCMoveImageAndIdex(std::string _FileName, int _Index)
 	MoveRenderer_->SetImage(_FileName);
 	MoveRenderer_->SetIndex(_Index);
 }
+
+bool NpcMove::CheckCollNPC()
+{
+	return (MoveCollision_->CollisionResult("NPC", ColList, CollisionType::Rect, CollisionType::Rect));
+}

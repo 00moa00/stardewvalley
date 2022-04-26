@@ -26,10 +26,11 @@ private:
 private:
 	GameEngineRenderer* MoveRenderer_;
 	GameEngineCollision* MoveCollision_;
+	std::vector<GameEngineCollision*> ColList;
 
 public:
 	void CreateNPCMoveCollision(std::string _CollName);
 	void SetNPCMoveImageAndIdex(std::string _FileName, int _Index);
-	
+	bool CheckCollNPC();
 };
 

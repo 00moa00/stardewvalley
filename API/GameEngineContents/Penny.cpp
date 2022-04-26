@@ -1,5 +1,6 @@
 #include "Penny.h"
 #include "Player.h"
+#include "MainUI.h"
 
 Penny* Penny::MainPenny = nullptr;
 DialogueBox* Penny::MainDialogueBox_ = nullptr;
@@ -47,7 +48,11 @@ void Penny::Update()
 
 	if (NpcUpdateState_ == NPC_STATE::WAIT)
 	{
-
+		if (MainUI::MainMainUI->GetHour() == 13)
+		{
+			MoveDir_ = float4::UP;
+			NpcUpdateState_ = NPC_STATE::WALK;
+		}
 	}
 }
 
@@ -118,6 +123,22 @@ bool Penny::MoveUp()
 
 bool Penny::MoveWait()
 {
-	return (NpcCollider_->CollisionResult("PennyWait", ColList, CollisionType::Rect, CollisionType::Rect));
+	if (NpcCollider_->CollisionResult("PennyWait", ColList, CollisionType::Rect, CollisionType::Rect))
+	{
+		for (std::vector<NpcMove*>::iterator Start = MoveFlagList_.begin(); Start != MoveFlagList_.end(); ++Start)
+		{
+			if ((*Start)->CheckCollNPC())
+			{
+				(*Start)->Death();
+				MoveFlagList_.erase(Start);
+				return true;
+			}
+		}
+	}
+
+	else
+	{
+		return false;
+	}
 }
 

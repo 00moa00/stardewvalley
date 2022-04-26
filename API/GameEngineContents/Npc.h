@@ -53,12 +53,8 @@ public:
 
 	virtual void MoveUpdate();
 
-
-
-
-
 private:
-	std::vector<NpcMove*> MoveFlagList_;
+
 
 
 protected:
@@ -79,7 +75,7 @@ protected:
 	NPC_STATE NpcUpdateState_;
 
 	std::vector<GameEngineCollision*> ColList;
-
+	std::vector<NpcMove*> MoveFlagList_;
 	GameEngineRenderer* NpcRenderer_;
 
 	GameEngineCollision* NpcCollider_;		//충돌체크용

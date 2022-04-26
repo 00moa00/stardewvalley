@@ -36,25 +36,8 @@ void Pierre::Start()
 
 void Pierre::Update()
 {
-	switch (NpcUpdateState_)
-	{
-	case NPC_STATE::INIT:
+	MoveUpdate();
 
-		//플레이어와 멀어지면 원래 방향으로 리셋
-		if (ForAwayPlayer() == true)
-		{
-			MoveDir_ = float4::DOWN;
-		}
-
-		break;
-	case NPC_STATE::WALK:
-
-		break;
-	default:
-		break;
-	}
-
-	DirAnimationChange();
 }
 
 void Pierre::LevelChangeStart(GameEngineLevel* _PrevLevel)
