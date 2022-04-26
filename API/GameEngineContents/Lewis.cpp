@@ -17,7 +17,6 @@ void Lewis::Start()
 	NpcRenderer_ = CreateRenderer("Lewis.bmp");
 	NpcRenderer_->SetIndex(0);
 
-	PersonalCollider_ = CreateCollision("Lewis", { 48.f, 96.f });
 	NpcCollider_ = CreateCollision("NPC", { 48.f, 96.f });
 
 	MainDialogueBox_ = GetLevel()->CreateActor<DialogueBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));

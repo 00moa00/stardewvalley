@@ -431,22 +431,24 @@ void Player::CheckTool()
 
 void Player::NpcCollCheck()
 {
+	if (PlayerCollider_->NextPostCollisionCheck("NPC", MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
+	{
+		std::map<std::string, Npc*>::iterator NpcIter = NpcList_.begin();
+		std::map<std::string, Npc*>::iterator NpcEndIter = NpcList_.end();
 
-	std::map<std::string, Npc*>::iterator NpcIter = NpcList_.begin();
-	std::map<std::string, Npc*>::iterator NpcEndIter = NpcList_.end();
 
+		for (; NpcIter != NpcEndIter; ++NpcIter) {
 
-	for (; NpcIter != NpcEndIter; ++NpcIter) {
+			if (NpcIter->second->NPCCheck(PlayerCollCheckPos(), GetScale()) == true
+				&& MainMouse_->isMouseClick() == true)
+			{
+				isEvent_ = !isEvent_;
 
-		if (NpcIter->second->NPCCheck(PlayerCollCheckPos(), GetScale()) == true
-			&& MainMouse_->isMouseClick() == true)
-		{
-			isEvent_ = !isEvent_;
+				NpcIter->second->OpenDialogue();
 
-			NpcIter->second->OpenDialogue();
+			}
 
 		}
-
 	}
 
 

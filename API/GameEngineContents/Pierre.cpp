@@ -18,7 +18,6 @@ void Pierre::Start()
 	NpcRenderer_ = CreateRenderer("Pierre.bmp");
 	NpcRenderer_->SetIndex(0);
 
-	PersonalCollider_ = CreateCollision("Pierre", { 48.f, 96.f });
 	NpcCollider_ = CreateCollision("NPC", { 48.f, 96.f });
 
 	MainDialogueBox_ = GetLevel()->CreateActor<DialogueBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));

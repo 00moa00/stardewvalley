@@ -381,26 +381,27 @@ void Player::CrushTree()
 void Player::GetItem()
 {
 
-	std::map<int, Items*>::iterator GetItemIter = MapObject_.begin();
+	if (PlayerCollider_->NextPostCollisionCheck("MapObject", MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
+	{
+		std::map<int, Items*>::iterator GetItemIter = MapObject_.begin();
+		for (; GetItemIter != MapObject_.end(); ++GetItemIter) {
 
+			if (GetItemIter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
+				&& GetItemIter->second->GetItemType() == ITEMTYPE::GETITEM
+				&& MainMouse_->isMouseClick() == true
+				&& GetCurrentItem()->GetItemType() != ITEMTYPE::TOOL)
+			{
+				//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
+				GetItemIter->second->ItemCollPlayer();
+				MapObject_.erase(GetItemIter);
+				GetItemIter = MapObject_.begin();
+			}
 
-	for (; GetItemIter != MapObject_.end(); ++GetItemIter) {
+			else
+			{
+				PlayerState_ = PLAYER_UPDATE::INIT;
 
-		if (GetItemIter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
-			&& GetItemIter->second->GetItemType() == ITEMTYPE::GETITEM
-			&& MainMouse_->isMouseClick() == true
-			&& GetCurrentItem()->GetItemType() != ITEMTYPE::TOOL)
-		{
-			//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
-			GetItemIter->second->ItemCollPlayer();
-			MapObject_.erase(GetItemIter);
-			GetItemIter = MapObject_.begin();
-		}
-
-		else
-		{
-			PlayerState_ = PLAYER_UPDATE::INIT;
-
+			}
 		}
 	}
 }
