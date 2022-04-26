@@ -71,6 +71,8 @@ void ShopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Player::MainPlayer->NextLevelOn();
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
+		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
+
 	}
 
 	//Player::MainPlayer->SetisShopping(false);

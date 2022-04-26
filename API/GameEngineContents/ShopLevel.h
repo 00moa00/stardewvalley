@@ -1,5 +1,19 @@
 #pragma once
-#include"PlayLevel.h"
+#include <GameEngine/GameEngineLevel.h>
+#include <GameEngineBase/GameEngineSound.h>
+
+#include "TileData.h"
+#include "RendererData.h"
+
+#include "PlayerEnergyFrame.h"
+#include "MainUI.h"
+#include "BackGround.h"
+#include "Player.h"
+#include "Inventory.h"
+#include "Items.h"
+#include "Npc.h"
+#include "Mouse.h"
+
 
 // Ό³Έν :
 class ShopLevel : public GameEngineLevel

@@ -5,13 +5,15 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineRenderer.h>
 
-#include <GameEngineBase/GameEngineTime.h>
+#include <GameEngine/GameEngineLevel.h> 
 
-#include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
+#include "RendererData.h"
+
+PlayerEnergyFrame* PlayerEnergyFrame::MainPlayerEnergyFrame = nullptr;
+PlayerEnergyBar* PlayerEnergyFrame::MainPlayerEnergyBar = nullptr;
 
 PlayerEnergyFrame::PlayerEnergyFrame() 
 	:	PlayerEngergyFrame_(nullptr)
-
 {
 }
 
@@ -19,16 +21,15 @@ PlayerEnergyFrame::~PlayerEnergyFrame()
 {
 }
 
-
-
 void PlayerEnergyFrame::Start()
 {
-	//SetPosition({GameEngineWindow::GetScale().x - 12.f ,GameEngineWindow::GetScale().y - 56.f });
-	//12 56
-	//PlayerEngergyFrame_ = CreateRenderer("UIEnergy.bmp");
-	//PlayerEngergyFrame_->CameraEffectOff();
+	SetPosition({ GameEngineWindow::GetScale().x - 50.f, GameEngineWindow::GetScale().y - 100.f });
 
+	PlayerEngergyFrame_ = CreateRenderer("UIEnergy.bmp");
+	PlayerEngergyFrame_->CameraEffectOff();
 
+	MainPlayerEnergyBar = GetLevel()->CreateActor<PlayerEnergyBar>(static_cast<int>(PLAYLEVEL::ENERGYBAR));
+	MainPlayerEnergyBar->SetPosition({ this->GetPosition().x, this->GetPosition().y + (126.f/2) + 35.f / 2});
 }
 
 void PlayerEnergyFrame::Update()
@@ -37,8 +38,14 @@ void PlayerEnergyFrame::Update()
 
 }
 
-void PlayerEnergyFrame::Render()
+void PlayerEnergyFrame::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-
-
+	MainPlayerEnergyFrame = this;
+	MainPlayerEnergyBar = MainPlayerEnergyBar;
 }
+
+void PlayerEnergyFrame::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	MainPlayerEnergyBar->NextLevelOn();
+}
+

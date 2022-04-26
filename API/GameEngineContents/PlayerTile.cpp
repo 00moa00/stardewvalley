@@ -101,14 +101,15 @@ void Player::CreateWaterTile()
 
 	if(FindIter == EndIter && FindDirtIter != EndDirtIter)
 	{
-		
-
+	
 
 		FarmTile* Tile = WetTileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
 			, "hoeDirt.bmp",static_cast<int>(TILE_DIRT::BASIC_WET), (int)PLAYLEVEL::WETDIRT);
 		Tile->TileState_ = TILE_STATE::HOE_DIRT_WATER;
 
 		WetDirtList_.insert(std::make_pair(ChangeIndex, Tile));
+
+
 	}
 
 
@@ -234,11 +235,14 @@ void Player::CrushWood()
 				//이터레이터 초기화
 				Iter = MapObject_.begin();
 			}
+
 			else
 			{
 				return;
 			}
 
+			//도끼질을 했다면 기력 감소
+			SubEnergy(2.f);
 		}
 
 		else
@@ -282,6 +286,10 @@ void Player::CrushStone()
 			{
 				return;
 			}
+
+			//곡괭이질을 했다면 체력 감소
+			SubEnergy(2.f);
+
 		}
 
 		else
@@ -344,6 +352,8 @@ void Player::CrushTree()
 				Iter = Player::MapObject_.begin();
 
 			}
+			//도끼질을 했다면 기력 감소
+			SubEnergy(2.f);
 
 		}
 

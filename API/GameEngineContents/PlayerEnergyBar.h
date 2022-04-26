@@ -8,9 +8,6 @@ public:
 	PlayerEnergyBar();
 	~PlayerEnergyBar();
 
-	void SubEnergyBar(float f) {
-		EnergyBar_.y = f;
-	}
 
 	// delete Function
 	PlayerEnergyBar(const PlayerEnergyBar& _Other) = delete;
@@ -22,16 +19,18 @@ protected:
 
 	void Start() override;
 	void Update() override;
-	void Render() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
 
-
-
-
-	float4 EnergyBar_;
-
 	GameEngineRenderer* PlayerEngergyBar_;
+
+public:
+	GameEngineRenderer* GetRenderer()
+	{
+		return PlayerEngergyBar_;
+	}
 
 };
 

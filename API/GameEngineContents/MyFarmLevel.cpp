@@ -40,19 +40,23 @@ void MyFarmLevel::Loading()
 {
 	if (nullptr == Player::MainPlayer)
 	{
-		Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+		Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER));
 	}
 
 	if (nullptr == Inventory::MainInventory)
 	{
-		Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+		Inventory::MainInventory = CreateActor<Inventory>(static_cast<int>(PLAYLEVEL::INVENTORY));
 	}
 
 	if (nullptr == MainUI::MainMainUI)
 	{
-		MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+		MainUI::MainMainUI = CreateActor<MainUI>(static_cast<int>(PLAYLEVEL::MAINUI));
 	}
 
+	if (nullptr == PlayerEnergyFrame::MainPlayerEnergyFrame)
+	{
+		PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
+	}
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();
@@ -89,6 +93,8 @@ void MyFarmLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Player::MainPlayer->NextLevelOn();
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
+		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
+
 	}
 
 }

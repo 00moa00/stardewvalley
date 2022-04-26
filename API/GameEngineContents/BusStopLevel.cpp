@@ -58,6 +58,8 @@ void BusStopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Player::MainPlayer->NextLevelOn();
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
+		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
+
 	}
 
 }

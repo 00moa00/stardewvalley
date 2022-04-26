@@ -92,6 +92,7 @@ private:
 	void UpdateSetAm();
 	void ExtraDayAndAddDay();
 
+
 	void SetMon()
 	{
 		DayRenderer_->SetImage("Mon.bmp");

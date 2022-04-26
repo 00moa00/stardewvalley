@@ -87,12 +87,12 @@ private:
 	const char* ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::MAX)];
 
 	int Money_;
+	int Energy_;
 
 	float MapSizeX_;
 	float MapSizeY_;
 	float AnimationFrame_;
 	float Speed_;
-	float Energy_;
 
 	float4 MoveDir_;
 	float4 CameraPos_;
@@ -147,7 +147,7 @@ public:
 
 	int GetMoney();
 
-	float GetEnergy();
+	int GetEnergy();
 
 	bool GetObjectColl();
 	bool GetisShopping();
@@ -185,6 +185,7 @@ public:
 
 	void SetPlayerDirDown();
 	void SetisEvent(bool _Flag);
+
 	//================================
 	//    Etc
 	//================================
@@ -224,8 +225,8 @@ private:
 	bool isMove();
 	void PlayerWalk();
 	void PlayerDirCheck();
-	void SubEnergy();
 	void SetPlayerHandItemPos();
+	void SubEnergy(int _Energy);
 
 	//================================
 	//   애니메이션

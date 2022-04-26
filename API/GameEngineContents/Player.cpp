@@ -22,7 +22,7 @@ Player::Player()
 
 	AnimationFrame_(0.120f),
 	Speed_(150.f),
-	Energy_(150.f),
+	Energy_(126.f),
 	MapSizeX_(0.f),
 	MapSizeY_(0.f),
 
@@ -319,6 +319,7 @@ void Player::PlayerUpdate()
 			{
 				CreateDirtTile();
 				ChangeDirtTile();
+				SubEnergy(2.f);
 			}
 			isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
@@ -334,6 +335,7 @@ void Player::PlayerUpdate()
 			CreateWaterEffet();
 			CreateWaterTile();
 			ChangeWetDirtTile();
+			SubEnergy(2.f);
 
 			isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
@@ -362,6 +364,7 @@ void Player::PlayerUpdate()
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CrushStone();
+
 			isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
@@ -399,7 +402,6 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::WALK:
 
 		PlayerWalk();
-		SubEnergy();
 		harvestingCrops();
 
 
@@ -413,7 +415,6 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::HANDITEMWALK:
 
 		PlayerWalk();
-		SubEnergy();
 
 		if (MainMouse_->MouseClickInventoryOut())
 		{

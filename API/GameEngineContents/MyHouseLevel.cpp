@@ -33,17 +33,22 @@ void MyHouseLevel::Loading()
 {
 	if (nullptr == Player::MainPlayer)
 	{
-		Player::MainPlayer = CreateActor<Player>((int)PLAYLEVEL::PLAYER);
+		Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER));
 	}
 
 	if (nullptr == Inventory::MainInventory)
 	{
-		Inventory::MainInventory = CreateActor<Inventory>((int)PLAYLEVEL::INVENTORY);
+		Inventory::MainInventory = CreateActor<Inventory>(static_cast<int>(PLAYLEVEL::INVENTORY));
 	}
 
 	if (nullptr == MainUI::MainMainUI)
 	{
-		MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
+		MainUI::MainMainUI = CreateActor<MainUI>(static_cast<int>(PLAYLEVEL::MAINUI));
+	}
+
+	if (nullptr == PlayerEnergyFrame::MainPlayerEnergyFrame)
+	{
+		PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
 	}
 
 	if (MapObject_.empty() == true)
@@ -71,6 +76,8 @@ void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 
+	//PlayerEnergyFrame::MainPlayerEnergyFrame -> SetPosition({ GameEngineWindow::GetScale().x - 100.f, GameEngineWindow::GetScale().y - 150.f });
+
 }
 
 void MyHouseLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -80,6 +87,7 @@ void MyHouseLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Player::MainPlayer->NextLevelOn();
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
+		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
 
 	}
 }

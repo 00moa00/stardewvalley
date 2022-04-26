@@ -1,6 +1,7 @@
 #include  "Player.h"
 #include "MainUI.h"
 #include "NpcData.h"
+#include "PlayerEnergyFrame.h"
 
 //------< 공개 함수 >------------------------------------------------------------------
 
@@ -24,7 +25,7 @@ bool Player::GetisShopping()
 	return isShopping_;
 }
 
-float  Player::GetEnergy()
+int  Player::GetEnergy()
 {
 	return Energy_;
 }
@@ -116,6 +117,8 @@ void Player::SetResetPlayerHandItem()
 	PlayerState_ = PLAYER_UPDATE::WALK;
 	//Inventory::MainInventory->SetCurrentItemHoe();
 }
+
+
 
 bool Player::SubMoney(int _Money)
 {
@@ -560,13 +563,18 @@ void Player::PlayerDirCheck()
 
 }
 
-void Player::SubEnergy() {
-	Energy_ -= 3.0f * GameEngineTime::GetDeltaTime();
-}
 
 void Player::SetPlayerHandItemPos()
 {
 	PlayerHandItem_->SetPosition({ this->GetPosition().x, this->GetPosition().y - 92.f });
+
+}
+
+void Player::SubEnergy(int _Energy)
+{
+
+	Energy_ -= _Energy;
+	PlayerEnergyFrame::MainPlayerEnergyBar->GetRenderer()->SetScale({18, static_cast<float>(Energy_) });
 
 }
 
