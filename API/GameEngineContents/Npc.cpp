@@ -87,7 +87,7 @@ void Npc::LoadPennyMoveFlag()
 {
 	char MapOject[TOWN_CHIP_NUM_Y][TOWN_CHIP_NUM_X] =
 	{
-		 #include "Map/Town_PennyMove.txt",
+		 #include "Map/Town_PennyMove.txt"
 	};
 
 
@@ -176,6 +176,102 @@ void Npc::LoadPennyMoveFlag()
 		}
 	}
 
+
+}
+
+void Npc::LoadLewisMoveFlag()
+{
+
+	char MapOject[TOWN_CHIP_NUM_Y][TOWN_CHIP_NUM_X] =
+	{
+		 #include "Map/Town_LewisMove.txt"
+	};
+
+
+	for (int y = 0; y < TOWN_CHIP_NUM_Y; y++)
+	{
+		for (int x = 0; x < TOWN_CHIP_NUM_X; x++)
+		{
+			const char chip = MapOject[y][x];
+			if (chip < 0) continue;
+
+			const float4 pos = {
+				x * CHIP_SIZE + CHIP_SIZE * 0.5f,
+				y * CHIP_SIZE + CHIP_SIZE * 0.5f,
+			};
+
+			NPC_MOVE_FLAG TileState_ = static_cast<NPC_MOVE_FLAG>(chip);
+			std::vector<NpcMove*>::iterator ThisIter;
+
+
+			//const float4 IndexPos = {
+			//  x * CHIP_SIZE ,
+			//  y * CHIP_SIZE,
+			//};
+
+
+			switch (TileState_)
+			{
+			case NPC_MOVE_FLAG::LEWIS_RIGHT:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("LewisRight");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_RIGHT));
+
+				break;
+
+			case NPC_MOVE_FLAG::LEWIS_LEFT:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("LewisLeft");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_LEFT));
+
+				break;
+
+			case NPC_MOVE_FLAG::LEWIS_UP:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("LewisUp");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_UP));
+
+				break;
+
+			case NPC_MOVE_FLAG::LEWIS_DOWN:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("LewisDown");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_DOWN));
+
+				break;
+
+			case NPC_MOVE_FLAG::LEWIS_WAIT:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("LewisWait");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_WAIT));
+
+				break;
+
+			}
+
+
+		}
+	}
 
 }
 
@@ -293,7 +389,7 @@ void Npc::MoveUpdate()
 			}
 
 			//대기 중이었다면(서있던 상태였다면)
-			if (isWalking_ = false)
+			if (isWalking_ == false)
 			{
 				NpcUpdateState_ = NPC_STATE::WAIT;
 				break;

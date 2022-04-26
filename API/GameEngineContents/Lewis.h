@@ -27,5 +27,12 @@ private:
 
 	void OpenDialogue() override;
 
+private:
+
+	bool MoveRight() override;
+	bool MoveLeft() override;
+	bool MoveDown() override;
+	bool MoveUp() override;
+	bool MoveWait() override;
 };
 

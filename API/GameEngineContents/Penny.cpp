@@ -35,7 +35,6 @@ void Penny::Start()
 	NpcRenderer_->CreateAnimation("Penny.bmp", "FRONT_WALK", static_cast<int>(NPC_INDEX::FRONT_WALK00), static_cast<int>(NPC_INDEX::FRONT_WALK03), 0.150f, true);
 	NpcRenderer_->CreateAnimation("Penny.bmp", "BACK_WALK", static_cast<int>(NPC_INDEX::BACK_WALK00), static_cast<int>(NPC_INDEX::BACK_WALK03), 0.150f, true);
 
-
 	NpcRenderer_->ChangeAnimation("FRONT_INIT");
 	SetScale({ 48,96 });
 
@@ -48,7 +47,7 @@ void Penny::Update()
 
 	if (NpcUpdateState_ == NPC_STATE::WAIT)
 	{
-		if (MainUI::MainMainUI->GetHour() == 13)
+		if (MainUI::MainMainUI->GetHour() > 13 && WaitCount_ == 1)
 		{
 			MoveDir_ = float4::UP;
 			NpcUpdateState_ = NPC_STATE::WALK;

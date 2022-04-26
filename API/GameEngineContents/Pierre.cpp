@@ -37,7 +37,6 @@ void Pierre::Start()
 void Pierre::Update()
 {
 	MoveUpdate();
-
 }
 
 void Pierre::LevelChangeStart(GameEngineLevel* _PrevLevel)

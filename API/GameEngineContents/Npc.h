@@ -42,6 +42,7 @@ public:
 	virtual std::string GetDirString();
 	virtual bool ForAwayPlayer();
 	virtual void LoadPennyMoveFlag();
+	virtual void LoadLewisMoveFlag();
 
 	virtual void MoveCheck();
 
