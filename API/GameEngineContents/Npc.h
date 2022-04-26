@@ -13,11 +13,11 @@
 
 enum class NPC_STATE
 {
-	INIT,
-	WALK,
-	DIALOGUE_IDLE,
-	DIALOGUE_WAIT,
-	WAIT,
+	WAIT,				//기본 서있는 상태
+	WALK,				//걷고있음
+	DIALOGUE_IDLE,		//대화중
+	DIALOGUE_WAIT,		//대화 종료 후 3초 대기
+	WAIT_COUNT,			//Wait카운팅용
 	MAX
 };
 
@@ -62,6 +62,8 @@ private:
 
 
 protected:
+
+	int WaitCount_; //몇시 몇번째 멈춤인지에 따라서 행동이 다르다
 
 	float Speed_;
 	float WaitTimer_;

@@ -7,19 +7,20 @@
 
 Npc::Npc() 
 	:
+	WaitCount_(0),
 	Speed_(80.f),
 	WaitTimer_(0.f),
 	MoveDir_(float4::DOWN),
 	PrevDir_(float4::ZERO),
 	DialogueUpdate_(false),
 	isWalking_(false),
-	NpcUpdateState_(NPC_STATE::INIT),
+	NpcUpdateState_(NPC_STATE::WAIT),
 	NpcRenderer_(nullptr),
 	NpcCollider_(nullptr),
 	PersonalCollider_(nullptr)
 
 {
-	ArrAnimationName[static_cast<int>(NPC_STATE::INIT)] = "INIT";
+	ArrAnimationName[static_cast<int>(NPC_STATE::WAIT)] = "INIT";
 	ArrAnimationName[static_cast<int>(NPC_STATE::WALK)] = "WALK";
 	ArrAnimationName[static_cast<int>(NPC_STATE::DIALOGUE_IDLE)] = "INIT";
 	ArrAnimationName[static_cast<int>(NPC_STATE::DIALOGUE_WAIT)] = "INIT";
@@ -210,7 +211,7 @@ void Npc::MoveCheck()
 	if (MoveWait() == true)
 	{
 		MoveDir_ = float4::DOWN;
-		NpcUpdateState_ = NPC_STATE::WAIT;
+		NpcUpdateState_ = NPC_STATE::WAIT_COUNT;
 
 	}
 }
@@ -254,7 +255,7 @@ void Npc::MoveUpdate()
 
 	switch (NpcUpdateState_)
 	{
-	case NPC_STATE::INIT:
+	case NPC_STATE::WAIT:
 
 		isWalking_ = false;
 		//플레이어와 멀어지면 원래 방향으로 리셋
@@ -294,25 +295,17 @@ void Npc::MoveUpdate()
 			//대기 중이었다면(서있던 상태였다면)
 			if (isWalking_ = false)
 			{
-				NpcUpdateState_ = NPC_STATE::INIT;
+				NpcUpdateState_ = NPC_STATE::WAIT;
 				break;
 			}
 		}
 
 		break;
-	case NPC_STATE::WAIT:
+	case NPC_STATE::WAIT_COUNT:
 
+		++WaitCount_;
+		NpcUpdateState_ = NPC_STATE::WAIT;
 
-
-		//WaitTimer_ -= GameEngineTime::GetDeltaTime();
-		//MoveDir_ = float4::DOWN;
-		//if (WaitTimer_ < 0.f)
-		//{
-
-		//	MoveDir_ = PrevDir_;
-		//	NpcUpdateState_ = NPC_STATE::WALK;
-
-		//}
 		break;
 	default:
 		break;

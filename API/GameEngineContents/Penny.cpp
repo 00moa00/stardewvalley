@@ -44,6 +44,11 @@ void Penny::Start()
 void Penny::Update()
 {
 	MoveUpdate();
+
+	if (NpcUpdateState_ == NPC_STATE::WAIT)
+	{
+
+	}
 }
 
 void Penny::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -103,7 +108,6 @@ bool Penny::MoveLeft()
 bool Penny::MoveDown()
 {
 	return (NpcCollider_->CollisionResult("PennyDown", ColList, CollisionType::Rect, CollisionType::Rect));
-
 }
 
 bool Penny::MoveUp()

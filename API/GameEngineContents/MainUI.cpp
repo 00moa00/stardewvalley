@@ -91,7 +91,6 @@ void MainUI::Update()
 	if (true == GameEngineInput::GetInst()->IsPress("TimeAdd"))
 	{
 		AddTIme_ = 1000;
-
 	}
 	
 	else
@@ -106,8 +105,6 @@ void MainUI::Update()
 	switch (MinuteState_)
 	{
 	case MINUTE_STATE::COUNT:
-
-
 
 		if (SecondTimeInt_ % 7 == 0)
 		{
@@ -127,8 +124,6 @@ void MainUI::Update()
 
 			break;
 		}
-
-
 
 		break;
 
@@ -196,7 +191,6 @@ void MainUI::UpdateHourTime()
 
 		HourTime_ += 1;
 
-
 		if (isExtraDay_ == false && AmPm_ == AM_PM::AM)
 		{
 			HourFont_->ChangeNumLeftSort(HourTime_, { GetPosition().x - 3.f, GetPosition().y + 1.f });
@@ -217,7 +211,6 @@ void MainUI::UpdateHourTime()
 			return;
 		}
 	}
-
 }
 
 void MainUI::UpdateSetPm()
@@ -238,7 +231,6 @@ void MainUI::UpdateSetAm()
 		isExtraDay_ = true;
 		//HourTime_ = 0;
 	}
-
 }
 
 void MainUI::ExtraDayAndAddDay()
