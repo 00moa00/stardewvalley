@@ -302,7 +302,6 @@ void Player::CrushTree()
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
 			&& Iter->second->GetItemType() == ITEMTYPE::TREE)
 		{
-			Iter->second->DropItemInMap();
 			WoodEffect* StoneAnimation_ = GetLevel()->CreateActor<WoodEffect>();
 			StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x , Iter->second->GetPosition().y });
 
@@ -330,6 +329,7 @@ void Player::CrushTree()
 			else
 			{
 				//드랍 아이템
+				Iter->second->DropItemInMap();
 
 				//해당 아이템 삭제
 				Iter->second->Death();

@@ -8,6 +8,7 @@
 #include <GameEngineBase/GameEngineRandom.h>
 
 #include "NpcData.h"
+#include "Font.h"
 
 // Ό³Έν :
 class DialogueBox : public GameEngineActor
@@ -31,10 +32,13 @@ private:
 private:
 	GameEngineRenderer* DialogueBoxRenderer_;
 	GameEngineRenderer* PortraitRenderer_;
-	GameEngineRenderer* DialogueRenderer_;
 	GameEngineRenderer* DialogueName_;
 
+	Font* Dialoue_;
+
 	GameEngineRandom DialogueRandom_;
+
+	std::string PierreDialogue[5];
 
 private:
 public:

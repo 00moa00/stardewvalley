@@ -1,14 +1,20 @@
 #include "DialogueBox.h"
+#include "RendererData.h"
 
 DialogueBox::DialogueBox() 
 
 	:
 		DialogueBoxRenderer_(nullptr),
 		PortraitRenderer_(nullptr),
-		DialogueRenderer_(nullptr),
 		DialogueRandom_()
 
 {
+
+	PierreDialogue[0] = "*sigh* ... I've got those /behind-the-counter- blues...";
+	PierreDialogue[1] = "Is it just me or is there /a cold draft in here?";
+	PierreDialogue[2] = "If I didn't have this shop /to run I would be outside /right now. /It would be fun to throw a /snowball.";
+	PierreDialogue[3] = "Sometimes I get new items /in stock, so make sure to stop /by every so often. It's a /lot of work to run a shop.";
+
 }
 
 DialogueBox::~DialogueBox() 
@@ -27,16 +33,14 @@ void DialogueBox::Start()
 	PortraitRenderer_->SetPivot({756.f - 478.5f, -26.f});
 	PortraitRenderer_->CameraEffectOff();
 
-	DialogueRenderer_ = CreateRenderer("Pierre_dialogue_Sheet.bmp");
-	DialogueRenderer_->SetIndex(0);
-	DialogueRenderer_->SetPivot({ 0,0 });
-	DialogueRenderer_->CameraEffectOff();
-
 
 	DialogueName_ = CreateRenderer("Name_Sheet.bmp");
 	DialogueName_->SetIndex(0);
 	DialogueName_->SetPivot({ 755.f - 478.5f, 110.f });
 	DialogueName_->CameraEffectOff();
+
+	Dialoue_ = GetLevel()->CreateActor<Font>(static_cast<int>(PLAYLEVEL::DIALOGUEFONT));
+	Dialoue_->ChangeFont(" ",{0,0});
 
 
 }
@@ -57,7 +61,7 @@ void DialogueBox::SetPierre()
 {
 	PortraitRenderer_->SetImage("Pierre_Portrait.bmp");
 	PortraitRenderer_->SetIndex(0);
-	DialogueRenderer_->SetIndex(DialogueRandom_.RandomInt(0,3));
+	Dialoue_->ChangeFont(PierreDialogue[DialogueRandom_.RandomInt(0, 3)], {this->GetPosition().x -430.f, this->GetPosition().y - 110.f});
 	DialogueName_->SetIndex(static_cast<int>(NPC::PIERRE));
 }
 
@@ -72,16 +76,15 @@ void DialogueBox::DialogueOn()
 {
 	DialogueBoxRenderer_->On();
 	PortraitRenderer_->On();
-	DialogueRenderer_->On();
 	DialogueName_->On();
-
+	Dialoue_->On();
 }
 
 void DialogueBox::DialogueOff()
 {
 	DialogueBoxRenderer_->Off();
 	PortraitRenderer_->Off();
-	DialogueRenderer_->Off();
 	DialogueName_->Off();
+	Dialoue_->Off();
 }
 

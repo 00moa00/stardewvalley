@@ -263,16 +263,23 @@ void StardewValley::GameInit()
 		//------< 이미지 Cut >------------------------------------------------------------------
 
 		//================================
-		//		폰트 블랙
+		//		숫자 폰트 블랙
 		//================================
 		GameEngineImage* Font = GameEngineImageManager::GetInst()->Find("font_colored.bmp");
 		Font->Cut({ 12, 21 });
 
 		//================================
-		//		폰트 화이트
+		//		숫자 폰트 화이트
 		//================================
 		GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
 		WhiteFont->Cut({ 9, 16 });
+
+		//================================
+		//		영문 폰트
+		//================================
+		GameEngineImage* EnFont = GameEngineImageManager::GetInst()->Find("Font.bmp");
+		EnFont->Cut({ 48, 46 });
+
 
 		//================================
 		//		요일

@@ -497,13 +497,11 @@ void Player::LevelInit()
 		SetPosition({790.f, 490.f});
 	}
 
-
 	// Áý -> ³óÀå
 	if (CurrentLevel_ == "MyFarmLevel" && PrevLevel_ == "MyHouseLevel")
 	{
 		SetPosition({ 3100.f, 760.f });
 	}
-
 
 	// ³óÀå -> Áý
 	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "MyFarmLevel")

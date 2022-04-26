@@ -32,6 +32,7 @@ void ShippingBox::Update()
 	switch (ShippingUpdateState_)
 	{
 	case SHIPPINGBOX_UPDATE::INIT:
+
 		ShippingBoxTop_->SetPosition({ this->GetPosition().x, this->GetPosition().y - 75.f/2});
 		ShippingUpdateState_ = SHIPPINGBOX_UPDATE::UPDATE;
 
