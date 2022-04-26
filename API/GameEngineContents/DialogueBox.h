@@ -39,6 +39,7 @@ private:
 	GameEngineRandom DialogueRandom_;
 
 	std::string PierreDialogue[5];
+	std::string LewiseDialogue[5];
 
 private:
 public:

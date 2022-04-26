@@ -99,7 +99,7 @@ void BusStopLevel::LoadMapObject()
 				y * CHIP_SIZE + CHIP_SIZE,
 			};
 
-			BUSSTOP_TILE TileState_ = static_cast<BUSSTOP_TILE>(chip);
+			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
 			std::map<int, Items*>::iterator ThisIter;
 
 
@@ -116,14 +116,14 @@ void BusStopLevel::LoadMapObject()
 			switch (TileState_)
 			{
 		
-			case BUSSTOP_TILE::MOVE_TOWN:
+			case TILE_LIST::MOVE_TOWN:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveTown>((int)PLAYLEVEL::OBJECT)));
 
 
 				break;
 		
-			case BUSSTOP_TILE::MOVE_FARM:
+			case TILE_LIST::MOVE_FARM:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFarm>((int)PLAYLEVEL::OBJECT)));
 				break;

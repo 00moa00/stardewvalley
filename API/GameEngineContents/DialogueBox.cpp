@@ -15,6 +15,12 @@ DialogueBox::DialogueBox()
 	PierreDialogue[2] = "If I didn't have this shop /to run I would be outside /right now. /It would be fun to throw a /snowball.";
 	PierreDialogue[3] = "Sometimes I get new items /in stock, so make sure to stop /by every so often. It's a /lot of work to run a shop.";
 
+
+	LewiseDialogue[0] = "If you plant a certain kind /of flower near your beehouse, /it will produce a different /honey type.";
+	LewiseDialogue[1] = "I hope the river doesn't overflow...";
+	LewiseDialogue[2] = "Gardening is a hobby of mine, /so I'm excited for this warm /weather.";
+	LewiseDialogue[3] = "Hi! How're you doing today? /If you see Marnie, tell /her I said 'hi'";
+
 }
 
 DialogueBox::~DialogueBox() 
@@ -68,8 +74,10 @@ void DialogueBox::SetPierre()
 void DialogueBox::SetLewis()
 {
 	PortraitRenderer_->SetImage("Lewis_Portrait.bmp");
-	DialogueName_->SetIndex(static_cast<int>(NPC::LEWIS));
+	PortraitRenderer_->SetIndex(0);
 
+	Dialoue_->ChangeFont(LewiseDialogue[DialogueRandom_.RandomInt(0, 3)], { this->GetPosition().x - 430.f, this->GetPosition().y - 110.f });
+	DialogueName_->SetIndex(static_cast<int>(NPC::LEWIS));
 }
 
 void DialogueBox::DialogueOn()

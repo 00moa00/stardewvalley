@@ -125,9 +125,6 @@
     <ClCompile Include="MoveForest.cpp">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
-    <ClCompile Include="PlayLevel.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
     <ClCompile Include="Watering_Can.cpp">
       <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClCompile>
@@ -347,6 +344,9 @@
     <ClCompile Include="ShippingBoxTop.cpp">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClCompile>
+    <ClCompile Include="Lewis.cpp">
+      <Filter>Actor\03. Play\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -493,9 +493,6 @@
     </ClInclude>
     <ClInclude Include="MoveForest.h">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayLevel.h">
-      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Watering_Can.h">
       <Filter>Actor\03. Play\Obejct\Tool</Filter>
@@ -715,6 +712,9 @@
     </ClInclude>
     <ClInclude Include="ShippingBoxTop.h">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Lewis.h">
+      <Filter>Actor\03. Play\NPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

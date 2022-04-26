@@ -102,7 +102,7 @@ void ShopLevel::LoadMapObject()
 				y * CHIP_SIZE + CHIP_SIZE,
 			};
 
-			FARM_TILE TileState_ = static_cast<FARM_TILE>(chip);
+			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
 			std::map<int, Items*>::iterator ThisIter;
 			std::vector<Npc*>::iterator NpcIter;
 
@@ -119,20 +119,20 @@ void ShopLevel::LoadMapObject()
 			switch (TileState_)
 			{
 
-			case FARM_TILE::PIERRE:
+			case TILE_LIST::PIERRE:
 				NpcList_.push_back(CreateActor<Pierre>((int)PLAYLEVEL::NPC));
 				NpcIter = --NpcList_.end();
 				(*NpcIter)->SetPosition(pos);
 				break;
 
-			case FARM_TILE::SHOP_FLAG:
+			case TILE_LIST::SHOP_FLAG:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<ShopFlag>((int)PLAYLEVEL::OBJECT)));
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 				break;
 
-			case FARM_TILE::MOVE_TOWN:
+			case TILE_LIST::MOVE_TOWN:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveTown>((int)PLAYLEVEL::OBJECT)));
 				ThisIter = --MapObject_.end();

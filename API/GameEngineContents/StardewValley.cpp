@@ -437,18 +437,21 @@ void StardewValley::GameInit()
 		GameEngineImage* Pierre = GameEngineImageManager::GetInst()->Find("Pierre.bmp");
 		Pierre->Cut({ 48, 96 });
 
-
 		GameEngineImage* Pierre_Portrait = GameEngineImageManager::GetInst()->Find("Pierre_Portrait.bmp");
 		Pierre_Portrait->Cut({ 192, 192 });
 
-		GameEngineImage* Pierre_dialogue_Sheet = GameEngineImageManager::GetInst()->Find("Pierre_dialogue_Sheet.bmp");
-		Pierre_dialogue_Sheet->Cut({ 957, 333 });
+
+		GameEngineImage* Lewis = GameEngineImageManager::GetInst()->Find("Lewis.bmp");
+		Lewis->Cut({ 48, 96 });
 
 		GameEngineImage* Lewis_Portrait = GameEngineImageManager::GetInst()->Find("Lewis_Portrait.bmp");
 		Lewis_Portrait->Cut({ 192, 192 });
 
+
 		GameEngineImage* Name_Sheet = GameEngineImageManager::GetInst()->Find("Name_Sheet.bmp");
 		Name_Sheet->Cut({ 170, 50 });
+
+
 
 	}
 

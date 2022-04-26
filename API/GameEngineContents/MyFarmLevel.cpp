@@ -120,7 +120,7 @@ void MyFarmLevel::LoadMapObject()
                 y * CHIP_SIZE + CHIP_SIZE * 0.5f,
             };
 
-			FARM_TILE TileState_ = static_cast<FARM_TILE>(chip);
+			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
 			std::map<int, Items*>::iterator ThisIter;
 
 
@@ -135,7 +135,7 @@ void MyFarmLevel::LoadMapObject()
 
 			switch (TileState_)
 			{
-			case FARM_TILE::MAPLE_TREE:
+			case TILE_LIST::MAPLE_TREE:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
@@ -144,7 +144,7 @@ void MyFarmLevel::LoadMapObject()
 
 				break;
 
-			case FARM_TILE::FINE_TREE:
+			case TILE_LIST::FINE_TREE:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
@@ -153,7 +153,7 @@ void MyFarmLevel::LoadMapObject()
 
 				break;
 
-			case FARM_TILE::OAK_TREE:
+			case TILE_LIST::OAK_TREE:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
@@ -162,55 +162,55 @@ void MyFarmLevel::LoadMapObject()
 
 				break;
 
-			case FARM_TILE::SMALL_STONE:
+			case TILE_LIST::SMALL_STONE:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 			
 				break;
 
-			case FARM_TILE::BIG_STONE:
+			case TILE_LIST::BIG_STONE:
 				break;
-			case FARM_TILE::SMALL_WOOD1:
+			case TILE_LIST::SMALL_WOOD1:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallWood1>((int)PLAYLEVEL::OBJECT)));
 		
 				break;
 
-			case FARM_TILE::SMAA_WOOD2:
+			case TILE_LIST::SMAA_WOOD2:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallWood2>((int)PLAYLEVEL::OBJECT)));
 
 				break;
 
-			case FARM_TILE::MIDDLE_WOOD:
+			case TILE_LIST::MIDDLE_WOOD:
 				break;
-			case FARM_TILE::BIG_WOOD:
+			case TILE_LIST::BIG_WOOD:
 				break;
-			case FARM_TILE::WEED1:
+			case TILE_LIST::WEED1:
 				break;
-			case FARM_TILE::WEED2:
+			case TILE_LIST::WEED2:
 				break;
 
-			case FARM_TILE::SHIPPING_BOX:
+			case TILE_LIST::SHIPPING_BOX:
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<ShippingBox>((int)PLAYLEVEL::OBJECT)));
 
 				break;
 
 
-			case FARM_TILE::MOVE_FOREST:
+			case TILE_LIST::MOVE_FOREST:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveForest>((int)PLAYLEVEL::OBJECT)));
 
 				break;
 
 
-			case FARM_TILE::MOVE_BUSSTOP:
+			case TILE_LIST::MOVE_BUSSTOP:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT)));
 
 				break;
 
-			case FARM_TILE::MOVE_HOUSE :
+			case TILE_LIST::MOVE_HOUSE :
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveHouse>((int)PLAYLEVEL::OBJECT)));
 
@@ -218,7 +218,7 @@ void MyFarmLevel::LoadMapObject()
 
 		
 
-			case FARM_TILE::BLOCK :
+			case TILE_LIST::BLOCK :
 
 				break;
 			default:

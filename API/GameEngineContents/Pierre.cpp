@@ -33,8 +33,6 @@ void Pierre::Start()
 
 void Pierre::Update()
 {
-
-
 	switch (NpcUpdateState_)
 	{
 	case NPC_STATE::INIT:

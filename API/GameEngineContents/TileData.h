@@ -24,27 +24,13 @@ enum class MYHOUSE_TILE {
 
 };
 
-enum class BUSSTOP_TILE {
-
-	MOVE_TOWN = 25,
-	MOVE_FARM = 28,
-
-};
-
-enum class TOWN_TILE {
-
-	MOVE_BUSSTOP = 26,
-	MOVE_SHOP = 23,
-
-};
-
 
 enum class FOREST_TILE {
 
 	MOVE_FARM = 28,
 };
 
-enum class FARM_TILE {
+enum class TILE_LIST {
 
 	MAPLE_TREE = 0,
 	FINE_TREE,
@@ -62,10 +48,12 @@ enum class FARM_TILE {
 	PIERRE, 
 	SHIPPING_BOX = 21,
 	SHOP_FLAG = 22,
+	MOVE_SHOP = 23,
 	MOVE_FOREST = 24,
 	MOVE_TOWN = 25,
 	MOVE_BUSSTOP = 26,
 	MOVE_HOUSE = 27,
+	MOVE_FARM = 28,
 	BLOCK = 29,
 };
 
