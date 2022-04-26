@@ -30,7 +30,7 @@ void Font::Start()
 
 	for (int i = 0; i < 300; ++i)
 	{
-		FontRenderer.push_back(CreateRenderer("Font.bmp"));
+		FontRenderer.push_back(CreateRenderer("font_ver2.bmp"));
 		std::vector<GameEngineRenderer*>::iterator This = --FontRenderer.end();
 		(*This)->SetIndex(48);
 		(*This)->CameraEffectOff();
@@ -327,196 +327,203 @@ void Font::ChangeFont(std::string _Font, float4 _Pos)
 		switch (Font_[Count_])
 		{
 		case 'A':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::A));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::A));
 			break;
 		case 'B':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::B));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::B));
 			break;
 		case 'C':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::C));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::C));
 			break;
 		case 'D':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::D));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::D));
 			break;
 		case 'E':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::E));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::E));
 			break;
 		case 'F':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::F));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::F));
 			break;
 		case 'G':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::G));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::G));
 			break;
 		case 'H':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::H));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::H));
 			break;
 		case 'I':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::I));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::I));
 			break;
 		case 'J':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::J));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::J));
 			break;
 		case 'K':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::K));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::K));
 			break;
 		case 'L':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::L));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::L));
 			break;
 		case 'M':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::M));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::M));
 			break;
 		case 'N':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::N));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::N));
 			break;
 		case 'O':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::O));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::O));
 			break;
 		case 'P':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::P));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::P));
 			break;
 		case 'Q':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::Q));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Q));
 			break;
 		case 'R':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::R));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::R));
 			break;
 		case 'S':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::S));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::S));
 			break;
 		case 'T':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::T));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::T));
 			break;
 		case 'U':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::U));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::U));
 			break;
 		case 'V':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::V));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::V));
 			break;
 		case 'W':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::W));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::W));
 			break;
 		case 'X':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::X));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::X));
 			break;
 		case 'Y':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::Y));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Y));
 			break;
 		case 'Z':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::Z));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Z));
 			break;
 		case 'a':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::a));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::a));
 			break;
 		case 'b':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::b));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::b));
 			break;
 		case 'c':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::c));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::c));
 			break;
 		case 'd':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::d));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::d));
 			break;
 		case 'e':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::e));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::e));
 			break;
 		case 'f':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::f));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::f));
 			break;
 		case 'g':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::g));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::g));
 			break;
 		case 'h':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::h));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::h));
 			break;
 		case 'i':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::i));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::i));
 			break;
 		case 'j':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::j));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::j));
 			break;
 		case 'k':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::k));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::k));
 			break;
 		case 'l':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::l));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::l));
 			break;
 		case 'm':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::m));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::m));
 			break;
 		case 'n':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::n));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::n));
 			break;
 		case 'o':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::o));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::o));
 			break;
 		case 'p':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::p));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::p));
 			break;
 		case 'q':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::q));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::q));
 			break;
 		case 'r':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::r));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::r));
 			break;
 		case 's':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::s));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::s));
 			break;
 		case 't':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::t));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::t));
 			break;
 		case 'u':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::u));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::u));
 			break;
 		case 'v':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::v));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::v));
 			break;
 		case 'w':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::w));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::w));
 			break;
 		case 'x':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::x));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::x));
 			break;
 		case 'y':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::y));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::y));
 			break;
 		case 'z':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::z));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::z));
 			break;
 		case '?':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::Question));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Question));
 			break;
 		case '*':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::Astrerrisk));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Astrerrisk));
 			break;
 		case ')':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::Square_Bracket_Right));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Square_Bracket_Right));
 			break;
 		case '(':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::Square_Bracket_Left));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Square_Bracket_Left));
 			break;
 		case '"':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::Big_Question_Mark));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Big_Question_Mark));
 			break;
 		case '!':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::Exclamaion_Mark));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Exclamaion_Mark));
 			break;
 		case '-':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::_));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::_));
 			break;
 		case '.':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::DecimalPoint));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::DecimalPoint));
+			break;
+		case ' ':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::EMPTY));
+			break;
+		case ',':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Period));
+			break;
+		case '`':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Small_Question_Mark));
 			break;
 		case '/':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::EMPTY));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::EMPTY));
 			MarginY += 40.f;
 			MarginX = 0;
 			break;
-		case ' ':
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::EMPTY));
-			break;
+
 
 		default:
-			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::EMPTY));
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::EMPTY));
 		}
 
 
@@ -534,7 +541,7 @@ void Font::ChangeFont(std::string _Font, float4 _Pos)
 	//그 외는공백으로 함
 	for (; Count_ < 300; ++Count_)
 	{
-		FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT::EMPTY));
+		FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::EMPTY));
 	}
 
 }

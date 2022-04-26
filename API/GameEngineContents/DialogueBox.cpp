@@ -10,21 +10,21 @@ DialogueBox::DialogueBox()
 
 {
 
-	PierreDialogue[0] = "*sigh* ... I've got those /behind-the-counter- blues...";
+	PierreDialogue[0] = "*sigh* ... I`ve got those /behind-the-counter- blues...";
 	PierreDialogue[1] = "Is it just me or is there /a cold draft in here?";
 	PierreDialogue[2] = "If I didn't have this shop /to run I would be outside /right now. /It would be fun to throw a /snowball.";
-	PierreDialogue[3] = "Sometimes I get new items /in stock, so make sure to stop /by every so often. It's a /lot of work to run a shop.";
+	PierreDialogue[3] = "Sometimes I get new items /in stock, so make sure to stop /by every so often. It`s a /lot of work to run a shop.";
 
 
 	LewiseDialogue[0] = "If you plant a certain kind /of flower near your beehouse, /it will produce a different /honey type.";
-	LewiseDialogue[1] = "I hope the river doesn't /overflow...";
+	LewiseDialogue[1] = "I hope the river doesn`t /overflow...";
 	LewiseDialogue[2] = "Gardening is a hobby of mine, /so I'm excited for this warm /weather.";
 	LewiseDialogue[3] = "Hi! How're you doing today? /If you see Marnie, tell /her I said 'hi'";
 
 
-	PennyDialogue[0] = "The raindrops on the roof of /our trailer are really /loud... But it's soothing!";
-	PennyDialogue[1] = "I want her to be happy, /but I can't stay here /forever... you know?";
-	PennyDialogue[2] = "Hi. Ummm... The weather's /interesting today, don't you /think? Sorry...";
+	PennyDialogue[0] = "The raindrops on the roof of /our trailer are really /loud... But it`s soothing!";
+	PennyDialogue[1] = "I want her to be happy, /but I can`t stay here /forever... you know?";
+	PennyDialogue[2] = "Hi. Ummm... The weather`s /interesting today, don't you /think? Sorry...";
 	PennyDialogue[3] = "This town's safe, but I /always walk the children /home anyway.";
 
 }

@@ -128,3 +128,74 @@ enum class FONT
 	EMPTY,
 
 };
+
+
+
+enum class FONT_VER2
+{
+	EMPTY,
+	Exclamaion_Mark, //´À³¦Ç¥
+	Big_Question_Mark,  // "
+	Small_Question_Mark, //'
+	Square_Bracket_Left = 8,
+	Square_Bracket_Right,
+	Astrerrisk , //*
+	Period =12, // ,
+	_ , // -
+	DecimalPoint ,
+	Question=30, // 
+	A =33,
+	B,
+	C,
+	D,
+	E,
+	F,
+	G,
+	H,
+	I, 
+	J,
+	K,
+	L,
+	M,
+	N,
+	O, 
+	P,
+	Q,
+	R,
+	S,
+	T,
+	U,
+	V,
+	W,
+	X,
+	Y,
+	Z,
+	a = 65,
+	b, 
+	c,
+	d,
+	e,
+	f,
+	g,
+	h,
+	i,
+	j,
+	k,
+	l,
+	m,
+	n,
+	o,
+	p,
+	q,
+	r,
+	s,
+	t,
+	u,
+	v,
+	w,
+	x,
+	y,
+	z,
+
+
+};

@@ -279,13 +279,20 @@ void StardewValley::GameInit()
 		//================================
 		GameEngineImage* EnFont = GameEngineImageManager::GetInst()->Find("Font.bmp");
 		EnFont->Cut({ 48, 46 });
-
+		
+		//================================
+		//		영문 폰트2
+		//================================
+		GameEngineImage* font_ver2 = GameEngineImageManager::GetInst()->Find("font_ver2.bmp");
+		font_ver2->Cut({ 20, 40 });
 
 		//================================
 		//		요일
 		//================================
 		GameEngineImage* Week_Sheet = GameEngineImageManager::GetInst()->Find("Week_Sheet.bmp");
 		Week_Sheet->Cut({ 42, 26 });
+
+
 
 	}
 
