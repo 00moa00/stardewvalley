@@ -47,6 +47,7 @@ enum class TILE_LIST {
 	MY_HOUSE,
 	PIERRE, 
 	LEWIS,
+	PENNY,
 	SHIPPING_BOX = 21,
 	SHOP_FLAG = 22,
 	MOVE_SHOP = 23,
@@ -57,6 +58,12 @@ enum class TILE_LIST {
 	MOVE_FARM = 28,
 	BLOCK = 29,
 };
+
+enum class NPC_MOVE_FLAG
+{
+	PENNY_UP, PENNY_RIGHT, PENNY_DOWN, PENNY_LEFT, PENNY_WAIT,
+};
+
 
 
 enum class TILE_DIRT {

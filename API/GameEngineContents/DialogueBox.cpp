@@ -21,6 +21,12 @@ DialogueBox::DialogueBox()
 	LewiseDialogue[2] = "Gardening is a hobby of mine, /so I'm excited for this warm /weather.";
 	LewiseDialogue[3] = "Hi! How're you doing today? /If you see Marnie, tell /her I said 'hi'";
 
+
+	PennyDialogue[0] = "The raindrops on the roof of /our trailer are really /loud... But it's soothing!";
+	PennyDialogue[1] = "I want her to be happy, /but I can't stay here /forever... you know?";
+	PennyDialogue[2] = "Hi. Ummm... The weather's /interesting today, don't you /think? Sorry...";
+	PennyDialogue[3] = "This town's safe, but I /always walk the children /home anyway.";
+
 }
 
 DialogueBox::~DialogueBox() 
@@ -78,6 +84,16 @@ void DialogueBox::SetLewis()
 
 	Dialoue_->ChangeFont(LewiseDialogue[DialogueRandom_.RandomInt(0, 3)], { this->GetPosition().x - 430.f, this->GetPosition().y - 110.f });
 	DialogueName_->SetIndex(static_cast<int>(NPC::LEWIS));
+}
+
+void DialogueBox::SetPenny()
+{
+	PortraitRenderer_->SetImage("Penny__Portrait.bmp");
+	PortraitRenderer_->SetIndex(0);
+
+	Dialoue_->ChangeFont(PennyDialogue[DialogueRandom_.RandomInt(0, 3)], { this->GetPosition().x - 430.f, this->GetPosition().y - 110.f });
+	DialogueName_->SetIndex(static_cast<int>(NPC::PENNY));
+
 }
 
 void DialogueBox::DialogueOn()

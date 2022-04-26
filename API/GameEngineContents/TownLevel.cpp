@@ -8,6 +8,7 @@
 #include "MoveBusStop.h"
 #include "MoveShop.h"
 #include "Lewis.h"
+#include "Penny.h"
 
 TownLevel::TownLevel()
 	:
@@ -123,7 +124,13 @@ void TownLevel::LoadMapObject()
 			{
 			case TILE_LIST::LEWIS:
 
-				NpcList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::OBJECT)));
+				NpcList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::NPC)));
+				NpcIter = --NpcList_.end();
+				NpcIter->second->SetPosition(pos);
+
+			case TILE_LIST::PENNY:
+
+				NpcList_.insert(std::make_pair("Penny", CreateActor<Penny>((int)PLAYLEVEL::NPC)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
 

@@ -9,6 +9,7 @@
 
 #include "DialogueBox.h"
 #include "RendererData.h"
+#include "NpcMove.h"
 
 enum class NPC_STATE
 {
@@ -37,11 +38,20 @@ public:
 	virtual void DirAnimationChange();
 	virtual std::string GetDirString();
 	virtual bool ForAwayPlayer();
+	virtual void LoadPennyMoveFlag();
+
+private:
+	std::vector<NpcMove*> MoveFlagList_;
+
 
 protected:
 
+	float Speed_;
+
 	float4 MoveDir_;
+
 	bool DialogueUpdate_;
+
 	const char* ArrAnimationName[static_cast<int>(NPC_STATE::MAX)];
 
 	NPC_STATE NpcUpdateState_;
@@ -112,10 +122,10 @@ public:
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------
 
 
-	bool MouseOver()
-	{
-		return (PersonalCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
-	}
+	//bool MouseOver()
+	//{
+	//	return (PersonalCollider_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
+	//}
 
 
 };

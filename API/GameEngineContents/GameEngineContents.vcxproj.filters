@@ -347,6 +347,12 @@
     <ClCompile Include="Lewis.cpp">
       <Filter>Actor\03. Play\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="NpcMove.cpp">
+      <Filter>Actor\01. GlobalActor</Filter>
+    </ClCompile>
+    <ClCompile Include="Penny.cpp">
+      <Filter>Actor\03. Play\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -714,6 +720,12 @@
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClInclude>
     <ClInclude Include="Lewis.h">
+      <Filter>Actor\03. Play\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="NpcMove.h">
+      <Filter>Actor\01. GlobalActor</Filter>
+    </ClInclude>
+    <ClInclude Include="Penny.h">
       <Filter>Actor\03. Play\NPC</Filter>
     </ClInclude>
   </ItemGroup>

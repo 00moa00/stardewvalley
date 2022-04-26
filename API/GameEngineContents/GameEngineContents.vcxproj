@@ -364,6 +364,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="NpcData.h" />
+    <ClInclude Include="NpcMove.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ParsnipSeeds_Shop.h">
       <SubType>
       </SubType>
@@ -382,6 +386,10 @@
     </ClInclude>
     <ClInclude Include="Pasnip.h" />
     <ClInclude Include="PatatoSeeds_Shop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Penny.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -823,6 +831,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="NpcMove.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ParsnipSeeds_Shop.cpp">
       <SubType>
       </SubType>
@@ -841,6 +853,10 @@
     </ClCompile>
     <ClCompile Include="Pasnip.cpp" />
     <ClCompile Include="PatatoSeeds_Shop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Penny.cpp">
       <SubType>
       </SubType>
     </ClCompile>
