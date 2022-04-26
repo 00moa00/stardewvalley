@@ -43,7 +43,12 @@ void Penny::Start()
 
 void Penny::Update()
 {
-	MoveCheck();
+
+	//대화중에는 멈춰
+	if (DialogueUpdate_ == false)
+	{
+		MoveCheck();
+	}
 
 	switch (NpcUpdateState_)
 	{
@@ -57,7 +62,22 @@ void Penny::Update()
 
 		break;
 	case NPC_STATE::WALK:
+
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+		
+		break;
+	case NPC_STATE::WALK_WAIT:
+
+		WaitTimer_ -= GameEngineTime::GetDeltaTime();
+
+		if (WaitTimer_ < 0.f)
+		{
+
+			MoveDir_ = PrevDir_;
+			NpcUpdateState_ = NPC_STATE::WALK;
+
+		}
+
 
 		break;
 	default:
@@ -91,7 +111,10 @@ void Penny::OpenDialogue()
 		MainDialogueBox_->DialogueOn();
 		MainDialogueBox_->SetPenny();
 
+		//현재 방향 저장하고 플레이어의 방향으로 고개 돌림
+		PrevDir_ = MoveDir_; 
 		MoveDir_ = -Player::MainPlayer->GetMoveDir();
+		NpcUpdateState_ = NPC_STATE::INIT;
 	}
 
 
@@ -100,8 +123,10 @@ void Penny::OpenDialogue()
 		Inventory::MainInventory->AllUpdateOn();
 		Inventory::MainInventory->SetPopUpStateMini();
 
-
 		MainDialogueBox_->DialogueOff();
+		WaitTimer_ = 2.0f;
+		NpcUpdateState_ = NPC_STATE::WALK_WAIT;
+
 	}
 }
 

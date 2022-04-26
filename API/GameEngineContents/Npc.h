@@ -15,6 +15,7 @@ enum class NPC_STATE
 {
 	INIT,
 	WALK,
+	WALK_WAIT,
 	MAX
 };
 
@@ -47,8 +48,10 @@ private:
 protected:
 
 	float Speed_;
+	float WaitTimer_;
 
 	float4 MoveDir_;
+	float4 PrevDir_;
 
 	bool DialogueUpdate_;
 

@@ -136,14 +136,14 @@ enum class FONT_VER2
 	EMPTY,
 	Exclamaion_Mark, //´À³¦Ç¥
 	Big_Question_Mark,  // "
-	Small_Question_Mark, //'
+	Small_Question_Mark = 7, //'
 	Square_Bracket_Left = 8,
 	Square_Bracket_Right,
 	Astrerrisk , //*
 	Period =12, // ,
 	_ , // -
 	DecimalPoint ,
-	Question=30, // 
+	Question=31, // 
 	A =33,
 	B,
 	C,

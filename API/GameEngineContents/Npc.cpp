@@ -7,8 +7,9 @@
 Npc::Npc() 
 	:
 	Speed_(80.f),
-
+	WaitTimer_(0.f),
 	MoveDir_(float4::DOWN),
+	PrevDir_(float4::ZERO),
 	DialogueUpdate_(false),
 	NpcUpdateState_(NPC_STATE::INIT),
 	NpcRenderer_(nullptr),
@@ -18,6 +19,8 @@ Npc::Npc()
 {
 	ArrAnimationName[static_cast<int>(NPC_STATE::INIT)] = "INIT";
 	ArrAnimationName[static_cast<int>(NPC_STATE::WALK)] = "WALK";
+	ArrAnimationName[static_cast<int>(NPC_STATE::WALK_WAIT)] = "INIT";
+
 }
 
 Npc::~Npc() 
