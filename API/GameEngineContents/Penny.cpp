@@ -43,48 +43,7 @@ void Penny::Start()
 
 void Penny::Update()
 {
-
-	//대화중에는 멈춰
-	if (DialogueUpdate_ == false)
-	{
-		MoveCheck();
-	}
-
-	switch (NpcUpdateState_)
-	{
-	case NPC_STATE::INIT:
-
-		//플레이어와 멀어지면 원래 방향으로 리셋
-		if (ForAwayPlayer() == true)
-		{
-			MoveDir_ = float4::DOWN;
-		}
-
-		break;
-	case NPC_STATE::WALK:
-
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-		
-		break;
-	case NPC_STATE::WALK_WAIT:
-
-		WaitTimer_ -= GameEngineTime::GetDeltaTime();
-
-		if (WaitTimer_ < 0.f)
-		{
-
-			MoveDir_ = PrevDir_;
-			NpcUpdateState_ = NPC_STATE::WALK;
-
-		}
-
-
-		break;
-	default:
-		break;
-	}
-
-	DirAnimationChange();
+	MoveUpdate();
 }
 
 void Penny::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -114,7 +73,7 @@ void Penny::OpenDialogue()
 		//현재 방향 저장하고 플레이어의 방향으로 고개 돌림
 		PrevDir_ = MoveDir_; 
 		MoveDir_ = -Player::MainPlayer->GetMoveDir();
-		NpcUpdateState_ = NPC_STATE::INIT;
+		NpcUpdateState_ = NPC_STATE::DIALOGUE_IDLE;
 	}
 
 
@@ -125,7 +84,7 @@ void Penny::OpenDialogue()
 
 		MainDialogueBox_->DialogueOff();
 		WaitTimer_ = 2.0f;
-		NpcUpdateState_ = NPC_STATE::WALK_WAIT;
+		NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
 
 	}
 }
@@ -158,40 +117,3 @@ bool Penny::MoveWait()
 	return (NpcCollider_->CollisionResult("PennyWait", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
-void Penny::MoveCheck()
-{
-	if (MoveDown() == true)
-	{
-		MoveDir_ = float4::DOWN;
-		NpcUpdateState_ = NPC_STATE::WALK;
-	}
-
-	if (MoveUp() == true)
-	{
-		MoveDir_ = float4::UP;
-		NpcUpdateState_ = NPC_STATE::WALK;
-
-	}
-
-	if (MoveRight() == true)
-	{
-		MoveDir_ = float4::RIGHT;
-		NpcUpdateState_ = NPC_STATE::WALK;
-
-	}
-
-	if (MoveLeft() == true)
-	{
-		MoveDir_ = float4::LEFT;
-		NpcUpdateState_ = NPC_STATE::WALK;
-
-	}
-
-	if (MoveWait() == true)
-	{
-		MoveDir_ = float4::DOWN;
-		NpcUpdateState_ = NPC_STATE::INIT;
-
-	}
-
-}

@@ -28,13 +28,11 @@ private:
 
 private:
 
-	bool MoveRight();
-	bool MoveLeft();
-	bool MoveDown();
-	bool MoveUp();
-	bool MoveWait();
-
-	void MoveCheck();
+	bool MoveRight() override;
+	bool MoveLeft() override;
+	bool MoveDown() override;
+	bool MoveUp() override;
+	bool MoveWait() override;
 
 };
 

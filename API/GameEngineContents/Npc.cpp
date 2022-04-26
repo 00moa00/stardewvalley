@@ -3,6 +3,7 @@
 #include "TileData.h"
 #include "NpcMove.h"
 #include "RendererData.h"
+#include "MainUI.h"
 
 Npc::Npc() 
 	:
@@ -11,6 +12,7 @@ Npc::Npc()
 	MoveDir_(float4::DOWN),
 	PrevDir_(float4::ZERO),
 	DialogueUpdate_(false),
+	isWalking_(false),
 	NpcUpdateState_(NPC_STATE::INIT),
 	NpcRenderer_(nullptr),
 	NpcCollider_(nullptr),
@@ -19,7 +21,9 @@ Npc::Npc()
 {
 	ArrAnimationName[static_cast<int>(NPC_STATE::INIT)] = "INIT";
 	ArrAnimationName[static_cast<int>(NPC_STATE::WALK)] = "WALK";
-	ArrAnimationName[static_cast<int>(NPC_STATE::WALK_WAIT)] = "INIT";
+	ArrAnimationName[static_cast<int>(NPC_STATE::DIALOGUE_IDLE)] = "INIT";
+	ArrAnimationName[static_cast<int>(NPC_STATE::DIALOGUE_WAIT)] = "INIT";
+	ArrAnimationName[static_cast<int>(NPC_STATE::WAIT)] = "INIT";
 
 }
 
@@ -172,6 +176,149 @@ void Npc::LoadPennyMoveFlag()
 	}
 
 
+}
+
+void Npc::MoveCheck()
+{
+	if (MoveDown() == true)
+	{
+		MoveDir_ = float4::DOWN;
+		NpcUpdateState_ = NPC_STATE::WALK;
+	}
+
+	if (MoveUp() == true)
+	{
+		MoveDir_ = float4::UP;
+		NpcUpdateState_ = NPC_STATE::WALK;
+
+	}
+
+	if (MoveRight() == true)
+	{
+		MoveDir_ = float4::RIGHT;
+		NpcUpdateState_ = NPC_STATE::WALK;
+
+	}
+
+	if (MoveLeft() == true)
+	{
+		MoveDir_ = float4::LEFT;
+		NpcUpdateState_ = NPC_STATE::WALK;
+
+	}
+
+	if (MoveWait() == true)
+	{
+		MoveDir_ = float4::DOWN;
+		NpcUpdateState_ = NPC_STATE::WAIT;
+
+	}
+}
+
+bool Npc::MoveRight()
+{
+	return false;
+}
+
+bool Npc::MoveLeft()
+{
+	return false;
+
+}
+
+bool Npc::MoveDown()
+{
+	return false;
+
+}
+
+bool Npc::MoveUp()
+{
+	return false;
+
+}
+
+bool Npc::MoveWait()
+{
+	return false;
+
+}
+
+void Npc::MoveUpdate()
+{
+	//대화중에는 멈춰
+	if (DialogueUpdate_ == false)
+	{
+		MoveCheck();
+	}
+
+	switch (NpcUpdateState_)
+	{
+	case NPC_STATE::INIT:
+
+		isWalking_ = false;
+		//플레이어와 멀어지면 원래 방향으로 리셋
+		if (ForAwayPlayer() == true)
+		{
+			MoveDir_ = float4::DOWN;
+		}
+
+		break;
+	case NPC_STATE::WALK:
+
+		isWalking_ = true;
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+
+		break;
+
+
+	case NPC_STATE::DIALOGUE_IDLE:
+
+
+		break;
+
+	case NPC_STATE::DIALOGUE_WAIT:
+
+		WaitTimer_ -= GameEngineTime::GetDeltaTime();
+
+		if (WaitTimer_ < 0.f)
+		{
+			//걷던 중이면
+			if (isWalking_ == true)
+			{
+				MoveDir_ = PrevDir_;
+				NpcUpdateState_ = NPC_STATE::WALK;
+				break;
+			}
+
+			//대기 중이었다면(서있던 상태였다면)
+			if (isWalking_ = false)
+			{
+				NpcUpdateState_ = NPC_STATE::INIT;
+				break;
+			}
+		}
+
+		break;
+	case NPC_STATE::WAIT:
+
+
+
+		//WaitTimer_ -= GameEngineTime::GetDeltaTime();
+		//MoveDir_ = float4::DOWN;
+		//if (WaitTimer_ < 0.f)
+		//{
+
+		//	MoveDir_ = PrevDir_;
+		//	NpcUpdateState_ = NPC_STATE::WALK;
+
+		//}
+		break;
+	default:
+		break;
+	}
+
+	DirAnimationChange();
 }
 
 bool Npc::NPCCheck(const float4 pos, const float4 scale)

@@ -100,19 +100,15 @@ private:
 
 	void AddDay()
 	{
-
 		if (DayIndex_ == 6)
 		{
 			DayIndex_ = 0;
 			DayRenderer_->SetIndex(DayIndex_);
-			//AddDay_ = false;
-
 			return;
 		}
 
 		++DayIndex_;
 		DayRenderer_->SetIndex(DayIndex_);
-		//AddDay_ = false;
 
 	}
 
@@ -128,8 +124,9 @@ private:
 	}
 
 
-
 public:
+
+	void SetMainUIMoney(int _Money);
 
 	int GetDay()
 	{
@@ -167,7 +164,6 @@ public:
 		}
 	}
 
-	void SetMainUIMoney(int _Money);
 	
 
 };

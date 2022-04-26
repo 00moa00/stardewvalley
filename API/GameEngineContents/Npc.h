@@ -15,7 +15,9 @@ enum class NPC_STATE
 {
 	INIT,
 	WALK,
-	WALK_WAIT,
+	DIALOGUE_IDLE,
+	DIALOGUE_WAIT,
+	WAIT,
 	MAX
 };
 
@@ -41,6 +43,20 @@ public:
 	virtual bool ForAwayPlayer();
 	virtual void LoadPennyMoveFlag();
 
+	virtual void MoveCheck();
+
+	virtual bool MoveRight();
+	virtual bool MoveLeft();
+	virtual bool MoveDown();
+	virtual bool MoveUp();
+	virtual bool MoveWait();
+
+	virtual void MoveUpdate();
+
+
+
+
+
 private:
 	std::vector<NpcMove*> MoveFlagList_;
 
@@ -54,6 +70,7 @@ protected:
 	float4 PrevDir_;
 
 	bool DialogueUpdate_;
+	bool isWalking_;
 
 	const char* ArrAnimationName[static_cast<int>(NPC_STATE::MAX)];
 
