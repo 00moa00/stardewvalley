@@ -77,7 +77,6 @@ void Shop::Update()
 	std::map<int, float4>::iterator ConstStartIter = ConstItmePos_.begin();
 	std::map<int, float4>::iterator ConstEndtIter = ConstItmePos_.end();
 
-	//Player* MainPlayer = MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
 
 	switch (ShopUpdateState_)
 	{
@@ -95,7 +94,6 @@ void Shop::Update()
 		// 고정 인덱스에 위치를 맞춘다
 		for (; ConstStartIter != ConstEndtIter; ++ConstStartIter)
 		{
-
 			for (; ItemStartIter != ItemEndtIter; )
 			{
 				if (ItemStartIter->second->GetIndex() == ConstStartIter->first)
@@ -112,11 +110,8 @@ void Shop::Update()
 					++ItemStartIter;
 				}
 			}
-
-		//	ItemStartIter = ShopItemList_.find(count);
 		}
 
-		
 		ShopUpdateState_ = SHOP_UPDATE::HIDE_ITME;
 		break;
 

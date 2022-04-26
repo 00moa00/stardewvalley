@@ -43,8 +43,7 @@ void Kale::Update()
 
 	if (isMapItemDeath_ == true)
 	{
-		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<Kale>();
+		Player::MainPlayer->GetInventroy()->NewItem<Kale>();
 	}
 
 	switch (ItemState_)

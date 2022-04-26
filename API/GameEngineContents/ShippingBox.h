@@ -35,6 +35,9 @@ public:
 	void ItemCollFalsePlayer() override;
 private:
 
+	//닫히는 애니메이션이 열린 에니메이션 후에만 실행될 수 있도록
+	bool isOpenAnimation;
+
 	SHIPPINGBOX_UPDATE ShippingUpdateState_;
 
 	ShippingBoxTop* ShippingBoxTop_;

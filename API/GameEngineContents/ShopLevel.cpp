@@ -59,8 +59,6 @@ void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
 	BackGround_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND));
 
-	Player::MainPlayer->SetPosition({ 310.f, 1280.f });
-
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;
 }
@@ -84,7 +82,7 @@ void ShopLevel::LoadMapObject()
 {
 
 	char MapOject[SHOP_CHIP_NUM_Y][SHOP_CHIP_NUM_X] = {
-	#include "Map/Shop.txt"
+		#include "Map/Shop.txt"
 
 	};
 

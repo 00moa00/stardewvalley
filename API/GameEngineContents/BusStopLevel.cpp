@@ -44,12 +44,8 @@ void BusStopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGroundFront_->GetRenderer()->SetPivot({ BUSSTOP_SIZE_WEIGHT / 2, BUSSTOP_SIZE_HEIGHT / 2 });
 
 	BackGround_->GetRenderer()->SetImage("BusStop_Back.bmp");
-
 	BackGround_->GetRenderer()->SetPivot({ BUSSTOP_SIZE_WEIGHT / 2,  BUSSTOP_SIZE_HEIGHT / 2 });
 
-
-
-	Player::MainPlayer->SetPosition({ (1300.f), 1140.f});
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 
 }

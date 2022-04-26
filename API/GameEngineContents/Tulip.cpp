@@ -43,8 +43,7 @@ void Tulip::Update()
 
 	if (isMapItemDeath_ == true)
 	{
-		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<Tulip>();
+		Player::MainPlayer->GetInventroy()->NewItem<Tulip>();
 	}
 
 	switch (ItemState_)

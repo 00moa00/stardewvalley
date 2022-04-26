@@ -43,8 +43,7 @@ void Jazz::Update()
 
 	if (isMapItemDeath_ == true)
 	{
-		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<Jazz>();
+		Player::MainPlayer->GetInventroy()->NewItem<Jazz>();
 	}
 
 	switch (ItemState_)

@@ -352,7 +352,7 @@ void Player::ChangeLevel()
 		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
 	}
 
-	if (MoveHouseCollision())
+	if (MoveHouseCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
 	{
 		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 	}
@@ -367,7 +367,7 @@ void Player::ChangeLevel()
 		GameEngine::GetInst().ChangeLevel("TownLevel");
 	}
 
-	if (MoveShopCollision())
+	if (MoveShopCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
 	{
 		GameEngine::GetInst().ChangeLevel("ShopLevel");
 	}
@@ -439,8 +439,6 @@ void Player::NpcCollCheck()
 			Inventory::MainInventory->AllUpdateOn();
 			Inventory::MainInventory->SetPopUpStateMini();
 		}
-
-
 
 		NpcList_[static_cast<int>(NPC::PIERRE)]->OpenDialogue();
 

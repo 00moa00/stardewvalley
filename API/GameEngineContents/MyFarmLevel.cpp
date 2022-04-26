@@ -63,8 +63,6 @@ void MyFarmLevel::Loading()
 void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	
-	//if(MainInventory_ != nullptr) Inventory_ = MainInventory_;
-
 	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
@@ -76,8 +74,6 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	BackGround_->GetRenderer()->CameraEffectOn();
 
 	
-
-	Player::MainPlayer->SetPosition({ FARM_SIZE_WEIGHT - 400.f, (FARM_SIZE_HEIGHT / 2) - 700.f });
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 	Player::MainPlayer->Renderer()->CameraEffectOn();

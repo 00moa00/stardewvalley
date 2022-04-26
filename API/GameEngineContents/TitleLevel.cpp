@@ -107,8 +107,6 @@ void TitleLevel::Update()
 
 	SkipTitle();
 
-
-
 }
 
 void TitleLevel::MoveCloud()

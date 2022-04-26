@@ -251,16 +251,18 @@ void Player::Render()
 
 void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	LevelInit();
+
 	MainPlayer = this;
 	PlayerHandItem_ = PlayerHandItem_;
 	MainMouse_ = MainMouse_;
+	LevelInit();
 }
 
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	MainMouse_->NextLevelOn();
 	PlayerHandItem_->NextLevelOn();
+	PrevLevel_ = CurrentLevel_;
 
 	//std::map<int, Items*>::iterator StartIter = MapObject_.begin();
 	//std::map<int, Items*>::iterator EndIter = MapObject_.end();
@@ -279,7 +281,6 @@ void Player::PlayerUpdate()
 	{
 
 	case PLAYER_UPDATE::INIT:
-
 
 		GetItem();
 		CheckShippingBox();
@@ -402,7 +403,6 @@ void Player::PlayerUpdate()
 		harvestingCrops();
 
 
-
 		if (isStop() || isEvent_ == true)
 		{
 			PlayerState_ = PLAYER_UPDATE::INIT;
@@ -446,7 +446,6 @@ void Player::LevelInit()
 		PlayerHandItem_->GetRenderer()->CameraEffectOff();
 	}
 
-
 	if (CurrentLevel_ == "MyFarmLevel")
 	{
 		MapSizeX_ = FARM_SIZE_WEIGHT;
@@ -455,10 +454,7 @@ void Player::LevelInit()
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
-
-
 	}
-
 
 
 	if (CurrentLevel_ == "BusStopLevel")
@@ -495,6 +491,62 @@ void Player::LevelInit()
 
 	}
 
+	// 타이틀 -> 집
+	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "")
+	{
+		SetPosition({790.f, 490.f});
+	}
 
+
+	// 집 -> 농장
+	if (CurrentLevel_ == "MyFarmLevel" && PrevLevel_ == "MyHouseLevel")
+	{
+		SetPosition({ 3100.f, 760.f });
+	}
+
+
+	// 농장 -> 집
+	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "MyFarmLevel")
+	{
+		SetPosition({ 520.f, 480.f });
+	}
+
+	// 버스정류장 -> 농장
+	if (CurrentLevel_ == "MyFarmLevel" && PrevLevel_ == "BusStopLevel")
+	{
+		SetPosition({ 3740.f, 780.f });
+	}
+
+	// 농장 -> 버스정류장
+	if (CurrentLevel_ == "BusStopLevel" && PrevLevel_ == "MyFarmLevel")
+	{
+		SetPosition({ 120.f, 1120.f });
+	}
+
+	// 마을 -> 버스정류장
+	if (CurrentLevel_ == "BusStopLevel" && PrevLevel_ == "TownLevel")
+	{
+		SetPosition({ 1580.f, 1120.f });
+	}
+
+	// 버스정류장 -> 마을
+	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "BusStopLevel")
+	{
+		SetPosition({ 110.f, 2620.f });
+	}
+
+	// 상점 -> 마을
+	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "ShopLevel")
+	{
+		SetPosition({ 2100.f, 2780.f });
+	} 
+
+	// 마을 -> 상점
+	if (CurrentLevel_ == "ShopLevel" && PrevLevel_ == "TownLevel")
+	{
+		SetPosition({ 310.f, 1320.f });
+	}
+
+	
 }
 

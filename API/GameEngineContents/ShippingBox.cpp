@@ -4,6 +4,7 @@ ShippingBox* ShippingBox::MainShippingBox;
 
 ShippingBox::ShippingBox() 
 	:
+	isOpenAnimation(false),
 	ShippingBoxTop_(nullptr),
 	ShippingUpdateState_(SHIPPINGBOX_UPDATE::INIT)
 {
@@ -23,7 +24,7 @@ void ShippingBox::Start()
 	ItemName_ = "ShippingBox";
 	ItemType_ = ITEMTYPE::SHIPPINGBOX;
 
-	ShippingBoxTop_ = GetLevel()->CreateActor<ShippingBoxTop>(static_cast<int>(PLAYLEVEL::TOP_OBJECT));
+	ShippingBoxTop_ = GetLevel()->CreateActor<ShippingBoxTop>(static_cast<int>(PLAYLEVEL::OBJECT));
 }
 
 void ShippingBox::Update()
@@ -51,10 +52,15 @@ void ShippingBox::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void ShippingBox::ItemCollPlayer()
 {
 	ShippingBoxTop_->SetShippingBoxTopAnimationOpen();
+	isOpenAnimation = true;
 }
 
 void ShippingBox::ItemCollFalsePlayer()
 {
-	ShippingBoxTop_->SetShippingBoxTopAnimationClose();
+	if (isOpenAnimation == true)
+	{
+		ShippingBoxTop_->SetShippingBoxTopAnimationClose();
+		isOpenAnimation = false;
+	}
 
 }

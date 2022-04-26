@@ -18,7 +18,6 @@ TownLevel::TownLevel()
 
 	SetName("TownLevel");
 
-
 }
 
 TownLevel::~TownLevel()
@@ -62,7 +61,6 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	//BackGround_->WetTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
 
-	Player::MainPlayer->SetPosition({125.f, 2600.f });
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 

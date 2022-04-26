@@ -44,8 +44,7 @@ void Cauliflower::Update()
 
 	if (isMapItemDeath_ == true)
 	{
-		Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-		MainPlayer->GetInventroy()->NewItem<Cauliflower>();
+		Player::MainPlayer->GetInventroy()->NewItem<Cauliflower>();
 	}
 
 	switch (ItemState_)

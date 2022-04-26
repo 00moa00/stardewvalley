@@ -71,8 +71,7 @@ void DropStone::Update()
 		MoveToPlayer();
 		if (isMapItemDeath_ == true)
 		{
-			Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-			MainPlayer->GetInventroy()->NewItem<DropStone>();
+			Player::MainPlayer->GetInventroy()->NewItem<DropStone>();
 		}
 
 		break;

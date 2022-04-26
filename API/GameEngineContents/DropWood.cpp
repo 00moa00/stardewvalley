@@ -67,8 +67,7 @@ void DropWood::Update()
 		MoveToPlayer();
 		if (isMapItemDeath_ == true)
 		{
-			Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
-			MainPlayer->GetInventroy()->NewItem<DropWood>();
+			Player:: MainPlayer->GetInventroy()->NewItem<DropWood>();
 		}
 
 		break;
