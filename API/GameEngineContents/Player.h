@@ -145,6 +145,8 @@ public:
 	//     Getter
 	//================================
 
+	float4 GetMoveDir();
+
 	int GetMoney();
 
 	int GetEnergy();

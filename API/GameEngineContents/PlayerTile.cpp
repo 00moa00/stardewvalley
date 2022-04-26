@@ -19,19 +19,19 @@ float4 Player::PlayerCollCheckPos()
 
 	if (float4::DOWN.CompareInt2D(MoveDir_))
 	{
-		Length += float4(0.0f, 24.0f);
+		Length = float4(0.0f, 24.0f);
 	}
 	if (float4::RIGHT.CompareInt2D(MoveDir_))
 	{
-		Length += float4(24.0f, 0.0f);
+		Length = float4(24.0f, 0.0f);
 	}
 	if (float4::LEFT.CompareInt2D(MoveDir_))
 	{
-		Length += float4(-24.0f, 0.0f);
+		Length = float4(-24.0f, 0.0f);
 	}
 	if (float4::UP.CompareInt2D(MoveDir_))
 	{
-		Length += float4(0.0f, -24.0f);
+		Length = float4(0.0f, -24.0f);
 	}
 
 	float4 Pos = { GetPosition().x + Length.x, GetPosition().y + Length.y };
@@ -118,9 +118,21 @@ void Player::CreateWaterTile()
 void Player::CreateWaterEffet()
 {
 	float4 Pos = PlayerCollCheckPos();
+	float MarginX = 0;
 
-	WateringCanEffect* WateringCanEffect_ = GetLevel()->CreateActor<WateringCanEffect>(static_cast<int>(PLAYLEVEL::EFFECT));
-	WateringCanEffect_->SetPosition({ Pos.x, Pos.y });
+	if (MoveDir_ .CompareInt2D(float4::RIGHT))
+	{
+		MarginX = 24.f;
+	}
+
+	if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		MarginX = -24.f;
+	}
+
+
+	WateringCanEffect* WateringCanEffect_ = GetLevel()->CreateActor<WateringCanEffect>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+	WateringCanEffect_->SetPosition({ Pos.x + MarginX, Pos.y});
 
 	if (GetCurrentLevel() == "MyHouseLevel")
 	{

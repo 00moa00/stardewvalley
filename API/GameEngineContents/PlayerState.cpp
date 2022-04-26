@@ -30,6 +30,11 @@ int  Player::GetEnergy()
 	return Energy_;
 }
 
+float4 Player::GetMoveDir()
+{
+	return MoveDir_;
+}
+
 int Player::GetMoney()
 {
 	return Money_;

@@ -10,6 +10,13 @@
 #include "DialogueBox.h"
 #include "RendererData.h"
 
+enum class NPC_STATE
+{
+	INIT,
+	WALK,
+	MAX
+};
+
 // 설명 :
 class Npc : public GameEngineActor
 {
@@ -27,18 +34,24 @@ public:
 
 public:
 	virtual void OpenDialogue();
-
-
+	virtual void DirAnimationChange();
+	virtual std::string GetDirString();
+	virtual bool ForAwayPlayer();
 
 protected:
 
+	float4 MoveDir_;
 	bool DialogueUpdate_;
+	const char* ArrAnimationName[static_cast<int>(NPC_STATE::MAX)];
+
+	NPC_STATE NpcUpdateState_;
 
 	std::vector<GameEngineCollision*> ColList;
 
 	GameEngineRenderer* NpcRenderer_;
-	GameEngineCollision* NpcCollider_;
-	GameEngineCollision* PersonalCollider_;
+
+	GameEngineCollision* NpcCollider_;		//충돌체크용
+	GameEngineCollision* PersonalCollider_;	//개인 클릭 용
 
 	DialogueBox* DialogueBox_;
 

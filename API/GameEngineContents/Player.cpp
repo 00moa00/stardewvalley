@@ -96,11 +96,11 @@ void Player::Start()
 	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
 
 	ToolRenderer_ = CreateRenderer();
-	ToolRenderer_ ->SetPivotType(RenderPivot::BOT);
+	ToolRenderer_->SetPivotType(RenderPivot::BOT);
 	ToolRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::USE_TOOL));
 
 	PlayerCollider_ = CreateCollision("Player", { 40.f, 30 });
-
+	//PlayerCollider_->SetPivot({0, 20});
 	SetScale({ 40.f, 40.f });
 
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
@@ -230,6 +230,7 @@ void Player::Update()
 	ClearWetDirtTile();
 	ChangeLevel();
 	NpcCollCheck();
+	CheckShippingBox();
 
 	if (CurrentLevel_ == "ShopLevel")
 	{
@@ -283,7 +284,6 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::INIT:
 
 		GetItem();
-		CheckShippingBox();
 		ChangeHandItem();
 		harvestingCrops();
 
