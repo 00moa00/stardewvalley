@@ -296,7 +296,6 @@ void Player::PlayerUpdate()
 		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
 		if (MainMouse_->MouseClickInventoryOut())
 		{
-			isEvent_ = true;
 			CheckTool();//툴에 맞게 스테이트 이동
 		}
 
@@ -312,6 +311,7 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::HOE:
 
+		isEvent_ = true;
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			if (FarmingArea_ == true)
@@ -327,6 +327,7 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::WATER:
 
+		isEvent_ = true;
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CreateWaterEffet();
@@ -341,6 +342,7 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::AXE:
 
+		isEvent_ = true;
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CrushTree();
@@ -355,6 +357,7 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::PICKAXE:
 
+		isEvent_ = true;
 		if (PlayerRenderer_->IsEndAnimation())
 		{
 			CrushStone();

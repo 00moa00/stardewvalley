@@ -79,6 +79,8 @@ void GiftBox::Update()
 		{
 			Items* HandItem = Inventory::MainInventory->NewItem<Parsnip_Seeds>(15);
 			Inventory::MainInventory->SetCurrentItem(HandItem);
+			Inventory::MainInventory->SetCurrentItemParsnipSeed();
+
 			Player::MainPlayer->SetPlayerDirDown();
 			Player::MainPlayer->SetisEvent(false);
 

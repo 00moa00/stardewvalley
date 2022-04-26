@@ -191,6 +191,24 @@ public:
 		CurrentItem_ = _SetItem;
 	}
 
+
+	void SetCurrentItemParsnipSeed()
+	{
+		std::map<int, Items*>::iterator StartIter;
+		std::map<int, Items*>::iterator EndIter;
+
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			if (StartIter->second->GetItemNameConstRef() == "Parsnip_Seeds")
+			{
+				CurrentItem_ = StartIter->second;
+
+			}
+		}
+
+
+	}
+
 	void SetPopUpStateMini()
 	{
 		PopUpState_ = POPUPSTATE::MINI;

@@ -358,39 +358,50 @@ void Player::CrushTree()
 
 void Player::GetItem()
 {
-	for (Iter = Player::MapObject_.begin(); Iter != Player::MapObject_.end(); ++Iter) {
 
-		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
-			&& Iter->second->GetItemType() == ITEMTYPE::GETITEM
+	std::map<int, Items*>::iterator GetItemIter = MapObject_.begin();
+
+
+	for (; GetItemIter != MapObject_.end(); ++GetItemIter) {
+
+		if (GetItemIter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
+			&& GetItemIter->second->GetItemType() == ITEMTYPE::GETITEM
 			&& MainMouse_->isMouseClick() == true
 			&& GetCurrentItem()->GetItemType() != ITEMTYPE::TOOL)
 		{
 			//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
-			Iter->second->ItemCollPlayer();
+			GetItemIter->second->ItemCollPlayer();
+			MapObject_.erase(GetItemIter);
+			GetItemIter = MapObject_.begin();
 		}
 
 		else
 		{
 			PlayerState_ = PLAYER_UPDATE::INIT;
+
 		}
 	}
 }
 
 void Player::CheckShippingBox()
 {
-	for (Iter = Player::MapObject_.begin(); Iter != Player::MapObject_.end(); ++Iter) {
+	std::map<int, Items*>::iterator ShippingIter = MapObject_.begin();
 
-		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
-			&& Iter->second->GetItemType() == ITEMTYPE::SHIPPINGBOX)
-		{
-			//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
-			Iter->second->ItemCollPlayer();
-		}
+	if (GetCurrentLevel() == "MyFarmLevel")
+	{
+		for (; ShippingIter != MapObject_.end(); ++ShippingIter) {
 
-		else
-		{
-			Iter->second->ItemCollFalsePlayer();
-			PlayerState_ = PLAYER_UPDATE::INIT;
+			if (ShippingIter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
+				&& ShippingIter->second->GetItemType() == ITEMTYPE::SHIPPINGBOX)
+			{
+				//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
+				ShippingIter->second->ItemCollPlayer();
+			}
+
+			else
+			{
+				ShippingIter->second->ItemCollFalsePlayer();
+			}
 		}
 	}
 }

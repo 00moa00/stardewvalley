@@ -16,9 +16,9 @@ ShippingBox::~ShippingBox()
 void ShippingBox::Start()
 {
 	ItemRenderer_ = CreateRenderer("ShippingBin.bmp");
-	ItemCollider_ = CreateCollision("MapObject", { 90, 75 });
+	ItemCollider_ = CreateCollision("MapObject", { 90, 90 });
 
-	SetScale({ 90, 75 });
+	SetScale({ 120, 100 });
 
 	ItemName_ = "ShippingBox";
 	ItemType_ = ITEMTYPE::SHIPPINGBOX;

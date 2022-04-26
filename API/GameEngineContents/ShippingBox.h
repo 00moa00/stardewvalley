@@ -29,6 +29,8 @@ private:
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
+public:
+
 	void ItemCollPlayer() override;
 	void ItemCollFalsePlayer() override;
 private:

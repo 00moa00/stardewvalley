@@ -12,9 +12,9 @@ void ShippingBoxTop::Start()
 {
 	ItemRenderer_ = CreateRenderer("BoxOpen.bmp");
 
-	ItemRenderer_->CreateAnimation("BoxOpen.bmp", "OPEN", 0, 12, 0.100f, false);
-	ItemRenderer_->CreateAnimation("BoxOpen.bmp", "INIT", 0, 0, 0.100f, false);
-	ItemRenderer_->CreateAnimation("BoxClose.bmp", "CLOSE", 0, 12, 0.100f, false);
+	ItemRenderer_->CreateAnimation("BoxOpen.bmp", "OPEN", 0, 12, 0.050f, false);
+	ItemRenderer_->CreateAnimation("BoxOpen.bmp", "INIT", 0, 0, 0.050f, false);
+	ItemRenderer_->CreateAnimation("BoxClose.bmp", "CLOSE", 0, 12, 0.050f, false);
 
 	ItemRenderer_->ChangeAnimation("INIT");
 
