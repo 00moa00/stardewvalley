@@ -26,9 +26,9 @@ MyFarmLevel::MyFarmLevel()
 	Time(0.f)
 	
 {
-
 	SetName("MyFarmLevel");
-
+	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
+	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
 }
 
 MyFarmLevel::~MyFarmLevel()

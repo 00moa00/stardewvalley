@@ -22,7 +22,6 @@ protected:
 
 private:
 
-
 	GameEngineRenderer* PlayerEngergyFrame_;
 
 

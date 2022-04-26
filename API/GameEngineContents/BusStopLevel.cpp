@@ -10,7 +10,8 @@ BusStopLevel::BusStopLevel()
 {
 
 	SetName("BusStopLevel");
-
+	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
+	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
 }
 
 void BusStopLevel::Loading()

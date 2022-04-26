@@ -17,7 +17,8 @@ TownLevel::TownLevel()
 {
 
 	SetName("TownLevel");
-
+	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
+	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
 }
 
 TownLevel::~TownLevel()

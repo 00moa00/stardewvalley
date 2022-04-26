@@ -21,7 +21,8 @@ MyHouseLevel::MyHouseLevel()
 
 {
 	SetName("MyHouseLevel");
-
+	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
+	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
 }
 
 MyHouseLevel::~MyHouseLevel()

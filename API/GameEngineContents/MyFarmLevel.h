@@ -6,7 +6,7 @@ class Inventory;
 
 
 // Ό³Έν :
-class MyFarmLevel : public PlayLevel
+class MyFarmLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
@@ -26,12 +26,15 @@ public:
 
 
 private:
-	void LoadMapObject();
 
 	float Time;
+
+	BackGround* BackGround_;
+	BackGround* BackGroundFront_;
 
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;
 
-
+private:
+	void LoadMapObject();
 };

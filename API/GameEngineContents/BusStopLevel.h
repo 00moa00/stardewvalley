@@ -4,7 +4,7 @@
 
 
 // Ό³Έν :
-class BusStopLevel : public PlayLevel
+class BusStopLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
@@ -25,9 +25,15 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
-	void LoadMapObject();
+
+	BackGround* BackGround_;
+	BackGround* BackGroundFront_;
 
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;
+
+private:
+	void LoadMapObject();
+
 };
 

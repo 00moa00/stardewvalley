@@ -5,7 +5,7 @@
 
 
 // Ό³Έν :
-class MyHouseLevel : public PlayLevel
+class MyHouseLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
@@ -33,6 +33,9 @@ protected:
 private:
 
 	void LoadMapObject();
+
+	BackGround* BackGround_;
+	BackGround* BackGroundFront_;
 
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;

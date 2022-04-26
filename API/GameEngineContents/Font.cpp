@@ -324,7 +324,6 @@ void Font::ChangeFont(std::string _Font, float4 _Pos)
 
 	for (Count_ = 0; Count_ < _Font.size(); ++Count_)
 	{
-		//숫자의 앞에서부터 접근
 		switch (Font_[Count_])
 		{
 		case 'A':

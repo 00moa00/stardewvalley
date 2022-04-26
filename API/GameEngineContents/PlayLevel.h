@@ -44,10 +44,7 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _NextLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _PrevLevel) override;
 
-	//MainUI* MainUI_;
 
-	PlayerEnergyBar* PlayerEnergyBar_;
-	PlayerEnergyFrame* PlayerEnergyFrame_;
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
 

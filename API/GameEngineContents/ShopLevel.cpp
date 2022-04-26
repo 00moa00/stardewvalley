@@ -16,7 +16,8 @@ ShopLevel::ShopLevel()
 {
 
 	SetName("ShopLevel");
-
+	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
+	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
 }
 
 ShopLevel::~ShopLevel()

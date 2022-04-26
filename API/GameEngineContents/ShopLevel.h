@@ -2,7 +2,7 @@
 #include"PlayLevel.h"
 
 // Ό³Έν :
-class ShopLevel : public PlayLevel
+class ShopLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
@@ -26,11 +26,13 @@ private:
 private:
 	Shop* Shop_;
 
+	BackGround* BackGround_;
+	BackGround* BackGroundFront_;
+
 	std::vector<Npc*> NpcList_;
 	std::map<int, Items*> MapObject_;
 
 private:
-
 	void LoadMapObject();
 };
 
