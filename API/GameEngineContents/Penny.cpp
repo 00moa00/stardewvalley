@@ -20,7 +20,7 @@ void Penny::Start()
 	NpcRenderer_->SetIndex(0);
 
 	NpcCollider_ = CreateCollision("NPC", { 48.f, 20.f });
-	NpcCollider_->SetPivot({0, 20.f});
+	NpcCollider_->SetPivot({0, 40.f});
 
 	MainDialogueBox_ = GetLevel()->CreateActor<DialogueBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
 	MainDialogueBox_->DialogueOff();
