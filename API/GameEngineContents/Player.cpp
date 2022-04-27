@@ -99,12 +99,17 @@ void Player::Start()
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	
 	PlayerBodyRenderer_ = CreateRenderer();
-
-
 	PlayerPantsRenderer_ = CreateRenderer();
 	PlayerShirtsRenderer_ = CreateRenderer();
 	PlayerHairRenderer_ = CreateRenderer();
 	PlayerHandRenderer_ = CreateRenderer();
+
+	PlayerBodyRenderer_->SetSortingPivot({0, -40});
+	PlayerPantsRenderer_->SetSortingPivot({ 0, -40 });
+	PlayerShirtsRenderer_->SetSortingPivot({ 0, -40 });
+	PlayerHairRenderer_->SetSortingPivot({ 0, -40 });
+	PlayerHandRenderer_->SetSortingPivot({ 0, -40 });
+
 
 	PlayerBodyRenderer_->SetPivotType(RenderPivot::BOT);
 	PlayerPantsRenderer_->SetPivotType(RenderPivot::BOT);
@@ -112,11 +117,11 @@ void Player::Start()
 	PlayerHairRenderer_->SetPivotType(RenderPivot::BOT);
 	PlayerHandRenderer_->SetPivotType(RenderPivot::BOT);
 
-	PlayerBodyRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_BODY));
-	PlayerPantsRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_PANTS));
-	PlayerShirtsRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_SHIRTS));
-	PlayerHairRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_HAIR));
-	PlayerHandRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_HAND));
+	PlayerBodyRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER));
+	PlayerPantsRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER));
+	PlayerShirtsRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER));
+	PlayerHairRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER));
+	PlayerHandRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER));
 
 
 	ToolRenderer_ = CreateRenderer();

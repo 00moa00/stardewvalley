@@ -72,6 +72,8 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;
+	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
+	
 }
 
 void TownLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -129,13 +131,13 @@ void TownLevel::LoadMapObject()
 			{
 			case TILE_LIST::LEWIS:
 
-				NpcList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::NPC)));
+				NpcList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::PLAYER)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
-
+				break;
 			case TILE_LIST::PENNY:
 
-				NpcList_.insert(std::make_pair("Penny", CreateActor<Penny>((int)PLAYLEVEL::NPC)));
+				NpcList_.insert(std::make_pair("Penny", CreateActor<Penny>((int)PLAYLEVEL::PLAYER)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
 

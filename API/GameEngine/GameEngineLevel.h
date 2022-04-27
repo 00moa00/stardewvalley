@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include <map>
+#include <set>
 #include <vector>
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineMath.h>
@@ -99,6 +100,12 @@ public:
 		CameraPos_ = _Value;
 	}
 
+	// 이 오더는 sort를 하겠다.
+	void YSortOn(int _SortOrder)
+	{
+		IsYSort_.insert(_SortOrder);
+	}
+
 	template<typename ConvertType>
 	ConvertType* FindActor(const std::string& _Name)
 	{
@@ -143,6 +150,10 @@ private:
 
 private:
 	std::map<int, std::list<GameEngineRenderer*>> AllRenderer_;
+	
+	// 존재하냐 안하냐
+	std::set<int> IsYSort_;
+
 
 	void AddRenderer(GameEngineRenderer* _Renderer);
 
