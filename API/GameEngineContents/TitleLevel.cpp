@@ -23,9 +23,7 @@ TitleLevel::TitleLevel()
 
 	TitleLogo_(nullptr),
 	Title_(nullptr),
-	MenuExit_(nullptr),
-	MenuLoad_(nullptr),
-	MenuNewGame_(nullptr),
+
 	TitleBackGround_(nullptr),
 	TitleBackMountGreen(nullptr),
 	TitleBackMountBlue(nullptr),
@@ -35,7 +33,8 @@ TitleLevel::TitleLevel()
 	CustomBoard_(nullptr),
 
 	Bird_(),
-	TitleCloud_()
+	TitleCloud_(),
+	MenuButton_()
 
 {
 	SetName("TitleLevel");
@@ -48,10 +47,10 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::Loading()
 {
-	//if (nullptr == Player::MainPlayer)
-	//{
-	//	Player::MainPlayer = CreateActor<Player>(static_cast<int>(TITLELEVEL::PLAYER));
-	//}
+	if (nullptr == Player::MainPlayer)
+	{
+		Player::MainPlayer = CreateActor<Player>(static_cast<int>(TITLELEVEL::PLAYER));
+	}
 
 }
 
@@ -104,6 +103,28 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	Bird_[1] = CreateActor<Bird>(static_cast<int>(TITLELEVEL::BIRD));
 	Bird_[1]->SetPosition({ GameEngineWindow::GetScale().Half().x + 100.f, (1500.f / 2) + 300.f });
 
+
+	//뉴게임스타트
+	MenuButton_[0] = CreateActor<MenuButton>(static_cast<int>(TITLELEVEL::TITLELOGO));
+	MenuButton_[0]->SetPosition({ GameEngineWindow::GetScale().Half().x - 250.f,GameEngineWindow::GetScale().Half().y + 250.f });
+	MenuButton_[0]->CreateButtonRenderer("TitleMenuButtons.bmp", 0);
+	MenuButton_[0]->CreateButtonCollision("NewGameStart", {222, 174});
+	MenuButton_[0]->Off();
+
+	//로드
+	MenuButton_[1] = CreateActor<MenuButton>(static_cast<int>(TITLELEVEL::TITLELOGO));
+	MenuButton_[1]->SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y + 250.f });
+	MenuButton_[1]->CreateButtonRenderer("TitleMenuButtons.bmp", 1);
+	MenuButton_[1]->CreateButtonCollision("LoadGame", { 222, 174 });
+	MenuButton_[1]->Off();
+
+	//나가기
+	MenuButton_[2] = CreateActor<MenuButton>(static_cast<int>(TITLELEVEL::TITLELOGO));
+	MenuButton_[2]->SetPosition({ GameEngineWindow::GetScale().Half().x + 250.f , GameEngineWindow::GetScale().Half().y + 250.f });
+	MenuButton_[2]->CreateButtonRenderer("TitleMenuButtons.bmp", 3);
+	MenuButton_[2]->CreateButtonCollision("GameExit", { 222, 174 });
+	MenuButton_[2]->Off();
+
 	CustomBoard_ = CreateActor<CustomBoard>(static_cast<int>(TITLELEVEL::TITLELOGO));
 	CustomBoard_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x ,GameEngineWindow::GetInst().GetScale().Half().y });
 
@@ -112,8 +133,8 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 
 //	Player::MainPlayer->SetDirtTileMap(&TitleBackGround_->DirtTileMap_);
-	//Player::MainPlayer->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x ,GameEngineWindow::GetInst().GetScale().Half().y - 100.f});
-	//Player::MainPlayer->Off();
+	Player::MainPlayer->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x ,GameEngineWindow::GetInst().GetScale().Half().y - 100.f});
+	Player::MainPlayer->Off();
 
 }	
 
@@ -130,17 +151,15 @@ void TitleLevel::Update()
 	MoveTitleLogo();
 	MoveBird();
 
-	if (MenuNewGame_ != nullptr
-		&& MenuLoad_ != nullptr
-		&& MenuExit_ != nullptr
-		&& MenuNewGame_->GetisCustomBoardOpen() == true)
+	if (MenuButton_[0]->ButtomMouseOverAndMouseClick())
 	{
 		CustomBoard_->CustomBoardOn();
-		//Player::MainPlayer->On();
+		Player::MainPlayer->On();
 		TitleLogo_->Off();
-		MenuNewGame_->Off();
-		MenuExit_->Off();
-		MenuLoad_->Off();
+
+		MenuButton_[0]->Off();
+		MenuButton_[1]->Off();
+		MenuButton_[2]->Off();
 
 	}
 
@@ -239,24 +258,23 @@ void TitleLevel::PopUpMenu()
 	if ((TitleLogo_->GetPosition().y >= GameEngineWindow::GetScale().Half().y - 100.f))
 	{
 
-
 		AddTimer(static_cast<int>(GameEngineTime::GetDeltaTime() + 1.f));
 
-		if (getTimer() > 150 && MenuNewGame_ == nullptr)
+		if (getTimer() == 100 )
 		{
-			MenuNewGame_ = CreateActor<MenuNewGame>(static_cast<int>(TITLELEVEL::TITLELOGO));
+			MenuButton_[0]->On();
 		}
 
-		if (getTimer() > 250 && MenuLoad_ == nullptr)
+		if (getTimer() == 150)
 		{
-			MenuLoad_ = CreateActor<MenuLoad>(static_cast<int>(TITLELEVEL::TITLELOGO));
+			MenuButton_[1]->On();
 		}
 
 
-		if (getTimer() > 350 && MenuExit_ == nullptr)
+		if (getTimer() == 200 )
 		{
-			MenuExit_ = CreateActor<MenuExit>(static_cast<int>(TITLELEVEL::TITLELOGO));
-			
+			MenuButton_[2]->On();
+
 		}
 
 		if (Mouse_->isMouseClick())

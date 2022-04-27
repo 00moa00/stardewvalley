@@ -17,12 +17,13 @@ MenuButton::~MenuButton()
 void MenuButton::Start()
 {
 	ButtonRenderer_ = CreateRenderer();
+	ButtonRenderer_->CameraEffectOff();
 }
 
 void MenuButton::Update()
 {
 
-	if (ButtomMouseOver())
+	if (ButtonCollision_!= nullptr && ButtomMouseOver())
 	{
 		ButtonRenderer_->SetIndex(Index_ + 4);
 	}

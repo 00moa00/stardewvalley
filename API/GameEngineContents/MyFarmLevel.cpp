@@ -57,6 +57,7 @@ void MyFarmLevel::Loading()
 	//{
 	//	PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
 	//}
+
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();

@@ -2,14 +2,12 @@
 #include <GameEngine/GameEngineLevel.h>
 #include "TitleLogo.h"
 #include "RendererData.h"
-#include "MenuExit.h"
-#include "MenuLoad.h"
-#include "MenuNewGame.h"
 #include "Mouse.h"
 #include "Player.h"
 #include "Title.h"
 #include "BackGround.h"
 #include "Bird.h"
+#include "MenuButton.h"
 
 #include "CustomBoard.h"
 
@@ -43,9 +41,8 @@ private:
 	Title* Title_;
 
 	TitleLogo* TitleLogo_;
-	MenuNewGame* MenuNewGame_;
-	MenuLoad* MenuLoad_;
-	MenuExit* MenuExit_;
+	MenuButton* MenuButton_[3];
+	MenuButton* OKButton_;
 
 	Mouse* Mouse_;
 

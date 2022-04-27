@@ -344,15 +344,6 @@
     <ClCompile Include="CustomBoard.cpp">
       <Filter>Actor\02. Title</Filter>
     </ClCompile>
-    <ClCompile Include="MenuExit.cpp">
-      <Filter>Actor\02. Title</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuLoad.cpp">
-      <Filter>Actor\02. Title</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuNewGame.cpp">
-      <Filter>Actor\02. Title</Filter>
-    </ClCompile>
     <ClCompile Include="ArrowButton.cpp">
       <Filter>Actor\02. Title</Filter>
     </ClCompile>
@@ -723,15 +714,6 @@
       <Filter>Actor\03. Play\NPC</Filter>
     </ClInclude>
     <ClInclude Include="CustomBoard.h">
-      <Filter>Actor\02. Title</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuNewGame.h">
-      <Filter>Actor\02. Title</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuExit.h">
-      <Filter>Actor\02. Title</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuLoad.h">
       <Filter>Actor\02. Title</Filter>
     </ClInclude>
     <ClInclude Include="ArrowButton.h">

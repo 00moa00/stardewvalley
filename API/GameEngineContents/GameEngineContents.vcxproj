@@ -435,14 +435,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MenuExit.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MenuLoad.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Monster.h">
       <SubType>
       </SubType>
@@ -551,10 +543,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MenuNewGame.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -798,14 +786,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MenuExit.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MenuLoad.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Monster.cpp">
       <SubType>
       </SubType>
@@ -996,10 +976,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MenuNewGame.cpp">
       <SubType>
       </SubType>
     </ClCompile>

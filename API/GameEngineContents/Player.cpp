@@ -99,6 +99,8 @@ void Player::Start()
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	
 	PlayerBodyRenderer_ = CreateRenderer();
+
+
 	PlayerPantsRenderer_ = CreateRenderer();
 	PlayerShirtsRenderer_ = CreateRenderer();
 	PlayerHairRenderer_ = CreateRenderer();
@@ -592,17 +594,17 @@ void Player::LevelInit()
 	MainMouse_->Renderer()->CameraEffectOff();
 	CurrentLevel_ = GetCurrentLevel();
 
-	//if (CurrentLevel_ == "TitleLevel")
-	//{
-	//	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
-	//	ToolRenderer_->CameraEffectOff();
+	if (CurrentLevel_ == "TitleLevel")
+	{
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+		ToolRenderer_->CameraEffectOff();
 
-	//	PlayerBodyRenderer_->CameraEffectOff();
-	//	PlayerPantsRenderer_->CameraEffectOff();
-	//	PlayerShirtsRenderer_->CameraEffectOff();
-	//	PlayerHairRenderer_->CameraEffectOff();
-	//	PlayerHandRenderer_->CameraEffectOff();
-	//}
+		PlayerBodyRenderer_->CameraEffectOff();
+		PlayerPantsRenderer_->CameraEffectOff();
+		PlayerShirtsRenderer_->CameraEffectOff();
+		PlayerHairRenderer_->CameraEffectOff();
+		PlayerHandRenderer_->CameraEffectOff();
+	}
 
 	if (CurrentLevel_ == "MyHouseLevel")
 	{
@@ -678,14 +680,15 @@ void Player::LevelInit()
 		PlayerHandRenderer_->CameraEffectOn();
 	}
 
-
 	// 타이틀 -> 집
 	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "")
 	{
 		SetPosition({ 110.f, 2620.f });
 	}
 
-	// 타이틀 -> 마을
+
+
+	// 타이틀 -> 집
 	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "")
 	{
 		SetPosition({ 790.f, 490.f });
