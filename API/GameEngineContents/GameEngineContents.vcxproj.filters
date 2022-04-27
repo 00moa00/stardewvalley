@@ -11,15 +11,6 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Actor\03. Play</Filter>
     </ClCompile>
-    <ClCompile Include="MenuExit.cpp">
-      <Filter>Actor\02. Title\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuLoad.cpp">
-      <Filter>Actor\02. Title\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuNewGame.cpp">
-      <Filter>Actor\02. Title\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="MainUI.cpp">
       <Filter>Actor\03. Play\UI</Filter>
     </ClCompile>
@@ -40,9 +31,6 @@
     </ClCompile>
     <ClCompile Include="PlayerBackGround.cpp">
       <Filter>Actor\Custom</Filter>
-    </ClCompile>
-    <ClCompile Include="IntroLevel.cpp">
-      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="MyHouse.cpp">
       <Filter>Actor\03. Play\Buildings</Filter>
@@ -353,6 +341,24 @@
     <ClCompile Include="Penny.cpp">
       <Filter>Actor\03. Play\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="CustomBoard.cpp">
+      <Filter>Actor\02. Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuExit.cpp">
+      <Filter>Actor\02. Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuLoad.cpp">
+      <Filter>Actor\02. Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuNewGame.cpp">
+      <Filter>Actor\02. Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ArrowButton.cpp">
+      <Filter>Actor\02. Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButton.cpp">
+      <Filter>Actor\02. Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -364,15 +370,6 @@
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>Actor\03. Play</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuExit.h">
-      <Filter>Actor\02. Title\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuLoad.h">
-      <Filter>Actor\02. Title\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuNewGame.h">
-      <Filter>Actor\02. Title\Menu</Filter>
     </ClInclude>
     <ClInclude Include="MainUI.h">
       <Filter>Actor\03. Play\UI</Filter>
@@ -394,9 +391,6 @@
     </ClInclude>
     <ClInclude Include="PlayerBackGround.h">
       <Filter>Actor\Custom</Filter>
-    </ClInclude>
-    <ClInclude Include="IntroLevel.h">
-      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="MyHouse.h">
       <Filter>Actor\03. Play\Buildings</Filter>
@@ -728,6 +722,24 @@
     <ClInclude Include="Penny.h">
       <Filter>Actor\03. Play\NPC</Filter>
     </ClInclude>
+    <ClInclude Include="CustomBoard.h">
+      <Filter>Actor\02. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuNewGame.h">
+      <Filter>Actor\02. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuExit.h">
+      <Filter>Actor\02. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLoad.h">
+      <Filter>Actor\02. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrowButton.h">
+      <Filter>Actor\02. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuButton.h">
+      <Filter>Actor\02. Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">
@@ -744,9 +756,6 @@
     </Filter>
     <Filter Include="Actor\02. Title">
       <UniqueIdentifier>{cd82154b-1470-4a17-b710-3d828bf9cce3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\02. Title\Menu">
-      <UniqueIdentifier>{65853773-2cc8-4118-aa08-455b2166b485}</UniqueIdentifier>
     </Filter>
     <Filter Include="Actor\03. Play">
       <UniqueIdentifier>{2b9a7125-e5c4-4740-931d-18dd34a3f8d4}</UniqueIdentifier>

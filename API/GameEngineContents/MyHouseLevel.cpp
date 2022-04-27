@@ -16,7 +16,7 @@
 
 MyHouseLevel::MyHouseLevel()
 	:
-	Iter(MapObject_.begin()),
+	//Iter(MapObject_.begin()),
 	Time(0.f)
 
 {

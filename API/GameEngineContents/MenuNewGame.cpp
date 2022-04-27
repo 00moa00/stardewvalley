@@ -13,10 +13,10 @@
 
 MenuNewGame::MenuNewGame()
 	:	
-		isMouseOver_(false),
-
-		NewGame_(nullptr),
-		NewGameCollision_(nullptr)
+	isMouseOver_(false),
+	CustomBoardOpen_(false),
+	NewGame_(nullptr),
+	NewGameCollision_(nullptr)
 {
 }
 
@@ -55,8 +55,8 @@ void MenuNewGame::Update()
 
 	if (isMouseOver() == true && true == GameEngineInput::GetInst()->IsDown("LeftClick"))
 	{
-		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
-
+		//GameEngine::GetInst().ChangeLevel("MyHouseLevel");
+		CustomBoardOpen_ = true;
 	}
 
 }

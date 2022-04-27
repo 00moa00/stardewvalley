@@ -9,7 +9,7 @@
 #include "PlayerSpriteData.h"
 #include "TileData.h"
 
-std::string Player::CurrentLevel_ = "";
+std::string Player::CurrentLevel_ = "TitleLevel";
 std::string Player::PrevLevel_ = "";
 
 Player* Player::MainPlayer = nullptr;
@@ -372,14 +372,17 @@ void Player::Start()
 
 void Player::Update()
 {
-	SetCamera();
-	PlayerUpdate();
-	PlayerDirCheck();
-	SetPlayerHandItemPos();
-	ClearWetDirtTile();
-	ChangeLevel();
-	NpcCollCheck();
-	CheckShippingBox();
+	if (CurrentLevel_ != "TitleLevel")
+	{
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ClearWetDirtTile();
+		ChangeLevel();
+		NpcCollCheck();
+		CheckShippingBox();
+	}
 
 	if (CurrentLevel_ == "ShopLevel")
 	{
@@ -589,6 +592,18 @@ void Player::LevelInit()
 	MainMouse_->Renderer()->CameraEffectOff();
 	CurrentLevel_ = GetCurrentLevel();
 
+	//if (CurrentLevel_ == "TitleLevel")
+	//{
+	//	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+	//	ToolRenderer_->CameraEffectOff();
+
+	//	PlayerBodyRenderer_->CameraEffectOff();
+	//	PlayerPantsRenderer_->CameraEffectOff();
+	//	PlayerShirtsRenderer_->CameraEffectOff();
+	//	PlayerHairRenderer_->CameraEffectOff();
+	//	PlayerHandRenderer_->CameraEffectOff();
+	//}
+
 	if (CurrentLevel_ == "MyHouseLevel")
 	{
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
@@ -663,10 +678,17 @@ void Player::LevelInit()
 		PlayerHandRenderer_->CameraEffectOn();
 	}
 
+
 	// 타이틀 -> 집
+	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "")
+	{
+		SetPosition({ 110.f, 2620.f });
+	}
+
+	// 타이틀 -> 마을
 	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "")
 	{
-		SetPosition({790.f, 490.f});
+		SetPosition({ 790.f, 490.f });
 	}
 
 	// 집 -> 농장

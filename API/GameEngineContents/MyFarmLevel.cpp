@@ -38,25 +38,25 @@ MyFarmLevel::~MyFarmLevel()
 
 void MyFarmLevel::Loading()
 {
-	if (nullptr == Player::MainPlayer)
-	{
-		Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER_BODY));
-	}
+	//if (nullptr == Player::MainPlayer)
+	//{
+	//	Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER_BODY));
+	//}
 
-	if (nullptr == Inventory::MainInventory)
-	{
-		Inventory::MainInventory = CreateActor<Inventory>(static_cast<int>(PLAYLEVEL::INVENTORY));
-	}
+	//if (nullptr == Inventory::MainInventory)
+	//{
+	//	Inventory::MainInventory = CreateActor<Inventory>(static_cast<int>(PLAYLEVEL::INVENTORY));
+	//}
 
-	if (nullptr == MainUI::MainMainUI)
-	{
-		MainUI::MainMainUI = CreateActor<MainUI>(static_cast<int>(PLAYLEVEL::MAINUI));
-	}
+	//if (nullptr == MainUI::MainMainUI)
+	//{
+	//	MainUI::MainMainUI = CreateActor<MainUI>(static_cast<int>(PLAYLEVEL::MAINUI));
+	//}
 
-	if (nullptr == PlayerEnergyFrame::MainPlayerEnergyFrame)
-	{
-		PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
-	}
+	//if (nullptr == PlayerEnergyFrame::MainPlayerEnergyFrame)
+	//{
+	//	PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
+	//}
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();

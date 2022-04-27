@@ -6,11 +6,13 @@
 #include "TileData.h"
 #include "RendererData.h"
 
+#include "BackGround.h"
+
 #include "PlayerEnergyFrame.h"
 #include "MainUI.h"
-#include "BackGround.h"
 #include "Player.h"
 #include "Inventory.h"
+
 #include "Items.h"
 #include "Npc.h"
 #include "Mouse.h"
@@ -35,13 +37,12 @@ public:
 
 	//GameEngineSoundPlayer BgmPlayer;
 
-protected:
+private:
 
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _NextLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
-
 
 private:
 
@@ -51,5 +52,5 @@ private:
 	BackGround* BackGroundFront_;
 
 	std::map<int, Items*> MapObject_;
-	std::map<int, Items*>::iterator Iter;
+	//std::map<int, Items*>::iterator Iter;
 };

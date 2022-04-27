@@ -17,15 +17,14 @@ public:
 	MenuNewGame& operator=(MenuNewGame&& _Other) noexcept = delete;
 
 private:
-
 	void Start()override;
 	void Render()override;
 	void Update() override;
 
 
 private:
-
 	bool isMouseOver_;
+	bool CustomBoardOpen_;
 
 	GameEngineRenderer* NewGame_;
 	GameEngineCollision* NewGameCollision_;
@@ -37,6 +36,12 @@ private:
 	bool isMouseOver()
 	{
 		return (NewGameCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
+	}
+
+public:
+	bool GetisCustomBoardOpen()
+	{
+		return CustomBoardOpen_;
 	}
 
 };

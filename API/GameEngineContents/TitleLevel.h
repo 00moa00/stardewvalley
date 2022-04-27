@@ -11,6 +11,8 @@
 #include "BackGround.h"
 #include "Bird.h"
 
+#include "CustomBoard.h"
+
 
 // Ό³Έν :
 class TitleLevel : public GameEngineLevel
@@ -55,6 +57,8 @@ private:
 	BackGround* TitleCloud_[3];
 
 	Bird* Bird_[2];
+
+	CustomBoard* CustomBoard_;
 
 
 private:

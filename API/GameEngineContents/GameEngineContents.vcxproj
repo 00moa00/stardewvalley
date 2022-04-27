@@ -158,6 +158,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ArrowButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CustomBoard.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Effect.h">
       <SubType>
       </SubType>
@@ -330,6 +338,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MenuButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Mouse.h">
       <SubType>
       </SubType>
@@ -415,10 +427,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerSpriteData.h" />
-    <ClInclude Include="IntroLevel.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="LeftArrow.h">
       <SubType>
       </SubType>
@@ -600,6 +608,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArrowButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CustomBoard.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Effect.cpp">
       <SubType>
       </SubType>
@@ -709,10 +725,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="IntroLevel.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="InventoryCurrentFrame.cpp">
       <SubType>
@@ -779,6 +791,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MapColl.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MenuButton.cpp">
       <SubType>
       </SubType>
     </ClCompile>

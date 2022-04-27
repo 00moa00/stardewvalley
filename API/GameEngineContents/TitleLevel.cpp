@@ -7,29 +7,39 @@
 
 #include <GameEngine/GameEngineImage.h>
 
+#include "Player.h"
+
 
 //Player* TitleLevel::Player_;
 
 
 TitleLevel::TitleLevel() 
 	:	
-		TitleLogo_(nullptr),
-		Title_(nullptr),
-		MenuExit_(nullptr),
-		MenuLoad_(nullptr),
-		MenuNewGame_(nullptr),
-		TitleBackGround_(nullptr),
-		TitleBackMountGreen(nullptr),
-		TitleBackMountBlue(nullptr),
-		TitleLeftFrontMount(nullptr),
-		TitleRightFrontMount(nullptr),
-		Mouse_(nullptr),
-		Bird_(),
-		TitleCloud_(),
-		isPopup_(false),
-		Timer_(0),
-		KeyFlag_(false)
+
+	Timer_(0),
+
+	isPopup_(false),
+	KeyFlag_(false),
+
+	TitleLogo_(nullptr),
+	Title_(nullptr),
+	MenuExit_(nullptr),
+	MenuLoad_(nullptr),
+	MenuNewGame_(nullptr),
+	TitleBackGround_(nullptr),
+	TitleBackMountGreen(nullptr),
+	TitleBackMountBlue(nullptr),
+	TitleLeftFrontMount(nullptr),
+	TitleRightFrontMount(nullptr),
+	Mouse_(nullptr),
+	CustomBoard_(nullptr),
+
+	Bird_(),
+	TitleCloud_()
+
 {
+	SetName("TitleLevel");
+
 }
 
 TitleLevel::~TitleLevel() 
@@ -38,7 +48,10 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::Loading()
 {
-
+	//if (nullptr == Player::MainPlayer)
+	//{
+	//	Player::MainPlayer = CreateActor<Player>(static_cast<int>(TITLELEVEL::PLAYER));
+	//}
 
 }
 
@@ -90,6 +103,18 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	Bird_[1] = CreateActor<Bird>(static_cast<int>(TITLELEVEL::BIRD));
 	Bird_[1]->SetPosition({ GameEngineWindow::GetScale().Half().x + 100.f, (1500.f / 2) + 300.f });
+
+	CustomBoard_ = CreateActor<CustomBoard>(static_cast<int>(TITLELEVEL::TITLELOGO));
+	CustomBoard_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x ,GameEngineWindow::GetInst().GetScale().Half().y });
+
+	CustomBoard_->GetRenderer()->CameraEffectOff();
+	CustomBoard_->CustomBoardOff();
+
+
+//	Player::MainPlayer->SetDirtTileMap(&TitleBackGround_->DirtTileMap_);
+	//Player::MainPlayer->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x ,GameEngineWindow::GetInst().GetScale().Half().y - 100.f});
+	//Player::MainPlayer->Off();
+
 }	
 
 
@@ -104,6 +129,21 @@ void TitleLevel::Update()
 	PopUpMenu();
 	MoveTitleLogo();
 	MoveBird();
+
+	if (MenuNewGame_ != nullptr
+		&& MenuLoad_ != nullptr
+		&& MenuExit_ != nullptr
+		&& MenuNewGame_->GetisCustomBoardOpen() == true)
+	{
+		CustomBoard_->CustomBoardOn();
+		//Player::MainPlayer->On();
+		TitleLogo_->Off();
+		MenuNewGame_->Off();
+		MenuExit_->Off();
+		MenuLoad_->Off();
+
+	}
+
 
 	SkipTitle();
 
