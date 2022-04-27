@@ -346,7 +346,7 @@ void StardewValley::GameInit()
 		//		숫자 폰트 화이트
 		//================================
 		GameEngineImage* WhiteFont = GameEngineImageManager::GetInst()->Find("font_colored_White.bmp");
-		WhiteFont->Cut({ 9, 16 });
+		WhiteFont->Cut({ 15, 21 });
 
 		//================================
 		//		영문 폰트
