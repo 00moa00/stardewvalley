@@ -33,7 +33,7 @@ void MyHouseLevel::Loading()
 {
 	if (nullptr == Player::MainPlayer)
 	{
-		Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER));
+		Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER_BODY));
 	}
 
 	if (nullptr == Inventory::MainInventory)

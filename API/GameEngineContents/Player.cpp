@@ -22,11 +22,16 @@ Player::Player()
 
 	AnimationFrame_(0.120f),
 	Speed_(150.f),
-	Energy_(126.f),
+	Energy_(126),
 	MapSizeX_(0.f),
 	MapSizeY_(0.f),
 
-	PlayerRenderer_(nullptr),
+	PlayerBodyRenderer_(nullptr),
+	PlayerPantsRenderer_(nullptr),
+	PlayerShirtsRenderer_(nullptr),
+	PlayerHairRenderer_(nullptr),
+	PlayerHandRenderer_(nullptr),
+
 	ToolRenderer_(nullptr),
 	PlayerCollider_(nullptr),
 	MapColImage_(nullptr),
@@ -92,8 +97,25 @@ void Player::Start()
 
 	//------< 초기화 >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
-	PlayerRenderer_ = CreateRenderer();
-	PlayerRenderer_->SetPivotType(RenderPivot::BOT);
+	
+	PlayerBodyRenderer_ = CreateRenderer();
+	PlayerPantsRenderer_ = CreateRenderer();
+	PlayerShirtsRenderer_ = CreateRenderer();
+	PlayerHairRenderer_ = CreateRenderer();
+	PlayerHandRenderer_ = CreateRenderer();
+
+	PlayerBodyRenderer_->SetPivotType(RenderPivot::BOT);
+	PlayerPantsRenderer_->SetPivotType(RenderPivot::BOT);
+	PlayerShirtsRenderer_->SetPivotType(RenderPivot::BOT);
+	PlayerHairRenderer_->SetPivotType(RenderPivot::BOT);
+	PlayerHandRenderer_->SetPivotType(RenderPivot::BOT);
+
+	PlayerBodyRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_BODY));
+	PlayerPantsRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_PANTS));
+	PlayerShirtsRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_SHIRTS));
+	PlayerHairRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_HAIR));
+	PlayerHandRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER_HAND));
+
 
 	ToolRenderer_ = CreateRenderer();
 	ToolRenderer_->SetPivotType(RenderPivot::BOT);
@@ -111,55 +133,177 @@ void Player::Start()
 	//================================
 	//     플레이어 대기
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_INIT", static_cast<int>(PLAYER::RIGHT_INIT), static_cast<int>(PLAYER::RIGHT_INIT), 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_INIT", static_cast<int>(PLAYER::LEFT_INIT),  static_cast<int>(PLAYER::LEFT_INIT), 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_INIT", static_cast<int>(PLAYER::FRONT_INIT), static_cast<int>(PLAYER::FRONT_INIT), 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_INIT", static_cast<int>(PLAYER::BACK_INIT),  static_cast<int>(PLAYER::BACK_INIT), 0.0f, false);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_INIT", static_cast<int>(PLAYER::RIGHT_INIT), static_cast<int>(PLAYER::RIGHT_INIT), 0.0f, false);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_INIT", static_cast<int>(PLAYER::LEFT_INIT),  static_cast<int>(PLAYER::LEFT_INIT), 0.0f, false);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_INIT", static_cast<int>(PLAYER::FRONT_INIT), static_cast<int>(PLAYER::FRONT_INIT), 0.0f, false);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_INIT", static_cast<int>(PLAYER::BACK_INIT),  static_cast<int>(PLAYER::BACK_INIT), 0.0f, false);
+
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "RIGHT_INIT", static_cast<int>(PLAYER::RIGHT_INIT), static_cast<int>(PLAYER::RIGHT_INIT), 0.0f, false);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "LEFT_INIT", static_cast<int>(PLAYER::LEFT_INIT), static_cast<int>(PLAYER::LEFT_INIT), 0.0f, false);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "FRONT_INIT", static_cast<int>(PLAYER::FRONT_INIT), static_cast<int>(PLAYER::FRONT_INIT), 0.0f, false);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "BACK_INIT", static_cast<int>(PLAYER::BACK_INIT), static_cast<int>(PLAYER::BACK_INIT), 0.0f, false);
+
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "RIGHT_INIT", static_cast<int>(PLAYER::RIGHT_INIT), static_cast<int>(PLAYER::RIGHT_INIT), 0.0f, false);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "LEFT_INIT", static_cast<int>(PLAYER::LEFT_INIT), static_cast<int>(PLAYER::LEFT_INIT), 0.0f, false);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "FRONT_INIT", static_cast<int>(PLAYER::FRONT_INIT), static_cast<int>(PLAYER::FRONT_INIT), 0.0f, false);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "BACK_INIT", static_cast<int>(PLAYER::BACK_INIT), static_cast<int>(PLAYER::BACK_INIT), 0.0f, false);
+
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "RIGHT_INIT", static_cast<int>(PLAYER::RIGHT_INIT), static_cast<int>(PLAYER::RIGHT_INIT), 0.0f, false);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "LEFT_INIT", static_cast<int>(PLAYER::LEFT_INIT), static_cast<int>(PLAYER::LEFT_INIT), 0.0f, false);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "FRONT_INIT", static_cast<int>(PLAYER::FRONT_INIT), static_cast<int>(PLAYER::FRONT_INIT), 0.0f, false);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "BACK_INIT", static_cast<int>(PLAYER::BACK_INIT), static_cast<int>(PLAYER::BACK_INIT), 0.0f, false);
+
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "RIGHT_INIT", static_cast<int>(PLAYER::RIGHT_INIT), static_cast<int>(PLAYER::RIGHT_INIT), 0.0f, false);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "LEFT_INIT", static_cast<int>(PLAYER::LEFT_INIT), static_cast<int>(PLAYER::LEFT_INIT), 0.0f, false);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "FRONT_INIT", static_cast<int>(PLAYER::FRONT_INIT), static_cast<int>(PLAYER::FRONT_INIT), 0.0f, false);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "BACK_INIT", static_cast<int>(PLAYER::BACK_INIT), static_cast<int>(PLAYER::BACK_INIT), 0.0f, false);
+
+
+
 
 	//================================
 	//     플레이어 이동 
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WALK",  static_cast<int>(PLAYER::RIGHT_WALK0),  static_cast<int>(PLAYER::RIGHT_WALK5), AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WALK",   static_cast<int>(PLAYER::LEFT_WALK0),  static_cast<int>(PLAYER::LEFT_WALK5), AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_WALK",  static_cast<int>(PLAYER::FRONT_WALK0),  static_cast<int>(PLAYER::FRONT_WALK3), AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WALK",   static_cast<int>(PLAYER::BACK_WALK0),  static_cast<int>(PLAYER::BACK_WALK3), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_WALK",  static_cast<int>(PLAYER::RIGHT_WALK0),  static_cast<int>(PLAYER::RIGHT_WALK5), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_WALK",   static_cast<int>(PLAYER::LEFT_WALK0),  static_cast<int>(PLAYER::LEFT_WALK5), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_WALK",  static_cast<int>(PLAYER::FRONT_WALK0),  static_cast<int>(PLAYER::FRONT_WALK3), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_WALK",   static_cast<int>(PLAYER::BACK_WALK0),  static_cast<int>(PLAYER::BACK_WALK3), AnimationFrame_, true);
+
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "RIGHT_WALK", static_cast<int>(PLAYER::RIGHT_WALK0), static_cast<int>(PLAYER::RIGHT_WALK5), AnimationFrame_, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "LEFT_WALK", static_cast<int>(PLAYER::LEFT_WALK0), static_cast<int>(PLAYER::LEFT_WALK5), AnimationFrame_, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "FRONT_WALK", static_cast<int>(PLAYER::FRONT_WALK0), static_cast<int>(PLAYER::FRONT_WALK3), AnimationFrame_, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "BACK_WALK", static_cast<int>(PLAYER::BACK_WALK0), static_cast<int>(PLAYER::BACK_WALK3), AnimationFrame_, true);
+
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "RIGHT_WALK", static_cast<int>(PLAYER::RIGHT_WALK0), static_cast<int>(PLAYER::RIGHT_WALK5), AnimationFrame_, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "LEFT_WALK", static_cast<int>(PLAYER::LEFT_WALK0), static_cast<int>(PLAYER::LEFT_WALK5), AnimationFrame_, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "FRONT_WALK", static_cast<int>(PLAYER::FRONT_WALK0), static_cast<int>(PLAYER::FRONT_WALK3), AnimationFrame_, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "BACK_WALK", static_cast<int>(PLAYER::BACK_WALK0), static_cast<int>(PLAYER::BACK_WALK3), AnimationFrame_, true);
+
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "RIGHT_WALK", static_cast<int>(PLAYER::RIGHT_WALK0), static_cast<int>(PLAYER::RIGHT_WALK5), AnimationFrame_, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "LEFT_WALK", static_cast<int>(PLAYER::LEFT_WALK0), static_cast<int>(PLAYER::LEFT_WALK5), AnimationFrame_, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "FRONT_WALK", static_cast<int>(PLAYER::FRONT_WALK0), static_cast<int>(PLAYER::FRONT_WALK3), AnimationFrame_, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "BACK_WALK", static_cast<int>(PLAYER::BACK_WALK0), static_cast<int>(PLAYER::BACK_WALK3), AnimationFrame_, true);
+
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "RIGHT_WALK", static_cast<int>(PLAYER::RIGHT_WALK0), static_cast<int>(PLAYER::RIGHT_WALK5), AnimationFrame_, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "LEFT_WALK", static_cast<int>(PLAYER::LEFT_WALK0), static_cast<int>(PLAYER::LEFT_WALK5), AnimationFrame_, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "FRONT_WALK", static_cast<int>(PLAYER::FRONT_WALK0), static_cast<int>(PLAYER::FRONT_WALK3), AnimationFrame_, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "BACK_WALK", static_cast<int>(PLAYER::BACK_WALK0), static_cast<int>(PLAYER::BACK_WALK3), AnimationFrame_, true);
 
 
 	//================================
 	//     플레이어 손 번쩍! 대기
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HANDITEM",  static_cast<int>(PLAYER::RIGHT_HAND_INIT), static_cast<int>(PLAYER::RIGHT_HAND_INIT), 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HANDITEM",  static_cast<int>(PLAYER::LEFT_HAND_INIT), static_cast<int>(PLAYER::LEFT_HAND_INIT), 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HANDITEM", static_cast<int>(PLAYER::FRONT_HAND_INIT), static_cast<int>(PLAYER::FRONT_HAND_INIT), 0.0f, false);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HANDITEM", static_cast<int>(PLAYER::BACK_HAND_INIT), static_cast<int>(PLAYER::BACK_HAND_INIT), 0.0f, false);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_HANDITEM",  static_cast<int>(PLAYER::RIGHT_HAND_INIT), static_cast<int>(PLAYER::RIGHT_HAND_INIT), 0.0f, false);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_HANDITEM",  static_cast<int>(PLAYER::LEFT_HAND_INIT), static_cast<int>(PLAYER::LEFT_HAND_INIT), 0.0f, false);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HANDITEM", static_cast<int>(PLAYER::FRONT_HAND_INIT), static_cast<int>(PLAYER::FRONT_HAND_INIT), 0.0f, false);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_HANDITEM", static_cast<int>(PLAYER::BACK_HAND_INIT), static_cast<int>(PLAYER::BACK_HAND_INIT), 0.0f, false);
 
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "RIGHT_HANDITEM", static_cast<int>(PLAYER::RIGHT_HAND_INIT), static_cast<int>(PLAYER::RIGHT_HAND_INIT), 0.0f, false);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "LEFT_HANDITEM", static_cast<int>(PLAYER::LEFT_HAND_INIT), static_cast<int>(PLAYER::LEFT_HAND_INIT), 0.0f, false);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "FRONT_HANDITEM", static_cast<int>(PLAYER::FRONT_HAND_INIT), static_cast<int>(PLAYER::FRONT_HAND_INIT), 0.0f, false);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "BACK_HANDITEM", static_cast<int>(PLAYER::BACK_HAND_INIT), static_cast<int>(PLAYER::BACK_HAND_INIT), 0.0f, false);
+
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "RIGHT_HANDITEM", static_cast<int>(PLAYER::RIGHT_HAND_INIT), static_cast<int>(PLAYER::RIGHT_HAND_INIT), 0.0f, false);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "LEFT_HANDITEM", static_cast<int>(PLAYER::LEFT_HAND_INIT), static_cast<int>(PLAYER::LEFT_HAND_INIT), 0.0f, false);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "FRONT_HANDITEM", static_cast<int>(PLAYER::FRONT_HAND_INIT), static_cast<int>(PLAYER::FRONT_HAND_INIT), 0.0f, false);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "BACK_HANDITEM", static_cast<int>(PLAYER::BACK_HAND_INIT), static_cast<int>(PLAYER::BACK_HAND_INIT), 0.0f, false);
+
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "RIGHT_HANDITEM", static_cast<int>(PLAYER::RIGHT_HAND_INIT), static_cast<int>(PLAYER::RIGHT_HAND_INIT), 0.0f, false);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "LEFT_HANDITEM", static_cast<int>(PLAYER::LEFT_HAND_INIT), static_cast<int>(PLAYER::LEFT_HAND_INIT), 0.0f, false);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "FRONT_HANDITEM", static_cast<int>(PLAYER::FRONT_HAND_INIT), static_cast<int>(PLAYER::FRONT_HAND_INIT), 0.0f, false);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "BACK_HANDITEM", static_cast<int>(PLAYER::BACK_HAND_INIT), static_cast<int>(PLAYER::BACK_HAND_INIT), 0.0f, false);
+
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "RIGHT_HANDITEM", static_cast<int>(PLAYER::RIGHT_HAND_INIT), static_cast<int>(PLAYER::RIGHT_HAND_INIT), 0.0f, false);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "LEFT_HANDITEM", static_cast<int>(PLAYER::LEFT_HAND_INIT), static_cast<int>(PLAYER::LEFT_HAND_INIT), 0.0f, false);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "FRONT_HANDITEM", static_cast<int>(PLAYER::FRONT_HAND_INIT), static_cast<int>(PLAYER::FRONT_HAND_INIT), 0.0f, false);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "BACK_HANDITEM", static_cast<int>(PLAYER::BACK_HAND_INIT), static_cast<int>(PLAYER::BACK_HAND_INIT), 0.0f, false);
 
 	//================================
 	//     플레이어 이동 
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HANDITEMWALK", static_cast<int>(PLAYER::RIGHT_WALK_HAND0), static_cast<int>(PLAYER::RIGHT_WALK_HAND5), AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HANDITEMWALK", static_cast<int>(PLAYER::LEFT_WALK_HAND0), static_cast<int>(PLAYER::LEFT_WALK_HAND5), AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HANDITEMWALK",  static_cast<int>(PLAYER::FRONT_WALK_HAND0), static_cast<int>(PLAYER::FRONT_WALK_HAND3), AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HANDITEMWALK", static_cast<int>(PLAYER::BACK_WALK_HAND0), static_cast<int>(PLAYER::BACK_WALK_HAND3), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_HANDITEMWALK", static_cast<int>(PLAYER::RIGHT_WALK_HAND0), static_cast<int>(PLAYER::RIGHT_WALK_HAND5), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_HANDITEMWALK", static_cast<int>(PLAYER::LEFT_WALK_HAND0), static_cast<int>(PLAYER::LEFT_WALK_HAND5), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HANDITEMWALK",  static_cast<int>(PLAYER::FRONT_WALK_HAND0), static_cast<int>(PLAYER::FRONT_WALK_HAND3), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_HANDITEMWALK", static_cast<int>(PLAYER::BACK_WALK_HAND0), static_cast<int>(PLAYER::BACK_WALK_HAND3), AnimationFrame_, true);
 
+
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "RIGHT_HANDITEMWALK", static_cast<int>(PLAYER::RIGHT_WALK_HAND0), static_cast<int>(PLAYER::RIGHT_WALK_HAND5), AnimationFrame_, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "LEFT_HANDITEMWALK", static_cast<int>(PLAYER::LEFT_WALK_HAND0), static_cast<int>(PLAYER::LEFT_WALK_HAND5), AnimationFrame_, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "FRONT_HANDITEMWALK", static_cast<int>(PLAYER::FRONT_WALK_HAND0), static_cast<int>(PLAYER::FRONT_WALK_HAND3), AnimationFrame_, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "BACK_HANDITEMWALK", static_cast<int>(PLAYER::BACK_WALK_HAND0), static_cast<int>(PLAYER::BACK_WALK_HAND3), AnimationFrame_, true);
+
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "RIGHT_HANDITEMWALK", static_cast<int>(PLAYER::RIGHT_WALK_HAND0), static_cast<int>(PLAYER::RIGHT_WALK_HAND5), AnimationFrame_, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "LEFT_HANDITEMWALK", static_cast<int>(PLAYER::LEFT_WALK_HAND0), static_cast<int>(PLAYER::LEFT_WALK_HAND5), AnimationFrame_, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "FRONT_HANDITEMWALK", static_cast<int>(PLAYER::FRONT_WALK_HAND0), static_cast<int>(PLAYER::FRONT_WALK_HAND3), AnimationFrame_, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "BACK_HANDITEMWALK", static_cast<int>(PLAYER::BACK_WALK_HAND0), static_cast<int>(PLAYER::BACK_WALK_HAND3), AnimationFrame_, true);
+
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "RIGHT_HANDITEMWALK", static_cast<int>(PLAYER::RIGHT_WALK_HAND0), static_cast<int>(PLAYER::RIGHT_WALK_HAND5), AnimationFrame_, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "LEFT_HANDITEMWALK", static_cast<int>(PLAYER::LEFT_WALK_HAND0), static_cast<int>(PLAYER::LEFT_WALK_HAND5), AnimationFrame_, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "FRONT_HANDITEMWALK", static_cast<int>(PLAYER::FRONT_WALK_HAND0), static_cast<int>(PLAYER::FRONT_WALK_HAND3), AnimationFrame_, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "BACK_HANDITEMWALK", static_cast<int>(PLAYER::BACK_WALK_HAND0), static_cast<int>(PLAYER::BACK_WALK_HAND3), AnimationFrame_, true);
+
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "RIGHT_HANDITEMWALK", static_cast<int>(PLAYER::RIGHT_WALK_HAND0), static_cast<int>(PLAYER::RIGHT_WALK_HAND5), AnimationFrame_, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "LEFT_HANDITEMWALK", static_cast<int>(PLAYER::LEFT_WALK_HAND0), static_cast<int>(PLAYER::LEFT_WALK_HAND5), AnimationFrame_, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "FRONT_HANDITEMWALK", static_cast<int>(PLAYER::FRONT_WALK_HAND0), static_cast<int>(PLAYER::FRONT_WALK_HAND3), AnimationFrame_, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "BACK_HANDITEMWALK", static_cast<int>(PLAYER::BACK_WALK_HAND0), static_cast<int>(PLAYER::BACK_WALK_HAND3), AnimationFrame_, true);
 
 	//================================
 	//     플레이어 호미 사용
 	//================================
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), AnimationFrame_, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), AnimationFrame_, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), AnimationFrame_, true);
+
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), AnimationFrame_, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), AnimationFrame_, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), AnimationFrame_, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), AnimationFrame_, true);
+
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), AnimationFrame_, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), AnimationFrame_, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), AnimationFrame_, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), AnimationFrame_, true);
+
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), AnimationFrame_, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), AnimationFrame_, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), AnimationFrame_, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), AnimationFrame_, true);
+
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), AnimationFrame_, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), AnimationFrame_, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), AnimationFrame_, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), AnimationFrame_, true);
 
 
 	//================================
 	//     플레이어 물뿌리개 사용
 	//================================
 
-	PlayerRenderer_->CreateAnimation("Player.bmp", "FRONT_WATER", static_cast<int>(PLAYER::WATER_FRONT0), static_cast<int>(PLAYER::WATER_FRONT2), 0.200f, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0),  static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
-	PlayerRenderer_->CreateAnimation("Player.bmp", "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0),  static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_WATER", static_cast<int>(PLAYER::WATER_FRONT0), static_cast<int>(PLAYER::WATER_FRONT2), 0.200f, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0),  static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
+	PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0),  static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
+
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "FRONT_WATER", static_cast<int>(PLAYER::WATER_FRONT0), static_cast<int>(PLAYER::WATER_FRONT2), 0.200f, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0), static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
+	PlayerPantsRenderer_->CreateAnimation("PlayerPants0.bmp", "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0), static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
+
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "FRONT_WATER", static_cast<int>(PLAYER::WATER_FRONT0), static_cast<int>(PLAYER::WATER_FRONT2), 0.200f, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0), static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
+	PlayerShirtsRenderer_->CreateAnimation("PlayerShirt0.bmp", "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0), static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
+
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "FRONT_WATER", static_cast<int>(PLAYER::WATER_FRONT0), static_cast<int>(PLAYER::WATER_FRONT2), 0.200f, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0), static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
+	PlayerHairRenderer_->CreateAnimation("PlayerHair0.bmp", "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0), static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
+
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "FRONT_WATER", static_cast<int>(PLAYER::WATER_FRONT0), static_cast<int>(PLAYER::WATER_FRONT2), 0.200f, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0), static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
+	PlayerHandRenderer_->CreateAnimation("PlayerHand0.bmp", "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0), static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
 
 
 
@@ -213,7 +357,12 @@ void Player::Start()
 
 	//------< 애니메이션 초기화 >------------------------------------------------------------------
 
-	PlayerRenderer_->ChangeAnimation("FRONT_INIT");
+	PlayerBodyRenderer_->ChangeAnimation("FRONT_INIT");
+	PlayerPantsRenderer_->ChangeAnimation("FRONT_INIT");
+	PlayerShirtsRenderer_->ChangeAnimation("FRONT_INIT");
+	PlayerHairRenderer_->ChangeAnimation("FRONT_INIT");
+	PlayerHandRenderer_->ChangeAnimation("FRONT_INIT");
+
 	ToolRenderer_->ChangeAnimation("LEFT_INIT");
 	//PlayerMove_.SetFrontDir(true);
 	LevelRegist("MainPlayer");
@@ -313,13 +462,13 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::HOE:
 
 		isEvent_ = true;
-		if (PlayerRenderer_->IsEndAnimation())
+		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			if (FarmingArea_ == true)
 			{
 				CreateDirtTile();
 				ChangeDirtTile();
-				SubEnergy(2.f);
+				SubEnergy(2);
 			}
 			isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
@@ -330,12 +479,12 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::WATER:
 
 		isEvent_ = true;
-		if (PlayerRenderer_->IsEndAnimation())
+		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			CreateWaterEffet();
 			CreateWaterTile();
 			ChangeWetDirtTile();
-			SubEnergy(2.f);
+			SubEnergy(2);
 
 			isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
@@ -346,7 +495,7 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::AXE:
 
 		isEvent_ = true;
-		if (PlayerRenderer_->IsEndAnimation())
+		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			CrushTree();
 			CrushWood();
@@ -361,7 +510,7 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::PICKAXE:
 
 		isEvent_ = true;
-		if (PlayerRenderer_->IsEndAnimation())
+		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			CrushStone();
 
@@ -444,7 +593,12 @@ void Player::LevelInit()
 	{
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 		ToolRenderer_->CameraEffectOff();
-		PlayerHandItem_->GetRenderer()->CameraEffectOff();
+
+		PlayerBodyRenderer_->CameraEffectOff();
+		PlayerPantsRenderer_->CameraEffectOff();
+		PlayerShirtsRenderer_->CameraEffectOff();
+		PlayerHairRenderer_->CameraEffectOff();
+		PlayerHandRenderer_->CameraEffectOff();
 	}
 
 	if (CurrentLevel_ == "MyFarmLevel")
@@ -454,7 +608,12 @@ void Player::LevelInit()
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
-		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
+		PlayerBodyRenderer_->CameraEffectOn();
+		PlayerPantsRenderer_->CameraEffectOn();
+		PlayerShirtsRenderer_->CameraEffectOn();
+		PlayerHairRenderer_->CameraEffectOn();
+		PlayerHandRenderer_->CameraEffectOn();
 	}
 
 
@@ -465,8 +624,12 @@ void Player::LevelInit()
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
-		PlayerHandItem_->GetRenderer()->CameraEffectOn();
 
+		PlayerBodyRenderer_->CameraEffectOn();
+		PlayerPantsRenderer_->CameraEffectOn();
+		PlayerShirtsRenderer_->CameraEffectOn();
+		PlayerHairRenderer_->CameraEffectOn();
+		PlayerHandRenderer_->CameraEffectOn();
 	}
 
 
@@ -477,8 +640,12 @@ void Player::LevelInit()
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("Town_Col.bmp");
 		ToolRenderer_->CameraEffectOn();
-		PlayerHandItem_->GetRenderer()->CameraEffectOn();
 
+		PlayerBodyRenderer_->CameraEffectOn();
+		PlayerPantsRenderer_->CameraEffectOn();
+		PlayerShirtsRenderer_->CameraEffectOn();
+		PlayerHairRenderer_->CameraEffectOn();
+		PlayerHandRenderer_->CameraEffectOn();
 	}
 
 	if (CurrentLevel_ == "ShopLevel")
@@ -488,8 +655,12 @@ void Player::LevelInit()
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("Shop_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
-		PlayerHandItem_->GetRenderer()->CameraEffectOn();
 
+		PlayerBodyRenderer_->CameraEffectOn();
+		PlayerPantsRenderer_->CameraEffectOn();
+		PlayerShirtsRenderer_->CameraEffectOn();
+		PlayerHairRenderer_->CameraEffectOn();
+		PlayerHandRenderer_->CameraEffectOn();
 	}
 
 	// 타이틀 -> 집
@@ -507,7 +678,7 @@ void Player::LevelInit()
 	// 농장 -> 집
 	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "MyFarmLevel")
 	{
-		SetPosition({ 520.f, 480.f });
+		SetPosition({ 520.f, 500.f });
 	}
 
 	// 버스정류장 -> 농장

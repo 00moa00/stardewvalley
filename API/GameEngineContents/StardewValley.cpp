@@ -107,10 +107,35 @@ void StardewValley::GameInit()
 		//------< 이미지 Cut >------------------------------------------------------------------
 
 		//================================
-		//     플레이어 48 96
+		//     플레이어 바디
 		//================================
-		GameEngineImage* PlayerBody = GameEngineImageManager::GetInst()->Find("Player.bmp");
-		PlayerBody->Cut({ 48, 96 });
+		GameEngineImage* PlayerBody0 = GameEngineImageManager::GetInst()->Find("PlayerBody0.bmp");
+		PlayerBody0->Cut({ 48, 96 });
+
+		//================================
+		//     플레이어 상의
+		//================================
+		GameEngineImage* PlayerHair0 = GameEngineImageManager::GetInst()->Find("PlayerHair0.bmp");
+		PlayerHair0->Cut({ 48, 96 });
+
+		//================================
+		//     플레이어 손
+		//================================
+		GameEngineImage* PlayerHand0 = GameEngineImageManager::GetInst()->Find("PlayerHand0.bmp");
+		PlayerHand0->Cut({ 48, 96 });
+
+		//================================
+		//     플레이어 바지
+		//================================	
+		GameEngineImage* PlayerPants0 = GameEngineImageManager::GetInst()->Find("PlayerPants0.bmp");
+		PlayerPants0->Cut({ 48, 96 });
+
+		//================================
+		//     플레이어 셔츠
+		//================================
+		GameEngineImage* PlayerShirt0 = GameEngineImageManager::GetInst()->Find("PlayerShirt0.bmp");
+		PlayerShirt0->Cut({ 48, 96 });
+
 
 
 

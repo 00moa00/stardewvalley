@@ -141,6 +141,11 @@ bool Lewis::MoveWait()
 				MoveFlagList_.erase(Start);
 				return true;
 			}
+
+			else
+			{
+				false;
+			}
 		}
 	}
 

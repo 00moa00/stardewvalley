@@ -83,7 +83,7 @@ Inventory* Player::GetInventroy()
 }
 
 GameEngineRenderer* Player::Renderer() {
-	return PlayerRenderer_;
+	return PlayerBodyRenderer_;
 }
 
 GameEngineImage* Player::CollImage() {
@@ -598,22 +598,42 @@ void Player::SetDirAnimation()
 
 	if (MoveDir_.CompareInt2D(float4::RIGHT))
 	{
-		PlayerRenderer_->ChangeAnimation("RIGHT_INIT");
+		PlayerBodyRenderer_->ChangeAnimation("RIGHT_INIT");
+		PlayerPantsRenderer_->ChangeAnimation("RIGHT_INIT");
+		PlayerShirtsRenderer_->ChangeAnimation("RIGHT_INIT");
+		PlayerHairRenderer_->ChangeAnimation("RIGHT_INIT");
+		PlayerHandRenderer_->ChangeAnimation("RIGHT_INIT");
+
 	}
 
 	if (MoveDir_.CompareInt2D(float4::DOWN))
 	{
-		PlayerRenderer_->ChangeAnimation("FRONT_INIT");
+		PlayerBodyRenderer_->ChangeAnimation("FRONT_INIT");
+		PlayerPantsRenderer_->ChangeAnimation("FRONT_INIT");
+		PlayerShirtsRenderer_->ChangeAnimation("FRONT_INIT");
+		PlayerHairRenderer_->ChangeAnimation("FRONT_INIT");
+		PlayerHandRenderer_->ChangeAnimation("FRONT_INIT");
+
 	}
 
 	if (MoveDir_.CompareInt2D(float4::UP))
 	{
-		PlayerRenderer_->ChangeAnimation("BACK_INIT");
+		PlayerBodyRenderer_->ChangeAnimation("BACK_INIT");
+		PlayerPantsRenderer_->ChangeAnimation("BACK_INIT");
+		PlayerShirtsRenderer_->ChangeAnimation("BACK_INIT");
+		PlayerHairRenderer_->ChangeAnimation("BACK_INIT");
+		PlayerHandRenderer_->ChangeAnimation("BACK_INIT");
+
 	}
 
 	if (MoveDir_.CompareInt2D(float4::LEFT))
 	{
-		PlayerRenderer_->ChangeAnimation("LEFT_INIT");
+		PlayerBodyRenderer_->ChangeAnimation("LEFT_INIT");
+		PlayerPantsRenderer_->ChangeAnimation("LEFT_INIT");
+		PlayerShirtsRenderer_->ChangeAnimation("LEFT_INIT");
+		PlayerHairRenderer_->ChangeAnimation("LEFT_INIT");
+		PlayerHandRenderer_->ChangeAnimation("LEFT_INIT");
+
 	}
 
 }
@@ -631,7 +651,13 @@ void Player::DirAnimationChange()
 	}
 
 
-	PlayerRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+	PlayerBodyRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+	PlayerPantsRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+	PlayerShirtsRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+	PlayerHairRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+	PlayerHandRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+
+
 	ToolRenderer_->ChangeAnimation(GetDirString() + ArrAnimationToolName[static_cast<int>(PlayerState_)]);
 
 

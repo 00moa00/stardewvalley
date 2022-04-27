@@ -102,7 +102,13 @@ private:
 	bool isShopping_;
 	bool isEvent_;
 
-	GameEngineRenderer* PlayerRenderer_;
+	GameEngineRenderer* PlayerBodyRenderer_;
+	GameEngineRenderer* PlayerPantsRenderer_;
+	GameEngineRenderer* PlayerShirtsRenderer_;
+	GameEngineRenderer* PlayerHairRenderer_;
+	GameEngineRenderer* PlayerHandRenderer_;
+
+
 	GameEngineRenderer* ToolRenderer_;
 	GameEngineCollision* PlayerCollider_;
 
