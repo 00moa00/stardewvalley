@@ -16,7 +16,7 @@
 TitleLevel::TitleLevel() 
 	:	
 
-	Timer_(0),
+	Timer_(2.f),
 
 	isPopup_(false),
 	KeyFlag_(false),
@@ -34,7 +34,9 @@ TitleLevel::TitleLevel()
 
 	Bird_(),
 	TitleCloud_(),
-	MenuButton_()
+	MenuButton_(),
+
+	TitleState_(TITLE_STATE::START)
 
 {
 	SetName("TitleLevel");
@@ -47,10 +49,6 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::Loading()
 {
-	if (nullptr == Player::MainPlayer)
-	{
-		Player::MainPlayer = CreateActor<Player>(static_cast<int>(TITLELEVEL::PLAYER));
-	}
 
 }
 
@@ -132,10 +130,6 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	CustomBoard_->CustomBoardOff();
 
 
-//	Player::MainPlayer->SetDirtTileMap(&TitleBackGround_->DirtTileMap_);
-	Player::MainPlayer->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x ,GameEngineWindow::GetInst().GetScale().Half().y - 100.f});
-	Player::MainPlayer->Off();
-
 }	
 
 
@@ -144,17 +138,53 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 void TitleLevel::Update()
 {
 
-	MoveCloud();
-	MoveFrontMount();
-	MoveBackMount();
-	PopUpMenu();
-	MoveTitleLogo();
-	MoveBird();
 
-	if (MenuButton_[0]->ButtomMouseOverAndMouseClick())
+	switch (TitleState_)
+	{
+	case TITLE_STATE::START:
+
+		MoveFrontMount();
+		MoveBackMount();
+		MoveTitleLogo();
+		MoveBird();
+		SkipTitle();
+
+		//타이틀 로고가 특정 위치까지 내려오면 메뉴바 팝업
+		if ((TitleLogo_->GetPosition().y >= GameEngineWindow::GetScale().Half().y - 100.f))
+		{
+			TitleState_ = TITLE_STATE::POPUP;
+
+		}
+
+		break;
+	case TITLE_STATE::POPUP:
+		PopUpMenu();
+
+		//마우스 클릭하면 전부 온
+		if (Mouse_->isMouseClick())
+		{
+			MenuButton_[0]->On();
+			MenuButton_[1]->On();
+			MenuButton_[2]->On();
+			TitleState_ = TITLE_STATE::WAIT;
+		}
+
+		break;
+	case TITLE_STATE::WAIT:
+		break;
+	default:
+		break;
+	}
+	MoveCloud();
+
+	MenuButton_[0]->MouseOverChangeIndex();
+	MenuButton_[1]->MouseOverChangeIndex();
+	MenuButton_[2]->MouseOverChangeIndex();
+
+
+	if (MenuButton_[0]->ButtonMouseOverAndLeftClick())
 	{
 		CustomBoard_->CustomBoardOn();
-		Player::MainPlayer->On();
 		TitleLogo_->Off();
 
 		MenuButton_[0]->Off();
@@ -164,7 +194,6 @@ void TitleLevel::Update()
 	}
 
 
-	SkipTitle();
 
 }
 
@@ -255,33 +284,28 @@ void TitleLevel::MoveLogo()
 
 void TitleLevel::PopUpMenu()
 {
-	if ((TitleLogo_->GetPosition().y >= GameEngineWindow::GetScale().Half().y - 100.f))
+
+	Timer_ -= GameEngineTime::GetDeltaTime();
+
+	if (Timer_ < 2.0f )
 	{
-
-		AddTimer(static_cast<int>(GameEngineTime::GetDeltaTime() + 1.f));
-
-		if (getTimer() == 100 )
-		{
-			MenuButton_[0]->On();
-		}
-
-		if (getTimer() == 150)
-		{
-			MenuButton_[1]->On();
-		}
-
-
-		if (getTimer() == 200 )
-		{
-			MenuButton_[2]->On();
-
-		}
-
-		if (Mouse_->isMouseClick())
-		{
-			Timer_ = 350;
-		}
+		MenuButton_[0]->On();
 	}
+
+	if (Timer_ < 1.5f)
+	{
+		MenuButton_[1]->On();
+	}
+
+
+	if (Timer_ <1.0f)
+	{
+		MenuButton_[2]->On();
+
+		TitleState_ = TITLE_STATE::WAIT;
+
+	}
+
 
 }
 
@@ -298,6 +322,7 @@ void TitleLevel::SkipTitle()
 	{
 		Title_->SetPosition({ 0,0 });
 		TitleLogo_->SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y - 100.f });
+		TitleState_ = TITLE_STATE::POPUP;
 	}
 }
 

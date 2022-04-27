@@ -2,8 +2,31 @@
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngine/GameEngineCollision.h>
 #include "ArrowButton.h"
+#include "MenuButton.h"
+#include "Font.h"
 
 // Ό³Έν :
+
+enum class CUSTOM_STATE
+{
+	WAIT,
+
+	HAIR_ADD,
+	HAIR_SUB,
+
+	SHIRTS_ADD,
+	SHIRTS_SUB,
+
+	PANTS_ADD,
+	PANTS_SUB,
+
+	NEXT,
+
+	MAX
+};
+
+
+
 class CustomBoard : public GameEngineActor
 {
 public:
@@ -20,10 +43,45 @@ public:
 private:
 	void Start()override;
 	void Update() override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
+
+	GameEngineRenderer* CustomBody_;
+	GameEngineRenderer* CustomHand_;
+	GameEngineRenderer* CustomShirts_;
+	GameEngineRenderer* CustomPants_;
+	GameEngineRenderer* CustomHair_;
+
+
 	GameEngineRenderer* CustomBoardRenderer_;
-	ArrowButton* ArrowButton_[6];
+
+	ArrowButton* HairAddButton_;
+	ArrowButton* HairSubButton_;
+	ArrowButton* ShirtAddButton_;
+	ArrowButton* ShirtSubButton_;
+	ArrowButton* PantsAddButton_;
+	ArrowButton* PantsSubButton_;
+
+	MenuButton* OKButton_;
+
+	Font* HairFont_;
+	Font* ShirtFont_;
+	Font* PantsFont_;
+
+	CUSTOM_STATE CustomUpdate_;
+
+	bool isCustomUpdate_;
+
+	int HairIndex_;
+	int ShirtIndex_;
+	int PantsIndex_;
+
+
+	std::string HairString[3];
+	std::string ShirtsString[5];
+	std::string PantsString[2];
+
 
 public:
 

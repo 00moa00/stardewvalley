@@ -72,7 +72,7 @@ void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	
 
-	Player::MainPlayer->Renderer()->CameraEffectOff();
+	//Player::MainPlayer->Renderer()->CameraEffectOff();
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 

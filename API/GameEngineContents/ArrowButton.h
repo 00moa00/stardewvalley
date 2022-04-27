@@ -24,6 +24,7 @@ private:
 private:
 	GameEngineRenderer* ArrowRenderer_;
 	GameEngineCollision* ArrowCollision_;
+	std::vector<GameEngineCollision*> ColList;
 
 public:
 
@@ -31,6 +32,7 @@ public:
 	void CreateRightArrow();
 	void CreateLeftArrow();
 
+	bool ButtonMouseOverAndLeftClick();
 
 	GameEngineRenderer* GetRenderer()
 	{

@@ -143,6 +143,17 @@ enum class FONT_VER2
 	Period =12, // ,
 	_ , // -
 	DecimalPoint ,
+	Zero = 16,
+	One,
+	Two,
+	Three,
+	Four,
+	Five,
+	Six,
+	Seven,
+	Eight,
+	Nine,
+
 	Question=31, // 
 	A =33,
 	B,

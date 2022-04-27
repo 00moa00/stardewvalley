@@ -174,6 +174,7 @@ void GameEngineRenderer::CreateAnimation(
 	bool _Loop)
 {
 	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Image);
+
 	if (nullptr == FindImage)
 	{
 		MsgBoxAssertString(_Name + "존재하지 않는 이미지로 애니메이션을 만들려고 했습니다.");

@@ -482,6 +482,37 @@ void Font::ChangeFont(std::string _Font, float4 _Pos)
 		case 'z':
 			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::z));
 			break;
+		case '0':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Zero));
+			break;
+		case '1':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::One));
+			break;
+		case '2':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Two));
+			break;
+		case '3':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Three));
+			break;
+		case '4':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Four));
+			break;
+		case '5':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Five));
+			break;
+		case '6':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Six));
+			break;
+		case '7':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Seven));
+			break;
+		case '8':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Eight));
+			break;
+		case '9':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Nine));
+			break;
+
 		case '?':
 			FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::Question));
 			break;

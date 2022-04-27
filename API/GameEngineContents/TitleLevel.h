@@ -11,6 +11,12 @@
 
 #include "CustomBoard.h"
 
+enum class TITLE_STATE
+{
+	START,
+	POPUP,
+	WAIT
+};
 
 // 설명 :
 class TitleLevel : public GameEngineLevel
@@ -36,13 +42,12 @@ private:
 
 	bool isPopup_;
 	bool KeyFlag_; //업데이트에서 함수를 한번만 사용하기 위한 플러그
-	int Timer_;
+	float Timer_;
 
 	Title* Title_;
 
 	TitleLogo* TitleLogo_;
 	MenuButton* MenuButton_[3];
-	MenuButton* OKButton_;
 
 	Mouse* Mouse_;
 
@@ -57,6 +62,7 @@ private:
 
 	CustomBoard* CustomBoard_;
 
+	TITLE_STATE TitleState_;
 
 private:
 
@@ -79,13 +85,5 @@ private:
 	//     Setter
 	//================================
 
-
-	void AddTimer(int i) {
-		Timer_ += i;
-	}
-
-	int getTimer() {
-		return Timer_;
-	}
 };
 

@@ -117,6 +117,24 @@ bool Player::FindWetDirt(int _Index)
 //
 //******************************************************************************
 
+void Player::ChangeHair(int _Index)
+{
+
+	if (_Index == 0)
+	{
+		PlayerHairRenderer_->SetImage("PlayerHair0.bmp");
+	}
+
+}
+
+void Player::ChangeShirts(int _Index)
+{
+}
+
+void Player::ChangePants(int _Index)
+{
+}
+
 void Player::SetResetPlayerHandItem()
 {
 	PlayerState_ = PLAYER_UPDATE::WALK;

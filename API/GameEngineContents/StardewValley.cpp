@@ -5,6 +5,7 @@
 #include "BusStopLevel.h"
 #include "TownLevel.h"
 #include "ShopLevel.h"
+#include "CustomData.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
@@ -113,29 +114,62 @@ void StardewValley::GameInit()
 		PlayerBody0->Cut({ 48, 96 });
 
 		//================================
-		//     플레이어 상의
+		//     플레이어 헤어
 		//================================
 		GameEngineImage* PlayerHair0 = GameEngineImageManager::GetInst()->Find("PlayerHair0.bmp");
 		PlayerHair0->Cut({ 48, 96 });
 
+		GameEngineImage* PlayerHair1 = GameEngineImageManager::GetInst()->Find("PlayerHair1.bmp");
+		PlayerHair1->Cut({ 48, 96 });
+
+		GameEngineImage* PlayerHair2 = GameEngineImageManager::GetInst()->Find("PlayerHair2.bmp");
+		PlayerHair2->Cut({ 48, 96 });
+
 		//================================
 		//     플레이어 손
 		//================================
-		GameEngineImage* PlayerHand0 = GameEngineImageManager::GetInst()->Find("PlayerHand0.bmp");
+		GameEngineImage* PlayerHand0 = GameEngineImageManager::GetInst()->Find(CustomData::GetInst()->GetHandFileName());
 		PlayerHand0->Cut({ 48, 96 });
+
+		GameEngineImage* PlayerHand1 = GameEngineImageManager::GetInst()->Find("PlayerHand1.bmp");
+		PlayerHand1->Cut({ 48, 96 });
+
+		GameEngineImage* PlayerHand2 = GameEngineImageManager::GetInst()->Find("PlayerHand2.bmp");
+		PlayerHand2->Cut({ 48, 96 });
+
+		GameEngineImage* PlayerHand3 = GameEngineImageManager::GetInst()->Find("PlayerHand3.bmp");
+		PlayerHand3->Cut({ 48, 96 });
+
+		GameEngineImage* PlayerHand4 = GameEngineImageManager::GetInst()->Find("PlayerHand4.bmp");
+		PlayerHand4->Cut({ 48, 96 });
 
 		//================================
 		//     플레이어 바지
 		//================================	
-		GameEngineImage* PlayerPants0 = GameEngineImageManager::GetInst()->Find("PlayerPants0.bmp");
+		GameEngineImage* PlayerPants0 = GameEngineImageManager::GetInst()->Find(CustomData::GetInst()->GetPantsFileName());
 		PlayerPants0->Cut({ 48, 96 });
+
+		GameEngineImage* PlayerPants1 = GameEngineImageManager::GetInst()->Find("PlayerPants1.bmp");
+		PlayerPants1->Cut({ 48, 96 });
+
 
 		//================================
 		//     플레이어 셔츠
 		//================================
-		GameEngineImage* PlayerShirt0 = GameEngineImageManager::GetInst()->Find("PlayerShirt0.bmp");
+		GameEngineImage* PlayerShirt0 = GameEngineImageManager::GetInst()->Find(CustomData::GetInst()->GetShirtsFileName());
 		PlayerShirt0->Cut({ 48, 96 });
 
+		GameEngineImage* PlayerShirt1 = GameEngineImageManager::GetInst()->Find("PlayerShirt1.bmp");
+		PlayerShirt1->Cut({ 48, 96 });
+
+		GameEngineImage* PlayerShirt2 = GameEngineImageManager::GetInst()->Find("PlayerShirt2.bmp");
+		PlayerShirt2->Cut({ 48, 96 });
+
+		GameEngineImage* PlayerShirt3 = GameEngineImageManager::GetInst()->Find("PlayerShirt3.bmp");
+		PlayerShirt3->Cut({ 48, 96 });
+
+		GameEngineImage* PlayerShirt4 = GameEngineImageManager::GetInst()->Find("PlayerShirt4.bmp");
+		PlayerShirt4->Cut({ 48, 96 });
 
 
 
@@ -176,7 +210,6 @@ void StardewValley::GameInit()
 		//================================
 		//     플레이어 곡괭이 250	150
 		//================================
-
 		GameEngineImage* PlayerPiRight = GameEngineImageManager::GetInst()->Find("pickaxe_right.bmp");
 		PlayerPiRight->Cut({ 250, 150 });
 
@@ -208,9 +241,25 @@ void StardewValley::GameInit()
 		//================================
 		//     플레이어 툴 48 96
 		//================================
-			GameEngineImage* PlayerTool = GameEngineImageManager::GetInst()->Find("tools.bmp");
-			PlayerTool->Cut({ 48, 96 });
+		GameEngineImage* PlayerTool = GameEngineImageManager::GetInst()->Find("tools.bmp");
+		PlayerTool->Cut({ 48, 96 });
 
+		//------< 커스텀용 >------------------------------------------------------------------
+
+		GameEngineImage * BodySheet = GameEngineImageManager::GetInst()->Find("BodySheet.bmp");
+		BodySheet->Cut({ 48, 96 });
+
+		GameEngineImage* PantsSheet = GameEngineImageManager::GetInst()->Find("PantsSheet.bmp");
+		PantsSheet->Cut({ 48, 96 });
+
+		GameEngineImage* HandSheet = GameEngineImageManager::GetInst()->Find("HandSheet.bmp");
+		HandSheet->Cut({ 48, 96 });
+
+		GameEngineImage* hairSheet = GameEngineImageManager::GetInst()->Find("hairSheet.bmp");
+		hairSheet->Cut({ 48, 96 });
+
+		GameEngineImage* ShirtsSheet = GameEngineImageManager::GetInst()->Find("ShirtsSheet.bmp");
+		ShirtsSheet->Cut({ 48, 96 });
 	}
 
 
@@ -421,7 +470,6 @@ void StardewValley::GameInit()
 		GameEngineImage* FineTree = GameEngineImageManager::GetInst()->Find("Fine_Tree_AnimaionSheet.bmp");
 		FineTree->Cut({ 152, 246 });
 
-
 		//================================
 		//		Giftbox
 		//================================
@@ -617,14 +665,14 @@ void StardewValley::GameInit()
 
 	//------< 레벨 등록 >------------------------------------------------------------------
 
-	//CreateLevel<TitleLevel>("TitleLevel");
-	//CreateLevel<MyHouseLevel>("MyHouseLevel");
-	//CreateLevel<MyFarmLevel>("MyFarmLevel");
-	//CreateLevel<BusStopLevel>("BusStopLevel");
+	CreateLevel<TitleLevel>("TitleLevel");
+	CreateLevel<MyHouseLevel>("MyHouseLevel");
+	CreateLevel<MyFarmLevel>("MyFarmLevel");
+	CreateLevel<BusStopLevel>("BusStopLevel");
 	CreateLevel<TownLevel>("TownLevel");
-	//CreateLevel<ShopLevel>("ShopLevel");
+	CreateLevel<ShopLevel>("ShopLevel");
 
-	ChangeLevel("TownLevel");
+	ChangeLevel("TitleLevel");
 
 
 }
@@ -634,4 +682,5 @@ void StardewValley::GameLoop()
 }
 void StardewValley::GameEnd()
 {
+	CustomData::Destroy();
 }

@@ -176,6 +176,10 @@ public:
 	//    Setter
 	//================================
 
+	void ChangeHair(int _Index);
+	void ChangeShirts(int _Index);
+	void ChangePants(int _Index);
+
 	void SetResetPlayerHandItem();
 
 	bool SubMoney(int _Money);

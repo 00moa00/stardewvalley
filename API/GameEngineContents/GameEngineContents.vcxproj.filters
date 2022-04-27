@@ -20,18 +20,6 @@
     <ClCompile Include="PlayerEnergyBar.cpp">
       <Filter>Actor\03. Play\UI</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCustomBoard.cpp">
-      <Filter>Actor\Custom</Filter>
-    </ClCompile>
-    <ClCompile Include="RightArrow.cpp">
-      <Filter>Actor\Custom</Filter>
-    </ClCompile>
-    <ClCompile Include="LeftArrow.cpp">
-      <Filter>Actor\Custom</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerBackGround.cpp">
-      <Filter>Actor\Custom</Filter>
-    </ClCompile>
     <ClCompile Include="MyHouse.cpp">
       <Filter>Actor\03. Play\Buildings</Filter>
     </ClCompile>
@@ -350,6 +338,9 @@
     <ClCompile Include="MenuButton.cpp">
       <Filter>Actor\02. Title</Filter>
     </ClCompile>
+    <ClCompile Include="CustomData.cpp">
+      <Filter>Actor\00. GlobalData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -370,18 +361,6 @@
     </ClInclude>
     <ClInclude Include="PlayerEnergyBar.h">
       <Filter>Actor\03. Play\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerCustomBoard.h">
-      <Filter>Actor\Custom</Filter>
-    </ClInclude>
-    <ClInclude Include="RightArrow.h">
-      <Filter>Actor\Custom</Filter>
-    </ClInclude>
-    <ClInclude Include="LeftArrow.h">
-      <Filter>Actor\Custom</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerBackGround.h">
-      <Filter>Actor\Custom</Filter>
     </ClInclude>
     <ClInclude Include="MyHouse.h">
       <Filter>Actor\03. Play\Buildings</Filter>
@@ -722,13 +701,13 @@
     <ClInclude Include="MenuButton.h">
       <Filter>Actor\02. Title</Filter>
     </ClInclude>
+    <ClInclude Include="CustomData.h">
+      <Filter>Actor\00. GlobalData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">
       <UniqueIdentifier>{81500ed8-0775-4f2e-8f3f-5cb70a8cfb1a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Custom">
-      <UniqueIdentifier>{ad173118-410b-4507-85c6-69f87d0afc7e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Level">
       <UniqueIdentifier>{3fdc01d6-f74f-4c06-8337-fcfead66623d}</UniqueIdentifier>

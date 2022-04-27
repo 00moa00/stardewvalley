@@ -1,4 +1,6 @@
 #include "ArrowButton.h"
+#include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineInput.h>
 
 ArrowButton::ArrowButton()
 	:
@@ -35,5 +37,11 @@ void ArrowButton::CreateLeftArrow()
 {
 	ArrowRenderer_->SetImage("LeftArrow.bmp");
 
+}
+
+bool ArrowButton::ButtonMouseOverAndLeftClick()
+{
+	return (ArrowCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
+		&& (true == GameEngineInput::GetInst()->IsDown("LeftClick"));
 }
 

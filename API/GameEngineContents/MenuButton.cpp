@@ -23,16 +23,7 @@ void MenuButton::Start()
 void MenuButton::Update()
 {
 
-	if (ButtonCollision_!= nullptr && ButtomMouseOver())
-	{
-		ButtonRenderer_->SetIndex(Index_ + 4);
-	}
 
-	else
-	{
-		ButtonRenderer_->SetIndex(Index_);
-
-	}
 }
 
 void MenuButton::CreateButtonRenderer(std::string _FileName, int _Index)
@@ -42,10 +33,28 @@ void MenuButton::CreateButtonRenderer(std::string _FileName, int _Index)
 	ButtonRenderer_->SetIndex(_Index);
 }
 
+void MenuButton::CreateButtonRenderer(std::string _FileName)
+{
+	ButtonRenderer_->SetImage(_FileName);
+}
+
 void MenuButton::CreateButtonCollision(std::string _CollName, float4 _CollSize)
 {
 	ButtonCollision_ = CreateCollision(_CollName, _CollSize);
 
+}
+
+void MenuButton::MouseOverChangeIndex()
+{
+	if (ButtonCollision_ != nullptr && ButtomMouseOver())
+	{
+		ButtonRenderer_->SetIndex(Index_ + 4);
+	}
+
+	else
+	{
+		ButtonRenderer_->SetIndex(Index_);
+	}
 }
 
 bool MenuButton::ButtomMouseOver()
@@ -54,7 +63,7 @@ bool MenuButton::ButtomMouseOver()
 
 }
 
-bool MenuButton::ButtomMouseOverAndMouseClick()
+bool MenuButton::ButtonMouseOverAndLeftClick()
 {
 	return (ButtonCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect))
 		&&(true == GameEngineInput::GetInst()->IsDown("LeftClick"));

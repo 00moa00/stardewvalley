@@ -29,10 +29,14 @@ private:
 
 public:
 	void CreateButtonRenderer(std::string _FileName, int _Index);
+	void CreateButtonRenderer(std::string _FileName);
+
 	void CreateButtonCollision(std::string _CollName, float4 _CollSize);
 	
+	void MouseOverChangeIndex();
+
 	bool ButtomMouseOver();
-	bool ButtomMouseOverAndMouseClick();
+	bool ButtonMouseOverAndLeftClick();
 
 	GameEngineRenderer* GetRenderer()
 	{
