@@ -30,7 +30,7 @@ void TownLevel::Loading()
 {
 	if (nullptr == Player::MainPlayer)
 	{
-		Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER_BODY));
+		Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER));
 	}
 
 	if (nullptr == Inventory::MainInventory)

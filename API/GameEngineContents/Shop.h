@@ -38,7 +38,8 @@ class Shop : public GameEngineActor
 {
 public:
 	static Shop* MainShop;
-	//static ExitBotton* ExitBotton_;
+	static ExitBotton* ExitBotton_;
+	static Font* Font_;
 
 	// constrcuter destructer
 	Shop();
@@ -61,8 +62,7 @@ private:
 
 	GameEngineRenderer* ShopRenderer_;
 
-	static Font* Font_;
-	ExitBotton* ExitBotton_;
+	//ExitBotton* ExitBotton_;
 	Mouse* Mouse_;
 	SHOP_UPDATE ShopUpdateState_;
 
@@ -90,8 +90,6 @@ public:
 		int Index = Item->GetIndex();
 		ShopItemList_.insert(std::make_pair(Index, Item));
 	}
-
-
 
 
 

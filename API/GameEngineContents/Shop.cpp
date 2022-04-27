@@ -2,7 +2,7 @@
 #include "Player.h"
 
 Shop* Shop::MainShop = nullptr;
-//ExitBotton* Shop::ExitBotton_ = nullptr;
+ExitBotton* Shop::ExitBotton_ = nullptr;
 Font* Shop::Font_ = nullptr;
 
 Shop::Shop() 
@@ -23,6 +23,7 @@ void Shop::Start()
 {
 	ShopRenderer_ = CreateRenderer("Shop.bmp");
 	ShopRenderer_->CameraEffectOff();
+	ShopRenderer_->SetOrder(static_cast<int>(PLAYLEVEL::SHOP));
 
 	ExitBotton_ = GetLevel()->CreateActor<ExitBotton>(static_cast<int>(PLAYLEVEL::ITEM));
 	ExitBotton_->SetPosition({1125.f, 620.f});
@@ -100,6 +101,7 @@ void Shop::Update()
 				{
 					ItemStartIter->second->SetPosition(ConstStartIter->second);
 
+					//변경하면 for문 종료
 					++ItemStartIter;
 					break;
 				}
@@ -234,6 +236,7 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainShop = this;
 	Font_ = Font_;
+	ExitBotton_ = ExitBotton_;
 }
 
 void Shop::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -245,7 +248,8 @@ void Shop::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	{
 		StartIter->second->NextLevelOn();
 	}
-
+	Font_->NextLevelOn();
+	ExitBotton_->NextLevelOn();
 	NextLevelOn();
 }
 

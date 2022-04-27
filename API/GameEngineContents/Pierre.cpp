@@ -57,15 +57,27 @@ void Pierre::OpenDialogue()
 
 	if (DialogueUpdate_ == true)
 	{
+		Inventory::MainInventory->AllUpdateOff();
+
 		MainDialogueBox_->DialogueOn();
 		MainDialogueBox_->SetPierre();
-		MoveDir_ = - Player::MainPlayer->GetMoveDir();
+
+		//현재 방향 저장하고 플레이어의 방향으로 고개 돌림
+		PrevDir_ = MoveDir_;
+		MoveDir_ = -Player::MainPlayer->GetMoveDir();
+		NpcUpdateState_ = NPC_STATE::DIALOGUE_IDLE;
 	}
 
 
 	if (DialogueUpdate_ == false)
 	{
+		Inventory::MainInventory->AllUpdateOn();
+		Inventory::MainInventory->SetPopUpStateMini();
+
 		MainDialogueBox_->DialogueOff();
+		WaitTimer_ = 2.0f;
+		NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
+
 	}
 }
 

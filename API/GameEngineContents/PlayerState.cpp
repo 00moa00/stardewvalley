@@ -155,7 +155,7 @@ bool Player::SubMoney(int _Money)
 
 			Shop::MainShop->SetShopMoney(Count);
 		}
-		Money_ -= _Money;
+			Money_ -= _Money;
 
 		return true;
 	}
@@ -178,7 +178,7 @@ void Player::AddMoney(int _Money)
 		//Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
 		Shop::MainShop->SetShopMoney(Count);
 	}
-	Money_ += _Money;
+		Money_ += _Money;
 }
 
 void Player::SetisShopping(bool b)

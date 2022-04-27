@@ -41,6 +41,14 @@ void ShopLevel::Loading()
 	//{
 	//	MainUI::MainMainUI = CreateActor<MainUI>((int)PLAYLEVEL::MAINUI);
 	//}
+	// 
+
+	if (nullptr == Shop::MainShop)
+	{
+		Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
+	}
+
+
 
 	if (MapObject_.empty() == true)
 	{
@@ -50,7 +58,7 @@ void ShopLevel::Loading()
 
 void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
-	Shop_ = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
+	//Shop_ = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 
 	BackGroundFront_->GetRenderer()->SetImage("Shop_Front.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
@@ -72,11 +80,11 @@ void ShopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
-
+		Shop::MainShop->NextLevelOn();
 	}
 
 	//Player::MainPlayer->SetisShopping(false);
-	Shop_->Death();
+	//Shop_->Death();
 }
 
 

@@ -92,7 +92,7 @@ void Player::Start()
 	PlayerCollider_ = CreateCollision("Player", { 40.f, 30 });
 	SetScale({ 40.f, 40.f });
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
-	LevelRegist("MainPlayer");
+	//LevelRegist("MainPlayer");
 }
 
 void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
