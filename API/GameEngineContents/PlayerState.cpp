@@ -148,12 +148,14 @@ bool Player::SubMoney(int _Money)
 
 	if (Money_ > 0 + _Money)
 	{
-		Money_ -= _Money;
-		MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
-		MainUI_->SetMainUIMoney(Money_);
+		for (int Count = Money_; Count >= Money_-_Money; --Count)
+		{
+			MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
+			MainUI_->SetMainUIMoney(Count);
 
-		//Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
-		Shop::MainShop->SetShopMoney(Money_);
+			Shop::MainShop->SetShopMoney(Count);
+		}
+		Money_ -= _Money;
 
 		return true;
 	}
@@ -167,13 +169,16 @@ bool Player::SubMoney(int _Money)
 
 void Player::AddMoney(int _Money)
 {
+	for (int Count = Money_; Count <= Money_+_Money; ++Count)
+	{
 
+		MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
+		MainUI_->SetMainUIMoney(Count);
+
+		//Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
+		Shop::MainShop->SetShopMoney(Count);
+	}
 	Money_ += _Money;
-	MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
-	MainUI_->SetMainUIMoney(Money_);
-
-	//Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
-	Shop::MainShop->SetShopMoney(Money_);
 }
 
 void Player::SetisShopping(bool b)

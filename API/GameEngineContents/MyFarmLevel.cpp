@@ -79,9 +79,9 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	BackGround_->GetRenderer()->CameraEffectOn();
 
 	
-	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
-	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
-	Player::MainPlayer->Renderer()->CameraEffectOn();
+	//Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	//Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
+	//Player::MainPlayer->Renderer()->CameraEffectOn();
 
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");

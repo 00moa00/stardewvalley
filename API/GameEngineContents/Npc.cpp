@@ -32,6 +32,14 @@ Npc::~Npc()
 {
 }
 
+void Npc::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+}
+
+void Npc::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+}
+
 void Npc::OpenDialogue()
 {
 }

@@ -36,7 +36,13 @@ public:
 	Npc& operator=(Npc&& _Other) noexcept = delete;
 
 
+private:
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
+
+
 public:
+
 	virtual void OpenDialogue();
 	virtual void DirAnimationChange();
 	virtual std::string GetDirString();
@@ -76,6 +82,7 @@ protected:
 	NPC_STATE NpcUpdateState_;
 
 	std::vector<GameEngineCollision*> ColList;
+
 	std::vector<NpcMove*> MoveFlagList_;
 	GameEngineRenderer* NpcRenderer_;
 

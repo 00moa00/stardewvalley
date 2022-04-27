@@ -665,14 +665,14 @@ void StardewValley::GameInit()
 
 	//------< 레벨 등록 >------------------------------------------------------------------
 
-	CreateLevel<TitleLevel>("TitleLevel");
+	//CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<MyHouseLevel>("MyHouseLevel");
 	CreateLevel<MyFarmLevel>("MyFarmLevel");
 	CreateLevel<BusStopLevel>("BusStopLevel");
 	CreateLevel<TownLevel>("TownLevel");
 	CreateLevel<ShopLevel>("ShopLevel");
 
-	ChangeLevel("TitleLevel");
+	ChangeLevel("MyHouseLevel");
 
 
 }

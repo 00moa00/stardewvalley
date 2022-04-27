@@ -681,6 +681,7 @@ void Inventory::InvenPopUp()
 		for (; BoxStartIter != BoxEndIter; ++BoxStartIter)
 		{
 			BoxStartIter->second->On();
+			//BoxStartIter->second->GetRenderer()->CameraEffectOff();
 
 			if (BoxStartIter->first == 12)
 			{

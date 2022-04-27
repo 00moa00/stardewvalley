@@ -385,13 +385,13 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	PlayerHandItem_->NextLevelOn();
 	PrevLevel_ = CurrentLevel_;
 
-	//std::map<int, Items*>::iterator StartIter = MapObject_.begin();
-	//std::map<int, Items*>::iterator EndIter = MapObject_.end();
+	std::map<std::string, Npc*>::iterator StartIter = NpcList_.begin();
+	std::map<std::string, Npc*>::iterator EndIter = NpcList_.end();
 
-	//for (; StartIter != EndIter; ++StartIter)
-	//{
-	//	StartIter->second->NextLevelOn();
-	//}
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		StartIter->second->NextLevelOn();
+	}
 }
 
 

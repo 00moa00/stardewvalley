@@ -100,7 +100,6 @@ void Shop::Update()
 				{
 					ItemStartIter->second->SetPosition(ConstStartIter->second);
 
-					//변경하면 for문 종료
 					++ItemStartIter;
 					break;
 				}

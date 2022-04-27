@@ -44,6 +44,12 @@ private:
 
 public:
 
+	GameEngineRenderer* GetRenderer()
+	{
+		return InventoryBox_;
+	}
+
+
 
 	GameEngineCollision* BoxCollision() 
 	{
