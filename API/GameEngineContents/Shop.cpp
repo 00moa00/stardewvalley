@@ -149,7 +149,8 @@ void Shop::Update()
 		{
 			if (ItemStartIter->second->MouseInItem() 
 				&& Mouse_->MouseClickShopIn() 
-				&& ItemStartIter->second->GetisHide() == false)
+				&& ItemStartIter->second->GetisHide() == false
+				&& Player::MainPlayer->GetMoneySubMoneyCountWait())
 			{
 				if (Player::MainPlayer->SubMoney(ItemStartIter->second->GetBuyPrice()) == true)
 				{

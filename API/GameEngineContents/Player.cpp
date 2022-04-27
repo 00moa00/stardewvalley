@@ -20,12 +20,14 @@ Mouse* Player::MainMouse_ = nullptr;
 Player::Player()
 	:
 	Money_(1000),
+	PrevMoney_(0),
 
 	AnimationFrame_(0.120f),
 	Speed_(180.f),
 	Energy_(126),
 	MapSizeX_(0.f),
 	MapSizeY_(0.f),
+	Timer_(0.0f),
 
 	PlayerBodyRenderer_(nullptr),
 	PlayerPantsRenderer_(nullptr),
@@ -50,7 +52,9 @@ Player::Player()
 	UseToolState_(USE_TOOL::INIT),
 	TileState_(TILE_COLL::INIT),
 	PlayerState_(PLAYER_UPDATE::INIT),
-	PlayerShoppingState_(PLAYER_SHOPPING::INT)
+	PlayerShoppingState_(PLAYER_SHOPPING::INT),
+	AddMoneyCount_(MONEY_UPDATE::WAIT),
+	SubMoneyCount_(MONEY_UPDATE::WAIT)
 
 {
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::INIT)] = "INIT";
@@ -408,6 +412,8 @@ void Player::Update()
 		ChangeLevel();
 		NpcCollCheck();
 		CheckShippingBox();
+		AddMoneyAnimation();
+		SubMoneyAnimation();
 	}
 
 	if (CurrentLevel_ == "ShopLevel")

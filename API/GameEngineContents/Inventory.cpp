@@ -516,10 +516,11 @@ void Inventory::ItemMove()
 
 
 	case ITEMMOVE::SHOPPING:
-
-		Player::MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
-		PlayerItemListStartIter->second->SubItemCount();
-
+		if (Player::MainPlayer->GetMoneyAddMoneyCountWait())
+		{
+			Player::MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
+			PlayerItemListStartIter->second->SubItemCount();
+		}
 
 		MoveState_ = ITEMMOVE::INIT;
 

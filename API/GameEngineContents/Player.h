@@ -33,6 +33,13 @@ enum class TILE_STATE
 	CLEAR,
 };
 
+enum class MONEY_UPDATE
+{
+	WAIT,
+	ADD_TIME,
+	CHANGE_FONT
+};
+
 class FarmTile : public Tile
 {
 public:
@@ -87,12 +94,17 @@ private:
 	const char* ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::MAX)];
 
 	int Money_;
+	int PrevMoney_;
+	int TotalMoney_;
+
 	int Energy_;
+
 
 	float MapSizeX_;
 	float MapSizeY_;
 	float AnimationFrame_;
 	float Speed_;
+	float Timer_;
 
 	float4 MoveDir_;
 	float4 CameraPos_;
@@ -125,6 +137,9 @@ private:
 	PLAYER_UPDATE PlayerState_;
 	TILE_COLL TileState_;
 	USE_TOOL UseToolState_;
+
+	MONEY_UPDATE AddMoneyCount_;
+	MONEY_UPDATE SubMoneyCount_;
 
 
 	static std::string CurrentLevel_;
@@ -164,10 +179,13 @@ public:
 
 	std::string GetCurrentLevel();
 
-	Items* GetCurrentItem();
 	TOOLTYPE CurrentItemType();
 	PLAYER_SHOPPING GetPlayerShoppingState();
 	PLAYER_UPDATE GetPlayerState();
+	bool GetMoneyAddMoneyCountWait();
+	bool GetMoneySubMoneyCountWait();
+
+	Items* GetCurrentItem();
 	Inventory* GetInventroy();
 	GameEngineRenderer* Renderer();
 	GameEngineImage* CollImage();
@@ -224,6 +242,9 @@ private:
 	void CheckTool();
 
 	void NpcCollCheck();
+
+	void AddMoneyAnimation();
+	void SubMoneyAnimation();
 
 	// 메인 업데이트 함수
 	void PlayerUpdate();

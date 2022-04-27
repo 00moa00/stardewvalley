@@ -77,6 +77,16 @@ PLAYER_UPDATE Player::GetPlayerState()
 	return PlayerState_;
 }
 
+bool Player::GetMoneyAddMoneyCountWait()
+{
+	return AddMoneyCount_ == MONEY_UPDATE::WAIT;
+}
+
+bool Player::GetMoneySubMoneyCountWait()
+{
+	return SubMoneyCount_ == MONEY_UPDATE::WAIT;
+}
+
 Inventory* Player::GetInventroy()
 {
 	return Inventory::MainInventory;
@@ -145,40 +155,30 @@ void Player::SetResetPlayerHandItem()
 
 bool Player::SubMoney(int _Money)
 {
-
 	if (Money_ > 0 + _Money)
 	{
-		for (int Count = Money_; Count >= Money_-_Money; --Count)
-		{
-			MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
-			MainUI_->SetMainUIMoney(Count);
-
-			Shop::MainShop->SetShopMoney(Count);
-		}
-			Money_ -= _Money;
-
+		PrevMoney_ = Money_;
+		Money_ -= _Money;
+		//TotalMoney_ = 
+		SubMoneyCount_ = MONEY_UPDATE::ADD_TIME;
 		return true;
 	}
 
 	else
 	{
-		return false;
+		false;
 	}
+
 
 }
 
 void Player::AddMoney(int _Money)
 {
-	for (int Count = Money_; Count <= Money_+_Money; ++Count)
-	{
 
-		MainUI* MainUI_ = GetLevel()->FindActor<MainUI>("MainUI");
-		MainUI_->SetMainUIMoney(Count);
+	PrevMoney_ = Money_;
+	Money_ += _Money;
 
-		//Shop* MainShop = GetLevel()->FindActor<Shop>("Shop");
-		Shop::MainShop->SetShopMoney(Count);
-	}
-		Money_ += _Money;
+	AddMoneyCount_ = MONEY_UPDATE::ADD_TIME;
 }
 
 void Player::SetisShopping(bool b)
@@ -475,6 +475,79 @@ void Player::NpcCollCheck()
 	}
 
 
+}
+
+void Player::AddMoneyAnimation()
+{
+
+
+
+	switch (AddMoneyCount_)
+	{
+	case MONEY_UPDATE::WAIT:
+		break;
+	case MONEY_UPDATE::ADD_TIME:
+
+		PrevMoney_ += 2;
+		AddMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
+	
+		break;
+	case MONEY_UPDATE::CHANGE_FONT:
+
+		if (PrevMoney_ >= Money_)
+		{
+			MainUI::MainMainUI->SetMainUIMoney(Money_);
+			Shop::MainShop->SetShopMoney(Money_);
+			AddMoneyCount_ = MONEY_UPDATE::WAIT;
+		}
+
+		else
+		{
+			MainUI::MainMainUI->SetMainUIMoney(PrevMoney_);
+			Shop::MainShop->SetShopMoney(PrevMoney_);
+			AddMoneyCount_ = MONEY_UPDATE::ADD_TIME;
+		}
+
+		break;
+	default:
+		break;
+	}
+}
+
+void Player::SubMoneyAnimation()
+{
+	//float Timer_ = 0;
+	switch (SubMoneyCount_)
+	{
+	case MONEY_UPDATE::WAIT:
+		break;
+	case MONEY_UPDATE::ADD_TIME:
+
+		PrevMoney_ -= 2;
+		SubMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
+
+		break;
+	case MONEY_UPDATE::CHANGE_FONT:
+
+
+		if (PrevMoney_ <= Money_)
+		{
+			MainUI::MainMainUI->SetMainUIMoney(Money_);
+			Shop::MainShop->SetShopMoney(Money_);
+			SubMoneyCount_ = MONEY_UPDATE::WAIT;
+		}
+
+		else
+		{
+			MainUI::MainMainUI->SetMainUIMoney(PrevMoney_);
+			Shop::MainShop->SetShopMoney(PrevMoney_);
+			SubMoneyCount_ = MONEY_UPDATE::ADD_TIME;
+		}
+
+		break;
+	default:
+		break;
+	}
 }
 
 
