@@ -63,9 +63,9 @@ void MyHouseLevel::Loading()
 void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
 
-//	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
-//	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
-
+	BackGroundFront_->GetRenderer()->SetImage("PlayerHouseFront.bmp");
+	BackGroundFront_->GetRenderer()->SetPivot({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y });
+	BackGroundFront_->GetRenderer()->CameraEffectOff();
 
 	BackGround_->GetRenderer()->SetImage("PlayerHouse.bmp");
 	BackGround_->GetRenderer()->CameraEffectOff();

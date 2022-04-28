@@ -22,10 +22,10 @@ void TreeBottom::Start()
 
 	ItemCollider_ = CreateCollision("MapObject", { 48.f, 48.f });
 
-	SubCollider_ = CreateCollision("TreeTop", { 100, 240 });
-	SubCollider_->SetPivot({ 0, -80 });
+	SubCollider_ = CreateCollision("TreeTop", { 100, 200 });
+	SubCollider_->SetPivot({ 0, -120 });
 
-	SubRenderer = GetLevel()->CreateActor<TreeTop>((int)PLAYLEVEL::TOP_OBJECT);
+	SubRenderer = GetLevel()->CreateActor<TreeTop>((int)PLAYLEVEL::PLAYER);
 
 	Damage_ = 5;
 
@@ -37,14 +37,16 @@ void TreeBottom::Start()
 
 void TreeBottom::Update()
 {
-
-	if (SubCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect) == true)
+	if (SubRenderer != nullptr)
 	{
-		SubRenderer->GetRenderer()-> SetAlpha(80);
-	}
-	else
-	{
-		SubRenderer->GetRenderer()->SetAlpha(255);
+		if (SubCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect) == true)
+		{
+			SubRenderer->GetRenderer()->SetAlpha(80);
+		}
+		else
+		{
+			SubRenderer->GetRenderer()->SetAlpha(255);
+		}
 	}
 
 

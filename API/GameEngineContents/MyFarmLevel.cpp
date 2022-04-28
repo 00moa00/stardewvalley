@@ -80,6 +80,7 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
+	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 
 	//Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 	//Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
