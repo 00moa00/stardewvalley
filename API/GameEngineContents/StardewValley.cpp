@@ -703,7 +703,7 @@ void StardewValley::GameInit()
 	CreateLevel<TownLevel>("TownLevel");
 	CreateLevel<ShopLevel>("ShopLevel");
 
-	ChangeLevel("MyHouseLevel");
+	ChangeLevel("TitleLevel");
 
 
 }

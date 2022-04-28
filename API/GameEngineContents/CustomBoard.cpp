@@ -350,6 +350,10 @@ void CustomBoard::CustomBoardOff()
 	CustomPants_->Off();
 	CustomHair_->Off();
 
+	HairFont_->Off();
+	ShirtFont_->Off();
+	PantsFont_->Off();
+
 	isCustomUpdate_ = false;
 }
 
@@ -372,6 +376,10 @@ void CustomBoard::CustomBoardOn()
 	CustomShirts_->On();
 	CustomPants_->On();
 	CustomHair_->On();
+
+	HairFont_->On();
+	ShirtFont_->On();
+	PantsFont_->On();
 
 	isCustomUpdate_ = true;
 }
