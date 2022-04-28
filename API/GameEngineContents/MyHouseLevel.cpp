@@ -17,12 +17,19 @@
 MyHouseLevel::MyHouseLevel()
 	:
 	//Iter(MapObject_.begin()),
-	Time(0.f)
+	Time(0.f),
+	MenuWaitTimer_(5.0f),
+
+	GuideMoveState_(GUIDE_MOVE::MOVE_RIGHT),
+
+	MenuGuide_(nullptr)
 
 {
+
 	SetName("MyHouseLevel");
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
 	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
+	MenuGuide_ = CreateActor<BackGround>((int)PLAYLEVEL::ITEM);
 }
 
 MyHouseLevel::~MyHouseLevel()
@@ -56,12 +63,19 @@ void MyHouseLevel::Loading()
 		LoadMapObject();
 	}
 
-
-
 }
 
 void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+
+	
+	MenuGuide_ ->GetRenderer()->SetImage("GameGuide.bmp");
+	MenuGuide_->GetRenderer()->SetPivot({0 - 250/2,  GameEngineWindow::GetScale().Half().y });
+	MenuGuide_->GetRenderer()->CameraEffectOff();
+
+	//	MenuGuide_->GetRenderer()->SetPivot({0 + 250/2,  GameEngineWindow::GetScale().Half().y });
+
+	
 
 	BackGroundFront_->GetRenderer()->SetImage("PlayerHouseFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y });
@@ -175,9 +189,69 @@ void MyHouseLevel::LoadMapObject()
 
 }
 
+void MyHouseLevel::MoveGuide()
+{
+
+	static float4 CurrentPivot;
+
+	switch (GuideMoveState_)
+	{
+	case GUIDE_MOVE::MOVE_RIGHT:
+
+		CurrentPivot.x = MenuGuide_->GetRenderer()->GetPivot().x;
+		CurrentPivot += float4::RIGHT * GameEngineTime::GetDeltaTime() * 60;
+
+		MenuGuide_->GetRenderer()->SetPivot({ CurrentPivot.x,  GameEngineWindow::GetScale().Half().y });
+
+		if (CurrentPivot.x > 0 + 250 / 2)
+		{
+			GuideMoveState_ = GUIDE_MOVE::WAIT;
+		}
+
+		break;
+	case GUIDE_MOVE::WAIT:
+
+		MenuGuide_->GetRenderer()->SetPivot({ 0 + 250 / 2,  GameEngineWindow::GetScale().Half().y });
+
+		MenuWaitTimer_ -= GameEngineTime::GetDeltaTime();
+		if (MenuWaitTimer_ < 0.f)
+		{
+			GuideMoveState_ = GUIDE_MOVE::MOVE_LEFT;
+		}
+
+		break;
+	case GUIDE_MOVE::MOVE_LEFT:
+		CurrentPivot.x = MenuGuide_->GetRenderer()->GetPivot().x;
+		CurrentPivot += float4::LEFT * GameEngineTime::GetDeltaTime() * 60;
+
+		MenuGuide_->GetRenderer()->SetPivot({ CurrentPivot.x,  GameEngineWindow::GetScale().Half().y });
+
+		if (CurrentPivot.x < 0 - 250 / 2)
+		{
+			MenuGuide_->Death();
+			GuideMoveState_ = GUIDE_MOVE::DEATH;
+		}
+		break;
+
+	case GUIDE_MOVE::DEATH:
+
+
+		break;
+	default:
+		break;
+	}
+
+}
+
 
 void MyHouseLevel::Update()
 {
+
+	if (MenuGuide_ != nullptr)
+	{
+		MoveGuide();
+	}
+
 
 }
 

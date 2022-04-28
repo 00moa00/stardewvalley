@@ -21,6 +21,15 @@
 
 #include <list>
 
+enum class GUIDE_MOVE
+{
+	MOVE_RIGHT,
+	WAIT,
+	MOVE_LEFT,
+	DEATH,
+};
+
+
 // Ό³Έν :
 class MyHouseLevel : public GameEngineLevel
 {
@@ -48,11 +57,19 @@ private:
 
 private:
 
-	void LoadMapObject();
+	float MenuWaitTimer_;
+
+	GUIDE_MOVE GuideMoveState_;
 
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
+	BackGround* MenuGuide_;
 
 	std::map<int, Items*> MapObject_;
+
+private:
+	void LoadMapObject();
+	void MoveGuide();
+
 	//std::map<int, Items*>::iterator Iter;
 };

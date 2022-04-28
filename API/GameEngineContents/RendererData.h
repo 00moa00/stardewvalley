@@ -12,9 +12,7 @@ enum class PLAYLEVEL {
 	BOTTOM_EFFECT,
 
 	PLAYER,
-	PLAYER_HAND,
 	BACKGROUND_FRONT,
-
 
 	TOP_OBJECT,
 	TOP_TOP_OBJECT,
@@ -24,8 +22,13 @@ enum class PLAYLEVEL {
 	MAINUI,
 	FONTUI,
 	HAND_ITEM,
+
+	//절대적으로 플레이어 위에 있어야 하는 것들
 	SHOP,
 	SHOP_ITEM_LIST,
+
+
+	//절대적으로 위에 있어야 하는 렌더러
 	INVENTORY=30,
 	INVENTROYBOX,
 	ITEM,
