@@ -728,7 +728,7 @@ void Player::LevelInit()
 	// 농장 -> 집
 	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "MyFarmLevel")
 	{
-		SetPosition({ 520.f, 500.f });
+		SetPosition({ 540.f, 550.f });
 	}
 
 	// 버스정류장 -> 농장

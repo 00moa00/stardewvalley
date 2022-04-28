@@ -29,7 +29,7 @@ void GiftBox::Start()
 
 
 	ItemCollider_ = CreateCollision("MapObject", { 48, 48 });
-
+	ItemCollider_->SetPivot({ 0, -24 });
 	SetScale( { 60, 60 });
 	ItemName_ = "GiftBox";
 
