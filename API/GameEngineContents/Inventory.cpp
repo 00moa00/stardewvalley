@@ -25,6 +25,8 @@ Inventory::Inventory()
 	CurrentItem_(nullptr),
 	Hoe_(nullptr),
 	CurrentItemFrame_(nullptr),
+	PlayerPreview_(nullptr),
+	PlayerCustomClothes_(nullptr),
 
 	CurrentInvenState_(POPUPSTATE::INIT),
 	PopUpState_(POPUPSTATE::MINI),
@@ -44,18 +46,27 @@ Inventory::~Inventory()
 
 void Inventory::Start()
 {
+	//------< 액터 생성 >------------------------------------------------------------------
+	
+	CurrentItemFrame_ = GetLevel()->CreateActor<InventoryCurrentFrame>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
+	Mouse_ = GetLevel()->CreateActor<Mouse>(static_cast<int>(PLAYLEVEL::MOUSE));
+	MainExitBotton = GetLevel()->CreateActor<ExitBotton>(static_cast<int>(PLAYLEVEL::ITEM));
+	PlayerPreview_ = GetLevel()->CreateActor<PlayerPreview>(static_cast<int>(PLAYLEVEL::ITEM));
+	PlayerCustomClothes_ = GetLevel()->CreateActor<PlayerCustomClothes>(static_cast<int>(PLAYLEVEL::ITEM));
+	EmptyItem_ = GetLevel()->CreateActor<EmptyItem>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
+
+
+	//------< 초기화 >------------------------------------------------------------------
+
 	SetPosition(GameEngineWindow::GetScale().Half());
+	BoxInit();
 
 	Inventory_ = CreateRenderer("inventory.bmp");
 	Inventory_->CameraEffectOff();
 
-	CurrentItemFrame_ = GetLevel()->CreateActor<InventoryCurrentFrame>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
-	Mouse_ = GetLevel()->CreateActor<Mouse>(static_cast<int>(PLAYLEVEL::MOUSE));
-	MainExitBotton = GetLevel()->CreateActor<ExitBotton>(static_cast<int>(PLAYLEVEL::ITEM));
+	PlayerPreview_->SetPosition({this->GetPosition().x + 5.f, this->GetPosition().y + 150.f});
+	PlayerCustomClothes_->SetPosition({ 0.f ,0.f });
 
-	BoxInit();
-
-	EmptyItem_ = GetLevel()->CreateActor<EmptyItem>(static_cast<int>(PLAYLEVEL::CURRENTITEM));
 	Hoe_ = NewItem<Hoe>();
 	NewItem<Watering_Can>();
 	NewItem<Axe>();
@@ -64,7 +75,6 @@ void Inventory::Start()
 	NewItem<Potato_Seeds>(3);
 
 
-	
 	float4 Position;
 	Position.x = Inventory_->GetScale().x  + 250.f;
 	Position.y = Inventory_->GetScale().y  + 50.f;
@@ -81,7 +91,8 @@ void Inventory::Update()
 	{
 	case INVEN_UPDATE::INIT:
 
-
+		PlayerPreview_->UpdateOff();
+		PlayerCustomClothes_->UpdateOff();
 		InventoryPosInit();
 		ItemPosFocusInvenBox();
 
@@ -139,6 +150,8 @@ void Inventory::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	MainExitBotton->NextLevelOn();
 	CurrentItemFrame_->NextLevelOn();
 	Mouse_->NextLevelOn();
+	PlayerPreview_->NextLevelOn();
+	PlayerCustomClothes_->NextLevelOn();
 	NextLevelOn();
 
 }
@@ -270,6 +283,7 @@ void Inventory::AllUpdateOff()
 
 	MainExitBotton->Off();
 	CurrentItemFrame_->Off();
+	PlayerPreview_->UpdateOff();
 
 }
 
@@ -295,6 +309,8 @@ void Inventory::AllUpdateOn()
 
 	MainExitBotton->On();
 	CurrentItemFrame_->On();
+	PlayerPreview_->UpdateOn();
+
 
 }
 
@@ -582,7 +598,10 @@ void Inventory::InvenPopUp()
 
 		CurrentInvenState_ = POPUPSTATE::MINI;
 
+		PlayerPreview_->UpdateOff();
+		PlayerCustomClothes_->UpdateOff();
 		MainExitBotton->Off();
+
 		CurrentItemFrame_->On();
 		Inventory_->On();
 
@@ -627,8 +646,12 @@ void Inventory::InvenPopUp()
 	case POPUPSTATE::MAIN:
 
 		CurrentInvenState_ = POPUPSTATE::MAIN;
-		MainExitBotton->On();
+
 		CurrentItemFrame_->Off();
+
+		MainExitBotton->On();
+		PlayerPreview_->UpdateOn();
+		PlayerCustomClothes_->UpdateOn();
 
 		SetPosition({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y});
 		Inventory_->SetImage("inventory.bmp");
@@ -658,9 +681,12 @@ void Inventory::InvenPopUp()
 	case POPUPSTATE::SHOP:
 
 		CurrentInvenState_ = POPUPSTATE::SHOP;
+
 		MainExitBotton->Off();
 		CurrentItemFrame_->Off();
 		Inventory_->Off();
+		PlayerPreview_->UpdateOff();
+		PlayerCustomClothes_->UpdateOff();
 
 		for (; ItemStartIter != ItemEndIter; ++ItemStartIter)
 		{
@@ -707,9 +733,11 @@ void Inventory::InvenPopUp()
 	case POPUPSTATE::OFF:
 
 		CurrentInvenState_ = POPUPSTATE::OFF;
+
 		MainExitBotton->Off();
 		CurrentItemFrame_->Off();
 		Inventory_->Off();
+		PlayerPreview_->UpdateOff();
 
 
 		for (; ItemStartIter != ItemEndIter; ++ItemStartIter)

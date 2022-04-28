@@ -429,6 +429,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerCustomClothes.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerPreview.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Potato_Crops.h">
       <SubType>
       </SubType>
@@ -885,6 +893,11 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Pierre.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerCustomClothes.cpp" />
+    <ClCompile Include="PlayerPreview.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -12,6 +12,8 @@
 #include "Player.h"
 #include "ExitBotton.h"
 #include "Items.h"
+#include "PlayerPreview.h"
+#include "PlayerCustomClothes.h"
 
 
 //기본 아이템
@@ -101,19 +103,24 @@ public:
 
 private:
 
-	GameEngineRenderer* Inventory_;
+	Mouse* Mouse_;								//충돌용 마우스
+	PlayerPreview* PlayerPreview_;				//현재 커스텀 상태
+	PlayerCustomClothes* PlayerCustomClothes_;	//현재 커스텀 의상
 
-	InventoryCurrentFrame* CurrentItemFrame_;
-	Items* CurrentItem_;
+	GameEngineRenderer* Inventory_;				//인벤토리 보드(메뉴 보드)
 
-	Mouse* Mouse_;
+	InventoryCurrentFrame* CurrentItemFrame_;	//현재 아이템을 가리키는 프레임
+	Items* CurrentItem_;						//현재 선택하고 있는 아이템
 
-	Hoe* Hoe_;
-	EmptyItem* EmptyItem_;
-	ITEMMOVE MoveState_;
-	POPUPSTATE PopUpState_;
-	POPUPSTATE CurrentInvenState_;
-	INVEN_UPDATE UpdateState_;
+
+
+	Hoe* Hoe_;					//초기 현재 아이템 등록용
+	EmptyItem* EmptyItem_;		//빈 아이템
+
+	ITEMMOVE MoveState_;			//메인 상태에서 움직이는 
+	POPUPSTATE PopUpState_;			//조작에 의해 팝업 상태
+	POPUPSTATE CurrentInvenState_;	//현재 팝업 상태, 바깥 제어 용
+	INVEN_UPDATE UpdateState_;		//메인 업데이트 상태
 
 	std::map<int, Items*>::iterator PlayerItemListStartIter;
 	std::map<int, Items*>::iterator PlayerItemListEndIter;
@@ -219,13 +226,6 @@ public:
 		MoveState_ = ITEMMOVE::INIT;
 	}
 
-	void SetCurrentItemHoe()
-	{
-		CurrentItem_ = nullptr;
-		//CurrentItem_ = Hoe_;
-		//CurrentItemFrame_->SetPosition({ Hoe_->GetPosition().x,  Hoe_->GetPosition().y - 24.f });
-
-	}
 
 	void FindAndErasePlayerItemList(std::string ItemName)
 	{

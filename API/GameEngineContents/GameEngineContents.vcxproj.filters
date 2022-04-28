@@ -359,6 +359,12 @@
     <ClCompile Include="FlowingFlower.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerPreview.cpp">
+      <Filter>Actor\03. Play\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCustomClothes.cpp">
+      <Filter>Actor\03. Play\Inventory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -739,6 +745,12 @@
     </ClInclude>
     <ClInclude Include="FlowingFlower.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPreview.h">
+      <Filter>Actor\03. Play\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCustomClothes.h">
+      <Filter>Actor\03. Play\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
