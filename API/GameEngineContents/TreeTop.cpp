@@ -36,6 +36,7 @@ void TreeTop::Start()
 void TreeTop::Update()
 {
 
+
 	switch (TreeTopState_)
 	{
 	case TREETOP::INIT:

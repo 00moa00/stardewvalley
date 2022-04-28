@@ -121,6 +121,7 @@ protected:
 	GameEngineCollision* ItemCollider_;
 
 	GameEngineRenderer* SubRenderer;
+	GameEngineCollision* SubCollider_;
 
 	GameEngineRandom RandomItemCount;
 
@@ -282,7 +283,11 @@ public:
 	//    Setter
 	//================================
 
+	void CreateItemCollision(std::string _CollName, float4 _Size)
+	{
+		ItemCollider_ = CreateCollision(_CollName, _Size);
 
+	}
 
 	void SubDamage()
 	{

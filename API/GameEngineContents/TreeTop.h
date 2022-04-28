@@ -36,7 +36,6 @@ public:
 
 private:
 	TREETOP TreeTopState_;
-
 public:
 
 
