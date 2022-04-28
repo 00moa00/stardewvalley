@@ -11,7 +11,7 @@ WoodAddAnimaition::~WoodAddAnimaition()
 void WoodAddAnimaition::Start()
 {
 	EffectRenderer_ = CreateRenderer("WoodAnimationsSheet.bmp");
-	EffectRenderer_->CreateAnimation("WoodAnimationsSheet.bmp", "ANIMATION", 0, 9, 0.150f, false);
+	EffectRenderer_->CreateAnimation("WoodAnimationsSheet.bmp", "ANIMATION", 0, 9, 0.08f, false);
 	EffectRenderer_->ChangeAnimation("ANIMATION");
 }
 

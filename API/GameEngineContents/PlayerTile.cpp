@@ -5,6 +5,8 @@
 #include "WoodEffect.h"
 #include "WateringCanEffect.h"
 #include "DirtAnimation.h"
+#include "WoodAddAnimaition.h"
+#include "StoneAddAnimation.h"
 
 //******************************************************************************
 //
@@ -178,6 +180,68 @@ void Player::CreateDirtEffet()
 	}
 }
 
+void Player::CreateCrushWoodEffect()
+{
+	float4 Pos = PlayerCollCheckPos();
+	float MarginX = 0;
+
+	if (MoveDir_.CompareInt2D(float4::RIGHT))
+	{
+		MarginX = 24.f;
+	}
+
+	if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		MarginX = -24.f;
+	}
+
+
+	WoodAddAnimaition* WoodAddAnimaition_ = GetLevel()->CreateActor<WoodAddAnimaition>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+	WoodAddAnimaition_->SetPosition({ Pos.x + MarginX, Pos.y });
+
+	if (GetCurrentLevel() == "MyHouseLevel")
+	{
+		WoodAddAnimaition_->GetRenderer()->CameraEffectOff();
+	}
+
+	else
+	{
+		WoodAddAnimaition_->GetRenderer()->CameraEffectOn();
+
+	}
+}
+
+void Player::CreateCrushStoneEffect()
+{
+	float4 Pos = PlayerCollCheckPos();
+	float MarginX = 0;
+
+	if (MoveDir_.CompareInt2D(float4::RIGHT))
+	{
+		MarginX = 24.f;
+	}
+
+	if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		MarginX = -24.f;
+	}
+
+
+	StoneAddAnimation* StoneAddAnimation_ = GetLevel()->CreateActor<StoneAddAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+	StoneAddAnimation_->SetPosition({ Pos.x + MarginX, Pos.y });
+
+	if (GetCurrentLevel() == "MyHouseLevel")
+	{
+		StoneAddAnimation_->GetRenderer()->CameraEffectOff();
+	}
+
+	else
+	{
+		StoneAddAnimation_->GetRenderer()->CameraEffectOn();
+
+	}
+}
+
 void Player::CreateSeed()
 {
 
@@ -292,6 +356,9 @@ void Player::CrushWood()
 
 			//도끼질을 했다면 기력 감소
 			SubEnergy(2.f);
+
+			//도끼질 추가 이펙트
+			CreateCrushWoodEffect();
 		}
 
 		else
@@ -338,6 +405,9 @@ void Player::CrushStone()
 
 			//곡괭이질을 했다면 체력 감소
 			SubEnergy(2.f);
+
+			//곡괭이질 추가 이펙트
+			CreateCrushStoneEffect();
 
 		}
 

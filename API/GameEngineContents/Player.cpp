@@ -93,7 +93,8 @@ void Player::Start()
 
 	//------< ÃÊ±âÈ­ >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
-	PlayerCollider_ = CreateCollision("Player", { 40.f, 30 });
+	PlayerCollider_ = CreateCollision("Player", { 40, 30 });
+	PlayerCollider_->SetPivot({ 0, -20 });
 	SetScale({ 40.f, 40.f });
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 	//LevelRegist("MainPlayer");

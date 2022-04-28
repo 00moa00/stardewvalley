@@ -10,8 +10,8 @@ StoneAddAnimation::~StoneAddAnimation()
 
 void StoneAddAnimation::Start()
 {
-	EffectRenderer_ = CreateRenderer("KiraAnimation.bmp");
-	EffectRenderer_->CreateAnimation("KiraAnimation.bmp", "ANIMATION", 0, 9, 0.150f, false);
+	EffectRenderer_ = CreateRenderer("StoneAnimationsSheet.bmp");
+	EffectRenderer_->CreateAnimation("StoneAnimationsSheet.bmp", "ANIMATION", 0, 9, 0.08f, false);
 	EffectRenderer_->ChangeAnimation("ANIMATION");
 }
 
