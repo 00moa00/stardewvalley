@@ -242,16 +242,16 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void Shop::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
-	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
+	//std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
+	//std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
 
-	for (; StartIter != EndtIter; ++StartIter)
-	{
-		StartIter->second->NextLevelOn();
-	}
-	Font_->NextLevelOn();
-	ExitBotton_->NextLevelOn();
-	NextLevelOn();
+	//for (; StartIter != EndtIter; ++StartIter)
+	//{
+	//	StartIter->second->NextLevelOn();
+	//}
+	//Font_->NextLevelOn();
+	//ExitBotton_->NextLevelOn();
+	//NextLevelOn();
 }
 
 void Shop::ShopOff()

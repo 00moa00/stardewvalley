@@ -9,6 +9,7 @@
 #include "MoveShop.h"
 #include "Lewis.h"
 #include "Penny.h"
+#include "TreeBottom.h"
 
 TownLevel::TownLevel()
 	:
@@ -59,7 +60,7 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	BackGroundFront_->GetRenderer()->SetImage("TownFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });
-	//BackGroundFront_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER));
+	BackGroundFront_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND_FRONT));
 
 	BackGround_->GetRenderer()->SetImage("TownBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });
@@ -130,6 +131,16 @@ void TownLevel::LoadMapObject()
 
 			switch (TileState_)
 			{
+
+
+			//case TILE_LIST::BLOCK:
+
+			//	MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
+			//	ThisIter = --MapObject_.end();
+			//	ThisIter->second->SetPosition(pos);
+
+			//	break;
+
 			case TILE_LIST::LEWIS:
 
 				NpcList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::PLAYER)));

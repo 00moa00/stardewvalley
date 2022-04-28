@@ -11,9 +11,11 @@ Block::~Block()
 void Block::Start()
 {
 	ItemRenderer_ = CreateRenderer("block.bmp");
-	ItemRenderer_->SetPivotType(RenderPivot::BOT);
-	SetScale({ 48.f, 48.f });
-	ItemCollider_ = CreateCollision("Object", { 48, 48 });
+	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
+	SetScale({ 40, 48.f });
+	ItemCollider_ = CreateCollision("MapObject", { 40, 48 });
+	ItemCollider_->SetPivot({0,-15});
+
 	ItemType_ = ITEMTYPE::BLOCK;
 }
 
