@@ -22,6 +22,7 @@ enum class PLAYLEVEL {
 	MAINUI,
 	FONTUI,
 	HAND_ITEM,
+	EFFECT,
 
 	//절대적으로 플레이어 위에 있어야 하는 것들
 	SHOP,
@@ -35,7 +36,6 @@ enum class PLAYLEVEL {
 	TOOL,
 	FONT,
 	CURRENTITEM,
-	EFFECT,
 	DIALOGUEBOX,
 	DIALOGUEFONT,
 	FADE,

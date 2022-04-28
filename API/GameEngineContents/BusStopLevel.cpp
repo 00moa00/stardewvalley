@@ -6,7 +6,7 @@
 #include <GameEngineBase/GameEngineTime.h>
 BusStopLevel::BusStopLevel() 
 	:
-	Iter(MapObject_.begin())
+	FlowingFlower_(nullptr)
 {
 
 	SetName("BusStopLevel");
@@ -46,6 +46,9 @@ void BusStopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	BackGround_->GetRenderer()->SetImage("BusStop_Back.bmp");
 	BackGround_->GetRenderer()->SetPivot({ BUSSTOP_SIZE_WEIGHT / 2,  BUSSTOP_SIZE_HEIGHT / 2 });
+
+	FlowingFlower_ = CreateActor<FlowingFlower>(static_cast<int>(PLAYLEVEL::EFFECT));
+	FlowingFlower_->SetMax({ BUSSTOP_SIZE_WEIGHT, BUSSTOP_SIZE_HEIGHT });
 
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 

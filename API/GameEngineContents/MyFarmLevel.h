@@ -1,5 +1,6 @@
 #pragma once
 #include"PlayLevel.h"
+#include "FlowingFlower.h"
 
 class Player;
 class Inventory;
@@ -31,6 +32,7 @@ private:
 
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
+	FlowingFlower* FlowingFlower_;
 
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;

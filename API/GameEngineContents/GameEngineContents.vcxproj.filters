@@ -353,6 +353,12 @@
     <ClCompile Include="DirtAnimation.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="FlowerParticles.cpp">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowingFlower.cpp">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -726,6 +732,12 @@
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
     <ClInclude Include="DirtAnimation.h">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowerParticles.h">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowingFlower.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
   </ItemGroup>

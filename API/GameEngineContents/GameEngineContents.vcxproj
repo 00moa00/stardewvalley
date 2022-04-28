@@ -272,6 +272,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FlowerParticles.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FlowingFlower.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Font.h">
       <SubType>
       </SubType>
@@ -710,6 +718,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FixedPlayerColl.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FlowerParticles.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FlowingFlower.cpp">
       <SubType>
       </SubType>
     </ClCompile>

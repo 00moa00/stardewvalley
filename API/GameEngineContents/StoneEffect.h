@@ -20,10 +20,10 @@ private:
 	void Start() override;
 	void Update() override;
 
+private:
 	Particles* Particles_[8];
 
 public:
-
 	void SetParticlesPosition(float4 _Position) override;
 
 

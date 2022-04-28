@@ -11,7 +11,8 @@
 
 ShopLevel::ShopLevel()
 	:
-	Shop_(nullptr)
+	Shop_(nullptr),
+	FlowingFlower_(nullptr)
 	
 {
 
@@ -67,6 +68,10 @@ void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->GetRenderer()->SetImage("ShopBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
 	BackGround_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND));
+	
+	FlowingFlower_ = CreateActor<FlowingFlower>(static_cast<int>(PLAYLEVEL::EFFECT));
+	FlowingFlower_->SetMax({ SHOP_SIZE_WEIGHT, SHOP_SIZE_HEIGHT });
+	
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
 

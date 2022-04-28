@@ -67,7 +67,7 @@ void MyFarmLevel::Loading()
 
 void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	
+
 	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
@@ -77,6 +77,9 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	BackGround_->GetRenderer()->CameraEffectOn();
+
+	FlowingFlower_ = CreateActor<FlowingFlower>(static_cast<int>(PLAYLEVEL::EFFECT));
+	FlowingFlower_->SetMax({ FARM_SIZE_WEIGHT, FARM_SIZE_HEIGHT });
 
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();

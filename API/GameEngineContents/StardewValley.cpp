@@ -367,7 +367,17 @@ void StardewValley::GameInit()
 		GameEngineImage* Week_Sheet = GameEngineImageManager::GetInst()->Find("Week_Sheet.bmp");
 		Week_Sheet->Cut({ 42, 26 });
 
+		//================================
+		//		²É
+		//================================
+		GameEngineImage* Flower = GameEngineImageManager::GetInst()->Find("Flower.bmp");
+		Flower->Cut({ 48, 55 });
 
+		//================================
+		//		²É
+		//================================
+		GameEngineImage* FlowerAnimation1 = GameEngineImageManager::GetInst()->Find("FlowerAnimation1.bmp");
+		FlowerAnimation1->Cut({ 48, 55 });
 
 	}
 

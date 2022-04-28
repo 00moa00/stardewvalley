@@ -13,6 +13,7 @@
 #include "Items.h"
 #include "Npc.h"
 #include "Mouse.h"
+#include "FlowingFlower.h"
 
 
 // Ό³Έν :
@@ -42,6 +43,7 @@ private:
 
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
+	FlowingFlower* FlowingFlower_;
 
 	std::map<std::string, Npc*> NpcList_;
 	std::map<int, Items*> MapObject_;
