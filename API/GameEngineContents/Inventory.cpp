@@ -536,13 +536,13 @@ void Inventory::InvenPopUp()
 {
 
 	if ((CurrentInvenState_ == POPUPSTATE::MINI)
-		&& true == GameEngineInput::GetInst()->IsDown("Enter"))
+		&& true == GameEngineInput::GetInst()->IsDown("OpenMenu"))
 	{
 		PopUpState_ = POPUPSTATE::MAIN;
 	}
 
 	if (((CurrentInvenState_ == POPUPSTATE::MAIN) 
-		&& true == GameEngineInput::GetInst()->IsDown("Enter")) || (MainExitBotton->MouseClick()))
+		&& true == GameEngineInput::GetInst()->IsDown("OpenMenu")) || (MainExitBotton->MouseClick()))
 	{
 		PopUpState_ = POPUPSTATE::MINI;
 	}

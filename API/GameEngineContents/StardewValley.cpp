@@ -43,6 +43,7 @@ void StardewValley::GameInit()
 		GameEngineInput::GetInst()->CreateKey("MoveDown", 'S');
 
 		GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
+		GameEngineInput::GetInst()->CreateKey("OpenMenu", 'E');
 
 		GameEngineInput::GetInst()->CreateKey("LeftClick", MK_LBUTTON);
 		GameEngineInput::GetInst()->CreateKey("RightClick", MK_RBUTTON);
