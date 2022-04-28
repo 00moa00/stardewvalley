@@ -289,6 +289,10 @@ private:
 	void CreateDirtTile();
 	void CreateWaterTile();
 	void CreateWaterEffet();
+	void CreateDirtEffet();
+	void CreateCrushWoodEffect();
+	void CreateCrushStoneEffect();
+
 
 	void ChangeDirtTile();
 	void ChangeWetDirtTile();

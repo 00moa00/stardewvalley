@@ -628,10 +628,30 @@ void StardewValley::GameInit()
 		KiraAnimation->Cut({ 48, 48 });
 
 		//================================
-		//		Waterin
+		//		WaterAni
 		//================================
 		GameEngineImage* WateringCanAnimations = GameEngineImageManager::GetInst()->Find("WateringCanAnimations.bmp");
 		WateringCanAnimations->Cut({ 48, 48 });
+
+
+		//================================
+		//		DirtAnimations
+		//================================
+		GameEngineImage* DirtAnimations = GameEngineImageManager::GetInst()->Find("DirtAnimations.bmp");
+		DirtAnimations->Cut({ 48, 48 });
+
+		//================================
+		//		StoneAnimationsSheet
+		//================================
+		GameEngineImage* StoneAnimationsSheet = GameEngineImageManager::GetInst()->Find("StoneAnimationsSheet.bmp");
+		StoneAnimationsSheet->Cut({ 48, 48 });
+
+		//================================
+		//		WoodAnimationsSheet
+		//================================
+		GameEngineImage* WoodAnimationsSheet = GameEngineImageManager::GetInst()->Find("WoodAnimationsSheet.bmp");
+		WoodAnimationsSheet->Cut({ 48, 48 });
+
 
 	}
 
@@ -665,7 +685,7 @@ void StardewValley::GameInit()
 
 	//------< 레벨 등록 >------------------------------------------------------------------
 
-	//CreateLevel<TitleLevel>("TitleLevel");
+	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<MyHouseLevel>("MyHouseLevel");
 	CreateLevel<MyFarmLevel>("MyFarmLevel");
 	CreateLevel<BusStopLevel>("BusStopLevel");

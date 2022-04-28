@@ -344,6 +344,15 @@
     <ClCompile Include="FadeInOut.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
+    <ClCompile Include="WoodAddAnimaition.cpp">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="StoneAddAnimation.cpp">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="DirtAnimation.cpp">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -709,6 +718,15 @@
     </ClInclude>
     <ClInclude Include="FadeInOut.h">
       <Filter>Actor\01. GlobalActor</Filter>
+    </ClInclude>
+    <ClInclude Include="WoodAddAnimaition.h">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneAddAnimation.h">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="DirtAnimation.h">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

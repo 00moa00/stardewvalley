@@ -38,25 +38,25 @@ MyFarmLevel::~MyFarmLevel()
 
 void MyFarmLevel::Loading()
 {
-	//if (nullptr == Player::MainPlayer)
-	//{
-	//	Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER_BODY));
-	//}
+	if (nullptr == Player::MainPlayer)
+	{
+		Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER));
+	}
 
-	//if (nullptr == Inventory::MainInventory)
-	//{
-	//	Inventory::MainInventory = CreateActor<Inventory>(static_cast<int>(PLAYLEVEL::INVENTORY));
-	//}
+	if (nullptr == Inventory::MainInventory)
+	{
+		Inventory::MainInventory = CreateActor<Inventory>(static_cast<int>(PLAYLEVEL::INVENTORY));
+	}
 
-	//if (nullptr == MainUI::MainMainUI)
-	//{
-	//	MainUI::MainMainUI = CreateActor<MainUI>(static_cast<int>(PLAYLEVEL::MAINUI));
-	//}
+	if (nullptr == MainUI::MainMainUI)
+	{
+		MainUI::MainMainUI = CreateActor<MainUI>(static_cast<int>(PLAYLEVEL::MAINUI));
+	}
 
-	//if (nullptr == PlayerEnergyFrame::MainPlayerEnergyFrame)
-	//{
-	//	PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
-	//}
+	if (nullptr == PlayerEnergyFrame::MainPlayerEnergyFrame)
+	{
+		PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
+	}
 
 	if (MapObject_.empty() == true)
 	{
@@ -82,9 +82,9 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	FadeInOut_->SetFadeIn();
 	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 
-	//Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
-	//Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
-	//Player::MainPlayer->Renderer()->CameraEffectOn();
+	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
+	Player::MainPlayer->Renderer()->CameraEffectOn();
 
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");

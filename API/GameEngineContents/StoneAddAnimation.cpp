@@ -1,21 +1,21 @@
-#include "KiraEffect.h"
+#include "StoneAddAnimation.h"
 
-KiraEffect::KiraEffect() 
+StoneAddAnimation::StoneAddAnimation() 
 {
 }
 
-KiraEffect::~KiraEffect() 
+StoneAddAnimation::~StoneAddAnimation() 
 {
 }
 
-void KiraEffect::Start()
+void StoneAddAnimation::Start()
 {
 	EffectRenderer_ = CreateRenderer("KiraAnimation.bmp");
 	EffectRenderer_->CreateAnimation("KiraAnimation.bmp", "ANIMATION", 0, 9, 0.150f, false);
 	EffectRenderer_->ChangeAnimation("ANIMATION");
 }
 
-void KiraEffect::Update()
+void StoneAddAnimation::Update()
 {
 	if (EffectRenderer_->IsEndAnimation())
 	{

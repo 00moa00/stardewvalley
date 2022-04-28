@@ -4,6 +4,7 @@
 #include "StoneEffect.h"
 #include "WoodEffect.h"
 #include "WateringCanEffect.h"
+#include "DirtAnimation.h"
 
 //******************************************************************************
 //
@@ -66,12 +67,13 @@ void Player::CreateDirtTile()
 	else {
 		FarmTile* Tile = DirtTileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
 			, "hoeDirt.bmp", static_cast<int>(TILE_DIRT::BASIC), (int)PLAYLEVEL::DIRT);
+	
 		Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
 
 		//Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
 		//ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
-
 		DirtList_.insert(std::make_pair(ChangeIndex, Tile));
+		CreateDirtEffet();
 	}
 	//delete Tile;
 }
@@ -102,7 +104,6 @@ void Player::CreateWaterTile()
 	if(FindIter == EndIter && FindDirtIter != EndDirtIter)
 	{
 	
-
 		FarmTile* Tile = WetTileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
 			, "hoeDirt.bmp",static_cast<int>(TILE_DIRT::BASIC_WET), (int)PLAYLEVEL::WETDIRT);
 		Tile->TileState_ = TILE_STATE::HOE_DIRT_WATER;
@@ -118,27 +119,63 @@ void Player::CreateWaterTile()
 void Player::CreateWaterEffet()
 {
 	float4 Pos = PlayerCollCheckPos();
-	float MarginX = 0;
+	//float MarginX = 0;
 
-	if (MoveDir_ .CompareInt2D(float4::RIGHT))
-	{
-		MarginX = 24.f;
-	}
+	//if (MoveDir_ .CompareInt2D(float4::RIGHT))
+	//{
+	//	MarginX = 24.f;
+	//}
 
-	if (MoveDir_.CompareInt2D(float4::LEFT))
-	{
-		MarginX = -24.f;
-	}
+	//if (MoveDir_.CompareInt2D(float4::LEFT))
+	//{
+	//	MarginX = -24.f;
+	//}
 
 
 	WateringCanEffect* WateringCanEffect_ = GetLevel()->CreateActor<WateringCanEffect>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
-	WateringCanEffect_->SetPosition({ Pos.x + MarginX, Pos.y});
+	WateringCanEffect_->SetPosition({ Pos.x /*+ MarginX*/, Pos.y});
 
 	if (GetCurrentLevel() == "MyHouseLevel")
 	{
 		WateringCanEffect_->GetRenderer()->CameraEffectOff();
 	}
+	else
+	{
+		WateringCanEffect_->GetRenderer()->CameraEffectOn();
 
+	}
+
+}
+
+void Player::CreateDirtEffet()
+{
+	float4 Pos = PlayerCollCheckPos();
+	//float MarginX = 0;
+
+	//if (MoveDir_.CompareInt2D(float4::RIGHT))
+	//{
+	//	MarginX = 24.f;
+	//}
+
+	//if (MoveDir_.CompareInt2D(float4::LEFT))
+	//{
+	//	MarginX = -24.f;
+	//}
+
+
+	DirtAnimation* DirtAnimation_ = GetLevel()->CreateActor<DirtAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+	DirtAnimation_->SetPosition({ Pos.x /*+ MarginX*/, Pos.y });
+
+	if (GetCurrentLevel() == "MyHouseLevel")
+	{
+		DirtAnimation_->GetRenderer()->CameraEffectOff();
+	}
+
+	else
+	{
+		DirtAnimation_->GetRenderer()->CameraEffectOn();
+
+	}
 }
 
 void Player::CreateSeed()
