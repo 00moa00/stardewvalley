@@ -5,8 +5,7 @@
 class Penny : public Npc
 {
 public:
-	static Penny* MainPenny;
-	static 	DialogueBox* MainDialogueBox_;
+	//static Penny* MainPenny;
 
 	// constrcuter destructer
 	Penny();
@@ -17,6 +16,9 @@ public:
 	Penny(Penny&& _Other) noexcept = delete;
 	Penny& operator=(const Penny& _Other) = delete;
 	Penny& operator=(Penny&& _Other) noexcept = delete;
+	
+private:
+	DialogueBox* MainDialogueBox_;
 
 private:
 	void Start() override;

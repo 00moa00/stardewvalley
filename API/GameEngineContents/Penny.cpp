@@ -2,8 +2,8 @@
 #include "Player.h"
 #include "MainUI.h"
 
-Penny* Penny::MainPenny = nullptr;
-DialogueBox* Penny::MainDialogueBox_ = nullptr;
+//Penny* Penny::MainPenny = nullptr;
+//DialogueBox* Penny::MainDialogueBox_ = nullptr;
 
 
 Penny::Penny() 
@@ -56,13 +56,13 @@ void Penny::Update()
 
 void Penny::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainPenny = this;
-	MainDialogueBox_ = MainDialogueBox_;
+	//MainPenny = this;
+	//MainDialogueBox_ = MainDialogueBox_;
 }
 
 void Penny::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	MainDialogueBox_->NextLevelOn();
+	//MainDialogueBox_->NextLevelOn();
 
 }
 

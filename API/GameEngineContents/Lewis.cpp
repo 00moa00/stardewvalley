@@ -2,8 +2,8 @@
 #include "Player.h"
 #include "MainUI.h"
 
-Lewis* Lewis::MainLewis = nullptr;
-DialogueBox* Lewis::MainDialogueBox_ = nullptr;
+//Lewis* Lewis::MainLewis = nullptr;
+//DialogueBox* Lewis::MainDialogueBox_ = nullptr;
 
 Lewis::Lewis() 
 {
@@ -69,13 +69,13 @@ void Lewis::Update()
 
 void Lewis::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainLewis = this;
+	//MainLewis = this;
 	MainDialogueBox_ = MainDialogueBox_;
 }
 
 void Lewis::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	MainDialogueBox_->NextLevelOn();
+	//MainDialogueBox_->NextLevelOn();
 }
 
 void Lewis::OpenDialogue()

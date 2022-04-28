@@ -59,6 +59,7 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	BackGroundFront_->GetRenderer()->SetImage("TownFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });
+	//BackGroundFront_->SetOrder(static_cast<int>(PLAYLEVEL::PLAYER));
 
 	BackGround_->GetRenderer()->SetImage("TownBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });

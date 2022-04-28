@@ -5,8 +5,6 @@
 class Pierre : public Npc
 {
 public:
-	static Pierre* MainPierre;
-	static 	DialogueBox* MainDialogueBox_;
 
 	// constrcuter destructer
 	Pierre();
@@ -19,6 +17,8 @@ public:
 	Pierre& operator=(Pierre&& _Other) noexcept = delete;
 
 private:
+	DialogueBox* MainDialogueBox_;
+
 	void Start() override;
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;

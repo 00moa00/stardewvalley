@@ -5,10 +5,6 @@
 class Lewis : public Npc
 {
 public:
-	static Lewis* MainLewis;
-	static 	DialogueBox* MainDialogueBox_;
-
-
 	// constrcuter destructer
 	Lewis();
 	~Lewis();
@@ -20,6 +16,10 @@ public:
 	Lewis& operator=(Lewis&& _Other) noexcept = delete;
 
 private:
+	DialogueBox* MainDialogueBox_;
+
+private:
+
 	void Start() override;
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;

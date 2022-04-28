@@ -89,10 +89,8 @@ void Player::Start()
 	//------< 액터 등록 >------------------------------------------------------------------
 	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::HAND_ITEM);
 	MainMouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-
 	//------< 초기화 >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
-	
 	PlayerCollider_ = CreateCollision("Player", { 40.f, 30 });
 	SetScale({ 40.f, 40.f });
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
@@ -370,7 +368,6 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		ToolRenderer_->CreateAnimation("wateringcan_front.bmp", "FRONT_WATER", static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT0), static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT2), 0.200f, false);
 		ToolRenderer_->CreateAnimation("wateringcan_back.bmp", "BACK_WATER", static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK0), static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK2), 0.200f, false);
 		
-
 		//------< 애니메이션 초기화 >------------------------------------------------------------------
 		
 		ToolRenderer_->ChangeAnimation("LEFT_INIT");
@@ -389,13 +386,13 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	PlayerHandItem_->NextLevelOn();
 	PrevLevel_ = CurrentLevel_;
 
-	std::map<std::string, Npc*>::iterator StartIter = NpcList_.begin();
-	std::map<std::string, Npc*>::iterator EndIter = NpcList_.end();
+	//std::map<std::string, Npc*>::iterator StartIter = NpcList_.begin();
+	//std::map<std::string, Npc*>::iterator EndIter = NpcList_.end();
 
-	for (; StartIter != EndIter; ++StartIter)
-	{
-		StartIter->second->NextLevelOn();
-	}
+	//for (; StartIter != EndIter; ++StartIter)
+	//{
+	//	StartIter->second->NextLevelOn();
+	//}
 }
 
 

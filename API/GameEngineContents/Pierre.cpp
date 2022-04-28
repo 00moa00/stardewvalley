@@ -1,8 +1,8 @@
 #include "Pierre.h"
 #include "Player.h"
 
-Pierre* Pierre::MainPierre = nullptr;
-DialogueBox* Pierre::MainDialogueBox_ = nullptr;
+//Pierre* Pierre::MainPierre = nullptr;
+//DialogueBox* Pierre::MainDialogueBox_ = nullptr;
 
 
 Pierre::Pierre() 
@@ -41,13 +41,13 @@ void Pierre::Update()
 
 void Pierre::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainPierre = this;
-	MainDialogueBox_ = MainDialogueBox_;
+	//MainPierre = this;
+	//MainDialogueBox_ = MainDialogueBox_;
 }
 
 void Pierre::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	MainDialogueBox_->NextLevelOn();
+	//MainDialogueBox_->NextLevelOn();
 }
 
 void Pierre::OpenDialogue()
