@@ -55,6 +55,9 @@ void MyHouseLevel::Loading()
 	{
 		LoadMapObject();
 	}
+
+
+
 }
 
 void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
@@ -76,20 +79,22 @@ void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 
-	//PlayerEnergyFrame::MainPlayerEnergyFrame -> SetPosition({ GameEngineWindow::GetScale().x - 100.f, GameEngineWindow::GetScale().y - 150.f });
+	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+	FadeInOut_->SetFadeIn();
 
 }
 
 void MyHouseLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+
 	if (_NextLevel->GetNameCopy() != "TitleLevel")
 	{
 		Player::MainPlayer->NextLevelOn();
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
-
 	}
+
 }
 
 

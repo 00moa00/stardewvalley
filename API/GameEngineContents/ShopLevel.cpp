@@ -67,7 +67,8 @@ void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->GetRenderer()->SetImage("ShopBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
 	BackGround_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND));
-
+	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+	FadeInOut_->SetFadeIn();
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;

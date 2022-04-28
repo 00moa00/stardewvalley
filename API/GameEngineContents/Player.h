@@ -20,6 +20,7 @@
 #include "Shop.h"
 #include "Crops.h"
 #include "Npc.h"
+#include "FadeInOut.h"
 
 #include <vector>
 #include <map>
@@ -38,6 +39,13 @@ enum class MONEY_UPDATE
 	WAIT,
 	ADD_TIME,
 	CHANGE_FONT
+};
+
+enum class LEVEL_CHANGE_STATE
+{
+	CHECK,
+	FADE_OUT,
+	LEVEL_CHANGE,
 };
 
 class FarmTile : public Tile
@@ -99,7 +107,6 @@ private:
 
 	int Energy_;
 
-
 	float MapSizeX_;
 	float MapSizeY_;
 	float AnimationFrame_;
@@ -113,6 +120,9 @@ private:
 	bool ObjectColl_;
 	bool isShopping_;
 	bool isEvent_;
+
+	std::string ChangeLevelName_;
+	FadeInOut* FadeInOut_;
 
 	GameEngineRenderer* PlayerBodyRenderer_;
 	GameEngineRenderer* PlayerPantsRenderer_;
@@ -140,7 +150,7 @@ private:
 
 	MONEY_UPDATE AddMoneyCount_;
 	MONEY_UPDATE SubMoneyCount_;
-
+	LEVEL_CHANGE_STATE LevelChagne_;
 
 	static std::string CurrentLevel_;
 	static std::string PrevLevel_;

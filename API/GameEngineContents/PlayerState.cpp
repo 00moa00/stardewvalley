@@ -2,6 +2,8 @@
 #include "MainUI.h"
 #include "NpcData.h"
 #include "PlayerEnergyFrame.h"
+#include "FadeInOut.h"
+
 
 //------< 공개 함수 >------------------------------------------------------------------
 
@@ -377,30 +379,68 @@ void Player::SetPlayerStartPos()
 
 void Player::ChangeLevel()
 {
-	if (MoveFarmCollision())
+
+	switch (LevelChagne_)
 	{
-		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
+	case LEVEL_CHANGE_STATE::CHECK:
+		if (MoveFarmCollision())
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "MyFarmLevel";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+		if (MoveHouseCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "MyHouseLevel";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+
+		}
+
+		if (MoveBusStopCollision())
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "BusStopLevel";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+
+		if (MoveTownCollision())
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "TownLevel";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+		if (MoveShopCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "ShopLevel";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+		break;
+	case LEVEL_CHANGE_STATE::FADE_OUT:
+
+		if (FadeInOut_->GetFadeEnd())
+		{
+			GameEngine::GetInst().ChangeLevel(ChangeLevelName_);
+		}
+
+		break;
+	case LEVEL_CHANGE_STATE::LEVEL_CHANGE:
+		break;
+	default:
+		break;
 	}
 
-	if (MoveHouseCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
-	{
-		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
-	}
 
-	if (MoveBusStopCollision())
-	{
-		GameEngine::GetInst().ChangeLevel("BusStopLevel");
-	}
-
-	if (MoveTownCollision())
-	{
-		GameEngine::GetInst().ChangeLevel("TownLevel");
-	}
-
-	if (MoveShopCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
-	{
-		GameEngine::GetInst().ChangeLevel("ShopLevel");
-	}
 
 }
 

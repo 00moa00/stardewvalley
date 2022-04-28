@@ -17,6 +17,8 @@
 #include "Npc.h"
 #include "Mouse.h"
 
+#include "FadeInOut.h"
+
 #include <list>
 
 // Ό³Έν :

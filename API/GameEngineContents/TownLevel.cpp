@@ -76,6 +76,9 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	//Time = 5.0f;
 	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 	
+	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+	FadeInOut_->SetFadeIn();
+
 }
 
 void TownLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)

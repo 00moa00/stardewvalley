@@ -341,6 +341,9 @@
     <ClCompile Include="CustomData.cpp">
       <Filter>Actor\00. GlobalData</Filter>
     </ClCompile>
+    <ClCompile Include="FadeInOut.cpp">
+      <Filter>Actor\01. GlobalActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -703,6 +706,9 @@
     </ClInclude>
     <ClInclude Include="CustomData.h">
       <Filter>Actor\00. GlobalData</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeInOut.h">
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

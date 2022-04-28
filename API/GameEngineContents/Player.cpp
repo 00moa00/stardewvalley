@@ -48,6 +48,7 @@ Player::Player()
 	DirtTileMap_(nullptr),
 	MoveDir_(float4::DOWN),
 
+	LevelChagne_(LEVEL_CHANGE_STATE::CHECK),
 	CurrentItemType_(TOOLTYPE::OTHER),
 	UseToolState_(USE_TOOL::INIT),
 	TileState_(TILE_COLL::INIT),
@@ -89,6 +90,7 @@ void Player::Start()
 	//------< 액터 등록 >------------------------------------------------------------------
 	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::HAND_ITEM);
 	MainMouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
+
 	//------< 초기화 >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	PlayerCollider_ = CreateCollision("Player", { 40.f, 30 });
@@ -373,15 +375,20 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		ToolRenderer_->ChangeAnimation("LEFT_INIT");
 	}
 
+	LevelChagne_ = LEVEL_CHANGE_STATE::CHECK;
+
 	MainPlayer = this;
 	PlayerHandItem_ = PlayerHandItem_;
 	MainMouse_ = MainMouse_;
+
 	LevelInit();
 }
 
 
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+
+	FadeInOut_->Death();
 	MainMouse_->NextLevelOn();
 	PlayerHandItem_->NextLevelOn();
 	PrevLevel_ = CurrentLevel_;
@@ -604,6 +611,8 @@ void Player::LevelInit()
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 		ToolRenderer_->CameraEffectOff();
 
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
 		PlayerBodyRenderer_->CameraEffectOff();
 		PlayerPantsRenderer_->CameraEffectOff();
 		PlayerShirtsRenderer_->CameraEffectOff();
@@ -615,6 +624,8 @@ void Player::LevelInit()
 	{
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 		ToolRenderer_->CameraEffectOff();
+
+		PlayerHandItem_->GetRenderer()->CameraEffectOff();
 
 		PlayerBodyRenderer_->CameraEffectOff();
 		PlayerPantsRenderer_->CameraEffectOff();
@@ -630,6 +641,8 @@ void Player::LevelInit()
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("FarmBack_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
+
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
 
 		PlayerBodyRenderer_->CameraEffectOn();
 		PlayerPantsRenderer_->CameraEffectOn();
@@ -647,6 +660,8 @@ void Player::LevelInit()
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
 
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
 		PlayerBodyRenderer_->CameraEffectOn();
 		PlayerPantsRenderer_->CameraEffectOn();
 		PlayerShirtsRenderer_->CameraEffectOn();
@@ -663,6 +678,8 @@ void Player::LevelInit()
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("Town_Col.bmp");
 		ToolRenderer_->CameraEffectOn();
 
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
 		PlayerBodyRenderer_->CameraEffectOn();
 		PlayerPantsRenderer_->CameraEffectOn();
 		PlayerShirtsRenderer_->CameraEffectOn();
@@ -677,6 +694,8 @@ void Player::LevelInit()
 
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("Shop_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
+
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
 
 		PlayerBodyRenderer_->CameraEffectOn();
 		PlayerPantsRenderer_->CameraEffectOn();

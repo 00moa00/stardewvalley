@@ -49,6 +49,9 @@ void BusStopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 
+	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+	FadeInOut_->SetFadeIn();
+
 }
 
 void BusStopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
