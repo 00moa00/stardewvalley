@@ -68,7 +68,7 @@ void Inventory::Start()
 	float4 Position;
 	Position.x = Inventory_->GetScale().x  + 250.f;
 	Position.y = Inventory_->GetScale().y  + 50.f;
-	MainExitBotton->SetPosition({ Position.x ,Position.y });
+	MainExitBotton->SetPosition({ Position.x ,Position.y - 100.f });
 	
 	LevelRegist("MainInventory");
 }
