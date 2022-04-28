@@ -60,16 +60,20 @@ public:
 
 	virtual void MoveUpdate();
 
+	virtual void CheckTalkingLimit();
+
 private:
 
 
 
 protected:
 
+	bool TalkingLimit_; //하루에 한 번만 대화를 걸 수 있다.
+
 	int WaitCount_; //몇시 몇번째 멈춤인지에 따라서 행동이 다르다
 
 	float Speed_;
-	float WaitTimer_;
+	float WaitTimer_; //플레이어와 대화 종료후 행동에 다시 들어가는 딜레이 시간
 
 	float4 MoveDir_;
 	float4 PrevDir_;
@@ -82,12 +86,11 @@ protected:
 	NPC_STATE NpcUpdateState_;
 
 	std::vector<GameEngineCollision*> ColList;
-
 	std::vector<NpcMove*> MoveFlagList_;
-	GameEngineRenderer* NpcRenderer_;
 
+	GameEngineRenderer* NpcRenderer_;
 	GameEngineCollision* NpcCollider_;		//충돌체크용
-	GameEngineCollision* PersonalCollider_;	//개인 클릭 용
+	GameEngineCollision* PersonalCollider_;	//서브 콜라이더. 현재까지 쓰지 않음
 
 
 private:
@@ -108,6 +111,11 @@ public:
 	GameEngineRenderer* GetRenderer()
 	{
 		return NpcRenderer_;
+	}
+
+	bool GetTalkingLimit()
+	{
+		return TalkingLimit_;
 	}
 
 	int GetLeft()

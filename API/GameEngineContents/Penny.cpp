@@ -43,6 +43,7 @@ void Penny::Start()
 void Penny::Update()
 {
 	MoveUpdate();
+	CheckTalkingLimit();
 
 	if (NpcUpdateState_ == NPC_STATE::WAIT)
 	{
@@ -62,7 +63,6 @@ void Penny::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void Penny::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	//MainDialogueBox_->NextLevelOn();
 
 }
 

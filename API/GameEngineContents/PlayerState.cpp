@@ -463,6 +463,7 @@ void Player::NpcCollCheck()
 		for (; NpcIter != NpcEndIter; ++NpcIter) {
 
 			if (NpcIter->second->NPCCheck(PlayerCollCheckPos(), GetScale()) == true
+				&& NpcIter->second->GetTalkingLimit() == false
 				&& MainMouse_->isMouseClick() == true)
 			{
 				isEvent_ = !isEvent_;

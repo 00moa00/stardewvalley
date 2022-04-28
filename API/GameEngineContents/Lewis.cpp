@@ -44,6 +44,7 @@ void Lewis::Start()
 void Lewis::Update()
 {
 	MoveUpdate();
+	CheckTalkingLimit();
 
 	if (NpcUpdateState_ == NPC_STATE::WAIT)
 	{

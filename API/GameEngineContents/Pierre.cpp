@@ -37,6 +37,7 @@ void Pierre::Start()
 void Pierre::Update()
 {
 	MoveUpdate();
+	CheckTalkingLimit();
 }
 
 void Pierre::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -52,32 +53,35 @@ void Pierre::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Pierre::OpenDialogue()
 {
-	DialogueUpdate_ = !DialogueUpdate_;
-
-
-	if (DialogueUpdate_ == true)
+	if (TalkingLimit_ == false)
 	{
-		Inventory::MainInventory->AllUpdateOff();
+		DialogueUpdate_ = !DialogueUpdate_;
 
-		MainDialogueBox_->DialogueOn();
-		MainDialogueBox_->SetPierre();
+		if (DialogueUpdate_ == true)
+		{
+			Inventory::MainInventory->AllUpdateOff();
 
-		//현재 방향 저장하고 플레이어의 방향으로 고개 돌림
-		PrevDir_ = MoveDir_;
-		MoveDir_ = -Player::MainPlayer->GetMoveDir();
-		NpcUpdateState_ = NPC_STATE::DIALOGUE_IDLE;
+			MainDialogueBox_->DialogueOn();
+			MainDialogueBox_->SetPierre();
+
+			//현재 방향 저장하고 플레이어의 방향으로 고개 돌림
+			PrevDir_ = MoveDir_;
+			MoveDir_ = -Player::MainPlayer->GetMoveDir();
+			NpcUpdateState_ = NPC_STATE::DIALOGUE_IDLE;
+		}
+
+
+		if (DialogueUpdate_ == false)
+		{
+			Inventory::MainInventory->AllUpdateOn();
+			Inventory::MainInventory->SetPopUpStateMini();
+
+			MainDialogueBox_->DialogueOff();
+			WaitTimer_ = 2.0f;
+			TalkingLimit_ = true;
+			NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
+		}
 	}
 
-
-	if (DialogueUpdate_ == false)
-	{
-		Inventory::MainInventory->AllUpdateOn();
-		Inventory::MainInventory->SetPopUpStateMini();
-
-		MainDialogueBox_->DialogueOff();
-		WaitTimer_ = 2.0f;
-		NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
-
-	}
 }
 

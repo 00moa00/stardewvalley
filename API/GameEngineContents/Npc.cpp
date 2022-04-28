@@ -7,14 +7,21 @@
 
 Npc::Npc() 
 	:
+	DialogueUpdate_(false),
+	TalkingLimit_(false),
+
 	WaitCount_(0),
+
 	Speed_(80.f),
 	WaitTimer_(0.f),
+
 	MoveDir_(float4::DOWN),
 	PrevDir_(float4::ZERO),
-	DialogueUpdate_(false),
-	isWalking_(false),
+
 	NpcUpdateState_(NPC_STATE::WAIT),
+
+
+	isWalking_(false),
 	NpcRenderer_(nullptr),
 	NpcCollider_(nullptr),
 	PersonalCollider_(nullptr)
@@ -416,6 +423,16 @@ void Npc::MoveUpdate()
 	}
 
 	DirAnimationChange();
+}
+
+void Npc::CheckTalkingLimit()
+{
+
+	if (TalkingLimit_ == true && MainUI::MainMainUI->DayOver()) 
+	{
+		TalkingLimit_ = false;
+	}
+
 }
 
 bool Npc::NPCCheck(const float4 pos, const float4 scale)
