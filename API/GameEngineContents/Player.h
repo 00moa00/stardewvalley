@@ -204,6 +204,8 @@ public:
 	//    Setter
 	//================================
 
+	void SetPlayerFaint();
+
 	void ChangeHair(int _Index);
 	void ChangeShirts(int _Index);
 	void ChangePants(int _Index);

@@ -67,12 +67,13 @@ void MyHouseLevel::Loading()
 
 void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	if (MenuGuide_ != nullptr)
+	{
+		MenuGuide_->GetRenderer()->SetImage("GameGuide.bmp");
+		MenuGuide_->GetRenderer()->SetPivot({ 0 - 250 / 2,  GameEngineWindow::GetScale().Half().y });
+		MenuGuide_->GetRenderer()->CameraEffectOff();
 
-	
-	MenuGuide_ ->GetRenderer()->SetImage("GameGuide.bmp");
-	MenuGuide_->GetRenderer()->SetPivot({0 - 250/2,  GameEngineWindow::GetScale().Half().y });
-	MenuGuide_->GetRenderer()->CameraEffectOff();
-
+	}
 	//	MenuGuide_->GetRenderer()->SetPivot({0 + 250/2,  GameEngineWindow::GetScale().Half().y });
 
 	
@@ -234,7 +235,7 @@ void MyHouseLevel::MoveGuide()
 		break;
 
 	case GUIDE_MOVE::DEATH:
-
+		MenuGuide_ = nullptr;
 
 		break;
 	default:

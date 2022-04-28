@@ -129,6 +129,13 @@ bool Player::FindWetDirt(int _Index)
 //
 //******************************************************************************
 
+void Player::SetPlayerFaint()
+{
+	
+	PlayerState_ = PLAYER_UPDATE::FAINT;
+	
+}
+
 void Player::ChangeHair(int _Index)
 {
 
@@ -430,6 +437,7 @@ void Player::ChangeLevel()
 
 		if (FadeInOut_->GetFadeEnd())
 		{
+
 			GameEngine::GetInst().ChangeLevel(ChangeLevelName_);
 		}
 

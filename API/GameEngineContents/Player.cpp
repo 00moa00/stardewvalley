@@ -66,6 +66,9 @@ Player::Player()
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "HOE";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "HANDITEM";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "HANDITEMWALK";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "FAINT";
+
+
 
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::INIT)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::WALK)] = "INIT";
@@ -75,14 +78,15 @@ Player::Player()
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "PICKAXE";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "INIT";
 
-}
+
+}	
 
 
 Player::~Player() 
 {
 	CurrentLevel_ = "";
-
 }
 
 void Player::Start()
@@ -97,12 +101,10 @@ void Player::Start()
 	PlayerCollider_->SetPivot({ 0, -20 });
 	SetScale({ 40.f, 40.f });
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
-	//LevelRegist("MainPlayer");
 }
 
 void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-
 
 	//------< 플레이어 렌더러 >------------------------------------------------------------------
 	if (PlayerBodyRenderer_ == nullptr)
@@ -273,7 +275,6 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		//================================
 		//     플레이어 물뿌리개 사용
 		//================================
-
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_WATER", static_cast<int>(PLAYER::WATER_FRONT0), static_cast<int>(PLAYER::WATER_FRONT2), 0.200f, true);
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0), static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
@@ -299,6 +300,33 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0), static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0), static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
 
+		//================================
+		//     플레이어 기절
+		//================================
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
 
 
 
@@ -593,6 +621,38 @@ void Player::PlayerUpdate()
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
+		break;
+
+
+	case PLAYER_UPDATE::FAINT:
+		PlayerState_ = PLAYER_UPDATE::FAINT;
+
+		PlayerBodyRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+		PlayerPantsRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+		PlayerShirtsRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+		PlayerHairRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+		PlayerHandRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
+
+
+
+		if (PlayerBodyRenderer_->IsEndAnimation())
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+
+			if (GetCurrentLevel() != "MyHouseLevel")
+			{
+				ChangeLevelName_ = "MyHouseLevel";
+				FadeInOut_->SetFadeOut();
+				LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+				PlayerState_ = PLAYER_UPDATE::INIT;
+			}
+
+			else
+			{
+				PlayerState_ = PLAYER_UPDATE::INIT;
+
+			}
+		}
 		break;
 
 	default:

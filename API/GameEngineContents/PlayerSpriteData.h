@@ -43,6 +43,9 @@ enum class PLAYER
 	HOE_BACK0 = 156, HOE_BACK1, HOE_BACK2,
 	HOE_BACK_HOLD0 = 180, HOE_BACK_HOLD1, HOE_BACK_HOLD2, HOE_BACK_FREE0, HOE_BACK_FREE1,
 
+	//------< ±âÀý >------------------------------------------------------------------
+
+	FAINT0 = 216, FAINT1
 
 };
 

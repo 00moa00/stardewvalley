@@ -90,7 +90,7 @@ void MainUI::Update()
 
 	if (true == GameEngineInput::GetInst()->IsPress("TimeAdd"))
 	{
-		AddTIme_ = 1000;
+		AddTIme_ = 10000;
 	}
 	
 	else
@@ -145,6 +145,8 @@ void MainUI::Update()
 	UpdateSetAm();
 	ExtraDayAndAddDay();
 	UpdateHourTime();
+
+
 }
 
 void MainUI::Render()
@@ -235,14 +237,17 @@ void MainUI::UpdateSetAm()
 
 void MainUI::ExtraDayAndAddDay()
 {
-	if (isExtraDay_ == true && HourTime_ == 25)
+	if (isExtraDay_ == true && HourTime_ == 24 && MinuteTime_==50)
 	{
 		AddDay();
 		++Day_;
 		DayFont_->ChangeNumRightSort(Day_);
 		HourTime_ = 5;
-		MinuteTime_ = 0;
+		MinuteTime_ = 50;
+
 		isExtraDay_ = false;
+		Player::MainPlayer->SetPlayerFaint();
+		
 	}
 }
 
