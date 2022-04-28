@@ -22,7 +22,7 @@ void TreeBottom::Start()
 
 	ItemCollider_ = CreateCollision("MapObject", { 48.f, 48.f });
 
-	SubCollider_ = CreateCollision("TreeTop", { 100, 200 });
+	SubCollider_ = CreateCollision("TreeTop", { 100, 150 });
 	SubCollider_->SetPivot({ 0, -120 });
 
 	SubRenderer = GetLevel()->CreateActor<TreeTop>((int)PLAYLEVEL::PLAYER);
