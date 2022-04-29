@@ -52,7 +52,7 @@ void Lewis::Update()
 	{
 
 		//¿ÀÀü 10½Ã
-		if (MainUI::MainMainUI->GetHour() > 10 && WaitCount_ == 0)
+		if (MainUI::MainMainUI->GetHour() > 10 && WaitCount_ == 0 && (MainUI::MainMainUI->GetDay() ==3))
 		{
 			//MoveDir_ = float4::DOWN;
 			NpcUpdateState_ = NPC_STATE::WALK;
