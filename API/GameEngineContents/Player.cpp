@@ -768,13 +768,26 @@ void Player::LevelInit()
 		PlayerHandRenderer_->CameraEffectOn();
 	}
 
+
+
+
+	//쓰러지고 집
+
+	if (CurrentLevel_ == "MyHouseLevel"
+		&& (PrevLevel_ == "BusStopLevel"
+			|| PrevLevel_ == "BusStopLevel"
+			|| PrevLevel_ == "TownLevel"
+			|| PrevLevel_ == "ShopLevel"))
+	{
+		SetPosition({ 790.f, 490.f });
+
+	}
+
 	// 타이틀 -> 집
 	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "")
 	{
 		SetPosition({ 110.f, 2620.f });
 	}
-
-
 
 	// 타이틀 -> 집
 	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "")
