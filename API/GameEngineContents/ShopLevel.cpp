@@ -11,8 +11,7 @@
 
 ShopLevel::ShopLevel()
 	:
-	Shop_(nullptr),
-	FlowingFlower_(nullptr)
+	Shop_(nullptr)
 	
 {
 
