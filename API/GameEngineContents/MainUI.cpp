@@ -23,6 +23,7 @@ MainUI::MainUI()
 	DayIndex_(0),
 	SecondTime_(0),
 	PrevSecondTime_(0),
+	DayFadeAlpha_(0),
 	AddTIme_(),
 
 
@@ -65,6 +66,12 @@ void MainUI::Start()
 	DayRenderer_->SetPivot({ 20.f, -60.f });
 	DayRenderer_->SetIndex(0);
 
+	DayFade_ = CreateRenderer("DayFade.bmp");
+	DayFade_->CameraEffectOff();
+	DayFade_->SetOrder((int)PLAYLEVEL::FADE);
+	DayFade_->SetAlpha(0);
+	DayFade_->SetPivot({ -300 , 0 });
+
 	//1119 128
 	HourFont_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONTUI);
 	HourFont_->ChangeNumLeftSort(6, { GetPosition().x - 3.f, GetPosition().y + 1.f});
@@ -90,17 +97,17 @@ void MainUI::Update()
 
 	if (true == GameEngineInput::GetInst()->IsPress("TimeAdd"))
 	{
-		AddTIme_ = 10000;
+		AddTIme_ = 10;
 	}
 	
 	else
 	{
-		AddTIme_ = 1;
+		AddTIme_ = 0;
 	}
 
-	SecondTime_ = (GetAccTime()) * AddTIme_;
+	SecondTime_ = (GetAccTime());
 	SecondTimeInt_ = static_cast<int>(SecondTime_) + 253;
-
+	MinuteTime_ += AddTIme_;
 
 	switch (MinuteState_)
 	{
@@ -145,6 +152,22 @@ void MainUI::Update()
 	UpdateSetAm();
 	ExtraDayAndAddDay();
 	UpdateHourTime();
+
+
+
+	//if (HourTime_ > 18)
+	//{
+	//	DayFadeAlpha_ += (GameEngineTime::GetDeltaTime() + 20.f);
+	//	DayFade_->SetAlpha(DayFadeAlpha_);
+
+	//	if (DayFadeAlpha_ > 100)
+	//	{
+	//		DayFadeAlpha_ = 100;
+	//		DayFade_->SetAlpha(DayFadeAlpha_);
+
+	//	}
+
+	//}
 
 
 }
@@ -205,11 +228,10 @@ void MainUI::UpdateHourTime()
 			return;
 		}
 
-		//am && 진짜 데이가 지났다.
 
 		if (isExtraDay_ == true && AmPm_ == AM_PM::AM)
 		{
-			HourFont_->ChangeNumLeftSort(HourTime_ - 23, { GetPosition().x - 3.f, GetPosition().y + 1.f });
+			HourFont_->ChangeNumLeftSort(HourTime_ - 24, { GetPosition().x - 3.f, GetPosition().y + 1.f });
 			return;
 		}
 	}
@@ -226,7 +248,7 @@ void MainUI::UpdateSetPm()
 
 void MainUI::UpdateSetAm()
 {
-	if (HourTime_ == 23 && AmPm_ == AM_PM::PM)
+	if (HourTime_ == 24 && AmPm_ == AM_PM::PM)
 	{
 		SetAm();
 		AmPm_ = AM_PM::AM;
@@ -237,13 +259,14 @@ void MainUI::UpdateSetAm()
 
 void MainUI::ExtraDayAndAddDay()
 {
-	if (isExtraDay_ == true && HourTime_ == 24 && MinuteTime_==50)
+	if (isExtraDay_ == true && HourTime_ == 25 && MinuteTime_==50)
 	{
 		AddDay();
 		++Day_;
 		DayFont_->ChangeNumRightSort(Day_);
 		HourTime_ = 5;
 		MinuteTime_ = 50;
+
 
 		isExtraDay_ = false;
 		Player::MainPlayer->SetPlayerFaint();
@@ -254,4 +277,10 @@ void MainUI::ExtraDayAndAddDay()
 void MainUI::SetMainUIMoney(int _Money)
 {
 	MoneyFont_->ChangeNumMoneyLeftSort(_Money, { 1230.f, 192.f });
+}
+
+void MainUI::SetDayFadeReset()
+{
+	DayFadeAlpha_ = 0;
+	DayFade_->SetAlpha(0);
 }

@@ -72,6 +72,8 @@ private:
 	int AddTIme_;
 	int DayIndex_;
 
+	int DayFadeAlpha_;
+
 	float SecondTime_;
 
 	bool isExtraDay_;
@@ -81,9 +83,10 @@ private:
 	MINUTE_STATE MinuteState_;
 
 	GameEngineRenderer* MainUIRenderer_;
-	//GameEngineRenderer* Day_;
 	GameEngineRenderer* DayRenderer_;
 	GameEngineRenderer* AmPmRenderer_;
+
+	GameEngineRenderer* DayFade_;
 
 private:
 	void UpdateMinuteFont();
@@ -127,6 +130,8 @@ private:
 public:
 
 	void SetMainUIMoney(int _Money);
+
+	void SetDayFadeReset();
 
 	int GetDay()
 	{
