@@ -43,25 +43,24 @@ public:
 	// 스트링으로 받을떄
 	void ChangeNumStr(std::string _Num);
 
-	//기본 오른쪽, 왼쪽 정렬
+	//중간 변경 용. 오른쪽, 왼쪽 정렬
+	void SetPositionRightSort(float4 _Pos);
 	void ChangeNumRightSort(int _Num);
+
 	void ChangeNumLeftSort(int _Num, float4 _Pos);
 
 	//아이템, 소지금일때 정렬 간격이 다르다
 	void ChangeNumItemLeftSort(int _Num, float4 _Pos);
 	void ChangeNumMoneyLeftSort(int _Num, float4 _Pos);
 
+	//폰트 디자인 변경
 	void ChangeWhiteColor();
 
 	//영문
 	void ChangeFont(std::string _Font, float4 _Pos); //교체용
 	void CreateFontInit(std::string _Font, float4 _Pos); //생성용
 
-	//================================
-	//    Setter
-	//================================
-
-	void SetPositionRightSort(float4 _Pos);
+	//폰트의 위치가 계속 업데이트 받아야 할 때
 	void SetPositionItem(float4 _Pos);
 };
 
@@ -131,8 +130,6 @@ enum class FONT
 	EMPTY,
 
 };
-
-
 
 enum class FONT_VER2
 {

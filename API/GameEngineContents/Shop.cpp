@@ -45,8 +45,7 @@ void Shop::Start()
 	NewShopItem<BeanStarter_Shop>();
 
 	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-	Font_->ChangeNumRightSort(1000);
-	Font_->SetPositionRightSort({ 136.f, 475.f });
+	Font_->ChangeNumMoneyLeftSort(1000, { 280.f, 475.f });
 
 
 	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
@@ -290,6 +289,6 @@ void Shop::ShopOn()
 
 void Shop::SetShopMoney(int _Money)
 {
-	Font_->ChangeNumRightSort(_Money);
+	Font_->ChangeNumMoneyLeftSort(_Money, { 280.f, 475.f });
 }
 

@@ -172,8 +172,8 @@ void Font::ChangeNumItemLeftSort(int _Num, float4 _Pos)
 	}
 
 
-	//그 외의 숫자는 공백으로 함
-	for (; Count_ < 11; ++Count_)
+	//그 외의 숫자는 공백으로 함. 일단 세자리만 설정
+	for (; Count_ < 3; ++Count_)
 	{
 		NumberRenderer.at(Count_)->SetIndex(10);
 	}
