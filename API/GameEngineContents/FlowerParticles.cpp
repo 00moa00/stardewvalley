@@ -2,7 +2,10 @@
 
 FlowerParticles::FlowerParticles() 
 	:
-	RandomAnimation_()
+	RandomAnimation_(),
+
+	MaxY_(0),
+	Speed_(80.f)
 {
 }
 

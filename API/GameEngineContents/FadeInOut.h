@@ -27,7 +27,7 @@ private:
 
 private:
 
-	int FadeAlpha_;
+	float FadeAlpha_;
 	bool FadeIn_;
 	bool FadeOut_;
 	bool FadeEnd_;

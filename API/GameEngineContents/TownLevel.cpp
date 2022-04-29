@@ -13,8 +13,7 @@
 
 TownLevel::TownLevel()
 	:
-	Iter(MapObject_.begin())
-
+	FlowingFlower_(nullptr)
 {
 
 	SetName("TownLevel");

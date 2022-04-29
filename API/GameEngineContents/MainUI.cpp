@@ -25,6 +25,8 @@ MainUI::MainUI()
 	PrevSecondTime_(0),
 	DayFadeAlpha_(0),
 	AddTIme_(),
+	ExtraHourTime_(0),
+	SecondTimeInt_(0),
 
 
 	isExtraDay_(false),
@@ -35,7 +37,9 @@ MainUI::MainUI()
 
 	MainUIRenderer_(nullptr),
 	DayRenderer_(nullptr),
-	AmPmRenderer_(nullptr)
+	AmPmRenderer_(nullptr),
+	DayFade_(nullptr),
+	Font_(nullptr)
 {
 }
 

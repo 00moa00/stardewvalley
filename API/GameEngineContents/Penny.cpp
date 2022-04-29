@@ -7,6 +7,9 @@
 
 
 Penny::Penny() 
+	:
+	MainDialogueBox_(nullptr)
+
 {
 }
 

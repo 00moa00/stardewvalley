@@ -5,7 +5,11 @@ FadeInOut::FadeInOut()
 	:
 	FadeEnd_(false),
 	FadeIn_(false),
-	FadeOut_(false)
+	FadeOut_(false),
+
+	FadeAlpha_(0.f),
+
+	FadeRenderer_(nullptr)
 {
 }
 
@@ -29,7 +33,7 @@ void FadeInOut::Update()
 	if (FadeIn_ == true)
 	{
 		FadeAlpha_ -= 40.f * (GameEngineTime::GetDeltaTime() * 10);
-		FadeRenderer_->SetAlpha(FadeAlpha_);
+		FadeRenderer_->SetAlpha(static_cast<unsigned int>(FadeAlpha_));
 
 		if (FadeAlpha_ <= 0)
 		{
@@ -43,7 +47,7 @@ void FadeInOut::Update()
 	if (FadeOut_ == true)
 	{
 		FadeAlpha_ += 40.f * (GameEngineTime::GetDeltaTime() * 10);
-		FadeRenderer_->SetAlpha(FadeAlpha_);
+		FadeRenderer_->SetAlpha(static_cast<unsigned int>(FadeAlpha_));
 
 		if (FadeAlpha_ > 255)
 		{

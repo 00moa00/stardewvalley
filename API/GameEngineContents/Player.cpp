@@ -20,6 +20,7 @@ Mouse* Player::MainMouse_ = nullptr;
 Player::Player()
 	:
 	Money_(1000),
+	TotalMoney_(0),
 	PrevMoney_(0),
 
 	AnimationFrame_(0.120f),
@@ -38,6 +39,8 @@ Player::Player()
 	ToolRenderer_(nullptr),
 	PlayerCollider_(nullptr),
 	MapColImage_(nullptr),
+
+	FadeInOut_(nullptr),
 
 	ObjectColl_(false),
 	FarmingArea_(false),

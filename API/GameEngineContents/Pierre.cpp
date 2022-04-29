@@ -6,6 +6,9 @@
 
 
 Pierre::Pierre() 
+	:
+	MainDialogueBox_(nullptr)
+
 {
 }
 

@@ -355,7 +355,7 @@ void Player::CrushWood()
 			}
 
 			//도끼질을 했다면 기력 감소
-			SubEnergy(2.f);
+			SubEnergy(2);
 
 			//도끼질 추가 이펙트
 			CreateCrushWoodEffect();
@@ -404,7 +404,7 @@ void Player::CrushStone()
 			}
 
 			//곡괭이질을 했다면 체력 감소
-			SubEnergy(2.f);
+			SubEnergy(2);
 
 			//곡괭이질 추가 이펙트
 			CreateCrushStoneEffect();
@@ -472,7 +472,7 @@ void Player::CrushTree()
 
 			}
 			//도끼질을 했다면 기력 감소
-			SubEnergy(2.f);
+			SubEnergy(2);
 
 		}
 

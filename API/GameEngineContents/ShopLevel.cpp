@@ -6,7 +6,7 @@
 #include "GameData.h"
 
 #include "MoveTown.h"
-#include "ShopFlag.h"]
+#include "ShopFlag.h"
 #include "Pierre.h"
 
 ShopLevel::ShopLevel()

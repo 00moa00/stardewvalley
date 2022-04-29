@@ -27,6 +27,7 @@ Inventory::Inventory()
 	CurrentItemFrame_(nullptr),
 	PlayerPreview_(nullptr),
 	PlayerCustomClothes_(nullptr),
+	EmptyItem_(nullptr),
 
 	CurrentInvenState_(POPUPSTATE::INIT),
 	PopUpState_(POPUPSTATE::MINI),

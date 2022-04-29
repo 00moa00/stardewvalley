@@ -6,6 +6,8 @@
 //DialogueBox* Lewis::MainDialogueBox_ = nullptr;
 
 Lewis::Lewis() 
+	:
+	MainDialogueBox_(nullptr)
 {
 }
 
