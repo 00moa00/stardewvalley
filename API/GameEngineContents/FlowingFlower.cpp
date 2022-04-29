@@ -64,8 +64,6 @@ void FlowingFlower::Update()
 		break;
 	case CREATE_FLOWER::CREATE:
 
-
-
 		FlowerParticles_ = (GetLevel()->CreateActor<FlowerParticles>(static_cast<int>(PLAYLEVEL::EFFECT)));
 		FlowerParticles_->SetPosition({ RamdomPosX_.RandomFloat(MinX_, MaxX_), RamdomPosY_.RandomFloat(MinY_, CreateMaxY_)});
 		FlowerParticles_->SetRandomAnimation(MaxY_);
