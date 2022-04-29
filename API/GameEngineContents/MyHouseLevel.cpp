@@ -86,13 +86,13 @@ void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->GetRenderer()->CameraEffectOff();
 	BackGround_->GetRenderer()->SetPivot({ GameEngineWindow::GetScale().Half().x,  GameEngineWindow::GetScale().Half().y });
 
-	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
-	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	//BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	//BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	
 
 	//Player::MainPlayer->Renderer()->CameraEffectOff();
-	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
-	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
+	//Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	//Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();

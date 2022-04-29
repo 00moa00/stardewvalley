@@ -29,6 +29,12 @@ MyFarmLevel::MyFarmLevel()
 	SetName("MyFarmLevel");
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
 	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
+
+	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+
+	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 }
 
 MyFarmLevel::~MyFarmLevel()
@@ -63,6 +69,8 @@ void MyFarmLevel::Loading()
 		LoadMapObject();
 	}
 
+
+
 }
 
 void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -74,8 +82,7 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	BackGround_->GetRenderer()->SetImage("FarmBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
-	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
-	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+
 	BackGround_->GetRenderer()->CameraEffectOn();
 
 	FlowingFlower_ = CreateActor<FlowingFlower>(static_cast<int>(PLAYLEVEL::EFFECT));
@@ -85,8 +92,7 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	FadeInOut_->SetFadeIn();
 	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 
-	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
-	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
+
 	Player::MainPlayer->Renderer()->CameraEffectOn();
 
 

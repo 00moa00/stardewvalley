@@ -295,27 +295,30 @@ void Player::CreateSeed()
 
 void Player::harvestingCrops()
 {
-	float4 Pos = PlayerCollCheckPos();
-
-	TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
-	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
-
-	std::map<int, Crops*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
-	std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
-
-
-	//씨앗이 없으면, 씨앗이 아직 수확가능 상태가 아니라면
-	if (FindSeedIter == EndSeedIter || FindSeedIter->second->GetisHarvest() == false)
+	if (GetCurrentLevel() == "MyFarmLevels")
 	{
-		return;
-	}
+		float4 Pos = PlayerCollCheckPos();
 
-	if (MainMouse_->isMouseClick())
-	{
-		FindSeedIter->second->DropCropsInMap();
+		TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
+		int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
 
-		SeedList_.erase(ChangeIndex);
-		//FindSeedIter->second->Death();
+		std::map<int, Crops*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
+		std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
+
+
+		//씨앗이 없으면, 씨앗이 아직 수확가능 상태가 아니라면
+		if (FindSeedIter == EndSeedIter || FindSeedIter->second->GetisHarvest() == false)
+		{
+			return;
+		}
+
+		if (MainMouse_->isMouseClick())
+		{
+			FindSeedIter->second->DropCropsInMap();
+
+			SeedList_.erase(ChangeIndex);
+			//FindSeedIter->second->Death();
+		}
 	}
 
 }
@@ -538,14 +541,17 @@ void Player::CheckShippingBox()
 
 void Player::ClearWetDirtTile()
 {
-	if (WetDirtList_.empty() == false)
+
+	if (DirtList_.empty() == false)
 	{
-		if (MainUI::MainMainUI->DayOver() == true)
-		{
-			WetTileMap_->DeleteTile();
-			WetDirtList_.erase(WetDirtList_.begin(), WetDirtList_.end());
-		}
+		WetDirtList_.clear();
+		WetTileMap_->DeleteTile();
+
+		/*DirtTileMap_->DeleteTile();
+		DirtList_.erase(DirtList_.begin(), DirtList_.end());*/
 	}
+
+
 }
 
 void Player::ChangeDirtTile()

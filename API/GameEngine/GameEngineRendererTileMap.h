@@ -147,6 +147,7 @@ public:
 
 	void DeleteTile()
 	{
+
 		for (size_t y = 0; y < Tiles_.size(); y++)
 		{
 			for (size_t x = 0; x < Tiles_[y].size(); x++)
@@ -175,7 +176,10 @@ public:
 
 	virtual ~GameEngineRendererTileMap()
 	{
-		//Tiles_.clear();
+		//if (Tiles_.empty() == false)
+		//{
+		//	Tiles_.clear();
+		//}
 
 		for (size_t y = 0; y < Tiles_.size(); y++)
 		{

@@ -204,6 +204,8 @@ public:
 	//    Setter
 	//================================
 
+	void ClearWetDirtTile();
+
 	void SetPlayerFaint();
 
 	void ChangeHair(int _Index);
@@ -308,7 +310,6 @@ private:
 
 	void harvestingCrops();
 
-	void ClearWetDirtTile();
 
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------
 

@@ -273,6 +273,7 @@ void MainUI::ExtraDayAndAddDay()
 
 
 		isExtraDay_ = false;
+		Player::MainPlayer->ClearWetDirtTile();
 		Player::MainPlayer->SetPlayerFaint();
 		
 	}

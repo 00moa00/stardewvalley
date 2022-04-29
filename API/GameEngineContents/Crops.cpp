@@ -61,6 +61,7 @@ void Crops::GrowingCropsTime()
 		}
 
 		DeathCropsCheck();
+
 		CropsUpdateState_ = CROPS_UPDATE::DAY_OVER_WAIT;
 
 		break;
@@ -123,6 +124,8 @@ void Crops::DeathCropsCheck()
 	{
 		CropsDeath();
 	}
+
+
 
 }
 
