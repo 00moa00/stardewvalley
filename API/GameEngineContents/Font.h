@@ -37,6 +37,8 @@ private:
 	std::string StrNum_;
 
 public:
+	//최대 300자, 공백으로 초기화
+	void InitFont();
 
 	// 스트링으로 받을떄
 	void ChangeNumStr(std::string _Num);
@@ -45,14 +47,15 @@ public:
 	void ChangeNumRightSort(int _Num);
 	void ChangeNumLeftSort(int _Num, float4 _Pos);
 
-	//아이템, 소지금일때 정령 간격이 다르다
+	//아이템, 소지금일때 정렬 간격이 다르다
 	void ChangeNumItemLeftSort(int _Num, float4 _Pos);
 	void ChangeNumMoneyLeftSort(int _Num, float4 _Pos);
 
 	void ChangeWhiteColor();
 
 	//영문
-	void ChangeFont(std::string _Font, float4 _Pos);
+	void ChangeFont(std::string _Font, float4 _Pos); //교체용
+	void CreateFontInit(std::string _Font, float4 _Pos); //생성용
 
 	//================================
 	//    Setter

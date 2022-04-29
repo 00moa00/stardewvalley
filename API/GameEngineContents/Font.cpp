@@ -49,6 +49,14 @@ void Font::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	//MainFont = nullptr;
 }
 
+void Font::InitFont()
+{
+	for (int Count_ = 0; Count_ < 300; ++Count_)
+	{
+		FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::EMPTY));
+	}
+}
+
 void Font::ChangeNumStr(std::string _Num)
 {
 	int Count_ = 0;
@@ -575,5 +583,9 @@ void Font::ChangeFont(std::string _Font, float4 _Pos)
 		FontRenderer.at(Count_)->SetIndex(static_cast<int>(FONT_VER2::EMPTY));
 	}
 
+}
+
+void Font::CreateFontInit(std::string _Font, float4 _Pos)
+{
 }
 
