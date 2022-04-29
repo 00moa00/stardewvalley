@@ -43,7 +43,6 @@ private:
 
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
-	FlowingFlower* FlowingFlower_;
 
 	std::map<std::string, Npc*> NpcList_;
 	std::map<int, Items*> MapObject_;
