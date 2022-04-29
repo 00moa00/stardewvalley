@@ -49,7 +49,7 @@ void FlowingFlower::Update()
 	{
 	case CREATE_FLOWER::SET_TIMER:
 
-		CreateTimer_ = RamdomTimer_.RandomFloat(0.2f, 0.4f);
+		CreateTimer_ = RamdomTimer_.RandomFloat(0.3f, 0.5f);
 		CreateFlowerState_ = CREATE_FLOWER::TIMER;
 
 		break;

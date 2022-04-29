@@ -24,7 +24,7 @@ Player::Player()
 	PrevMoney_(0),
 
 	AnimationFrame_(0.120f),
-	Speed_(180.f),
+	Speed_(220.f),
 	Energy_(126),
 	MapSizeX_(0.f),
 	MapSizeY_(0.f),
