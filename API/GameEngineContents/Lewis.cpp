@@ -36,7 +36,7 @@ void Lewis::Start()
 
 
 	NpcRenderer_->ChangeAnimation("FRONT_INIT");
-	SetScale({ 48,96 });
+	SetScale({ 50,100 });
 
 	LoadLewisMoveFlag();
 }
@@ -81,31 +81,34 @@ void Lewis::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Lewis::OpenDialogue()
 {
-	DialogueUpdate_ = !DialogueUpdate_;
-
-
-	if (DialogueUpdate_ == true)
+	if (TalkingLimit_ == false)
 	{
-		Inventory::MainInventory->AllUpdateOff();
-
-		MainDialogueBox_->DialogueOn();
-		MainDialogueBox_->SetLewis();
-
-		//현재 방향 저장하고 플레이어의 방향으로 고개 돌림
-		PrevDir_ = MoveDir_;
-		MoveDir_ = -Player::MainPlayer->GetMoveDir();
-		NpcUpdateState_ = NPC_STATE::DIALOGUE_IDLE;
-	}
+		DialogueUpdate_ = !DialogueUpdate_;
 
 
-	if (DialogueUpdate_ == false)
-	{
-		Inventory::MainInventory->AllUpdateOn();
-		Inventory::MainInventory->SetPopUpStateMini();
+		if (DialogueUpdate_ == true)
+		{
+			Inventory::MainInventory->AllUpdateOff();
 
-		MainDialogueBox_->DialogueOff();
-		WaitTimer_ = 2.0f;
-		NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
+			MainDialogueBox_->DialogueOn();
+			MainDialogueBox_->SetLewis();
+
+			//현재 방향 저장하고 플레이어의 방향으로 고개 돌림
+			PrevDir_ = MoveDir_;
+			MoveDir_ = -Player::MainPlayer->GetMoveDir();
+			NpcUpdateState_ = NPC_STATE::DIALOGUE_IDLE;
+		}
+
+
+		if (DialogueUpdate_ == false)
+		{
+			Inventory::MainInventory->AllUpdateOn();
+			Inventory::MainInventory->SetPopUpStateMini();
+
+			MainDialogueBox_->DialogueOff();
+			WaitTimer_ = 2.0f;
+			NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
+		}
 	}
 }
 

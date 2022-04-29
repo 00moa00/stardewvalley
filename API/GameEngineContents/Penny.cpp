@@ -35,7 +35,7 @@ void Penny::Start()
 	NpcRenderer_->CreateAnimation("Penny.bmp", "BACK_WALK", static_cast<int>(NPC_INDEX::BACK_WALK00), static_cast<int>(NPC_INDEX::BACK_WALK03), 0.150f, true);
 
 	NpcRenderer_->ChangeAnimation("FRONT_INIT");
-	SetScale({ 48,96 });
+	SetScale({ 50,100 });
 
 	LoadPennyMoveFlag();
 }
@@ -68,32 +68,36 @@ void Penny::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Penny::OpenDialogue()
 {
-	DialogueUpdate_ = !DialogueUpdate_;
 
-
-	if (DialogueUpdate_ == true)
+	if (TalkingLimit_ == false)
 	{
-		Inventory::MainInventory->AllUpdateOff();
-
-		MainDialogueBox_->DialogueOn();
-		MainDialogueBox_->SetPenny();
-
-		//현재 방향 저장하고 플레이어의 방향으로 고개 돌림
-		PrevDir_ = MoveDir_; 
-		MoveDir_ = -Player::MainPlayer->GetMoveDir();
-		NpcUpdateState_ = NPC_STATE::DIALOGUE_IDLE;
-	}
+		DialogueUpdate_ = !DialogueUpdate_;
 
 
-	if (DialogueUpdate_ == false)
-	{
-		Inventory::MainInventory->AllUpdateOn();
-		Inventory::MainInventory->SetPopUpStateMini();
+		if (DialogueUpdate_ == true)
+		{
+			Inventory::MainInventory->AllUpdateOff();
 
-		MainDialogueBox_->DialogueOff();
-		WaitTimer_ = 2.0f;
-		NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
+			MainDialogueBox_->DialogueOn();
+			MainDialogueBox_->SetPenny();
 
+			//현재 방향 저장하고 플레이어의 방향으로 고개 돌림
+			PrevDir_ = MoveDir_;
+			MoveDir_ = -Player::MainPlayer->GetMoveDir();
+			NpcUpdateState_ = NPC_STATE::DIALOGUE_IDLE;
+		}
+
+
+		if (DialogueUpdate_ == false)
+		{
+			Inventory::MainInventory->AllUpdateOn();
+			Inventory::MainInventory->SetPopUpStateMini();
+
+			MainDialogueBox_->DialogueOff();
+			WaitTimer_ = 2.0f;
+			NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
+
+		}
 	}
 }
 

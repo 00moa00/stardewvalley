@@ -121,10 +121,10 @@ void StardewValley::GameInit()
 		PlayerHair0->Cut({ 48, 96 });
 
 		GameEngineImage* PlayerHair1 = GameEngineImageManager::GetInst()->Find("PlayerHair1.bmp");
-		PlayerHair1->Cut({ 48, 96 });
+		PlayerHair1->Cut({ 70, 96 });
 
 		GameEngineImage* PlayerHair2 = GameEngineImageManager::GetInst()->Find("PlayerHair2.bmp");
-		PlayerHair2->Cut({ 48, 96 });
+		PlayerHair2->Cut({ 70, 96 });
 
 		//================================
 		//     플레이어 손

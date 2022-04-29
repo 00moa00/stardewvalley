@@ -30,7 +30,7 @@ void Pierre::Start()
 	NpcRenderer_->CreateAnimation("Pierre.bmp", "BACK_INIT", static_cast<int>(NPC_INDEX::BACK_WALK00), static_cast<int>(NPC_INDEX::BACK_WALK00), 0.0f, false);
 
 	NpcRenderer_->ChangeAnimation("FRONT_INIT");
-	SetScale({ 48,96 });
+	SetScale({ 50,100 });
 
 }
 
