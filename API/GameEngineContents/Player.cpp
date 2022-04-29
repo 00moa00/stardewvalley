@@ -82,8 +82,6 @@ Player::Player()
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "PICKAXE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "INIT";
-
-
 }	
 
 
@@ -100,7 +98,6 @@ Player::~Player()
 	{
 		DirtList_.clear();
 	}
-
 
 }
 

@@ -25,6 +25,8 @@ enum class CUSTOM_STATE
 
 	NEXT,
 
+	BACK,
+
 	MAX
 };
 
@@ -71,6 +73,7 @@ private:
 
 
 	MenuButton* OKButton_;
+	MenuButton* BackButton_;
 
 	Font* HairFont_;
 	Font* ShirtFont_;
@@ -79,6 +82,7 @@ private:
 	CUSTOM_STATE CustomUpdate_;
 
 	bool isCustomUpdate_;
+	bool ClickBackButton_;
 
 	int HairIndex_;
 	int ShirtIndex_;
@@ -98,10 +102,31 @@ public:
 	void CustomBoardOn();
 
 
+public:
+
+	//================================
+	//     Getter
+	//================================
+
+	bool isClickBackButton()
+	{
+		return ClickBackButton_;
+	}
+
 	GameEngineRenderer* GetRenderer()
 	{
 		return CustomBoardRenderer_;
 	}
+
+	//================================
+	//    Setter
+	//================================
+
+	void SetClickBackButton(bool _Flag)
+	{
+		ClickBackButton_ = _Flag;
+	}
+
 };
 
 

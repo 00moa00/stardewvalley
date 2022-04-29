@@ -137,8 +137,6 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 void TitleLevel::Update()
 {
-
-
 	switch (TitleState_)
 	{
 	case TITLE_STATE::START:
@@ -153,7 +151,6 @@ void TitleLevel::Update()
 		if ((TitleLogo_->GetPosition().y >= GameEngineWindow::GetScale().Half().y - 100.f))
 		{
 			TitleState_ = TITLE_STATE::POPUP;
-
 		}
 
 		break;
@@ -175,6 +172,7 @@ void TitleLevel::Update()
 	default:
 		break;
 	}
+
 	MoveCloud();
 
 	MenuButton_[0]->MouseOverChangeIndex();
@@ -191,6 +189,18 @@ void TitleLevel::Update()
 		MenuButton_[1]->Off();
 		MenuButton_[2]->Off();
 
+	}
+
+	if (CustomBoard_->isClickBackButton() == true)
+	{
+		CustomBoard_->CustomBoardOff();
+		TitleLogo_->On();
+
+		MenuButton_[0]->On();
+		MenuButton_[1]->On();
+		MenuButton_[2]->On();
+
+		CustomBoard_->SetClickBackButton(false);
 	}
 
 

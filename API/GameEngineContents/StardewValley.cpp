@@ -379,6 +379,11 @@ void StardewValley::GameInit()
 		GameEngineImage* FlowerAnimation1 = GameEngineImageManager::GetInst()->Find("FlowerAnimation1.bmp");
 		FlowerAnimation1->Cut({ 48, 55 });
 
+		//================================
+		//		뒤로가기 버튼
+		//================================
+		GameEngineImage* Back = GameEngineImageManager::GetInst()->Find("Back.bmp");
+		Back->Cut({ 132, 54 });
 	}
 
 

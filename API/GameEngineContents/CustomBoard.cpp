@@ -12,13 +12,16 @@ CustomBoard::CustomBoard()
 	PantsIndex_(0),
 	DirIndex_(0),
 
-
 	isCustomUpdate_(false),
+	ClickBackButton_(false),
 
 	CustomUpdate_(CUSTOM_STATE::WAIT),
 
 	CustomBoardRenderer_(nullptr),
+
 	OKButton_(nullptr),
+	BackButton_(nullptr),
+
 	HairFont_(nullptr),
 	ShirtFont_(nullptr),
 	PantsFont_(nullptr),
@@ -58,11 +61,9 @@ void CustomBoard::Start()
 	CustomHand_->SetIndex(0);
 	CustomHand_->SetPivot({ 0, -80.f });
 
-
 	CustomPants_ = CreateRenderer("PantsSheet.bmp");
 	CustomPants_->SetIndex(0);
 	CustomPants_->SetPivot({ 0, -80.f });
-
 
 	CustomShirts_ = CreateRenderer("ShirtsSheet.bmp");
 	CustomShirts_->SetIndex(0);
@@ -102,30 +103,23 @@ void CustomBoard::Start()
 	PantsSubButton_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x - 100.f, 550.f });
 	PantsSubButton_->GetRenderer()->CameraEffectOff();
 
-
 	PantsAddButton_ = GetLevel()->CreateActor<ArrowButton>(static_cast<int>(TITLELEVEL::CUSTROM_ARROW));
 	PantsAddButton_->CreateRightArrow();
 	PantsAddButton_->CreateArrowCollision("PantsAddButton");
 	PantsAddButton_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x + 100.f, 550.f });
 	PantsAddButton_->GetRenderer()->CameraEffectOff();
 
-
-
-
 	DirChangeRightArrow_ = GetLevel()->CreateActor<ArrowButton>(static_cast<int>(TITLELEVEL::CUSTROM_ARROW));
 	DirChangeRightArrow_->CreateRightArrow();
 	DirChangeRightArrow_->CreateArrowCollision("DirChangeRightArrow");
-	DirChangeRightArrow_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x + 80.f, 300.f });
+	DirChangeRightArrow_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x + 70.f, 300.f });
 	DirChangeRightArrow_->GetRenderer()->CameraEffectOff();
-
 
 	DirChangeLeftArrow_ = GetLevel()->CreateActor<ArrowButton>(static_cast<int>(TITLELEVEL::CUSTROM_ARROW));
 	DirChangeLeftArrow_->CreateLeftArrow();
 	DirChangeLeftArrow_->CreateArrowCollision("DirChangeLeftArrow");
-	DirChangeLeftArrow_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x - 80.f, 300.f });
+	DirChangeLeftArrow_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x - 70.f, 300.f });
 	DirChangeLeftArrow_->GetRenderer()->CameraEffectOff();
-
-
 
 	OKButton_ = GetLevel()->CreateActor<MenuButton>(static_cast<int>(TITLELEVEL::CUSTROM_BUTTON));
 	OKButton_->CreateButtonRenderer("OkButton.bmp");
@@ -133,13 +127,18 @@ void CustomBoard::Start()
 	OKButton_->SetPosition({810.f, 560.f });
 	OKButton_->GetRenderer()->CameraEffectOff();
 
+	BackButton_ = GetLevel()->CreateActor<MenuButton>(static_cast<int>(TITLELEVEL::CUSTROM_BUTTON));
+	BackButton_->CreateButtonRenderer("Back.bmp");
+	BackButton_->GetRenderer()->SetIndex(0);
+	BackButton_->CreateButtonCollision("Back", { 132, 54 });
+	BackButton_->SetPosition({ 980.f, 580.f });
+	BackButton_->GetRenderer()->CameraEffectOff();
+
 	HairFont_ = GetLevel()->CreateActor<Font>(static_cast<int>(PLAYLEVEL::DIALOGUEFONT));
 	HairFont_->ChangeFont(HairString[HairIndex_], { GameEngineWindow::GetInst().GetScale().Half().x - 40.f, 410.f });
 
-
 	ShirtFont_ = GetLevel()->CreateActor<Font>(static_cast<int>(PLAYLEVEL::DIALOGUEFONT));
 	ShirtFont_->ChangeFont(ShirtsString[ShirtIndex_], { GameEngineWindow::GetInst().GetScale().Half().x - 40.f, 480.f });
-
 
 	PantsFont_ = GetLevel()->CreateActor<Font>(static_cast<int>(PLAYLEVEL::DIALOGUEFONT));
 	PantsFont_->ChangeFont(PantsString[PantsIndex_], { GameEngineWindow::GetInst().GetScale().Half().x - 40.f, 550.f });
@@ -155,28 +154,48 @@ void CustomBoard::Update()
 		{
 		case CUSTOM_STATE::WAIT:
 
+			//------< 뒤로가기 버튼 마우스 오버 >---------------------------------------------------------------------------
+
+			if (BackButton_->ButtomMouseOver())
+			{
+				BackButton_->GetRenderer()->SetIndex(1);
+			}
+			else
+			{
+				BackButton_->GetRenderer()->SetIndex(0);
+			}
+
+			//------< 뒤로가기 버튼 마우스 오버 >---------------------------------------------------------------------------
+
+			if (BackButton_->ButtonMouseOverAndLeftClick())
+			{
+				ClickBackButton_ = true;
+			}
+
+
+			//------< 결정 버튼 >---------------------------------------------------------------------------
+
 			if (OKButton_->ButtonMouseOverAndLeftClick())
 			{
 				CustomUpdate_ = CUSTOM_STATE::NEXT;
 			}
+
+			//------< 커스텀 버튼 >---------------------------------------------------------------------------
 
 			if (HairAddButton_->ButtonMouseOverAndLeftClick())
 			{
 				CustomUpdate_ = CUSTOM_STATE::HAIR_ADD;
 			}
 
-
 			if (HairSubButton_->ButtonMouseOverAndLeftClick())
 			{
 				CustomUpdate_ = CUSTOM_STATE::HAIR_SUB;
 			}
 
-
 			if (ShirtAddButton_->ButtonMouseOverAndLeftClick())
 			{
 				CustomUpdate_ = CUSTOM_STATE::SHIRTS_ADD;
 			}
-
 
 			if (ShirtSubButton_->ButtonMouseOverAndLeftClick())
 			{
@@ -196,20 +215,17 @@ void CustomBoard::Update()
 			if (DirChangeRightArrow_->ButtonMouseOverAndLeftClick())
 			{
 				CustomUpdate_ = CUSTOM_STATE::CHANGE_RIGHT;
-				break;
 			}
 
 			if (DirChangeLeftArrow_->ButtonMouseOverAndLeftClick())
 			{
 				CustomUpdate_ = CUSTOM_STATE::CHANGE_LEFT;
-				break;
-
 			}
 
-
 			break;
-
 		case CUSTOM_STATE::HAIR_ADD:
+
+			//------< 헤어 커스텀 >---------------------------------------------------------------------------
 
 			if (HairIndex_ < 8)
 			{
@@ -222,14 +238,14 @@ void CustomBoard::Update()
 				HairIndex_ = 0;
 				CustomHair_->SetIndex(DirIndex_ + HairIndex_);
 				HairFont_->ChangeFont(HairString[HairIndex_ / 4], { GameEngineWindow::GetInst().GetScale().Half().x - 40.f, 410.f });
-
 			}
 
 			CustomUpdate_ = CUSTOM_STATE::WAIT;
 
-
 			break;
 		case CUSTOM_STATE::HAIR_SUB:
+
+			//------< 헤어 커스텀 >---------------------------------------------------------------------------
 
 			if (HairIndex_ > 0)
 			{
@@ -248,6 +264,8 @@ void CustomBoard::Update()
 
 			break;
 		case CUSTOM_STATE::SHIRTS_ADD:
+
+			//------< 셔츠 커스텀 >---------------------------------------------------------------------------
 
 			if (ShirtIndex_ < 16)
 			{
@@ -271,6 +289,8 @@ void CustomBoard::Update()
 			break;
 		case CUSTOM_STATE::SHIRTS_SUB:
 
+			//------< 셔츠 커스텀 >---------------------------------------------------------------------------
+
 			if (ShirtIndex_ > 0)
 			{
 				ShirtIndex_ -= 4;
@@ -293,6 +313,8 @@ void CustomBoard::Update()
 			break;
 		case CUSTOM_STATE::PANTS_ADD:
 
+			//------< 바지 커스텀 >---------------------------------------------------------------------------
+
 			if (PantsIndex_ < 4)
 			{
 				PantsIndex_ += 4;
@@ -313,6 +335,8 @@ void CustomBoard::Update()
 			break;
 		case CUSTOM_STATE::PANTS_SUB:
 
+			//------< 바지 커스텀 >---------------------------------------------------------------------------
+
 			if (PantsIndex_ > 0)
 			{
 				PantsIndex_ -= 4;
@@ -331,8 +355,9 @@ void CustomBoard::Update()
 			CustomUpdate_ = CUSTOM_STATE::WAIT;
 
 			break;
-
 		case CUSTOM_STATE::CHANGE_RIGHT:
+
+			//------< 방향 변경 >---------------------------------------------------------------------------
 
 			if (DirIndex_ < 3)
 			{
@@ -361,8 +386,9 @@ void CustomBoard::Update()
 			}
 
 			break;
-
 		case CUSTOM_STATE::CHANGE_LEFT:
+
+			//------< 방향 변경 >---------------------------------------------------------------------------
 
 			if (DirIndex_ > 0)
 			{
@@ -388,15 +414,11 @@ void CustomBoard::Update()
 				CustomBody_->SetIndex(DirIndex_ + 0);
 
 				CustomUpdate_ = CUSTOM_STATE::WAIT;
-
 			}
 
 			break;
-
-
-			break;
-
 		case CUSTOM_STATE::NEXT:
+			//------< 다음방향 변경 >---------------------------------------------------------------------------
 
 			GameEngine::GetInst().ChangeLevel("MyHouseLevel");
 			CustomUpdate_ = CUSTOM_STATE::WAIT;
@@ -416,12 +438,15 @@ void CustomBoard::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	{
 	case 0 :
 		CustomData::GetInst()->SetHairFileName("PlayerHair0.bmp");
+
 		break;
 	case 4:
 		CustomData::GetInst()->SetHairFileName("PlayerHair1.bmp");
+
 		break;
 	case 8:
 		CustomData::GetInst()->SetHairFileName("PlayerHair2.bmp");
+
 		break;
 	default:
 		break;
@@ -432,22 +457,28 @@ void CustomBoard::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	case 0:
 		CustomData::GetInst()->SetShirtsFileName("PlayerShirt0.bmp");
 		CustomData::GetInst()->SetHandFileName("PlayerHand0.bmp");
+
 		break;
 	case 4:
 		CustomData::GetInst()->SetShirtsFileName("PlayerShirt1.bmp");
 		CustomData::GetInst()->SetHandFileName("PlayerHand1.bmp");
+
 		break;
 	case 8:
 		CustomData::GetInst()->SetShirtsFileName("PlayerShirt2.bmp");
 		CustomData::GetInst()->SetHandFileName("PlayerHand2.bmp");
+
 		break;
 	case 12:
 		CustomData::GetInst()->SetShirtsFileName("PlayerShirt3.bmp");
 		CustomData::GetInst()->SetHandFileName("PlayerHand4.bmp");
+
 		break;
 	case 16:
+
 		CustomData::GetInst()->SetShirtsFileName("PlayerShirt4.bmp");
 		CustomData::GetInst()->SetHandFileName("PlayerHand4.bmp");
+
 		break;
 	default:
 		break;
@@ -495,6 +526,7 @@ void CustomBoard::CustomBoardOff()
 
 	DirChangeLeftArrow_->Off();
 	DirChangeRightArrow_->Off();
+	BackButton_->Off();
 
 	isCustomUpdate_ = false;
 }
@@ -522,6 +554,7 @@ void CustomBoard::CustomBoardOn()
 	HairFont_->On();
 	ShirtFont_->On();
 	PantsFont_->On();
+	BackButton_->On();
 
 	DirChangeLeftArrow_->On();
 	DirChangeRightArrow_->On();

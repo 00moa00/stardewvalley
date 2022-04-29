@@ -60,7 +60,6 @@ void MenuButton::MouseOverChangeIndex()
 bool MenuButton::ButtomMouseOver()
 {
 	return (ButtonCollision_->CollisionResult("MouseCursor", ColList, CollisionType::Rect, CollisionType::Rect));
-
 }
 
 bool MenuButton::ButtonMouseOverAndLeftClick()
