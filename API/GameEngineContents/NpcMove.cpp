@@ -31,11 +31,10 @@ void NpcMove::CreateNPCMoveCollision(std::string _CollName)
 
 void NpcMove::SetNPCMoveImageAndIdex(std::string _FileName, int _Index)
 {
-	//MoveRenderer_->SetImage(_FileName);
-	//MoveRenderer_->SetIndex(_Index);
+	MoveRenderer_->SetImage(_FileName);
+	MoveRenderer_->SetIndex(_Index);
 
-	MoveRenderer_->SetImage("Empty.bmp");
-	//MoveRenderer_->SetIndex(_Index);
+	//MoveRenderer_->SetImage("Empty.bmp");
 }
 
 bool NpcMove::CheckCollNPC()

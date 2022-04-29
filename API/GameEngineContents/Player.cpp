@@ -93,13 +93,11 @@ Player::~Player()
 
 	if (WetDirtList_.empty() == false)
 	{
-		//WetTileMap_->DeleteTile();
 		WetDirtList_.clear();
 	}
 
 	if (DirtList_.empty() == false)
 	{
-		//DirtTileMap_->DeleteTile();
 		DirtList_.clear();
 	}
 

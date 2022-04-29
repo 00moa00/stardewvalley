@@ -20,6 +20,9 @@ enum class CUSTOM_STATE
 	PANTS_ADD,
 	PANTS_SUB,
 
+	CHANGE_RIGHT,
+	CHANGE_LEFT,
+
 	NEXT,
 
 	MAX
@@ -63,6 +66,10 @@ private:
 	ArrowButton* PantsAddButton_;
 	ArrowButton* PantsSubButton_;
 
+	ArrowButton* DirChangeRightArrow_;
+	ArrowButton* DirChangeLeftArrow_;
+
+
 	MenuButton* OKButton_;
 
 	Font* HairFont_;
@@ -76,6 +83,8 @@ private:
 	int HairIndex_;
 	int ShirtIndex_;
 	int PantsIndex_;
+
+	int DirIndex_;
 
 
 	std::string HairString[3];

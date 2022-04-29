@@ -560,7 +560,6 @@ void Player::ChangeDirtTile()
 	std::map<int, FarmTile*>::iterator EndIter = DirtList_.end();
 
 
-
 	for (int i = 0; i < FARM_CHIP_NUM_X * FARM_CHIP_NUM_Y; ++i)
 	{
 
