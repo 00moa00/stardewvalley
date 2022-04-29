@@ -775,7 +775,6 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "MyHouseLevel"
 		&& (PrevLevel_ == "BusStopLevel"
-			|| PrevLevel_ == "BusStopLevel"
 			|| PrevLevel_ == "TownLevel"
 			|| PrevLevel_ == "ShopLevel"))
 	{
