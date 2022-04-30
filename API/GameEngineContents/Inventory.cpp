@@ -426,7 +426,6 @@ void Inventory::ItemMove()
 
 		}
 
-
 		if (PlayerItemListStartIter == PlayerItemListEndIter)
 		{
 			PlayerItemListStartIter = PlayerItemList_.begin();
@@ -440,6 +439,16 @@ void Inventory::ItemMove()
 
 		//아이템을 마우스의 위치에 고정
 		PlayerItemListStartIter->second->SetPosition({Mouse_->GetPosition().x + 24.f, Mouse_->GetPosition().y + 30.f });
+
+		//인벤토리 밖에서 클릭했다면
+		//if (Mouse_->MouseClickInventoryOut())
+		//{
+		//	//해당 아이템이 음식이라면
+		//	if (PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::FOOD)
+		//	{
+		//		MainPlayer->
+		//	}
+		//}
 
 		//인벤토리 밖에서 오른쪽 클릭 헸다면 
 		if (Mouse_->MouseRightClickInventoryOut())

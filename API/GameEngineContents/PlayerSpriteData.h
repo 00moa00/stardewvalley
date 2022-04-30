@@ -41,11 +41,21 @@ enum class PLAYER
 	HOE_FRONT_HOLD0 = 156, HOE_FRONT_HOLD1, HOE_FRONT_HOLD2, HOE_FRONT_FREE0, HOE_FRONT_FREE1, HOE_FRONT_FREE2,
 
 	HOE_BACK0 = 156, HOE_BACK1, HOE_BACK2,
+
+	//------< 드링크 >------------------------------------------------------------------
+	DRINK0=159, DRINK1, DRINK2, DRINK3,
+
+	//------< 호미 홀드 >------------------------------------------------------------------
+
 	HOE_BACK_HOLD0 = 180, HOE_BACK_HOLD1, HOE_BACK_HOLD2, HOE_BACK_FREE0, HOE_BACK_FREE1,
 
 	//------< 기절 >------------------------------------------------------------------
 
-	FAINT0 = 216, FAINT1
+	FAINT0 = 216, FAINT1, 
+	
+	//------< 음식 먹기 >------------------------------------------------------------------
+
+	EAT0 = 219, EAT1, EAT2
 
 };
 

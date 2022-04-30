@@ -29,5 +29,7 @@ private:
 	void UpdateOff() override;
 	void UpdateOn() override;
 
+	void DropItemInMap() override;
+
 };
 

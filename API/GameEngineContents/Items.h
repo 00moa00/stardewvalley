@@ -37,6 +37,9 @@ enum class ITEMTYPE
 	TOOL,
 	GETITEM,
 	SHIPPINGBOX,
+	FOOD,
+	DRINK,
+
 	FLAG,
 	BLOCK,
 };
@@ -54,6 +57,7 @@ enum class ITEM_STATE
 {
 	INIT,
 	ANIMATION,
+	SIDE_ANIMATION,
 	MOVETOPLAYER
 };
 

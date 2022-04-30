@@ -28,5 +28,7 @@ private:
 	void SubItemCount() override;
 	void UpdateOff() override;
 	void UpdateOn() override;
+
+	void DropItemInMap() override;
 };
 

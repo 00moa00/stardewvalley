@@ -15,7 +15,7 @@ Bread::~Bread()
 void Bread::Start()
 {
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::BREAD_BALL));
+	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::BREAD));
 	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
@@ -30,11 +30,12 @@ void Bread::Start()
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::BREAD_BALL);
+	FileIndex_ = static_cast<size_t>(ITEM::BREAD);
 
 	ItemName_ = "Bread";
+	ItemType_ = ITEMTYPE::FOOD;
 
-	SellPrice_ = 35;
+	SellPrice_ = 120;
 }
 
 void Bread::Update()
@@ -42,8 +43,33 @@ void Bread::Update()
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
-		Font_->SetPositionItem({ GetPosition() });
 
+		if (isMove_ == true)
+		{
+			//Font_->Death();
+			PrePosition_ = this->GetPosition();
+			ItemState_ = ITEM_STATE::ANIMATION;
+		}
+
+		else
+		{
+			Font_->SetPositionItem({ GetPosition() });
+
+		}
+
+		break;
+	case ITEM_STATE::ANIMATION:
+
+		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 700.0f;
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
+		if (this->GetPosition().y > PrePosition_.y + 30.f)
+		{
+			this->Death();
+
+		}
+		break;
+
+	default:
 		break;
 	}
 }
@@ -93,4 +119,13 @@ void Bread::UpdateOn()
 {
 	this->On();
 	Font_->On();
+}
+
+void Bread::DropItemInMap()
+{
+	Items* DropItem = GetLevel()->CreateActor<Bread>(static_cast<int>(PLAYLEVEL::TOP_TOP_OBJECT));
+	DropItem->SetPosition({ Player::MainPlayer->GetPosition().x , Player::MainPlayer->GetPosition().y - 100.f });
+	DropItem->SetMoveFlag(true);
+	DropItem->GetRenderer()->CameraEffectOn();
+	DropItem->SetMoveDir({ 0, -200 });
 }

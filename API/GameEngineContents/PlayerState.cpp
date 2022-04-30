@@ -510,6 +510,25 @@ void Player::CheckTool()
 
 }
 
+void Player::CheckDrink()
+{
+	if (GetCurrentItem()->GetItemType() == ITEMTYPE::DRINK && GameEngineInput::GetInst()->IsDown("RightClick"))
+	{
+		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
+		PlayerState_ = PLAYER_UPDATE::DRINK;
+	}
+}
+
+void Player::CheckEat()
+{
+	if (GetCurrentItem()->GetItemType() == ITEMTYPE::FOOD && GameEngineInput::GetInst()->IsDown("RightClick"))
+	{
+		GetCurrentItem()->DropItemInMap();
+		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
+		PlayerState_ = PLAYER_UPDATE::EAT_WAIT;
+	}
+}
+
 void Player::NpcCollCheck()
 {
 	if (PlayerCollider_->NextPostCollisionCheck("NPC", MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)

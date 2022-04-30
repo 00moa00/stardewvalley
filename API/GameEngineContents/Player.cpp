@@ -29,6 +29,7 @@ Player::Player()
 	MapSizeX_(0.f),
 	MapSizeY_(0.f),
 	Timer_(0.0f),
+	AnimationWaitTimer_(0.f),
 
 	PlayerBodyRenderer_(nullptr),
 	PlayerPantsRenderer_(nullptr),
@@ -70,6 +71,9 @@ Player::Player()
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "HANDITEM";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "HANDITEMWALK";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "FAINT";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::EAT_WAIT)] = "EAT_WAIT";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::EAT)] = "EAT";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::DRINK)] = "DRINK";
 
 
 
@@ -82,6 +86,10 @@ Player::Player()
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "PICKAXE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "INIT";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::EAT_WAIT)] = "INIT";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::EAT)] = "INIT";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::DRINK)] = "INIT";
+
 }	
 
 
@@ -340,6 +348,92 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_FAINT", static_cast<int>(PLAYER::FAINT0), static_cast<int>(PLAYER::FAINT1), 0.350f, false);
 
+		//================================
+		//     음식 대기
+		//================================
+
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_EA_WAITT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_EAT_WAIT", static_cast<int>(PLAYER::EAT0), static_cast<int>(PLAYER::EAT0), 0.350f, false);
+
+
+
+		//================================
+		//     음식 먹기
+		//================================
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_EAT", static_cast<int>(PLAYER::EAT1), static_cast<int>(PLAYER::EAT2), 0.350f, true);
+
+		//================================
+		//     드링크
+		//================================
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_DRINK", static_cast<int>(PLAYER::DRINK1), static_cast<int>(PLAYER::DRINK3), 0.350f, false);
 
 
 		//------< 애니메이션 초기화 >------------------------------------------------------------------
@@ -596,7 +690,8 @@ void Player::PlayerUpdate()
 
 		ChangeLevel();
 		ChangeHandItem();
-
+		CheckDrink();
+		CheckEat();
 		if (MainMouse_->MouseClickInventoryOut())
 		{
 			CreateSeed();
@@ -623,6 +718,8 @@ void Player::PlayerUpdate()
 
 		PlayerWalk();
 		harvestingCrops();
+		CheckDrink();
+		CheckEat();
 
 
 		if (isStop() || isEvent_ == true)
@@ -635,6 +732,7 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::HANDITEMWALK:
 
 		PlayerWalk();
+
 
 		if (MainMouse_->MouseClickInventoryOut())
 		{
@@ -651,6 +749,8 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::FAINT:
 		PlayerState_ = PLAYER_UPDATE::FAINT;
+
+		//플레이어에서 체크해도 괜찮지만 매번 돌리기엔 부담..
 
 		PlayerBodyRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
 		PlayerPantsRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
@@ -678,7 +778,47 @@ void Player::PlayerUpdate()
 
 			}
 		}
+
+
+
 		break;
+	case PLAYER_UPDATE::EAT_WAIT:
+
+		AnimationWaitTimer_ += GameEngineTime::GetDeltaTime() ;
+		if (AnimationWaitTimer_ > 0.5f)
+		{
+			AnimationWaitTimer_ = 0.f;
+			PlayerState_ = PLAYER_UPDATE::EAT;
+
+		}
+		//if (PlayerBodyRenderer_->IsEndAnimation())
+		//{
+		//	GetCurrentItem()->SubItemCount();
+		//	PlayerState_ = PLAYER_UPDATE::INIT;
+		//}
+
+		break;
+
+	case PLAYER_UPDATE::EAT:
+
+
+
+		if (PlayerBodyRenderer_->IsEndAnimation())
+		{
+			GetCurrentItem()->SubItemCount();
+			PlayerState_ = PLAYER_UPDATE::INIT;
+		}
+
+		break;
+	case PLAYER_UPDATE::DRINK:
+
+		if (PlayerBodyRenderer_->IsEndAnimation())
+		{
+			GetCurrentItem()->SubItemCount();
+
+			PlayerState_ = PLAYER_UPDATE::INIT;
+		}
+
 
 	default:
 		break;

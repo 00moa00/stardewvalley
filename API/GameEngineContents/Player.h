@@ -112,6 +112,7 @@ private:
 	float AnimationFrame_;
 	float Speed_;
 	float Timer_;
+	float AnimationWaitTimer_;
 
 	float4 MoveDir_;
 	float4 CameraPos_;
@@ -179,12 +180,12 @@ public:
 	float4 GetMoveDir();
 
 	int GetMoney();
-
 	int GetEnergy();
 
 	bool GetObjectColl();
 	bool GetisShopping();
 	bool FindWetDirt(int _Index);
+
 	bool GetPlayerShoppingStateShopping();
 
 	std::string GetCurrentLevel();
@@ -213,6 +214,9 @@ public:
 	void ChangePants(int _Index);
 
 	void SetResetPlayerHandItem();
+
+	void SubEnergy(int _Energy);
+	void AddEnergy(int _Energy);
 
 	bool SubMoney(int _Money);
 	void AddMoney(int _Money);
@@ -255,6 +259,9 @@ private:
 
 	void CheckTool();
 
+	void CheckDrink();
+	void CheckEat();
+
 	void NpcCollCheck();
 
 	void AddMoneyAnimation();
@@ -273,7 +280,6 @@ private:
 	void PlayerWalk();
 	void PlayerDirCheck();
 	void SetPlayerHandItemPos();
-	void SubEnergy(int _Energy);
 
 	//================================
 	//   애니메이션

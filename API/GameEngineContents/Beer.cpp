@@ -34,7 +34,8 @@ void Beer::Start()
 
 	ItemName_ = "Beer";
 
-	SellPrice_ = 35;
+	ItemType_ = ITEMTYPE::DRINK;
+	SellPrice_ = 400;
 }
 
 void Beer::Update()

@@ -33,8 +33,9 @@ void Coffe::Start()
 	FileIndex_ = static_cast<size_t>(ITEM::COFFEE);
 
 	ItemName_ = "Coffe";
+	ItemType_ = ITEMTYPE::DRINK;
 
-	SellPrice_ = 35;
+	SellPrice_ = 300;
 }
 
 void Coffe::Update()

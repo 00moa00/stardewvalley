@@ -33,8 +33,9 @@ void Spaghetti::Start()
 	FileIndex_ = static_cast<size_t>(ITEM::SPAGHETTI);
 
 	ItemName_ = "Spaghetti";
+	ItemType_ = ITEMTYPE::FOOD;
 
-	SellPrice_ = 35;
+	SellPrice_ = 240;
 }
 
 void Spaghetti::Update()
@@ -42,8 +43,33 @@ void Spaghetti::Update()
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
-		Font_->SetPositionItem({ GetPosition() });
 
+		if (isMove_ == true)
+		{
+			//Font_->Death();
+			PrePosition_ = this->GetPosition();
+			ItemState_ = ITEM_STATE::ANIMATION;
+		}
+
+		else
+		{
+			Font_->SetPositionItem({ GetPosition() });
+
+		}
+
+		break;
+	case ITEM_STATE::ANIMATION:
+
+		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 700.0f;
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
+		if (this->GetPosition().y > PrePosition_.y + 30.f)
+		{
+			this->Death();
+
+		}
+		break;
+
+	default:
 		break;
 	}
 }
@@ -93,4 +119,14 @@ void Spaghetti::UpdateOn()
 {
 	this->On();
 	Font_->On();
+}
+
+void Spaghetti::DropItemInMap()
+{
+	Items* DropItem = GetLevel()->CreateActor<Spaghetti>(static_cast<int>(PLAYLEVEL::TOP_TOP_OBJECT));
+	DropItem->SetPosition({ Player::MainPlayer->GetPosition().x , Player::MainPlayer->GetPosition().y - 100.f });
+	DropItem->SetMoveFlag(true);
+	DropItem->GetRenderer()->CameraEffectOn();
+	DropItem->SetMoveDir({ 0, -200 });
+
 }
