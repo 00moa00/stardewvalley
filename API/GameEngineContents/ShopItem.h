@@ -24,6 +24,16 @@ enum class SHOP_LIST
 	DAFFODIL
 };
 
+enum class SALOON_LIST
+{
+	COFFE,
+	SALAD,
+	PIZZA,
+	BREAD,
+	SPAGHETTI,
+	BEER
+};
+
 // Ό³Έν :
 class ShopItem : public GameEngineActor
 {

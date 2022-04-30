@@ -2,21 +2,20 @@
 #include "Items.h"
 
 // Ό³Έν :
-class Daffodil : public Items
+class Salad : public Items
 {
 public:
-	static Daffodil* MainDaffodil;
+	static Salad* MainSalad;
 	static Font* Font_;
-
 	// constrcuter destructer
-	Daffodil();
-	~Daffodil();
+	Salad();
+	~Salad();
 
 	// delete Function
-	Daffodil(const Daffodil& _Other) = delete;
-	Daffodil(Daffodil&& _Other) noexcept = delete;
-	Daffodil& operator=(const Daffodil& _Other) = delete;
-	Daffodil& operator=(Daffodil&& _Other) noexcept = delete;
+	Salad(const Salad& _Other) = delete;
+	Salad(Salad&& _Other) noexcept = delete;
+	Salad& operator=(const Salad& _Other) = delete;
+	Salad& operator=(Salad&& _Other) noexcept = delete;
 
 private:
 	void Start() override;

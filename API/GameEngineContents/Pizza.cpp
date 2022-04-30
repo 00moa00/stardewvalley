@@ -1,21 +1,21 @@
-#include "Kale.h"
+#include "Pizza.h"
 #include "Inventory.h"
 
-Kale* Kale::MainKale = nullptr;
-Font* Kale::Font_ = nullptr;
+Pizza* Pizza::MainPizza = nullptr;
+Font* Pizza::Font_ = nullptr;
 
-Kale::Kale() 
+Pizza::Pizza() 
 {
 }
 
-Kale::~Kale() 
+Pizza::~Pizza() 
 {
 }
 
-void Kale::Start()
+void Pizza::Start()
 {
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::KALE));
+	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::PIZZA));
 	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
@@ -27,25 +27,18 @@ void Kale::Start()
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
-	ItemName_ = "Kale";
-
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::KALE);
+	FileIndex_ = static_cast<size_t>(ITEM::PIZZA);
+
+	ItemName_ = "Pizza";
 
 	SellPrice_ = 35;
 }
 
-void Kale::Update()
+void Pizza::Update()
 {
-	MoveToPlayer();
-
-	if (isMapItemDeath_ == true)
-	{
-		Player::MainPlayer->GetInventroy()->NewItem<Kale>();
-	}
-
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
@@ -55,25 +48,24 @@ void Kale::Update()
 	}
 }
 
-void Kale::LevelChangeStart(GameEngineLevel* _PrevLevel)
+void Pizza::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainKale = this;
+	MainPizza = this;
 	Font_ = Font_;
 }
 
-void Kale::LevelChangeEnd(GameEngineLevel* _NextLevel)
+void Pizza::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
-
 }
 
-void Kale::AddItemCount()
+void Pizza::AddItemCount()
 {
 	++ItemCount_;
 	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
-void Kale::SubItemCount()
+void Pizza::SubItemCount()
 {
 	if (ItemCount_ == 1)
 	{
@@ -90,13 +82,13 @@ void Kale::SubItemCount()
 	}
 }
 
-void Kale::UpdateOff()
+void Pizza::UpdateOff()
 {
 	this->Off();
 	Font_->Off();
 }
 
-void Kale::UpdateOn()
+void Pizza::UpdateOn()
 {
 	this->On();
 	Font_->On();

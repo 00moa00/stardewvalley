@@ -32,7 +32,7 @@ void KaleSeeds_Shop::Update()
 
 void KaleSeeds_Shop::InventoryNewItem()
 {
-	Player::MainPlayer->GetInventroy()->NewItem<Kale_Seeds>();
+	Inventory::MainInventory->NewItem<Kale_Seeds>();
 }
 
 bool KaleSeeds_Shop::MouseInItem()

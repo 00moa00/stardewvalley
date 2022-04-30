@@ -32,7 +32,7 @@ void JazzSeeds_Shop::Update()
 
 void JazzSeeds_Shop::InventoryNewItem()
 {
-	Player::MainPlayer->GetInventroy()->NewItem<Jazz_Seeds>();
+	Inventory::MainInventory->NewItem<Jazz_Seeds>();
 
 }
 

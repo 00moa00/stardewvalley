@@ -33,8 +33,7 @@ void TulipBulb_Shop::Update()
 
 void TulipBulb_Shop::InventoryNewItem()
 {
-	Player::MainPlayer->GetInventroy()->NewItem<Tulip_Seeds>();
-
+	Inventory::MainInventory->NewItem<Tulip_Seeds>();
 }
 
 bool TulipBulb_Shop::MouseInItem()

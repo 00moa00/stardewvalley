@@ -68,7 +68,7 @@ private:
 
 	std::map<int, ShopItem*> CurrentShopItemList_;
 
-	std::map<int, ShopItem*> ShopItemList_;
+	std::map<int, ShopItem*> SeedShopItemList_;
 	std::map<int, ShopItem*> SaloontemList_;
 
 
@@ -88,16 +88,25 @@ public:
 	void SetShopMoney(int _Money);
 
 	template<typename Actor>
-	void NewShopItem()
+	void NewSeedShopItem()
 	{
 		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SHOP_ITEM_LIST));
 		
 		//기본 인덱스로 초기화
 		int Index = Item->GetIndex();
-		ShopItemList_.insert(std::make_pair(Index, Item));
+		SeedShopItemList_.insert(std::make_pair(Index, Item));
 	}
 
 
+	template<typename Actor>
+	void NewSaloonItem()
+	{
+		Actor* Item = GetLevel()->CreateActor<Actor>(static_cast<int>(PLAYLEVEL::SHOP_ITEM_LIST));
+
+		//기본 인덱스로 초기화
+		int Index = Item->GetIndex();
+		SaloontemList_.insert(std::make_pair(Index, Item));
+	}
 
 };
 

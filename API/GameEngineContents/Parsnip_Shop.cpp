@@ -1,4 +1,6 @@
 #include "Parsnip_Shop.h"
+#include "Pasnip.h"
+#include "Inventory.h"
 Parsnip_Shop* Parsnip_Shop::MainParsnipShop = nullptr;
 
 Parsnip_Shop::Parsnip_Shop() 
@@ -37,6 +39,7 @@ void Parsnip_Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void Parsnip_Shop::InventoryNewItem()
 {
+	Inventory::MainInventory->NewItem<Pasnip>();
 }
 
 bool Parsnip_Shop::MouseInItem()

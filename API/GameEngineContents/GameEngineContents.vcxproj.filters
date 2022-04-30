@@ -164,36 +164,6 @@
     <ClCompile Include="ShopItem.cpp">
       <Filter>Actor\03. Play\Shop</Filter>
     </ClCompile>
-    <ClCompile Include="ParsnipSeeds_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="BeanStarter_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="CauliflowerSeeds_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="PatatoSeeds_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="TulipBulb_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="KaleSeeds_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="JazzSeeds_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="Parsnip_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="Dandelion_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="Daffodil_Shop.cpp">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClCompile>
     <ClCompile Include="ExitBotton.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
@@ -365,9 +335,6 @@
     <ClCompile Include="PlayerCustomClothes.cpp">
       <Filter>Actor\03. Play\Inventory</Filter>
     </ClCompile>
-    <ClCompile Include="Omelet.cpp">
-      <Filter>Actor\03. Play\Obejct\Food</Filter>
-    </ClCompile>
     <ClCompile Include="BakedFish.cpp">
       <Filter>Actor\03. Play\Obejct</Filter>
     </ClCompile>
@@ -382,6 +349,72 @@
     </ClCompile>
     <ClCompile Include="DayOffLevel.cpp">
       <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Daffodil_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="Dandelion_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="JazzSeeds_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="KaleSeeds_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="Parsnip_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="ParsnipSeeds_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="PatatoSeeds_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="TulipBulb_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="BeanStarter_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="CauliflowerSeeds_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClCompile>
+    <ClCompile Include="Coffe_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClCompile>
+    <ClCompile Include="Salad_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClCompile>
+    <ClCompile Include="Pizza_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClCompile>
+    <ClCompile Include="Bread_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClCompile>
+    <ClCompile Include="Spaghetti_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClCompile>
+    <ClCompile Include="Beer_Shop.cpp">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClCompile>
+    <ClCompile Include="Coffe.cpp">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Salad.cpp">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Pizza.cpp">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Bread.cpp">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Spaghetti.cpp">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Beer.cpp">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -566,36 +599,6 @@
     <ClInclude Include="ShopItem.h">
       <Filter>Actor\03. Play\Shop</Filter>
     </ClInclude>
-    <ClInclude Include="ParsnipSeeds_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="BeanStarter_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="CauliflowerSeeds_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="PatatoSeeds_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="TulipBulb_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="KaleSeeds_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="JazzSeeds_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="Parsnip_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="Dandelion_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="Daffodil_Shop.h">
-      <Filter>Actor\03. Play\Shop\ShopItemList</Filter>
-    </ClInclude>
     <ClInclude Include="ExitBotton.h">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
@@ -770,9 +773,6 @@
     <ClInclude Include="PlayerCustomClothes.h">
       <Filter>Actor\03. Play\Inventory</Filter>
     </ClInclude>
-    <ClInclude Include="Omelet.h">
-      <Filter>Actor\03. Play\Obejct\Food</Filter>
-    </ClInclude>
     <ClInclude Include="BakedFish.h">
       <Filter>Actor\03. Play\Obejct</Filter>
     </ClInclude>
@@ -787,6 +787,72 @@
     </ClInclude>
     <ClInclude Include="DayOffLevel.h">
       <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="TulipBulb_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="Daffodil_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="Dandelion_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="JazzSeeds_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="KaleSeeds_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="Parsnip_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="ParsnipSeeds_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="PatatoSeeds_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="BeanStarter_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="CauliflowerSeeds_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\SeedShop</Filter>
+    </ClInclude>
+    <ClInclude Include="Coffe_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClInclude>
+    <ClInclude Include="Salad_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClInclude>
+    <ClInclude Include="Pizza_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClInclude>
+    <ClInclude Include="Bread_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClInclude>
+    <ClInclude Include="Spaghetti_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClInclude>
+    <ClInclude Include="Beer_Shop.h">
+      <Filter>Actor\03. Play\Shop\ShopItemList\Saloon</Filter>
+    </ClInclude>
+    <ClInclude Include="Coffe.h">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClInclude>
+    <ClInclude Include="Salad.h">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClInclude>
+    <ClInclude Include="Pizza.h">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClInclude>
+    <ClInclude Include="Bread.h">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClInclude>
+    <ClInclude Include="Spaghetti.h">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClInclude>
+    <ClInclude Include="Beer.h">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -864,6 +930,12 @@
     </Filter>
     <Filter Include="Actor\03. Play\Obejct\Food">
       <UniqueIdentifier>{32a8c45e-5d9c-4e40-b55d-89c58bb64c76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Shop\ShopItemList\SeedShop">
+      <UniqueIdentifier>{3607984e-8417-4bcd-87a3-672c29da1e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Shop\ShopItemList\Saloon">
+      <UniqueIdentifier>{e7326fa2-0fb8-49ec-acb3-848cd2844b88}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

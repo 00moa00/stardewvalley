@@ -32,7 +32,7 @@ void CauliflowerSeeds_Shop::Update()
 
 void CauliflowerSeeds_Shop::InventoryNewItem()
 {
-	Player::MainPlayer->GetInventroy()->NewItem<Cauliflower_Seeds>();
+	Inventory::MainInventory->NewItem<Cauliflower_Seeds>();
 
 }
 

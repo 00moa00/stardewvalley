@@ -31,7 +31,7 @@ void Daffodil_Shop::Update()
 
 void Daffodil_Shop::InventoryNewItem()
 {
-	Player::MainPlayer->GetInventroy()->NewItem<Daffodil>();
+	Inventory::MainInventory->NewItem<Daffodil>();
 
 }
 

@@ -166,6 +166,30 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Beer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Beer_Shop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Bread.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Bread_Shop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Coffe.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Coffe_Shop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CustomBoard.h">
       <SubType>
       </SubType>
@@ -416,10 +440,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Omelet.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="ParsnipSeeds_Shop.h">
       <SubType>
       </SubType>
@@ -446,6 +466,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Pierre.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Pizza.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Pizza_Shop.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -509,6 +537,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="RendererData.h" />
+    <ClInclude Include="Salad.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Salad_Shop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="SaloonLevel.h">
       <SubType>
       </SubType>
@@ -550,6 +586,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="SmallWood2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Spaghetti.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Spaghetti_Shop.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -645,6 +689,30 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BakedFish.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Beer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Beer_Shop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Bread.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Bread_Shop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Coffe.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Coffe_Shop.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -907,10 +975,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Omelet.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="ParsnipSeeds_Shop.cpp">
       <SubType>
       </SubType>
@@ -937,6 +1001,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Pierre.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Pizza.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Pizza_Shop.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -984,6 +1056,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Salad.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Salad_Shop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="SaloonLevel.cpp">
       <SubType>
       </SubType>
@@ -1025,6 +1105,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SmallWood2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Spaghetti.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Spaghetti_Shop.cpp">
       <SubType>
       </SubType>
     </ClCompile>

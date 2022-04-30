@@ -32,24 +32,24 @@ void Shop::Start()
 
 	SetPosition( GameEngineWindow::GetInst().GetScale().Half());
 
-	NewShopItem<TulipBulb_Shop>();
-	NewShopItem<PatatoSeeds_Shop>();
-	NewShopItem<Parsnip_Shop>();
-	NewShopItem<ParsnipSeeds_Shop>();
+	NewSeedShopItem<TulipBulb_Shop>();
+	NewSeedShopItem<PatatoSeeds_Shop>();
+	NewSeedShopItem<Parsnip_Shop>();
+	NewSeedShopItem<ParsnipSeeds_Shop>();
 
-	NewShopItem<KaleSeeds_Shop>();
-	NewShopItem<JazzSeeds_Shop>();
-	NewShopItem<Dandelion_Shop>();
-	NewShopItem<Daffodil_Shop>();
-	NewShopItem<CauliflowerSeeds_Shop>();
-	NewShopItem<BeanStarter_Shop>();
+	NewSeedShopItem<KaleSeeds_Shop>();
+	NewSeedShopItem<JazzSeeds_Shop>();
+	NewSeedShopItem<Dandelion_Shop>();
+	NewSeedShopItem<Daffodil_Shop>();
+	NewSeedShopItem<CauliflowerSeeds_Shop>();
+	NewSeedShopItem<BeanStarter_Shop>();
 
 	Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 	Font_->ChangeNumMoneyLeftSort(1000, { 280.f, 475.f });
 
 
-	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
-	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
+	std::map<int, ShopItem*>::iterator StartIter = CurrentShopItemList_.begin();
+	std::map<int, ShopItem*>::iterator EndtIter = CurrentShopItemList_.end();
 
 	for (int i = 0; StartIter != EndtIter; ++StartIter)
 	{
@@ -69,10 +69,10 @@ void Shop::Start()
 void Shop::Update()
 {
 
-	std::map<int, ShopItem*>::iterator ItemStartIter = ShopItemList_.begin();
-	std::map<int, ShopItem*>::iterator ItemEndtIter = ShopItemList_.end();
+	std::map<int, ShopItem*>::iterator ItemStartIter = CurrentShopItemList_.begin();
+	std::map<int, ShopItem*>::iterator ItemEndtIter = CurrentShopItemList_.end();
 
-	std::map<int, ShopItem*>::iterator ItemfirstFindtIter = ShopItemList_.begin();
+	std::map<int, ShopItem*>::iterator ItemfirstFindtIter = CurrentShopItemList_.begin();
 
 	std::map<int, float4>::iterator ConstStartIter = ConstItmePos_.begin();
 	std::map<int, float4>::iterator ConstEndtIter = ConstItmePos_.end();
@@ -82,10 +82,10 @@ void Shop::Update()
 	{
 	case SHOP_UPDATE::SET_POS_INDEX:
 
-		ItemStartIter = ShopItemList_.begin();
-		ItemEndtIter = ShopItemList_.end();
+		ItemStartIter = CurrentShopItemList_.begin();
+		ItemEndtIter = CurrentShopItemList_.end();
 
-		ItemfirstFindtIter = ShopItemList_.begin();
+		ItemfirstFindtIter = CurrentShopItemList_.begin();
 
 		ConstStartIter = ConstItmePos_.begin();
 		ConstEndtIter = ConstItmePos_.end();
@@ -118,8 +118,8 @@ void Shop::Update()
 	case SHOP_UPDATE::HIDE_ITME:
 
 		// 4°³ ÀÌ»óÀº ¼û±è
-		ItemStartIter = ShopItemList_.begin();
-		ItemEndtIter = ShopItemList_.end();
+		ItemStartIter = CurrentShopItemList_.begin();
+		ItemEndtIter = CurrentShopItemList_.end();
 
 		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
 		{
@@ -142,7 +142,7 @@ void Shop::Update()
 
 	case SHOP_UPDATE::INIT:
 
-		ItemStartIter = ShopItemList_.begin();
+		ItemStartIter = CurrentShopItemList_.begin();
 
 		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
 		{
@@ -202,8 +202,8 @@ void Shop::Update()
 
 	case SHOP_UPDATE::SCROLL_UP:
 
-		ItemStartIter = ShopItemList_.begin();
-		ItemEndtIter = ShopItemList_.end();
+		ItemStartIter = CurrentShopItemList_.begin();
+		ItemEndtIter = CurrentShopItemList_.end();
 
 		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
 		{
@@ -215,8 +215,8 @@ void Shop::Update()
 
 	case SHOP_UPDATE::SCROLL_DOWN:
 
-		ItemStartIter = ShopItemList_.begin();
-		ItemEndtIter = ShopItemList_.end();
+		ItemStartIter = CurrentShopItemList_.begin();
+		ItemEndtIter = CurrentShopItemList_.end();
 
 		for (; ItemStartIter != ItemEndtIter; ++ItemStartIter)
 		{
@@ -237,12 +237,31 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	MainShop = this;
 	Font_ = Font_;
 	ExitBotton_ = ExitBotton_;
+
+
+	if (Player::MainPlayer->GetCurrentLevel() == "ShopLevel")
+	{
+		CurrentShopItemList_.clear();
+		std::copy(SeedShopItemList_.begin(), SeedShopItemList_.end(), std::inserter(CurrentShopItemList_, CurrentShopItemList_.begin()));
+	
+		std::map<int, ShopItem*>::iterator StartIter = CurrentShopItemList_.begin();
+		std::map<int, ShopItem*>::iterator EndtIter = CurrentShopItemList_.end();
+
+		for (int i = 0; StartIter != EndtIter; ++StartIter)
+		{
+			StartIter->second->SetPosition({ 715.f, 123.5f + (i * 76.f) });
+			++i;
+		}
+
+	
+	}
+
 }
 
 void Shop::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
-	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
+	std::map<int, ShopItem*>::iterator StartIter = CurrentShopItemList_.begin();
+	std::map<int, ShopItem*>::iterator EndtIter = CurrentShopItemList_.end();
 
 	for (; StartIter != EndtIter; ++StartIter)
 	{
@@ -259,8 +278,8 @@ void Shop::ShopOff()
 	ExitBotton_->Off();
 	Font_->Off();
 
-	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
-	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
+	std::map<int, ShopItem*>::iterator StartIter = CurrentShopItemList_.begin();
+	std::map<int, ShopItem*>::iterator EndtIter = CurrentShopItemList_.end();
 
 	for (; StartIter != EndtIter; ++StartIter)
 	{
@@ -275,8 +294,8 @@ void Shop::ShopOn()
 	ExitBotton_->On();
 	Font_->On();
 
-	std::map<int, ShopItem*>::iterator StartIter = ShopItemList_.begin();
-	std::map<int, ShopItem*>::iterator EndtIter = ShopItemList_.end();
+	std::map<int, ShopItem*>::iterator StartIter = CurrentShopItemList_.begin();
+	std::map<int, ShopItem*>::iterator EndtIter = CurrentShopItemList_.end();
 
 	for (; StartIter != EndtIter; ++StartIter)
 	{

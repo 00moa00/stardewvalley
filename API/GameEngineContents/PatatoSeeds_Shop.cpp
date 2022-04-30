@@ -33,7 +33,7 @@ void PatatoSeeds_Shop::Update()
 
 void PatatoSeeds_Shop::InventoryNewItem()
 {
-	Player::MainPlayer->GetInventroy()->NewItem<Potato_Seeds>();
+	Inventory::MainInventory->NewItem<Potato_Seeds>();
 }
 
 bool PatatoSeeds_Shop::MouseInItem()

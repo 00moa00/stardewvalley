@@ -31,7 +31,7 @@ void Dandelion_Shop::Update()
 
 void Dandelion_Shop::InventoryNewItem()
 {
-	Player::MainPlayer->GetInventroy()->NewItem<Dandelion>();
+	Inventory::MainInventory->NewItem<Dandelion>();
 
 }
 
