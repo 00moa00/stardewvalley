@@ -73,15 +73,6 @@ void Shop::Start()
 	NewSaloonItem<Spaghetti_Shop>();
 
 
-	//std::map<int, ShopItem*>::iterator StartIter = CurrentShopItemList_.begin();
-	//std::map<int, ShopItem*>::iterator EndtIter = CurrentShopItemList_.end();
-
-	//for (int i = 0; StartIter != EndtIter; ++StartIter)
-	//{
-	//	StartIter->second->SetPosition({715.f, 123.5f + (i * 76.f)});
-	//	++i;
-	//}
-
 	//고정 인덱스
 	for (int i = 0; i < 4; ++i)
 	{
@@ -264,9 +255,10 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	ExitBotton_ = ExitBotton_;
 
 
+	//------< SeedShop >---------------------------------------------------------------------------
+
 	if (Player::MainPlayer->GetCurrentLevel() == "ShopLevel")
 	{
-
 
 		std::map<int, ShopItem*>::iterator SaloonStartIter = SaloonItemList_.begin();
 		std::map<int, ShopItem*>::iterator SaloonEndtIter = SaloonItemList_.end();
@@ -286,7 +278,6 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		}
 
 
-
 		std::copy(SeedShopItemList_.begin(), SeedShopItemList_.end(), std::inserter(CurrentShopItemList_, CurrentShopItemList_.begin()));
 
 		//위치 초기화
@@ -300,11 +291,28 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
+	//------< Saloon  >---------------------------------------------------------------------------
+
 	if (Player::MainPlayer->GetCurrentLevel() == "SaloonLevel")
 	{
 
 
+		std::map<int, ShopItem*>::iterator SaloonStartIter = SaloonItemList_.begin();
+		std::map<int, ShopItem*>::iterator SaloonEndtIter = SaloonItemList_.end();
 
+		for (; SaloonStartIter != SaloonEndtIter; ++SaloonStartIter)
+		{
+			SaloonStartIter->second->On();
+		}
+
+
+		std::map<int, ShopItem*>::iterator SeedShopStartIter = SeedShopItemList_.begin();
+		std::map<int, ShopItem*>::iterator SeedShopEndtIter = SeedShopItemList_.end();
+
+		for (; SeedShopStartIter != SeedShopEndtIter; ++SeedShopStartIter)
+		{
+			SeedShopStartIter->second->Off();
+		}
 
 
 		std::copy(SaloonItemList_.begin(), SaloonItemList_.end(), std::inserter(CurrentShopItemList_, CurrentShopItemList_.begin()));

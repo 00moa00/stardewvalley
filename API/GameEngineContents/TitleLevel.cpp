@@ -101,7 +101,6 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	Bird_[1] = CreateActor<Bird>(static_cast<int>(TITLELEVEL::BIRD));
 	Bird_[1]->SetPosition({ GameEngineWindow::GetScale().Half().x + 100.f, (1500.f / 2) + 300.f });
 
-
 	//뉴게임스타트
 	MenuButton_[0] = CreateActor<MenuButton>(static_cast<int>(TITLELEVEL::TITLELOGO));
 	MenuButton_[0]->SetPosition({ GameEngineWindow::GetScale().Half().x - 250.f,GameEngineWindow::GetScale().Half().y + 250.f });

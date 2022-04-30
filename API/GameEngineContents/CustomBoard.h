@@ -58,7 +58,6 @@ private:
 	GameEngineRenderer* CustomPants_;
 	GameEngineRenderer* CustomHair_;
 
-
 	GameEngineRenderer* CustomBoardRenderer_;
 
 	ArrowButton* HairAddButton_;
@@ -70,7 +69,6 @@ private:
 
 	ArrowButton* DirChangeRightArrow_;
 	ArrowButton* DirChangeLeftArrow_;
-
 
 	MenuButton* OKButton_;
 	MenuButton* BackButton_;
