@@ -66,7 +66,13 @@ private:
 	Mouse* Mouse_;
 	SHOP_UPDATE ShopUpdateState_;
 
+	std::map<int, ShopItem*> CurrentShopItemList_;
+
 	std::map<int, ShopItem*> ShopItemList_;
+	std::map<int, ShopItem*> SaloontemList_;
+
+
+
 	std::map<int, float4> ConstItmePos_;
 
 

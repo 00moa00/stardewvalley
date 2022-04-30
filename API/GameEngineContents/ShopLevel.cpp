@@ -1,6 +1,4 @@
 #include <GameEngineBase/GameEngineTime.h>
-
-
 #include "ShopLevel.h"
 
 #include "GameData.h"
@@ -49,7 +47,6 @@ void ShopLevel::Loading()
 	}
 
 
-
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();
@@ -84,7 +81,7 @@ void ShopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
-	//	Shop::MainShop->NextLevelOn();
+		Shop::MainShop->NextLevelOn();
 	}
 
 	//Player::MainPlayer->SetisShopping(false);

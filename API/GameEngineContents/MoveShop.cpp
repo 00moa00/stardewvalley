@@ -16,7 +16,6 @@ void MoveShop::Start()
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	ItemCollider_ = CreateCollision("MoveShop", { 48, 48 });
 	ItemType_ = ITEMTYPE::FLAG;
-
 }
 
 void MoveShop::LevelChangeStart(GameEngineLevel* _PrevLevel)

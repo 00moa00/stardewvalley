@@ -371,6 +371,18 @@
     <ClCompile Include="BakedFish.cpp">
       <Filter>Actor\03. Play\Obejct</Filter>
     </ClCompile>
+    <ClCompile Include="MoveSaloon.cpp">
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="SaloonLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MineLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="DayOffLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -763,6 +775,18 @@
     </ClInclude>
     <ClInclude Include="BakedFish.h">
       <Filter>Actor\03. Play\Obejct</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveSaloon.h">
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="SaloonLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MineLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="DayOffLevel.h">
+      <Filter>Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

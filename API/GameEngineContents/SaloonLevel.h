@@ -1,4 +1,5 @@
 #pragma once
+#include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineSound.h>
 
 #include "TileData.h"
@@ -14,20 +15,19 @@
 #include "Mouse.h"
 #include "FlowingFlower.h"
 
-
 // Ό³Έν :
-class ShopLevel : public GameEngineLevel
+class SaloonLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
-	ShopLevel();
-	~ShopLevel();
+	SaloonLevel();
+	~SaloonLevel();
 
 	// delete Function
-	ShopLevel(const ShopLevel& _Other) = delete;
-	ShopLevel(ShopLevel&& _Other) noexcept = delete;
-	ShopLevel& operator=(const ShopLevel& _Other) = delete;
-	ShopLevel& operator=(ShopLevel&& _Other) noexcept = delete;
+	SaloonLevel(const SaloonLevel& _Other) = delete;
+	SaloonLevel(SaloonLevel&& _Other) noexcept = delete;
+	SaloonLevel& operator=(const SaloonLevel& _Other) = delete;
+	SaloonLevel& operator=(SaloonLevel&& _Other) noexcept = delete;
 
 private:
 	void Loading() override;
