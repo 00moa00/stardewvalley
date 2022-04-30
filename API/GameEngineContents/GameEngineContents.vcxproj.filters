@@ -344,9 +344,6 @@
     <ClCompile Include="SaloonLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="MineLevel.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
     <ClCompile Include="DayOffLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
@@ -418,6 +415,9 @@
     </ClCompile>
     <ClCompile Include="Gus.cpp">
       <Filter>Actor\03. Play\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="MineLevel.cpp">
+      <Filter>Level\Mine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -785,9 +785,6 @@
     <ClInclude Include="SaloonLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="MineLevel.h">
-      <Filter>Level</Filter>
-    </ClInclude>
     <ClInclude Include="DayOffLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
@@ -859,6 +856,9 @@
     </ClInclude>
     <ClInclude Include="Gus.h">
       <Filter>Actor\03. Play\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="MineLevel.h">
+      <Filter>Level\Mine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -942,6 +942,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Shop\ShopItemList\Saloon">
       <UniqueIdentifier>{e7326fa2-0fb8-49ec-acb3-848cd2844b88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Mine">
+      <UniqueIdentifier>{7246d334-acb4-4415-8714-8ac5acdf6543}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

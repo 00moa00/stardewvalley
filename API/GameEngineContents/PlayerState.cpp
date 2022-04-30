@@ -637,7 +637,6 @@ void Player::DelaySpeed()
 			isDelaySpeed_ = false;
 			Speed_ = 220.f;
 			DelaySpeedTimer_ = 0;
-
 		}
 	}
 }

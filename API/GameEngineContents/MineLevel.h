@@ -14,9 +14,8 @@ public:
 	MineLevel& operator=(const MineLevel& _Other) = delete;
 	MineLevel& operator=(MineLevel&& _Other) noexcept = delete;
 
-protected:
-
 private:
+
 
 };
 
