@@ -25,7 +25,7 @@ void TreeBottom::Start()
 	SubCollider_ = CreateCollision("TreeTop", { 100, 150 });
 	SubCollider_->SetPivot({ 0, -120 });
 
-	SubRenderer = GetLevel()->CreateActor<TreeTop>((int)PLAYLEVEL::PLAYER);
+	TreeTop_ = GetLevel()->CreateActor<TreeTop>((int)PLAYLEVEL::PLAYER);
 
 	Damage_ = 5;
 
@@ -37,15 +37,15 @@ void TreeBottom::Start()
 
 void TreeBottom::Update()
 {
-	if (SubRenderer != nullptr)
+	if (SubCollider_ != nullptr)
 	{
 		if (SubCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect) == true)
 		{
-			SubRenderer->GetRenderer()->SetAlpha(80);
+			TreeTop_->GetRenderer()->SetAlpha(80);
 		}
 		else
 		{
-			SubRenderer->GetRenderer()->SetAlpha(255);
+			TreeTop_->GetRenderer()->SetAlpha(255);
 		}
 	}
 
@@ -59,15 +59,15 @@ void TreeBottom::Update()
 			ItemName_ = "Fine_Tree";
 
 			ItemRenderer_->SetImage("Fine_Tree_Bottom.bmp");
-			SubRenderer->SetInitAnimation();
-			SubRenderer->SetItemName("Fine_Tree");
+			TreeTop_->SetInitAnimation();
+			TreeTop_->SetItemName("Fine_Tree");
 		}
 		else if (GetItemNameConstRef() == "Maple_Tree")
 		{
 			ItemName_ = "Maple_Tree";
 			ItemRenderer_->SetImage("Maple_Tree_Bottom.bmp");
-			SubRenderer->SetInitAnimation();
-			SubRenderer->SetItemName("Maple_Tree");
+			TreeTop_->SetInitAnimation();
+			TreeTop_->SetItemName("Maple_Tree");
 
 		}
 		else if (GetItemNameConstRef() == "Mahogany_Tree")
@@ -75,8 +75,8 @@ void TreeBottom::Update()
 			ItemName_ = "MapMahogany_Treele_Tree";
 
 			ItemRenderer_->SetImage("Mahogany_Tree_Bottom.bmp");
-			SubRenderer->SetInitAnimation();
-			SubRenderer->SetItemName("Mahogany_Tree");
+			TreeTop_->SetInitAnimation();
+			TreeTop_->SetItemName("Mahogany_Tree");
 
 		}
 		else if (GetItemNameConstRef() == "Oak_Tree")
@@ -84,12 +84,12 @@ void TreeBottom::Update()
 			ItemName_ = "Oak_Tree";
 
 			ItemRenderer_->SetImage("Oak_Tree_Bottom.bmp");
-			SubRenderer->SetInitAnimation();
-			SubRenderer->SetItemName("Oak_Tree");
+			TreeTop_->SetInitAnimation();
+			TreeTop_->SetItemName("Oak_Tree");
 
 		}
 
-		SubRenderer->GetRenderer()->SetPivot({ GetPosition().x, GetPosition().y - 11.f });
+		TreeTop_->GetRenderer()->SetPivot({ GetPosition().x, GetPosition().y - 11.f });
 
 		TreeState_ = TREESTATE::UPDATE;
 		break;
@@ -97,8 +97,8 @@ void TreeBottom::Update()
 
 		if (Damage_ == 2)
 		{
-			SubRenderer->Death();
-			SubRenderer = nullptr;
+			SubCollider_->Death();
+			SubCollider_ = nullptr;
 			TreeState_ = TREESTATE::TREETOP_DIE;
 			break;
 
@@ -126,14 +126,14 @@ void TreeBottom::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void TreeBottom::SetInitAnimation()
 {
-	//SubRenderer->SetInitAnimation(_TreeName);
+	//SubCollider_->SetInitAnimation(_TreeName);
 }
 
 void TreeBottom::SetCrushAnimation()
 {
-	if (SubRenderer != nullptr)
+	if (SubCollider_ != nullptr)
 	{
-		SubRenderer->SetCrushAnimation();
+		TreeTop_->SetCrushAnimation();
 	}
 }
 
@@ -164,6 +164,6 @@ void TreeBottom::DropItemInMap()
 void TreeBottom::TreeOff()
 {
 	this->Death();
-	SubRenderer->Death();
+	SubCollider_->Death();
 }
 

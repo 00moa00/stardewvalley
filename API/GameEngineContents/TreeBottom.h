@@ -38,7 +38,7 @@ private:
 	void DropItemInMap() override;
 
 private:
-	Items* SubRenderer;
+	Items* TreeTop_;
 	TREESTATE TreeState_;
 
 public:

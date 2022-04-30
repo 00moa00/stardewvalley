@@ -27,15 +27,18 @@ void Pizza::Start()
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
-	//핸드 아이템용
-	isPossibleHand_ = true;
-	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::PIZZA);
 
 	ItemName_ = "Pizza";
 	ItemType_ = ITEMTYPE::FOOD;
 
 	SellPrice_ = 600;
+	AddEnery_ = 150;
+	AddHP_ = 67;
+
+	//핸드 아이템용
+	isPossibleHand_ = true;
+	FileName_ = "springobjects.bmp";
+	FileIndex_ = static_cast<size_t>(ITEM::PIZZA);
 }
 
 void Pizza::Update()

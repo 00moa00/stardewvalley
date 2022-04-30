@@ -44,6 +44,13 @@ enum class ITEMTYPE
 	BLOCK,
 };
 
+enum class DRINKTYPE
+{
+	OTHER,
+	SPEED_UP,
+	SPEED_DOWN,
+};
+
 enum class TOOLTYPE 
 {
 	OTHER,
@@ -124,7 +131,7 @@ protected:
 	GameEngineRenderer* ItemRenderer_;
 	GameEngineCollision* ItemCollider_;
 
-	GameEngineRenderer* SubRenderer;
+	GameEngineRenderer* SubRenderer_;
 	GameEngineCollision* SubCollider_;
 
 	GameEngineRandom RandomItemCount;
@@ -137,23 +144,27 @@ protected:
 	SEEDTYPE SeedType_;
 	ITEMTYPE ItemType_;
 	TOOLTYPE ToolType_;
+	DRINKTYPE DrinkType_;
 	ITEM_STATE ItemState_;
 	MOVE State_;
 
-	//GameEngineRandom RamdomSpeed_;
 
-	int SellPrice_;
-	int ItemCount_;
-	int Damage_;
-	float Speed_;
-	int RamdomDir_;
+	int Damage_;			//맵 오브젝트 데미지
+	int SellPrice_;			//파는 금액
+	int ItemCount_;			//아이템 개수
+	int FileIndex_;			//핸드아이템 전달 인덱스
+	int RamdomDir_;			//맵 팝업 아이템의 랜덤 방향 정하는 용
+	int AddEnery_;			//음식 옵션 - 에너지 증가
+	int AddHP_;				//음식 옵션 - HP증가
+	int ChangeSpeed_;		//드링크 마시면 생기는 속도 관련 버프/ 디버프
+
+	float ChangeTime_;		//드링크 버프/ 디버프 시간
 
 	float4 ItemPosition_;
 	float4 ItemSpeed_;
 	float4 MoveDir_;
 	float4 PrePosition_;
 	float4 Normal_;
-
 
 	bool MouseHoldItem_;
 	bool isPossibleHand_;
@@ -162,7 +173,6 @@ protected:
 
 	std::string ItemName_;
 	std::string FileName_;
-	int FileIndex_;
 
 
 private:
@@ -193,7 +203,22 @@ public:
 
 	GameEngineRenderer* GetSubRenderer()
 	{
-		return SubRenderer;
+		return SubRenderer_;
+	}
+
+	int GetDrinkChangeSpeed()
+	{
+		return ChangeSpeed_;
+	}
+
+	int GetAddEnergy()
+	{
+		return AddEnery_;
+	}
+
+	int GetAddHP()
+	{
+		return AddHP_;
 	}
 
 	int GetItemCount()
@@ -236,12 +261,15 @@ public:
 		return FileIndex_;
 	}
 
-
 	bool IsMapItemDeath()
 	{
 		return isMapItemDeath_;
 	}
 
+	float GetChangeSpeedTime()
+	{
+		return ChangeTime_;
+	}
 
 	bool GetInBox()
 	{
@@ -251,6 +279,11 @@ public:
 	bool GetisPossibleHand()
 	{
 		return isPossibleHand_;
+	}
+
+	DRINKTYPE GetDrinkType()
+	{
+		return DrinkType_;
 	}
 
 	SEEDTYPE GetSeedType()

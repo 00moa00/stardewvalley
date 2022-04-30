@@ -27,15 +27,18 @@ void Spaghetti::Start()
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
-	//핸드 아이템용
-	isPossibleHand_ = true;
-	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::SPAGHETTI);
 
 	ItemName_ = "Spaghetti";
 	ItemType_ = ITEMTYPE::FOOD;
 
 	SellPrice_ = 240;
+	AddEnery_ = 75;
+	AddHP_ = 33;
+
+	//핸드 아이템용
+	isPossibleHand_ = true;
+	FileName_ = "springobjects.bmp";
+	FileIndex_ = static_cast<size_t>(ITEM::SPAGHETTI);
 }
 
 void Spaghetti::Update()

@@ -7,7 +7,8 @@
 Items::Items() :
 	ItemRenderer_ (nullptr),
 	ItemCollider_ (nullptr),
-
+	SubRenderer_(nullptr),
+	SubCollider_(nullptr),
 	MouseHoldItem_ (false),
 	InMouse (false),
 	isPossibleHand_(false),
@@ -18,10 +19,16 @@ Items::Items() :
 	State_(MOVE::Y_UP),
 	Normal_(float4::ZERO),
 
+	AddEnery_(0),
+	RamdomDir_(0),
+	AddHP_(0),
 	FileIndex_(0),
 	SellPrice_(0),
+	ChangeSpeed_(0),
 	ItemCount_ (1),
 	Damage_(5),
+
+	ChangeTime_(0.f),
 
 	ItemSpeed_({}),
 	ItemPosition_({}),
@@ -30,9 +37,10 @@ Items::Items() :
 	RandomItemPosX(),
 	RamdomItemPosY(),
 
-
 	ItemName_({""}),
 	FileName_({""}),
+
+	DrinkType_(DRINKTYPE::OTHER),
 	SeedType_(SEEDTYPE::NONE),
 	ItemType_ (ITEMTYPE::ITEM),
 	ToolType_ (TOOLTYPE::OTHER),

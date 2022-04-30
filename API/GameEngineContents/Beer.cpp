@@ -27,15 +27,22 @@ void Beer::Start()
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
-	//핸드 아이템용
-	isPossibleHand_ = true;
-	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::BEER);
 
 	ItemName_ = "Beer";
 
 	ItemType_ = ITEMTYPE::DRINK;
+	DrinkType_ = DRINKTYPE::SPEED_DOWN;
+
 	SellPrice_ = 400;
+	AddEnery_ = 50;
+	AddHP_ = 22;
+	ChangeSpeed_ = -1 * 100;
+	ChangeTime_ = 30.f;
+
+	//핸드 아이템용
+	isPossibleHand_ = true;
+	FileName_ = "springobjects.bmp";
+	FileIndex_ = static_cast<size_t>(ITEM::BEER);
 }
 
 void Beer::Update()

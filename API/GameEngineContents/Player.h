@@ -48,6 +48,19 @@ enum class LEVEL_CHANGE_STATE
 	LEVEL_CHANGE,
 };
 
+enum class LEVEL_LIST
+{
+	TITLE_LEVEL,
+	MYHOUSE_LEVEL,
+	MYFARM_LEVEL,
+	BUSSTOP_LEVEL,
+	TOWN_LEVEL,
+	SALOON_LEVEL,
+	SEEDSHOP_LEVEL
+};
+
+
+
 class FarmTile : public Tile
 {
 public:
@@ -104,15 +117,18 @@ private:
 	int Money_;
 	int PrevMoney_;
 	int TotalMoney_;
-
 	int Energy_;
+	int DelaySpeed_;
 
+
+	float Speed_;
 	float MapSizeX_;
 	float MapSizeY_;
 	float AnimationFrame_;
-	float Speed_;
+
 	float Timer_;
 	float AnimationWaitTimer_;
+	float DelaySpeedTimer_;
 
 	float4 MoveDir_;
 	float4 CameraPos_;
@@ -121,8 +137,10 @@ private:
 	bool ObjectColl_;
 	bool isShopping_;
 	bool isEvent_;
+	bool isDelaySpeed_;
 
 	std::string ChangeLevelName_;
+
 	FadeInOut* FadeInOut_;
 
 	GameEngineRenderer* PlayerBodyRenderer_;
@@ -152,6 +170,8 @@ private:
 	MONEY_UPDATE AddMoneyCount_;
 	MONEY_UPDATE SubMoneyCount_;
 	LEVEL_CHANGE_STATE LevelChagne_;
+
+	LEVEL_LIST LevelList_;
 
 	static std::string CurrentLevel_;
 	static std::string PrevLevel_;
@@ -258,7 +278,6 @@ private:
 	void ChangeHandItem();
 
 	void CheckTool();
-
 	void CheckDrink();
 	void CheckEat();
 
@@ -266,6 +285,8 @@ private:
 
 	void AddMoneyAnimation();
 	void SubMoneyAnimation();
+
+	void DelaySpeed();
 
 	// 메인 업데이트 함수
 	void PlayerUpdate();

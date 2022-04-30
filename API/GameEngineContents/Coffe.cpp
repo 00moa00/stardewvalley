@@ -27,15 +27,21 @@ void Coffe::Start()
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
+	ItemName_ = "Coffe";
+
+	ItemType_ = ITEMTYPE::DRINK;
+	DrinkType_ = DRINKTYPE::SPEED_DOWN;
+
+	SellPrice_ = 300;
+	AddEnery_ = 3;
+	AddHP_ = 1;
+	ChangeSpeed_ = 1 * 100;
+	ChangeTime_ = 83.0f;
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::COFFEE);
-
-	ItemName_ = "Coffe";
-	ItemType_ = ITEMTYPE::DRINK;
-
-	SellPrice_ = 300;
 }
 
 void Coffe::Update()

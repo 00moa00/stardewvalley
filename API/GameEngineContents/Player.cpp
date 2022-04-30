@@ -23,6 +23,7 @@ Player::Player()
 	TotalMoney_(0),
 	PrevMoney_(0),
 
+
 	AnimationFrame_(0.120f),
 	Speed_(220.f),
 	Energy_(126),
@@ -47,10 +48,13 @@ Player::Player()
 	FarmingArea_(false),
 	isShopping_(false),
 	isEvent_(false),
+	isDelaySpeed_(false),
 
 	WetTileMap_(nullptr),
 	DirtTileMap_(nullptr),
 	MoveDir_(float4::DOWN),
+
+	LevelList_(LEVEL_LIST::TITLE_LEVEL),
 
 	LevelChagne_(LEVEL_CHANGE_STATE::CHECK),
 	CurrentItemType_(TOOLTYPE::OTHER),
@@ -89,6 +93,7 @@ Player::Player()
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::EAT_WAIT)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::EAT)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::DRINK)] = "INIT";
+
 
 }	
 
@@ -541,6 +546,86 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Player::Update()
 {
+	switch (LevelList_)
+	{
+	case LEVEL_LIST::TITLE_LEVEL:
+		break;
+	case LEVEL_LIST::MYHOUSE_LEVEL:
+
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		NpcCollCheck();
+		DelaySpeed();
+
+		break;
+	case LEVEL_LIST::MYFARM_LEVEL:
+
+
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		NpcCollCheck();
+		DelaySpeed();
+		CheckShippingBox();
+
+		break;
+	case LEVEL_LIST::BUSSTOP_LEVEL:
+
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		NpcCollCheck();
+		DelaySpeed();
+
+		break;
+	case LEVEL_LIST::TOWN_LEVEL:
+
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		NpcCollCheck();
+		DelaySpeed();
+
+		break;
+	case LEVEL_LIST::SALOON_LEVEL:
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		NpcCollCheck();
+		DelaySpeed();
+		PlayerShopping();
+		AddMoneyAnimation();
+		SubMoneyAnimation();
+
+		break;
+	case LEVEL_LIST::SEEDSHOP_LEVEL:
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		NpcCollCheck();
+		DelaySpeed();
+		PlayerShopping();
+		AddMoneyAnimation();
+		SubMoneyAnimation();
+
+		break;
+	default:
+		break;
+	}
+
 	if (true == GameEngineInput::GetInst()->IsDown("MoveShopLevel"))
 	{
 		GameEngine::GetInst().ChangeLevel("SaloonLevel");
@@ -551,26 +636,6 @@ void Player::Update()
 	{
 		GameEngine::GetInst().ChangeLevel("TownLevel");
 
-	}
-
-	if (CurrentLevel_ != "TitleLevel")
-	{
-		SetCamera();
-		PlayerUpdate();
-		PlayerDirCheck();
-		SetPlayerHandItemPos();
-//		ClearWetDirtTile();
-		ChangeLevel();
-		NpcCollCheck();
-		CheckShippingBox();
-
-	}
-
-	if (CurrentLevel_ == "SeedShopLevel" || CurrentLevel_ == "SaloonLevel")
-	{
-		PlayerShopping();
-		AddMoneyAnimation();
-		SubMoneyAnimation();
 	}
 
 
@@ -801,11 +866,10 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::EAT:
 
-
-
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			GetCurrentItem()->SubItemCount();
+			AddEnergy(GetCurrentItem()->GetAddHP());
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -815,7 +879,11 @@ void Player::PlayerUpdate()
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			GetCurrentItem()->SubItemCount();
-
+			AddEnergy(GetCurrentItem()->GetAddHP());
+			isDelaySpeed_ = true;
+			DelaySpeed_ = GetCurrentItem()->GetDrinkChangeSpeed();
+			Speed_ += DelaySpeed_;
+			DelaySpeedTimer_ = GetCurrentItem()->GetChangeSpeedTime();
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -835,6 +903,8 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "TitleLevel")
 	{
+		LevelList_ = LEVEL_LIST::TITLE_LEVEL;
+
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 		ToolRenderer_->CameraEffectOff();
 
@@ -849,6 +919,8 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "MyHouseLevel")
 	{
+		LevelList_ = LEVEL_LIST::MYHOUSE_LEVEL;
+
 		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 		ToolRenderer_->CameraEffectOff();
 
@@ -863,6 +935,8 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "MyFarmLevel")
 	{
+		LevelList_ = LEVEL_LIST::MYFARM_LEVEL;
+
 		MapSizeX_ = FARM_SIZE_WEIGHT;
 		MapSizeY_ = FARM_SIZE_HEIGHT;
 
@@ -881,6 +955,8 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "BusStopLevel")
 	{
+		LevelList_ = LEVEL_LIST::BUSSTOP_LEVEL;
+
 		MapSizeX_ = BUSSTOP_SIZE_WEIGHT;
 		MapSizeY_ = BUSSTOP_SIZE_HEIGHT;
 
@@ -899,6 +975,8 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "TownLevel")
 	{
+		LevelList_ = LEVEL_LIST::TOWN_LEVEL;
+
 		MapSizeX_ = TOWN_SIZE_WEIGHT;
 		MapSizeY_ = TOWN_SIZE_HEIGHT;
 
@@ -916,6 +994,8 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "SeedShopLevel")
 	{
+		LevelList_ = LEVEL_LIST::SEEDSHOP_LEVEL;
+
 		MapSizeX_ = SHOP_SIZE_WEIGHT;
 		MapSizeY_ = SHOP_SIZE_HEIGHT;
 
@@ -934,6 +1014,8 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "SaloonLevel")
 	{
+		LevelList_ = LEVEL_LIST::SALOON_LEVEL;
+
 		MapSizeX_ = SALOON_SIZE_WEIGHT;
 		MapSizeY_ = SALOON_SIZE_HEIGHT;
 

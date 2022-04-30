@@ -27,15 +27,18 @@ void Bread::Start()
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
-	//핸드 아이템용
-	isPossibleHand_ = true;
-	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::BREAD);
 
 	ItemName_ = "Bread";
 	ItemType_ = ITEMTYPE::FOOD;
 
 	SellPrice_ = 120;
+	AddEnery_ = 50;
+	AddHP_ = 22;
+
+	//핸드 아이템용
+	isPossibleHand_ = true;
+	FileName_ = "springobjects.bmp";
+	FileIndex_ = static_cast<size_t>(ITEM::BREAD);
 }
 
 void Bread::Update()

@@ -558,8 +558,6 @@ void Player::NpcCollCheck()
 void Player::AddMoneyAnimation()
 {
 
-
-
 	switch (AddMoneyCount_)
 	{
 	case MONEY_UPDATE::WAIT:
@@ -625,6 +623,22 @@ void Player::SubMoneyAnimation()
 		break;
 	default:
 		break;
+	}
+}
+
+void Player::DelaySpeed()
+{
+	if (isDelaySpeed_ == true)
+	{
+		DelaySpeedTimer_ -= GameEngineTime::GetDeltaTime();
+		
+		if (DelaySpeedTimer_ <= 0)
+		{
+			isDelaySpeed_ = false;
+			Speed_ = 220.f;
+			DelaySpeedTimer_ = 0;
+
+		}
 	}
 }
 
@@ -755,6 +769,16 @@ void Player::SubEnergy(int _Energy)
 	Energy_ -= _Energy;
 	PlayerEnergyFrame::MainPlayerEnergyBar->GetRenderer()->SetScale({18, static_cast<float>(Energy_) });
 
+}
+
+void Player::AddEnergy(int _Energy)
+{
+	Energy_ += _Energy;
+
+	if (Energy_ > 126)
+	{
+		Energy_ = 126;
+	}
 }
 
 
