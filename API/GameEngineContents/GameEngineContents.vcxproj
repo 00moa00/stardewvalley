@@ -577,7 +577,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ShopLevel.h">
+    <ClInclude Include="SeedShopLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -1100,7 +1100,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="ShopLevel.cpp">
+    <ClCompile Include="SeedShopLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>

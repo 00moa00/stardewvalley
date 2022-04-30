@@ -25,6 +25,8 @@ Font* Shop::Font_ = nullptr;
 
 Shop::Shop() 
 	:
+	ScrollMax_(0),
+
 	ShopRenderer_(nullptr),
 	Mouse_(nullptr),
 
@@ -71,6 +73,23 @@ void Shop::Start()
 	NewSaloonItem<Pizza_Shop>();
 	NewSaloonItem<Salad_Shop>();
 	NewSaloonItem<Spaghetti_Shop>();
+
+	std::map<int, ShopItem*>::iterator SaloonStartIter = SaloonItemList_.begin();
+	std::map<int, ShopItem*>::iterator SaloonEndtIter = SaloonItemList_.end();
+
+	for (; SaloonStartIter != SaloonEndtIter; ++SaloonStartIter)
+	{
+		SaloonStartIter->second->Off();
+	}
+
+
+	std::map<int, ShopItem*>::iterator SeedShopStartIter = SeedShopItemList_.begin();
+	std::map<int, ShopItem*>::iterator SeedShopEndtIter = SeedShopItemList_.end();
+
+	for (; SeedShopStartIter != SeedShopEndtIter; ++SeedShopStartIter)
+	{
+		SeedShopStartIter->second->Off();
+	}
 
 
 	//°íÁ¤ ÀÎµ¦½º
@@ -203,7 +222,7 @@ void Shop::Update()
 		if (GameEngineInput::GetInst()->GetMouseWheel() == -120)
 		{
 
-			if (ItemfirstFindtIter->second->GetIndex() == -6)
+			if (ItemfirstFindtIter->second->GetIndex() == ScrollMax_)
 			{
 				ShopUpdateState_ = SHOP_UPDATE::INIT;
 			}
@@ -257,25 +276,8 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	//------< SeedShop >---------------------------------------------------------------------------
 
-	if (Player::MainPlayer->GetCurrentLevel() == "ShopLevel")
+	if (Player::MainPlayer->GetCurrentLevel() == "SeedShopLevel")
 	{
-
-		std::map<int, ShopItem*>::iterator SaloonStartIter = SaloonItemList_.begin();
-		std::map<int, ShopItem*>::iterator SaloonEndtIter = SaloonItemList_.end();
-
-		for (; SaloonStartIter != SaloonEndtIter; ++SaloonStartIter)
-		{
-			SaloonStartIter->second->Off();
-		}
-
-
-		std::map<int, ShopItem*>::iterator SeedShopStartIter = SeedShopItemList_.begin();
-		std::map<int, ShopItem*>::iterator SeedShopEndtIter = SeedShopItemList_.end();
-
-		for (; SeedShopStartIter != SeedShopEndtIter; ++SeedShopStartIter)
-		{
-			SeedShopStartIter->second->Off();
-		}
 
 
 		std::copy(SeedShopItemList_.begin(), SeedShopItemList_.end(), std::inserter(CurrentShopItemList_, CurrentShopItemList_.begin()));
@@ -290,7 +292,7 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			++i;
 		}
 
-
+		ScrollMax_ = -6;
 		ShopRenderer_ ->SetImage("Shop.bmp");
 	}
 
@@ -298,25 +300,6 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	if (Player::MainPlayer->GetCurrentLevel() == "SaloonLevel")
 	{
-
-
-		std::map<int, ShopItem*>::iterator SaloonStartIter = SaloonItemList_.begin();
-		std::map<int, ShopItem*>::iterator SaloonEndtIter = SaloonItemList_.end();
-
-		for (; SaloonStartIter != SaloonEndtIter; ++SaloonStartIter)
-		{
-			SaloonStartIter->second->Off();
-		}
-
-
-		std::map<int, ShopItem*>::iterator SeedShopStartIter = SeedShopItemList_.begin();
-		std::map<int, ShopItem*>::iterator SeedShopEndtIter = SeedShopItemList_.end();
-
-		for (; SeedShopStartIter != SeedShopEndtIter; ++SeedShopStartIter)
-		{
-			SeedShopStartIter->second->Off();
-		}
-
 
 		std::copy(SaloonItemList_.begin(), SaloonItemList_.end(), std::inserter(CurrentShopItemList_, CurrentShopItemList_.begin()));
 	
@@ -330,7 +313,7 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			++i;
 		}
 
-
+		ScrollMax_ = - 2;
 		ShopRenderer_->SetImage("GusShop.bmp");
 	}
 

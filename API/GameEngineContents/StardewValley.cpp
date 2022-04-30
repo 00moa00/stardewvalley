@@ -5,7 +5,7 @@
 #include "MyHouseLevel.h"
 #include "BusStopLevel.h"
 #include "TownLevel.h"
-#include "ShopLevel.h"
+#include "SeedShopLevel.h"
 #include "SaloonLevel.h"
 
 #include "CustomData.h"
@@ -715,7 +715,7 @@ void StardewValley::GameInit()
 	CreateLevel<MyFarmLevel>("MyFarmLevel");
 	CreateLevel<BusStopLevel>("BusStopLevel");
 	CreateLevel<TownLevel>("TownLevel");
-	CreateLevel<ShopLevel>("ShopLevel");
+	CreateLevel<SeedShopLevel>("SeedShopLevel");
 	CreateLevel<SaloonLevel>("SaloonLevel");
 
 	ChangeLevel("TitleLevel");

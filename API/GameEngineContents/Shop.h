@@ -58,13 +58,13 @@ private:
 
 private:
 
+	int ScrollMax_;
+
 	GameEngineRenderer* ShopRenderer_;
 	Mouse* Mouse_;
+
 	SHOP Shop_;
-
 	SHOP_UPDATE ShopUpdateState_;
-
-
 
 	std::map<int, ShopItem*> CurrentShopItemList_;
 

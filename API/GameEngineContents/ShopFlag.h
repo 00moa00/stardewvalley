@@ -4,7 +4,8 @@
 class ShopFlag : public Items
 {
 public:
-	// constrcuter destructer
+	static ShopFlag* MainShopFlag;
+
 	ShopFlag();
 	~ShopFlag();
 
@@ -18,6 +19,7 @@ protected:
 
 private:
 	void Start() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 };
 

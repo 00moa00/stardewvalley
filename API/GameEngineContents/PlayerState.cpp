@@ -428,7 +428,7 @@ void Player::ChangeLevel()
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
-			ChangeLevelName_ = "ShopLevel";
+			ChangeLevelName_ = "SeedShopLevel";
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 

@@ -1,5 +1,5 @@
 #include <GameEngineBase/GameEngineTime.h>
-#include "ShopLevel.h"
+#include "SeedShopLevel.h"
 
 #include "GameData.h"
 
@@ -7,23 +7,23 @@
 #include "ShopFlag.h"
 #include "Pierre.h"
 
-ShopLevel::ShopLevel()
+SeedShopLevel::SeedShopLevel()
 	:
 	Shop_(nullptr)
 	
 {
 
-	SetName("ShopLevel");
+	SetName("SeedShopLevel");
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
 	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
 }
 
-ShopLevel::~ShopLevel()
+SeedShopLevel::~SeedShopLevel()
 {
 
 }
 
-void ShopLevel::Loading()
+void SeedShopLevel::Loading()
 {
 	//if (nullptr == Player::MainPlayer)
 	//{
@@ -54,17 +54,16 @@ void ShopLevel::Loading()
 	}
 }
 
-void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
+void SeedShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
 	if (nullptr == Shop::MainShop)
 	{
 		Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
-		//Shop::MainShop->Off();
 	}
 
 	//Shop_ = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 
-	BackGroundFront_->GetRenderer()->SetImage("SeedShopFront.bmp");
+	BackGroundFront_->GetRenderer()->SetImage("SeedShop_Front.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
 	BackGroundFront_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND_FRONT));
 
@@ -75,13 +74,13 @@ void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
-	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
+	//YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;
 }
 
-void ShopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+void SeedShopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	if (_NextLevel->GetNameCopy() != "TitleLevel")
 	{
@@ -104,7 +103,7 @@ void ShopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 
 
-void ShopLevel::LoadMapObject()
+void SeedShopLevel::LoadMapObject()
 {
 
 	char MapOject[SHOP_CHIP_NUM_Y][SHOP_CHIP_NUM_X] = {
@@ -144,7 +143,7 @@ void ShopLevel::LoadMapObject()
 
 			case TILE_LIST::PIERRE:
 
-				NpcList_.insert(std::make_pair("Pierre", CreateActor<Pierre>((int)PLAYLEVEL::PLAYER)));
+				NpcList_.insert(std::make_pair("Pierre", CreateActor<Pierre>((int)PLAYLEVEL::OBJECT)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
 				break;
@@ -180,7 +179,7 @@ void ShopLevel::LoadMapObject()
 }
 
 
-void ShopLevel::Update()
+void SeedShopLevel::Update()
 {
 
 	//float4 NextPos = Player_->GetPosition() + (float4::RIGHT *GameEngineTime::GetDeltaTime() * 150.f);

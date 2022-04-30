@@ -152,7 +152,7 @@
     <ClCompile Include="MoveShop.cpp">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
-    <ClCompile Include="ShopLevel.cpp">
+    <ClCompile Include="SeedShopLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="ShopFlag.cpp">
@@ -590,7 +590,7 @@
     <ClInclude Include="MoveShop.h">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
-    <ClInclude Include="ShopLevel.h">
+    <ClInclude Include="SeedShopLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="ShopFlag.h">

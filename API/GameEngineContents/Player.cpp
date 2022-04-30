@@ -472,7 +472,7 @@ void Player::Update()
 
 	}
 
-	if (CurrentLevel_ == "ShopLevel" || CurrentLevel_ == "SaloonLevel")
+	if (CurrentLevel_ == "SeedShopLevel" || CurrentLevel_ == "SaloonLevel")
 	{
 		PlayerShopping();
 		AddMoneyAnimation();
@@ -774,7 +774,7 @@ void Player::LevelInit()
 		PlayerHandRenderer_->CameraEffectOn();
 	}
 
-	if (CurrentLevel_ == "ShopLevel")
+	if (CurrentLevel_ == "SeedShopLevel")
 	{
 		MapSizeX_ = SHOP_SIZE_WEIGHT;
 		MapSizeY_ = SHOP_SIZE_HEIGHT;
@@ -817,7 +817,7 @@ void Player::LevelInit()
 	if (CurrentLevel_ == "MyHouseLevel"
 		&& (PrevLevel_ == "BusStopLevel"
 			|| PrevLevel_ == "TownLevel"
-			|| PrevLevel_ == "ShopLevel"))
+			|| PrevLevel_ == "SeedShopLevel"))
 	{
 		SetPosition({ 790.f, 490.f });
 
@@ -872,13 +872,13 @@ void Player::LevelInit()
 	}
 
 	// 상점 -> 마을
-	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "ShopLevel")
+	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "SeedShopLevel")
 	{
 		SetPosition({ 2100.f, 2780.f });
 	} 
 
 	// 마을 -> 상점
-	if (CurrentLevel_ == "ShopLevel" && PrevLevel_ == "TownLevel")
+	if (CurrentLevel_ == "SeedShopLevel" && PrevLevel_ == "TownLevel")
 	{
 		SetPosition({ 310.f, 1320.f });
 	}
