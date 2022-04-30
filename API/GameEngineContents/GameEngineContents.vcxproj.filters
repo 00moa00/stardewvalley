@@ -365,6 +365,12 @@
     <ClCompile Include="PlayerCustomClothes.cpp">
       <Filter>Actor\03. Play\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="Omelet.cpp">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="BakedFish.cpp">
+      <Filter>Actor\03. Play\Obejct</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -752,6 +758,12 @@
     <ClInclude Include="PlayerCustomClothes.h">
       <Filter>Actor\03. Play\Inventory</Filter>
     </ClInclude>
+    <ClInclude Include="Omelet.h">
+      <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClInclude>
+    <ClInclude Include="BakedFish.h">
+      <Filter>Actor\03. Play\Obejct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">
@@ -825,6 +837,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Obejct\Effect">
       <UniqueIdentifier>{3eb1d130-35b3-4730-97f3-e0e1188c6ba8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\Food">
+      <UniqueIdentifier>{32a8c45e-5d9c-4e40-b55d-89c58bb64c76}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

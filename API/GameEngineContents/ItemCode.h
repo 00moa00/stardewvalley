@@ -115,7 +115,11 @@ enum class ITEM{
 	FIDDLEHEAD_RISOTTO = 189,
 
 	CAULIFLOWER = 190,
+
 	POTATO = 192,
+
+	//À½½Ä
+
 	FRIED_EGG = 194,
 	OMELET = 195,
 	SALAD = 196,
