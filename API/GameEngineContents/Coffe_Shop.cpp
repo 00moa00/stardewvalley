@@ -1,4 +1,6 @@
 #include "Coffe_Shop.h"
+#include "Inventory.h"
+#include "Coffe.h"
 
 Coffe_Shop::Coffe_Shop() 
 {
@@ -29,7 +31,7 @@ void Coffe_Shop::Update()
 
 void Coffe_Shop::InventoryNewItem()
 {
-	//Inventory::MainInventory->NewItem<Bean_Seeds>();
+	Inventory::MainInventory->NewItem<Coffe>();
 }
 
 bool Coffe_Shop::MouseInItem()

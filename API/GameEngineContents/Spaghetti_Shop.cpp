@@ -1,5 +1,7 @@
 #include "Spaghetti_Shop.h"
 #include "Inventory.h"
+#include "Spaghetti.h"
+
 Spaghetti_Shop::Spaghetti_Shop() 
 {
 }
@@ -29,7 +31,7 @@ void Spaghetti_Shop::Update()
 
 void Spaghetti_Shop::InventoryNewItem()
 {
-	//Inventory::MainInventory->NewItem<Bean_Seeds>();
+	Inventory::MainInventory->NewItem<Spaghetti>();
 }
 
 bool Spaghetti_Shop::MouseInItem()

@@ -1,5 +1,6 @@
 #include "Bread_Shop.h"
 #include "Inventory.h"
+#include "Bread.h"
 
 Bread_Shop::Bread_Shop() 
 {
@@ -30,7 +31,7 @@ void Bread_Shop::Update()
 
 void Bread_Shop::InventoryNewItem()
 {
-	//Inventory::MainInventory->NewItem<Bean_Seeds>();
+	Inventory::MainInventory->NewItem<Bread>();
 }
 
 bool Bread_Shop::MouseInItem()

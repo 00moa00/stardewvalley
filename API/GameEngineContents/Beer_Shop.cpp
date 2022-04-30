@@ -1,5 +1,6 @@
 #include "Beer_Shop.h"
 #include "Inventory.h"
+#include "Beer.h"
 
 Beer_Shop::Beer_Shop() 
 {
@@ -30,8 +31,7 @@ void Beer_Shop::Update()
 
 void Beer_Shop::InventoryNewItem()
 {
-	//Inventory::MainInventory->NewItem<Bean_Seeds>();
-
+	Inventory::MainInventory->NewItem<Beer>();
 }
 
 bool Beer_Shop::MouseInItem()

@@ -1,5 +1,6 @@
 #include "Salad_Shop.h"
 #include "Inventory.h"
+#include "Salad.h"
 
 Salad_Shop::Salad_Shop() 
 {
@@ -30,7 +31,7 @@ void Salad_Shop::Update()
 
 void Salad_Shop::InventoryNewItem()
 {
-	//Inventory::MainInventory->NewItem<Bean_Seeds>();
+	Inventory::MainInventory->NewItem<Salad>();
 
 }
 
