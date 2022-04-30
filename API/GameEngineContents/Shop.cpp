@@ -274,7 +274,7 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 		for (; SeedShopStartIter != SeedShopEndtIter; ++SeedShopStartIter)
 		{
-			SeedShopStartIter->second->On();
+			SeedShopStartIter->second->Off();
 		}
 
 
@@ -289,6 +289,9 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			StartIter->second->SetPosition({ 715.f, 123.5f + (i * 76.f) });
 			++i;
 		}
+
+
+		ShopRenderer_ ->SetImage("Shop.bmp");
 	}
 
 	//------< Saloon  >---------------------------------------------------------------------------
@@ -302,7 +305,7 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 		for (; SaloonStartIter != SaloonEndtIter; ++SaloonStartIter)
 		{
-			SaloonStartIter->second->On();
+			SaloonStartIter->second->Off();
 		}
 
 
@@ -326,6 +329,9 @@ void Shop::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			StartIter->second->SetPosition({ 715.f, 123.5f + (i * 76.f) });
 			++i;
 		}
+
+
+		ShopRenderer_->SetImage("GusShop.bmp");
 	}
 
 }
@@ -353,6 +359,16 @@ void Shop::ShopOff()
 	ExitBotton_->Off();
 	Font_->Off();
 
+	//std::map<int, ShopItem*>::iterator StartIter = SeedShopItemList_.begin();
+	//std::map<int, ShopItem*>::iterator EndtIter = SeedShopItemList_.end();
+
+	//for (; StartIter != EndtIter; ++StartIter)
+	//{
+	//	StartIter->second->Off();
+	//}
+
+
+
 	std::map<int, ShopItem*>::iterator StartIter = CurrentShopItemList_.begin();
 	std::map<int, ShopItem*>::iterator EndtIter = CurrentShopItemList_.end();
 
@@ -369,6 +385,7 @@ void Shop::ShopOn()
 	ExitBotton_->On();
 	Font_->On();
 
+	
 	std::map<int, ShopItem*>::iterator StartIter = CurrentShopItemList_.begin();
 	std::map<int, ShopItem*>::iterator EndtIter = CurrentShopItemList_.end();
 
@@ -376,6 +393,24 @@ void Shop::ShopOn()
 	{
 		StartIter->second->On();
 	}
+
+
+	//std::map<int, ShopItem*>::iterator StartIter = SeedShopItemList_.begin();
+	//std::map<int, ShopItem*>::iterator EndtIter = SeedShopItemList_.end();
+
+	//for (; StartIter != EndtIter; ++StartIter)
+	//{
+	//	StartIter->second->On();
+	//}
+
+	//std::map<int, ShopItem*>::iterator SaloonStartIter = SaloonItemList_.begin();
+	//std::map<int, ShopItem*>::iterator SaloonEndtIter = SaloonItemList_.end();
+
+	//for (; SaloonStartIter != SaloonEndtIter; ++SaloonStartIter)
+	//{
+	//	SaloonStartIter->second->On();
+	//}
+
 
 	ShopUpdateState_ = SHOP_UPDATE::HIDE_ITME;
 

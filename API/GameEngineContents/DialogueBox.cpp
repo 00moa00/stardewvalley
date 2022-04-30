@@ -27,6 +27,11 @@ DialogueBox::DialogueBox()
 	PennyDialogue[2] = "Hi. Ummm... The weather`s /interesting today, don't you /think? Sorry...";
 	PennyDialogue[3] = "This town's safe, but I /always walk the children /home anyway.";
 
+	GusDialogue[0] = "Yeah, I know a lot about /the people living here.";
+	GusDialogue[1] = "That's one of the benefits /of being a bartender.";
+	GusDialogue[2] = "Sometimes I hear too much...";
+	GusDialogue[3] = "Business has been pretty /steady thanks to my regular /customers.";
+
 }
 
 DialogueBox::~DialogueBox() 
@@ -94,6 +99,14 @@ void DialogueBox::SetPenny()
 	Dialoue_->ChangeFont(PennyDialogue[DialogueRandom_.RandomInt(0, 3)], { this->GetPosition().x - 430.f, this->GetPosition().y - 110.f });
 	DialogueName_->SetIndex(static_cast<int>(NPC::PENNY));
 
+}
+
+void DialogueBox::SetGus()
+{
+	PortraitRenderer_->SetImage("Gus_Portrait.bmp");
+	PortraitRenderer_->SetIndex(0);
+	Dialoue_->ChangeFont(GusDialogue[DialogueRandom_.RandomInt(0, 3)], { this->GetPosition().x - 430.f, this->GetPosition().y - 110.f });
+	DialogueName_->SetIndex(static_cast<int>(NPC::PIERRE));
 }
 
 void DialogueBox::DialogueOn()

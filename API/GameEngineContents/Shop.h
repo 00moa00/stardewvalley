@@ -23,6 +23,7 @@ enum class SHOP
 
 enum class SHOP_UPDATE
 {
+	WAIT,
 	SET_POS_INDEX,
 	HIDE_ITME,
 	INIT,

@@ -322,7 +322,7 @@ private:
 	bool MoveTownCollision();
 	bool MoveShopCollision();
 	bool MoveBackForestCollision();
-
+	bool MoveSaloonCollision();
 	bool MouseClickAndColl();
 
 	//------< ¾¾¾Ñ »ý¼º >------------------------------------------------------------------

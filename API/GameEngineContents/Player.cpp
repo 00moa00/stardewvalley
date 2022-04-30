@@ -429,7 +429,7 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 
-	FadeInOut_->Death();
+	if(FadeInOut_ != nullptr) FadeInOut_->Death();
 	MainMouse_->NextLevelOn();
 	PlayerHandItem_->NextLevelOn();
 	PrevLevel_ = CurrentLevel_;
@@ -447,6 +447,18 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void Player::Update()
 {
+	if (true == GameEngineInput::GetInst()->IsDown("MoveShopLevel"))
+	{
+		GameEngine::GetInst().ChangeLevel("SaloonLevel");
+
+	}
+
+	if (true == GameEngineInput::GetInst()->IsDown("MoveTown"))
+	{
+		GameEngine::GetInst().ChangeLevel("TownLevel");
+
+	}
+
 	if (CurrentLevel_ != "TitleLevel")
 	{
 		SetCamera();
@@ -457,13 +469,14 @@ void Player::Update()
 		ChangeLevel();
 		NpcCollCheck();
 		CheckShippingBox();
-		AddMoneyAnimation();
-		SubMoneyAnimation();
+
 	}
 
-	if (CurrentLevel_ == "ShopLevel")
+	if (CurrentLevel_ == "ShopLevel" || CurrentLevel_ == "SaloonLevel")
 	{
 		PlayerShopping();
+		AddMoneyAnimation();
+		SubMoneyAnimation();
 	}
 
 
@@ -675,6 +688,7 @@ void Player::PlayerUpdate()
 
 void Player::LevelInit()
 {
+	//------< 기본 세팅 >------------------------------------------------------------------
 
 	MainMouse_->Renderer()->CameraEffectOff();
 	CurrentLevel_ = GetCurrentLevel();
@@ -778,7 +792,25 @@ void Player::LevelInit()
 	}
 
 
+	if (CurrentLevel_ == "SaloonLevel")
+	{
+		MapSizeX_ = SALOON_SIZE_WEIGHT;
+		MapSizeY_ = SALOON_SIZE_HEIGHT;
 
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("Saloon_Coll.bmp");
+		ToolRenderer_->CameraEffectOn();
+
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
+		PlayerBodyRenderer_->CameraEffectOn();
+		PlayerPantsRenderer_->CameraEffectOn();
+		PlayerShirtsRenderer_->CameraEffectOn();
+		PlayerHairRenderer_->CameraEffectOn();
+		PlayerHandRenderer_->CameraEffectOn();
+	}
+
+
+	//------< 위치 초기화 >------------------------------------------------------------------
 
 	//쓰러지고 집
 
@@ -851,6 +883,22 @@ void Player::LevelInit()
 		SetPosition({ 310.f, 1320.f });
 	}
 
-	
+	// 마을 -> 주점
+	if (CurrentLevel_ == "SaloonLevel" && PrevLevel_ == "TownLevel")
+	{
+		SetPosition({ 695.f, 1140.f });
+	}
+
+	// 주점 -> 마을
+	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "SaloonLevel")
+	{
+		SetPosition({ 1185.f, 3480.f });
+	}
+
+	// 집 -> 주점
+	if (CurrentLevel_ == "SaloonLevel" && PrevLevel_ == "MyHouseLevel")
+	{
+		SetPosition({ 695.f, 1140.f });
+	}
 }
 

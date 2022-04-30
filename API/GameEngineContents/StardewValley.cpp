@@ -1,10 +1,13 @@
 #include "StardewValley.h"
+
 #include "MyFarmLevel.h"
 #include "TitleLevel.h"
 #include "MyHouseLevel.h"
 #include "BusStopLevel.h"
 #include "TownLevel.h"
 #include "ShopLevel.h"
+#include "SaloonLevel.h"
+
 #include "CustomData.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
@@ -51,6 +54,8 @@ void StardewValley::GameInit()
 		GameEngineInput::GetInst()->CreateKey("DebugRendereChange", 'R');
 		GameEngineInput::GetInst()->CreateKey("TimeAdd", 'T');
 
+		GameEngineInput::GetInst()->CreateKey("MoveShopLevel", '1');
+		GameEngineInput::GetInst()->CreateKey("MoveTown", '2');
 
 		GameEngineInput::GetInst()->CreateKey("KeyLeft", VK_LEFT);
 		GameEngineInput::GetInst()->CreateKey("KeyRight", VK_RIGHT);
@@ -555,6 +560,12 @@ void StardewValley::GameInit()
 		Penny__Portrait->Cut({ 192, 192 });
 
 
+		GameEngineImage* Gus = GameEngineImageManager::GetInst()->Find("Gus.bmp");
+		Gus->Cut({ 48, 96 });
+
+		GameEngineImage* Gus_Portrait = GameEngineImageManager::GetInst()->Find("Gus_Portrait.bmp");
+		Gus_Portrait->Cut({ 192, 192 });
+
 	}
 
 
@@ -676,8 +687,6 @@ void StardewValley::GameInit()
 	//----------------------------------------------------------------------------------------------
 
 	{
-
-
 		GameEngineDirectory ResourcesDir;
 		ResourcesDir.MoveParent("API");
 		ResourcesDir.Move("Resources");
@@ -707,6 +716,7 @@ void StardewValley::GameInit()
 	CreateLevel<BusStopLevel>("BusStopLevel");
 	CreateLevel<TownLevel>("TownLevel");
 	CreateLevel<ShopLevel>("ShopLevel");
+	CreateLevel<SaloonLevel>("SaloonLevel");
 
 	ChangeLevel("TitleLevel");
 

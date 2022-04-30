@@ -7,6 +7,8 @@
 #include "Block.h"
 #include "MoveBusStop.h"
 #include "MoveShop.h"
+#include "MoveSaloon.h"
+
 #include "Lewis.h"
 #include "Penny.h"
 #include "TreeBottom.h"
@@ -28,25 +30,29 @@ TownLevel::~TownLevel()
 
 void TownLevel::Loading()
 {
-	if (nullptr == Player::MainPlayer)
-	{
-		Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER));
-	}
+	//if (nullptr == Player::MainPlayer)
+	//{
+	//	Player::MainPlayer = CreateActor<Player>(static_cast<int>(PLAYLEVEL::PLAYER));
+	//}
 
-	if (nullptr == Inventory::MainInventory)
-	{
-		Inventory::MainInventory = CreateActor<Inventory>(static_cast<int>(PLAYLEVEL::INVENTORY));
-	}
+	//if (nullptr == Inventory::MainInventory)
+	//{
+	//	Inventory::MainInventory = CreateActor<Inventory>(static_cast<int>(PLAYLEVEL::INVENTORY));
+	//}
 
-	if (nullptr == MainUI::MainMainUI)
-	{
-		MainUI::MainMainUI = CreateActor<MainUI>(static_cast<int>(PLAYLEVEL::MAINUI));
-	}
+	//if (nullptr == MainUI::MainMainUI)
+	//{
+	//	MainUI::MainMainUI = CreateActor<MainUI>(static_cast<int>(PLAYLEVEL::MAINUI));
+	//}
 
-	if (nullptr == PlayerEnergyFrame::MainPlayerEnergyFrame)
-	{
-		PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
-	}
+	//if (nullptr == PlayerEnergyFrame::MainPlayerEnergyFrame)
+	//{
+	//	PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
+	//}
+
+
+
+//	Shop::MainShop->ShopOff();
 
 	if (MapObject_.empty() == true)
 	{
@@ -92,7 +98,7 @@ void TownLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
-		Shop::MainShop->NextLevelOn();
+		//Shop::MainShop->NextLevelOn();
 
 	}
 }
@@ -170,6 +176,14 @@ void TownLevel::LoadMapObject()
 			case TILE_LIST::MOVE_BUSSTOP:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT)));
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				break;
+
+
+			case TILE_LIST::MOVE_SALOON:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveSaloon>((int)PLAYLEVEL::OBJECT)));
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 

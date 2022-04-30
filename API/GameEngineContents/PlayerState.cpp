@@ -432,6 +432,16 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
+
+		if (MoveSaloonCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "SaloonLevel";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+
 		break;
 	case LEVEL_CHANGE_STATE::FADE_OUT:
 
@@ -877,6 +887,11 @@ bool Player::MoveTownCollision()
 bool Player::MoveShopCollision()
 {
 	return (PlayerCollider_->CollisionResult("MoveShop", ColList, CollisionType::Rect, CollisionType::Rect));
+}
+
+bool Player::MoveSaloonCollision()
+{
+	return (PlayerCollider_->CollisionResult("MoveSalon", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
 bool Player::MoveBackForestCollision()

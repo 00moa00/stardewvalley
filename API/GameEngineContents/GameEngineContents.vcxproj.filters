@@ -416,6 +416,9 @@
     <ClCompile Include="Beer.cpp">
       <Filter>Actor\03. Play\Obejct\Food</Filter>
     </ClCompile>
+    <ClCompile Include="Gus.cpp">
+      <Filter>Actor\03. Play\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -853,6 +856,9 @@
     </ClInclude>
     <ClInclude Include="Beer.h">
       <Filter>Actor\03. Play\Obejct\Food</Filter>
+    </ClInclude>
+    <ClInclude Include="Gus.h">
+      <Filter>Actor\03. Play\NPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

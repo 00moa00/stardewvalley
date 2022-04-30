@@ -41,6 +41,7 @@ private:
 	std::string PierreDialogue[5];
 	std::string LewiseDialogue[5];
 	std::string PennyDialogue[5];
+	std::string GusDialogue[5];
 
 private:
 public:
@@ -49,6 +50,7 @@ public:
 	void SetPierre();
 	void SetLewis();
 	void SetPenny();
+	void SetGus();
 
 	void DialogueOn();
 	void DialogueOff();

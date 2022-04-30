@@ -63,6 +63,8 @@ void MyHouseLevel::Loading()
 		LoadMapObject();
 	}
 
+	//Shop::MainShop->ShopOff();
+
 }
 
 void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
@@ -108,6 +110,7 @@ void MyHouseLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
+
 	}
 
 }

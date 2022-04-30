@@ -64,6 +64,12 @@ void MyFarmLevel::Loading()
 		PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
 	}
 
+	//if (nullptr == Shop::MainShop)
+	//{
+	//	Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
+	//}
+
+
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();
@@ -108,6 +114,8 @@ void MyFarmLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
+		//Shop::MainShop->NextLevelOn();
+
 
 	}
 

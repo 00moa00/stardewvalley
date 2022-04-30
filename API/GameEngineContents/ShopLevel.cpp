@@ -41,10 +41,11 @@ void ShopLevel::Loading()
 	//}
 	// 
 
-	if (nullptr == Shop::MainShop)
-	{
-		Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
-	}
+	//if (nullptr == Shop::MainShop)
+	//{
+	//	Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
+	//}
+
 
 
 	if (MapObject_.empty() == true)
@@ -55,9 +56,15 @@ void ShopLevel::Loading()
 
 void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	if (nullptr == Shop::MainShop)
+	{
+		Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
+		//Shop::MainShop->Off();
+	}
+
 	//Shop_ = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 
-	BackGroundFront_->GetRenderer()->SetImage("Shop_Front.bmp");
+	BackGroundFront_->GetRenderer()->SetImage("SeedShopFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
 	BackGroundFront_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND_FRONT));
 
@@ -68,6 +75,7 @@ void ShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
+	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;
@@ -81,9 +89,15 @@ void ShopLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
-		Shop::MainShop->NextLevelOn();
+		//Shop::MainShop->NextLevelOn();
 	}
 
+	if (nullptr != Shop::MainShop)
+	{
+		Shop::MainShop->Death();
+		Shop::MainShop = nullptr;
+
+	}
 	//Player::MainPlayer->SetisShopping(false);
 	//Shop_->Death();
 }
@@ -130,7 +144,7 @@ void ShopLevel::LoadMapObject()
 
 			case TILE_LIST::PIERRE:
 
-				NpcList_.insert(std::make_pair("Pierre", CreateActor<Pierre>((int)PLAYLEVEL::OBJECT)));
+				NpcList_.insert(std::make_pair("Pierre", CreateActor<Pierre>((int)PLAYLEVEL::PLAYER)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
 				break;
