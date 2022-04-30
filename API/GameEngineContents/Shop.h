@@ -12,17 +12,14 @@
 #include "Mouse.h"
 #include "Font.h"
 
-#include "TulipBulb_Shop.h"
-#include "PatatoSeeds_Shop.h"
-#include "ParsnipSeeds_Shop.h"
-#include "Parsnip_Shop.h"
-#include "KaleSeeds_Shop.h"
-#include "JazzSeeds_Shop.h"
-#include "Dandelion_Shop.h"
-#include "Daffodil_Shop.h"
-#include "CauliflowerSeeds_Shop.h"
-#include "BeanStarter_Shop.h"
 
+
+enum class SHOP
+{
+	NONE,
+	SEED_SHOP,
+	SALOON
+};
 
 enum class SHOP_UPDATE
 {
@@ -61,25 +58,21 @@ private:
 private:
 
 	GameEngineRenderer* ShopRenderer_;
-
-	//ExitBotton* ExitBotton_;
 	Mouse* Mouse_;
+	SHOP Shop_;
+
 	SHOP_UPDATE ShopUpdateState_;
+
+
 
 	std::map<int, ShopItem*> CurrentShopItemList_;
 
 	std::map<int, ShopItem*> SeedShopItemList_;
-	std::map<int, ShopItem*> SaloontemList_;
-
-
+	std::map<int, ShopItem*> SaloonItemList_;
 
 	std::map<int, float4> ConstItmePos_;
 
 
-
-private:
-
-protected:
 
 public:
 
@@ -105,7 +98,7 @@ public:
 
 		//기본 인덱스로 초기화
 		int Index = Item->GetIndex();
-		SaloontemList_.insert(std::make_pair(Index, Item));
+		SaloonItemList_.insert(std::make_pair(Index, Item));
 	}
 
 };

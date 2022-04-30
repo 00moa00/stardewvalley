@@ -43,7 +43,10 @@ public:
 		return ButtonRenderer_;
 	}
 
-
+	GameEngineCollision* GetCollision()
+	{
+		return ButtonCollision_;
+	}
 
 };
 

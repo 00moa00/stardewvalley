@@ -168,40 +168,42 @@ void TitleLevel::Update()
 
 		break;
 	case TITLE_STATE::WAIT:
+
+
+		MenuButton_[0]->MouseOverChangeIndex();
+		MenuButton_[1]->MouseOverChangeIndex();
+		MenuButton_[2]->MouseOverChangeIndex();
+
+
+		if (MenuButton_[0]->ButtonMouseOverAndLeftClick())
+		{
+			CustomBoard_->CustomBoardOn();
+
+			TitleLogo_->Off();
+			MenuButton_[0]->Off();
+			MenuButton_[1]->Off();
+			MenuButton_[2]->Off();
+
+		}
+
+		if (CustomBoard_->isClickBackButton() == true)
+		{
+			CustomBoard_->CustomBoardOff();
+
+			TitleLogo_->On();
+			MenuButton_[0]->On();
+			MenuButton_[1]->On();
+			MenuButton_[2]->On();
+
+			CustomBoard_->SetClickBackButton(false);
+		}
+
 		break;
 	default:
 		break;
 	}
 
 	MoveCloud();
-
-	MenuButton_[0]->MouseOverChangeIndex();
-	MenuButton_[1]->MouseOverChangeIndex();
-	MenuButton_[2]->MouseOverChangeIndex();
-
-
-	if (MenuButton_[0]->ButtonMouseOverAndLeftClick())
-	{
-		CustomBoard_->CustomBoardOn();
-		TitleLogo_->Off();
-
-		MenuButton_[0]->Off();
-		MenuButton_[1]->Off();
-		MenuButton_[2]->Off();
-
-	}
-
-	if (CustomBoard_->isClickBackButton() == true)
-	{
-		CustomBoard_->CustomBoardOff();
-		TitleLogo_->On();
-
-		MenuButton_[0]->On();
-		MenuButton_[1]->On();
-		MenuButton_[2]->On();
-
-		CustomBoard_->SetClickBackButton(false);
-	}
 
 
 
@@ -234,6 +236,7 @@ void TitleLevel::MoveCloud()
 
 
 }
+
 void TitleLevel::MoveFrontMount()
 {
 	{
@@ -259,6 +262,7 @@ void TitleLevel::MoveFrontMount()
 	}
 
 }
+
 void TitleLevel::MoveBackMount()
 {
 	if (Title_->GetPosition().y < 1500.f - GameEngineWindow::GetScale().Half().y
@@ -300,6 +304,8 @@ void TitleLevel::PopUpMenu()
 	if (Timer_ < 2.0f )
 	{
 		MenuButton_[0]->On();
+		MenuButton_[0]->GetCollision()->On();
+
 	}
 
 	if (Timer_ < 1.5f)
