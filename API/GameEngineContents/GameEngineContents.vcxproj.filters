@@ -299,7 +299,7 @@
     <ClCompile Include="WoodAddAnimaition.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="StoneAddAnimation.cpp">
+    <ClCompile Include="StoneCrushAnimation.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClCompile>
     <ClCompile Include="DirtAnimation.cpp">
@@ -418,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="MoveFlag.cpp">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="MineStoneCrushAnimation.cpp">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -740,7 +743,7 @@
     <ClInclude Include="WoodAddAnimaition.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="StoneAddAnimation.h">
+    <ClInclude Include="StoneCrushAnimation.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
     <ClInclude Include="DirtAnimation.h">
@@ -859,6 +862,9 @@
     </ClInclude>
     <ClInclude Include="MoveFlag.h">
       <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="MineStoneCrushAnimation.h">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

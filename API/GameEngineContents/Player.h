@@ -327,7 +327,7 @@ private:
 	void CreateWaterEffet();
 	void CreateDirtEffet();
 	void CreateCrushWoodEffect();
-	void CreateCrushStoneEffect();
+	void CreateCrushStoneEffect(STONETYPE _CheckType);
 
 
 	void ChangeDirtTile();

@@ -6,7 +6,8 @@
 #include "WateringCanEffect.h"
 #include "DirtAnimation.h"
 #include "WoodAddAnimaition.h"
-#include "StoneAddAnimation.h"
+#include "StoneCrushAnimation.h"
+#include "MineStoneCrushAnimation.h"
 
 //******************************************************************************
 //
@@ -211,7 +212,7 @@ void Player::CreateCrushWoodEffect()
 	}
 }
 
-void Player::CreateCrushStoneEffect()
+void Player::CreateCrushStoneEffect(STONETYPE _CheckType)
 {
 	float4 Pos = PlayerCollCheckPos();
 	float MarginX = 0;
@@ -226,20 +227,95 @@ void Player::CreateCrushStoneEffect()
 		MarginX = -24.f;
 	}
 
+	Effect* CrushAnimation = nullptr;
 
-	StoneAddAnimation* StoneAddAnimation_ = GetLevel()->CreateActor<StoneAddAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
-	StoneAddAnimation_->SetPosition({ Pos.x + MarginX, Pos.y });
+	if (_CheckType == STONETYPE::OTHER)
+	{
+		CrushAnimation = GetLevel()->CreateActor<StoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+	}
+
+	if (_CheckType == STONETYPE::STONE0)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::STONE0_PARTICLE);
+	}
+
+	if (_CheckType == STONETYPE::STONE1)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::STONE1_PARTICLE);
+	}
+
+	if (_CheckType == STONETYPE::STONE2)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::STONE2_PARTICLE);
+	}
+
+	if (_CheckType == STONETYPE::STONE3)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::STONE3_PARTICLE);
+	}
+
+	if (_CheckType == STONETYPE::STONE4)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::STONE4_PARTICLE);
+	}
+
+	if (_CheckType == STONETYPE::STONE5)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::STONE5_PARTICLE);
+	}
+
+	if (_CheckType == STONETYPE::COPPER)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::STONE5_PARTICLE);
+	}
+
+	if (_CheckType == STONETYPE::RUBY)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::RUBY_PARTICLE);
+	}
+
+	if (_CheckType == STONETYPE::AMETHYST)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::AMETHYST_PARTICLE);
+	}
+
+	if (_CheckType == STONETYPE::AQUAMARINE)
+	{
+		CrushAnimation = GetLevel()->CreateActor<MineStoneCrushAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+		CrushAnimation->SetPosition({ Pos.x + MarginX, Pos.y });
+		CrushAnimation->SetImageIndex(ITEM::AQUAMARINE_PARTICLE);
+	}
 
 	if (GetCurrentLevel() == "MyHouseLevel")
 	{
-		StoneAddAnimation_->GetRenderer()->CameraEffectOff();
+		CrushAnimation->GetRenderer()->CameraEffectOff();
 	}
 
 	else
 	{
-		StoneAddAnimation_->GetRenderer()->CameraEffectOn();
-
+		CrushAnimation->GetRenderer()->CameraEffectOn();
 	}
+
+
 }
 
 void Player::CreateSeed()
@@ -385,18 +461,12 @@ void Player::CrushStone()
 				//곡괭이질을 했다면 체력 감소
 				SubEnergy(2);
 
-				//이펙트
+				//파티클 이펙트
 				StoneEffect* StoneAnimation_ = GetLevel()->CreateActor<StoneEffect>();
 				StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x ,   Iter->second->GetPosition().y });
-				CreateCrushStoneEffect();
-
-
-
-
-
-
-
-
+				
+				//잔해 이펙트
+				CreateCrushStoneEffect(Iter->second->GetStoneType());
 
 				//아이템 드랍
 				Iter->second->DropItemInMap();
@@ -408,7 +478,6 @@ void Player::CrushStone()
 				//스테이트 초기화
 				TileState_ = TILE_COLL::INIT;
 				PlayerState_ = PLAYER_UPDATE::INIT;
-
 
 
 				//이터레이터 초기화

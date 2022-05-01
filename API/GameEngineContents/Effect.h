@@ -8,6 +8,7 @@
 #include <GameEngineBase/GameEngineRandom.h>
 
 #include "RendererData.h"
+#include "ItemData.h"
 
 enum class ANIMATION_STATE
 {
@@ -41,6 +42,11 @@ public:
 	virtual void SetParticlesPosition(float4 _Position)
 	{
 		SetPosition(_Position);
+	}
+
+	virtual void SetImageIndex(ITEM _ItemCode)
+	{
+
 	}
 
 private:
