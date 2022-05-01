@@ -390,6 +390,14 @@ void Player::CrushStone()
 				StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x ,   Iter->second->GetPosition().y });
 				CreateCrushStoneEffect();
 
+
+
+
+
+
+
+
+
 				//아이템 드랍
 				Iter->second->DropItemInMap();
 
@@ -411,9 +419,6 @@ void Player::CrushStone()
 			{
 				PlayerState_ = PLAYER_UPDATE::INIT;
 			}
-
-
-
 		}
 
 		else

@@ -17,7 +17,7 @@
 
 enum class SEEDTYPE
 {
-	NONE,
+	OTHER,
 	PARSNIP_SEED,
 	BEAN_SEED,
 	CAULIFLOWER_SEED,
@@ -58,6 +58,22 @@ enum class TOOLTYPE
 	WATTERING_CAN,
 	AXE,
 	PICKAXE
+};
+
+enum class STONETYPE
+{
+	OTHER,
+	STONE0,
+	STONE1,
+	STONE2,
+	STONE3,
+	STONE4,
+	STONE5,
+
+	COPPER,
+	RUBY,
+	AMETHYST,
+	AQUAMARINE,
 };
 
 enum class ITEM_STATE
@@ -150,6 +166,8 @@ protected:
 	ITEMTYPE ItemType_;
 	TOOLTYPE ToolType_;
 	DRINKTYPE DrinkType_;
+	STONETYPE StoneType_;
+
 	ITEM_STATE ItemState_;
 	MOVE State_;
 
@@ -286,6 +304,11 @@ public:
 		return isPossibleHand_;
 	}
 
+	STONETYPE GetStoneType()
+	{
+		return StoneType_;
+	}
+
 	DRINKTYPE GetDrinkType()
 	{
 		return DrinkType_;
@@ -324,6 +347,11 @@ public:
 	//================================
 	//    Setter
 	//================================
+
+	void SetStoneType(STONETYPE _Type)
+	{
+		StoneType_ = _Type;
+	}
 
 	void CreateItemCollision(std::string _CollName, float4 _Size)
 	{

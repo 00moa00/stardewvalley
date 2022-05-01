@@ -129,10 +129,11 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
+				ThisIter->second->SetStoneType(STONETYPE::STONE0);
+
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE0);
 
 				break;
-
 			case TILE_LIST::STONE1:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -141,10 +142,11 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
+				ThisIter->second->SetStoneType(STONETYPE::STONE1);
+
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE1);
+
 				break;
-
-
 			case TILE_LIST::STONE2:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -153,10 +155,11 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
+				ThisIter->second->SetStoneType(STONETYPE::STONE2);
+
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE2);
+
 				break;
-
-
 			case TILE_LIST::STONE3:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -165,10 +168,11 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
+				ThisIter->second->SetStoneType(STONETYPE::STONE3);
+
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE3);
+				
 				break;
-
-
 			case TILE_LIST::STONE4:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -177,10 +181,12 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
+				ThisIter->second->SetStoneType(STONETYPE::STONE4);
+
+
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE4);
+
 				break;
-
-
 			case TILE_LIST::STONE5:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -189,11 +195,12 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
+				ThisIter->second->SetStoneType(STONETYPE::STONE5);
+
+
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE5);
+				
 				break;
-
-
-
 			case TILE_LIST::COPPER:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -202,9 +209,11 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
-				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::COPPER_STONE);
-				break;
+				ThisIter->second->SetStoneType(STONETYPE::COPPER);
 
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::COPPER_STONE);
+
+				break;
 			case TILE_LIST::RUBY:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -213,10 +222,12 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
+				ThisIter->second->SetStoneType(STONETYPE::RUBY);
+
+
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::RUBY_STONE);
+
 				break;
-
-
 			case TILE_LIST::AMETHYST:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -225,9 +236,11 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
-				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AMETHYST_STONE);
-				break;
+				ThisIter->second->SetStoneType(STONETYPE::AMETHYST);
 
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AMETHYST_STONE);
+
+				break;
 			case TILE_LIST::AQUAMARINE:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
@@ -236,7 +249,10 @@ void Mine3::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
+				ThisIter->second->SetStoneType(STONETYPE::AQUAMARINE);
+
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AQUAMARINE_STONE);
+
 				break;
 			default:
 				break;

@@ -41,9 +41,10 @@ Items::Items() :
 	FileName_({""}),
 
 	DrinkType_(DRINKTYPE::OTHER),
-	SeedType_(SEEDTYPE::NONE),
-	ItemType_ (ITEMTYPE::ITEM),
+	SeedType_(SEEDTYPE::OTHER),
 	ToolType_ (TOOLTYPE::OTHER),
+	StoneType_(STONETYPE::OTHER),
+	ItemType_ (ITEMTYPE::ITEM),
 	ItemState_(ITEM_STATE::INIT)
 		
 {
