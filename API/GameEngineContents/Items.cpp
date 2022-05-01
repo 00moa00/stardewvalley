@@ -107,6 +107,10 @@ void Items::CreateMoveFlag(std::string _CollName)
 {
 }
 
+void Items::ChnageImageFile(std::string _FileName)
+{
+}
+
 bool Items::ItemCheck(const float4 pos, const float4 scale)
 {
 

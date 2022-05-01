@@ -110,6 +110,7 @@ public:
 	virtual void ItemCollPlayer();
 	virtual void ItemCollFalsePlayer();
 	virtual void CreateMoveFlag(std::string _CollName);
+	virtual void ChnageImageFile(std::string _FileName);
 
 	virtual void UpdateOff()
 	{

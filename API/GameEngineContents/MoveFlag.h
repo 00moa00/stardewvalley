@@ -20,6 +20,7 @@ private:
 
 public:
 	void CreateMoveFlag(std::string _CollName) override;
+	void ChnageImageFile(std::string _FileName) override;
 
 };
 

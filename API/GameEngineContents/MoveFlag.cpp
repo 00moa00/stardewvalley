@@ -21,3 +21,8 @@ void MoveFlag::CreateMoveFlag(std::string _CollName)
 
 }
 
+void MoveFlag::ChnageImageFile(std::string _FileName)
+{
+	ItemRenderer_->SetImage(_FileName);
+}
+

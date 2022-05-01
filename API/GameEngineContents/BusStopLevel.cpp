@@ -52,7 +52,7 @@ void BusStopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	//FlowingFlower_->SetMax({ BUSSTOP_SIZE_WEIGHT, BUSSTOP_SIZE_HEIGHT });
 	FlowingFlower_->SetMaxFocusPlayer(true);
 
-	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+//	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
