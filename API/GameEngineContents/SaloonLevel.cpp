@@ -5,6 +5,7 @@
 #include "MoveFlag.h"
 #include "ShopFlag.h"
 #include "Gus.h"
+#include "Block.h"
 
 SaloonLevel::SaloonLevel() 
 	:
@@ -124,7 +125,7 @@ void SaloonLevel::LoadMapObject()
 
 			const float4 pos = {
 				x * CHIP_SIZE + CHIP_SIZE * 0.5f,
-				y * CHIP_SIZE + CHIP_SIZE,
+				y * CHIP_SIZE + CHIP_SIZE * 0.5f,
 			};
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
@@ -144,28 +145,42 @@ void SaloonLevel::LoadMapObject()
 			switch (TileState_)
 			{
 
-			case TILE_LIST::MOVE_TOWN:
-
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
-				ThisIter = --MapObject_.end();
-				ThisIter->second->SetPosition(pos);
-				ThisIter->second->CreateMoveFlag("MoveTown");
-
-				break;
-
-			case TILE_LIST::SHOP_FLAG:
-
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<ShopFlag>((int)PLAYLEVEL::OBJECT)));
-				ThisIter = --MapObject_.end();
-				ThisIter->second->SetPosition(pos);
-				break;
-
 			case TILE_LIST::GUS:
 
 				NpcList_.insert(std::make_pair("Gus", CreateActor<Gus>((int)PLAYLEVEL::PLAYER)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
 				break;
+
+
+			case TILE_LIST::SHOP_FLAG:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<ShopFlag>((int)PLAYLEVEL::OBJECT)));
+				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter->second->SetPosition(pos);
+				break;
+
+
+			case TILE_LIST::BLOCK:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter->second->SetPosition(pos);
+
+				break;
+
+			case TILE_LIST::MOVE_TOWN:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter->second->SetPosition(pos);
+
+				ThisIter->second->CreateMoveFlag("MoveTown");
+
+				break;
+
 
 			default:
 				break;

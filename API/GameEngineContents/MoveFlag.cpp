@@ -17,8 +17,7 @@ void MoveFlag::Start()
 
 void MoveFlag::CreateMoveFlag(std::string _CollName)
 {
-	ItemCollider_ = CreateCollision(_CollName, { 48, 48 });
-
+	ItemCollider_ = CreateCollision(_CollName, { 50, 50 });
 }
 
 void MoveFlag::ChnageImageFile(std::string _FileName)

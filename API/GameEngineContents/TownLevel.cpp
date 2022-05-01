@@ -63,11 +63,11 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 		LoadMapObject();
 	}
 
-	BackGroundFront_->GetRenderer()->SetImage("TownFront.bmp");
+	BackGroundFront_->GetRenderer()->SetImage("Town_Front.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });
 	BackGroundFront_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND_FRONT));
 
-	BackGround_->GetRenderer()->SetImage("TownBack.bmp");
+	BackGround_->GetRenderer()->SetImage("Town_Back.bmp");
 	BackGround_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });
 
 	//BackGround_->DirtTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
@@ -124,7 +124,7 @@ void TownLevel::LoadMapObject()
 
 			const float4 pos = {
 				x * CHIP_SIZE + CHIP_SIZE * 0.5f,
-				y * CHIP_SIZE + CHIP_SIZE,
+				y * CHIP_SIZE + CHIP_SIZE * 0.5f,
 			};
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
@@ -144,21 +144,13 @@ void TownLevel::LoadMapObject()
 			switch (TileState_)
 			{
 
-
-			//case TILE_LIST::BLOCK:
-
-			//	MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
-			//	ThisIter = --MapObject_.end();
-			//	ThisIter->second->SetPosition(pos);
-
-			//	break;
-
 			case TILE_LIST::LEWIS:
 
 				NpcList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::PLAYER)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
 				break;
+
 			case TILE_LIST::PENNY:
 
 				NpcList_.insert(std::make_pair("Penny", CreateActor<Penny>((int)PLAYLEVEL::PLAYER)));
@@ -166,31 +158,45 @@ void TownLevel::LoadMapObject()
 				NpcIter->second->SetPosition(pos);
 
 				break;
-			case TILE_LIST::MOVE_SHOP:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
-				ThisIter = --MapObject_.end();
-				ThisIter->second->SetPosition(pos);
-				ThisIter->second->CreateMoveFlag("MoveShop");
-
-				break;
-			case TILE_LIST::MOVE_BUSSTOP:
-
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
-				ThisIter = --MapObject_.end();
-				ThisIter->second->SetPosition(pos);
-				ThisIter->second->CreateMoveFlag("MoveBusStop");
-
-				break;
 
 
 			case TILE_LIST::MOVE_SALOON:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
-				ThisIter = --MapObject_.end();
+				
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveSalon");
 
+
+				break;
+
+			case TILE_LIST::MOVE_SHOP:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
+				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveShop");
+
+				break;
+
+			case TILE_LIST::BLOCK:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter->second->SetPosition(pos);
+
+				break;
+
+			case TILE_LIST::MOVE_BUSSTOP:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveBusStop");
 
 				break;
 

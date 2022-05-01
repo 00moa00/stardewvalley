@@ -2,7 +2,7 @@
 #include "SeedShopLevel.h"
 
 #include "GameData.h"
-
+#include "Block.h"
 #include "MoveFlag.h"
 #include "ShopFlag.h"
 #include "Pierre.h"
@@ -67,7 +67,7 @@ void SeedShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGroundFront_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
 	BackGroundFront_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND_FRONT));
 
-	BackGround_->GetRenderer()->SetImage("ShopBack.bmp");
+	BackGround_->GetRenderer()->SetImage("SeedShop_Back.bmp");
 	BackGround_->GetRenderer()->SetPivot({ SHOP_SIZE_WEIGHT / 2, SHOP_SIZE_HEIGHT / 2 });
 	BackGround_->SetOrder(static_cast<int>(PLAYLEVEL::BACKGROUND));
 	
@@ -107,7 +107,7 @@ void SeedShopLevel::LoadMapObject()
 {
 
 	char MapOject[SHOP_CHIP_NUM_Y][SHOP_CHIP_NUM_X] = {
-		#include "Map/Shop.txt"
+		#include "Map/SeedShop.txt"
 
 	};
 
@@ -121,7 +121,7 @@ void SeedShopLevel::LoadMapObject()
 
 			const float4 pos = {
 				x * CHIP_SIZE + CHIP_SIZE * 0.5f,
-				y * CHIP_SIZE + CHIP_SIZE,
+				y * CHIP_SIZE + CHIP_SIZE * 0.5f,
 			};
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
@@ -151,26 +151,30 @@ void SeedShopLevel::LoadMapObject()
 			case TILE_LIST::SHOP_FLAG:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<ShopFlag>((int)PLAYLEVEL::OBJECT)));
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				break;
 
 			case TILE_LIST::MOVE_TOWN:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveTown");
 
 				break;
 
+			case TILE_LIST::BLOCK:
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
 
+				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter->second->SetPosition(pos);
+
+				break;
 			default:
 				break;
 
 			}
-
-
 
 		}
 	}

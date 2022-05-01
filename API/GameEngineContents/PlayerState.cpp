@@ -416,13 +416,23 @@ void Player::ChangeLevel()
 		}
 
 
-		if (MoveTownCollision())
+		if (MoveTownCollision() && CurrentLevel_ != "SaloonLevel")
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
 			ChangeLevelName_ = "TownLevel";
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
+
+		if (MoveTownCollision() && GameEngineInput::GetInst()->IsDown("LeftClick") && CurrentLevel_ == "SaloonLevel")
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "TownLevel";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+
 
 		if (MoveShopCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
 		{
@@ -765,23 +775,33 @@ void Player::PlayerWalk() {
 		Move = float4::ZERO;
 	}
 
-	int Color = MapColImage_->GetImagePixel(CheckPos);
 
-	if ((RGB(0, 0, 0) != Color))
+	if (MapColImage_ != nullptr)
 	{
-		SetMove(Move * GameEngineTime::GetDeltaTime() * Speed_);
+		int Color = MapColImage_->GetImagePixel(CheckPos);
+
+		if ((RGB(0, 0, 0) == Color))
+		{
+			Move = float4::ZERO;
+
+		}
+
+		if ((RGB(0, 0, 255) == Color))
+		{
+			FarmingArea_ = true;
+		}
+
+		else
+		{
+			FarmingArea_ = false;
+
+		}
 	}
 
-	if ((RGB(0, 0, 255) == Color))
-	{
-		FarmingArea_ = true;
-	}
 
-	else
-	{
-		FarmingArea_ = false;
+	SetMove(Move * GameEngineTime::GetDeltaTime() * Speed_);
 
-	}
+
 }
 
 void Player::PlayerDirCheck()

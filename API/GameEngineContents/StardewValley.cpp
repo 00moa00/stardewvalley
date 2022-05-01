@@ -722,6 +722,8 @@ void StardewValley::GameInit()
 	CreateLevel<MyFarmLevel>("MyFarmLevel");
 	CreateLevel<BusStopLevel>("BusStopLevel");
 	CreateLevel<TownLevel>("TownLevel");
+	CreateLevel<SaloonLevel>("SaloonLevel");
+
 	CreateLevel<SeedShopLevel>("SeedShopLevel");
 	CreateLevel<BackForestLevel>("BackForestLevel");
 	CreateLevel<MineLevel>("MineLevel");

@@ -3,6 +3,7 @@
 #include "MoveFlag.h"
 #include "GameData.h"
 #include "TileData.h"
+#include "Block.h"
 #include <GameEngineBase/GameEngineTime.h>
 
 BusStopLevel::BusStopLevel() 
@@ -91,7 +92,7 @@ void BusStopLevel::LoadMapObject()
 
 
 	char MapOject[BUSSTOP_CHIP_NUM_Y][BUSSTOP_CHIP_NUM_X] = {
-		#include "Map/Busstop.txt"
+		#include "Map/BusStop.txt"
 
 	};
 
@@ -105,7 +106,7 @@ void BusStopLevel::LoadMapObject()
 
 			const float4 pos = {
 				x * CHIP_SIZE + CHIP_SIZE * 0.5f,
-				y * CHIP_SIZE + CHIP_SIZE,
+				y * CHIP_SIZE + CHIP_SIZE * 0.5f,
 			};
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
@@ -144,7 +145,16 @@ void BusStopLevel::LoadMapObject()
 				ThisIter->second->CreateMoveFlag("MoveFarm");
 
 				break;
-		
+
+			case TILE_LIST::BLOCK:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+
+				break;
+
 			default:
 				break;
 

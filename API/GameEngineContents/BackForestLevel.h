@@ -42,6 +42,8 @@ private:
 	BackGround* BackGroundFront_;
 	FlowingFlower* FlowingFlower_;
 
+	GameEngineCollision* MapBlock_;
+
 	std::map<int, Items*> MapObject_;
 
 private:

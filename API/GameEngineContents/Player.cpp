@@ -122,8 +122,8 @@ void Player::Start()
 
 	//------< ÃÊ±âÈ­ >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
-	PlayerCollider_ = CreateCollision("Player", { 40, 30 });
-	PlayerCollider_->SetPivot({ 0, -20 });
+	PlayerCollider_ = CreateCollision("Player", { 40, 47 });
+	PlayerCollider_->SetPivot({ 0, -24 });
 	SetScale({ 40.f, 40.f });
 	CameraPos_ = GetPosition() - GameEngineWindow::GetInst().GetScale().Half();
 }
@@ -681,7 +681,7 @@ void Player::Update()
 
 	if (true == GameEngineInput::GetInst()->IsDown("MoveTown"))
 	{
-		GameEngine::GetInst().ChangeLevel("TownLevel");
+		GameEngine::GetInst().ChangeLevel("SeedShopLevel");
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDown("DebugRendereChange"))
@@ -1005,7 +1005,7 @@ void Player::LevelInit()
 		MapSizeX_ = BUSSTOP_SIZE_WEIGHT;
 		MapSizeY_ = BUSSTOP_SIZE_HEIGHT;
 
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
+		MapColImage_ = nullptr;
 		ToolRenderer_->CameraEffectOn();
 
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
@@ -1025,7 +1025,7 @@ void Player::LevelInit()
 		MapSizeX_ = TOWN_SIZE_WEIGHT;
 		MapSizeY_ = TOWN_SIZE_HEIGHT;
 
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("Town_Col.bmp");
+		MapColImage_ = nullptr;
 		ToolRenderer_->CameraEffectOn();
 
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
@@ -1044,7 +1044,7 @@ void Player::LevelInit()
 		MapSizeX_ = SHOP_SIZE_WEIGHT;
 		MapSizeY_ = SHOP_SIZE_HEIGHT;
 
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("Shop_Coll.bmp");
+		MapColImage_ = nullptr;
 		ToolRenderer_->CameraEffectOn();
 
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
@@ -1064,7 +1064,7 @@ void Player::LevelInit()
 		MapSizeX_ = SALOON_SIZE_WEIGHT;
 		MapSizeY_ = SALOON_SIZE_HEIGHT;
 
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("Saloon_Coll.bmp");
+		MapColImage_ = nullptr;
 		ToolRenderer_->CameraEffectOn();
 
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
@@ -1084,7 +1084,7 @@ void Player::LevelInit()
 		MapSizeX_ = FOREST_SIZE_WEIGHT;
 		MapSizeY_ = FOREST_SIZE_HEIGHT;
 
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("BacKForest_Coll.bmp");
+		MapColImage_ = nullptr;
 		ToolRenderer_->CameraEffectOn();
 
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
