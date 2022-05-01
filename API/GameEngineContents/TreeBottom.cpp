@@ -37,7 +37,7 @@ void TreeBottom::Start()
 
 void TreeBottom::Update()
 {
-	if (SubCollider_ != nullptr)
+	if (TreeTop_ != nullptr)
 	{
 		if (SubCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect) == true)
 		{
@@ -97,8 +97,8 @@ void TreeBottom::Update()
 
 		if (Damage_ == 2)
 		{
-			SubCollider_->Death();
-			SubCollider_ = nullptr;
+			TreeTop_->Death();
+			TreeTop_ = nullptr;
 			TreeState_ = TREESTATE::TREETOP_DIE;
 			break;
 
@@ -131,7 +131,7 @@ void TreeBottom::SetInitAnimation()
 
 void TreeBottom::SetCrushAnimation()
 {
-	if (SubCollider_ != nullptr)
+	if (TreeTop_ != nullptr)
 	{
 		TreeTop_->SetCrushAnimation();
 	}

@@ -382,9 +382,13 @@ void Player::CrushStone()
 		{
 			if (Iter->second->GetItemType() == ITEMTYPE::STONE)
 			{
+				//곡괭이질을 했다면 체력 감소
+				SubEnergy(2);
 
+				//이펙트
 				StoneEffect* StoneAnimation_ = GetLevel()->CreateActor<StoneEffect>();
 				StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x ,   Iter->second->GetPosition().y });
+				CreateCrushStoneEffect();
 
 				//아이템 드랍
 				Iter->second->DropItemInMap();
@@ -397,20 +401,18 @@ void Player::CrushStone()
 				TileState_ = TILE_COLL::INIT;
 				PlayerState_ = PLAYER_UPDATE::INIT;
 
+
+
 				//이터레이터 초기화
 				Iter = Player::MapObject_.begin();
 			}
 
 			else
 			{
-				return;
+				PlayerState_ = PLAYER_UPDATE::INIT;
 			}
 
-			//곡괭이질을 했다면 체력 감소
-			SubEnergy(2);
 
-			//곡괭이질 추가 이펙트
-			CreateCrushStoneEffect();
 
 		}
 
@@ -432,6 +434,8 @@ void Player::CrushTree()
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
 			&& Iter->second->GetItemType() == ITEMTYPE::TREE)
 		{
+
+			//이펙트
 			WoodEffect* StoneAnimation_ = GetLevel()->CreateActor<WoodEffect>();
 			StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x , Iter->second->GetPosition().y });
 
@@ -442,11 +446,6 @@ void Player::CrushTree()
 				Iter->second->SubDamage();
 				Iter->second->SetCrushAnimation();
 
-
-				//나무의 데미지가 2면 Top 제거(해당 업데이트 함수)와 나무조각 드랍
-				if (Iter->second->GetDamage() == 2)
-				{
-				}
 
 				//스테이트 초기화
 				TileState_ = TILE_COLL::INIT;
