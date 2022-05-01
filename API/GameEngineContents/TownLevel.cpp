@@ -53,14 +53,15 @@ void TownLevel::Loading()
 
 //	Shop::MainShop->ShopOff();
 
-	if (MapObject_.empty() == true)
-	{
-		LoadMapObject();
-	}
+
 }
 
 void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
 
 	BackGroundFront_->GetRenderer()->SetImage("TownFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });

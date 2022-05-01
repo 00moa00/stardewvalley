@@ -68,17 +68,18 @@ void MyFarmLevel::Loading()
 	//	Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 	//}
 
+
+}
+
+void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();
 	}
 
 
-
-}
-
-void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
-{
 
 	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
@@ -271,15 +272,6 @@ void MyFarmLevel::LoadMapObject()
 
 	Player::MainPlayer->CopyList(MapObject_);
 	MapObject_.erase(MapObject_.begin(), MapObject_.end());
-
-	//std::map<int, Items*> ::iterator StartIter = MapObject_.begin();
-	//std::map<int, Items*> ::iterator EndIter = MapObject_.end();
-
-	//for (; StartIter != EndIter; ++StartIter)
-	//{
-	//	StartIter->second->Death();
-	//}
-	//MapObject_.clear();
 
 
 }

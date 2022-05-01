@@ -53,10 +53,7 @@ void SaloonLevel::Loading()
 
 
 
-	if (MapObject_.empty() == true)
-	{
-		LoadMapObject();
-	}
+
 }
 
 void SaloonLevel::Update()
@@ -69,9 +66,12 @@ void SaloonLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	{
 		Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 		//Shop::MainShop->Off();
-
 	}
 
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
 
 	BackGroundFront_->GetRenderer()->SetImage("Saloon_Front.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ SALOON_SIZE_WEIGHT / 2, SALOON_SIZE_HEIGHT / 2 });

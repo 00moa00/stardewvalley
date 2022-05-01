@@ -19,10 +19,7 @@ BackForestLevel::~BackForestLevel()
 
 void BackForestLevel::Loading()
 {
-	if (MapObject_.empty() == true)
-	{
-		LoadMapObject();
-	}
+
 }
 
 void BackForestLevel::Update()
@@ -31,6 +28,10 @@ void BackForestLevel::Update()
 
 void BackForestLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
 
 	BackGroundFront_->GetRenderer()->SetImage("BacKForest_Front.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ FOREST_SIZE_WEIGHT / 2, FOREST_SIZE_HEIGHT / 2 });
@@ -124,4 +125,7 @@ void BackForestLevel::LoadMapObject()
 
 		}
 	}
+
+	Player::MainPlayer->CopyList(MapObject_);
+	MapObject_.erase(MapObject_.begin(), MapObject_.end());
 }

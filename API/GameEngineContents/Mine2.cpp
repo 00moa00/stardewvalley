@@ -18,10 +18,7 @@ Mine2::~Mine2()
 
 void Mine2::Loading()
 {
-	if (MapObject_.empty() == true)
-	{
-		LoadMapObject();
-	}
+
 }
 
 void Mine2::Update()
@@ -30,6 +27,11 @@ void Mine2::Update()
 
 void Mine2::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
+
 	BackGroundFront_->GetRenderer()->SetImage("Mine2_Front.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ MINEFLOOR_SIZE_WEIGHT / 2, MINEFLOOR_SIZE_HEIGHT / 2 });
 
@@ -220,4 +222,7 @@ void Mine2::LoadMapObject()
 
 		}
 	}
+
+	Player::MainPlayer->CopyList(MapObject_);
+	MapObject_.erase(MapObject_.begin(), MapObject_.end());
 }

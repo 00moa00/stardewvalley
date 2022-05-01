@@ -58,10 +58,6 @@ void MyHouseLevel::Loading()
 		PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
 	}
 
-	if (MapObject_.empty() == true)
-	{
-		LoadMapObject();
-	}
 
 	//Shop::MainShop->ShopOff();
 
@@ -69,6 +65,12 @@ void MyHouseLevel::Loading()
 
 void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
+
 	if (MenuGuide_ != nullptr)
 	{
 		MenuGuide_->GetRenderer()->SetImage("GameGuide.bmp");

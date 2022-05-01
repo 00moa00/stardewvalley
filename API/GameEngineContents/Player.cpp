@@ -532,12 +532,14 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	{
 		FadeInOut_->Death();
 	}
+	MapObject_.erase(MapObject_.begin(), MapObject_.end());
 
 	MainMouse_->NextLevelOn();
 	PlayerHandItem_->NextLevelOn();
 
 	PrevLevel_ = CurrentLevel_;
 
+//	MapObject_.erase(MapObject_.begin(), MapObject_.end());
 
 	//std::map<int, Items*> ::iterator StartIter = MapObject_.begin();
 	//std::map<int, Items*> ::iterator EndIter = MapObject_.end();
@@ -590,8 +592,8 @@ void Player::Update()
 		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
-		NpcCollCheck();
 		DelaySpeed();
+		//NpcCollCheck();
 
 		break;
 	case LEVEL_LIST::TOWN_LEVEL:
@@ -631,22 +633,56 @@ void Player::Update()
 		SubMoneyAnimation();
 
 		break;
+	case LEVEL_LIST::BACKFOREST_LEVEL:
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		DelaySpeed();
+
+		break;
+	case LEVEL_LIST::MINE_LEVEL:
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		DelaySpeed();
+
+		break;
+	case LEVEL_LIST::MINEPOINT_LEVEL:
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		DelaySpeed();
+
+		break;
+	case LEVEL_LIST::MINEFLOOR_LEVEL:
+		SetCamera();
+		PlayerUpdate();
+		PlayerDirCheck();
+		SetPlayerHandItemPos();
+		ChangeLevel();
+		DelaySpeed();
+
+		break;
 	default:
 		break;
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDown("MoveShopLevel"))
 	{
-		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
+		GameEngine::GetInst().ChangeLevel("Mine1");
 
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDown("MoveTown"))
 	{
 		GameEngine::GetInst().ChangeLevel("TownLevel");
-
 	}
-
 
 	if (true == GameEngineInput::GetInst()->IsDown("DebugRendereChange"))
 	{
@@ -1041,6 +1077,88 @@ void Player::LevelInit()
 	}
 
 
+	if (CurrentLevel_ == "BackForestLevel")
+	{
+		LevelList_ = LEVEL_LIST::BACKFOREST_LEVEL;
+
+		MapSizeX_ = FOREST_SIZE_WEIGHT;
+		MapSizeY_ = FOREST_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("BacKForest_Coll.bmp");
+		ToolRenderer_->CameraEffectOn();
+
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
+		PlayerBodyRenderer_->CameraEffectOn();
+		PlayerPantsRenderer_->CameraEffectOn();
+		PlayerShirtsRenderer_->CameraEffectOn();
+		PlayerHairRenderer_->CameraEffectOn();
+		PlayerHandRenderer_->CameraEffectOn();
+	}
+
+	if (CurrentLevel_ == "MineLevel")
+	{
+		LevelList_ = LEVEL_LIST::MINE_LEVEL;
+
+		MapSizeX_ = MINE_SIZE_WEIGHT;
+		MapSizeY_ = MINE_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("MineStartColl.bmp");
+		ToolRenderer_->CameraEffectOn();
+
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
+		PlayerBodyRenderer_->CameraEffectOn();
+		PlayerPantsRenderer_->CameraEffectOn();
+		PlayerShirtsRenderer_->CameraEffectOn();
+		PlayerHairRenderer_->CameraEffectOn();
+		PlayerHandRenderer_->CameraEffectOn();
+	}
+
+
+	if (CurrentLevel_ == "MinePoint")
+	{
+		LevelList_ = LEVEL_LIST::MINEPOINT_LEVEL;
+
+		MapSizeX_ = MINEPOINT_SIZE_WEIGHT;
+		MapSizeY_ = MINEPOINT_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("Empty.bmp");
+		ToolRenderer_->CameraEffectOn();
+
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
+		PlayerBodyRenderer_->CameraEffectOn();
+		PlayerPantsRenderer_->CameraEffectOn();
+		PlayerShirtsRenderer_->CameraEffectOn();
+		PlayerHairRenderer_->CameraEffectOn();
+		PlayerHandRenderer_->CameraEffectOn();
+	}
+
+
+	if (CurrentLevel_ == "Mine1" 
+		|| CurrentLevel_ == "Mine2"
+		|| CurrentLevel_ == "Mine3"
+		|| CurrentLevel_ == "Mine4")
+	{
+		LevelList_ = LEVEL_LIST::MINE_LEVEL;
+
+		MapSizeX_ = MINEFLOOR_SIZE_WEIGHT;
+		MapSizeY_ = MINEFLOOR_SIZE_HEIGHT;
+
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("Empty.bmp");
+		ToolRenderer_->CameraEffectOn();
+
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
+		PlayerBodyRenderer_->CameraEffectOn();
+		PlayerPantsRenderer_->CameraEffectOn();
+		PlayerShirtsRenderer_->CameraEffectOn();
+		PlayerHairRenderer_->CameraEffectOn();
+		PlayerHandRenderer_->CameraEffectOn();
+	}
+
+
 	//------< ¿ßƒ° √ ±‚»≠ >------------------------------------------------------------------
 
 	//æ≤∑Ø¡ˆ∞Ì ¡˝
@@ -1077,6 +1195,89 @@ void Player::LevelInit()
 	{
 		SetPosition({ 540.f, 550.f });
 	}
+
+	// ≥Û¿Â -> µﬁªÍ
+	if (CurrentLevel_ == "BackForestLevel" && PrevLevel_ == "MyFarmLevel")
+	{
+		SetPosition({ 695.f, 1830.f });
+	}
+
+
+	// µﬁªÍ -> ≥Û¿Â
+	if (CurrentLevel_ == "MyFarmLevel" && PrevLevel_ == "BackForestLevel")
+	{
+		SetPosition({ 1965.f, 110.f });
+	}
+
+	// µﬁªÍ -> ±§ªÍ
+	if (CurrentLevel_ == "MineLevel" && PrevLevel_ == "BackForestLevel")
+	{
+		SetPosition({ 890.f, 685.f });
+	}
+
+	// ±§ªÍ -> ±§ªÍ∆˜¿Œ∆Æ
+	if (CurrentLevel_ == "MinePoint" && PrevLevel_ == "MineLevel")
+	{
+		SetPosition({ 845.f, 300.f });
+	}
+
+	// ±§ªÍ∆˜¿Œ∆Æ -> ±§ªÍ1
+	if (CurrentLevel_ == "Mine1" && PrevLevel_ == "MinePoint")
+	{
+		SetPosition({ 215.f, 300.f });
+	}
+
+	// ±§ªÍ1 -> ±§ªÍ2
+	if (CurrentLevel_ == "Mine2" && PrevLevel_ == "Mine1")
+	{
+		SetPosition({ 455.f, 1500.f });
+	}
+
+	// ±§ªÍ2 -> ±§ªÍ3
+	if (CurrentLevel_ == "Mine3" && PrevLevel_ == "Mine2")
+	{
+		SetPosition({ 887.f, 200.f });
+	}
+
+	// ±§ªÍ3 -> ±§ªÍ4
+	if (CurrentLevel_ == "Mine4" && PrevLevel_ == "Mine3")
+	{
+		SetPosition({ 600.f, 295.f });
+	}
+
+
+	// ±§ªÍ4 -> ±§ªÍ
+	if (CurrentLevel_ == "MineLevel" && PrevLevel_ == "Mine4")
+	{
+		SetPosition({ 1127.f, 510.f });
+	}
+
+
+	// ±§ªÍ3 -> ±§ªÍ
+	if (CurrentLevel_ == "MineLevel" && PrevLevel_ == "Mine3")
+	{
+		SetPosition({ 1127.f, 510.f });
+	}
+
+
+	// ±§ªÍ2 -> ±§ªÍ
+	if (CurrentLevel_ == "MineLevel" && PrevLevel_ == "Mine2")
+	{
+		SetPosition({ 1127.f, 510.f });
+	}
+
+	// ±§ªÍ1 -> ±§ªÍ
+	if (CurrentLevel_ == "MineLevel" && PrevLevel_ == "Mine1")
+	{
+		SetPosition({ 1127.f, 510.f });
+	}
+
+	// ±§ªÍ∆˜¿Œ∆Æ -> ±§ªÍ
+	if (CurrentLevel_ == "MineLevel" && PrevLevel_ == "MinePoint")
+	{
+		SetPosition({ 1127.f, 510.f });
+	}
+
 
 	// πˆΩ∫¡§∑˘¿Â -> ≥Û¿Â
 	if (CurrentLevel_ == "MyFarmLevel" && PrevLevel_ == "BusStopLevel")

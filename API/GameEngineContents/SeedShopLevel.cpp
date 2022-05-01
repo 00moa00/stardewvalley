@@ -48,10 +48,6 @@ void SeedShopLevel::Loading()
 
 
 
-	if (MapObject_.empty() == true)
-	{
-		LoadMapObject();
-	}
 }
 
 void SeedShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
@@ -61,6 +57,10 @@ void SeedShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 		Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 	}
 
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
 	//Shop_ = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 
 	BackGroundFront_->GetRenderer()->SetImage("SeedShop_Front.bmp");

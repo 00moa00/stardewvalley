@@ -7,6 +7,13 @@
 #include "TownLevel.h"
 #include "SeedShopLevel.h"
 #include "SaloonLevel.h"
+#include "BackForestLevel.h"
+#include "MineLevel.h"
+#include "MinePoint.h"
+#include "Mine1.h"
+#include "Mine2.h"
+#include "Mine3.h"
+#include "Mine4.h"
 
 #include "CustomData.h"
 
@@ -716,7 +723,15 @@ void StardewValley::GameInit()
 	CreateLevel<BusStopLevel>("BusStopLevel");
 	CreateLevel<TownLevel>("TownLevel");
 	CreateLevel<SeedShopLevel>("SeedShopLevel");
-	CreateLevel<SaloonLevel>("SaloonLevel");
+	CreateLevel<BackForestLevel>("BackForestLevel");
+	CreateLevel<MineLevel>("MineLevel");
+	CreateLevel<MinePoint>("MinePoint");
+	CreateLevel<Mine1>("Mine1");
+	CreateLevel<Mine2>("Mine2");
+	CreateLevel<Mine3>("Mine3");
+	CreateLevel<Mine4>("Mine4");
+
+
 
 	ChangeLevel("TitleLevel");
 

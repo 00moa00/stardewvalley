@@ -56,7 +56,12 @@ enum class LEVEL_LIST
 	BUSSTOP_LEVEL,
 	TOWN_LEVEL,
 	SALOON_LEVEL,
-	SEEDSHOP_LEVEL
+	SEEDSHOP_LEVEL,
+	BACKFOREST_LEVEL,
+	MINE_LEVEL,
+	MINEPOINT_LEVEL,
+	MINEFLOOR_LEVEL,
+
 };
 
 
@@ -348,8 +353,16 @@ private:
 	bool MoveBusStopCollision();
 	bool MoveTownCollision();
 	bool MoveShopCollision();
-	bool MoveBackForestCollision();
 	bool MoveSaloonCollision();
+	bool MoveBackForestCollision();
+
+	bool MoveMineLevelCollision();
+	bool MoveMinePointCollision();
+	bool MoveMine1Collision();
+	bool MoveMine2Collision();
+	bool MoveMine3Collision();
+	bool MoveMine4Collision();
+
 	bool MouseClickAndColl();
 
 	//------< ¾¾¾Ñ »ý¼º >------------------------------------------------------------------

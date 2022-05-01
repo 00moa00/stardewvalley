@@ -441,6 +441,62 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
+		//
+		if (MoveBackForestCollision())
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "BackForestLevel";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+		if (MoveMineLevelCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "MineLevel";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+		if (MoveMinePointCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "MinePoint";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+		if (MoveMine1Collision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "Mine1";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+		if (MoveMine2Collision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "Mine2";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+		if (MoveMine3Collision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "Mine3";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
+
+		if (MoveMine4Collision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		{
+			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+			FadeInOut_->SetFadeOut();
+			ChangeLevelName_ = "Mine4";
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+		}
 
 		break;
 	case LEVEL_CHANGE_STATE::FADE_OUT:
@@ -935,10 +991,41 @@ bool Player::MoveSaloonCollision()
 	return (PlayerCollider_->CollisionResult("MoveSalon", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
+//
 bool Player::MoveBackForestCollision()
 {
 
-	return (PlayerCollider_->CollisionResult("MoveForest", ColList, CollisionType::Rect, CollisionType::Rect));
+	return (PlayerCollider_->CollisionResult("MoveBackForest", ColList, CollisionType::Rect, CollisionType::Rect));
+}
+
+bool Player::MoveMineLevelCollision()
+{
+	return (PlayerCollider_->CollisionResult("MoveMine", ColList, CollisionType::Rect, CollisionType::Rect));
+}
+
+bool Player::MoveMinePointCollision()
+{
+	return (PlayerCollider_->CollisionResult("MoveMinePoint", ColList, CollisionType::Rect, CollisionType::Rect));
+}
+
+bool Player::MoveMine1Collision()
+{
+	return (PlayerCollider_->CollisionResult("MoveMine1", ColList, CollisionType::Rect, CollisionType::Rect));
+}
+
+bool Player::MoveMine2Collision()
+{
+	return (PlayerCollider_->CollisionResult("MoveMine2", ColList, CollisionType::Rect, CollisionType::Rect));
+}
+
+bool Player::MoveMine3Collision()
+{
+	return (PlayerCollider_->CollisionResult("MoveMine3", ColList, CollisionType::Rect, CollisionType::Rect));
+}
+
+bool Player::MoveMine4Collision()
+{
+	return (PlayerCollider_->CollisionResult("MoveMine4", ColList, CollisionType::Rect, CollisionType::Rect));
 }
 
 bool Player::MouseClickAndColl()

@@ -18,10 +18,7 @@ MineLevel::~MineLevel()
 
 void MineLevel::Loading()
 {
-	if (MapObject_.empty() == true)
-	{
-		LoadMapObject();
-	}
+
 }
 
 void MineLevel::Update()
@@ -30,6 +27,11 @@ void MineLevel::Update()
 
 void MineLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
+
 	BackGroundFront_->GetRenderer()->SetImage("MineStartFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ MINE_SIZE_WEIGHT / 2, MINE_SIZE_HEIGHT / 2 });
 
