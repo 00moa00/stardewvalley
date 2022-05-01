@@ -430,31 +430,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MoveBusStop.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MoveFarm.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MoveForest.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MoveHouse.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MoveSaloon.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MoveShop.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MoveTown.h">
+    <ClInclude Include="MoveFlag.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -990,31 +966,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MoveBusStop.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MoveFarm.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MoveForest.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MoveHouse.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MoveSaloon.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MoveShop.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MoveTown.cpp">
+    <ClCompile Include="MoveFlag.cpp">
       <SubType>
       </SubType>
     </ClCompile>

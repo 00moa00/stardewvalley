@@ -4,7 +4,7 @@
 class ShopFlag : public Items
 {
 public:
-	static ShopFlag* MainShopFlag;
+//	static ShopFlag* MainShopFlag;
 
 	ShopFlag();
 	~ShopFlag();

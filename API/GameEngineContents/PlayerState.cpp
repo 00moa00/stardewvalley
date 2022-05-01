@@ -447,7 +447,6 @@ void Player::ChangeLevel()
 
 		if (FadeInOut_->GetFadeEnd())
 		{
-
 			GameEngine::GetInst().ChangeLevel(ChangeLevelName_);
 		}
 

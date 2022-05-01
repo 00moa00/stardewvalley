@@ -80,26 +80,11 @@
     <ClCompile Include="Hitter.cpp">
       <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClCompile>
-    <ClCompile Include="MoveFarm.cpp">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClCompile>
     <ClCompile Include="MapColl.cpp">
       <Filter>Actor\01. GlobalActor</Filter>
     </ClCompile>
-    <ClCompile Include="MoveHouse.cpp">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClCompile>
     <ClCompile Include="BusStopLevel.cpp">
       <Filter>Level</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveBusStop.cpp">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveTown.cpp">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveForest.cpp">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="Watering_Can.cpp">
       <Filter>Actor\03. Play\Obejct\Tool</Filter>
@@ -148,9 +133,6 @@
     </ClCompile>
     <ClCompile Include="SmallStone.cpp">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveShop.cpp">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
     <ClCompile Include="SeedShopLevel.cpp">
       <Filter>Level</Filter>
@@ -338,9 +320,6 @@
     <ClCompile Include="BakedFish.cpp">
       <Filter>Actor\03. Play\Obejct</Filter>
     </ClCompile>
-    <ClCompile Include="MoveSaloon.cpp">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClCompile>
     <ClCompile Include="SaloonLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
@@ -436,6 +415,9 @@
     </ClCompile>
     <ClCompile Include="Mine4.cpp">
       <Filter>Level\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveFlag.cpp">
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -533,14 +515,8 @@
     <ClInclude Include="Hitter.h">
       <Filter>Actor\03. Play\Obejct\Furniture</Filter>
     </ClInclude>
-    <ClInclude Include="MoveFarm.h">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClInclude>
     <ClInclude Include="MapColl.h">
       <Filter>Actor\01. GlobalActor</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveHouse.h">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="TileData.h">
       <Filter>Actor\00. GlobalData</Filter>
@@ -550,15 +526,6 @@
     </ClInclude>
     <ClInclude Include="BusStopLevel.h">
       <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveBusStop.h">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveTown.h">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveForest.h">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="Watering_Can.h">
       <Filter>Actor\03. Play\Obejct\Tool</Filter>
@@ -604,9 +571,6 @@
     </ClInclude>
     <ClInclude Include="SmallStone.h">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveShop.h">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
     <ClInclude Include="SeedShopLevel.h">
       <Filter>Level</Filter>
@@ -797,9 +761,6 @@
     <ClInclude Include="BakedFish.h">
       <Filter>Actor\03. Play\Obejct</Filter>
     </ClInclude>
-    <ClInclude Include="MoveSaloon.h">
-      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
-    </ClInclude>
     <ClInclude Include="SaloonLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
@@ -895,6 +856,9 @@
     </ClInclude>
     <ClInclude Include="Mine4.h">
       <Filter>Level\Mine</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveFlag.h">
+      <Filter>Actor\03. Play\Obejct\MapCollisionBlock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

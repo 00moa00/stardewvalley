@@ -1,9 +1,10 @@
 #include "BusStopLevel.h"
-#include "MoveTown.h"
-#include "MoveFarm.h"
+
+#include "MoveFlag.h"
 #include "GameData.h"
 #include "TileData.h"
 #include <GameEngineBase/GameEngineTime.h>
+
 BusStopLevel::BusStopLevel() 
 	:
 	FlowingFlower_(nullptr)
@@ -125,14 +126,22 @@ void BusStopLevel::LoadMapObject()
 		
 			case TILE_LIST::MOVE_TOWN:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveTown>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
 
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveTown");
 
 				break;
 		
 			case TILE_LIST::MOVE_FARM:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFarm>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveFarm");
+
 				break;
 		
 			default:
@@ -140,8 +149,6 @@ void BusStopLevel::LoadMapObject()
 
 			}
 
-			ThisIter = --MapObject_.end();
-			ThisIter->second->SetPosition(pos);
 
 
 		}

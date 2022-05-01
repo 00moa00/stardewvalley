@@ -5,9 +5,8 @@
 #include "GameData.h"
 
 #include "Block.h"
-#include "MoveBusStop.h"
-#include "MoveShop.h"
-#include "MoveSaloon.h"
+#include "MoveFlag.h"
+
 
 #include "Lewis.h"
 #include "Penny.h"
@@ -168,24 +167,29 @@ void TownLevel::LoadMapObject()
 				break;
 			case TILE_LIST::MOVE_SHOP:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveShop>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveShop");
 
 				break;
 			case TILE_LIST::MOVE_BUSSTOP:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveBusStop");
+
 				break;
 
 
 			case TILE_LIST::MOVE_SALOON:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveSaloon>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveSalon");
+
 
 				break;
 
@@ -199,6 +203,7 @@ void TownLevel::LoadMapObject()
 
 	Player::MainPlayer->CopyList(MapObject_);
 	Player::MainPlayer->CopyList(NpcList_);
+	MapObject_.erase(MapObject_.begin(), MapObject_.end());
 
 }
 

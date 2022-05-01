@@ -11,9 +11,8 @@
 #include "ShippingBox.h"
 #include "Block.h"
 
-#include "MoveHouse.h"
-#include "MoveBusStop.h"
-#include "MoveForest.h"
+#include "MoveFlag.h"
+
 
 
 #include <GameEngineBase/GameEngineTime.h>
@@ -69,7 +68,6 @@ void MyFarmLevel::Loading()
 	//	Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 	//}
 
-
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();
@@ -100,6 +98,8 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 
 	Player::MainPlayer->Renderer()->CameraEffectOn();
+
+
 
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
@@ -161,33 +161,34 @@ void MyFarmLevel::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
 				ThisIter->second->SetItemName("Maple_Tree");
-
+				ThisIter->second->SetPosition(pos);
 				break;
 
 			case TILE_LIST::FINE_TREE:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
 				ThisIter->second->SetItemName("Fine_Tree");
-
+				ThisIter->second->SetPosition(pos);
 				break;
 
 			case TILE_LIST::OAK_TREE:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<TreeBottom>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
 				ThisIter->second->SetItemName("Oak_Tree");
-
+				ThisIter->second->SetPosition(pos);
 				break;
 
 			case TILE_LIST::SMALL_STONE:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
-			
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
 				break;
 
 			case TILE_LIST::BIG_STONE:
@@ -195,13 +196,15 @@ void MyFarmLevel::LoadMapObject()
 			case TILE_LIST::SMALL_WOOD1:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallWood1>((int)PLAYLEVEL::OBJECT)));
-		
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
 				break;
 
 			case TILE_LIST::SMAA_WOOD2:
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallWood2>((int)PLAYLEVEL::OBJECT)));
-
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
 				break;
 
 			case TILE_LIST::MIDDLE_WOOD:
@@ -215,26 +218,37 @@ void MyFarmLevel::LoadMapObject()
 
 			case TILE_LIST::SHIPPING_BOX:
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<ShippingBox>((int)PLAYLEVEL::OBJECT)));
-
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
 				break;
 
 
 			case TILE_LIST::MOVE_FOREST:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveForest>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveBackForest");
 
 				break;
 
 
 			case TILE_LIST::MOVE_BUSSTOP:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveBusStop>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveBusStop");
 
 				break;
 
 			case TILE_LIST::MOVE_HOUSE :
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveHouse>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveHouse");
+
 
 				break;
 
@@ -247,15 +261,25 @@ void MyFarmLevel::LoadMapObject()
 				break;
 			
 			}
-			ThisIter = MapObject_.find(ChangeIndex);
-			ThisIter->second->SetPosition(pos);
+			//ThisIter = MapObject_.find(ChangeIndex);
+			//ThisIter->second->SetPosition(pos);
 			
      
         }
     }
 
+
 	Player::MainPlayer->CopyList(MapObject_);
 	MapObject_.erase(MapObject_.begin(), MapObject_.end());
+
+	//std::map<int, Items*> ::iterator StartIter = MapObject_.begin();
+	//std::map<int, Items*> ::iterator EndIter = MapObject_.end();
+
+	//for (; StartIter != EndIter; ++StartIter)
+	//{
+	//	StartIter->second->Death();
+	//}
+	//MapObject_.clear();
 
 
 }

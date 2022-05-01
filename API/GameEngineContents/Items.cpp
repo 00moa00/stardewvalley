@@ -82,7 +82,7 @@ void Items::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void Items::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	//Font_->NextLevelOn();
-	NextLevelOn();
+	//NextLevelOn();
 }
 
 
@@ -100,6 +100,10 @@ void Items::ItemCollPlayer()
 }
 
 void Items::ItemCollFalsePlayer()
+{
+}
+
+void Items::CreateMoveFlag(std::string _CollName)
 {
 }
 

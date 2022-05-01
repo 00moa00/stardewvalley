@@ -8,7 +8,7 @@
 #include "Table.h"
 #include "Tv.h"
 #include "Hitter.h"
-#include "MoveFarm.h"
+#include "MoveFlag.h"
 #include "GiftBox.h"
 
 #include <GameEngineBase/GameEngineTime.h>
@@ -171,10 +171,12 @@ void MyHouseLevel::LoadMapObject()
 
 			case MYHOUSE_TILE::MOVE_FARM:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFarm>((int)PLAYLEVEL::TOP_OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::TOP_OBJECT)));
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->GetRenderer()->CameraEffectOff();
+				ThisIter->second->CreateMoveFlag("MoveFarm");
+
 
 				break;
 			default:

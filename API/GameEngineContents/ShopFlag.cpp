@@ -1,5 +1,5 @@
 #include "ShopFlag.h"
-ShopFlag* ShopFlag::MainShopFlag;
+//ShopFlag* ShopFlag::MainShopFlag;
 
 ShopFlag::ShopFlag() 
 {
@@ -19,6 +19,6 @@ void ShopFlag::Start()
 
 void ShopFlag::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainShopFlag = this;
+//	MainShopFlag = this;
 }
 

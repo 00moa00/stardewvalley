@@ -528,18 +528,27 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 
-	if(FadeInOut_ != nullptr) FadeInOut_->Death();
+	if (FadeInOut_ != nullptr)
+	{
+		FadeInOut_->Death();
+	}
+
 	MainMouse_->NextLevelOn();
 	PlayerHandItem_->NextLevelOn();
+
 	PrevLevel_ = CurrentLevel_;
 
-	//std::map<std::string, Npc*>::iterator StartIter = NpcList_.begin();
-	//std::map<std::string, Npc*>::iterator EndIter = NpcList_.end();
+
+	//std::map<int, Items*> ::iterator StartIter = MapObject_.begin();
+	//std::map<int, Items*> ::iterator EndIter = MapObject_.end();
 
 	//for (; StartIter != EndIter; ++StartIter)
 	//{
-	//	StartIter->second->NextLevelOn();
+	//	StartIter->second->Death();
 	//}
+	//MapObject_.clear();
+
+
 }
 
 
@@ -628,7 +637,7 @@ void Player::Update()
 
 	if (true == GameEngineInput::GetInst()->IsDown("MoveShopLevel"))
 	{
-		GameEngine::GetInst().ChangeLevel("SaloonLevel");
+		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
 
 	}
 

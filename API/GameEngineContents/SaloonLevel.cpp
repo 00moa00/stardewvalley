@@ -2,7 +2,7 @@
 
 #include "GameData.h"
 
-#include "MoveTown.h"
+#include "MoveFlag.h"
 #include "ShopFlag.h"
 #include "Gus.h"
 
@@ -146,9 +146,11 @@ void SaloonLevel::LoadMapObject()
 
 			case TILE_LIST::MOVE_TOWN:
 
-				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveTown>((int)PLAYLEVEL::OBJECT)));
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->CreateMoveFlag("MoveTown");
+
 				break;
 
 			case TILE_LIST::SHOP_FLAG:
