@@ -389,6 +389,8 @@ void Player::ChangeLevel()
 
 	switch (LevelChagne_)
 	{
+
+
 	case LEVEL_CHANGE_STATE::CHECK:
 		if (MoveFarmCollision())
 		{
@@ -513,6 +515,7 @@ void Player::ChangeLevel()
 
 		if (FadeInOut_->GetFadeEnd())
 		{
+
 			GameEngine::GetInst().ChangeLevel(ChangeLevelName_);
 		}
 

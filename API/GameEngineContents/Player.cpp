@@ -532,23 +532,28 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	{
 		FadeInOut_->Death();
 	}
-	MapObject_.erase(MapObject_.begin(), MapObject_.end());
+	//MapObject_.erase(MapObject_.begin(), MapObject_.end());
 
 	MainMouse_->NextLevelOn();
 	PlayerHandItem_->NextLevelOn();
 
 	PrevLevel_ = CurrentLevel_;
 
-//	MapObject_.erase(MapObject_.begin(), MapObject_.end());
 
-	//std::map<int, Items*> ::iterator StartIter = MapObject_.begin();
-	//std::map<int, Items*> ::iterator EndIter = MapObject_.end();
+	if (CurrentLevel_ == "Mine1" || CurrentLevel_ == "Mine2" || CurrentLevel_ == "Mine3" || CurrentLevel_ == "Mine4" )
+	{
 
-	//for (; StartIter != EndIter; ++StartIter)
-	//{
-	//	StartIter->second->Death();
-	//}
-	//MapObject_.clear();
+		std::map<int, Items*> ::iterator StartIter = MapObject_.begin();
+		std::map<int, Items*> ::iterator EndIter = MapObject_.end();
+
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			StartIter->second->Death();
+		}
+
+		//MapObject_.erase(MapObject_.begin(), MapObject_.end());
+		MapObject_.clear();
+	}
 
 
 }

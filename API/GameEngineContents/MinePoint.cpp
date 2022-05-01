@@ -19,10 +19,7 @@ MinePoint::~MinePoint()
 
 void MinePoint::Loading()
 {
-	if (MapObject_.empty() == true)
-	{
-		LoadMapObject();
-	}
+
 }
 
 void MinePoint::Update()
@@ -31,6 +28,11 @@ void MinePoint::Update()
 
 void MinePoint::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	if (MapObject_.empty() == true)
+	{
+		LoadMapObject();
+	}
+
 	BackGroundFront_->GetRenderer()->SetImage("MinePoint_Front.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ MINEPOINT_SIZE_WEIGHT / 2, MINEPOINT_SIZE_HEIGHT / 2 });
 
@@ -68,7 +70,7 @@ void MinePoint::LoadMapObject()
 
 			const float4 pos = {
 				x * CHIP_SIZE + CHIP_SIZE * 0.5f,
-				y * CHIP_SIZE + CHIP_SIZE,
+				y * CHIP_SIZE + CHIP_SIZE * 0.5f,
 			};
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
@@ -127,5 +129,6 @@ void MinePoint::LoadMapObject()
 	}
 
 	Player::MainPlayer->CopyList(MapObject_);
-	MapObject_.erase(MapObject_.begin(), MapObject_.end());
+	//MapObject_.erase(MapObject_.begin(), MapObject_.end());
+	MapObject_.clear();
 }

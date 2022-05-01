@@ -119,6 +119,7 @@ void Mine1::LoadMapObject()
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
 
 				ThisIter = --MapObject_.end();
+				ThisIter->second->GetCollision()->SetScale({ 48, 40 });
 				ThisIter->second->SetPosition(pos);
 
 				break;
@@ -129,6 +130,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter ->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()-> SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE0);
 
 				break;
@@ -139,6 +142,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE1);
 				break;
 
@@ -149,6 +154,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE2);
 				break;
 
@@ -159,6 +166,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE3);
 				break;
 
@@ -169,6 +178,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE4);
 				break;
 
@@ -179,6 +190,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE5);
 				break;
 
@@ -190,6 +203,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::COPPER_STONE);
 				break;
 
@@ -199,6 +214,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::RUBY_STONE);
 				break;
 
@@ -209,6 +226,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AMETHYST_STONE);
 				break;
 
@@ -218,6 +237,8 @@ void Mine1::LoadMapObject()
 
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
+				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
+				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AQUAMARINE_STONE);
 				break;
 
@@ -232,5 +253,4 @@ void Mine1::LoadMapObject()
 
 	Player::MainPlayer->CopyList(MapObject_);
 	MapObject_.erase(MapObject_.begin(), MapObject_.end());
-
  }

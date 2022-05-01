@@ -15,8 +15,8 @@ SmallStone::~SmallStone()
 void SmallStone::Start()
 {
 	ItemRenderer_ = CreateRenderer("Small_Stone.bmp");
-	ItemCollider_ = CreateCollision("MapObject", { 48.f, 48.f });
-
+	ItemCollider_ = CreateCollision("MapObject", { 40, 15 });
+	ItemCollider_->SetPivot({0, -20});
 	SetScale({ 48.f, 48.f });
 
 	ItemName_ = "SmallStone";

@@ -15,8 +15,8 @@ void SmallWood2::Start()
 {
 	ItemRenderer_ = CreateRenderer("Small_Wood2.bmp");
 
-	ItemCollider_ = CreateCollision("MapObject", { 48.f, 48.f });
-	
+	ItemCollider_ = CreateCollision("MapObject", { 40, 20 });
+	ItemCollider_->SetPivot({ 0, -20 });
 	SetScale({ 48.f, 48.f });
 
 	ItemName_ = "SmallWood2";
