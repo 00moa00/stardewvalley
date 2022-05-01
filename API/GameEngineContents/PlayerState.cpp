@@ -302,6 +302,7 @@ void Player::PlayerShopping()
 	case PLAYER_SHOPPING::SHOP_ON:
 
 		Shop::MainShop->ShopOn();
+		Inventory::MainInventory->SetInventoryMoveStateInit();
 		isShopping_ = true;
 		isEvent_ = true;
 		PlayerShoppingState_ = PLAYER_SHOPPING::SHOPPING;
