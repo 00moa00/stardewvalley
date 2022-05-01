@@ -158,6 +158,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Amethyst.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Aquamarine.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ArrowButton.h">
       <SubType>
       </SubType>
@@ -191,6 +199,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Coffe_Shop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Copper.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -545,6 +557,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="RendererData.h" />
+    <ClInclude Include="Ruby.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Salad.h">
       <SubType>
       </SubType>
@@ -692,6 +708,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Amethyst.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Aquamarine.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ArrowButton.cpp">
       <SubType>
       </SubType>
@@ -725,6 +749,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Coffe_Shop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Copper.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -1069,6 +1097,10 @@
     <ClCompile Include="PlayerTile.cpp" />
     <ClCompile Include="Potato.cpp" />
     <ClCompile Include="Potato_Seeds.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Ruby.cpp">
       <SubType>
       </SubType>
     </ClCompile>

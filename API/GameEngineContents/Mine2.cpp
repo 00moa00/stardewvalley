@@ -93,7 +93,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveMine");
 
@@ -103,7 +103,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveMine3");
 				ThisIter->second->ChnageImageFile("MineMove.bmp");
@@ -114,7 +114,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 
 				break;
@@ -122,7 +122,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -135,7 +135,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -148,7 +148,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -161,7 +161,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -174,7 +174,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -187,7 +187,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -200,7 +200,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -213,7 +213,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -227,7 +227,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -240,7 +240,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });

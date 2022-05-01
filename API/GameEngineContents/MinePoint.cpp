@@ -94,7 +94,7 @@ void MinePoint::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveMine");
 
@@ -104,7 +104,7 @@ void MinePoint::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<MoveFlag>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveMine1");
 				ThisIter->second->ChnageImageFile("MineMove.bmp");
@@ -115,7 +115,7 @@ void MinePoint::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = --MapObject_.end();
+				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 
 				break;

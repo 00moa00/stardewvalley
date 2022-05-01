@@ -1,25 +1,23 @@
-#include "DropStone.h"
+#include "Copper.h"
 #include "Player.h"
 
-DropStone* DropStone::MainDropStone = nullptr;
-Font* DropStone::Font_;
-
-DropStone::DropStone() 
-
+Copper* Copper::MainCopper = nullptr;
+Font* Copper::Font_;
+Copper::Copper() 
 {
 }
 
-DropStone::~DropStone() 
+Copper::~Copper() 
 {
 }
 
-void DropStone::Start()
+void Copper::Start()
 {
 	ItemSpeed_.x = 1.f;
 	ItemSpeed_.y = 5.f;
 
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::MINI_STONE));
+	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::COPPER_ORE));
 	ItemRenderer_->CameraEffectOn();
 
 	ItemCollider_ = CreateCollision("Item", { 40.f , 40.f });
@@ -34,18 +32,16 @@ void DropStone::Start()
 	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 
 
-	ItemName_ = "DropStone";
+	ItemName_ = "Copper";
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::MINI_STONE);
-
+	FileIndex_ = static_cast<size_t>(ITEM::COPPER_ORE);
 }
 
-void DropStone::Update()
+void Copper::Update()
 {
-
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
@@ -83,26 +79,27 @@ void DropStone::Update()
 	default:
 		break;
 	}
-
 }
-void DropStone::LevelChangeStart(GameEngineLevel* _PrevLevel)
+
+void Copper::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainDropStone = this;
+	MainCopper = this;
 	Font_ = Font_;
-
 }
-void DropStone::LevelChangeEnd(GameEngineLevel* _NextLevel)
+
+void Copper::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+
 }
 
-void DropStone::AddItemCount()
+void Copper::AddItemCount()
 {
 	++ItemCount_;
 	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
-void DropStone::SubItemCount()
+void Copper::SubItemCount()
 {
 	if (ItemCount_ == 1)
 	{
@@ -119,13 +116,13 @@ void DropStone::SubItemCount()
 	}
 }
 
-void DropStone::UpdateOff()
+void Copper::UpdateOff()
 {
 	this->Off();
 	Font_->Off();
 }
 
-void DropStone::UpdateOn()
+void Copper::UpdateOn()
 {
 	this->On();
 	Font_->On();

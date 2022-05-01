@@ -1,25 +1,24 @@
-#include "DropStone.h"
+#include "Amethyst.h"
 #include "Player.h"
 
-DropStone* DropStone::MainDropStone = nullptr;
-Font* DropStone::Font_;
+Amethyst* Amethyst::MainAmethyst = nullptr;
+Font* Amethyst::Font_;
 
-DropStone::DropStone() 
-
+Amethyst::Amethyst() 
 {
 }
 
-DropStone::~DropStone() 
+Amethyst::~Amethyst() 
 {
 }
 
-void DropStone::Start()
+void Amethyst::Start()
 {
 	ItemSpeed_.x = 1.f;
 	ItemSpeed_.y = 5.f;
 
 	ItemRenderer_ = CreateRenderer("springobjects.bmp");
-	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::MINI_STONE));
+	ItemRenderer_->SetIndex(static_cast<size_t>(ITEM::AMETHYST));
 	ItemRenderer_->CameraEffectOn();
 
 	ItemCollider_ = CreateCollision("Item", { 40.f , 40.f });
@@ -34,18 +33,16 @@ void DropStone::Start()
 	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 
 
-	ItemName_ = "DropStone";
+	ItemName_ = "Amethyst";
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
-	FileIndex_ = static_cast<size_t>(ITEM::MINI_STONE);
-
+	FileIndex_ = static_cast<size_t>(ITEM::AMETHYST);
 }
 
-void DropStone::Update()
+void Amethyst::Update()
 {
-
 	switch (ItemState_)
 	{
 	case ITEM_STATE::INIT:
@@ -83,26 +80,26 @@ void DropStone::Update()
 	default:
 		break;
 	}
-
 }
-void DropStone::LevelChangeStart(GameEngineLevel* _PrevLevel)
+
+void Amethyst::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	MainDropStone = this;
+	MainAmethyst = this;
 	Font_ = Font_;
-
 }
-void DropStone::LevelChangeEnd(GameEngineLevel* _NextLevel)
+
+void Amethyst::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
 }
 
-void DropStone::AddItemCount()
+void Amethyst::AddItemCount()
 {
 	++ItemCount_;
 	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
-void DropStone::SubItemCount()
+void Amethyst::SubItemCount()
 {
 	if (ItemCount_ == 1)
 	{
@@ -119,13 +116,13 @@ void DropStone::SubItemCount()
 	}
 }
 
-void DropStone::UpdateOff()
+void Amethyst::UpdateOff()
 {
 	this->Off();
 	Font_->Off();
 }
 
-void DropStone::UpdateOn()
+void Amethyst::UpdateOn()
 {
 	this->On();
 	Font_->On();

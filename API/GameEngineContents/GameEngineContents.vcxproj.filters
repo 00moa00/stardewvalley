@@ -422,6 +422,18 @@
     <ClCompile Include="MineStoneCrushAnimation.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Amethyst.cpp">
+      <Filter>Actor\03. Play\Obejct\MineItem</Filter>
+    </ClCompile>
+    <ClCompile Include="Aquamarine.cpp">
+      <Filter>Actor\03. Play\Obejct\MineItem</Filter>
+    </ClCompile>
+    <ClCompile Include="Copper.cpp">
+      <Filter>Actor\03. Play\Obejct\MineItem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ruby.cpp">
+      <Filter>Actor\03. Play\Obejct\MineItem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -866,6 +878,18 @@
     <ClInclude Include="MineStoneCrushAnimation.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="Amethyst.h">
+      <Filter>Actor\03. Play\Obejct\MineItem</Filter>
+    </ClInclude>
+    <ClInclude Include="Aquamarine.h">
+      <Filter>Actor\03. Play\Obejct\MineItem</Filter>
+    </ClInclude>
+    <ClInclude Include="Copper.h">
+      <Filter>Actor\03. Play\Obejct\MineItem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ruby.h">
+      <Filter>Actor\03. Play\Obejct\MineItem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">
@@ -951,6 +975,9 @@
     </Filter>
     <Filter Include="Level\Mine">
       <UniqueIdentifier>{7246d334-acb4-4415-8714-8ac5acdf6543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\MineItem">
+      <UniqueIdentifier>{91019c2c-bd96-40dd-8c95-3aaf9fc13b49}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
