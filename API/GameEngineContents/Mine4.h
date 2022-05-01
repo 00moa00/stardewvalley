@@ -13,22 +13,20 @@
 #include "Items.h"
 #include "Npc.h"
 #include "Mouse.h"
-#include "FlowingFlower.h"
-
 
 // Ό³Έν :
-class BusStopLevel : public GameEngineLevel
+class Mine4 : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
-	BusStopLevel();
-	~BusStopLevel();
+	Mine4();
+	~Mine4();
 
 	// delete Function
-	BusStopLevel(const BusStopLevel& _Other) = delete;
-	BusStopLevel(BusStopLevel&& _Other) noexcept = delete;
-	BusStopLevel& operator=(const BusStopLevel& _Other) = delete;
-	BusStopLevel& operator=(BusStopLevel&& _Other) noexcept = delete;
+	Mine4(const Mine4& _Other) = delete;
+	Mine4(Mine4&& _Other) noexcept = delete;
+	Mine4& operator=(const Mine4& _Other) = delete;
+	Mine4& operator=(Mine4&& _Other) noexcept = delete;
 
 private:
 	void Loading() override;
@@ -40,12 +38,10 @@ private:
 
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
-	FlowingFlower* FlowingFlower_;
 
 	std::map<int, Items*> MapObject_;
 
 private:
 	void LoadMapObject();
-
 };
 

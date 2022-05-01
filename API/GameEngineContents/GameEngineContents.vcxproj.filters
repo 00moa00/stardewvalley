@@ -417,6 +417,24 @@
       <Filter>Actor\03. Play\NPC</Filter>
     </ClCompile>
     <ClCompile Include="MineLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="BackForestLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MinePoint.cpp">
+      <Filter>Level\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="Mine1.cpp">
+      <Filter>Level\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="Mine2.cpp">
+      <Filter>Level\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="Mine3.cpp">
+      <Filter>Level\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="Mine4.cpp">
       <Filter>Level\Mine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -858,6 +876,24 @@
       <Filter>Actor\03. Play\NPC</Filter>
     </ClInclude>
     <ClInclude Include="MineLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="BackForestLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MinePoint.h">
+      <Filter>Level\Mine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mine1.h">
+      <Filter>Level\Mine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mine2.h">
+      <Filter>Level\Mine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mine3.h">
+      <Filter>Level\Mine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mine4.h">
       <Filter>Level\Mine</Filter>
     </ClInclude>
   </ItemGroup>
