@@ -25,8 +25,6 @@ private:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
-
-
 	void AddItemCount() override;
 	void SubItemCount() override;
 	void UpdateOff() override;

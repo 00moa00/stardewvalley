@@ -73,7 +73,7 @@ void Ruby::Update()
 		MoveToPlayer();
 		if (isMapItemDeath_ == true)
 		{
-			Player::MainPlayer->GetInventroy()->NewItem<DropStone>();
+			Inventory::MainInventory->NewItem<Ruby>();
 		}
 
 		break;

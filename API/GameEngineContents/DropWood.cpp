@@ -101,8 +101,11 @@ void DropWood::SubItemCount()
 {
 	if (ItemCount_ == 1)
 	{
+		ItemCount_ = 0;
+		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
-		Death();
+		Font_ = nullptr;
+		this->Death();
 	}
 	else
 	{

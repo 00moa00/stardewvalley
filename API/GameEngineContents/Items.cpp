@@ -91,6 +91,10 @@ void Items::DropItemInMap()
 {
 }
 
+void Items::DropItemInMap(STONETYPE _StoneType)
+{
+}
+
 Crops* Items::CreateCrops()
 {
 	return nullptr;

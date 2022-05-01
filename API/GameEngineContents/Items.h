@@ -121,6 +121,9 @@ public:
 	virtual void SetItemCount(int _Count);
 
 	virtual void DropItemInMap();
+	virtual void DropItemInMap(STONETYPE _StoneType);
+
+
 	virtual Crops* CreateCrops();
 
 	virtual void ItemCollPlayer();

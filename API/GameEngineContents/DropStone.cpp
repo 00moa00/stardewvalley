@@ -24,15 +24,12 @@ void DropStone::Start()
 
 	ItemCollider_ = CreateCollision("Item", { 40.f , 40.f });
 
-
 	if (Font_ == nullptr)
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+		Font_->ChangeWhiteColor();
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
-
-	Font_->ChangeWhiteColor();
-	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
-
 
 	ItemName_ = "DropStone";
 

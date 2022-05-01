@@ -469,7 +469,7 @@ void Player::CrushStone()
 				CreateCrushStoneEffect(Iter->second->GetStoneType());
 
 				//아이템 드랍
-				Iter->second->DropItemInMap();
+				Iter->second->DropItemInMap(Iter->second->GetStoneType());
 
 				//해당 아이템 삭제
 				Iter->second->Death();

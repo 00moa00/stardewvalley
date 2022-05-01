@@ -72,7 +72,7 @@ void Copper::Update()
 		MoveToPlayer();
 		if (isMapItemDeath_ == true)
 		{
-			Player::MainPlayer->GetInventroy()->NewItem<DropStone>();
+			Inventory::MainInventory->NewItem<Copper>();
 		}
 
 		break;
