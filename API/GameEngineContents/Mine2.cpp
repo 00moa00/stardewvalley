@@ -3,6 +3,7 @@
 #include "GameData.h"
 #include "TileData.h"
 #include "Block.h"
+#include "SmallStone.h"
 #include <GameEngineBase/GameEngineTime.h>
 Mine2::Mine2() 
 {
@@ -115,7 +116,103 @@ void Mine2::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 
 				break;
+			case TILE_LIST::STONE0:
 
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE0);
+
+				break;
+
+			case TILE_LIST::STONE1:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE1);
+				break;
+
+
+			case TILE_LIST::STONE2:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE2);
+				break;
+
+
+			case TILE_LIST::STONE3:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE3);
+				break;
+
+
+			case TILE_LIST::STONE4:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE4);
+				break;
+
+
+			case TILE_LIST::STONE5:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::STONE5);
+				break;
+
+
+
+			case TILE_LIST::COPPER:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::COPPER_STONE);
+				break;
+
+			case TILE_LIST::RUBY:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::RUBY_STONE);
+				break;
+
+
+			case TILE_LIST::AMETHYST:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AMETHYST_STONE);
+				break;
+
+			case TILE_LIST::AQUAMARINE:
+
+				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MapObject_.end();
+				ThisIter->second->SetPosition(pos);
+				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AQUAMARINE_STONE);
+				break;
 			default:
 				break;
 

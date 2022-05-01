@@ -66,6 +66,7 @@ enum class TILE_LIST {
 	STONE3,
 	STONE4,
 	STONE5,
+
 	COPPER,
 	RUBY,
 	AMETHYST,

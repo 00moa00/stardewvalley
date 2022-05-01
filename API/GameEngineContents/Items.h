@@ -111,6 +111,9 @@ public:
 	virtual void ItemCollFalsePlayer();
 	virtual void CreateMoveFlag(std::string _CollName);
 	virtual void ChnageImageFile(std::string _FileName);
+	virtual void ChnageImageFileAndIndex(std::string _FileName, ITEM _index);
+
+
 
 	virtual void UpdateOff()
 	{

@@ -24,7 +24,9 @@ private:
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
+public:
 
 	void DropItemInMap() override;
+	void ChnageImageFileAndIndex(std::string _FileName, ITEM _index)override;
 };
 

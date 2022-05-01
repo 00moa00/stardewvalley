@@ -111,6 +111,10 @@ void Items::ChnageImageFile(std::string _FileName)
 {
 }
 
+void Items::ChnageImageFileAndIndex(std::string _FileName, ITEM _index)
+{
+}
+
 bool Items::ItemCheck(const float4 pos, const float4 scale)
 {
 

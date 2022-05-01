@@ -55,8 +55,13 @@ void SmallStone::DropItemInMap()
 	if (RamdomDir == 2)
 	{
 		DropItem->SetMoveDir({ 0, -120 });
-
 	}
 
+}
+
+void SmallStone::ChnageImageFileAndIndex(std::string _FileName, ITEM _index)
+{
+	ItemRenderer_->SetImage(_FileName);
+	ItemRenderer_->SetIndex(static_cast<int>(_index));
 }
 
