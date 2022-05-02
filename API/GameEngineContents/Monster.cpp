@@ -1,4 +1,5 @@
 #include "Monster.h"
+#include "Player.h"
 
 Monster::Monster() 
 	:
@@ -155,6 +156,11 @@ bool Monster::CheckDownObject()
 		return false;
 	}
 }
+//
+//bool Monster::CheckPlayer()
+//{
+//
+//}
 
 bool Monster::MonsterCheck(const float4 pos, const float4 scale)
 {

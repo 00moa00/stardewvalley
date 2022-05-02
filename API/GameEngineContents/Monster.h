@@ -16,6 +16,15 @@ enum class MONSTER_STATE
 	WAIT,
 	CHECK,
 	RE_CHECK,
+
+	MOVE_TO_PLAYER_X_RIGHT,
+	MOVE_TO_PLAYER_X_LEFT,
+
+
+
+	MOVE_TO_PLAYER_Y_UP,
+	MOVE_TO_PLAYER_Y_DOWN,
+
 	WALK,
 	MAX
 };
@@ -48,8 +57,7 @@ public:
 	virtual bool CheckUpObject();
 	virtual bool CheckDownObject();
 
-
-
+	//virtual bool CheckPlayer();
 
 protected:
 
@@ -59,6 +67,7 @@ protected:
 
 	float Speed_;				//이동 스피드
 	float Timer_;				//방향 전향 타이머
+	float4 PrevPos_;
 
 	bool isDeath_;				//죽었는지 체크
 

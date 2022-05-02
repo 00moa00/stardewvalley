@@ -1,4 +1,5 @@
 #include "Golem.h"
+#include "Player.h"
 
 Golem::Golem() 
 {
@@ -48,6 +49,8 @@ void Golem::Update()
 {
 	DirAnimation(); 
 
+	float4 Dir;
+	float Check;
 	switch (MonsterState_)
 	{
 	case MONSTER_STATE::WAIT:
@@ -123,20 +126,83 @@ void Golem::Update()
 		break;
 	case MONSTER_STATE::WALK:
 
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-			
+		Dir = Player::MainPlayer->GetPosition() - this->GetPosition();
+		Check = Dir.Len2D();
+
 		Timer_ += GameEngineTime::GetDeltaTime();
-		if (Timer_ > 3.0f)
+		if (Timer_ > 3.0f && Check > 150)
 		{
 			Timer_ = 0.f;
 			MonsterState_ = MONSTER_STATE::CHECK;
-
 		}
 		
+
+		Dir.Normal2D();
+
+		if (Check <= 150)
+		{
+
+			//플레이어가 오른쪽, 아래에 있다
+			if (Dir.x > 0 && Dir.y > 0)
+			{
+				MoveDir_ = float4::ZERO;
+				MoveDir_ = float4::RIGHT;
+			}
+
+
+			//플레이어가 오른쪽, 위에 있다
+			if (Dir.x > 0 && Dir.y < 0)
+			{
+				MoveDir_ = float4::ZERO;
+				MoveDir_ = float4::RIGHT;
+			}
+
+
+			//플레이어가 왼쪽, 위에 있다
+			if (Dir.x < 0 && Dir.y < 0)
+			{
+				MoveDir_ = float4::ZERO;
+				MoveDir_ = float4::LEFT;
+			}
+
+
+			//플레이어가 왼쪽, 아래에 있다
+			if (Dir.x < 0 && Dir.y > 0)
+			{
+				MoveDir_ = float4::ZERO;
+				MoveDir_ = float4::LEFT;
+			}
+
+			if (Player::MainPlayer->GetPosition().ix() == this->GetPosition().ix())
+			{
+					
+				
+				if (Dir.y > 0)
+				{
+					MoveDir_ = float4::ZERO;
+					MoveDir_ = float4::DOWN;
+				}
+
+				
+				if (Dir.y < 0)
+				{
+					MoveDir_ = float4::ZERO;
+					MoveDir_ = float4::UP;
+				}
+				
+
+			}
+
+		}
+
 		if (CheckMapObject() == true)
 		{
 			MonsterState_ = MONSTER_STATE::CHECK;
 		}
+
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+
+
 
 		break;
 	default:
