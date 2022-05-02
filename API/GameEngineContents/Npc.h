@@ -113,6 +113,11 @@ public:
 		return TalkingLimit_;
 	}
 
+	bool GetDialogueUpdate()
+	{
+		return DialogueUpdate_;
+	}
+
 	int GetLeft()
 	{
 		return GetPosition().ix() - GetScale().hix();
@@ -131,11 +136,6 @@ public:
 	int GetBottom()
 	{
 		return GetPosition().iy() + GetScale().hiy();
-	}
-
-	bool GetDialogueUpdate()
-	{
-		return DialogueUpdate_;
 	}
 
 	//================================

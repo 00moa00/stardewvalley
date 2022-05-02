@@ -844,7 +844,6 @@ void Player::PlayerDirCheck()
 		MoveDir_ = float4::DOWN;
 	}
 
-
 }
 
 

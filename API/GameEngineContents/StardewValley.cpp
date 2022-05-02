@@ -689,6 +689,42 @@ void StardewValley::GameInit()
 
 	}
 
+
+	//----------------------------------------------------------------------------------------------
+	//------< Monster >-----------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------
+
+	{
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
+		ResourcesDir.Move("Monster");
+
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
+
+		//================================
+		//		WoodAnimationsSheet
+		//================================
+		GameEngineImage* StoneGolem = GameEngineImageManager::GetInst()->Find("StoneGolem.bmp");
+		StoneGolem->Cut({ 48, 72 });
+
+	}
+
+
+
+
+
 	//----------------------------------------------------------------------------------------------
 	//------< Sprite >-----------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------

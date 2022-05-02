@@ -1,7 +1,8 @@
 #pragma once
+#include "Monster.h"
 
 // Ό³Έν :
-class Golem
+class Golem : public Monster
 {
 public:
 	// constrcuter destructer
@@ -15,8 +16,10 @@ public:
 	Golem& operator=(Golem&& _Other) noexcept = delete;
 
 protected:
+	void Start() override;
+	void Update() override;
 
 private:
-
+	void DirAnimation();
 };
 

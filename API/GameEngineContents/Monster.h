@@ -5,16 +5,17 @@
 #include <GameEngine/GameEngineCollision.h>
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 #include "RendererData.h"
-enum class DIR
-{
+#include "MonsterData.h"
 
-};
 
 enum class MONSTER_STATE
 {
 	WAIT,
+	CHECK,
+	RE_CHECK,
 	WALK,
 	MAX
 };
@@ -36,8 +37,38 @@ public:
 private:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
+	
+public:
+	virtual std::string GetDirString();
+
+	virtual bool CheckMapObject();		//가는 방향에 오브젝트가 있다.
+
+	virtual bool CheckRightObject();
+	virtual bool CheckLeftObject();
+	virtual bool CheckUpObject();
+	virtual bool CheckDownObject();
+
+
+
 
 protected:
+
+	int Damage_;
+	int HP_;
+	int RamdomDirResult_;		//랜덤 값 저장용
+
+	float Speed_;				//이동 스피드
+	float Timer_;				//방향 전향 타이머
+
+	bool isDeath_;				//죽었는지 체크
+
+	float4 MoveDir_;			// 걷는 방향
+
+	GameEngineRandom RandomDir_;	//랜덤 방향전향
+	GameEngineRandom RandomTimer_;	//랜덤 방향전향 타이머
+
+	MONSTER_STATE MonsterState_;
+
 	GameEngineRenderer* MonsterRenderer_;
 	GameEngineCollision* MonsterCollider_;		
 
@@ -60,6 +91,26 @@ public:
 	GameEngineRenderer* GetRenderer()
 	{
 		return MonsterRenderer_;
+	}
+
+	int GetLeft()
+	{
+		return GetPosition().ix() - GetScale().hix();
+	}
+
+	int GetRight()
+	{
+		return GetPosition().ix() + GetScale().hix();
+	}
+
+	int GetTop()
+	{
+		return GetPosition().iy() - GetScale().hiy();
+	}
+
+	int GetBottom()
+	{
+		return GetPosition().iy() + GetScale().hiy();
 	}
 
 

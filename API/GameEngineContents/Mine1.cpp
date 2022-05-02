@@ -5,6 +5,7 @@
 #include "TileData.h"
 #include "Block.h"
 #include "SmallStone.h"
+#include "Golem.h"
 
 #include <GameEngineBase/GameEngineTime.h>
 
@@ -251,13 +252,13 @@ void Mine1::LoadMapObject()
 
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AQUAMARINE_STONE);
 				
+				break;
+			case TILE_LIST::GOLEM:
 
-			case TILE_LIST::BUG:
-
-				//MonsterList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::PLAYER)));
-				//MonsterIter = --MonsterList_.end();
-				//MonsterIter->second->SetPosition(pos);
-				//break;
+				MonsterList_.insert(std::make_pair("Golem", CreateActor<Golem>((int)PLAYLEVEL::PLAYER)));
+				MonsterIter = --MonsterList_.end();
+				MonsterIter->second->SetPosition(pos);
+				break;
 
 			default:
 				break;
