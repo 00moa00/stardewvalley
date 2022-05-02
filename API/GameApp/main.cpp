@@ -35,7 +35,7 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
     //    거기에 대해서 그냥이라고 한다.
     //    
    
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+  //  _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
   //  int *a= new int(0);
 
