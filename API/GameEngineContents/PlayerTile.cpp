@@ -575,6 +575,7 @@ void Player::GetItem()
 				&& GetCurrentItem()->GetItemType() != ITEMTYPE::TOOL)
 			{
 				//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
+				PlayerState_ = PLAYER_UPDATE::GETITEM;
 				GetItemIter->second->ItemCollPlayer();
 				MapObject_.erase(GetItemIter);
 				GetItemIter = MapObject_.begin();

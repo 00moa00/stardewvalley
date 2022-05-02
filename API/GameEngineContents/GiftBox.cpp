@@ -47,7 +47,8 @@ void GiftBox::Update()
 	case OPEN_UPDATE::OPEN:
 
 		ItemRenderer_->ChangeAnimation("OPEN");
-		Player::MainPlayer->SetisEvent(true);
+
+
 		OpenUpdate_ = OPEN_UPDATE::GET;
 		break;
 
@@ -82,8 +83,7 @@ void GiftBox::Update()
 			Inventory::MainInventory->SetCurrentItem(HandItem);
 			//혹시 몰라 설정
 			Inventory::MainInventory->SetCurrentItemParsnipSeed();
-
-			Player::MainPlayer->SetisEvent(false);
+			Player::MainPlayer->SetUpdateStateInit();
 
 			MoveItem->Death();
 			this->Death();

@@ -572,7 +572,7 @@ void Player::Update()
 	case LEVEL_LIST::TITLE_LEVEL:
 		break;
 	case LEVEL_LIST::MYHOUSE_LEVEL:
-
+		GetItem();
 		SetCamera();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
@@ -717,8 +717,6 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::INIT:
 
-		//PlayerDirCheck();
-		GetItem();
 		ChangeHandItem();
 		harvestingCrops();
 
@@ -737,7 +735,7 @@ void Player::PlayerUpdate()
 
 
 		//이동키를 눌렀다면 이동스테이트로 변경
-		if (isMove() && isEvent_ == false)
+		if (isMove() )
 		{
 			PlayerState_ = PLAYER_UPDATE::WALK;
 		}
@@ -756,7 +754,6 @@ void Player::PlayerUpdate()
 				ChangeDirtTile();
 				SubEnergy(2);
 			}
-			//isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -764,7 +761,6 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::WATER:
 
-	//	isEvent_ = true;
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			CreateWaterEffet();
@@ -772,7 +768,6 @@ void Player::PlayerUpdate()
 			ChangeWetDirtTile();
 			SubEnergy(2);
 
-		//	isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -780,13 +775,11 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::AXE:
 
-	//	isEvent_ = true;
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			CrushTree();
 			CrushWood();
 
-		//	isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -795,12 +788,10 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::PICKAXE:
 
-		//isEvent_ = true;
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			CrushStone();
 
-		//	isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
