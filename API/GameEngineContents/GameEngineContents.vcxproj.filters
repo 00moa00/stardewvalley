@@ -8,9 +8,6 @@
     <ClCompile Include="TitleLogo.cpp">
       <Filter>Actor\02. Title</Filter>
     </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>Actor\03. Play</Filter>
-    </ClCompile>
     <ClCompile Include="MainUI.cpp">
       <Filter>Actor\03. Play\UI</Filter>
     </ClCompile>
@@ -434,6 +431,9 @@
     <ClCompile Include="Ruby.cpp">
       <Filter>Actor\03. Play\Obejct\MineItem</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Actor\03. Play\Obejct</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -442,9 +442,6 @@
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
       <Filter>Actor\02. Title</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>Actor\03. Play</Filter>
     </ClInclude>
     <ClInclude Include="MainUI.h">
       <Filter>Actor\03. Play\UI</Filter>
@@ -889,6 +886,9 @@
     </ClInclude>
     <ClInclude Include="Ruby.h">
       <Filter>Actor\03. Play\Obejct\MineItem</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Actor\03. Play\Obejct</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

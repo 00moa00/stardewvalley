@@ -5,7 +5,6 @@
 #include <GameEngine/GameEngineCollision.h>
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineInput.h>
-#include <GameEngineBase/GameEngineNameObject.h>
 
 #include "DialogueBox.h"
 #include "RendererData.h"
@@ -45,38 +44,35 @@ public:
 
 	virtual void OpenDialogue();
 	virtual void DirAnimationChange();
-	virtual std::string GetDirString();
 	virtual bool ForAwayPlayer();
 	virtual void LoadPennyMoveFlag();
 	virtual void LoadLewisMoveFlag();
 
 	virtual void MoveCheck();
-
 	virtual bool MoveRight();
 	virtual bool MoveLeft();
 	virtual bool MoveDown();
 	virtual bool MoveUp();
 	virtual bool MoveWait();
-
 	virtual void MoveUpdate();
 
 	virtual void CheckTalkingLimit();
 
+	virtual std::string GetDirString();
+
 private:
-
-
 
 protected:
 
-	bool TalkingLimit_; //하루에 한 번만 대화를 걸 수 있다.
+	bool TalkingLimit_;		//하루에 한 번만 대화를 걸 수 있다.
 
-	int WaitCount_; //몇시 몇번째 멈춤인지에 따라서 행동이 다르다
+	int WaitCount_;			//몇시 몇번째 멈춤인지에 따라서 행동이 다르다
 
 	float Speed_;
-	float WaitTimer_; //플레이어와 대화 종료후 행동에 다시 들어가는 딜레이 시간
+	float WaitTimer_;		//플레이어와 대화 종료후 행동에 다시 들어가는 딜레이 시간
 
-	float4 MoveDir_;
-	float4 PrevDir_;
+	float4 MoveDir_;		// 걷는 방향
+	float4 PrevDir_;		// 플레이어가 대화를 걸고나서 바뀔때 저장하기 위한 변수
 
 	bool DialogueUpdate_;
 	bool isWalking_;
@@ -104,7 +100,6 @@ public:
 
 	GameEngineCollision* GetCollision()
 	{
-
 		return NpcCollider_;
 	}
 

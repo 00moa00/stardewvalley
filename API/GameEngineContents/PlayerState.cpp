@@ -289,7 +289,6 @@ void Player::PlayerShopping()
 
 	case PLAYER_SHOPPING::SHOPPING:
 
-
 		if (isShopping_ == false)
 		{
 			PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_OFF;
