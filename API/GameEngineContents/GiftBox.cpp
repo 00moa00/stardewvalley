@@ -28,8 +28,8 @@ void GiftBox::Start()
 	ItemRenderer_->ChangeAnimation("INIT");
 
 
-	ItemCollider_ = CreateCollision("MapObject", { 48, 48 });
-	ItemCollider_->SetPivot({ 0, -24 });
+	ItemCollider_ = CreateCollision("MapObject", { 48, 35 });
+	ItemCollider_->SetPivot({ 0, -30 });
 	SetScale( { 60, 60 });
 	ItemName_ = "GiftBox";
 
