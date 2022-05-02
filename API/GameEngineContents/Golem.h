@@ -15,11 +15,14 @@ public:
 	Golem& operator=(const Golem& _Other) = delete;
 	Golem& operator=(Golem&& _Other) noexcept = delete;
 
-protected:
+private:
 	void Start() override;
 	void Update() override;
 
 private:
 	void DirAnimation();
+
+	float4 Dir;
+	float Check;
 };
 

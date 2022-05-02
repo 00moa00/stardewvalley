@@ -19,7 +19,7 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
     _In_ char*    lpCmdLine,
     _In_ int       nCmdShow)
-ㅡㄹ레이{
+{
     // 1. 아무 생각없이 이유가 없어
     //    이유 => 선생님
     //    자신의 이유가 없는 사람은 자기가 친 코드를 설명하기 싫거나 모른다

@@ -42,6 +42,7 @@ void Golem::Start()
 	HP_ = 10;
 	Speed_ = 60.f;
 
+
 	SetScale({ 48, 96 });
 }
 
@@ -49,8 +50,6 @@ void Golem::Update()
 {
 	DirAnimation(); 
 
-	float4 Dir;
-	float Check;
 	switch (MonsterState_)
 	{
 	case MONSTER_STATE::WAIT:
@@ -97,7 +96,6 @@ void Golem::Update()
 				MonsterState_ = MONSTER_STATE::WALK;
 			}
 
-
 			break;
 		case 3:
 
@@ -118,8 +116,6 @@ void Golem::Update()
 
 		break;
 
-
-
 	case MONSTER_STATE::RE_CHECK:
 		MonsterState_ = MONSTER_STATE::CHECK;
 
@@ -134,8 +130,7 @@ void Golem::Update()
 		{
 			Timer_ = 0.f;
 			MonsterState_ = MONSTER_STATE::CHECK;
-		}
-		
+		}		
 
 		Dir.Normal2D();
 
@@ -149,7 +144,6 @@ void Golem::Update()
 				MoveDir_ = float4::RIGHT;
 			}
 
-
 			//플레이어가 오른쪽, 위에 있다
 			if (Dir.x > 0 && Dir.y < 0)
 			{
@@ -157,14 +151,12 @@ void Golem::Update()
 				MoveDir_ = float4::RIGHT;
 			}
 
-
 			//플레이어가 왼쪽, 위에 있다
 			if (Dir.x < 0 && Dir.y < 0)
 			{
 				MoveDir_ = float4::ZERO;
 				MoveDir_ = float4::LEFT;
 			}
-
 
 			//플레이어가 왼쪽, 아래에 있다
 			if (Dir.x < 0 && Dir.y > 0)

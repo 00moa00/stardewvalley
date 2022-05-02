@@ -16,16 +16,12 @@ enum class MONSTER_STATE
 	WAIT,
 	CHECK,
 	RE_CHECK,
-
-	MOVE_TO_PLAYER_X_RIGHT,
-	MOVE_TO_PLAYER_X_LEFT,
-
-
-
-	MOVE_TO_PLAYER_Y_UP,
-	MOVE_TO_PLAYER_Y_DOWN,
-
 	WALK,
+
+
+	MOVE_UP,
+	MOVE_DOWN,
+
 	MAX
 };
 
@@ -67,10 +63,11 @@ protected:
 
 	float Speed_;				//이동 스피드
 	float Timer_;				//방향 전향 타이머
-	float4 PrevPos_;
 
 	bool isDeath_;				//죽었는지 체크
+	bool isHit_;				//크랩용 플러그
 
+	float4 PrevPos_;
 	float4 MoveDir_;			// 걷는 방향
 
 	GameEngineRandom RandomDir_;	//랜덤 방향전향
@@ -102,6 +99,11 @@ public:
 		return MonsterRenderer_;
 	}
 
+	bool GetisHit()
+	{
+		return isHit_;
+	}
+
 	int GetLeft()
 	{
 		return GetPosition().ix() - GetScale().hix();
@@ -126,6 +128,11 @@ public:
 	//================================
 	//    Setter
 	//================================
+
+	void SetIsHit(bool _Flag)
+	{
+		isHit_ = _Flag;
+	}
 
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------
 

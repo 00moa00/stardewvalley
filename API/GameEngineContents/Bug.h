@@ -1,7 +1,8 @@
 #pragma once
+#include "Monster.h"
 
 // Ό³Έν :
-class Bug
+class Bug : public Monster
 {
 public:
 	// constrcuter destructer
@@ -14,9 +15,12 @@ public:
 	Bug& operator=(const Bug& _Other) = delete;
 	Bug& operator=(Bug&& _Other) noexcept = delete;
 
-protected:
+private:
+	void Start() override;
+	void Update() override;
 
 private:
+	void DirAnimation();
 
 };
 
