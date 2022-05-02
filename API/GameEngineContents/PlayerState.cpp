@@ -617,16 +617,17 @@ void Player::NpcCollCheck()
 
 			if (NpcIter->second->NPCCheck(PlayerCollCheckPos(), GetScale()) == true
 				&& NpcIter->second->GetTalkingLimit() == false
-				&& MainMouse_->isMouseClick() == true)
+				&& MainMouse_->isMouseRightClick() == true)
 			{
-				if (PlayerState_ == PLAYER_UPDATE::INIT)
-				{
-					PlayerState_ = PLAYER_UPDATE::TALKING;
-				}
-				if (PlayerState_ == PLAYER_UPDATE::TALKING)
-				{
-					PlayerState_ = PLAYER_UPDATE::INIT;
-				}
+				isEvent_ = !isEvent_;
+				//if (PlayerState_ == PLAYER_UPDATE::INIT)
+				//{
+				//	PlayerState_ = PLAYER_UPDATE::TALKING;
+				//}
+				//if (PlayerState_ == PLAYER_UPDATE::TALKING)
+				//{
+				//	PlayerState_ = PLAYER_UPDATE::INIT;
+				//}
 
 				NpcIter->second->OpenDialogue();
 

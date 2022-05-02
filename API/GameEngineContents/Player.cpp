@@ -577,7 +577,7 @@ void Player::Update()
 		PlayerUpdate();
 		SetPlayerHandItemPos();
 		ChangeLevel();
-		NpcCollCheck();
+	//	NpcCollCheck();
 		DelaySpeed();
 		DirAnimationChange();
 
@@ -589,7 +589,7 @@ void Player::Update()
 		PlayerUpdate();
 		SetPlayerHandItemPos();
 		ChangeLevel();
-		NpcCollCheck();
+		//NpcCollCheck();
 		DelaySpeed();
 		CheckShippingBox();
 		DirAnimationChange();
@@ -608,20 +608,20 @@ void Player::Update()
 	case LEVEL_LIST::TOWN_LEVEL:
 
 		SetCamera();
+		NpcCollCheck();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
 		ChangeLevel();
-		NpcCollCheck();
 		DelaySpeed();
 		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::SALOON_LEVEL:
 		SetCamera();
+		NpcCollCheck();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
 		ChangeLevel();
-		NpcCollCheck();
 		DelaySpeed();
 		PlayerShopping();
 		AddMoneyAnimation();
@@ -631,10 +631,10 @@ void Player::Update()
 		break;
 	case LEVEL_LIST::SEEDSHOP_LEVEL:
 		SetCamera();
+		NpcCollCheck();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
 		ChangeLevel();
-		NpcCollCheck();
 		DelaySpeed();
 		PlayerShopping();
 		AddMoneyAnimation();
@@ -735,7 +735,7 @@ void Player::PlayerUpdate()
 
 
 		//이동키를 눌렀다면 이동스테이트로 변경
-		if (isMove() )
+		if (isMove() && isEvent_ == false)
 		{
 			PlayerState_ = PLAYER_UPDATE::WALK;
 		}
@@ -942,6 +942,9 @@ void Player::PlayerUpdate()
 	case PLAYER_UPDATE::GETITEM:
 
 		MoveDir_ = float4::DOWN;
+		break;
+
+	case PLAYER_UPDATE::TALKING:
 
 
 		break;
