@@ -44,10 +44,10 @@ Player::Player()
 
 	FadeInOut_(nullptr),
 
+	isEvent_(false),
 	ObjectColl_(false),
 	FarmingArea_(false),
 	isShopping_(false),
-	isEvent_(false),
 	isDelaySpeed_(false),
 
 	WetTileMap_(nullptr),
@@ -78,7 +78,9 @@ Player::Player()
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::EAT_WAIT)] = "EAT_WAIT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::EAT)] = "EAT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::DRINK)] = "DRINK";
-
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::SHOPPING)] = "INIT";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::GETITEM)] = "INIT";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::TALKING)] = "INIT";
 
 
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::INIT)] = "INIT";
@@ -93,6 +95,9 @@ Player::Player()
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::EAT_WAIT)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::EAT)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::DRINK)] = "INIT";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::SHOPPING)] = "INIT";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::GETITEM)] = "INIT";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::TALKING)] = "INIT";
 
 
 }	
@@ -570,11 +575,11 @@ void Player::Update()
 
 		SetCamera();
 		PlayerUpdate();
-		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		NpcCollCheck();
 		DelaySpeed();
+		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::MYFARM_LEVEL:
@@ -582,40 +587,38 @@ void Player::Update()
 
 		SetCamera();
 		PlayerUpdate();
-		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		NpcCollCheck();
 		DelaySpeed();
 		CheckShippingBox();
+		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::BUSSTOP_LEVEL:
 
 		SetCamera();
 		PlayerUpdate();
-		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		DelaySpeed();
-		//NpcCollCheck();
+		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::TOWN_LEVEL:
 
 		SetCamera();
 		PlayerUpdate();
-		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		NpcCollCheck();
 		DelaySpeed();
+		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::SALOON_LEVEL:
 		SetCamera();
 		PlayerUpdate();
-		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		NpcCollCheck();
@@ -623,12 +626,12 @@ void Player::Update()
 		PlayerShopping();
 		AddMoneyAnimation();
 		SubMoneyAnimation();
+		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::SEEDSHOP_LEVEL:
 		SetCamera();
 		PlayerUpdate();
-		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		NpcCollCheck();
@@ -636,6 +639,7 @@ void Player::Update()
 		PlayerShopping();
 		AddMoneyAnimation();
 		SubMoneyAnimation();
+		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::BACKFOREST_LEVEL:
@@ -645,33 +649,34 @@ void Player::Update()
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		DelaySpeed();
+		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::MINE_LEVEL:
 		SetCamera();
 		PlayerUpdate();
-		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		DelaySpeed();
+		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::MINEPOINT_LEVEL:
 		SetCamera();
 		PlayerUpdate();
-		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		DelaySpeed();
+		DirAnimationChange();
 
 		break;
 	case LEVEL_LIST::MINEFLOOR_LEVEL:
 		SetCamera();
 		PlayerUpdate();
-		PlayerDirCheck();
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		DelaySpeed();
+		DirAnimationChange();
 
 		break;
 	default:
@@ -712,6 +717,7 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::INIT:
 
+		//PlayerDirCheck();
 		GetItem();
 		ChangeHandItem();
 		harvestingCrops();
@@ -741,7 +747,7 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::HOE:
 
-		isEvent_ = true;
+	//	isEvent_ = true;
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			if (FarmingArea_ == true)
@@ -750,7 +756,7 @@ void Player::PlayerUpdate()
 				ChangeDirtTile();
 				SubEnergy(2);
 			}
-			isEvent_ = false;
+			//isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -758,7 +764,7 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::WATER:
 
-		isEvent_ = true;
+	//	isEvent_ = true;
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			CreateWaterEffet();
@@ -766,7 +772,7 @@ void Player::PlayerUpdate()
 			ChangeWetDirtTile();
 			SubEnergy(2);
 
-			isEvent_ = false;
+		//	isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -774,13 +780,13 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::AXE:
 
-		isEvent_ = true;
+	//	isEvent_ = true;
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			CrushTree();
 			CrushWood();
 
-			isEvent_ = false;
+		//	isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -789,12 +795,12 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::PICKAXE:
 
-		isEvent_ = true;
+		//isEvent_ = true;
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			CrushStone();
 
-			isEvent_ = false;
+		//	isEvent_ = false;
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -802,7 +808,7 @@ void Player::PlayerUpdate()
 		break;
 
 	case PLAYER_UPDATE::HANDITEM:
-
+		PlayerDirCheck();
 		ChangeLevel();
 		ChangeHandItem();
 		CheckDrink();
@@ -830,14 +836,14 @@ void Player::PlayerUpdate()
 
 
 	case PLAYER_UPDATE::WALK:
-
+		PlayerDirCheck();
 		PlayerWalk();
 		harvestingCrops();
 		CheckDrink();
 		CheckEat();
 
 
-		if (isStop() || isEvent_ == true)
+		if (isStop())
 		{
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
@@ -845,7 +851,7 @@ void Player::PlayerUpdate()
 		break;
 
 	case PLAYER_UPDATE::HANDITEMWALK:
-
+		PlayerDirCheck();
 		PlayerWalk();
 
 
@@ -937,7 +943,17 @@ void Player::PlayerUpdate()
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
+		break;
+	case PLAYER_UPDATE::SHOPPING:
+		MoveDir_ = float4::UP;
 
+		break;
+	case PLAYER_UPDATE::GETITEM:
+
+		MoveDir_ = float4::DOWN;
+
+
+		break;
 	default:
 		break;
 	}

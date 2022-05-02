@@ -136,6 +136,11 @@ void Player::SetPlayerFaint()
 	
 }
 
+void Player::SetisEvent(bool _Flag)
+{
+	isEvent_ = _Flag;
+}
+
 void Player::ChangeHair(int _Index)
 {
 
@@ -233,9 +238,10 @@ void Player::SetPlayerDirDown()
 
 }
 
-void Player::SetisEvent(bool _Flag)
+void Player::SetUpdateStateInit()
 {
-	isEvent_ = _Flag;
+	PlayerState_ = PLAYER_UPDATE::INIT;
+
 }
 
 
@@ -283,6 +289,7 @@ void Player::PlayerShopping()
 
 		if (MouseClickAndColl() == true)
 		{
+			PlayerState_ = PLAYER_UPDATE::SHOPPING;
 			PlayerShoppingState_ = PLAYER_SHOPPING::SHOP_ON;
 		}
 		break;
@@ -303,7 +310,7 @@ void Player::PlayerShopping()
 		Shop::MainShop->ShopOn();
 		Inventory::MainInventory->SetInventoryMoveStateInit();
 		isShopping_ = true;
-		isEvent_ = true;
+	//	isEvent_ = true;
 		PlayerShoppingState_ = PLAYER_SHOPPING::SHOPPING;
 
 		break;
@@ -311,7 +318,8 @@ void Player::PlayerShopping()
 	case PLAYER_SHOPPING::SHOP_OFF:
 
 		Shop::MainShop->ShopOff();
-		isEvent_ = false;
+	//	isEvent_ = false;
+		PlayerState_ = PLAYER_UPDATE::INIT;
 		PlayerShoppingState_ = PLAYER_SHOPPING::INT;
 
 		break;
@@ -611,7 +619,14 @@ void Player::NpcCollCheck()
 				&& NpcIter->second->GetTalkingLimit() == false
 				&& MainMouse_->isMouseClick() == true)
 			{
-				isEvent_ = !isEvent_;
+				if (PlayerState_ == PLAYER_UPDATE::INIT)
+				{
+					PlayerState_ = PLAYER_UPDATE::TALKING;
+				}
+				if (PlayerState_ == PLAYER_UPDATE::TALKING)
+				{
+					PlayerState_ = PLAYER_UPDATE::INIT;
+				}
 
 				NpcIter->second->OpenDialogue();
 
@@ -809,27 +824,25 @@ void Player::PlayerWalk() {
 
 void Player::PlayerDirCheck()
 {
-	if (isEvent_ == false)
-	{
-		if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
-		{
-			MoveDir_ = float4::LEFT;
-		}
-		else if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
-		{
-			MoveDir_ = float4::RIGHT;
-		}
 
-		if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
-		{
-			MoveDir_ = float4::UP;
-		}
-		else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
-		{
-			MoveDir_ = float4::DOWN;
-		}
+	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+	{
+		MoveDir_ = float4::LEFT;
 	}
-		DirAnimationChange();
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
+	{
+		MoveDir_ = float4::RIGHT;
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
+	{
+		MoveDir_ = float4::UP;
+	}
+	else if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
+	{
+		MoveDir_ = float4::DOWN;
+	}
+
 
 }
 

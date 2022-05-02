@@ -141,8 +141,8 @@ private:
 	bool FarmingArea_;
 	bool ObjectColl_;
 	bool isShopping_;
-	bool isEvent_;
 	bool isDelaySpeed_;
+	bool isEvent_;
 
 	std::string ChangeLevelName_;
 
@@ -230,9 +230,11 @@ public:
 	//    Setter
 	//================================
 
+
 	void ClearWetDirtTile();
 
 	void SetPlayerFaint();
+	void SetisEvent(bool _Flag);
 
 	void ChangeHair(int _Index);
 	void ChangeShirts(int _Index);
@@ -257,7 +259,8 @@ public:
 	void DeleteSeedList(int _Index);
 
 	void SetPlayerDirDown();
-	void SetisEvent(bool _Flag);
+	void SetUpdateStateInit();
+	//void SetisEvent(bool _Flag);
 
 	//================================
 	//    Etc

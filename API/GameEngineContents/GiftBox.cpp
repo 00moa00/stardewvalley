@@ -83,7 +83,6 @@ void GiftBox::Update()
 			//혹시 몰라 설정
 			Inventory::MainInventory->SetCurrentItemParsnipSeed();
 
-			Player::MainPlayer->SetPlayerDirDown();
 			Player::MainPlayer->SetisEvent(false);
 
 			MoveItem->Death();

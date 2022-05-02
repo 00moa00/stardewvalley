@@ -580,11 +580,6 @@ void Player::GetItem()
 				GetItemIter = MapObject_.begin();
 			}
 
-			else
-			{
-				PlayerState_ = PLAYER_UPDATE::INIT;
-
-			}
 		}
 	}
 }
