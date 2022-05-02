@@ -113,9 +113,6 @@
     <ClCompile Include="Parsnip_Crops.cpp">
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClCompile>
-    <ClCompile Include="Items.cpp">
-      <Filter>Actor\03. Play\Obejct</Filter>
-    </ClCompile>
     <ClCompile Include="TreeTop.cpp">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClCompile>
@@ -212,9 +209,6 @@
     <ClCompile Include="Kale.cpp">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
-    <ClCompile Include="Crops.cpp">
-      <Filter>Actor\03. Play\Obejct</Filter>
-    </ClCompile>
     <ClCompile Include="Jazz.cpp">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClCompile>
@@ -226,9 +220,6 @@
     </ClCompile>
     <ClCompile Include="Pierre.cpp">
       <Filter>Actor\03. Play\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Npc.cpp">
-      <Filter>Actor\03. Play\Obejct</Filter>
     </ClCompile>
     <ClCompile Include="DialogueBox.cpp">
       <Filter>Actor\03. Play\NPC</Filter>
@@ -247,9 +238,6 @@
     </ClCompile>
     <ClCompile Include="Particles.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="Effect.cpp">
-      <Filter>Actor\03. Play\Obejct</Filter>
     </ClCompile>
     <ClCompile Include="StoneEffect.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
@@ -313,9 +301,6 @@
     </ClCompile>
     <ClCompile Include="PlayerCustomClothes.cpp">
       <Filter>Actor\03. Play\Inventory</Filter>
-    </ClCompile>
-    <ClCompile Include="BakedFish.cpp">
-      <Filter>Actor\03. Play\Obejct</Filter>
     </ClCompile>
     <ClCompile Include="SaloonLevel.cpp">
       <Filter>Level</Filter>
@@ -431,8 +416,20 @@
     <ClCompile Include="Ruby.cpp">
       <Filter>Actor\03. Play\Obejct\MineItem</Filter>
     </ClCompile>
+    <ClCompile Include="Crops.cpp">
+      <Filter>Actor\03. Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Actor\03. Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Items.cpp">
+      <Filter>Actor\03. Play</Filter>
+    </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>Actor\03. Play\Obejct</Filter>
+      <Filter>Actor\03. Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Npc.cpp">
+      <Filter>Actor\03. Play</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -566,9 +563,6 @@
     <ClInclude Include="Parsnip_Crops.h">
       <Filter>Actor\03. Play\Obejct\Farming\Crops</Filter>
     </ClInclude>
-    <ClInclude Include="Items.h">
-      <Filter>Actor\03. Play\Obejct</Filter>
-    </ClInclude>
     <ClInclude Include="TreeTop.h">
       <Filter>Actor\03. Play\Obejct\MapObject</Filter>
     </ClInclude>
@@ -665,9 +659,6 @@
     <ClInclude Include="Kale.h">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Crops.h">
-      <Filter>Actor\03. Play\Obejct</Filter>
-    </ClInclude>
     <ClInclude Include="Jazz.h">
       <Filter>Actor\03. Play\Obejct\Item</Filter>
     </ClInclude>
@@ -679,9 +670,6 @@
     </ClInclude>
     <ClInclude Include="Pierre.h">
       <Filter>Actor\03. Play\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Npc.h">
-      <Filter>Actor\03. Play\Obejct</Filter>
     </ClInclude>
     <ClInclude Include="DialogueBox.h">
       <Filter>Actor\03. Play\NPC</Filter>
@@ -703,9 +691,6 @@
     </ClInclude>
     <ClInclude Include="Particles.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>Actor\03. Play\Obejct</Filter>
     </ClInclude>
     <ClInclude Include="StoneEffect.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
@@ -769,9 +754,6 @@
     </ClInclude>
     <ClInclude Include="PlayerCustomClothes.h">
       <Filter>Actor\03. Play\Inventory</Filter>
-    </ClInclude>
-    <ClInclude Include="BakedFish.h">
-      <Filter>Actor\03. Play\Obejct</Filter>
     </ClInclude>
     <ClInclude Include="SaloonLevel.h">
       <Filter>Level</Filter>
@@ -887,8 +869,20 @@
     <ClInclude Include="Ruby.h">
       <Filter>Actor\03. Play\Obejct\MineItem</Filter>
     </ClInclude>
+    <ClInclude Include="Npc.h">
+      <Filter>Actor\03. Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Crops.h">
+      <Filter>Actor\03. Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Actor\03. Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Items.h">
+      <Filter>Actor\03. Play</Filter>
+    </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>Actor\03. Play\Obejct</Filter>
+      <Filter>Actor\03. Play</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -978,6 +972,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Obejct\MineItem">
       <UniqueIdentifier>{91019c2c-bd96-40dd-8c95-3aaf9fc13b49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Monster">
+      <UniqueIdentifier>{b446a918-e212-4bdb-b6df-fc68e1693e89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -174,10 +174,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BakedFish.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Beer.h">
       <SubType>
       </SubType>
@@ -721,10 +717,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BackForestLevel.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="BakedFish.cpp">
       <SubType>
       </SubType>
     </ClCompile>
