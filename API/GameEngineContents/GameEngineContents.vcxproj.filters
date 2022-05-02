@@ -431,6 +431,18 @@
     <ClCompile Include="Npc.cpp">
       <Filter>Actor\03. Play</Filter>
     </ClCompile>
+    <ClCompile Include="Bug.cpp">
+      <Filter>Actor\03. Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>Actor\03. Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Clab.cpp">
+      <Filter>Actor\03. Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Golem.cpp">
+      <Filter>Actor\03. Play\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -883,6 +895,21 @@
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>Actor\03. Play</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterData.h">
+      <Filter>Actor\00. GlobalData</Filter>
+    </ClInclude>
+    <ClInclude Include="Bug.h">
+      <Filter>Actor\03. Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>Actor\03. Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Clab.h">
+      <Filter>Actor\03. Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Golem.h">
+      <Filter>Actor\03. Play\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

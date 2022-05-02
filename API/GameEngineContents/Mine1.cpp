@@ -78,6 +78,7 @@ void Mine1::LoadMapObject()
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
 			std::map<int, Items*>::iterator ThisIter;
+			std::map<std::string, Monster*>::iterator MonsterIter;
 
 
 			const float4 IndexPos = {
@@ -250,7 +251,14 @@ void Mine1::LoadMapObject()
 
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AQUAMARINE_STONE);
 				
-				break;
+
+			case TILE_LIST::BUG:
+
+				//MonsterList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::PLAYER)));
+				//MonsterIter = --MonsterList_.end();
+				//MonsterIter->second->SetPosition(pos);
+				//break;
+
 			default:
 				break;
 

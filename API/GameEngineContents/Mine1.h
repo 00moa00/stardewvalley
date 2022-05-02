@@ -11,7 +11,7 @@
 #include "Player.h"
 #include "Inventory.h"
 #include "Items.h"
-#include "Npc.h"
+#include "Monster.h"
 #include "Mouse.h"
 
 // 설명 :
@@ -40,6 +40,7 @@ private:
 	BackGround* BackGroundFront_;
 
 	std::map<int, Items*> MapObject_;
+	std::map<std::string, Monster*> MonsterList_;	//검색할 일이 없으면 다른 자료 구조로 바꿀 예정
 
 private:
 	void LoadMapObject();

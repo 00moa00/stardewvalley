@@ -75,6 +75,12 @@ enum class TILE_LIST {
 	MINE_FLOOR = 46,
 	MOVE_MINE=48,
 
+	BUG = 60,
+	BAT,
+	CRAB,
+	GOLEM
+
+
 };
 
 enum class NPC_MOVE_FLAG

@@ -45,8 +45,8 @@ private:
 
 	FlowingFlower* FlowingFlower_;
 
-	std::map<std::string, Npc*> NpcList_;
 	std::map<int, Items*> MapObject_;
+	std::map<std::string, Npc*> NpcList_;	//검색할 일이 없으면 다른 자료 구조로 바꿀 예정
 	
 };
 

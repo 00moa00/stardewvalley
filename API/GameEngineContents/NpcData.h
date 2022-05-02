@@ -1,8 +1,5 @@
 #pragma once
 
-
-
-
 enum class NPC
 {
 	PIERRE,
