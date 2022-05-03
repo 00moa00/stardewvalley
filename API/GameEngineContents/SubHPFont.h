@@ -20,9 +20,12 @@ private:
 	void Update() override;
 
 private:
+	float4 PrevPos_;
+	float4 MoveDir_;
+
 	Font* SubHPFont_;
 	
 public:
-	void SetPosition(float4 _Pos);
+	void SetPosAndNum(float4 _Pos, int _Damage);
 };
 
