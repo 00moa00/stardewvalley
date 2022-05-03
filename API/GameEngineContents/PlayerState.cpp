@@ -687,7 +687,6 @@ void Player::AddMoneyAnimation()
 
 void Player::SubMoneyAnimation()
 {
-	//float Timer_ = 0;
 	switch (SubMoneyCount_)
 	{
 	case MONEY_UPDATE::WAIT:
@@ -734,6 +733,28 @@ void Player::DelaySpeed()
 			DelaySpeedTimer_ = 0;
 		}
 	}
+}
+
+void Player::UpdateInvincibilityTime()
+{
+	if (Invincibility_ == true)
+	{
+		InvincibilityTimer_ += GameEngineTime::GetDeltaTime();
+		if (InvincibilityTimer_ > 1.5f)
+		{
+			InvincibilityTimer_ = 0.f;
+			Invincibility_ = false;
+		}
+	}
+}
+
+void Player::SetPlayerAlpha255()
+{
+
+}
+
+void Player::SetPlayerAlpha0()
+{
 }
 
 

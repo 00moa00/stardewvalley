@@ -133,9 +133,9 @@ private:
 	float MapSizeY_;
 	float AnimationFrame_;
 
-	float Timer_;
 	float AnimationWaitTimer_;
 	float DelaySpeedTimer_;
+	float InvincibilityTimer_;
 
 	float4 MoveDir_;
 	float4 CameraPos_;
@@ -145,6 +145,7 @@ private:
 	bool isShopping_;
 	bool isDelaySpeed_;
 	bool isEvent_;
+	bool Invincibility_;
 
 	std::string ChangeLevelName_;
 
@@ -302,6 +303,12 @@ private:
 	void SubMoneyAnimation();
 
 	void DelaySpeed();
+
+	void UpdateInvincibilityTime();
+
+	void SetPlayerAlpha255();
+	void SetPlayerAlpha0();
+
 
 	// 메인 업데이트 함수
 	void PlayerUpdate();
