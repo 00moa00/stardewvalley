@@ -568,14 +568,13 @@ void Player::AttackMonster()
 	std::map<std::string, Monster*>::iterator GetMonsterIter = MonsterList_.begin();
 	for (; GetMonsterIter != MonsterList_.end(); ++GetMonsterIter) {
 
-		if (GetMonsterIter->second->MonsterCheck(PlayerCollCheckPos(), GetScale()) == true
+		if (GetMonsterIter->second->MonsterVSPlayer() == true
 			&&GetCurrentItem()->GetItemType()==ITEMTYPE::TOOL
 			&& MainMouse_->isMouseClick() == true)
 		{
 
 			//몬스터의 체력을 깍는다.
-			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower());
-			
+			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower());		
 
 		}
 
@@ -588,14 +587,25 @@ void Player::MonsterAndPlayerColl()
 	std::map<std::string, Monster*>::iterator GetMonsterIter = MonsterList_.begin();
 	for (; GetMonsterIter != MonsterList_.end(); ++GetMonsterIter) {
 
-		if (GetMonsterIter->second->MonsterCheck(PlayerCollCheckPos(), GetScale()) == true)
+		if (GetMonsterIter->second->MonsterVSPlayer() == true)
 		{
-			//무적 타임이 아닐때만
-			if (Invincibility_ == false)
+			//무적중이면 데미지를 깍지 않는다.
+			if (Invincibility_ == true)
 			{
-				SubHP(GetMonsterIter->second->GetDamage());
+				return;
 			}
-			//뒤로 가기
+
+			SubHP(GetMonsterIter->second->GetDamage());
+
+			//무적 제한중이 아닐때만 무적이 된다.
+			if (IsNotInvincibility_ == false)
+			{
+				if (Invincibility_ == false)
+				{
+					Invincibility_ = true;
+				}
+			}
+
 
 
 		}

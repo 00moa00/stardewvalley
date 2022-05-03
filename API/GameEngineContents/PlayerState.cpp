@@ -740,21 +740,77 @@ void Player::UpdateInvincibilityTime()
 	if (Invincibility_ == true)
 	{
 		InvincibilityTimer_ += GameEngineTime::GetDeltaTime();
-		if (InvincibilityTimer_ > 1.5f)
+
+		if (InvincibilityTimer_ > 0)
 		{
+			SetPlayerAlpha0();
+		}
+
+		if (InvincibilityTimer_ > 0.1 )
+		{
+			SetPlayerAlpha255();
+		}
+
+		if (InvincibilityTimer_ > 0.2)
+		{
+			SetPlayerAlpha0();
+		}
+
+		if (InvincibilityTimer_ > 0.3)
+		{
+			SetPlayerAlpha255();
+		}
+
+		if (InvincibilityTimer_ > 0.4)
+		{
+			SetPlayerAlpha0();
+		}
+
+		if (InvincibilityTimer_ > 0.5f)
+		{
+			SetPlayerAlpha255();
 			InvincibilityTimer_ = 0.f;
+			IsNotInvincibility_ = true;
 			Invincibility_ = false;
+		}
+	}
+}
+
+void Player::UpdateIsNotInvincibilityTime()
+{
+	//매 프레임 무적이 되는걸 막기 위한 함수
+	//IsNotInvincibility_가 false일때만 무적이 될 수 있따.
+
+	if (IsNotInvincibility_ == true)
+	{
+		IsNotInvincibilityTimer_ += GameEngineTime::GetDeltaTime();
+
+		if (IsNotInvincibilityTimer_ > 2.0f)
+		{
+			IsNotInvincibilityTimer_ = 0.f;
+			IsNotInvincibility_ = false;
 		}
 	}
 }
 
 void Player::SetPlayerAlpha255()
 {
-
+	PlayerBodyRenderer_->SetAlpha(255);
+	PlayerPantsRenderer_->SetAlpha(255);
+	PlayerShirtsRenderer_->SetAlpha(255);
+	PlayerHairRenderer_->SetAlpha(255);
+	PlayerHandRenderer_->SetAlpha(255);
 }
 
 void Player::SetPlayerAlpha0()
 {
+
+	PlayerBodyRenderer_->SetAlpha(0);
+	PlayerPantsRenderer_->SetAlpha(0);
+	PlayerShirtsRenderer_->SetAlpha(0);
+	PlayerHairRenderer_-> SetAlpha(0);
+	PlayerHandRenderer_->SetAlpha(0);
+
 }
 
 

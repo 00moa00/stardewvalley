@@ -52,7 +52,7 @@ public:
 	virtual bool CheckLeftObject();
 	virtual bool CheckUpObject();
 	virtual bool CheckDownObject();
-
+	
 	//virtual bool CheckPlayer();
 
 protected:
@@ -127,6 +127,11 @@ public:
 	int GetBottom()
 	{
 		return GetPosition().iy() + GetScale().hiy();
+	}
+
+	bool MonsterVSPlayer()
+	{
+		return	MonsterCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect);
 	}
 
 

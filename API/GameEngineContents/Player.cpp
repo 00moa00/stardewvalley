@@ -33,6 +33,7 @@ Player::Player()
 	DelaySpeedTimer_(0.f),
 	AnimationWaitTimer_(0.f),
 	InvincibilityTimer_(0.f),
+	IsNotInvincibilityTimer_(0.f),
 
 	PlayerBodyRenderer_(nullptr),
 	PlayerPantsRenderer_(nullptr),
@@ -52,6 +53,7 @@ Player::Player()
 	isShopping_(false),
 	isDelaySpeed_(false),
 	Invincibility_(false),
+	IsNotInvincibility_(false),
 
 	WetTileMap_(nullptr),
 	DirtTileMap_(nullptr),
@@ -709,6 +711,8 @@ void Player::Update()
 		DelaySpeed();
 		AttackMonster();
 		DirAnimationChange();
+		UpdateInvincibilityTime();
+		UpdateIsNotInvincibilityTime();
 		MonsterAndPlayerColl();
 		AttackMonster();
 
