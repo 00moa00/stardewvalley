@@ -74,6 +74,7 @@ void Inventory::Start()
 	NewItem<Pickaxe>();
 	NewItem<WildHorseradish>();
 	NewItem<Potato_Seeds>(3);
+	NewItem<Swoard>();
 
 
 	float4 Position;

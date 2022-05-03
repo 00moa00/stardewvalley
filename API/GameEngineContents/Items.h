@@ -57,7 +57,8 @@ enum class TOOLTYPE
 	HOE,
 	WATTERING_CAN,
 	AXE,
-	PICKAXE
+	PICKAXE,
+	SWOARD
 };
 
 enum class STONETYPE

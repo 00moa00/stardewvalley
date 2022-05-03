@@ -72,6 +72,8 @@ Player::Player()
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::AXE)] = "HOE";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "HOE";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::SWOARD)] = "SWOARD";
+
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "HANDITEM";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "HANDITEMWALK";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "FAINT";
@@ -91,6 +93,8 @@ Player::Player()
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "PICKAXE";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::SWOARD)] = "SWOARD";
+
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::EAT_WAIT)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::EAT)] = "INIT";
@@ -330,6 +334,36 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0), static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0), static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
 
+
+		//================================
+		//     플레이어 칼 사용
+		//================================
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT5), 0.080f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT0), static_cast<int>(PLAYER::SWAORD_RIGHT5), 0.080f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK5), 0.080f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT0), static_cast<int>(PLAYER::SWAORD_LEFT5), 0.080f, false);
+
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT5), 0.080f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT0), static_cast<int>(PLAYER::SWAORD_RIGHT5), 0.080f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK5), 0.080f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT0), static_cast<int>(PLAYER::SWAORD_LEFT5), 0.080f, false);
+
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT5), 0.080f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT0), static_cast<int>(PLAYER::SWAORD_RIGHT5), 0.080f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK5), 0.080f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT0), static_cast<int>(PLAYER::SWAORD_LEFT5), 0.080f, false);
+
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT5), 0.080f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT0), static_cast<int>(PLAYER::SWAORD_RIGHT5), 0.080f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK5), 0.080f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT0), static_cast<int>(PLAYER::SWAORD_LEFT5), 0.080f, false);
+
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT5), 0.080f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT0), static_cast<int>(PLAYER::SWAORD_RIGHT5), 0.080f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK5), 0.080f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT0), static_cast<int>(PLAYER::SWAORD_LEFT5), 0.080f, false);
+
+
 		//================================
 		//     플레이어 기절
 		//================================
@@ -515,6 +549,18 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		ToolRenderer_->CreateAnimation("wateringcan_front.bmp", "FRONT_WATER", static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT0), static_cast<int>(WATERINGCAN_FRONT::WATERINGCAN_FRONT2), 0.200f, false);
 		ToolRenderer_->CreateAnimation("wateringcan_back.bmp", "BACK_WATER", static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK0), static_cast<int>(WATERINGCAN_BACK::WATERINGCAN_BACK2), 0.200f, false);
 		
+
+		//================================
+		//     플레이어 칼 사용
+		//================================
+		
+		ToolRenderer_->CreateAnimation("Swoard_right.bmp", "RIGHT_SWOARD", static_cast<int>(SWAORD_RIGHT::SWAORD_RIGHT0), static_cast<int>(SWAORD_RIGHT::SWAORD_RIGHT5), 0.080f, false);
+		ToolRenderer_->CreateAnimation("Swoard_Left.bmp", "LEFT_SWOARD", static_cast<int>(SWAORD_LEFT::SWAORD_LEFT0), static_cast<int>(SWAORD_LEFT::SWAORD_LEFT5), 0.080f, false);
+		ToolRenderer_->CreateAnimation("Swoard_front.bmp", "FRONT_SWOARD", static_cast<int>(SWAORD_FRONT::SWAORD_FRONT0), static_cast<int>(SWAORD_FRONT::SWAORD_FRONT5), 0.080f, false);
+		ToolRenderer_->CreateAnimation("Swoard_back.bmp", "BACK_SWOARD", static_cast<int>(SWAORD_BACK::SWAORD_BACK0), static_cast<int>(SWAORD_BACK::SWAORD_BACK5), 0.080f, false);
+
+
+
 		//------< 애니메이션 초기화 >------------------------------------------------------------------
 		
 		ToolRenderer_->ChangeAnimation("LEFT_INIT");
@@ -795,6 +841,24 @@ void Player::PlayerUpdate()
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
+
+		break;
+	case PLAYER_UPDATE::SWOARD:
+		//CrushStone();
+		ToolRenderer_->SetPivot({ 0, 38 });
+		if (GetDirString() == "BACK_")
+		{
+			ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+			PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+
+		}
+		if (PlayerBodyRenderer_->IsEndAnimation())
+		{
+			ToolRenderer_->SetPivot({0, 0});
+			PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::PLAYER) });
+			ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::USE_TOOL) });
+			PlayerState_ = PLAYER_UPDATE::INIT;
+		}
 
 		break;
 

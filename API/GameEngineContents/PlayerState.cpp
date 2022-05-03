@@ -577,6 +577,10 @@ void Player::CheckTool()
 		PlayerState_ = PLAYER_UPDATE::PICKAXE;
 	}
 
+	else if (CurrentItemType() == TOOLTYPE::SWOARD)
+	{
+		PlayerState_ = PLAYER_UPDATE::SWOARD;
+	}
 	else
 	{
 		PlayerState_ = PLAYER_UPDATE::INIT;

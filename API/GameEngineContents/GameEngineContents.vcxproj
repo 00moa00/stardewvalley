@@ -650,6 +650,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Swoard.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Table.h">
       <SubType>
       </SubType>
@@ -1202,6 +1206,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Particles.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Swoard.cpp">
       <SubType>
       </SubType>
     </ClCompile>

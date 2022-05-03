@@ -443,6 +443,9 @@
     <ClCompile Include="Golem.cpp">
       <Filter>Actor\03. Play\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="Swoard.cpp">
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -910,6 +913,9 @@
     </ClInclude>
     <ClInclude Include="Golem.h">
       <Filter>Actor\03. Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Swoard.h">
+      <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

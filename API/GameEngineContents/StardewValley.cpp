@@ -251,11 +251,33 @@ void StardewValley::GameInit()
 		GameEngineImage* PlayerWaterBack = GameEngineImageManager::GetInst()->Find("wateringcan_back.bmp");
 		PlayerWaterBack->Cut({ 250, 150 });
 
+
+		//================================
+		//     ÇÃ·¹ÀÌ¾î Ä® 250	150
+		//================================
+		GameEngineImage* Swoard_right = GameEngineImageManager::GetInst()->Find("Swoard_right.bmp");
+		Swoard_right->Cut({ 250, 150 });
+
+		GameEngineImage* Swoard_Left = GameEngineImageManager::GetInst()->Find("Swoard_Left.bmp");
+		Swoard_Left->Cut({ 250, 150 });
+
+		GameEngineImage* Swoard_front = GameEngineImageManager::GetInst()->Find("Swoard_front.bmp");
+		Swoard_front->Cut({ 250, 150 });
+
+		GameEngineImage* Swoard_back = GameEngineImageManager::GetInst()->Find("Swoard_back.bmp");
+		Swoard_back->Cut({ 250, 150 });
+
 		//================================
 		//     ÇÃ·¹ÀÌ¾î Åø 48 96
 		//================================
 		GameEngineImage* PlayerTool = GameEngineImageManager::GetInst()->Find("tools.bmp");
 		PlayerTool->Cut({ 48, 96 });
+
+		//================================
+		//    Ä® 56 56
+		//================================
+		GameEngineImage* weapons = GameEngineImageManager::GetInst()->Find("weapons.bmp");
+		weapons->Cut({ 48, 48 });
 
 		//------< Ä¿½ºÅÒ¿ë >------------------------------------------------------------------
 
@@ -273,6 +295,12 @@ void StardewValley::GameInit()
 
 		GameEngineImage* ShirtsSheet = GameEngineImageManager::GetInst()->Find("ShirtsSheet.bmp");
 		ShirtsSheet->Cut({ 48, 96 });
+
+
+		//------< ¹«±â >------------------------------------------------------------------
+
+
+
 	}
 
 
