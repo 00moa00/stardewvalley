@@ -965,7 +965,7 @@ void Player::SubHP(int _HP)
 {
 	SubHPFont* SubHPFont_;
 	SubHPFont_ = GetLevel()->CreateActor<SubHPFont>();
-	SubHPFont_->SetPosAndNum(this->GetPosition(), _HP);
+	SubHPFont_->SetPosAndNumRed(this->GetPosition(), _HP);
 
 	HP_ -= _HP;
 	PlayerHPFrame::MainPlayerHPBar->GetRenderer()->SetScale({ 18, static_cast<float>(HP_) });

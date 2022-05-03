@@ -568,7 +568,7 @@ void Player::AttackMonster()
 	std::map<std::string, Monster*>::iterator GetMonsterIter = MonsterList_.begin();
 	for (; GetMonsterIter != MonsterList_.end(); ++GetMonsterIter) {
 
-		if (GetMonsterIter->second->MonsterVSPlayer() == true
+		if (GetMonsterIter->second->MonsterCheck(PlayerCollCheckPos(), GetScale()) == true
 			&&GetCurrentItem()->GetItemType()==ITEMTYPE::TOOL
 			&& MainMouse_->isMouseClick() == true)
 		{

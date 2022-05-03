@@ -164,10 +164,10 @@ bool Monster::CheckDownObject()
 
 bool Monster::MonsterCheck(const float4 pos, const float4 scale)
 {
-	int OtherLeft = pos.ix() - scale.hix();
-	int OtherRight = pos.ix() + scale.hix();
-	int OtherTop = pos.iy() - scale.hiy();
-	int OtherBottom = pos.iy() + scale.hiy();
+	int OtherLeft = pos.ix() - scale.hix() - 20;
+	int OtherRight = pos.ix() + scale.hix() + 20;
+	int OtherTop = pos.iy() - scale.hiy() - 20;
+	int OtherBottom = pos.iy() + scale.hiy() + 20;
 
 	//	GameEngineRect DebugRect;
 

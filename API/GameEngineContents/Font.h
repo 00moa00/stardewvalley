@@ -52,6 +52,7 @@ public:
 	//폰트 디자인 변경
 	void ChangeWhiteColor();
 	void ChangeRedColor();
+	void ChangeGrayColor();
 
 	//영문
 	void ChangeFont(std::string _Font, float4 _Pos); //교체용

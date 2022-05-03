@@ -397,6 +397,12 @@ void StardewValley::GameInit()
 
 
 		//================================
+		//		숫자 폰트 레드
+		//================================
+		GameEngineImage* font_colored_Gray = GameEngineImageManager::GetInst()->Find("font_colored_Gray.bmp");
+		font_colored_Gray->Cut({ 15, 21 });
+
+		//================================
 		//		영문 폰트
 		//================================
 		GameEngineImage* EnFont = GameEngineImageManager::GetInst()->Find("Font.bmp");

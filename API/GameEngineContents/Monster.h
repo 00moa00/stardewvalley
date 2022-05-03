@@ -7,6 +7,8 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineRandom.h>
 
+#include "SubHPFont.h"
+
 #include "RendererData.h"
 #include "MonsterData.h"
 
@@ -146,6 +148,10 @@ public:
 
 	void SubHP(int _Damage)
 	{
+		SubHPFont* SubHPFont_;
+		SubHPFont_ = GetLevel()->CreateActor<SubHPFont>();
+		SubHPFont_->SetPosAndNumGray(this->GetPosition(), _Damage);
+
 		HP_ -= _Damage;
 	}
 

@@ -26,6 +26,8 @@ private:
 	Font* SubHPFont_;
 	
 public:
-	void SetPosAndNum(float4 _Pos, int _Damage);
+	void SetPosAndNumRed(float4 _Pos, int _Damage);
+	void SetPosAndNumGray(float4 _Pos, int _Damage);
+
 };
 

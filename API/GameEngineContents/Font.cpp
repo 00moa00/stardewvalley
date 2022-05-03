@@ -339,6 +339,15 @@ void Font::ChangeRedColor()
 	}
 }
 
+void Font::ChangeGrayColor()
+{
+	std::vector<GameEngineRenderer*>::iterator Iter = NumberRenderer.begin();
+	for (; Iter != NumberRenderer.end(); ++Iter) {
+
+		(*Iter)->SetImage("font_colored_Gray.bmp");
+	}
+}
+
 void Font::ChangeFont(std::string _Font, float4 _Pos)
 {
 	int Count_ = 0;
