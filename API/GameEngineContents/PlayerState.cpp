@@ -3,6 +3,7 @@
 #include "NpcData.h"
 #include "PlayerEnergyFrame.h"
 #include "PlayerHPFrame.h"
+#include "SubHPFont.h"
 
 #include "FadeInOut.h"
 
@@ -962,6 +963,10 @@ void Player::AddEnergy(int _Energy)
 
 void Player::SubHP(int _HP)
 {
+	SubHPFont* SubHPFont_;
+	SubHPFont_ = GetLevel()->CreateActor<SubHPFont>();
+	SubHPFont_->SetPosAndNum(this->GetPosition(), _HP);
+
 	HP_ -= _HP;
 	PlayerHPFrame::MainPlayerHPBar->GetRenderer()->SetScale({ 18, static_cast<float>(HP_) });
 	//TODO : HP가 0이면 어쩔거임?

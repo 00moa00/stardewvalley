@@ -32,7 +32,7 @@ void Font::Start()
 	{
 		FontRenderer.push_back(CreateRenderer("font_ver2.bmp"));
 		std::vector<GameEngineRenderer*>::iterator This = --FontRenderer.end();
-		(*This)->SetIndex(48);
+		(*This)->SetIndex(static_cast<int>(FONT_VER2::EMPTY));
 		(*This)->CameraEffectOff();
 	}
 
@@ -125,6 +125,8 @@ void Font::ChangeNumRightSort(int _Num)
 		NumberRenderer.at(Count_)->SetIndex(10);
 	}
 }
+
+
 
 void Font::ChangeNumItemLeftSort(int _Num, float4 _Pos)
 {
@@ -308,6 +310,15 @@ void Font::SetPositionItem(float4 _Pos)
 
 	}
 
+}
+
+void Font::SetFontCameraEffectOn()
+{
+	std::vector<GameEngineRenderer*>::iterator Iter = NumberRenderer.begin();
+	for (; Iter != NumberRenderer.end(); ++Iter) {
+
+		(*Iter)->CameraEffectOn();
+	}
 }
 
 void Font::ChangeWhiteColor()

@@ -41,6 +41,7 @@ public:
 	//중간 변경 용. 오른쪽, 왼쪽 정렬
 	void SetPositionRightSort(float4 _Pos);
 	void ChangeNumRightSort(int _Num);
+	void ChangeNum(int _Num);
 
 	void ChangeNumLeftSort(int _Num, float4 _Pos);
 
@@ -58,6 +59,8 @@ public:
 
 	//폰트의 위치가 계속 업데이트 받아야 할 때
 	void SetPositionItem(float4 _Pos);
+
+	void SetFontCameraEffectOn();
 };
 
 enum class FONT
