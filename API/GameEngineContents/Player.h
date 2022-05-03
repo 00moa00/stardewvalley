@@ -124,6 +124,7 @@ private:
 	int PrevMoney_;
 	int TotalMoney_;
 	int Energy_;
+	int HP_;
 	int DelaySpeed_;
 
 
@@ -246,6 +247,9 @@ public:
 
 	void SubEnergy(int _Energy);
 	void AddEnergy(int _Energy);
+
+	void SubHP(int _HP);
+	void AddHP(int _HP);
 
 	bool SubMoney(int _Money);
 	void AddMoney(int _Money);

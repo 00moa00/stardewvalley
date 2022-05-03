@@ -8,6 +8,7 @@
 #include "WoodAddAnimaition.h"
 #include "StoneCrushAnimation.h"
 #include "MineStoneCrushAnimation.h"
+#include "PlayerHPFrame.h"
 
 //******************************************************************************
 //
@@ -574,7 +575,9 @@ void Player::AttackMonster()
 
 			//몬스터의 체력을 깍는다.
 			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower());
-
+			
+			float4 BackDir = -GetMonsterIter->second->GetMoveDir();
+			GetMonsterIter->second->SetMove(BackDir * GameEngineTime::GetDeltaTime() * 50.f);
 		}
 
 	}
@@ -588,9 +591,10 @@ void Player::MonsterAndPlayerColl()
 
 		if (GetMonsterIter->second->MonsterCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
-
-			//몬스터의 체력을 깍는다.
-			// GetMonsterIter->second->GetDamage();
+			SubHP(GetMonsterIter->second->GetDamage());
+			//뒤로 가기
+			float4 BackDir = -MoveDir_;
+			SetMove(BackDir * 100.f);
 
 		}
 

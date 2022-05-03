@@ -22,14 +22,16 @@ Player::Player()
 	Money_(1000),
 	TotalMoney_(0),
 	PrevMoney_(0),
-
+	DelaySpeed_(0),
+	HP_(126),
+	Energy_(126),
 
 	AnimationFrame_(0.120f),
 	Speed_(220.f),
-	Energy_(126),
 	MapSizeX_(0.f),
 	MapSizeY_(0.f),
 	Timer_(0.0f),
+	DelaySpeedTimer_(0.f),
 	AnimationWaitTimer_(0.f),
 
 	PlayerBodyRenderer_(nullptr),
@@ -706,6 +708,8 @@ void Player::Update()
 		DelaySpeed();
 		AttackMonster();
 		DirAnimationChange();
+		MonsterAndPlayerColl();
+		AttackMonster();
 
 		break;
 	case LEVEL_LIST::MINEPOINT_LEVEL:
