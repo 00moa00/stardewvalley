@@ -2,6 +2,8 @@
 #include "Player.h"
 
 Golem::Golem() 
+	:
+	CheckTimer_(0.f)
 {
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::WALK)] = "WALK";
 
@@ -141,7 +143,7 @@ void Golem::Update()
 
 		Dir.Normal2D();
 
-		if (Check <= 150)
+		if (Check <= 150 && CheckTime_ == true)
 		{
 			//플레이어가 오른쪽, 아래에 있다
 			if (Dir.x > 0 && Dir.y > 0)
@@ -196,6 +198,23 @@ void Golem::Update()
 		{
 			MonsterState_ = MONSTER_STATE::CHECK;
 			break;
+		}
+
+		//플레이어 체크 무적. 닿으면 0.5초동안 체크하지 않는다.
+
+		if (Player::MainPlayer->GetPosition().CompareInt2D(this->GetPosition())== true && CheckTime_ == true)
+		{
+			CheckTime_ = false;
+		}
+
+		if (CheckTime_ == false)
+		{
+			CheckTimer_ += GameEngineTime::GetDeltaTime();
+			if (CheckTimer_ > 0.5f)
+			{
+				CheckTime_ = true;
+				CheckTimer_ = 0.f;
+			}
 		}
 
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);

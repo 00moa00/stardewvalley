@@ -22,7 +22,10 @@ private:
 private:
 	void DirAnimation();
 
+	bool CheckTime_;
+
 	float4 Dir;
 	float Check;
+	float CheckTimer_;
 };
 
