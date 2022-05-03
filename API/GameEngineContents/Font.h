@@ -8,8 +8,6 @@
 // 설명 :
 class Font : public GameEngineActor
 {
-	//static Font* MainFont;
-
 public:
 	// constrcuter destructer
 	Font();
@@ -21,15 +19,12 @@ public:
 	Font& operator=(const Font& _Other) = delete;
 	Font& operator=(Font&& _Other) noexcept = delete;
 
-
 private:
-
 	void Start() override;
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
-
 	std::vector<GameEngineRenderer*> NumberRenderer;
 	std::vector<GameEngineRenderer*> FontRenderer;
 
@@ -55,6 +50,7 @@ public:
 
 	//폰트 디자인 변경
 	void ChangeWhiteColor();
+	void ChangeRedColor();
 
 	//영문
 	void ChangeFont(std::string _Font, float4 _Pos); //교체용

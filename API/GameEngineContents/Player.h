@@ -137,6 +137,7 @@ private:
 	float DelaySpeedTimer_;
 	float InvincibilityTimer_;
 	float IsNotInvincibilityTimer_;
+	float SubHPTimer_;
 
 	float4 MoveDir_;
 	float4 CameraPos_;
@@ -146,8 +147,9 @@ private:
 	bool isShopping_;
 	bool isDelaySpeed_;
 	bool isEvent_;
-	bool Invincibility_;
-	bool IsNotInvincibility_;
+	bool invincibility_;
+	bool isNotInvincibility_;
+	bool isSubTime_;
 
 	std::string ChangeLevelName_;
 
@@ -308,6 +310,7 @@ private:
 
 	void UpdateInvincibilityTime();
 	void UpdateIsNotInvincibilityTime();
+	void UpdateSubHPTime();
 
 	void SetPlayerAlpha255();
 	void SetPlayerAlpha0();

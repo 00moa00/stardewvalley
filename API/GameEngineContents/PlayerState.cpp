@@ -737,7 +737,7 @@ void Player::DelaySpeed()
 
 void Player::UpdateInvincibilityTime()
 {
-	if (Invincibility_ == true)
+	if (invincibility_ == true)
 	{
 		InvincibilityTimer_ += GameEngineTime::GetDeltaTime();
 
@@ -770,8 +770,8 @@ void Player::UpdateInvincibilityTime()
 		{
 			SetPlayerAlpha255();
 			InvincibilityTimer_ = 0.f;
-			IsNotInvincibility_ = true;
-			Invincibility_ = false;
+			isNotInvincibility_ = true;
+			invincibility_ = false;
 		}
 	}
 }
@@ -779,16 +779,16 @@ void Player::UpdateInvincibilityTime()
 void Player::UpdateIsNotInvincibilityTime()
 {
 	//매 프레임 무적이 되는걸 막기 위한 함수
-	//IsNotInvincibility_가 false일때만 무적이 될 수 있따.
+	//isNotInvincibility_가 false일때만 무적이 될 수 있따.
 
-	if (IsNotInvincibility_ == true)
+	if (isNotInvincibility_ == true)
 	{
 		IsNotInvincibilityTimer_ += GameEngineTime::GetDeltaTime();
 
 		if (IsNotInvincibilityTimer_ > 2.0f)
 		{
 			IsNotInvincibilityTimer_ = 0.f;
-			IsNotInvincibility_ = false;
+			isNotInvincibility_ = false;
 		}
 	}
 }

@@ -30,10 +30,12 @@ Player::Player()
 	Speed_(220.f),
 	MapSizeX_(0.f),
 	MapSizeY_(0.f),
+
 	DelaySpeedTimer_(0.f),
 	AnimationWaitTimer_(0.f),
 	InvincibilityTimer_(0.f),
 	IsNotInvincibilityTimer_(0.f),
+	SubHPTimer_(0.f),
 
 	PlayerBodyRenderer_(nullptr),
 	PlayerPantsRenderer_(nullptr),
@@ -52,8 +54,9 @@ Player::Player()
 	FarmingArea_(false),
 	isShopping_(false),
 	isDelaySpeed_(false),
-	Invincibility_(false),
-	IsNotInvincibility_(false),
+	invincibility_(false),
+	isNotInvincibility_(false),
+	isSubTime_(false),
 
 	WetTileMap_(nullptr),
 	DirtTileMap_(nullptr),

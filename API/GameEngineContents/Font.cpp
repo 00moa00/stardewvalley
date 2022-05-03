@@ -312,12 +312,19 @@ void Font::SetPositionItem(float4 _Pos)
 
 void Font::ChangeWhiteColor()
 {
-
 	std::vector<GameEngineRenderer*>::iterator Iter = NumberRenderer.begin();
 	for (; Iter != NumberRenderer.end(); ++Iter) {
 
 		(*Iter)->SetImage("font_colored_White.bmp");
+	}
+}
 
+void Font::ChangeRedColor()
+{
+	std::vector<GameEngineRenderer*>::iterator Iter = NumberRenderer.begin();
+	for (; Iter != NumberRenderer.end(); ++Iter) {
+
+		(*Iter)->SetImage("font_colored_Red.bmp");
 	}
 }
 

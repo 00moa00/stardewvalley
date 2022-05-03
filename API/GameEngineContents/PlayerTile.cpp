@@ -584,30 +584,44 @@ void Player::AttackMonster()
 
 void Player::MonsterAndPlayerColl()
 {
+
+
+	//매 프레임마다 깍이는거 방지
+	if (isSubTime_ == false)
+	{
+		SubHPTimer_ += GameEngineTime::GetDeltaTime();
+		if (SubHPTimer_ > 1.0f)
+		{
+			isSubTime_ = true;
+			SubHPTimer_ = 0.f;
+		}
+	}
+
 	std::map<std::string, Monster*>::iterator GetMonsterIter = MonsterList_.begin();
 	for (; GetMonsterIter != MonsterList_.end(); ++GetMonsterIter) {
 
 		if (GetMonsterIter->second->MonsterVSPlayer() == true)
 		{
 			//무적중이면 데미지를 깍지 않는다.
-			if (Invincibility_ == true)
+			if (invincibility_ == true)
 			{
 				return;
 			}
 
-			SubHP(GetMonsterIter->second->GetDamage());
-
-			//무적 제한중이 아닐때만 무적이 된다.
-			if (IsNotInvincibility_ == false)
+			if (isSubTime_ == true)
 			{
-				if (Invincibility_ == false)
-				{
-					Invincibility_ = true;
-				}
+				SubHP(GetMonsterIter->second->GetDamage());
+				isSubTime_ = false;
 			}
 
-
-
+			//무적 제한중이 아닐때만 무적이 된다.
+			if (isNotInvincibility_ == false)
+			{
+				if (invincibility_ == false)
+				{
+					invincibility_ = true;
+				}
+			}
 		}
 
 	}

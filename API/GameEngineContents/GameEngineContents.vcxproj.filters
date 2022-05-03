@@ -449,6 +449,9 @@
     <ClCompile Include="PlayerHPFrame.cpp">
       <Filter>Actor\03. Play\UI</Filter>
     </ClCompile>
+    <ClCompile Include="SubHPFont.cpp">
+      <Filter>Actor\01. GlobalActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -922,6 +925,9 @@
     </ClInclude>
     <ClInclude Include="PlayerHPFrame.h">
       <Filter>Actor\03. Play\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SubHPFont.h">
+      <Filter>Actor\01. GlobalActor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
