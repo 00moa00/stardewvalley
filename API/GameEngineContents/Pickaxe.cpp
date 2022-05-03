@@ -26,6 +26,8 @@ void Pickaxe::Start()
 	FileName_ = "tools.bmp";
 	FileIndex_ = static_cast<size_t>(TOOL::PICKAXE_IN_INVENTROY);
 
+	Power_ = 1;
+
 }
 
 void Pickaxe::Update()

@@ -21,6 +21,7 @@
 #include "Crops.h"
 #include "Npc.h"
 #include "FadeInOut.h"
+#include "Monster.h"
 
 #include <vector>
 #include <map>
@@ -188,6 +189,7 @@ private:
 
 	std::map<int, Items*> MapObject_;
 	std::map<std::string, Npc*> NpcList_;
+	std::map<std::string, Monster*> MonsterList_;
 
 	std::vector<GameEngineCollision*> ColList;
 	std::map<int, Items*>::iterator Iter;
@@ -268,6 +270,7 @@ public:
 
 	void CopyList(std::map<int, Items*> _OtherList);
 	void CopyList(std::map<std::string, Npc*> _OtherList);
+	void CopyList(std::map<std::string, Monster*> _OtherList);
 
 private:
 
@@ -332,13 +335,15 @@ private:
 	void CreateCrushWoodEffect();
 	void CreateCrushStoneEffect(STONETYPE _CheckType);
 
-
 	void ChangeDirtTile();
 	void ChangeWetDirtTile();
 
 	void CrushWood();
 	void CrushStone();
 	void CrushTree();
+
+	void AttackMonster();
+	void MonsterAndPlayerColl();
 
 	void GetItem();
 	void CheckShippingBox();

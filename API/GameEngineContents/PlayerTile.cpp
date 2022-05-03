@@ -561,6 +561,42 @@ void Player::CrushTree()
 	}
 }
 
+void Player::AttackMonster()
+{
+
+	std::map<std::string, Monster*>::iterator GetMonsterIter = MonsterList_.begin();
+	for (; GetMonsterIter != MonsterList_.end(); ++GetMonsterIter) {
+
+		if (GetMonsterIter->second->MonsterCheck(PlayerCollCheckPos(), GetScale()) == true
+			&&GetCurrentItem()->GetItemType()==ITEMTYPE::TOOL
+			&& MainMouse_->isMouseClick() == true)
+		{
+
+			//몬스터의 체력을 깍는다.
+			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower());
+
+		}
+
+	}
+	
+}
+
+void Player::MonsterAndPlayerColl()
+{
+	std::map<std::string, Monster*>::iterator GetMonsterIter = MonsterList_.begin();
+	for (; GetMonsterIter != MonsterList_.end(); ++GetMonsterIter) {
+
+		if (GetMonsterIter->second->MonsterCheck(PlayerCollCheckPos(), GetScale()) == true)
+		{
+
+			//몬스터의 체력을 깍는다.
+			// GetMonsterIter->second->GetDamage();
+
+		}
+
+	}
+}
+
 void Player::GetItem()
 {
 

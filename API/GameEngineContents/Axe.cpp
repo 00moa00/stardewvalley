@@ -25,6 +25,9 @@ void Axe::Start()
 
 	FileName_ = "tools.bmp";
 	FileIndex_ = static_cast<size_t>(TOOL::AXE_IN_INVENTROY);
+
+	Power_ = 1;
+
 }
 
 void Axe::Update()

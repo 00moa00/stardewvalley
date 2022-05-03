@@ -104,6 +104,11 @@ public:
 		return isHit_;
 	}
 
+	int GetDamage()
+	{
+		return Damage_;
+	}
+
 	int GetLeft()
 	{
 		return GetPosition().ix() - GetScale().hix();
@@ -132,6 +137,11 @@ public:
 	void SetIsHit(bool _Flag)
 	{
 		isHit_ = _Flag;
+	}
+
+	void SubHP(int _Damage)
+	{
+		HP_ -= _Damage;
 	}
 
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------

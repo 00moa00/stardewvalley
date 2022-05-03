@@ -175,7 +175,7 @@ protected:
 	ITEM_STATE ItemState_;
 	MOVE State_;
 
-
+	int Power_;
 	int Damage_;			//맵 오브젝트 데미지
 	int SellPrice_;			//파는 금액
 	int ItemCount_;			//아이템 개수
@@ -184,6 +184,7 @@ protected:
 	int AddEnery_;			//음식 옵션 - 에너지 증가
 	int AddHP_;				//음식 옵션 - HP증가
 	int ChangeSpeed_;		//드링크 마시면 생기는 속도 관련 버프/ 디버프
+	//int Damage_;			//데미지
 
 	float ChangeTime_;		//드링크 버프/ 디버프 시간
 
@@ -231,6 +232,11 @@ public:
 	GameEngineRenderer* GetSubRenderer()
 	{
 		return SubRenderer_;
+	}
+
+	int GetPower()
+	{
+		return Power_;
 	}
 
 	int GetDrinkChangeSpeed()

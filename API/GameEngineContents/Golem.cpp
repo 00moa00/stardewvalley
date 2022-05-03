@@ -55,8 +55,9 @@ void Golem::Update()
 	case MONSTER_STATE::WAIT:
 		break;
 	case MONSTER_STATE::CHECK:
-		RamdomDirResult_ = RandomDir_.RandomInt(0,3);
 
+		RamdomDirResult_ = RandomDir_.RandomInt(0,3);
+	
 		switch (RamdomDirResult_)
 		{
 		case 0: 
@@ -117,14 +118,20 @@ void Golem::Update()
 		break;
 
 	case MONSTER_STATE::RE_CHECK:
+
+		//랜덤한 방향을 정하고 벽이 있다면 다시 돌아온다
 		MonsterState_ = MONSTER_STATE::CHECK;
 
 		break;
 	case MONSTER_STATE::WALK:
 
+		//플레이어로 향하는 방향 체크
 		Dir = Player::MainPlayer->GetPosition() - this->GetPosition();
+
+		//범위 체크
 		Check = Dir.Len2D();
 
+		//가다가 일정 시간이 지나면 방향을 튼다.
 		Timer_ += GameEngineTime::GetDeltaTime();
 		if (Timer_ > 3.0f && Check > 150)
 		{
@@ -136,7 +143,6 @@ void Golem::Update()
 
 		if (Check <= 150)
 		{
-
 			//플레이어가 오른쪽, 아래에 있다
 			if (Dir.x > 0 && Dir.y > 0)
 			{
@@ -165,10 +171,9 @@ void Golem::Update()
 				MoveDir_ = float4::LEFT;
 			}
 
+			//x를 먼저 체크하고 나머지 y체크
 			if (Player::MainPlayer->GetPosition().ix() == this->GetPosition().ix())
-			{
-					
-				
+			{			
 				if (Dir.y > 0)
 				{
 					MoveDir_ = float4::ZERO;
@@ -182,18 +187,18 @@ void Golem::Update()
 					MoveDir_ = float4::UP;
 				}
 				
-
 			}
 
 		}
 
+		//플레이어로 향하지만 벽이 있으면 랜덤한 방향으로 머리를 튼다.
 		if (CheckMapObject() == true)
 		{
 			MonsterState_ = MONSTER_STATE::CHECK;
+			break;
 		}
 
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-
 
 
 		break;

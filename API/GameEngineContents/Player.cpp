@@ -704,6 +704,7 @@ void Player::Update()
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		DelaySpeed();
+		AttackMonster();
 		DirAnimationChange();
 
 		break;

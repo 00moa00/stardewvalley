@@ -266,6 +266,11 @@ void Player::CopyList(std::map<std::string, Npc*> _OtherList)
 
 }
 
+void Player::CopyList(std::map<std::string, Monster*> _OtherList)
+{
+	std::copy(_OtherList.begin(), _OtherList.end(), std::inserter(MonsterList_, MonsterList_.begin()));
+
+}
 
 //------< 비공개 함수 >------------------------------------------------------------------
 

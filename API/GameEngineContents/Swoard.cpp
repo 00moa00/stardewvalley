@@ -25,6 +25,8 @@ void Swoard::Start()
 
 	FileName_ = "weapons.bmp";
 	FileIndex_ = 0;
+
+	Power_ = 5;
 }
 
 void Swoard::Update()
