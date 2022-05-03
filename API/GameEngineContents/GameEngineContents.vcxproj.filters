@@ -446,6 +446,9 @@
     <ClCompile Include="Swoard.cpp">
       <Filter>Actor\03. Play\Obejct\Tool</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHPFrame.cpp">
+      <Filter>Actor\03. Play\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -916,6 +919,9 @@
     </ClInclude>
     <ClInclude Include="Swoard.h">
       <Filter>Actor\03. Play\Obejct\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHPFrame.h">
+      <Filter>Actor\03. Play\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

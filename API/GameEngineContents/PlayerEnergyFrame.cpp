@@ -13,7 +13,8 @@ PlayerEnergyFrame* PlayerEnergyFrame::MainPlayerEnergyFrame = nullptr;
 PlayerEnergyBar* PlayerEnergyFrame::MainPlayerEnergyBar = nullptr;
 
 PlayerEnergyFrame::PlayerEnergyFrame() 
-	:	PlayerEngergyFrame_(nullptr)
+	:	
+	PlayerEngergyFrame_(nullptr)
 {
 }
 

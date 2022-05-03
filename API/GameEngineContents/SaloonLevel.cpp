@@ -97,7 +97,7 @@ void SaloonLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
-		//Shop::MainShop->NextLevelOn();
+		PlayerHPFrame::MainPlayerHPFrame->NextLevelOn();
 	}
 
 	if (nullptr != Shop::MainShop )

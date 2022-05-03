@@ -1,10 +1,13 @@
 #pragma once
+#include "PlayerEnergyBar.h"
 
 // Ό³Έν :
-class PlayerHPFrame
+class PlayerHPFrame : public GameEngineActor
 {
 public:
-	// constrcuter destructer
+	static PlayerHPFrame* MainPlayerHPFrame;
+	static 	PlayerEnergyBar* MainPlayerHPBar;
+
 	PlayerHPFrame();
 	~PlayerHPFrame();
 
@@ -14,9 +17,14 @@ public:
 	PlayerHPFrame& operator=(const PlayerHPFrame& _Other) = delete;
 	PlayerHPFrame& operator=(PlayerHPFrame&& _Other) noexcept = delete;
 
-protected:
+private:
+	void Start() override;
+	void Update() override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
+	GameEngineRenderer* PlayerEngergyFrame_;
 
 };
 

@@ -11,6 +11,8 @@
 #include "MoveFlag.h"
 #include "GiftBox.h"
 
+#include "PlayerHPFrame.h"
+
 #include <GameEngineBase/GameEngineTime.h>
 
 
@@ -58,7 +60,11 @@ void MyHouseLevel::Loading()
 		PlayerEnergyFrame::MainPlayerEnergyFrame = CreateActor<PlayerEnergyFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
 	}
 
+	if (nullptr == PlayerHPFrame::MainPlayerHPFrame)
+	{
+		PlayerHPFrame::MainPlayerHPFrame = CreateActor<PlayerHPFrame>(static_cast<int>(PLAYLEVEL::ENERGYFRAME));
 
+	}
 	//Shop::MainShop->ShopOff();
 
 }
@@ -112,6 +118,7 @@ void MyHouseLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
+		PlayerHPFrame::MainPlayerHPFrame->NextLevelOn();
 
 	}
 

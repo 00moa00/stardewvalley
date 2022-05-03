@@ -13,6 +13,7 @@
 #include "Items.h"
 #include "Npc.h"
 #include "Mouse.h"
+#include "PlayerHPFrame.h"
 
 // Ό³Έν :
 class Mine3 : public GameEngineLevel

@@ -53,6 +53,8 @@ void Mine3::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		Inventory::MainInventory->NextLevelOn();
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
+		PlayerHPFrame::MainPlayerHPFrame->NextLevelOn();
+
 	}
 }
 

@@ -19,15 +19,13 @@ public:
 	PlayerEnergyFrame& operator=(const PlayerEnergyFrame& _Other) = delete;
 	PlayerEnergyFrame& operator=(PlayerEnergyFrame&& _Other) noexcept = delete;
 
-protected:
-
+private:
 	void Start() override;
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
-
 	GameEngineRenderer* PlayerEngergyFrame_;
 
 };

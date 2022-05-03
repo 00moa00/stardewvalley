@@ -14,6 +14,9 @@
 #include "Npc.h"
 #include "Mouse.h"
 #include "FlowingFlower.h"
+#include "PlayerHPFrame.h"
+
+
 // Ό³Έν :
 class MineLevel : public GameEngineLevel
 {

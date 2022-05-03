@@ -518,6 +518,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerHPFrame.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayerPreview.h">
       <SubType>
       </SubType>
@@ -1086,6 +1090,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PlayerCustomClothes.cpp" />
+    <ClCompile Include="PlayerHPFrame.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayerPreview.cpp">
       <SubType>
       </SubType>

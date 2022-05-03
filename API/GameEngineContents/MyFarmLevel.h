@@ -1,6 +1,7 @@
 #pragma once
 #include"PlayLevel.h"
 #include "FlowingFlower.h"
+#include "PlayerHPFrame.h"
 
 class Player;
 class Inventory;
