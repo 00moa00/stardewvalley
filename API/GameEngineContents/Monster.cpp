@@ -156,6 +156,35 @@ bool Monster::CheckDownObject()
 		return false;
 	}
 }
+
+void Monster::BackMove()
+{
+
+	float4 BackMove = -MoveDir_;
+
+
+	SetMove(BackMove * GameEngineTime::GetDeltaTime() * 300.f);
+
+	static float BackTimer_ = 0;
+	BackTimer_ += GameEngineTime::GetDeltaTime();
+
+	if (BackTimer_ > 0.2f)
+	{
+		BackTimer_ = 0.f;
+		MonsterState_ = MONSTER_STATE::WALK;
+	}
+
+
+	if (MonsterCollider_->NextPostCollisionCheck("MapObject", BackMove * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
+	{
+		MonsterState_ = MONSTER_STATE::WALK;
+	}
+}
+
+void Monster::SetMonsterStateBack()
+{
+	MonsterState_ = MONSTER_STATE::BACK;
+}
 //
 //bool Monster::CheckPlayer()
 //{
@@ -164,10 +193,10 @@ bool Monster::CheckDownObject()
 
 bool Monster::MonsterCheck(const float4 pos, const float4 scale)
 {
-	int OtherLeft = pos.ix() - scale.hix() - 20;
-	int OtherRight = pos.ix() + scale.hix() + 20;
-	int OtherTop = pos.iy() - scale.hiy() - 20;
-	int OtherBottom = pos.iy() + scale.hiy() + 20;
+	int OtherLeft = pos.ix() - scale.hix() - 10 ;
+	int OtherRight = pos.ix() + scale.hix() + 10 ;
+	int OtherTop = pos.iy() - scale.hiy() -50;
+	int OtherBottom = pos.iy() + scale.hiy() -20;
 
 	//	GameEngineRect DebugRect;
 

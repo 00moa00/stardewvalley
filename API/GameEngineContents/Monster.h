@@ -24,6 +24,8 @@ enum class MONSTER_STATE
 	MOVE_UP,
 	MOVE_DOWN,
 
+	BACK,
+
 	MAX
 };
 
@@ -54,7 +56,8 @@ public:
 	virtual bool CheckLeftObject();
 	virtual bool CheckUpObject();
 	virtual bool CheckDownObject();
-	
+	virtual void BackMove();
+	virtual void SetMonsterStateBack();
 	//virtual bool CheckPlayer();
 
 protected:

@@ -10,6 +10,7 @@ Golem::Golem()
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::WAIT)] = "WAIT";
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::RE_CHECK)] = "WAIT";
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::CHECK)] = "WAIT";
+	ArrAnimationName[static_cast<int>(MONSTER_STATE::BACK)] = "WAIT";
 
 }
 
@@ -45,7 +46,7 @@ void Golem::Start()
 	Speed_ = 60.f;
 
 
-	SetScale({ 48, 96 });
+	SetScale({ 48, 50 });
 }
 
 void Golem::Update()
@@ -113,6 +114,7 @@ void Golem::Update()
 			}
 
 			break;
+
 		default:
 			break;
 		}
@@ -218,6 +220,12 @@ void Golem::Update()
 		}
 
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+
+
+		break;
+	case MONSTER_STATE::BACK:
+
+		BackMove();
 
 
 		break;

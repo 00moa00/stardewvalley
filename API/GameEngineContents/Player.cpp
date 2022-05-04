@@ -346,30 +346,30 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		//================================
 		//     플레이어 칼 사용
 		//================================
-		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.080f, false);
-		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.080f, false);
-		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.080f, false);
-		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.080f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.040f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.040f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.040f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.040f, false);
 
-		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.080f, false);
-		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.080f, false);
-		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.080f, false);
-		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.080f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.040f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.040f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.040f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.040f, false);
 
-		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.080f, false);
-		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.080f, false);
-		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.080f, false);
-		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.080f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.040f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.040f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.040f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.040f, false);
 
-		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.080f, false);
-		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.080f, false);
-		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.080f, false);
-		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.080f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.040f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.040f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.040f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.040f, false);
 
-		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.080f, false);
-		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.080f, false);
-		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.080f, false);
-		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.080f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_SWOARD", static_cast<int>(PLAYER::SWAORD_FRONT0), static_cast<int>(PLAYER::SWAORD_FRONT4), 0.040f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_SWOARD", static_cast<int>(PLAYER::SWAORD_RIGHT2), static_cast<int>(PLAYER::SWAORD_RIGHT4), 0.040f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_SWOARD", static_cast<int>(PLAYER::SWAORD_BACK0), static_cast<int>(PLAYER::SWAORD_BACK3), 0.040f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_SWOARD", static_cast<int>(PLAYER::SWAORD_LEFT1), static_cast<int>(PLAYER::SWAORD_LEFT3), 0.040f, false);
 
 
 		//================================
@@ -562,10 +562,10 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		//     플레이어 칼 사용
 		//================================
 		
-		ToolRenderer_->CreateAnimation("Swoard_right.bmp", "RIGHT_SWOARD", static_cast<int>(SWAORD_RIGHT::SWAORD_RIGHT1), static_cast<int>(SWAORD_RIGHT::SWAORD_RIGHT3), 0.080f, false);
-		ToolRenderer_->CreateAnimation("Swoard_Left.bmp", "LEFT_SWOARD", static_cast<int>(SWAORD_LEFT::SWAORD_LEFT1), static_cast<int>(SWAORD_LEFT::SWAORD_LEFT3), 0.080f, false);
-		ToolRenderer_->CreateAnimation("Swoard_front.bmp", "FRONT_SWOARD", static_cast<int>(SWAORD_FRONT::SWAORD_FRONT0), static_cast<int>(SWAORD_FRONT::SWAORD_FRONT4), 0.080f, false);
-		ToolRenderer_->CreateAnimation("Swoard_back.bmp", "BACK_SWOARD", static_cast<int>(SWAORD_BACK::SWAORD_BACK0), static_cast<int>(SWAORD_BACK::SWAORD_BACK3), 0.080f, false);
+		ToolRenderer_->CreateAnimation("Swoard_right.bmp", "RIGHT_SWOARD", static_cast<int>(SWAORD_RIGHT::SWAORD_RIGHT1), static_cast<int>(SWAORD_RIGHT::SWAORD_RIGHT3), 0.040f, false);
+		ToolRenderer_->CreateAnimation("Swoard_Left.bmp", "LEFT_SWOARD", static_cast<int>(SWAORD_LEFT::SWAORD_LEFT1), static_cast<int>(SWAORD_LEFT::SWAORD_LEFT3), 0.040f, false);
+		ToolRenderer_->CreateAnimation("Swoard_front.bmp", "FRONT_SWOARD", static_cast<int>(SWAORD_FRONT::SWAORD_FRONT0), static_cast<int>(SWAORD_FRONT::SWAORD_FRONT4), 0.040f, false);
+		ToolRenderer_->CreateAnimation("Swoard_back.bmp", "BACK_SWOARD", static_cast<int>(SWAORD_BACK::SWAORD_BACK0), static_cast<int>(SWAORD_BACK::SWAORD_BACK3), 0.040f, false);
 
 
 
@@ -712,12 +712,10 @@ void Player::Update()
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		DelaySpeed();
-		AttackMonster();
 		DirAnimationChange();
 		UpdateInvincibilityTime();
 		UpdateIsNotInvincibilityTime();
 		MonsterAndPlayerColl();
-		AttackMonster();
 
 		break;
 	case LEVEL_LIST::MINEPOINT_LEVEL:
@@ -804,17 +802,17 @@ void Player::PlayerUpdate()
 
 	case PLAYER_UPDATE::HOE:
 
-	//	isEvent_ = true;
 		if (PlayerBodyRenderer_->IsEndAnimation())
-		{
+		{		AttackMonster();
+
 			if (FarmingArea_ == true)
 			{
 				CreateDirtTile();
 				ChangeDirtTile();
-				AttackMonster();
 
 				SubEnergy(2);
 			}
+
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -827,7 +825,6 @@ void Player::PlayerUpdate()
 			CreateWaterEffet();
 			CreateWaterTile();
 			ChangeWetDirtTile();
-			AttackMonster();
 
 			SubEnergy(2);
 
@@ -842,7 +839,6 @@ void Player::PlayerUpdate()
 		{
 			CrushTree();
 			CrushWood();
-			AttackMonster();
 			SubEnergy(2);
 
 			PlayerState_ = PLAYER_UPDATE::INIT;
@@ -874,7 +870,6 @@ void Player::PlayerUpdate()
 		}
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
-			AttackMonster();
 			SubEnergy(2);
 
 			ToolRenderer_->SetPivot({0, 0});
@@ -974,7 +969,6 @@ void Player::PlayerUpdate()
 			else
 			{
 				PlayerState_ = PLAYER_UPDATE::INIT;
-
 			}
 		}
 

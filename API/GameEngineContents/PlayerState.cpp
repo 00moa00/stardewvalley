@@ -587,6 +587,8 @@ void Player::CheckTool()
 
 	else if (CurrentItemType() == TOOLTYPE::SWOARD)
 	{
+		AttackMonster();
+
 		PlayerState_ = PLAYER_UPDATE::SWOARD;
 	}
 	else

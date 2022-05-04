@@ -569,12 +569,12 @@ void Player::AttackMonster()
 	for (; GetMonsterIter != MonsterList_.end(); ++GetMonsterIter) {
 
 		if (GetMonsterIter->second->MonsterCheck(PlayerCollCheckPos(), GetScale()) == true
-			&&GetCurrentItem()->GetItemType()==ITEMTYPE::TOOL
 			&& MainMouse_->isMouseClick() == true)
 		{
 
 			//몬스터의 체력을 깍는다.
 			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower());		
+			GetMonsterIter->second->SetMonsterStateBack();
 
 		}
 
@@ -584,8 +584,6 @@ void Player::AttackMonster()
 
 void Player::MonsterAndPlayerColl()
 {
-
-
 	//매 프레임마다 깍이는거 방지
 	if (isSubTime_ == false)
 	{
@@ -600,7 +598,7 @@ void Player::MonsterAndPlayerColl()
 	std::map<std::string, Monster*>::iterator GetMonsterIter = MonsterList_.begin();
 	for (; GetMonsterIter != MonsterList_.end(); ++GetMonsterIter) {
 
-		if (GetMonsterIter->second->MonsterVSPlayer() == true)
+		if (PlayerCollider_->CollisionResult("Monster", ColList, CollisionType::Rect, CollisionType::Rect) == true)
 		{
 			//무적중이면 데미지를 깍지 않는다.
 			if (invincibility_ == true)
