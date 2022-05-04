@@ -573,8 +573,11 @@ void Player::AttackMonster()
 		{
 
 			//몬스터의 체력을 깍는다.
-			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower());		
-			GetMonsterIter->second->SetMonsterStateBack();
+			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower());	
+			if (GetMonsterIter->second->GetMonsterType() != MONSTER_TYPE::BUG)
+			{
+				GetMonsterIter->second->SetMonsterStateBack();
+			}
 
 		}
 

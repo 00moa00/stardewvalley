@@ -30,16 +30,19 @@ void Bug::Start()
 
 	Damage_ = 2;
 	HP_ = 10;
-	Speed_ = 30.f;
+	Speed_ = 70.f;
 
 
 	MonsterState_ = MONSTER_STATE::MOVE_UP;
+	MonsterType_ = MONSTER_TYPE::BUG;
 
 	SetScale({ 48, 60 });
 }
 
 void Bug::Update()
 {
+	DirAnimation();
+
 	switch (MonsterState_)
 	{
 

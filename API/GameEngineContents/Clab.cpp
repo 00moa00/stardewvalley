@@ -38,6 +38,7 @@ void Clab::Start()
 	MonsterRenderer_->ChangeAnimation("RIGHT_WAIT");
 
 	MonsterState_ = MONSTER_STATE::WAIT;
+	MonsterType_ = MONSTER_TYPE::CRAB;
 
 
 	Damage_ = 2;

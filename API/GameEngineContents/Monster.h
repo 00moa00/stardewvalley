@@ -34,6 +34,15 @@ enum class MONSTER_STATE
 	MAX
 };
 
+enum class MONSTER_TYPE
+{
+	OTHER,
+	BUG,
+	BAT,
+	CRAB,
+	GOLEM
+};
+
 // 설명 :
 class Monster : public GameEngineActor
 {
@@ -85,6 +94,7 @@ protected:
 	GameEngineRandom RandomTimer_;	//랜덤 방향전향 타이머
 
 	MONSTER_STATE MonsterState_;
+	MONSTER_TYPE MonsterType_;
 
 	GameEngineRenderer* MonsterRenderer_;
 	GameEngineCollision* MonsterCollider_;		
@@ -145,6 +155,11 @@ public:
 		return	MonsterCollider_->CollisionResult("Player", ColList, CollisionType::Rect, CollisionType::Rect);
 	}
 
+
+	MONSTER_TYPE GetMonsterType()
+	{
+		return MonsterType_;
+	}
 
 	//================================
 	//    Setter

@@ -18,6 +18,7 @@ Monster::Monster()
 	RandomTimer_(),
 
 	MonsterState_(MONSTER_STATE::WALK),
+	MonsterType_(MONSTER_TYPE::OTHER),
 
 	MonsterRenderer_(nullptr),
 	MonsterCollider_(nullptr)

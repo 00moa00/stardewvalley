@@ -755,17 +755,17 @@ void StardewValley::GameInit()
 		//------< ÀÌ¹ÌÁö Cut >------------------------------------------------------------------
 
 		//================================
-		//		WoodAnimationsSheet
+		//		StoneGolem
 		//================================
 		GameEngineImage* StoneGolem = GameEngineImageManager::GetInst()->Find("StoneGolem.bmp");
 		StoneGolem->Cut({ 48, 72 });
 
 
 		//================================
-		//		WoodAnimationsSheet
+		//		ArmoredBug
 		//================================
 		GameEngineImage* ArmoredBug = GameEngineImageManager::GetInst()->Find("ArmoredBug.bmp");
-		ArmoredBug->Cut({ 48, 60 });
+		ArmoredBug->Cut({ 48, 48 });
 
 	}
 

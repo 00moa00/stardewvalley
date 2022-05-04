@@ -6,6 +6,7 @@
 #include "Block.h"
 #include "SmallStone.h"
 #include "Golem.h"
+#include "Bug.h"
 
 #include <GameEngineBase/GameEngineTime.h>
 
@@ -41,6 +42,9 @@ void Mine1::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	BackGround_->GetRenderer()->SetImage("Mine1_Back.bmp");
 	BackGround_->GetRenderer()->SetPivot({ MINEFLOOR_SIZE_WEIGHT / 2,  MINEFLOOR_SIZE_HEIGHT / 2 });
+
+	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
+
 
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
@@ -255,10 +259,18 @@ void Mine1::LoadMapObject()
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AQUAMARINE_STONE);
 				
 				break;
+
+			case TILE_LIST::BUG:
+
+				MonsterList_.insert(std::make_pair("BUG", CreateActor<Bug>((int)PLAYLEVEL::PLAYER)));
+				MonsterIter = MonsterList_.find("BUG");
+				MonsterIter->second->SetPosition(pos);
+				break;
+
 			case TILE_LIST::GOLEM:
 
 				MonsterList_.insert(std::make_pair("Golem", CreateActor<Golem>((int)PLAYLEVEL::PLAYER)));
-				MonsterIter = --MonsterList_.end();
+				MonsterIter = MonsterList_.find("Golem");
 				MonsterIter->second->SetPosition(pos);
 				break;
 

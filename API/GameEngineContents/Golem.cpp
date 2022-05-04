@@ -71,6 +71,7 @@ void Golem::Start()
 	Speed_ = 60.f;
 
 	MonsterState_ = MONSTER_STATE::WAIT;
+	MonsterType_ = MONSTER_TYPE::GOLEM;
 
 	SetScale({ 48, 50 });
 }
