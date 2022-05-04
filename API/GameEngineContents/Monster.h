@@ -26,6 +26,8 @@ enum class MONSTER_STATE
 
 	BACK,
 
+	COLL,
+
 	MAX
 };
 

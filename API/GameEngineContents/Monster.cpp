@@ -163,7 +163,6 @@ void Monster::BackMove()
 	float4 BackMove = -MoveDir_;
 
 
-	SetMove(BackMove * GameEngineTime::GetDeltaTime() * 300.f);
 
 	static float BackTimer_ = 0;
 	BackTimer_ += GameEngineTime::GetDeltaTime();
@@ -178,7 +177,11 @@ void Monster::BackMove()
 	if (MonsterCollider_->NextPostCollisionCheck("MapObject", BackMove * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
 	{
 		MonsterState_ = MONSTER_STATE::WALK;
+		return;
 	}
+
+	SetMove(BackMove * GameEngineTime::GetDeltaTime() * 300.f);
+
 }
 
 void Monster::SetMonsterStateBack()

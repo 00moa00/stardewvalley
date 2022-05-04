@@ -11,6 +11,8 @@ Golem::Golem()
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::RE_CHECK)] = "WAIT";
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::CHECK)] = "WAIT";
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::BACK)] = "WAIT";
+	ArrAnimationName[static_cast<int>(MONSTER_STATE::COLL)] = "WALK";
+
 
 }
 
@@ -52,6 +54,12 @@ void Golem::Start()
 void Golem::Update()
 {
 	DirAnimation(); 
+
+	//오브젝트에 끼었을때
+	if (MonsterCollider_->CollisionResult("MapObject", ColList, CollisionType::Rect, CollisionType::Rect) == true)
+	{
+		MonsterState_ = MONSTER_STATE::COLL;
+	}
 
 	switch (MonsterState_)
 	{
@@ -222,15 +230,24 @@ void Golem::Update()
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
 
 
+
+
 		break;
 	case MONSTER_STATE::BACK:
 
 		BackMove();
-
-
 		break;
-	default:
-		break;
+
+	case MONSTER_STATE::COLL:
+
+		SetMove(MoveDir_* GameEngineTime::GetDeltaTime()* Speed_);
+
+		if (MonsterCollider_->CollisionResult("MapObject", ColList, CollisionType::Rect, CollisionType::Rect) == false)
+		{
+			MonsterState_ = MONSTER_STATE::WALK;
+
+		}
+
 	}
 
 
