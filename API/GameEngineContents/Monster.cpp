@@ -64,14 +64,9 @@ std::string Monster::GetDirString()
 
 bool Monster::CheckMapObject()
 {
-	//float4 Move = float4::ZERO;
 
-	//Move.Normal2D();
-	//Move += MoveDir_;
-
-	if (MonsterCollider_->NextPostCollisionCheck("MapObject", MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
+	if (MonsterCollider_->NextPostCollisionCheck("MapObject", MoveDir_ * GameEngineTime::GetDeltaTime() * 100.f, CollisionType::Rect, CollisionType::Rect) == true)
 	{
-	//	MoveDir_ = float4::ZERO;
 		return true;
 
 	}
@@ -173,11 +168,11 @@ void Monster::BackMove()
 		MonsterState_ = MONSTER_STATE::WALK;
 	}
 
-	if (MonsterCollider_->NextPostCollisionCheck("MapObject", BackMove * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
-	{
-		MonsterState_ = MONSTER_STATE::WALK;
-		return;
-	}
+	//if (MonsterCollider_->NextPostCollisionCheck("MapObject", BackMove * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
+	//{
+	//	MonsterState_ = MONSTER_STATE::WALK;
+	//	return;
+	//}
 
 	SetMove(BackMove * GameEngineTime::GetDeltaTime() * 300.f);
 

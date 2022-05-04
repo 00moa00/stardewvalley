@@ -965,6 +965,11 @@ void Player::AddEnergy(int _Energy)
 
 void Player::SubHP(int _HP)
 {
+	if (invincibility_ == true)
+	{
+		return;
+	}
+
 	SubHPFont* SubHPFont_;
 	SubHPFont_ = GetLevel()->CreateActor<SubHPFont>();
 	SubHPFont_->SetPosAndNumRed(this->GetPosition(), _HP);

@@ -27,10 +27,6 @@ void Golem::Start()
 	MonsterCollider_ = CreateCollision("Monster", { 48.f, 36.f });
 	MonsterCollider_->SetPivot({ 0, 18.f });
 
-	
-	SubCollision_ = CreateCollision("SubMonster", { 45.f, 34.f });
-	SubCollision_->SetPivot({ 0, 18.f });
-
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "RIGHT_WALK", static_cast<int>(STONE_GOLEM::RIGHT_WALK00), static_cast<int>(STONE_GOLEM::RIGHT_WALK03), 0.120f, true);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "LEFT_WALK", static_cast<int>(STONE_GOLEM::LEFT_WALK00), static_cast<int>(STONE_GOLEM::LEFT_WALK03), 0.120f, true);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "FRONT_WALK", static_cast<int>(STONE_GOLEM::FRONT_WALK00), static_cast<int>(STONE_GOLEM::FRONT_WALK03), 0.120f, true);
@@ -58,7 +54,7 @@ void Golem::Start()
 	HP_ = 10;
 	Speed_ = 60.f;
 
-	MonsterState_ = MONSTER_STATE::WAIT;
+	MonsterState_ = MONSTER_STATE::WALK;
 
 	SetScale({ 48, 50 });
 }
@@ -68,41 +64,14 @@ void Golem::Update()
 	//몬스터 방향 체크
 	DirAnimation(); 
 
-
-	//////오브젝트에 끼었을때
-	//if (SubCollision_->CollisionResult("MapObject", ColList, CollisionType::Rect, CollisionType::Rect) == true)
-	//{
-	//	MonsterState_ = MONSTER_STATE::COLL;
-	//}
-
-
 	switch (MonsterState_)
 	{
-
 	case MONSTER_STATE::WAIT:
-		//플레이어로 향하는 방향 체크
-		Dir = Player::MainPlayer->GetPosition() - this->GetPosition();
-
-		//범위 체크
-		Check = Dir.Len2D();
-		Dir.Normal2D();
-
-		if (Check <= 300)
-		{
-			MonsterState_ = MONSTER_STATE::REVIVAL;
-
-		}
-		break;
-
-	case MONSTER_STATE::REVIVAL:
-		if (MonsterRenderer_->IsEndAnimation())
-		{
-			MonsterState_ = MONSTER_STATE::WALK;
-
-		}
-
 		break;
 	case MONSTER_STATE::CHECK:
+
+		//몬스터 랜덤 방향으로 이동
+		//만약 랜덤 체크한 곳에 오브젝트가 있다면 다시 돌아온다.
 
 		RamdomDirResult_ = RandomDir_.RandomInt(0, 3);
 
@@ -190,7 +159,10 @@ void Golem::Update()
 
 		Dir.Normal2D();
 
-		if (Check <= 150 && CheckTime_ == true)
+		//플레이어에게 향하는 길을 찾는다. && 플레이어와 닿았을때 방향전향플러그가 true일때만
+		//플레이어를 향해 간다.
+
+		if (Check <= 300 && CheckTime_ == true)
 		{
 			//플레이어가 오른쪽, 아래에 있다
 			if (Dir.x > 0 && Dir.y > 0)
@@ -229,7 +201,6 @@ void Golem::Update()
 					MoveDir_ = float4::DOWN;
 				}
 
-
 				if (Dir.y < 0)
 				{
 					MoveDir_ = float4::ZERO;
@@ -240,9 +211,14 @@ void Golem::Update()
 
 		}
 
+		//오브젝트가 있으면 랜덤한 방향으로 머리를 튼다.
+		if (CheckMapObject() == true)
+		{
+			MonsterState_ = MONSTER_STATE::CHECK;
+			break;
+		}
 
-		////플레이어 체크 무적. 닿으면 0.5초동안 체크하지 않는다.
-
+		//플레이어와 닿으면 0.5초동안 방향 전향을 하지 않는다.
 		if (Player::MainPlayer->GetPosition().CompareInt2D(this->GetPosition()) == true && CheckTime_ == true)
 		{
 			CheckTime_ = false;
@@ -258,32 +234,12 @@ void Golem::Update()
 			}
 		}
 
-		//플레이어로 향하지만 벽이 있으면 랜덤한 방향으로 머리를 튼다.
-		if (CheckMapObject() == true)
-		{
-			MonsterState_ = MONSTER_STATE::WALK;
-			break;
-		}
-
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-
-
 
 		break;
 	case MONSTER_STATE::BACK:
 
 		BackMove();
-		break;
-
-	case MONSTER_STATE::COLL:
-
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-
-		if (MonsterCollider_->CollisionResult("MapObject", ColList, CollisionType::Rect, CollisionType::Rect) == false)
-		{
-			MonsterState_ = MONSTER_STATE::WALK;
-		}
-
 		break;
 
 	}

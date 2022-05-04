@@ -1269,6 +1269,12 @@ void Player::LevelInit()
 		SetPosition({ 790.f, 490.f });
 
 	}
+	// 집 -> 마인
+	if (CurrentLevel_ == "Mine1" && PrevLevel_ == "MyHouseLevel")
+	{
+		SetPosition({ 250.f , 500.f });
+	}
+
 
 	// 타이틀 -> 집
 	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "")
