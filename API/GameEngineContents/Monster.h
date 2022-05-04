@@ -176,13 +176,22 @@ public:
 		{
 			SubHPFont* SubHPFont_;
 			SubHPFont_ = GetLevel()->CreateActor<SubHPFont>();
-			SubHPFont_->SetPosAndNumGray(this->GetPosition(), _Damage);
 
-			HP_ -= _Damage;
+
+			if (MonsterType_ == MONSTER_TYPE::BUG)
+			{
+				SubHPFont_->SetPosAndNumGray(this->GetPosition(), 0);
+				HP_ -= 0;
+
+			}
+			else
+			{
+				SubHPFont_->SetPosAndNumGray(this->GetPosition(), _Damage);
+				HP_ -= _Damage;
+			}
 
 			if (HP_ <= 0)
-			{
-				
+			{			
 				isDeath_ = true;
 			}
 		}
