@@ -611,6 +611,14 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 			StartIter->second->Death();
 		}
 
+		std::map<std::string, Monster*>::iterator StarMonstertIter= MonsterList_.begin();
+		std::map<std::string, Monster*>::iterator EndMonstertIter = MonsterList_.end();
+
+		for (; StarMonstertIter != EndMonstertIter; ++StarMonstertIter)
+		{
+			StarMonstertIter->second->Death();
+		}
+
 		//MapObject_.erase(MapObject_.begin(), MapObject_.end());
 		MapObject_.clear();
 	}
