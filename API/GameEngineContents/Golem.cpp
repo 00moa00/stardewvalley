@@ -70,10 +70,10 @@ void Golem::Update()
 
 
 	//////오브젝트에 끼었을때
-	if (SubCollision_->CollisionResult("MapObject", ColList, CollisionType::Rect, CollisionType::Rect) == true)
-	{
-		MonsterState_ = MONSTER_STATE::COLL;
-	}
+	//if (SubCollision_->CollisionResult("MapObject", ColList, CollisionType::Rect, CollisionType::Rect) == true)
+	//{
+	//	MonsterState_ = MONSTER_STATE::COLL;
+	//}
 
 
 	switch (MonsterState_)
@@ -240,12 +240,6 @@ void Golem::Update()
 
 		}
 
-		//플레이어로 향하지만 벽이 있으면 랜덤한 방향으로 머리를 튼다.
-		if (CheckMapObject() == true)
-		{			
-			MonsterState_ = MONSTER_STATE::CHECK;
-			break;
-		}
 
 		////플레이어 체크 무적. 닿으면 0.5초동안 체크하지 않는다.
 
@@ -264,8 +258,14 @@ void Golem::Update()
 			}
 		}
 
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+		//플레이어로 향하지만 벽이 있으면 랜덤한 방향으로 머리를 튼다.
+		if (CheckMapObject() == true)
+		{
+			MonsterState_ = MONSTER_STATE::WALK;
+			break;
+		}
 
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
 
 
 
