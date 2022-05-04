@@ -15,18 +15,21 @@
 
 enum class MONSTER_STATE
 {
-	WAIT,
-	CHECK,
-	RE_CHECK,
-	WALK,
+	WAIT,			//대기
+	REVIVAL,		//소생
+
+	CHECK,			//사방 충돌 체크
+	RE_CHECK,		//사방 충돌 체크
+	WALK,			//평상시 걷기
 
 
-	MOVE_UP,
-	MOVE_DOWN,
+	MOVE_UP,		//BUG - 위 이동
+	MOVE_DOWN,		//BUG - 아래 이동
 
-	BACK,
+	BACK,			//공격 받으면 뒤로 이동
 
-	COLL,
+	COLL,			//맵 오브젝트에 몬스터가 꼈을때
+	DEATH,
 
 	MAX
 };
@@ -158,6 +161,11 @@ public:
 		SubHPFont_->SetPosAndNumGray(this->GetPosition(), _Damage);
 
 		HP_ -= _Damage;
+
+		if (HP_ <= 0)
+		{
+			isDeath_ = true;
+		}
 	}
 
 	float4 GetMoveDir()

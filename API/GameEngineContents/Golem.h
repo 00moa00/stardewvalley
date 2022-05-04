@@ -25,7 +25,10 @@ private:
 	bool CheckTime_;
 
 	float4 Dir;
+
 	float Check;
 	float CheckTimer_;
+
+	GameEngineCollision* SubCollision_;
 };
 

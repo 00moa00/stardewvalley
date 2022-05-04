@@ -60,6 +60,7 @@ Player::Player()
 
 	WetTileMap_(nullptr),
 	DirtTileMap_(nullptr),
+
 	MoveDir_(float4::DOWN),
 
 	LevelList_(LEVEL_LIST::TITLE_LEVEL),
@@ -626,6 +627,7 @@ void Player::Update()
 	case LEVEL_LIST::TITLE_LEVEL:
 		break;
 	case LEVEL_LIST::MYHOUSE_LEVEL:
+
 		GetItem();
 		SetCamera();
 		PlayerUpdate();
@@ -637,7 +639,6 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MYFARM_LEVEL:
-
 
 		SetCamera();
 		PlayerUpdate();
@@ -671,6 +672,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::SALOON_LEVEL:
+
 		SetCamera();
 		NpcCollCheck();
 		PlayerUpdate();
@@ -684,6 +686,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::SEEDSHOP_LEVEL:
+
 		SetCamera();
 		NpcCollCheck();
 		PlayerUpdate();
@@ -697,6 +700,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::BACKFOREST_LEVEL:
+
 		SetCamera();
 		PlayerUpdate();
 		PlayerDirCheck();
@@ -707,6 +711,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MINE_LEVEL:
+
 		SetCamera();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
@@ -719,6 +724,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MINEPOINT_LEVEL:
+
 		SetCamera();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
@@ -728,6 +734,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MINEFLOOR_LEVEL:
+
 		SetCamera();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
@@ -860,7 +867,7 @@ void Player::PlayerUpdate()
 
 		break;
 	case PLAYER_UPDATE::SWOARD:
-		//CrushStone();
+
 		ToolRenderer_->SetPivot({ 0, 38 });
 		if (GetDirString() == "BACK_")
 		{
@@ -868,6 +875,7 @@ void Player::PlayerUpdate()
 			PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
 
 		}
+
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			SubEnergy(2);
@@ -881,11 +889,13 @@ void Player::PlayerUpdate()
 		break;
 
 	case PLAYER_UPDATE::HANDITEM:
+
 		PlayerDirCheck();
 		ChangeLevel();
 		ChangeHandItem();
 		CheckDrink();
 		CheckEat();
+
 		if (MainMouse_->MouseClickInventoryOut())
 		{
 			CreateSeed();
@@ -952,8 +962,6 @@ void Player::PlayerUpdate()
 		PlayerHairRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
 		PlayerHandRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(PlayerState_)]);
 
-
-
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
@@ -973,7 +981,6 @@ void Player::PlayerUpdate()
 		}
 
 
-
 		break;
 	case PLAYER_UPDATE::EAT_WAIT:
 
@@ -984,11 +991,6 @@ void Player::PlayerUpdate()
 			PlayerState_ = PLAYER_UPDATE::EAT;
 
 		}
-		//if (PlayerBodyRenderer_->IsEndAnimation())
-		//{
-		//	GetCurrentItem()->SubItemCount();
-		//	PlayerState_ = PLAYER_UPDATE::INIT;
-		//}
 
 		break;
 
