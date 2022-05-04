@@ -13,6 +13,12 @@ Golem::Golem()
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::CHECK)] = "CHECKWAIT";
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::BACK)] = "CHECKWAIT";
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::COLL)] = "CHECKWAIT";
+
+	ArrAnimationName[static_cast<int>(MONSTER_STATE::MOVE_TO_PLAYER)] = "CHECKWAIT";
+
+	ArrAnimationName[static_cast<int>(MONSTER_STATE::DEATH)] = "DEATH";
+
+	
 }
 
 Golem::~Golem() 
@@ -32,10 +38,20 @@ void Golem::Start()
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "FRONT_WALK", static_cast<int>(STONE_GOLEM::FRONT_WALK00), static_cast<int>(STONE_GOLEM::FRONT_WALK03), 0.120f, true);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "BACK_WALK", static_cast<int>(STONE_GOLEM::BACK_WALK00), static_cast<int>(STONE_GOLEM::BACK_WALK03), 0.120f, true);
 
-	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "RIGHT_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.120f, false);
-	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "LEFT_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.120f, false);
-	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "FRONT_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.120f, false);
-	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "BACK_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.120f, false);
+	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "RIGHT_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.200f, false);
+	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "LEFT_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.200f, false);
+	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "FRONT_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.200f, false);
+	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "BACK_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.200f, false);
+
+
+
+	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "RIGHT_DEATH", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.200f, false);
+	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "LEFT_DEATH", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.200f, false);
+	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "FRONT_DEATH", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.200f, false);
+	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "BACK_DEATH", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.200f, false);
+
+
+
 
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "RIGHT_CHECKWAIT", static_cast<int>(STONE_GOLEM::RIGHT_WALK00), static_cast<int>(STONE_GOLEM::RIGHT_WALK03), 0.120f, true);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "LEFT_CHECKWAIT", static_cast<int>(STONE_GOLEM::LEFT_WALK00), static_cast<int>(STONE_GOLEM::LEFT_WALK03), 0.120f, true);
@@ -54,7 +70,7 @@ void Golem::Start()
 	HP_ = 10;
 	Speed_ = 60.f;
 
-	MonsterState_ = MONSTER_STATE::WALK;
+	MonsterState_ = MONSTER_STATE::WAIT;
 
 	SetScale({ 48, 50 });
 }
@@ -64,9 +80,41 @@ void Golem::Update()
 	//몬스터 방향 체크
 	DirAnimation(); 
 
+	Dir = Player::MainPlayer->GetPosition() - this->GetPosition();
+
+	//범위 체크
+	Check = Dir.Len2D();
+	Dir.Normal2D();
+
+	if (isDeath_ == true)
+	{
+		MonsterState_ = MONSTER_STATE::DEATH;
+
+	}
+
 	switch (MonsterState_)
 	{
 	case MONSTER_STATE::WAIT:
+		invincibility_ = true;
+
+		if (Check <= 150)
+		{
+			HP_ = 20;
+			MonsterState_ = MONSTER_STATE::REVIVAL;
+		}
+		break;
+
+	case MONSTER_STATE::REVIVAL:
+
+
+		if (MonsterRenderer_->IsEndAnimation())
+		{
+			invincibility_ = false;
+			MonsterState_ = MONSTER_STATE::WALK;
+
+		}
+
+
 		break;
 	case MONSTER_STATE::CHECK:
 
@@ -141,13 +189,51 @@ void Golem::Update()
 		MonsterState_ = MONSTER_STATE::CHECK;
 
 		break;
+
+
+	case MONSTER_STATE::MOVE_TO_PLAYER :
+
+		//x가 더 짧다
+		if (Dir.x < Dir.y)
+		{
+			if (Dir.x > 0)
+			{
+				MoveDir_ = float4::RIGHT;
+				MonsterState_ = MONSTER_STATE::WALK;
+				break;
+			}
+
+			else
+			{
+				MoveDir_ = float4::LEFT;
+				MonsterState_ = MONSTER_STATE::WALK;
+				break;
+			}
+
+		}
+
+		//y가 더 짧다
+		else 
+		{
+			if (Dir.y < 0)
+			{
+				MoveDir_ = float4::UP;
+				MonsterState_ = MONSTER_STATE::WALK;
+				break;
+			}
+
+			else 
+			{
+				MoveDir_ = float4::DOWN;
+				MonsterState_ = MONSTER_STATE::WALK;
+				break;
+			}
+		}
+
+
+
+		break;
 	case MONSTER_STATE::WALK:
-
-		//플레이어로 향하는 방향 체크
-		Dir = Player::MainPlayer->GetPosition() - this->GetPosition();
-
-		//범위 체크
-		Check = Dir.Len2D();
 
 		//가다가 일정 시간이 지나면 방향을 튼다.
 		Timer_ += GameEngineTime::GetDeltaTime();
@@ -156,57 +242,21 @@ void Golem::Update()
 			Timer_ = 0.f;
 			MonsterState_ = MONSTER_STATE::CHECK;
 		}
-
-		Dir.Normal2D();
+		//플레이어로 향하는 방향 체크
 
 		//플레이어에게 향하는 길을 찾는다. && 플레이어와 닿았을때 방향전향플러그가 true일때만
 		//플레이어를 향해 간다.
 
-		if (Check <= 300 && CheckTime_ == true)
+		CheckTimer_ += GameEngineTime::GetDeltaTime();
+
+		if (Check <= 150)
 		{
-			//플레이어가 오른쪽, 아래에 있다
-			if (Dir.x > 0 && Dir.y > 0)
+			if (CheckTimer_ > 1.0f)
 			{
-				MoveDir_ = float4::ZERO;
-				MoveDir_ = float4::RIGHT;
-			}
+				CheckTimer_ = 0.f;
+				MonsterState_ = MONSTER_STATE::MOVE_TO_PLAYER;
 
-			//플레이어가 오른쪽, 위에 있다
-			if (Dir.x > 0 && Dir.y < 0)
-			{
-				MoveDir_ = float4::ZERO;
-				MoveDir_ = float4::RIGHT;
-			}
-
-			//플레이어가 왼쪽, 위에 있다
-			if (Dir.x < 0 && Dir.y < 0)
-			{
-				MoveDir_ = float4::ZERO;
-				MoveDir_ = float4::LEFT;
-			}
-
-			//플레이어가 왼쪽, 아래에 있다
-			if (Dir.x < 0 && Dir.y > 0)
-			{
-				MoveDir_ = float4::ZERO;
-				MoveDir_ = float4::LEFT;
-			}
-
-			//x를 먼저 체크하고 나머지 y체크
-			if (Player::MainPlayer->GetPosition().ix() == this->GetPosition().ix())
-			{
-				if (Dir.y > 0)
-				{
-					MoveDir_ = float4::ZERO;
-					MoveDir_ = float4::DOWN;
-				}
-
-				if (Dir.y < 0)
-				{
-					MoveDir_ = float4::ZERO;
-					MoveDir_ = float4::UP;
-				}
-
+				break;
 			}
 
 		}
@@ -218,21 +268,6 @@ void Golem::Update()
 			break;
 		}
 
-		//플레이어와 닿으면 0.5초동안 방향 전향을 하지 않는다.
-		if (Player::MainPlayer->GetPosition().CompareInt2D(this->GetPosition()) == true && CheckTime_ == true)
-		{
-			CheckTime_ = false;
-		}
-
-		if (CheckTime_ == false)
-		{
-			CheckTimer_ += GameEngineTime::GetDeltaTime();
-			if (CheckTimer_ > 0.5f)
-			{
-				CheckTime_ = true;
-				CheckTimer_ = 0.f;
-			}
-		}
 
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
 
@@ -241,7 +276,14 @@ void Golem::Update()
 
 		BackMove();
 		break;
+	case MONSTER_STATE::DEATH:
 
+		if (MonsterRenderer_->IsEndAnimation())
+		{
+			this->Death();
+		}
+
+		break;
 	}
 
 }

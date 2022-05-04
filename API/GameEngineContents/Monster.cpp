@@ -10,6 +10,7 @@ Monster::Monster()
 	Timer_(0.f),
 
 	isDeath_(false),
+	invincibility_(false),
 
 	MoveDir_(float4::DOWN),
 
@@ -156,13 +157,13 @@ void Monster::BackMove()
 {
 
 	float4 BackMove = -MoveDir_;
-
+	MoveDir_ = -Player::MainPlayer->GetMoveDir();
 
 
 	static float BackTimer_ = 0;
 	BackTimer_ += GameEngineTime::GetDeltaTime();
 
-	if (BackTimer_ > 0.2f)
+	if (BackTimer_ > 0.1f)
 	{
 		BackTimer_ = 0.f;
 		MonsterState_ = MONSTER_STATE::WALK;

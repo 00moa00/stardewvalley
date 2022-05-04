@@ -21,7 +21,7 @@ enum class MONSTER_STATE
 	CHECK,			//사방 충돌 체크
 	RE_CHECK,		//사방 충돌 체크
 	WALK,			//평상시 걷기
-
+	MOVE_TO_PLAYER,
 
 	MOVE_UP,		//BUG - 위 이동
 	MOVE_DOWN,		//BUG - 아래 이동
@@ -76,6 +76,7 @@ protected:
 
 	bool isDeath_;				//죽었는지 체크
 	bool isHit_;				//크랩용 플러그
+	bool invincibility_;
 
 	float4 PrevPos_;
 	float4 MoveDir_;			// 걷는 방향
@@ -156,15 +157,19 @@ public:
 
 	void SubHP(int _Damage)
 	{
-		SubHPFont* SubHPFont_;
-		SubHPFont_ = GetLevel()->CreateActor<SubHPFont>();
-		SubHPFont_->SetPosAndNumGray(this->GetPosition(), _Damage);
-
-		HP_ -= _Damage;
-
-		if (HP_ <= 0)
+		if (invincibility_ == false )
 		{
-			isDeath_ = true;
+			SubHPFont* SubHPFont_;
+			SubHPFont_ = GetLevel()->CreateActor<SubHPFont>();
+			SubHPFont_->SetPosAndNumGray(this->GetPosition(), _Damage);
+
+			HP_ -= _Damage;
+
+			if (HP_ <= 0)
+			{
+				
+				isDeath_ = true;
+			}
 		}
 	}
 
