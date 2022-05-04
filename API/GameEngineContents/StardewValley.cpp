@@ -621,8 +621,6 @@ void StardewValley::GameInit()
 	//------< Shop >--------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------
 	{
-
-
 		GameEngineDirectory ResourcesDir;
 		ResourcesDir.MoveParent("API");
 		ResourcesDir.Move("Resources");
@@ -677,8 +675,6 @@ void StardewValley::GameInit()
 	//----------------------------------------------------------------------------------------------
 
 	{
-
-
 		GameEngineDirectory ResourcesDir;
 		ResourcesDir.MoveParent("API");
 		ResourcesDir.Move("Resources");
@@ -766,6 +762,15 @@ void StardewValley::GameInit()
 		//================================
 		GameEngineImage* ArmoredBug = GameEngineImageManager::GetInst()->Find("ArmoredBug.bmp");
 		ArmoredBug->Cut({ 48, 48 });
+
+		//================================
+		//		ArmoredBug
+		//================================
+		GameEngineImage* LavaBat = GameEngineImageManager::GetInst()->Find("LavaBat.bmp");
+		LavaBat->Cut({ 48, 84 });
+
+
+
 
 	}
 

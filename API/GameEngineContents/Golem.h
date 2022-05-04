@@ -22,12 +22,11 @@ private:
 private:
 	void DirAnimation();
 
-
 	bool CheckTime_;
 
 	float4 Dir;
 
-	float Check;
+	float Check_;
 	float CheckTimer_;
 
 	GameEngineCollision* SubCollision_;

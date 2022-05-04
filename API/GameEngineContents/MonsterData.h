@@ -21,6 +21,8 @@ enum class BUG_INDEX
 enum class BAT_INDEX
 {
 	FRONT_WALK00, FRONT_WALK01, FRONT_WALK02, FRONT_WALK03,
+	INIT,
+	DEATH = 16
 };
 
 enum class CRAB_INDEX
@@ -45,3 +47,4 @@ enum class STONE_GOLEM
 
 	DEATH
 };
+

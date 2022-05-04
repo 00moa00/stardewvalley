@@ -7,6 +7,7 @@
 #include "SmallStone.h"
 #include "Golem.h"
 #include "Bug.h"
+#include "Bat.h"
 
 #include <GameEngineBase/GameEngineTime.h>
 
@@ -273,6 +274,14 @@ void Mine1::LoadMapObject()
 				MonsterIter = MonsterList_.find("Golem");
 				MonsterIter->second->SetPosition(pos);
 				break;
+
+
+			case TILE_LIST::BAT:
+				MonsterList_.insert(std::make_pair("Bat", CreateActor<Bat>((int)PLAYLEVEL::PLAYER)));
+				MonsterIter = MonsterList_.find("Bat");
+				MonsterIter->second->SetPosition(pos);
+				break;
+
 
 			default:
 				break;

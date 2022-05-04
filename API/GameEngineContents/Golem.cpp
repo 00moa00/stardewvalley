@@ -3,7 +3,13 @@
 
 Golem::Golem() 
 	:
-	CheckTimer_(0.f)
+	CheckTimer_(0.f),
+	Check_(0.f),
+
+	CheckTime_(false),
+	SubCollision_(nullptr)
+
+
 {
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::REVIVAL)] = "REVIVAL";
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::WAIT)] = "WAIT";
@@ -17,8 +23,6 @@ Golem::Golem()
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::MOVE_TO_PLAYER)] = "CHECKWAIT";
 
 	ArrAnimationName[static_cast<int>(MONSTER_STATE::DEATH)] = "DEATH";
-
-	
 }
 
 Golem::~Golem() 
@@ -43,21 +47,15 @@ void Golem::Start()
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "FRONT_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.200f, false);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "BACK_REVIVAL", static_cast<int>(STONE_GOLEM::REVIVAL00), static_cast<int>(STONE_GOLEM::REVIVAL_K07), 0.200f, false);
 
-
-
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "RIGHT_DEATH", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.200f, false);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "LEFT_DEATH", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.200f, false);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "FRONT_DEATH", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.200f, false);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "BACK_DEATH", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.200f, false);
 
-
-
-
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "RIGHT_CHECKWAIT", static_cast<int>(STONE_GOLEM::RIGHT_WALK00), static_cast<int>(STONE_GOLEM::RIGHT_WALK03), 0.120f, true);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "LEFT_CHECKWAIT", static_cast<int>(STONE_GOLEM::LEFT_WALK00), static_cast<int>(STONE_GOLEM::LEFT_WALK03), 0.120f, true);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "FRONT_CHECKWAIT", static_cast<int>(STONE_GOLEM::FRONT_WALK00), static_cast<int>(STONE_GOLEM::FRONT_WALK03), 0.120f, true);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "BACK_CHECKWAIT", static_cast<int>(STONE_GOLEM::BACK_WALK00), static_cast<int>(STONE_GOLEM::BACK_WALK03), 0.120f, true);
-
 
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "RIGHT_WAIT", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.120f, false);
 	MonsterRenderer_->CreateAnimation("StoneGolem.bmp", "LEFT_WAIT", static_cast<int>(STONE_GOLEM::DEATH), static_cast<int>(STONE_GOLEM::DEATH), 0.120f, false);
@@ -84,7 +82,7 @@ void Golem::Update()
 	Dir = Player::MainPlayer->GetPosition() - this->GetPosition();
 
 	//범위 체크
-	Check = Dir.Len2D();
+	Check_ = Dir.Len2D();
 	Dir.Normal2D();
 
 	if (isDeath_ == true)
@@ -98,7 +96,7 @@ void Golem::Update()
 	case MONSTER_STATE::WAIT:
 		invincibility_ = true;
 
-		if (Check <= 150)
+		if (Check_ <= 150)
 		{
 			HP_ = 20;
 			MonsterState_ = MONSTER_STATE::REVIVAL;
@@ -203,14 +201,12 @@ void Golem::Update()
 				MonsterState_ = MONSTER_STATE::WALK;
 				break;
 			}
-
 			else
 			{
 				MoveDir_ = float4::LEFT;
 				MonsterState_ = MONSTER_STATE::WALK;
 				break;
 			}
-
 		}
 
 		//y가 더 짧다
@@ -231,14 +227,12 @@ void Golem::Update()
 			}
 		}
 
-
-
 		break;
 	case MONSTER_STATE::WALK:
 
 		//가다가 일정 시간이 지나면 방향을 튼다.
 		Timer_ += GameEngineTime::GetDeltaTime();
-		if (Timer_ > 3.0f && Check > 150)
+		if (Timer_ > 3.0f && Check_ > 150)
 		{
 			Timer_ = 0.f;
 			MonsterState_ = MONSTER_STATE::CHECK;
@@ -250,7 +244,7 @@ void Golem::Update()
 
 		CheckTimer_ += GameEngineTime::GetDeltaTime();
 
-		if (Check <= 150)
+		if (Check_ <= 150)
 		{
 			if (CheckTimer_ > 1.0f)
 			{
@@ -291,8 +285,6 @@ void Golem::Update()
 
 void Golem::DirAnimation()
 {
-
 	MonsterRenderer_->ChangeAnimation(GetDirString() + ArrAnimationName[static_cast<int>(MonsterState_)]);
-
 }
 
