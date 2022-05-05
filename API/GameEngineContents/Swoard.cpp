@@ -14,7 +14,6 @@ void Swoard::Start()
 	ItemRenderer_ = CreateRenderer("weapons.bmp");
 	ItemRenderer_->SetIndex(0);
 	ItemRenderer_->CameraEffectOff();
-	ItemRenderer_->SetPivot({ 0, -24 });
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 

@@ -219,20 +219,7 @@ void Inventory::ItemPosFocusInvenBox()
 		{
 			continue;
 		}
-
-		//툴의 경우 사이즈가 다르다.
-		if (IterFindIter->second->GetItemType() == ITEMTYPE::TOOL) 
-		{
-			float4 Pos = { BoxStartIter->second->GetPosition().x, BoxStartIter->second->GetPosition().y + 24.f };
-			IterFindIter->second->SetPosition(Pos);
-
-		}
-
-		else 
-		{
-			IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
-
-		}
+		IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
 		
 	}
 }
