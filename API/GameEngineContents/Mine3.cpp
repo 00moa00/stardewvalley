@@ -111,6 +111,7 @@ void Mine3::LoadMapObject()
 				ThisIter = MapObject_.find(ChangeIndex);
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveMine4");
+				ThisIter->second->CreateSubCollision("MapObject", { 48, 48 });
 				ThisIter->second->ChnageImageFile("MineMove.bmp");
 
 				break;

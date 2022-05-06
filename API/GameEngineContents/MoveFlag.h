@@ -21,6 +21,6 @@ private:
 public:
 	void CreateMoveFlag(std::string _CollName) override;
 	void ChnageImageFile(std::string _FileName) override;
-
+	void CreateSubCollision(std::string _CollName, float4 _Size) override;
 };
 

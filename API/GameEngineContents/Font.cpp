@@ -87,7 +87,6 @@ void Font::ChangeNumRightSort(int _Num)
 {
 	int Count_ = 0 ;
 	Num_ = _Num;
-
 	//0 ÀÌ¶ó¸é
 	if (Num_ == 0)
 	{
@@ -115,6 +114,7 @@ void Font::ChangeNumRightSort(int _Num)
 		int Index = String - '0';
 
 		//ÀÎµ¦½º¸¦ ¹Ù²Þ
+
 		NumberRenderer.at(Count_)->SetIndex(Index);
 	}
 

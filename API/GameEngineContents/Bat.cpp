@@ -31,9 +31,6 @@ void Bat::Start()
 
 
 	MonsterRenderer_->CreateAnimation("LavaBat.bmp", "RIGHT_DEATH", static_cast<int>(BAT_INDEX::DEATH), static_cast<int>(BAT_INDEX::DEATH), 0.120f, false);
-	MonsterRenderer_->CreateAnimation("LavaBat.bmp", "LEFT_DEATH", static_cast<int>(BAT_INDEX::DEATH), static_cast<int>(BAT_INDEX::DEATH), 0.120f, false);
-	MonsterRenderer_->CreateAnimation("LavaBat.bmp", "FRONT_DEATH", static_cast<int>(BAT_INDEX::DEATH), static_cast<int>(BAT_INDEX::DEATH), 0.120f, false);
-	MonsterRenderer_->CreateAnimation("LavaBat.bmp", "BACK_DEATH", static_cast<int>(BAT_INDEX::DEATH), static_cast<int>(BAT_INDEX::DEATH), 0.120f, false);
 
 	MonsterRenderer_->ChangeAnimation("FRONT_WALK");
 

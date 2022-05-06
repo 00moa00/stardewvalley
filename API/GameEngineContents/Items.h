@@ -132,7 +132,7 @@ public:
 	virtual void CreateMoveFlag(std::string _CollName);
 	virtual void ChnageImageFile(std::string _FileName);
 	virtual void ChnageImageFileAndIndex(std::string _FileName, ITEM _index);
-
+	virtual void CreateSubCollision(std::string _CollName, float4 _Size);
 
 
 	virtual void UpdateOff()

@@ -20,7 +20,6 @@ private:
 	void Update() override;
 
 private:
-	void DirAnimation();
 
 	bool CheckTime_;
 

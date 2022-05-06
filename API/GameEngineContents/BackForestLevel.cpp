@@ -106,6 +106,7 @@ void BackForestLevel::LoadMapObject()
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveMine");
+				ThisIter->second->CreateSubCollision("MapObject", { 48, 48 });
 
 				break;
 

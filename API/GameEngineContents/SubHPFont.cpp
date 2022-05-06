@@ -34,8 +34,8 @@ void SubHPFont::Update()
 
 void SubHPFont::SetPosAndNumRed(float4 _Pos, int _Damage)
 {
-	SubHPFont_->ChangeRedColor();
 	SubHPFont_->SetPosition({ _Pos.x, _Pos.y - 48.f});
+	SubHPFont_->ChangeRedColor();
 	SubHPFont_->ChangeNumRightSort(_Damage);
 	MoveDir_ = { 0, -150 };
 
@@ -45,8 +45,8 @@ void SubHPFont::SetPosAndNumRed(float4 _Pos, int _Damage)
 
 void SubHPFont::SetPosAndNumGray(float4 _Pos, int _Damage)
 {
-	SubHPFont_->ChangeGrayColor();
 	SubHPFont_->SetPosition({ _Pos.x, _Pos.y - 48.f });
+	SubHPFont_->ChangeGrayColor();
 	SubHPFont_->ChangeNumRightSort(_Damage);
 	MoveDir_ = { 0, -150 };
 

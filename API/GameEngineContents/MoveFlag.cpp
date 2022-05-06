@@ -25,3 +25,8 @@ void MoveFlag::ChnageImageFile(std::string _FileName)
 	ItemRenderer_->SetImage(_FileName);
 }
 
+void MoveFlag::CreateSubCollision(std::string _CollName, float4 _Size)
+{
+	SubCollider_ = CreateCollision(_CollName, {48, 48});
+}
+

@@ -119,6 +119,9 @@ void Items::ChnageImageFile(std::string _FileName)
 void Items::ChnageImageFileAndIndex(std::string _FileName, ITEM _index)
 {
 }
+void Items::CreateSubCollision(std::string _CollName_, float4 _Size)
+{
+}
 
 bool Items::ItemCheck(const float4 pos, const float4 scale)
 {
