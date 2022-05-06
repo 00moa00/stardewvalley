@@ -583,8 +583,8 @@ void StardewValley::GameInit()
 
 		//------< ÀÌ¹ÌÁö Cut >------------------------------------------------------------------
 
-		GameEngineImage* characterMoveSheet = GameEngineImageManager::GetInst()->Find("characterMoveSheet.bmp");
-		characterMoveSheet->Cut({ 48, 48 });
+		GameEngineImage* characterMoveSheet2 = GameEngineImageManager::GetInst()->Find("characterMoveSheet2.bmp");
+		characterMoveSheet2->Cut({ 48, 48 });
 
 		GameEngineImage* Pierre = GameEngineImageManager::GetInst()->Find("Pierre.bmp");
 		Pierre->Cut({ 48, 96 });
@@ -613,6 +613,12 @@ void StardewValley::GameInit()
 
 		GameEngineImage* Gus_Portrait = GameEngineImageManager::GetInst()->Find("Gus_Portrait.bmp");
 		Gus_Portrait->Cut({ 192, 192 });
+
+		GameEngineImage* Abigail = GameEngineImageManager::GetInst()->Find("Abigail.bmp");
+		Abigail->Cut({ 48, 96 });
+
+		GameEngineImage* Abigail_Portrait = GameEngineImageManager::GetInst()->Find("Abigail_Portrait.bmp");
+		Abigail_Portrait->Cut({ 192, 192 });
 
 	}
 

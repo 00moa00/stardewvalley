@@ -47,6 +47,7 @@ public:
 	virtual bool ForAwayPlayer();
 	virtual void LoadPennyMoveFlag();
 	virtual void LoadLewisMoveFlag();
+	virtual void LoadAbigailMoveFlag();
 
 	virtual void MoveCheck();
 	virtual bool MoveRight();
@@ -54,9 +55,11 @@ public:
 	virtual bool MoveDown();
 	virtual bool MoveUp();
 	virtual bool MoveWait();
+	virtual bool NPCOff();
+	virtual void SetPrevPos(float4 _Pos);
 	virtual void MoveUpdate();
 
-	virtual void CheckTalkingLimit();
+	virtual void NPCDayOver();
 
 	virtual std::string GetDirString();
 
@@ -73,6 +76,7 @@ protected:
 
 	float4 MoveDir_;		// 걷는 방향
 	float4 PrevDir_;		// 플레이어가 대화를 걸고나서 바뀔때 저장하기 위한 변수
+	float4 PrevPos_;		//최초 위치 저장
 
 	bool DialogueUpdate_;
 	bool isWalking_;

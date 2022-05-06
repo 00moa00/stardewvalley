@@ -2,7 +2,6 @@
 #include "Player.h"
 #include "MainUI.h"
 
-//Penny* Penny::MainPenny = nullptr;
 //DialogueBox* Penny::MainDialogueBox_ = nullptr;
 
 
@@ -39,6 +38,8 @@ void Penny::Start()
 
 	NpcRenderer_->ChangeAnimation("FRONT_INIT");
 	SetScale({ 50,100 });
+	MoveDir_ = float4::DOWN;
+	NpcUpdateState_ = NPC_STATE::WALK;
 
 	LoadPennyMoveFlag();
 }
@@ -46,7 +47,7 @@ void Penny::Start()
 void Penny::Update()
 {
 	MoveUpdate();
-	CheckTalkingLimit();
+	NPCDayOver();
 
 	if (NpcUpdateState_ == NPC_STATE::WAIT)
 	{
@@ -60,7 +61,6 @@ void Penny::Update()
 
 void Penny::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	//MainPenny = this;
 	//MainDialogueBox_ = MainDialogueBox_;
 }
 
@@ -98,6 +98,8 @@ void Penny::OpenDialogue()
 
 			MainDialogueBox_->DialogueOff();
 			WaitTimer_ = 2.0f;
+			TalkingLimit_ = true;
+
 			NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
 
 		}
@@ -112,7 +114,6 @@ bool Penny::MoveRight()
 bool Penny::MoveLeft()
 {
 	return (NpcCollider_->CollisionResult("PennyLeft", ColList, CollisionType::Rect, CollisionType::Rect));
-
 }
 
 bool Penny::MoveDown()

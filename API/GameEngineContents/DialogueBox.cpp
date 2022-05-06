@@ -32,6 +32,11 @@ DialogueBox::DialogueBox()
 	GusDialogue[2] = "Sometimes I hear too much...";
 	GusDialogue[3] = "Business has been pretty /steady thanks to my regular /customers.";
 
+	AbigailDialogue[0] = "Oh, hey. Taking a break /from work?";
+	AbigailDialogue[1] = "Oh, hi! Do you ever hang /out at the cemetery? /It's a peaceful place to /spend some time alone";
+	AbigailDialogue[2] = "I'm not in a good mood /right now. I said I'm not /in a good mood... /what do you want?";
+	AbigailDialogue[3] = "...*sigh*... I know my /parents mean well, /but sometimes they just /cannot understand my point /of view. Weren't they ever /young?";
+
 }
 
 DialogueBox::~DialogueBox() 
@@ -98,7 +103,15 @@ void DialogueBox::SetPenny()
 
 	Dialoue_->ChangeFont(PennyDialogue[DialogueRandom_.RandomInt(0, 3)], { this->GetPosition().x - 430.f, this->GetPosition().y - 110.f });
 	DialogueName_->SetIndex(static_cast<int>(NPC::PENNY));
+}
 
+void DialogueBox::SetAbigail()
+{
+	PortraitRenderer_->SetImage("Abigail_Portrait.bmp");
+	PortraitRenderer_->SetIndex(0);
+
+	Dialoue_->ChangeFont(AbigailDialogue[DialogueRandom_.RandomInt(0, 3)], { this->GetPosition().x - 430.f, this->GetPosition().y - 110.f });
+	DialogueName_->SetIndex(static_cast<int>(NPC::PENNY));
 }
 
 void DialogueBox::SetGus()

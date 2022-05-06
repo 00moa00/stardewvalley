@@ -13,7 +13,7 @@ void Block::Start()
 	//ItemRenderer_ = CreateRenderer("block.bmp");
 	//ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	SetScale({ 40, 48.f });
-	ItemCollider_ = CreateCollision("MapObject", { 40, 48 });
+	ItemCollider_ = CreateCollision("MapObject", { 40, 47 });
 	//ItemCollider_->SetPivot({0,-12});
 
 	ItemType_ = ITEMTYPE::BLOCK;

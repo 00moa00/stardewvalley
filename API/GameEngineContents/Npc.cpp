@@ -137,7 +137,7 @@ void Npc::LoadPennyMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("PennyRight");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_RIGHT ));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_RIGHT ));
 				
 				break;
 
@@ -148,7 +148,7 @@ void Npc::LoadPennyMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("PennyLeft");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_LEFT));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_LEFT));
 
 				break;
 
@@ -159,7 +159,7 @@ void Npc::LoadPennyMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("PennyUp");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_UP));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_UP));
 
 				break;
 
@@ -170,7 +170,7 @@ void Npc::LoadPennyMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("PennyDown");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_DOWN));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_DOWN));
 
 				break;
 
@@ -181,10 +181,20 @@ void Npc::LoadPennyMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("PennyWait");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_WAIT));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_WAIT));
 
 				break;
 
+			case NPC_MOVE_FLAG::PENNY_OFF:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("PennyOff");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::PENNY_OFF));
+
+				break;
 			}
 
 
@@ -234,7 +244,7 @@ void Npc::LoadLewisMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("LewisRight");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_RIGHT));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_RIGHT));
 
 				break;
 
@@ -245,7 +255,7 @@ void Npc::LoadLewisMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("LewisLeft");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_LEFT));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_LEFT));
 
 				break;
 
@@ -256,7 +266,7 @@ void Npc::LoadLewisMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("LewisUp");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_UP));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_UP));
 
 				break;
 
@@ -267,7 +277,7 @@ void Npc::LoadLewisMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("LewisDown");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_DOWN));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_DOWN));
 
 				break;
 
@@ -278,16 +288,130 @@ void Npc::LoadLewisMoveFlag()
 				ThisIter = --MoveFlagList_.end();
 				(*ThisIter)->CreateNPCMoveCollision("LewisWait");
 				(*ThisIter)->SetPosition(pos);
-				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_WAIT));
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_WAIT));
 
 				break;
 
+			case NPC_MOVE_FLAG::LEWIS_OFF:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("LewisOff");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::LEWIS_OFF));
+
+				break;
 			}
 
 
 		}
 	}
 
+}
+
+void Npc::LoadAbigailMoveFlag()
+{
+	char MapOject[TOWN_CHIP_NUM_Y][TOWN_CHIP_NUM_X] =
+	{
+		 #include "Map/SeedShop_Abi.txt"
+	};
+
+
+	for (int y = 0; y < TOWN_CHIP_NUM_Y; y++)
+	{
+		for (int x = 0; x < TOWN_CHIP_NUM_X; x++)
+		{
+			const char chip = MapOject[y][x];
+			if (chip < 0) continue;
+
+			const float4 pos = {
+				x * CHIP_SIZE + CHIP_SIZE * 0.5f,
+				y * CHIP_SIZE + CHIP_SIZE * 0.5f,
+			};
+
+			NPC_MOVE_FLAG TileState_ = static_cast<NPC_MOVE_FLAG>(chip);
+			std::vector<NpcMove*>::iterator ThisIter;
+
+
+			//const float4 IndexPos = {
+			//  x * CHIP_SIZE ,
+			//  y * CHIP_SIZE,
+			//};
+
+
+			switch (TileState_)
+			{
+			case NPC_MOVE_FLAG::ABIGAIL_RIGHT:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("AbigailRight");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::ABIGAIL_RIGHT));
+
+				break;
+
+			case NPC_MOVE_FLAG::ABIGAIL_LEFT:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("AbigailLeft");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::ABIGAIL_LEFT));
+
+				break;
+
+			case NPC_MOVE_FLAG::ABIGAIL_UP:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("AbigailUp");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::ABIGAIL_UP));
+
+				break;
+
+			case NPC_MOVE_FLAG::ABIGAIL_DOWN:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("AbigailDown");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::ABIGAIL_DOWN));
+
+				break;
+
+			case NPC_MOVE_FLAG::ABIGAIL_WAIT:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("AbigailWait");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::ABIGAIL_WAIT));
+
+				break;
+
+			case NPC_MOVE_FLAG::ABIGAIL_OFF:
+
+				MoveFlagList_.push_back(GetLevel()->CreateActor<NpcMove>(static_cast<int>(PLAYLEVEL::OBJECT)));
+
+				ThisIter = --MoveFlagList_.end();
+				(*ThisIter)->CreateNPCMoveCollision("AbigailOff");
+				(*ThisIter)->SetPosition(pos);
+				(*ThisIter)->SetNPCMoveImageAndIdex("characterMoveSheet2.bmp", static_cast<int>(NPC_MOVE_FLAG::ABIGAIL_OFF));
+
+				break;
+			}
+
+
+		}
+	}
 }
 
 void Npc::MoveCheck()
@@ -302,28 +426,29 @@ void Npc::MoveCheck()
 	{
 		MoveDir_ = float4::UP;
 		NpcUpdateState_ = NPC_STATE::WALK;
-
 	}
 
 	if (MoveRight() == true)
 	{
 		MoveDir_ = float4::RIGHT;
 		NpcUpdateState_ = NPC_STATE::WALK;
-
 	}
 
 	if (MoveLeft() == true)
 	{
 		MoveDir_ = float4::LEFT;
 		NpcUpdateState_ = NPC_STATE::WALK;
-
 	}
 
 	if (MoveWait() == true)
 	{
 		MoveDir_ = float4::DOWN;
 		NpcUpdateState_ = NPC_STATE::WAIT_COUNT;
+	}
 
+	if (NPCOff() == true)
+	{
+		this->Off();
 	}
 }
 
@@ -354,6 +479,16 @@ bool Npc::MoveWait()
 {
 	return false;
 
+}
+
+bool Npc::NPCOff()
+{
+	return false;
+}
+
+void Npc::SetPrevPos(float4 _Pos)
+{
+	PrevPos_ = _Pos;
 }
 
 void Npc::MoveUpdate()
@@ -388,7 +523,6 @@ void Npc::MoveUpdate()
 
 
 		break;
-
 	case NPC_STATE::DIALOGUE_WAIT:
 
 		WaitTimer_ -= GameEngineTime::GetDeltaTime();
@@ -425,12 +559,13 @@ void Npc::MoveUpdate()
 	DirAnimationChange();
 }
 
-void Npc::CheckTalkingLimit()
+void Npc::NPCDayOver()
 {
 
 	if (TalkingLimit_ == true && MainUI::MainMainUI->DayOver()) 
 	{
 		TalkingLimit_ = false;
+		SetPosition( PrevPos_);
 	}
 
 }

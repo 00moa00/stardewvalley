@@ -623,6 +623,30 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		MapObject_.clear();
 	}
 
+	//if (CurrentLevel_ == "TownLevel")
+	//{
+ //
+	//	std::map<std::string, Npc*>::iterator StarNPCtIter = NpcList_.begin();
+	//	std::map<std::string, Npc*>::iterator EndMonstertIter = NpcList_.end();
+
+	//	for (; StarNPCtIter != EndMonstertIter; ++StarNPCtIter)
+	//	{
+	//		StarNPCtIter->second->Death();
+	//	}
+	//			MapObject_.clear();
+
+
+	//	std::map<int, Items*> ::iterator StartIter = MapObject_.begin();
+	//	std::map<int, Items*> ::iterator EndIter = MapObject_.end();
+
+	//	for (; StartIter != EndIter; ++StartIter)
+	//	{
+	//		StartIter->second->Death();
+	//	}
+	//	MapObject_.clear();
+
+	//}
+
 
 }
 

@@ -46,7 +46,7 @@ void Lewis::Start()
 void Lewis::Update()
 {
 	MoveUpdate();
-	CheckTalkingLimit();
+	NPCDayOver();
 
 	if (NpcUpdateState_ == NPC_STATE::WAIT)
 	{
@@ -109,6 +109,8 @@ void Lewis::OpenDialogue()
 
 			MainDialogueBox_->DialogueOff();
 			WaitTimer_ = 2.0f;
+			TalkingLimit_ = true;
+
 			NpcUpdateState_ = NPC_STATE::DIALOGUE_WAIT;
 		}
 	}

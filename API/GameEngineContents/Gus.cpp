@@ -28,13 +28,13 @@ void Gus::Start()
 	NpcRenderer_->CreateAnimation("Gus.bmp", "BACK_INIT", static_cast<int>(NPC_INDEX::BACK_WALK00), static_cast<int>(NPC_INDEX::BACK_WALK00), 0.0f, false);
 
 	NpcRenderer_->ChangeAnimation("FRONT_INIT");
-	SetScale({ 50,100 });
+	SetScale({ 70,100 });
 }
 
 void Gus::Update()
 {
 	MoveUpdate();
-	CheckTalkingLimit();
+	NPCDayOver();
 }
 
 void Gus::LevelChangeStart(GameEngineLevel* _PrevLevel)

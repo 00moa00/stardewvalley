@@ -2,20 +2,19 @@
 #include "Npc.h"
 
 // Ό³Έν :
-class Penny : public Npc
+class Abigail : public Npc
 {
 public:
-
 	// constrcuter destructer
-	Penny();
-	~Penny();
+	Abigail();
+	~Abigail();
 
 	// delete Function
-	Penny(const Penny& _Other) = delete;
-	Penny(Penny&& _Other) noexcept = delete;
-	Penny& operator=(const Penny& _Other) = delete;
-	Penny& operator=(Penny&& _Other) noexcept = delete;
-	
+	Abigail(const Abigail& _Other) = delete;
+	Abigail(Abigail&& _Other) noexcept = delete;
+	Abigail& operator=(const Abigail& _Other) = delete;
+	Abigail& operator=(Abigail&& _Other) noexcept = delete;
+
 private:
 	DialogueBox* MainDialogueBox_;
 

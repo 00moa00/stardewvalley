@@ -6,6 +6,7 @@
 #include "MoveFlag.h"
 #include "ShopFlag.h"
 #include "Pierre.h"
+#include "Abigail.h"
 
 SeedShopLevel::SeedShopLevel()
 	:
@@ -74,7 +75,7 @@ void SeedShopLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
-	//YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
+	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 
 	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	//Time = 5.0f;
@@ -144,9 +145,20 @@ void SeedShopLevel::LoadMapObject()
 			case TILE_LIST::PIERRE:
 
 				NpcList_.insert(std::make_pair("Pierre", CreateActor<Pierre>((int)PLAYLEVEL::OBJECT)));
-				NpcIter = --NpcList_.end();
+				NpcIter = NpcList_.find("Pierre");
 				NpcIter->second->SetPosition(pos);
+				NpcIter->second->SetPrevPos(pos);
 				break;
+
+			case TILE_LIST::ABIGAIL:
+
+				NpcList_.insert(std::make_pair("Abigail", CreateActor<Abigail>((int)PLAYLEVEL::PLAYER)));
+				NpcIter = NpcList_.find("Abigail");
+				NpcIter->second->SetPosition(pos);
+				NpcIter->second->SetPrevPos(pos);
+
+				break;
+
 
 			case TILE_LIST::SHOP_FLAG:
 

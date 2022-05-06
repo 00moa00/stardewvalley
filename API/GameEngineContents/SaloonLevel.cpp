@@ -150,6 +150,8 @@ void SaloonLevel::LoadMapObject()
 				NpcList_.insert(std::make_pair("Gus", CreateActor<Gus>((int)PLAYLEVEL::PLAYER)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
+				NpcIter->second->SetPrevPos(pos);
+
 				break;
 
 

@@ -73,8 +73,8 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	//BackGround_->DirtTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	//BackGround_->WetTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
-	FlowingFlower_ = CreateActor<FlowingFlower>(static_cast<int>(PLAYLEVEL::EFFECT));
-	FlowingFlower_->SetMaxFocusPlayer(true);
+	//FlowingFlower_ = CreateActor<FlowingFlower>(static_cast<int>(PLAYLEVEL::EFFECT));
+	//FlowingFlower_->SetMaxFocusPlayer(true);
 
 
 	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
@@ -149,6 +149,8 @@ void TownLevel::LoadMapObject()
 				NpcList_.insert(std::make_pair("Lewis", CreateActor<Lewis>((int)PLAYLEVEL::PLAYER)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
+				NpcIter->second->SetPrevPos(pos);
+
 				break;
 
 			case TILE_LIST::PENNY:
@@ -156,6 +158,7 @@ void TownLevel::LoadMapObject()
 				NpcList_.insert(std::make_pair("Penny", CreateActor<Penny>((int)PLAYLEVEL::PLAYER)));
 				NpcIter = --NpcList_.end();
 				NpcIter->second->SetPosition(pos);
+				NpcIter->second->SetPrevPos(pos);
 
 				break;
 
