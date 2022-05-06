@@ -22,6 +22,7 @@ void WildHorseradish::Start()
 	SetItemName("WildHorseradish");
 
 	SellPrice_ = 40;
+	ItemType_ = ITEMTYPE::GATHERING;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

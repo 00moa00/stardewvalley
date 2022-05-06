@@ -27,6 +27,8 @@ void Daffodil::Start()
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
+	ItemType_ = ITEMTYPE::GATHERING;
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";

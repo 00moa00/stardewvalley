@@ -18,6 +18,7 @@
 
 enum class OBJECTTYPE
 {
+	OTHER,
 	ITEM,
 	MAPOBJECT,
 	TREE,
@@ -33,7 +34,15 @@ enum class OBJECTTYPE
 	BLOCK,
 };
 
-
+enum class ITEMTYPE
+{
+	OTHER,
+	FARMING,
+	GATHERING,
+	FISHING,
+	MINING,
+	ETC
+};
 
 enum class SEEDTYPE
 {
@@ -174,7 +183,7 @@ protected:
 	TOOLTYPE ToolType_;
 	DRINKTYPE DrinkType_;
 	STONETYPE StoneType_;
-
+	ITEMTYPE ItemType_;
 	ITEM_STATE ItemState_;
 	MOVE State_;
 
@@ -340,6 +349,11 @@ public:
 	TOOLTYPE GetToolType()
 	{
 		return ToolType_;
+	}
+
+	ITEMTYPE GetItemType()
+	{
+		return ItemType_;
 	}
 
 	const std::string& GetFileName()

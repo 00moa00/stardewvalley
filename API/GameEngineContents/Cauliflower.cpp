@@ -29,6 +29,7 @@ void Cauliflower::Start()
 	}
 
 	ItemName_ = "Cauliflower";
+	ItemType_ = ITEMTYPE::FARMING;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

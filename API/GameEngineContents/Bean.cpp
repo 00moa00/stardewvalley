@@ -34,6 +34,8 @@ void Bean::Start()
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::GREEN_BEAN);
 
+	ItemType_ = ITEMTYPE::FARMING;
+
 	SellPrice_ = 35;
 }
 

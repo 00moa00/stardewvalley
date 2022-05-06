@@ -202,7 +202,7 @@ private:
 	std::vector<int> DayOffGathering_;
 	std::vector<int> DayOffFishing_;
 	std::vector<int> DayOffMining_;
-	std::vector<int> DayOffetc_;
+	std::vector<int> DayOffETC_;
 
 
 

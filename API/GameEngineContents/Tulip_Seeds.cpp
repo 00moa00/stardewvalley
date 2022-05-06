@@ -27,6 +27,7 @@ void Tulip_Seeds::Start()
 		Font_->ChangeWhiteColor();
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
+	ItemType_ = ITEMTYPE::ETC;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

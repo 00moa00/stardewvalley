@@ -28,6 +28,7 @@ void Kale::Start()
 	}
 
 	ItemName_ = "Kale";
+	ItemType_ = ITEMTYPE::FARMING;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

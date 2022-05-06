@@ -34,6 +34,7 @@ void Potato::Start()
 
 	ItemName_ = "Potato";
 
+	ItemType_ = ITEMTYPE::FARMING;
 	SellPrice_ = 35;
 }
 

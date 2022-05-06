@@ -35,6 +35,8 @@ void Pizza::Start()
 	AddEnery_ = 150;
 	AddHP_ = 67;
 
+	ItemType_ = ITEMTYPE::ETC;
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";

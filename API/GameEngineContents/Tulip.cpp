@@ -34,6 +34,7 @@ void Tulip::Start()
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::TULIP);
 
+	ItemType_ = ITEMTYPE::FARMING;
 	SellPrice_ = 35;
 }
 

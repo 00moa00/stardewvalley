@@ -35,6 +35,8 @@ void Bread::Start()
 	AddEnery_ = 50;
 	AddHP_ = 22;
 
+	ItemType_ = ITEMTYPE::ETC;
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";

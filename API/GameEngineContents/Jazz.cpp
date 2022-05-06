@@ -28,11 +28,13 @@ void Jazz::Start()
 	}
 
 	ItemName_ = "Jazz";
+	ItemType_ = ITEMTYPE::FARMING;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::BLUE_JAZZ);
+
 
 	SellPrice_ = 35;
 }

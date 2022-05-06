@@ -38,6 +38,8 @@ void Coffe::Start()
 	ChangeSpeed_ = 1 * 100;
 	ChangeTime_ = 83.0f;
 
+	ItemType_ = ITEMTYPE::ETC;
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
