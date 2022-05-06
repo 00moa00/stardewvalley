@@ -416,7 +416,7 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
-		if (MoveHouseCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		if (MoveHouseCollision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -442,7 +442,7 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
-		if (MoveTownCollision() && GameEngineInput::GetInst()->IsDown("LeftClick") && CurrentLevel_ == "SaloonLevel")
+		if (MoveTownCollision() && GameEngineInput::GetInst()->IsDown("RightClick") && CurrentLevel_ == "SaloonLevel")
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -452,7 +452,7 @@ void Player::ChangeLevel()
 
 
 
-		if (MoveShopCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		if (MoveShopCollision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -461,7 +461,7 @@ void Player::ChangeLevel()
 		}
 
 
-		if (MoveSaloonCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		if (MoveSaloonCollision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -478,7 +478,7 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
-		if (MoveMineLevelCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		if (MoveMineLevelCollision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -486,7 +486,7 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
-		if (MoveMinePointCollision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		if (MoveMinePointCollision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -494,7 +494,7 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
-		if (MoveMine1Collision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		if (MoveMine1Collision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -502,7 +502,7 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
-		if (MoveMine2Collision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		if (MoveMine2Collision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -510,7 +510,7 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
-		if (MoveMine3Collision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		if (MoveMine3Collision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -518,7 +518,7 @@ void Player::ChangeLevel()
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
 
-		if (MoveMine4Collision() && GameEngineInput::GetInst()->IsDown("LeftClick"))
+		if (MoveMine4Collision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
@@ -1186,6 +1186,6 @@ bool Player::MoveMine4Collision()
 bool Player::MouseClickAndColl()
 {
 	return ((PlayerCollider_->CollisionResult("ShopFlag", ColList, CollisionType::Rect, CollisionType::Rect))
-		&& (MainMouse_->isMouseClick()));
+		&& (MainMouse_->isMouseRightClick()));
 }
 
