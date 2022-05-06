@@ -22,7 +22,7 @@ void ShippingBox::Start()
 	SetScale({ 120, 140 });
 
 	ItemName_ = "ShippingBox";
-	ItemType_ = ITEMTYPE::SHIPPINGBOX;
+	ObjectType_ = OBJECTTYPE::SHIPPINGBOX;
 
 	ShippingBoxTop_ = GetLevel()->CreateActor<ShippingBoxTop>(static_cast<int>(PLAYLEVEL::OBJECT));
 }

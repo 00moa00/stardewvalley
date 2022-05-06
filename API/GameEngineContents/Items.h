@@ -15,19 +15,8 @@
 #include "Crops.h"
 //#include "Player.h"
 
-enum class SEEDTYPE
-{
-	OTHER,
-	PARSNIP_SEED,
-	BEAN_SEED,
-	CAULIFLOWER_SEED,
-	POTATO_SEED,
-	TULIP_SEED,
-	KALE_SEED,
-	JAZZ_SEED,
-};
 
-enum class ITEMTYPE
+enum class OBJECTTYPE
 {
 	ITEM,
 	MAPOBJECT,
@@ -42,6 +31,20 @@ enum class ITEMTYPE
 
 	FLAG,
 	BLOCK,
+};
+
+
+
+enum class SEEDTYPE
+{
+	OTHER,
+	PARSNIP_SEED,
+	BEAN_SEED,
+	CAULIFLOWER_SEED,
+	POTATO_SEED,
+	TULIP_SEED,
+	KALE_SEED,
+	JAZZ_SEED,
 };
 
 enum class DRINKTYPE
@@ -167,7 +170,7 @@ protected:
 
 
 	SEEDTYPE SeedType_;
-	ITEMTYPE ItemType_;
+	OBJECTTYPE ObjectType_;
 	TOOLTYPE ToolType_;
 	DRINKTYPE DrinkType_;
 	STONETYPE StoneType_;
@@ -329,9 +332,9 @@ public:
 		return SeedType_;
 	}
 
-	ITEMTYPE GetItemType()
+	OBJECTTYPE GetObjectType()
 	{
-		return ItemType_;
+		return ObjectType_;
 	}
 
 	TOOLTYPE GetToolType()

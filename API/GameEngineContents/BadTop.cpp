@@ -14,7 +14,7 @@ void BadTop::Start()
 	ItemRenderer_->CameraEffectOff();
 	ItemRenderer_->SetPivotType(RenderPivot::BOT);
 	ItemRenderer_->SetPivot({ GetPosition().x , GetPosition().y - 24.f });
-	ItemType_ = ITEMTYPE::TOOL;
+	ObjectType_ = OBJECTTYPE::TOOL;
 }
 
 void BadTop::LevelChangeStart(GameEngineLevel* _PrevLevel)

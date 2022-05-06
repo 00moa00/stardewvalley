@@ -23,6 +23,8 @@ void WildHorseradish::Start()
 
 	SellPrice_ = 40;
 
+	//핸드 아이템용
+	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::WILD_HORSERADISH);
 

@@ -20,7 +20,7 @@ void SmallWood1::Start()
 
 	ItemName_ = "SmallWood1";
 
-	ItemType_ = ITEMTYPE::WOOD;
+	ObjectType_ = OBJECTTYPE::WOOD;
 
 }
 

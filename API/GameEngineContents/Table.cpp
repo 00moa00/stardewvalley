@@ -19,7 +19,7 @@ void Table::Start()
 
 	///ItemRenderer_->SetPivot()
 	//ItemCollider_ = CreateCollision("Item", { 40, 40 });
-	ItemType_ = ITEMTYPE::TOOL;
+	ObjectType_ = OBJECTTYPE::TOOL;
 
 }
 

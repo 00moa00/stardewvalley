@@ -16,6 +16,6 @@ void Chair::Start()
 	///ItemRenderer_->SetPivot()
 	//ItemCollider_ = CreateCollision("Item", { 40, 40 });
 	ItemRenderer_->SetPivot({ GetPosition().x + 24.f, GetPosition().y });
-	ItemType_ = ITEMTYPE::TOOL;
+	ObjectType_ = OBJECTTYPE::TOOL;
 }
 

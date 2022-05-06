@@ -197,6 +197,16 @@ private:
 	std::map<std::string, Npc*> NpcList_;
 	std::map<std::string, Monster*> MonsterList_;
 
+
+	std::vector<int> DayOffFarming_;
+	std::vector<int> DayOffGathering_;
+	std::vector<int> DayOffFishing_;
+	std::vector<int> DayOffMining_;
+	std::vector<int> DayOffetc_;
+
+
+
+
 	std::vector<GameEngineCollision*> ColList;
 	std::map<int, Items*>::iterator Iter;
 

@@ -29,7 +29,7 @@ void Salad::Start()
 
 
 	ItemName_ = "Salad";
-	ItemType_ = ITEMTYPE::FOOD;
+	ObjectType_ = OBJECTTYPE::FOOD;
 
 	SellPrice_ = 113;
 	AddEnery_ = 50;

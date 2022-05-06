@@ -407,7 +407,7 @@ void Player::CrushWood()
 
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
-			if (Iter->second->GetItemType() == ITEMTYPE::WOOD)
+			if (Iter->second->GetObjectType() == OBJECTTYPE::WOOD)
 
 			{
 
@@ -457,7 +457,7 @@ void Player::CrushStone()
 
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true)
 		{
-			if (Iter->second->GetItemType() == ITEMTYPE::STONE)
+			if (Iter->second->GetObjectType() == OBJECTTYPE::STONE)
 			{
 				//곡괭이질을 했다면 체력 감소
 				SubEnergy(2);
@@ -507,7 +507,7 @@ void Player::CrushTree()
 	{
 
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
-			&& Iter->second->GetItemType() == ITEMTYPE::TREE)
+			&& Iter->second->GetObjectType() == OBJECTTYPE::TREE)
 		{
 
 			//이펙트
@@ -637,9 +637,9 @@ void Player::GetItem()
 		for (; GetItemIter != MapObject_.end(); ++GetItemIter) {
 
 			if (GetItemIter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
-				&& GetItemIter->second->GetItemType() == ITEMTYPE::GETITEM
+				&& GetItemIter->second->GetObjectType() == OBJECTTYPE::GETITEM
 				&& MainMouse_->isMouseClick() == true
-				&& GetCurrentItem()->GetItemType() != ITEMTYPE::TOOL)
+				&& GetCurrentItem()->GetObjectType() != OBJECTTYPE::TOOL)
 			{
 				//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
 				PlayerState_ = PLAYER_UPDATE::GETITEM;
@@ -661,10 +661,19 @@ void Player::CheckShippingBox()
 		for (; ShippingIter != MapObject_.end(); ++ShippingIter) {
 
 			if (ShippingIter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
-				&& ShippingIter->second->GetItemType() == ITEMTYPE::SHIPPINGBOX)
+				&& ShippingIter->second->GetObjectType() == OBJECTTYPE::SHIPPINGBOX)
 			{
-				//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
 				ShippingIter->second->ItemCollPlayer();
+
+
+				if (GetCurrentItem()->GetisPossibleHand() == true && MainMouse_->isMouseRightClick())
+				{
+					GetCurrentItem()->SubItemCount();
+				}
+
+
+
+
 			}
 
 			else

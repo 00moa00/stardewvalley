@@ -305,7 +305,7 @@ void Inventory::AllUpdateOn()
 
 void Inventory::SetCurrentItemFrame(Items* item_, InventroyBox* box_)
 {
-	if (item_->GetItemType() == ITEMTYPE::TOOL)
+	if (item_->GetObjectType() == OBJECTTYPE::TOOL)
 	{
 		float4 Pos = { box_->GetPosition().x, box_->GetPosition().y  };
 		CurrentItemFrame_->SetPosition(Pos);
@@ -321,7 +321,7 @@ void Inventory::SetCurrentItemFrame(Items* item_, InventroyBox* box_)
 void Inventory::SetCurrentItemFrame(Items* item_)
 {
 
-	if (item_->GetItemType() == ITEMTYPE::TOOL)
+	if (item_->GetObjectType() == OBJECTTYPE::TOOL)
 	{
 
 		float4 Pos = { item_->GetPosition().x, item_->GetPosition().y - 24.f };
@@ -382,7 +382,7 @@ void Inventory::ItemMove()
 				//상점일때 플레이어 툴은 팔지 않음.
 				if (Player::MainPlayer->GetPlayerShoppingStateShopping())
 				{
-					if ((PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL))
+					if ((PlayerItemListStartIter->second->GetObjectType() == OBJECTTYPE::TOOL))
 					{
 						MoveState_ = ITEMMOVE::INIT;
 						break;
@@ -400,7 +400,7 @@ void Inventory::ItemMove()
 
 				//미니 상태에서 툴은 이동할 수 없다.
 				if ((CurrentInvenState_ == POPUPSTATE::MINI) &&
-					(PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::TOOL))
+					(PlayerItemListStartIter->second->GetObjectType() == OBJECTTYPE::TOOL))
 				{
 					PlayerItemListStartIter->second->SetInBox(false);
 					MoveState_ = ITEMMOVE::INIT;
@@ -432,7 +432,7 @@ void Inventory::ItemMove()
 		//if (Mouse_->MouseClickInventoryOut())
 		//{
 		//	//해당 아이템이 음식이라면
-		//	if (PlayerItemListStartIter->second->GetItemType() == ITEMTYPE::FOOD)
+		//	if (PlayerItemListStartIter->second->GetObjectType() == OBJECTTYPE::FOOD)
 		//	{
 		//		MainPlayer->
 		//	}
@@ -466,7 +466,7 @@ void Inventory::ItemMove()
 					}
 
 					//놓으려는 자리에 아이템이 있다면
-					if (Finditer->second->GetInBox() || Finditer->second->GetItemType() == ITEMTYPE::TOOL)
+					if (Finditer->second->GetInBox() || Finditer->second->GetObjectType() == OBJECTTYPE::TOOL)
 					{
 
 						SetCurrentItemFrame(PlayerItemListStartIter->second, BoxStartIter->second);

@@ -16,6 +16,6 @@ void Tv::Start()
 	//ItemRenderer_->SetPivotType(RenderPivot::BOT);
 	ItemRenderer_->SetPivot({ GetPosition().x + 24.f, GetPosition().y});
 	//ItemCollider_ = CreateCollision("Item", { 40, 40 });
-	ItemType_ = ITEMTYPE::TOOL;
+	ObjectType_ = OBJECTTYPE::TOOL;
 }
 

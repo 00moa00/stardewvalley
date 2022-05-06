@@ -12,7 +12,7 @@ void MoveFlag::Start()
 {
 	ItemRenderer_ = CreateRenderer("block.bmp");
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
-	ItemType_ = ITEMTYPE::FLAG;
+	ObjectType_ = OBJECTTYPE::FLAG;
 }
 
 void MoveFlag::CreateMoveFlag(std::string _CollName)

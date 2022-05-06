@@ -33,7 +33,7 @@ void GiftBox::Start()
 	SetScale( { 60, 60 });
 	ItemName_ = "GiftBox";
 
-	ItemType_ = ITEMTYPE::GETITEM;
+	ObjectType_ = OBJECTTYPE::GETITEM;
 
 }
 

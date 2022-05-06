@@ -44,7 +44,7 @@ Items::Items() :
 	SeedType_(SEEDTYPE::OTHER),
 	ToolType_ (TOOLTYPE::OTHER),
 	StoneType_(STONETYPE::OTHER),
-	ItemType_ (ITEMTYPE::ITEM),
+	ObjectType_ (OBJECTTYPE::ITEM),
 	ItemState_(ITEM_STATE::INIT)
 		
 {

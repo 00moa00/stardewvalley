@@ -29,7 +29,7 @@ void Coffe::Start()
 
 	ItemName_ = "Coffe";
 
-	ItemType_ = ITEMTYPE::DRINK;
+	ObjectType_ = OBJECTTYPE::DRINK;
 	DrinkType_ = DRINKTYPE::SPEED_DOWN;
 
 	SellPrice_ = 300;

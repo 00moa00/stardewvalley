@@ -29,7 +29,7 @@ void Pizza::Start()
 
 
 	ItemName_ = "Pizza";
-	ItemType_ = ITEMTYPE::FOOD;
+	ObjectType_ = OBJECTTYPE::FOOD;
 
 	SellPrice_ = 600;
 	AddEnery_ = 150;

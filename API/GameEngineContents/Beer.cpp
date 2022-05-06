@@ -30,7 +30,7 @@ void Beer::Start()
 
 	ItemName_ = "Beer";
 
-	ItemType_ = ITEMTYPE::DRINK;
+	ObjectType_ = OBJECTTYPE::DRINK;
 	DrinkType_ = DRINKTYPE::SPEED_DOWN;
 
 	SellPrice_ = 400;

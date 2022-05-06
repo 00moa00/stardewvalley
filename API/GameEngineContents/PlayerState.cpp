@@ -602,7 +602,7 @@ void Player::CheckTool()
 
 void Player::CheckDrink()
 {
-	if (GetCurrentItem()->GetItemType() == ITEMTYPE::DRINK && GameEngineInput::GetInst()->IsDown("RightClick"))
+	if (GetCurrentItem()->GetObjectType() == OBJECTTYPE::DRINK && GameEngineInput::GetInst()->IsDown("RightClick"))
 	{
 		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
 		PlayerState_ = PLAYER_UPDATE::DRINK;
@@ -611,7 +611,7 @@ void Player::CheckDrink()
 
 void Player::CheckEat()
 {
-	if (GetCurrentItem()->GetItemType() == ITEMTYPE::FOOD && GameEngineInput::GetInst()->IsDown("RightClick"))
+	if (GetCurrentItem()->GetObjectType() == OBJECTTYPE::FOOD && GameEngineInput::GetInst()->IsDown("RightClick"))
 	{
 		GetCurrentItem()->DropItemInMap();
 		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");

@@ -25,7 +25,7 @@ void SmallStone::Start()
 
 	ItemName_ = "SmallStone";
 
-	ItemType_ = ITEMTYPE::STONE;
+	ObjectType_ = OBJECTTYPE::STONE;
 }
 
 void SmallStone::Update()

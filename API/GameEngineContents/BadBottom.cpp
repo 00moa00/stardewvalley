@@ -20,7 +20,7 @@ void BadBottom::Start()
 	
 	SetScale({ 96, 30 });
 
-	ItemType_ = ITEMTYPE::TOOL;
+	ObjectType_ = OBJECTTYPE::TOOL;
 }
 
 void BadBottom::LevelChangeStart(GameEngineLevel* _PrevLevel)

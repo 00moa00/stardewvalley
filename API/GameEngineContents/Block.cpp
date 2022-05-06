@@ -16,6 +16,6 @@ void Block::Start()
 	ItemCollider_ = CreateCollision("MapObject", { 40, 47 });
 	//ItemCollider_->SetPivot({0,-12});
 
-	ItemType_ = ITEMTYPE::BLOCK;
+	ObjectType_ = OBJECTTYPE::BLOCK;
 }
 
