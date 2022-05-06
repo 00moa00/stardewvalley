@@ -653,6 +653,7 @@ void Player::Update()
 		SetPlayerHandItemPos();
 		ChangeLevel();
 		//NpcCollCheck();
+		harvestingCrops();
 		DelaySpeed();
 		CheckShippingBox();
 		DirAnimationChange();

@@ -372,7 +372,7 @@ void Player::CreateSeed()
 
 void Player::harvestingCrops()
 {
-	if (GetCurrentLevel() == "MyFarmLevels")
+	if (GetCurrentLevel() == "MyFarmLevel")
 	{
 		float4 Pos = PlayerCollCheckPos();
 

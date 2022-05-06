@@ -14,7 +14,7 @@ void Block::Start()
 	//ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	SetScale({ 40, 48.f });
 	ItemCollider_ = CreateCollision("MapObject", { 40, 48 });
-	ItemCollider_->SetPivot({0,-12});
+	//ItemCollider_->SetPivot({0,-12});
 
 	ItemType_ = ITEMTYPE::BLOCK;
 }
