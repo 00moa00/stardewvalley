@@ -198,13 +198,11 @@ private:
 	std::map<std::string, Monster*> MonsterList_;
 
 
-	std::vector<int> DayOffFarming_;
-	std::vector<int> DayOffGathering_;
-	std::vector<int> DayOffFishing_;
-	std::vector<int> DayOffMining_;
-	std::vector<int> DayOffETC_;
-
-
+	std::list<int> DayOffFarming_;
+	std::list<int> DayOffGathering_;
+	std::list<int> DayOffFishing_;
+	std::list<int> DayOffMining_;
+	std::list<int> DayOffETC_;
 
 
 	std::vector<GameEngineCollision*> ColList;

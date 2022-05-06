@@ -669,11 +669,33 @@ void Player::CheckShippingBox()
 				if (GetCurrentItem()->GetisPossibleHand() == true && MainMouse_->isMouseRightClick())
 				{
 					GetCurrentItem()->SubItemCount();
+
+					if (GetCurrentItem()->GetItemType() == ITEMTYPE::FARMING)
+					{
+						DayOffFarming_.push_back(GetCurrentItem()->GetSellPrice());
+					}
+
+					if (GetCurrentItem()->GetItemType() == ITEMTYPE::GATHERING)
+					{
+						DayOffGathering_.push_back(GetCurrentItem()->GetSellPrice());
+					}
+
+					if (GetCurrentItem()->GetItemType() == ITEMTYPE::FISHING)
+					{
+						DayOffFishing_.push_back(GetCurrentItem()->GetSellPrice());
+					}
+
+					if (GetCurrentItem()->GetItemType() == ITEMTYPE::MINING)
+					{
+						DayOffMining_.push_back(GetCurrentItem()->GetSellPrice());
+					}
+
+					if (GetCurrentItem()->GetItemType() == ITEMTYPE::ETC)
+					{
+						DayOffETC_.push_back(GetCurrentItem()->GetSellPrice());
+					}
+
 				}
-
-
-
-
 			}
 
 			else
