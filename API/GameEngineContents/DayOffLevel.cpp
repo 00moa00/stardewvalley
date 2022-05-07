@@ -22,12 +22,12 @@ DayOffLevel::DayOffLevel()
 	PrevTotalMoney_(0),
 
 
-	FarmingState_(MONEY_UPDATE::WAIT),
-	ForagingState_(MONEY_UPDATE::WAIT),
-	FishingState_(MONEY_UPDATE::WAIT),
-	MiningState_(MONEY_UPDATE::WAIT),
-	OtherState_(MONEY_UPDATE::WAIT),
-	TotalState_(MONEY_UPDATE::WAIT),
+	FarmingState_(MONEY_UPDATE::ADD_TIME),
+	ForagingState_(MONEY_UPDATE::ADD_TIME),
+	FishingState_(MONEY_UPDATE::ADD_TIME),
+	MiningState_(MONEY_UPDATE::ADD_TIME),
+	OtherState_(MONEY_UPDATE::ADD_TIME),
+	TotalState_(MONEY_UPDATE::ADD_TIME),
 
 	UpdateState_(DAYOFF_STATE::MONEY_UPDATE),
 
@@ -152,7 +152,7 @@ void DayOffLevel::AddFarmingAnimation()
 	{
 	case MONEY_UPDATE::WAIT:
 
-		FarmingState_ = MONEY_UPDATE::CHANGE_FONT;
+		//FarmingState_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
 	case MONEY_UPDATE::ADD_TIME:
@@ -167,12 +167,14 @@ void DayOffLevel::AddFarmingAnimation()
 		{
 			DayOffFarmingFont_->ChangeNumMoneyLeftSort(DayOffFarming_, { 0 ,0 });
 			FarmingState_ = MONEY_UPDATE::WAIT;
+			break;
 		}
 
 		else
 		{
 			DayOffFarmingFont_->ChangeNumMoneyLeftSort(PrevFarmingMoney_, { 0 ,0 });
 			FarmingState_ = MONEY_UPDATE::ADD_TIME;
+			break;
 		}
 
 		break;
@@ -188,7 +190,7 @@ void DayOffLevel::AddForagingAnimation()
 	{
 	case MONEY_UPDATE::WAIT:
 
-		ForagingState_ = MONEY_UPDATE::CHANGE_FONT;
+	//	ForagingState_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
 	case MONEY_UPDATE::ADD_TIME:
@@ -224,7 +226,7 @@ void DayOffLevel::AddFisingAnimation()
 	{
 	case MONEY_UPDATE::WAIT:
 
-		FishingState_ = MONEY_UPDATE::CHANGE_FONT;
+		//FishingState_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
 	case MONEY_UPDATE::ADD_TIME:
@@ -260,7 +262,7 @@ void DayOffLevel::AddMiningAnimation()
 	{
 	case MONEY_UPDATE::WAIT:
 
-		MiningState_ = MONEY_UPDATE::CHANGE_FONT;
+		//MiningState_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
 	case MONEY_UPDATE::ADD_TIME:
@@ -296,7 +298,7 @@ void DayOffLevel::AddOtherAnimation()
 	{
 	case MONEY_UPDATE::WAIT:
 
-		OtherState_ = MONEY_UPDATE::CHANGE_FONT;
+	//	OtherState_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
 	case MONEY_UPDATE::ADD_TIME:
@@ -332,7 +334,7 @@ void DayOffLevel::AddTotalAnimation()
 	{
 	case MONEY_UPDATE::WAIT:
 
-		TotalState_ = MONEY_UPDATE::CHANGE_FONT;
+	//	TotalState_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
 	case MONEY_UPDATE::ADD_TIME:

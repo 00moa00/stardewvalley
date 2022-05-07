@@ -67,18 +67,42 @@ void Dandelion::AddItemCount()
 
 void Dandelion::SubItemCount()
 {
-	if (ItemCount_ == 1)
+	switch (ItemState_)
 	{
-		ItemCount_ = 0;
-		Player::MainPlayer->SetResetPlayerHandItem();
-		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
-		Font_ = nullptr;
-		this->Death();
-	}
-	else
-	{
-		--ItemCount_;
-		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	case ITEM_STATE::INIT:
+		Font_->SetPositionItem({ GetPosition() });
+
+		if (isMove_ == true)
+		{
+
+			PrePosition_ = this->GetPosition();
+			ItemState_ = ITEM_STATE::ANIMATION;
+		}
+
+		break;
+	case ITEM_STATE::ANIMATION:
+
+		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 700.0f;
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
+
+		if (this->GetPosition().y > PrePosition_.y)
+		{
+			ItemState_ = ITEM_STATE::MOVETOPLAYER;
+
+		}
+
+		break;
+	case ITEM_STATE::MOVETOPLAYER:
+
+		MoveToPlayer();
+		if (isMapItemDeath_ == true)
+		{
+			Player::MainPlayer->GetInventroy()->NewItem<Dandelion>();
+		}
+
+		break;
+	default:
+		break;
 	}
 }
 

@@ -117,10 +117,9 @@ void MyFarmLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		MainUI::MainMainUI->NextLevelOn();
 		PlayerEnergyFrame::MainPlayerEnergyFrame->NextLevelOn();
 		PlayerHPFrame::MainPlayerHPFrame->NextLevelOn();
-
-
 	}
 
+	FlowingFlower_->Death();
 }
 
 void MyFarmLevel::LoadMapObject()
