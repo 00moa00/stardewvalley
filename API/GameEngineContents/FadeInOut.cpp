@@ -53,7 +53,6 @@ void FadeInOut::Update()
 		{
 			FadeOut_ = false;
 			FadeEnd_ = true;
-			//FadeAlpha_ = 0;
 		}
 
 	}

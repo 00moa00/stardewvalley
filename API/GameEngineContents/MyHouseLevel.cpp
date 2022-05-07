@@ -66,6 +66,9 @@ void MyHouseLevel::Loading()
 
 	}
 	//Shop::MainShop->ShopOff();
+	MenuGuide_->GetRenderer()->SetImage("GameGuide.bmp");
+	MenuGuide_->GetRenderer()->SetPivot({ 0 - 250 / 2,  GameEngineWindow::GetScale().Half().y });
+	MenuGuide_->GetRenderer()->CameraEffectOff();
 
 }
 
@@ -77,13 +80,7 @@ void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 		LoadMapObject();
 	}
 
-	if (MenuGuide_ != nullptr)
-	{
-		MenuGuide_->GetRenderer()->SetImage("GameGuide.bmp");
-		MenuGuide_->GetRenderer()->SetPivot({ 0 - 250 / 2,  GameEngineWindow::GetScale().Half().y });
-		MenuGuide_->GetRenderer()->CameraEffectOff();
 
-	}
 	//	MenuGuide_->GetRenderer()->SetPivot({0 + 250/2,  GameEngineWindow::GetScale().Half().y });
 
 	

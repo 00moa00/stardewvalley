@@ -120,6 +120,9 @@ Player::~Player()
 {
 	CurrentLevel_ = "";
 
+
+	//DirtList_.erase(DirtList_.begin(), DirtList_.end());
+
 	if (WetDirtList_.empty() == false)
 	{
 		WetDirtList_.clear();
@@ -128,6 +131,11 @@ Player::~Player()
 	if (DirtList_.empty() == false)
 	{
 		DirtList_.clear();
+	}
+
+	if (SeedList_.empty() == false)
+	{
+		SeedList_.clear();
 	}
 
 }

@@ -63,7 +63,11 @@ void MyFarmLevel::Loading()
 	//{
 	//	Shop::MainShop = CreateActor<Shop>(static_cast<int>(PLAYLEVEL::SHOP));
 	//}
+	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
+	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
+	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
+	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 
 }
 
@@ -93,11 +97,7 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	FadeInOut_->SetFadeIn();
 	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 
-	BackGround_->DirtTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
-	BackGround_->WetTileMap_.TileRangeSetting(FARM_CHIP_NUM_X, FARM_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
-	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
-	Player::MainPlayer->SetWetTileMap(&BackGround_->WetTileMap_);
 
 	Player::MainPlayer->Renderer()->CameraEffectOn();
 

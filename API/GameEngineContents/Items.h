@@ -29,7 +29,7 @@ enum class OBJECTTYPE
 	SHIPPINGBOX,
 	FOOD,
 	DRINK,
-
+	SEED,
 	FLAG,
 	BLOCK,
 };

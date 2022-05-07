@@ -68,7 +68,8 @@ void Player::CreateDirtTile()
 			return;
 	}
 
-	else {
+	else 
+	{
 		FarmTile* Tile = DirtTileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
 			, "hoeDirt.bmp", static_cast<int>(TILE_DIRT::BASIC), (int)PLAYLEVEL::DIRT);
 	
@@ -321,53 +322,54 @@ void Player::CreateCrushStoneEffect(STONETYPE _CheckType)
 
 void Player::CreateSeed()
 {
-
-	float4 Pos = PlayerCollCheckPos();
-
-	TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
-	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
-
-	std::map<int, FarmTile*>::iterator FindDirtIter = DirtList_.find(ChangeIndex);
-	std::map<int, FarmTile*>::iterator EndDirtIter = DirtList_.end();
-
-	std::map<int, Crops*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
-	std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
-
-
-	//땅이 파져 있지 않으면, 이미 씨앗이 있으면
-	if (FindDirtIter == EndDirtIter || FindSeedIter != EndSeedIter)
+	if (GetCurrentItem()->GetObjectType() == OBJECTTYPE::SEED)
 	{
-		return;
+		float4 Pos = PlayerCollCheckPos();
+
+		TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
+		int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+		std::map<int, FarmTile*>::iterator FindDirtIter = DirtList_.find(ChangeIndex);
+		std::map<int, FarmTile*>::iterator EndDirtIter = DirtList_.end();
+
+		std::map<int, Crops*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
+		std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
+
+
+		//땅이 파져 있지 않으면, 이미 씨앗이 있으면
+		if (FindDirtIter == EndDirtIter || FindSeedIter != EndSeedIter)
+		{
+			return;
+		}
+
+
+		//해당 땅이 파져있으면 씨앗을 심는다.
+		if (FindDirtIter != EndDirtIter)
+		{
+
+			//TODO: 핸드 아이템의 타입에 따라서 초기화.
+
+			GetCurrentItem()->SubItemCount();
+
+			Crops* seed = GetCurrentItem()->CreateCrops();
+
+			float4 TileSize_ = { 48.f, 48.f };
+			float4 WorldPos = TileSize_;
+
+			WorldPos.x *= static_cast<int>(Pos.x / CHIP_SIZE);
+			WorldPos.y *= static_cast<int>(Pos.y / CHIP_SIZE);
+
+			WorldPos += TileSize_.Half();
+
+			//seed->GetRenderer()->SetPivot({ WorldPos.x, WorldPos.y - 24.f });
+			seed->SetTileFindIndex(ChangeIndex);
+			seed->SetPosition({ WorldPos.x, WorldPos.y - 24.f });
+
+			SeedList_.insert(std::make_pair(ChangeIndex, seed));
+
+		}
+
 	}
-
-
-	//해당 땅이 파져있으면 씨앗을 심는다.
-	if (FindDirtIter != EndDirtIter)
-	{
-
-		//TODO: 핸드 아이템의 타입에 따라서 초기화.
-		
-		GetCurrentItem()->SubItemCount();
-
-		Crops* seed = GetCurrentItem()->CreateCrops();
-			
-		float4 TileSize_ = { 48.f, 48.f };
-		float4 WorldPos = TileSize_;
-
-		WorldPos.x *= static_cast<int>(Pos.x / CHIP_SIZE);
-		WorldPos.y *= static_cast<int>(Pos.y / CHIP_SIZE);
-
-		WorldPos += TileSize_.Half();
-
-		//seed->GetRenderer()->SetPivot({ WorldPos.x, WorldPos.y - 24.f });
-		seed->SetTileFindIndex(ChangeIndex);
-		seed->SetPosition({ WorldPos.x, WorldPos.y - 24.f });
-
-		SeedList_.insert(std::make_pair(ChangeIndex, seed));
-
-	}
-
-
 }
 
 void Player::harvestingCrops()
@@ -393,8 +395,11 @@ void Player::harvestingCrops()
 		{
 			FindSeedIter->second->DropCropsInMap();
 
-			SeedList_.erase(ChangeIndex);
 			//FindSeedIter->second->Death();
+			SeedList_.erase(FindSeedIter);
+
+			//SeedList_.
+			return;
 		}
 	}
 
