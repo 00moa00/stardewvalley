@@ -57,26 +57,6 @@ void DayOffLevel::Loading()
 	OKButton_->SetPosition({ 900.f, 600.f });
 	OKButton_->GetRenderer()->CameraEffectOff();
 
-}
-
-
-void DayOffLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
-{
-
-	BackGround_->GetRenderer()->SetImage("DayOff.bmp");
-	BackGround_->GetRenderer()->SetPivot({ HOUSE_SIZE_WEIGHT / 2,  HOUSE_SIZE_HEIGHT / 2 });
-
-	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
-	FadeInOut_->SetFadeIn();
-
-	DayOffFarming_ = Player::MainPlayer->GetDayOffFarming();
-	DayOffFForaging_ = Player::MainPlayer->GetDayOffForaging();
-	DayOffFishing_ = Player::MainPlayer->GetDayOffFishing();
-	DayOffMining_ = Player::MainPlayer->GetDayOffMining();
-	DayOffOther_ = Player::MainPlayer->GetDayOffOther();
-
-	DayOffTotal_ = DayOffFarming_ + DayOffFForaging_ + DayOffFishing_ + DayOffMining_ + DayOffOther_;
-
 	DayOffFarmingFont_ = CreateActor<Font>(static_cast<int>(PLAYLEVEL::DAY_OFF_FONT));
 	DayOffFarmingFont_->SetPosition({ 817.f, 178.f });
 
@@ -97,6 +77,27 @@ void DayOffLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	DayFont_ = CreateActor<Font>(static_cast<int>(PLAYLEVEL::DAY_OFF_FONT));
 	DayFont_->SetPosition({ 470.f, 73.f });
+}
+
+
+void DayOffLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
+{
+
+	BackGround_->GetRenderer()->SetImage("DayOff.bmp");
+	BackGround_->GetRenderer()->SetPivot({ HOUSE_SIZE_WEIGHT / 2,  HOUSE_SIZE_HEIGHT / 2 });
+
+	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+	FadeInOut_->SetFadeIn();
+
+	DayOffFarming_ = Player::MainPlayer->GetDayOffFarming();
+	DayOffFForaging_ = Player::MainPlayer->GetDayOffForaging();
+	DayOffFishing_ = Player::MainPlayer->GetDayOffFishing();
+	DayOffMining_ = Player::MainPlayer->GetDayOffMining();
+	DayOffOther_ = Player::MainPlayer->GetDayOffOther();
+
+	DayOffTotal_ = DayOffFarming_ + DayOffFForaging_ + DayOffFishing_ + DayOffMining_ + DayOffOther_;
+
+
 
 
 	int Day = MainUI::MainMainUI->GetDay() -1;
