@@ -10,6 +10,7 @@ Crops::Crops()
 	DirtDay_(0),
 
 	isHarvest_(false),
+	isDeath_(false),
 
 	CropRenderer_(nullptr),
 
@@ -44,7 +45,7 @@ void Crops::GrowingCropsTime()
 	{
 	case CROPS_UPDATE::WAIT:
 
-		if (MainUI::MainMainUI->DayEnd())
+		if (MainUI::MainMainUI->DayEnd() && isDeath_ == false)
 		{
 			CropsUpdateState_ = CROPS_UPDATE::DAY_END_WETDIRT_CHECK;
 			break;
@@ -122,21 +123,25 @@ void Crops::DeathCropsCheck()
 
 	if (DirtDay_ == 2)
 	{
-		CropsDeath();
+		isDeath_ = true;
+		if (GrowingDay_ < 2 )
+		{
+			this->Death();
+		Player::MainPlayer->DeleteSeedList(TileFindIndex_);
+		}
+
 	}
 
-
-
 }
 
-void Crops::CropsDeath()
-{
-	Player::MainPlayer->DeleteSeedList(TileFindIndex_);
-	this->Death();
-}
 
 void Crops::DropCropsInMap()
 {
+}
+
+bool Crops::GetisDeath()
+{
+	return true;
 }
 
 bool Crops::isWetDirt()

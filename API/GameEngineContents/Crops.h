@@ -45,8 +45,9 @@ private:
 
 public:
 
-	void CropsDeath();
 	virtual void DropCropsInMap();
+	virtual bool GetisDeath();
+
 
 private:
 
@@ -60,6 +61,7 @@ protected:
 	int TileFindIndex_;
 
 	bool isHarvest_;
+	bool isDeath_;
 
 	GameEngineRandom RandomItemCount;
 	GameEngineRandom RandomItemPosX;
@@ -86,6 +88,8 @@ public:
 	{
 		return CropRenderer_;
 	}
+
+
 
 	int GetGrowingDay()
 	{

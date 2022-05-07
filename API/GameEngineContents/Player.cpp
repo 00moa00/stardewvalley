@@ -830,6 +830,7 @@ void Player::PlayerUpdate()
 
 		ChangeHandItem();
 		harvestingCrops();
+		harvestingDeathCrops();
 
 		//손에 들 수 있는 아이템이라면 
 		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
@@ -914,7 +915,6 @@ void Player::PlayerUpdate()
 
 		break;
 	case PLAYER_UPDATE::SWOARD:
-
 		ToolRenderer_->SetPivot({ 0, 38 });
 		if (GetDirString() == "BACK_")
 		{
@@ -926,7 +926,6 @@ void Player::PlayerUpdate()
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			SubEnergy(2);
-
 			ToolRenderer_->SetPivot({0, 0});
 			PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::PLAYER) });
 			ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::USE_TOOL) });

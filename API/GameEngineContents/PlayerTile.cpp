@@ -395,14 +395,39 @@ void Player::harvestingCrops()
 		{
 			FindSeedIter->second->DropCropsInMap();
 
-			//FindSeedIter->second->Death();
 			SeedList_.erase(FindSeedIter);
-
-			//SeedList_.
 			return;
 		}
 	}
 
+}
+
+void Player::harvestingDeathCrops()
+{
+	if (GetCurrentLevel() == "MyFarmLevel" && GetCurrentItem()->GetToolType() == TOOLTYPE::SWOARD)
+	{
+		float4 Pos = PlayerCollCheckPos();
+
+		TileIndex Index = WetTileMap_->GetTileIndex({ Pos.x , Pos.y });
+		int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+		std::map<int, Crops*>::iterator FindSeedIter = SeedList_.find(ChangeIndex);
+		std::map<int, Crops*>::iterator EndSeedIter = SeedList_.end();
+
+		if (FindSeedIter == EndSeedIter )
+		{
+			return;
+		}
+
+		if (MainMouse_->isMouseClick() )
+		{
+			FindSeedIter->second->Death();
+
+			SeedList_.erase(FindSeedIter);
+			return;
+			
+		}
+	}
 }
 
 void Player::CrushWood()

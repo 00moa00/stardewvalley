@@ -381,7 +381,7 @@ private:
 	void CheckShippingBox();
 
 	void harvestingCrops();
-
+	void harvestingDeathCrops();
 
 	//------< 마우스, 충돌 관련 >------------------------------------------------------------------
 

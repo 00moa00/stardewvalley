@@ -73,3 +73,8 @@ void Kale_Crops::DropCropsInMap()
 
 	this->Death();
 }
+
+bool Kale_Crops::GetisDeath()
+{
+	return isDeath_;
+}

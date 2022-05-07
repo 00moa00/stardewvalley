@@ -23,36 +23,42 @@ void Tulip_Crops::Update()
 	GrowingCropsTime();
 
 	//바뀐 순간에만 인덱스를 교체 
-	if (GetGrowingDay() == 1 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS)
+	if (GetGrowingDay() == 1 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS && isDeath_ == false)
 	{
 		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::KALE_GROW1));
 	}
 
-	if (GetGrowingDay() == 2 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS)
+	if (GetGrowingDay() == 2 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS && isDeath_ == false)
 	{
 		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::KALE_GROW2));
 
 	}
 
-	if (GetGrowingDay() == 4 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS)
+	if (GetGrowingDay() == 4 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS && isDeath_ == false)
 	{
 		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::KALE_GROW3));
 
 	}
 
-	if (GetGrowingDay() == 6 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS)
+	if (GetGrowingDay() == 6 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS && isDeath_ == false)
 	{
 		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::KALE_GROW4));
 
 	}
 
 
-	if (GetGrowingDay() == 7 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS)
+	if (GetGrowingDay() == 7 && CropsUpdateState_ == CROPS_UPDATE::GROWING_CROPS && isDeath_ == false)
 	{
 		CropRenderer_->SetIndex(static_cast<size_t>(CROPS::KALE_GROW4));
 		isHarvest_ = true;
 	}
+
+	if (isDeath_ == true)
+	{
+		CropRenderer_->SetIndex(static_cast<int>(CROPS::DEATH));
+	}
 }
+
 
 void Tulip_Crops::DropCropsInMap()
 {
@@ -72,5 +78,10 @@ void Tulip_Crops::DropCropsInMap()
 	}
 
 	this->Death();
+}
+
+bool Tulip_Crops::GetisDeath()
+{
+	return isDeath_;
 }
 

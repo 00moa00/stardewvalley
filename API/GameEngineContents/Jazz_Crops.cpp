@@ -71,3 +71,8 @@ void Jazz_Crops::DropCropsInMap()
 	this->Death();
 }
 
+bool Jazz_Crops::GetisDeath()
+{
+	return isDeath_;
+}
+

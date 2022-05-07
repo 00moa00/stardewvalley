@@ -82,4 +82,9 @@ void Bean_Crops::DropCropsInMap()
 	//this->Death();
 }
 
+bool Bean_Crops::GetisDeath()
+{
+	return isDeath_;
+}
+
 

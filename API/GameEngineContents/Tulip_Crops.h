@@ -21,6 +21,7 @@ private:
 	void Start() override;
 	void Update() override;
 	void DropCropsInMap() override;
+	bool GetisDeath() override;
 
 };
 
