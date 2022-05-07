@@ -33,6 +33,7 @@ void DropStone::Start()
 
 	ItemName_ = "DropStone";
 	ItemType_ = ITEMTYPE::OTHER;
+	SellPrice_ = 10;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

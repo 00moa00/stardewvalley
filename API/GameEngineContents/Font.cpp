@@ -188,17 +188,17 @@ void Font::ChangeNumMoneyLeftSort(int _Num, float4 _Pos)
 	Num_ = _Num;
 
 	//0 ¿Ã∂Û∏È
-	if (Num_ == 0)
-	{
-		std::vector<GameEngineRenderer*>::iterator Iter = NumberRenderer.begin();
-		for (; Iter != NumberRenderer.end(); ++Iter) {
+	//if (Num_ == 0)
+	//{
+	//	std::vector<GameEngineRenderer*>::iterator Iter = NumberRenderer.begin();
+	//	for (; Iter != NumberRenderer.end(); ++Iter) {
 
-			(*Iter)->SetIndex(10);
+	//		(*Iter)->SetIndex(10);
 
-		}
-		return;
+	//	}
+	//	return;
 
-	}
+	//}
 
 
 	std::stringstream IntToString;

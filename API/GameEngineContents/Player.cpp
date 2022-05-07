@@ -1092,7 +1092,7 @@ void Player::LevelInit()
 		PlayerHandRenderer_->CameraEffectOff();
 
 		//MainPlayer->Off();
-		Inventory::MainInventory->AllUpdateOff();
+		//Inventory::MainInventory->AllUpdateOff();
 	}
 
 
@@ -1487,5 +1487,14 @@ void Player::LevelInit()
 	{
 		SetPosition({ 695.f, 1140.f });
 	}
+
+	DayOffFarming_ = 0;
+	DayOffFForaging_ = 0;
+	DayOffFishing_ = 0;
+	DayOffMining_ = 0;
+	DayOffOther_ = 0;
+
+
+
 }
 

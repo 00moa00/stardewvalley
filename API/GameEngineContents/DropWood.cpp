@@ -30,6 +30,7 @@ void DropWood::Start()
 	}
 
 	ItemType_ = ITEMTYPE::OTHER;
+	SellPrice_ = 10;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

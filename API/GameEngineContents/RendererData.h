@@ -40,8 +40,8 @@ enum class PLAYLEVEL {
 	DIALOGUEFONT,
 
 
-	DAY_OFF_BACK,
-
+	DAY_OFF,
+	DAY_OFF_FONT,
 
 
 

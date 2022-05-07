@@ -16,6 +16,15 @@
 #include "FlowingFlower.h"
 #include "PlayerHPFrame.h"
 
+#include "Font.h"
+
+enum class DAYOFF_STATE
+{
+	MONEY_UPDATE,
+	UPDATE,
+};
+
+
 class DayOffLevel : public GameEngineLevel
 {
 public:
@@ -47,6 +56,36 @@ private:
 	int DayOffOther_;
 	int DayOffTotal_;
 
+	Font* DayOffFarmingFont_;
+	Font* DayOffFForagingFont_;
+	Font* DayOffFishingFont_;
+	Font* DayOffMiningFont_;
+	Font* DayOffOtherFont_;
+	Font* DayOffTotalFont_;
+
+	MONEY_UPDATE FarmingState_;
+	MONEY_UPDATE ForagingState_;
+	MONEY_UPDATE FishingState_;
+	MONEY_UPDATE MiningState_;
+	MONEY_UPDATE OtherState_;
+	MONEY_UPDATE TotalState_;
+
+	int PrevFarmingMoney_ ;
+	int PrevForagingMoney_ ;
+	int PrevFishingMoney_ ;
+	int PrevMiningMoney_ ;
+	int PrevOtherMoney_ ;
+	int PrevTotalMoney_ ;
+
+	DAYOFF_STATE UpdateState_;
+
+private:
+	void AddFarmingAnimation();
+	void AddForagingAnimation();
+	void AddFisingAnimation();
+	void AddMiningAnimation();
+	void AddOtherAnimation();
+	void AddTotalAnimation();
 
 };
 
