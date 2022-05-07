@@ -35,6 +35,31 @@ int  Player::GetEnergy()
 	return Energy_;
 }
 
+int Player::GetDayOffFarming()
+{
+	return DayOffFarming_;
+}
+
+int Player::GetDayOffForaging()
+{
+	return DayOffFForaging_;
+}
+
+int Player::GetDayOffFishing()
+{
+	return DayOffFishing_;
+}
+
+int Player::GetDayOffMining()
+{
+	return DayOffMining_;
+}
+
+int Player::GetDayOffOther()
+{
+	return DayOffOther_;
+}
+
 float4 Player::GetMoveDir()
 {
 	return MoveDir_;

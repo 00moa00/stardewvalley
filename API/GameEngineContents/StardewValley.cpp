@@ -8,13 +8,13 @@
 #include "SeedShopLevel.h"
 #include "SaloonLevel.h"
 #include "BackForestLevel.h"
+#include "DayOffLevel.h"
 #include "MineLevel.h"
 #include "MinePoint.h"
 #include "Mine1.h"
 #include "Mine2.h"
 #include "Mine3.h"
 #include "Mine4.h"
-
 #include "CustomData.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
@@ -818,6 +818,7 @@ void StardewValley::GameInit()
 	CreateLevel<BusStopLevel>("BusStopLevel");
 	CreateLevel<TownLevel>("TownLevel");
 	CreateLevel<SaloonLevel>("SaloonLevel");
+	CreateLevel<DayOffLevel>("DayOffLevel");
 
 	CreateLevel<SeedShopLevel>("SeedShopLevel");
 	CreateLevel<BackForestLevel>("BackForestLevel");

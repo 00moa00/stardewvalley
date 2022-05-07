@@ -34,6 +34,7 @@ void Aquamarine::Start()
 
 
 	ItemName_ = "Aquamarine";
+	ItemType_ = ITEMTYPE::MINING;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

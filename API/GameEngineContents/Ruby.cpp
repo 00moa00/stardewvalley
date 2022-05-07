@@ -33,6 +33,7 @@ void Ruby::Start()
 	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 
 	ItemName_ = "DropStone";
+	ItemType_ = ITEMTYPE::MINING;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

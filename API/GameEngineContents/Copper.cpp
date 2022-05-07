@@ -33,6 +33,7 @@ void Copper::Start()
 
 
 	ItemName_ = "Copper";
+	ItemType_ = ITEMTYPE::MINING;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

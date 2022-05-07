@@ -656,6 +656,10 @@ void Player::Update()
 {
 	switch (LevelList_)
 	{
+	case LEVEL_LIST::DAYOFF_LEVEL:
+
+		break;
+
 	case LEVEL_LIST::TITLE_LEVEL:
 		break;
 	case LEVEL_LIST::MYHOUSE_LEVEL:
@@ -671,6 +675,8 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MYFARM_LEVEL:
+
+
 
 		SetCamera();
 		PlayerUpdate();
@@ -999,18 +1005,11 @@ void Player::PlayerUpdate()
 		{
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 
-			if (GetCurrentLevel() != "MyHouseLevel")
-			{
-				ChangeLevelName_ = "MyHouseLevel";
-				FadeInOut_->SetFadeOut();
-				LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
-				PlayerState_ = PLAYER_UPDATE::INIT;
-			}
+			ChangeLevelName_ = "DayOffLevel";
+			FadeInOut_->SetFadeOut();
+			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+			PlayerState_ = PLAYER_UPDATE::INIT;
 
-			else
-			{
-				PlayerState_ = PLAYER_UPDATE::INIT;
-			}
 		}
 
 
@@ -1077,11 +1076,32 @@ void Player::LevelInit()
 	MainMouse_->Renderer()->CameraEffectOff();
 	CurrentLevel_ = GetCurrentLevel();
 
+	if (CurrentLevel_ == "DayOffLevel")
+	{
+		LevelList_ = LEVEL_LIST::TITLE_LEVEL;
+
+		MapColImage_ = nullptr;
+		ToolRenderer_->CameraEffectOff();
+
+		PlayerHandItem_->GetRenderer()->CameraEffectOn();
+
+		PlayerBodyRenderer_->CameraEffectOff();
+		PlayerPantsRenderer_->CameraEffectOff();
+		PlayerShirtsRenderer_->CameraEffectOff();
+		PlayerHairRenderer_->CameraEffectOff();
+		PlayerHandRenderer_->CameraEffectOff();
+
+		//MainPlayer->Off();
+		Inventory::MainInventory->AllUpdateOff();
+	}
+
+
+
 	if (CurrentLevel_ == "TitleLevel")
 	{
 		LevelList_ = LEVEL_LIST::TITLE_LEVEL;
 
-		MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
+		MapColImage_ = nullptr;
 		ToolRenderer_->CameraEffectOff();
 
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
@@ -1107,6 +1127,8 @@ void Player::LevelInit()
 		PlayerShirtsRenderer_->CameraEffectOff();
 		PlayerHairRenderer_->CameraEffectOff();
 		PlayerHandRenderer_->CameraEffectOff();
+
+		//MainPlayer->On();
 	}
 
 	if (CurrentLevel_ == "MyFarmLevel")
@@ -1294,13 +1316,9 @@ void Player::LevelInit()
 
 	//쓰러지고 집
 
-	if (CurrentLevel_ == "MyHouseLevel"
-		&& (PrevLevel_ == "BusStopLevel"
-			|| PrevLevel_ == "TownLevel"
-			|| PrevLevel_ == "SeedShopLevel"))
+	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "DayOffLevel")
 	{
 		SetPosition({ 790.f, 490.f });
-
 	}
 	// 집 -> 마인
 	if (CurrentLevel_ == "Mine1" && PrevLevel_ == "MyHouseLevel")

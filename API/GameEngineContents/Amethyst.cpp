@@ -34,6 +34,7 @@ void Amethyst::Start()
 
 
 	ItemName_ = "Amethyst";
+	ItemType_ = ITEMTYPE::MINING;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;

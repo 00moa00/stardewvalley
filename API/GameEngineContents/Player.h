@@ -63,6 +63,8 @@ enum class LEVEL_LIST
 	MINEPOINT_LEVEL,
 	MINEFLOOR_LEVEL,
 
+	DAYOFF_LEVEL
+
 };
 
 
@@ -198,11 +200,11 @@ private:
 	std::map<std::string, Monster*> MonsterList_;
 
 
-	std::list<int> DayOffFarming_;
-	std::list<int> DayOffGathering_;
-	std::list<int> DayOffFishing_;
-	std::list<int> DayOffMining_;
-	std::list<int> DayOffETC_;
+	int DayOffFarming_;
+	int DayOffFForaging_;
+	int DayOffFishing_;
+	int DayOffMining_;
+	int DayOffOther_;
 
 
 	std::vector<GameEngineCollision*> ColList;
@@ -222,6 +224,12 @@ public:
 
 	int GetMoney();
 	int GetEnergy();
+
+	int GetDayOffFarming();
+	int GetDayOffForaging();
+	int GetDayOffFishing();
+	int GetDayOffMining();
+	int GetDayOffOther();
 
 	bool GetObjectColl();
 	bool GetisShopping();
@@ -318,7 +326,6 @@ private:
 
 	void UpdateInvincibilityTime();
 	void UpdateIsNotInvincibilityTime();
-	void UpdateSubHPTime();
 
 	void SetPlayerAlpha255();
 	void SetPlayerAlpha0();

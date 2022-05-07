@@ -38,10 +38,8 @@ private:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
-
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
-	FlowingFlower* FlowingFlower_;
 
 	std::map<int, Items*> MapObject_;
 

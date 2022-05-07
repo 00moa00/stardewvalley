@@ -672,27 +672,27 @@ void Player::CheckShippingBox()
 
 					if (GetCurrentItem()->GetItemType() == ITEMTYPE::FARMING)
 					{
-						DayOffFarming_.push_back(GetCurrentItem()->GetSellPrice());
+						DayOffFarming_+= (GetCurrentItem()->GetSellPrice());
 					}
 
 					if (GetCurrentItem()->GetItemType() == ITEMTYPE::GATHERING)
 					{
-						DayOffGathering_.push_back(GetCurrentItem()->GetSellPrice());
+						DayOffFForaging_ += (GetCurrentItem()->GetSellPrice());
 					}
 
 					if (GetCurrentItem()->GetItemType() == ITEMTYPE::FISHING)
 					{
-						DayOffFishing_.push_back(GetCurrentItem()->GetSellPrice());
+						DayOffFishing_+= (GetCurrentItem()->GetSellPrice());
 					}
 
 					if (GetCurrentItem()->GetItemType() == ITEMTYPE::MINING)
 					{
-						DayOffMining_.push_back(GetCurrentItem()->GetSellPrice());
+						DayOffMining_+= (GetCurrentItem()->GetSellPrice());
 					}
 
-					if (GetCurrentItem()->GetItemType() == ITEMTYPE::ETC)
+					if (GetCurrentItem()->GetItemType() == ITEMTYPE::ETC || GetCurrentItem()->GetItemType() == ITEMTYPE::OTHER)
 					{
-						DayOffETC_.push_back(GetCurrentItem()->GetSellPrice());
+						DayOffOther_ += (GetCurrentItem()->GetSellPrice());
 					}
 
 				}

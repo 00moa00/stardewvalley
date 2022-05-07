@@ -38,10 +38,6 @@ void MineLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->GetRenderer()->SetImage("MineStartBack.bmp");
 	BackGround_->GetRenderer()->SetPivot({ MINE_SIZE_WEIGHT / 2,  MINE_SIZE_HEIGHT / 2 });
 
-	FlowingFlower_ = CreateActor<FlowingFlower>(static_cast<int>(PLAYLEVEL::EFFECT));
-	//FlowingFlower_->SetMax({ BUSSTOP_SIZE_WEIGHT, BUSSTOP_SIZE_HEIGHT });
-	FlowingFlower_->SetMaxFocusPlayer(true);
-
 	//	Player::MainPlayer->SetDirtTileMap(&BackGround_->DirtTileMap_);
 
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
