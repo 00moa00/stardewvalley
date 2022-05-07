@@ -64,8 +64,8 @@ void Tulip_Crops::DropCropsInMap()
 		DropItem = CreateDropItemActor<Tulip>();
 		DropItem->GetRenderer()->CameraEffectOn();
 		float4 Pos;
-		Pos.x = RandomItemPosX.RandomFloat(-60.f, 60.f);
-		Pos.y = RamdomItemPosY.RandomFloat(-60.f, 60.f);
+		Pos.x = RandomItemPosX.RandomFloat(-20.f, 20.f);
+		Pos.y = RamdomItemPosY.RandomFloat(-20.f, 20.f);
 
 		DropItem->SetPosition({ this->GetPosition().x + Pos.x, this->GetPosition().y + Pos.y });
 		DropItem->SetMoveFlag(true);
