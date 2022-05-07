@@ -63,6 +63,8 @@ private:
 	Font* DayOffOtherFont_;
 	Font* DayOffTotalFont_;
 
+	Font* DayFont_;
+
 	MONEY_UPDATE FarmingState_;
 	MONEY_UPDATE ForagingState_;
 	MONEY_UPDATE FishingState_;

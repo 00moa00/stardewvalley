@@ -2,6 +2,7 @@
 #include "GameData.h"
 #include "TileData.h"
 #include <GameEngineBase/GameEngineTime.h>
+#include <sstream>
 
 DayOffLevel::DayOffLevel() 
 	:
@@ -35,7 +36,9 @@ DayOffLevel::DayOffLevel()
 	DayOffFishingFont_(nullptr),
 	DayOffMiningFont_(nullptr),
 	DayOffOtherFont_(nullptr),
-	DayOffTotalFont_(nullptr)
+	DayOffTotalFont_(nullptr),
+
+	DayFont_(nullptr)
 
 {
 	SetName("DayOffLevel");
@@ -69,33 +72,40 @@ void DayOffLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	DayOffFarming_ = Player::MainPlayer->GetDayOffFarming();
 	DayOffFForaging_ = Player::MainPlayer->GetDayOffForaging();
 	DayOffFishing_ = Player::MainPlayer->GetDayOffFishing();
-
 	DayOffMining_ = Player::MainPlayer->GetDayOffMining();
 	DayOffOther_ = Player::MainPlayer->GetDayOffOther();
-
-
 
 	DayOffTotal_ = DayOffFarming_ + DayOffFForaging_ + DayOffFishing_ + DayOffMining_ + DayOffOther_;
 
 	DayOffFarmingFont_ = CreateActor<Font>(static_cast<int>(PLAYLEVEL::DAY_OFF_FONT));
-	DayOffFarmingFont_->SetPosition({ 815.f, 175.f });
-
+	DayOffFarmingFont_->SetPosition({ 817.f, 178.f });
 
 	DayOffFForagingFont_ = CreateActor<Font>(static_cast<int>(PLAYLEVEL::DAY_OFF_FONT));
-	DayOffFForagingFont_->SetPosition({ 815.f ,258.f });
+	DayOffFForagingFont_->SetPosition({ 817.f, 260.f });
 
 	DayOffFishingFont_ = CreateActor<Font>(static_cast<int>(PLAYLEVEL::DAY_OFF_FONT));
-	DayOffFishingFont_->SetPosition({ 815.f ,345.f });
+	DayOffFishingFont_->SetPosition({ 817.f, 345.f });
 
 	DayOffMiningFont_ = CreateActor<Font>(static_cast<int>(PLAYLEVEL::DAY_OFF_FONT));
-	DayOffMiningFont_->SetPosition({ 815.f ,428.f });
+	DayOffMiningFont_->SetPosition({ 817.f, 428.f });
 
 	DayOffOtherFont_ = CreateActor<Font>(static_cast<int>(PLAYLEVEL::DAY_OFF_FONT));
-	DayOffOtherFont_->SetPosition({ 815.f ,515.f });
-
+	DayOffOtherFont_->SetPosition({ 817.f, 515.f });
 
 	DayOffTotalFont_ = CreateActor<Font>(static_cast<int>(PLAYLEVEL::DAY_OFF_FONT));
-	DayOffTotalFont_->SetPosition({ 815.f ,598.f });
+	DayOffTotalFont_->SetPosition({ 817.f, 598.f });
+
+	DayFont_ = CreateActor<Font>(static_cast<int>(PLAYLEVEL::DAY_OFF_FONT));
+	DayFont_->SetPosition({ 470.f, 73.f });
+
+
+	int Day = MainUI::MainMainUI->GetDay() -1;
+	std::stringstream ssDay;
+
+	ssDay << Day;
+
+
+	DayFont_->ChangeFont({ "Day " + ssDay.str() + " of Spring, Year 1" }, {0, 0});
 
 }
 
@@ -112,7 +122,8 @@ void DayOffLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	}
 
 	UpdateState_ = DAYOFF_STATE::MONEY_UPDATE;
-
+	Player::MainPlayer->AddMoney(DayOffTotal_);
+	MainUI::MainMainUI->SetMainUIMoney(Player::MainPlayer->GetMoney());
 
 }
 
