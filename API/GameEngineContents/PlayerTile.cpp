@@ -499,7 +499,7 @@ void Player::CrushStone()
 
 				//ÆÄÆ¼Å¬ ÀÌÆåÆ®
 				StoneEffect* StoneAnimation_ = GetLevel()->CreateActor<StoneEffect>();
-				StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x ,   Iter->second->GetPosition().y });
+				StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x ,  Iter->second->GetPosition().y });
 				
 				//ÀÜÇØ ÀÌÆåÆ®
 				CreateCrushStoneEffect(Iter->second->GetStoneType());

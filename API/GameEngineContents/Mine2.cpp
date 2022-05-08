@@ -4,6 +4,9 @@
 #include "TileData.h"
 #include "Block.h"
 #include "SmallStone.h"
+#include "Golem.h"
+#include "Bug.h"
+#include "Bat.h"
 #include <GameEngineBase/GameEngineTime.h>
 Mine2::Mine2() 
 	:
@@ -29,6 +32,9 @@ void Mine2::Update()
 
 void Mine2::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+
+	Player::MainPlayer->ResetMine();
+
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();
@@ -39,6 +45,8 @@ void Mine2::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	BackGround_->GetRenderer()->SetImage("Mine2_Back.bmp");
 	BackGround_->GetRenderer()->SetPivot({ MINEFLOOR_SIZE_WEIGHT / 2,  MINEFLOOR_SIZE_HEIGHT / 2 });
+
+	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 
 	BgmPlayer = GameEngineSound::SoundPlayControl("frost.wav", -1);
 	BgmPlayer.Volume(0.4f);
@@ -83,6 +91,7 @@ void Mine2::LoadMapObject()
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
 			std::map<int, Items*>::iterator ThisIter;
+			std::map<std::string, Monster*>::iterator MonsterIter;
 
 
 			const float4 IndexPos = {
@@ -124,7 +133,8 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<Block>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
+				ThisIter->second->GetCollision()->SetScale({ 48, 40 });
 				ThisIter->second->SetPosition(pos);
 
 				break;
@@ -132,7 +142,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -145,7 +155,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -158,7 +168,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -171,7 +181,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -184,7 +194,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -197,7 +207,7 @@ void Mine2::LoadMapObject()
 
 				MapObject_.insert(std::make_pair(ChangeIndex, CreateActor<SmallStone>((int)PLAYLEVEL::OBJECT)));
 
-				ThisIter = MapObject_.find(ChangeIndex);
+				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->GetCollision()->SetScale({ 40, 10 });
 				ThisIter->second->GetCollision()->SetPivot({ 0, -10 });
@@ -259,14 +269,43 @@ void Mine2::LoadMapObject()
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AQUAMARINE_STONE);
 
 				break;
+
+			case TILE_LIST::BUG:
+
+				MonsterList_.insert(std::make_pair("BUG", CreateActor<Bug>((int)PLAYLEVEL::PLAYER)));
+				MonsterIter = MonsterList_.find("BUG");
+				MonsterIter->second->SetPosition(pos);
+				break;
+
+			case TILE_LIST::GOLEM:
+
+				MonsterList_.insert(std::make_pair("Golem", CreateActor<Golem>((int)PLAYLEVEL::PLAYER)));
+				MonsterIter = MonsterList_.find("Golem");
+				MonsterIter->second->SetPosition(pos);
+				break;
+
+
+			case TILE_LIST::BAT:
+				MonsterList_.insert(std::make_pair("Bat", CreateActor<Bat>((int)PLAYLEVEL::PLAYER)));
+				MonsterIter = MonsterList_.find("Bat");
+				MonsterIter->second->SetPosition(pos);
+				break;
+
 			default:
 				break;
 
 			}
-
+			ChangeIndex = 0;
 		}
 	}
 
 	Player::MainPlayer->CopyList(MapObject_);
+	Player::MainPlayer->CopyList(MonsterList_);
+
+	Player::MainPlayer->CopyList(MapObject_);
+	Player::MainPlayer->CopyList(MonsterList_);
+
+	MapObject_.erase(MapObject_.begin(), MapObject_.end());
+	MonsterList_.erase(MonsterList_.begin(), MonsterList_.end());
 
 }

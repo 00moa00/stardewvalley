@@ -263,7 +263,6 @@ public:
 	//================================
 
 	void ResetMine();
-
 	void ClearWetDirtTile();
 
 	void SetPlayerFaint();

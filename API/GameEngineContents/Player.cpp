@@ -1504,7 +1504,7 @@ void Player::LevelInit()
 	// ±¤»ê2 -> ±¤»ê3
 	if (CurrentLevel_ == "Mine3" && PrevLevel_ == "Mine2")
 	{
-		SetPosition({ 887.f, 200.f });
+		SetPosition({ 887.f, 300.f });
 	}
 
 	// ±¤»ê3 -> ±¤»ê4

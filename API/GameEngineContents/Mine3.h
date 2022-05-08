@@ -43,6 +43,7 @@ private:
 	GameEngineSoundPlayer BgmPlayer;
 
 	std::map<int, Items*> MapObject_;
+	std::map<std::string, Monster*> MonsterList_;	//검색할 일이 없으면 다른 자료 구조로 바꿀 예정
 
 private:
 	void LoadMapObject();

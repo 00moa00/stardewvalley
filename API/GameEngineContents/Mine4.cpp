@@ -5,6 +5,10 @@
 #include "TileData.h"
 #include "Block.h"
 #include "SmallStone.h"
+#include "Golem.h"
+#include "Bug.h"
+#include "Bat.h"
+
 #include <GameEngineBase/GameEngineTime.h>
 
 Mine4::Mine4() 
@@ -30,6 +34,8 @@ void Mine4::Update()
 
 void Mine4::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	Player::MainPlayer->ResetMine();
+
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();
@@ -85,6 +91,7 @@ void Mine4::LoadMapObject()
 
 			TILE_LIST TileState_ = static_cast<TILE_LIST>(chip);
 			std::map<int, Items*>::iterator ThisIter;
+			std::map<std::string, Monster*>::iterator MonsterIter;
 
 
 			const float4 IndexPos = {
@@ -260,6 +267,28 @@ void Mine4::LoadMapObject()
 				ThisIter->second->ChnageImageFileAndIndex("springobjects.bmp", ITEM::AQUAMARINE_STONE);
 
 				break;
+			case TILE_LIST::BUG:
+
+				MonsterList_.insert(std::make_pair("BUG", CreateActor<Bug>((int)PLAYLEVEL::PLAYER)));
+				MonsterIter = MonsterList_.find("BUG");
+				MonsterIter->second->SetPosition(pos);
+				break;
+
+			case TILE_LIST::GOLEM:
+
+				MonsterList_.insert(std::make_pair("Golem", CreateActor<Golem>((int)PLAYLEVEL::PLAYER)));
+				MonsterIter = MonsterList_.find("Golem");
+				MonsterIter->second->SetPosition(pos);
+				break;
+
+
+			case TILE_LIST::BAT:
+				MonsterList_.insert(std::make_pair("Bat", CreateActor<Bat>((int)PLAYLEVEL::PLAYER)));
+				MonsterIter = MonsterList_.find("Bat");
+				MonsterIter->second->SetPosition(pos);
+				break;
+
+
 			default:
 				break;
 
@@ -269,4 +298,8 @@ void Mine4::LoadMapObject()
 	}
 
 	Player::MainPlayer->CopyList(MapObject_);
+	Player::MainPlayer->CopyList(MonsterList_);
+
+	MapObject_.erase(MapObject_.begin(), MapObject_.end());
+	MonsterList_.erase(MonsterList_.begin(), MonsterList_.end());
 }

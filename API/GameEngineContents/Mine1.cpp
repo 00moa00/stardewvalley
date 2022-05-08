@@ -35,6 +35,8 @@ void Mine1::Update()
 
 void Mine1::LevelChangeStart(GameEngineLevel* _NextLevel)
 {
+	Player::MainPlayer->ResetMine();
+
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();
@@ -300,5 +302,9 @@ void Mine1::LoadMapObject()
 
 	Player::MainPlayer->CopyList(MapObject_);
 	Player::MainPlayer->CopyList(MonsterList_);
+
+	MapObject_.erase(MapObject_.begin(), MapObject_.end());
+	MonsterList_.erase(MonsterList_.begin(), MonsterList_.end());
+
 
  }
