@@ -13,7 +13,7 @@ NpcMove::~NpcMove()
 
 void NpcMove::Start()
 {
-	MoveRenderer_ = CreateRenderer();
+	//MoveRenderer_ = CreateRenderer();
 }
 
 void NpcMove::Update()
@@ -31,8 +31,8 @@ void NpcMove::CreateNPCMoveCollision(std::string _CollName)
 
 void NpcMove::SetNPCMoveImageAndIdex(std::string _FileName, int _Index)
 {
-	MoveRenderer_->SetImage(_FileName);
-	MoveRenderer_->SetIndex(_Index);
+	//MoveRenderer_->SetImage(_FileName);
+	//MoveRenderer_->SetIndex(_Index);
 
 	//MoveRenderer_->SetImage("Empty.bmp");
 }

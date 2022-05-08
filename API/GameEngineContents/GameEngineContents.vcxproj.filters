@@ -1057,8 +1057,5 @@
     <Filter Include="Actor\03. Play\Animals">
       <UniqueIdentifier>{ca854252-716d-436f-90cd-0714c63eba68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\03. Play\Obejct\Item\NewFilter1">
-      <UniqueIdentifier>{ce343f41-492c-4e23-88ff-5ce7c7ba84e7}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>
