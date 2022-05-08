@@ -1,5 +1,8 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
+#include <GameEngineBase/GameEngineSound.h>
+
+
 #include "TitleLogo.h"
 #include "RendererData.h"
 #include "Mouse.h"
@@ -37,12 +40,16 @@ private:
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _NextLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
 
 	bool isPopup_;
 	bool KeyFlag_; //업데이트에서 함수를 한번만 사용하기 위한 플러그
+	bool ButtonPopUp[3];
+
 	float Timer_;
+	float SoundTimer_;
 
 	Title* Title_;
 
@@ -61,6 +68,8 @@ private:
 	Bird* Bird_[2];
 
 	CustomBoard* CustomBoard_;
+
+	GameEngineSoundPlayer BgmPlayer;
 
 	TITLE_STATE TitleState_;
 

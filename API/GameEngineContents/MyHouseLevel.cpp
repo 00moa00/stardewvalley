@@ -21,6 +21,7 @@ MyHouseLevel::MyHouseLevel()
 	//Iter(MapObject_.begin()),
 	Time(0.f),
 	MenuWaitTimer_(5.0f),
+	StartSound_(false),
 
 	GuideMoveState_(GUIDE_MOVE::MOVE_RIGHT),
 
@@ -103,7 +104,7 @@ void MyHouseLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
-
+	StartSound_ = false;
 }
 
 void MyHouseLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -264,6 +265,11 @@ void MyHouseLevel::Update()
 		MoveGuide();
 	}
 
+	if (StartSound_ == false)
+	{
+		GameEngineSound::SoundPlayOneShot("rooster.wav");
+		StartSound_ = true;
+	}
 
 }
 

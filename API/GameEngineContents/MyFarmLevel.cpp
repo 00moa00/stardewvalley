@@ -104,8 +104,8 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 
 
-	//BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
-	//Time = 5.0f;
+	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
+	Time = 5.0f;
 }
 
 void MyFarmLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -279,20 +279,11 @@ void MyFarmLevel::LoadMapObject()
 
 void MyFarmLevel::Update()
 {
-	
-	//float4 NextPos = Player_->GetPosition() + (float4::RIGHT *GameEngineTime::GetDeltaTime() * 150.f);
-	//float4 CheckPos = NextPos + float4(0.0f, 20.0f);
-	//std::list<Items*>::iterator Iter;
-
 	Time -= GameEngineTime::GetDeltaTime();
-
-
 
 	if (0 >= Time)
 	{
-	//	BgmPlayer.Stop();
+		BgmPlayer.Stop();
 	}
-
-	
 
 }

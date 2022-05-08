@@ -4,6 +4,7 @@
 #include "RendererData.h"
 #include "Player.h"
 #include "CustomData.h"
+#include <GameEngineBase/GameEngineSound.h>
 
 CustomBoard::CustomBoard() 
 	:
@@ -169,6 +170,7 @@ void CustomBoard::Update()
 
 			if (BackButton_->ButtonMouseOverAndLeftClick())
 			{
+
 				ClickBackButton_ = true;
 			}
 
@@ -177,6 +179,7 @@ void CustomBoard::Update()
 
 			if (OKButton_->ButtonMouseOverAndLeftClick())
 			{
+				GameEngineSound::SoundPlayOneShot("select.wav");
 				CustomUpdate_ = CUSTOM_STATE::NEXT;
 			}
 

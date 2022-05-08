@@ -59,6 +59,8 @@ private:
 
 	float MenuWaitTimer_;
 
+	bool StartSound_;
+
 	GUIDE_MOVE GuideMoveState_;
 
 	BackGround* BackGround_;

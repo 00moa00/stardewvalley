@@ -17,10 +17,10 @@ TitleLevel::TitleLevel()
 	:	
 
 	Timer_(2.f),
+	SoundTimer_(0.f),
 
 	isPopup_(false),
 	KeyFlag_(false),
-
 	TitleLogo_(nullptr),
 	Title_(nullptr),
 
@@ -40,6 +40,11 @@ TitleLevel::TitleLevel()
 
 {
 	SetName("TitleLevel");
+	ButtonPopUp[0] = false;
+	ButtonPopUp[1] = false;
+	ButtonPopUp[2] = false;
+
+
 
 }
 
@@ -128,14 +133,31 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 	CustomBoard_->GetRenderer()->CameraEffectOff();
 	CustomBoard_->CustomBoardOff();
 
+	BgmPlayer = GameEngineSound::SoundPlayControl("Title.mp3");
+	BgmPlayer.Volume(0.4f);
+	//SoundTimer_ = 5.0f;
+	//GameEngineSound::SoundPlayOneShot("Title.mp3");
 
 }	
 
-
+void TitleLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	BgmPlayer.Stop();
+}
 
 
 void TitleLevel::Update()
 {
+	//BgmPlayer
+	////BgmPlayer
+
+	//SoundTimer_ -= GameEngineTime::GetDeltaTime();
+
+	//if (0 >= SoundTimer_)
+	//{
+	//	BgmPlayer.Stop();
+	//}
+
 	switch (TitleState_)
 	{
 	case TITLE_STATE::START:
@@ -182,6 +204,7 @@ void TitleLevel::Update()
 			MenuButton_[0]->Off();
 			MenuButton_[1]->Off();
 			MenuButton_[2]->Off();
+			GameEngineSound::SoundPlayOneShot("select.wav");
 
 		}
 
@@ -193,7 +216,7 @@ void TitleLevel::Update()
 			MenuButton_[0]->On();
 			MenuButton_[1]->On();
 			MenuButton_[2]->On();
-
+			GameEngineSound::SoundPlayOneShot("bigDeSelect.wav");
 			CustomBoard_->SetClickBackButton(false);
 		}
 
@@ -300,21 +323,32 @@ void TitleLevel::PopUpMenu()
 
 	Timer_ -= GameEngineTime::GetDeltaTime();
 
-	if (Timer_ < 2.0f )
+	if (Timer_ < 2.0f && ButtonPopUp[0] == false)
 	{
+		ButtonPopUp[0] = true;
+		GameEngineSound::SoundPlayOneShot("woodyStep.wav");
+
 		MenuButton_[0]->On();
 		MenuButton_[0]->GetCollision()->On();
 
 	}
 
-	if (Timer_ < 1.5f)
+	if (Timer_ < 1.5f && ButtonPopUp[1] == false)
 	{
+		ButtonPopUp[1] = true;
+
+		GameEngineSound::SoundPlayOneShot("woodyStep.wav");
+
 		MenuButton_[1]->On();
 	}
 
 
-	if (Timer_ <1.0f)
+	if (Timer_ <1.0f && ButtonPopUp[2] == false)
 	{
+		ButtonPopUp[2] = true;
+
+		GameEngineSound::SoundPlayOneShot("woodyStep.wav");
+
 		MenuButton_[2]->On();
 
 		TitleState_ = TITLE_STATE::WAIT;
