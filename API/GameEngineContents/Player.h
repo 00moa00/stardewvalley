@@ -142,6 +142,7 @@ private:
 	float IsNotInvincibilityTimer_;
 	float SubHPTimer_;
 
+
 	float4 MoveDir_;
 	float4 CameraPos_;
 
