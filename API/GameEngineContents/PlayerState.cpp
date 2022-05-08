@@ -437,8 +437,16 @@ void Player::ChangeLevel()
 
 
 	case LEVEL_CHANGE_STATE::CHECK:
+
 		if (MoveFarmCollision())
 		{
+
+			if (CurrentLevel_ == "MyHouseLevel")
+			{
+				GameEngineSound::SoundPlayOneShot("doorOpen.wav");
+
+			}
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
 			ChangeLevelName_ = "MyFarmLevel";
@@ -447,8 +455,11 @@ void Player::ChangeLevel()
 
 		if (MoveHouseCollision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
+			GameEngineSound::SoundPlayOneShot("doorOpen.wav");
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
+
 			ChangeLevelName_ = "MyHouseLevel";
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 
@@ -473,8 +484,11 @@ void Player::ChangeLevel()
 
 		if (MoveTownCollision() && GameEngineInput::GetInst()->IsDown("RightClick") && CurrentLevel_ == "SaloonLevel")
 		{
+			GameEngineSound::SoundPlayOneShot("doorOpen.wav");
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
+
 			ChangeLevelName_ = "TownLevel";
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
@@ -483,6 +497,8 @@ void Player::ChangeLevel()
 
 		if (MoveShopCollision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
+			GameEngineSound::SoundPlayOneShot("doorOpen.wav");
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
 			ChangeLevelName_ = "SeedShopLevel";
@@ -492,8 +508,11 @@ void Player::ChangeLevel()
 
 		if (MoveSaloonCollision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
+			GameEngineSound::SoundPlayOneShot("doorOpen.wav");
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
+
 			ChangeLevelName_ = "SaloonLevel";
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 		}
@@ -517,6 +536,8 @@ void Player::ChangeLevel()
 
 		if (MoveMinePointCollision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
+			GameEngineSound::SoundPlayOneShot("stairsdown.wav");
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
 			ChangeLevelName_ = "MinePoint";
@@ -525,6 +546,8 @@ void Player::ChangeLevel()
 
 		if (MoveMine1Collision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
+			GameEngineSound::SoundPlayOneShot("stairsdown.wav");
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
 			ChangeLevelName_ = "Mine1";
@@ -533,6 +556,8 @@ void Player::ChangeLevel()
 
 		if (MoveMine2Collision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
+			GameEngineSound::SoundPlayOneShot("stairsdown.wav");
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
 			ChangeLevelName_ = "Mine2";
@@ -541,6 +566,8 @@ void Player::ChangeLevel()
 
 		if (MoveMine3Collision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
+			GameEngineSound::SoundPlayOneShot("stairsdown.wav");
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
 			ChangeLevelName_ = "Mine3";
@@ -549,6 +576,8 @@ void Player::ChangeLevel()
 
 		if (MoveMine4Collision() && GameEngineInput::GetInst()->IsDown("RightClick"))
 		{
+			GameEngineSound::SoundPlayOneShot("stairsdown.wav");
+
 			FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 			FadeInOut_->SetFadeOut();
 			ChangeLevelName_ = "Mine4";

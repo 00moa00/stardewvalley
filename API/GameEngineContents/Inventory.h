@@ -181,6 +181,11 @@ public:
 			return nullptr;
 		}
 	}
+	bool GetPopUpStateShop()
+	{
+		return CurrentInvenState_ == POPUPSTATE::SHOP;
+	}
+
 
 	bool GetPopUpStateMini()
 	{

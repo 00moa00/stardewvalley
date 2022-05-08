@@ -37,6 +37,16 @@ void ItemDataBox::Render()
 
 void ItemDataBox::SetData(std::string _Name, std::string _Data , float4 _Pos)
 {
+	if (Inventory::MainInventory->GetPopUpStateShop())
+	{
+		ItemDataBoxOff();
+	}
+	else
+	{
+		ItemDataBoxOn();
+	}
+
+
 	if (Inventory::MainInventory->GetPopUpStateMini())
 	{
 		NameFont_->ChangeFont(_Name, { 0, 0 });
