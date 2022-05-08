@@ -49,6 +49,8 @@ private:
 	BackGround* BackGroundFront_;
 	MenuButton* OKButton_;
 
+	GameEngineSoundPlayer BgmPlayer;
+
 	int DayOffFarming_;
 	int DayOffFForaging_;
 	int DayOffFishing_;

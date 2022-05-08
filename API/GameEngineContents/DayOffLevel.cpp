@@ -21,6 +21,7 @@ DayOffLevel::DayOffLevel()
 	PrevOtherMoney_(0),
 	PrevTotalMoney_(0),
 
+	BgmPlayer(),
 
 	FarmingState_(MONEY_UPDATE::ADD_TIME),
 	ForagingState_(MONEY_UPDATE::ADD_TIME),
@@ -97,9 +98,6 @@ void DayOffLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	DayOffTotal_ = DayOffFarming_ + DayOffFForaging_ + DayOffFishing_ + DayOffMining_ + DayOffOther_;
 
-
-
-
 	int Day = MainUI::MainMainUI->GetDay() -1;
 	std::stringstream ssDay;
 
@@ -107,6 +105,8 @@ void DayOffLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 
 	DayFont_->ChangeFont({ "Day " + ssDay.str() + " of Spring, Year 1" }, {0, 0});
+
+	BgmPlayer = GameEngineSound::SoundPlayControl("spring_night.wav");
 
 }
 
@@ -126,6 +126,8 @@ void DayOffLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	Player::MainPlayer->AddMoney(DayOffTotal_);
 	MainUI::MainMainUI->SetMainUIMoney(Player::MainPlayer->GetMoney());
 
+	BgmPlayer.Stop();
+	
 }
 
 
@@ -345,6 +347,7 @@ void DayOffLevel::AddTotalAnimation()
 
 		break;
 	case MONEY_UPDATE::CHANGE_FONT:
+		GameEngineSound::SoundPlayOneShot("moneyDial.wav");
 
 		if (PrevTotalMoney_ >= DayOffTotal_)
 		{

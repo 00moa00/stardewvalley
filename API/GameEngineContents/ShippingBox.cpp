@@ -52,8 +52,12 @@ void ShippingBox::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void ShippingBox::ItemCollPlayer()
 {
-	ShippingBoxTop_->SetShippingBoxTopAnimationOpen();
-	isOpenAnimation = true;
+	if (isOpenAnimation == false)
+	{
+		ShippingBoxTop_->SetShippingBoxTopAnimationOpen();
+		GameEngineSound::SoundPlayOneShot("openChest.wav");
+		isOpenAnimation = true;
+	}
 }
 
 void ShippingBox::ItemCollFalsePlayer()
