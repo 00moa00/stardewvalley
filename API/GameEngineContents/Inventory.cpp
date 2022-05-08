@@ -1,6 +1,7 @@
 #include "Inventory.h"
 #include "Player.h"
 #include "Potato_Seeds.h"
+#include "CoinAnimation.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -532,6 +533,10 @@ void Inventory::ItemMove()
 	case ITEMMOVE::SHOPPING:
 		if (Player::MainPlayer->GetMoneyAddMoneyCountWait())
 		{
+			Effect* Coin = GetLevel()->CreateActor<CoinAnimation>(static_cast<int>(PLAYLEVEL::SHOP_EFFECT));
+			Coin->SetPosition({ PlayerItemListStartIter->second-> GetPosition()});
+			Coin->SetCount(5);
+
 			Player::MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
 			PlayerItemListStartIter->second->SubItemCount();
 		}
@@ -618,6 +623,10 @@ void Inventory::InvenPopUp()
 
 			if (BoxStartIter->first > 11)
 			{
+
+				BoxStartIter->second->SetPosition({ 2000.f, (this->GetPosition().y) });
+
+				//BoxStartIter->second->BoxCollision()->Off();
 				BoxStartIter->second->Off();
 			}
 		}
@@ -632,6 +641,8 @@ void Inventory::InvenPopUp()
 
 			if (ItemStartIter->first > 11)
 			{
+				ItemStartIter->second->SetPosition({ 2000.f, (this->GetPosition().y) });
+
 				ItemStartIter->second->UpdateOff();
 			}
 		}

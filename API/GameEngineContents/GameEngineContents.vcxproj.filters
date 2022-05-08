@@ -458,6 +458,9 @@
     <ClCompile Include="CoinAnimation.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="CoinParticle.cpp">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -939,6 +942,9 @@
       <Filter>Actor\03. Play\NPC</Filter>
     </ClInclude>
     <ClInclude Include="CoinAnimation.h">
+      <Filter>Actor\03. Play\Obejct\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinParticle.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
   </ItemGroup>

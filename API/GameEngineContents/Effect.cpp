@@ -3,7 +3,8 @@
 Effect::Effect() 
 	:
 	EffectRenderer_(nullptr),
-	MoveDir_(float4::ZERO)
+	MoveDir_(float4::ZERO),
+	Count_(0)
 {
 }
 

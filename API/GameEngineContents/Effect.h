@@ -49,9 +49,13 @@ public:
 
 	}
 
+
+
 private:
 
 protected:
+	int Count_;
+
 	float4 MoveDir_;
 	float4 PrePosition_;
 
@@ -65,5 +69,9 @@ public:
 		return EffectRenderer_;
 	}
 
+	void SetCount(int _Count)
+	{
+		Count_ = _Count;
+	}
 };
 
