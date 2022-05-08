@@ -963,7 +963,6 @@ void Player::PlayerUpdate()
 			CreateWaterTile();
 			ChangeWetDirtTile();
 			SubEnergy(2);
-			GameEngineSound::SoundPlayOneShot("water_scoop1.wav");
 
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
@@ -1007,7 +1006,7 @@ void Player::PlayerUpdate()
 
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
-			GameEngineSound::SoundPlayOneShot("water_scoop1.wav");
+			GameEngineSound::SoundPlayOneShot("brush.wav");
 
 			SubEnergy(2);
 			ToolRenderer_->SetPivot({0, 0});

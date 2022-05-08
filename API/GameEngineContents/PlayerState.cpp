@@ -631,6 +631,7 @@ void Player::CheckTool()
 
 	else if (CurrentItemType() == TOOLTYPE::WATTERING_CAN)
 	{
+		GameEngineSound::SoundPlayOneShot("slug3.wav");
 		PlayerState_ = PLAYER_UPDATE::WATER;
 	}
 
@@ -1068,6 +1069,7 @@ void Player::SubHP(int _HP)
 	SubHPFont* SubHPFont_;
 	SubHPFont_ = GetLevel()->CreateActor<SubHPFont>();
 	SubHPFont_->SetPosAndNumRed(this->GetPosition(), _HP);
+	GameEngineSound::SoundPlayOneShot("ow.wav");
 
 	HP_ -= _HP;
 	PlayerHPFrame::MainPlayerHPBar->GetRenderer()->SetScale({ 18, static_cast<float>(HP_) });

@@ -6,6 +6,7 @@
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineRandom.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 #include "SubHPFont.h"
 

@@ -2,6 +2,13 @@
 #include "Player.h"
 
 Bat::Bat() 
+	:
+	BGMPlayer(),
+	CheckTime_(false),
+	Dir(),
+	Check_(0.f),
+	CheckTimer_(0.f)
+
 {
 
 }
@@ -43,6 +50,9 @@ void Bat::Start()
 	MoveDir_ = float4::DOWN;
 
 	SetScale({ 48, 50 });
+
+	BGMPlayer = GameEngineSound::SoundPlayControl("batFlap.wav");
+	BGMPlayer.Volume(0.0f);
 }
 
 void Bat::Update()
@@ -115,6 +125,7 @@ void Bat::Update()
 
 	case MONSTER_STATE::WALK:
 
+		BGMPlayer.Volume(0.7f);
 
 		Timer_ += GameEngineTime::GetDeltaTime();
 		if (Timer_ > 1.0f)
@@ -159,3 +170,4 @@ void Bat::Update()
 	}
 
 }
+

@@ -85,7 +85,7 @@ void Golem::Update()
 	Check_ = Dir.Len2D();
 	Dir.Normal2D();
 
-	if (isDeath_ == true)
+	if (isDeath_ == true || HP_ <= 0)
 	{
 		MonsterState_ = MONSTER_STATE::DEATH;
 
@@ -98,7 +98,8 @@ void Golem::Update()
 
 		if (Check_ <= 150)
 		{
-			HP_ = 20;
+			GameEngineSound::SoundPlayOneShot("skeletonDie.wav");
+			invincibility_ = false;
 			MonsterState_ = MONSTER_STATE::REVIVAL;
 		}
 		break;
@@ -108,6 +109,7 @@ void Golem::Update()
 
 		if (MonsterRenderer_->IsEndAnimation())
 		{
+
 			invincibility_ = false;
 			MonsterState_ = MONSTER_STATE::WALK;
 
@@ -268,13 +270,15 @@ void Golem::Update()
 
 		break;
 	case MONSTER_STATE::BACK:
-
 		BackMove();
+
 		break;
 	case MONSTER_STATE::DEATH:
 
+		//MonsterRenderer_->SetPivot({ 0 , 12 });
 		if (MonsterRenderer_->IsEndAnimation())
 		{
+			GameEngineSound::SoundPlayOneShot("shadowDie.wav");
 			this->Death();
 		}
 
@@ -282,6 +286,7 @@ void Golem::Update()
 	}
 
 }
+
 
 void Golem::DirAnimation()
 {

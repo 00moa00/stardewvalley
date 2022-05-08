@@ -1,6 +1,7 @@
 #pragma once
 #include "Monster.h"
 
+
 // Ό³Έν :
 class Bat : public Monster
 {
@@ -20,6 +21,7 @@ private:
 	void Update() override;
 
 private:
+	GameEngineSoundPlayer BGMPlayer;
 
 	bool CheckTime_;
 

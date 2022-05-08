@@ -611,9 +611,28 @@ void Player::AttackMonster()
 
 			//몬스터의 체력을 깍는다.
 			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower());	
+
 			if (GetMonsterIter->second->GetMonsterType() != MONSTER_TYPE::BUG)
 			{
+				
+				if (GetMonsterIter->second->GetMonsterType() != MONSTER_TYPE::GOLEM)
+				{
+					GameEngineSound::SoundPlayOneShot("shadowHit.wav");
+				}
+
+				if (GetMonsterIter->second->GetMonsterType() != MONSTER_TYPE::BAT)
+				{
+					GameEngineSound::SoundPlayOneShot("serpentHit.wav");
+
+				}
+
 				GetMonsterIter->second->SetMonsterStateBack();
+			}
+
+			if (GetMonsterIter->second->GetMonsterType() == MONSTER_TYPE::BUG)
+			{
+				GameEngineSound::SoundPlayOneShot("silverware3.wav");
+
 			}
 
 		}
