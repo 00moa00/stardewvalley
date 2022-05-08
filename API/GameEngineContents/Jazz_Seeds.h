@@ -7,6 +7,7 @@ class Jazz_Seeds : public Items
 public:
 	static Jazz_Seeds* MainJazzSeeds;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Jazz_Seeds();

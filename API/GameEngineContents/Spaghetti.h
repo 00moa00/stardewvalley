@@ -7,7 +7,8 @@ class Spaghetti : public Items
 public:
 	static Spaghetti* MainSpaghetti;
 	static Font* Font_;
-	// constrcuter destructer
+	static ItemDataBox* MainItemDataBox;
+
 	Spaghetti();
 	~Spaghetti();
 

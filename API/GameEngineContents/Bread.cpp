@@ -3,6 +3,7 @@
 
 Bread* Bread::MainBread = nullptr;
 Font* Bread::Font_ = nullptr;
+ItemDataBox* Bread::MainItemDataBox = nullptr;
 
 Bread::Bread() 
 {
@@ -20,14 +21,6 @@ void Bread::Start()
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
-	if (Font_ == nullptr)
-	{
-		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
-	}
-
-
 	ItemName_ = "Bread";
 	ObjectType_ = OBJECTTYPE::FOOD;
 
@@ -36,6 +29,19 @@ void Bread::Start()
 	AddHP_ = 22;
 
 	ItemType_ = ITEMTYPE::ETC;
+
+	if (Font_ == nullptr)
+	{
+		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+		Font_->ChangeWhiteColor();
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	}
+
+	if (MainItemDataBox == nullptr)
+	{
+		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
+	}
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
@@ -59,7 +65,15 @@ void Bread::Update()
 		else
 		{
 			Font_->SetPositionItem({ GetPosition() });
-
+			if (MouseOver() && InMouse == false)
+			{
+				MainItemDataBox->ItemDataBoxOn();
+				MainItemDataBox->SetData(ItemName_, "50 Energy /22 Health", this->GetPosition());
+			}
+			else
+			{
+				MainItemDataBox->ItemDataBoxOff();
+			}
 		}
 
 		break;
@@ -83,12 +97,15 @@ void Bread::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainBread = this;
 	Font_ = Font_;
+	MainItemDataBox = MainItemDataBox;
+
 }
 
 void Bread::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
-
+	MainItemDataBox->NextLevelOn();
+	MainItemDataBox->FontNextLevelOn();
 }
 
 void Bread::AddItemCount()

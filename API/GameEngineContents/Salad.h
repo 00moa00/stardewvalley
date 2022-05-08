@@ -7,6 +7,8 @@ class Salad : public Items
 public:
 	static Salad* MainSalad;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
+
 	// constrcuter destructer
 	Salad();
 	~Salad();

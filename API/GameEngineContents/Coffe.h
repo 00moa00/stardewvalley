@@ -7,6 +7,7 @@ class Coffe : public Items
 public:
 	static Coffe* MainCoffe;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Coffe();

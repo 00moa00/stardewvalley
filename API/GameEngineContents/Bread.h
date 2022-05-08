@@ -7,6 +7,7 @@ class Bread : public Items
 public:
 	static Bread* MainBread;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Bread();

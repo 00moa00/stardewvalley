@@ -7,6 +7,7 @@ class Beer : public Items
 public:
 	static Beer* MainBear;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Beer();

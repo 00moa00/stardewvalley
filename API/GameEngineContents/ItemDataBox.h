@@ -35,15 +35,13 @@ private:
 	Font* DataFont_;
 
 
-private:
 public:
 	void SetData(std::string _Name, std::string _Data, float4 _Pos);
 
 	void ItemDataBoxOn();
 	void ItemDataBoxOff();
 
-
+	void FontNextLevelOn();
 
 };
 
-#pragma once

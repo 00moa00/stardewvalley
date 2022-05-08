@@ -3,6 +3,7 @@
 
 Salad* Salad::MainSalad = nullptr;
 Font* Salad::Font_ = nullptr;
+ItemDataBox* Salad::MainItemDataBox = nullptr;
 
 Salad::Salad()
 {
@@ -20,6 +21,15 @@ void Salad::Start()
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
+	ItemName_ = "Salad";
+	ObjectType_ = OBJECTTYPE::FOOD;
+
+	ItemType_ = ITEMTYPE::ETC;
+
+	SellPrice_ = 110;
+	AddEnery_ = 113;
+	AddHP_ = 50;
+
 	if (Font_ == nullptr)
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
@@ -27,15 +37,11 @@ void Salad::Start()
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
 
-
-	ItemName_ = "Salad";
-	ObjectType_ = OBJECTTYPE::FOOD;
-
-	ItemType_ = ITEMTYPE::ETC;
-
-	SellPrice_ = 113;
-	AddEnery_ = 50;
-	AddHP_ = 22;
+	if (MainItemDataBox == nullptr)
+	{
+		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
+	}
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
@@ -59,7 +65,15 @@ void Salad::Update()
 		else
 		{
 			Font_->SetPositionItem({ GetPosition() });
-
+			if (MouseOver() && InMouse == false)
+			{
+				MainItemDataBox->ItemDataBoxOn();
+				MainItemDataBox->SetData(ItemName_, "113 Energy /50 Health", this->GetPosition());
+			}
+			else
+			{
+				MainItemDataBox->ItemDataBoxOff();
+			}
 		}
 
 		break;
@@ -83,12 +97,15 @@ void Salad::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainSalad = this;
 	Font_ = Font_;
+	MainItemDataBox = MainItemDataBox;
+
 }
 
 void Salad::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
-
+	MainItemDataBox->NextLevelOn();
+	MainItemDataBox->FontNextLevelOn();
 }
 
 void Salad::AddItemCount()

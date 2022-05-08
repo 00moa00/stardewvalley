@@ -8,6 +8,7 @@ public:
 
 	static Tulip_Seeds* MainTulipSeeds;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Tulip_Seeds();

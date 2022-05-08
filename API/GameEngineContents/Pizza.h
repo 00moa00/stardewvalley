@@ -7,6 +7,7 @@ class Pizza : public Items
 public:
 	static Pizza* MainPizza;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Pizza();

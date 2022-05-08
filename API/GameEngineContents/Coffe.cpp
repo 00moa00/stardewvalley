@@ -3,6 +3,7 @@
 
 Coffe* Coffe::MainCoffe = nullptr;
 Font* Coffe::Font_ = nullptr;
+ItemDataBox* Coffe::MainItemDataBox = nullptr;
 
 Coffe::Coffe() 
 {
@@ -20,13 +21,6 @@ void Coffe::Start()
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
-	if (Font_ == nullptr)
-	{
-		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
-	}
-
 	ItemName_ = "Coffe";
 
 	ObjectType_ = OBJECTTYPE::DRINK;
@@ -40,6 +34,21 @@ void Coffe::Start()
 
 	ItemType_ = ITEMTYPE::ETC;
 
+	if (Font_ == nullptr)
+	{
+		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+		Font_->ChangeWhiteColor();
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	}
+
+	if (MainItemDataBox == nullptr)
+	{
+		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
+	}
+
+
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
@@ -52,7 +61,15 @@ void Coffe::Update()
 	{
 	case ITEM_STATE::INIT:
 		Font_->SetPositionItem({ GetPosition() });
-
+		if (MouseOver() && InMouse == false)
+		{
+			MainItemDataBox->ItemDataBoxOn();
+			MainItemDataBox->SetData(ItemName_, "3 Energy /1 Health /1 Speed", this->GetPosition());
+		}
+		else
+		{
+			MainItemDataBox->ItemDataBoxOff();
+		}
 		break;
 	}
 }
@@ -61,11 +78,15 @@ void Coffe::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainCoffe = this;
 	Font_ = Font_;
+	MainItemDataBox = MainItemDataBox;
+
 }
 
 void Coffe::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+	MainItemDataBox->NextLevelOn();
+	MainItemDataBox->FontNextLevelOn();
 }
 
 void Coffe::AddItemCount()

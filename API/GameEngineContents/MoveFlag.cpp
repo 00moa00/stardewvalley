@@ -10,7 +10,7 @@ MoveFlag::~MoveFlag()
 
 void MoveFlag::Start()
 {
-	ItemRenderer_ = CreateRenderer("block.bmp");
+	ItemRenderer_ = CreateRenderer("empty.bmp");
 	ItemRenderer_->SetPivotType(RenderPivot::CENTER);
 	ObjectType_ = OBJECTTYPE::FLAG;
 }

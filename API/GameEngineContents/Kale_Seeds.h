@@ -7,6 +7,7 @@ class Kale_Seeds : public Items
 public:
 	static Kale_Seeds* MainKaleSeeds;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Kale_Seeds();

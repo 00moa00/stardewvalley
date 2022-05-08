@@ -3,6 +3,7 @@
 
 Beer* Beer::MainBear = nullptr;
 Font* Beer::Font_ = nullptr;
+ItemDataBox* Beer::MainItemDataBox = nullptr;
 
 Beer::Beer() 
 {
@@ -20,14 +21,6 @@ void Beer::Start()
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
-	if (Font_ == nullptr)
-	{
-		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
-	}
-
-
 	ItemName_ = "Beer";
 
 	ObjectType_ = OBJECTTYPE::DRINK;
@@ -41,6 +34,20 @@ void Beer::Start()
 
 	ItemType_ = ITEMTYPE::ETC;
 
+	if (Font_ == nullptr)
+	{
+		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+		Font_->ChangeWhiteColor();
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	}
+
+	if (MainItemDataBox == nullptr)
+	{
+		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
+	}
+
+
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
@@ -53,7 +60,15 @@ void Beer::Update()
 	{
 	case ITEM_STATE::INIT:
 		Font_->SetPositionItem({ GetPosition() });
-
+		if (MouseOver() && InMouse == false)
+		{
+			MainItemDataBox->ItemDataBoxOn();
+			MainItemDataBox->SetData(ItemName_, "50 Energy /22 Health/ Speed -1", this->GetPosition());
+		}
+		else
+		{
+			MainItemDataBox->ItemDataBoxOff();
+		}
 		break;
 	}
 }
@@ -62,12 +77,15 @@ void Beer::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainBear = this;
 	Font_ = Font_;
+	MainItemDataBox = MainItemDataBox;
+
 }
 
 void Beer::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	++ItemCount_;
-	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	MainItemDataBox->NextLevelOn();
+	MainItemDataBox->FontNextLevelOn();
 }
 
 void Beer::AddItemCount()

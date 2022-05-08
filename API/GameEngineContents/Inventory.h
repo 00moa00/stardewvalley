@@ -178,6 +178,12 @@ public:
 			return nullptr;
 		}
 	}
+
+	Mouse* GetMouse()
+	{
+		return Mouse_;
+	}
+
 	bool GetPopUpStateShop()
 	{
 		return CurrentInvenState_ == POPUPSTATE::SHOP;

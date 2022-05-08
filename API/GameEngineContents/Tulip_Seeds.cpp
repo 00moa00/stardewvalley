@@ -4,6 +4,7 @@
 
 Tulip_Seeds* Tulip_Seeds::MainTulipSeeds = nullptr;
 Font* Tulip_Seeds::Font_ = nullptr;
+ItemDataBox* Tulip_Seeds::MainItemDataBox = nullptr;
 
 Tulip_Seeds::Tulip_Seeds() 
 {
@@ -21,23 +22,34 @@ void Tulip_Seeds::Start()
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
+	SeedType_ = SEEDTYPE::TULIP_SEED;
+	ItemName_ = "Tulip_Seeds";
+	SellPrice_ = 35;
+
+	ItemType_ = ITEMTYPE::ETC;
+	ObjectType_ = OBJECTTYPE::SEED;
+
+
 	if (Font_ == nullptr)
 	{
 		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
 		Font_->ChangeWhiteColor();
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
-	ItemType_ = ITEMTYPE::ETC;
-	ObjectType_ = OBJECTTYPE::SEED;
+
+	if (MainItemDataBox == nullptr)
+	{
+		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
+	}
+
+
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::TULIP_BULB);
 
-	SeedType_ = SEEDTYPE::TULIP_SEED;
-	ItemName_ = "Tulip_Seeds";
-	SellPrice_ = 35;
 }
 
 void Tulip_Seeds::Update()
@@ -46,9 +58,18 @@ void Tulip_Seeds::Update()
 	{
 	case ITEM_STATE::INIT:
 		Font_->SetPositionItem({ GetPosition() });
+		if (MouseOver() && InMouse == false)
+		{
+			MainItemDataBox->ItemDataBoxOn();
+			MainItemDataBox->SetData(ItemName_, "Takes 6 days /to mature.", this->GetPosition());
+		}
+		else
+		{
+			MainItemDataBox->ItemDataBoxOff();
+
+		}
 
 		break;
-
 	}
 }
 
@@ -56,11 +77,15 @@ void Tulip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainTulipSeeds = this;
 	Font_ = Font_;
+	MainItemDataBox = MainItemDataBox;
 }
 
 void Tulip_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+	MainItemDataBox->NextLevelOn();
+	MainItemDataBox->FontNextLevelOn();
+
 }
 
 Crops* Tulip_Seeds::CreateCrops()

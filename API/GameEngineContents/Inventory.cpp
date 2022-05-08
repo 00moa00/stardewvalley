@@ -73,8 +73,8 @@ void Inventory::Start()
 	NewItem<Watering_Can>();
 	NewItem<Axe>();
 	NewItem<Pickaxe>();
-	NewItem<WildHorseradish>();
-	NewItem<Potato_Seeds>(3);
+	//NewItem<WildHorseradish>();
+	//NewItem<Potato_Seeds>(3);
 	NewItem<Swoard>();
 
 
@@ -248,6 +248,21 @@ void Inventory::ItemPosFocusInvenBox()
 				IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
 			}
 		}
+
+		else if (CurrentInvenState_ == POPUPSTATE::SHOP)
+		{
+			if (IterFindIter->second->GetObjectType() == OBJECTTYPE::TOOL && IterFindIter->second->GetItemNameConstRef() != "Swoard")
+			{
+				IterFindIter->second->GetRenderer()->SetPivot({ 0, 24 });
+				IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
+
+			}
+			else
+			{
+				IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
+			}
+		}
+
 	}
 }
 

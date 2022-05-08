@@ -3,6 +3,7 @@
 
 Spaghetti* Spaghetti::MainSpaghetti = nullptr;
 Font* Spaghetti::Font_ = nullptr;
+ItemDataBox* Spaghetti::MainItemDataBox = nullptr;
 
 Spaghetti::Spaghetti() 
 {
@@ -20,14 +21,6 @@ void Spaghetti::Start()
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
-	if (Font_ == nullptr)
-	{
-		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
-	}
-
-
 	ItemName_ = "Spaghetti";
 	ObjectType_ = OBJECTTYPE::FOOD;
 
@@ -36,6 +29,20 @@ void Spaghetti::Start()
 	SellPrice_ = 240;
 	AddEnery_ = 75;
 	AddHP_ = 33;
+
+	if (Font_ == nullptr)
+	{
+		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+		Font_->ChangeWhiteColor();
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	}
+
+	if (MainItemDataBox == nullptr)
+	{
+		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
+	}
+
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
@@ -59,6 +66,15 @@ void Spaghetti::Update()
 		else
 		{
 			Font_->SetPositionItem({ GetPosition() });
+			if (MouseOver() && InMouse == false)
+			{
+				MainItemDataBox->ItemDataBoxOn();
+				MainItemDataBox->SetData(ItemName_, "75 Energy /33 Health", this->GetPosition());
+			}
+			else
+			{
+				MainItemDataBox->ItemDataBoxOff();
+			}
 
 		}
 
@@ -83,12 +99,15 @@ void Spaghetti::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainSpaghetti = this;
 	Font_ = Font_;
+	MainItemDataBox = MainItemDataBox;
+
 }
 
 void Spaghetti::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
-
+	MainItemDataBox->NextLevelOn();
+	MainItemDataBox->FontNextLevelOn();
 }
 
 void Spaghetti::AddItemCount()

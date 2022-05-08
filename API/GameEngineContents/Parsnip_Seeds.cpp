@@ -41,7 +41,7 @@ void Parsnip_Seeds::Start()
 	if (MainItemDataBox == nullptr)
 	{
 		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
-		MainItemDataBox->SetData(ItemName_, "asdf", this->GetPosition());
+		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
 	}
 
 
@@ -62,12 +62,11 @@ void Parsnip_Seeds::Update()
 		if (MouseOver() && InMouse == false)
 		{
 			MainItemDataBox->ItemDataBoxOn();
-			MainItemDataBox->SetData(ItemName_, "asdf", this->GetPosition());
+			MainItemDataBox->SetData(ItemName_, "Takes 4 days /to mature.", this->GetPosition());
 		}
 		else
 		{
 			MainItemDataBox->ItemDataBoxOff();
-
 		}
 
 		break;
@@ -78,11 +77,14 @@ void Parsnip_Seeds::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainParsnipSeeds = this;
 	Font_ = Font_;
+	MainItemDataBox = MainItemDataBox;
 }
 
 void Parsnip_Seeds::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+	MainItemDataBox->NextLevelOn();
+	MainItemDataBox->FontNextLevelOn();
 }
 
 Crops* Parsnip_Seeds::CreateCrops()

@@ -3,6 +3,7 @@
 
 Pizza* Pizza::MainPizza = nullptr;
 Font* Pizza::Font_ = nullptr;
+ItemDataBox* Pizza::MainItemDataBox = nullptr;
 
 Pizza::Pizza() 
 {
@@ -20,14 +21,6 @@ void Pizza::Start()
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
-	if (Font_ == nullptr)
-	{
-		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
-		Font_->ChangeWhiteColor();
-		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
-	}
-
-
 	ItemName_ = "Pizza";
 	ObjectType_ = OBJECTTYPE::FOOD;
 
@@ -36,6 +29,19 @@ void Pizza::Start()
 	AddHP_ = 67;
 
 	ItemType_ = ITEMTYPE::ETC;
+
+	if (Font_ == nullptr)
+	{
+		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+		Font_->ChangeWhiteColor();
+		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+	}
+
+	if (MainItemDataBox == nullptr)
+	{
+		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
+	}
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
@@ -60,7 +66,15 @@ void Pizza::Update()
 		else
 		{
 			Font_->SetPositionItem({ GetPosition() });
-
+			if (MouseOver() && InMouse == false)
+			{
+				MainItemDataBox->ItemDataBoxOn();
+				MainItemDataBox->SetData(ItemName_, "150 Energy /67 Health", this->GetPosition());
+			}
+			else
+			{
+				MainItemDataBox->ItemDataBoxOff();
+			}
 		}
 
 		break;
@@ -84,11 +98,15 @@ void Pizza::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainPizza = this;
 	Font_ = Font_;
+	MainItemDataBox = MainItemDataBox;
+
 }
 
 void Pizza::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Font_->NextLevelOn();
+	MainItemDataBox->NextLevelOn();
+	MainItemDataBox->FontNextLevelOn();
 }
 
 void Pizza::AddItemCount()

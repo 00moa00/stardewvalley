@@ -6,6 +6,8 @@ class Bean_Seeds : public Items
 public:
 	static Bean_Seeds* MainBeanSeeds;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
+
 	// constrcuter destructer
 	Bean_Seeds();
 	~Bean_Seeds();

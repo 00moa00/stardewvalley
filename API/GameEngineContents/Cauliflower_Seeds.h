@@ -6,6 +6,7 @@ class Cauliflower_Seeds : public Items
 public:
 	static Cauliflower_Seeds* MainCauliflowerSeeds;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Cauliflower_Seeds();

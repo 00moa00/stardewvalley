@@ -16,7 +16,7 @@ void ExitBotton::Start()
 {
 	//SetPosition(GameEngineWindow::GetScale().Half());
 	Exit_ = CreateRenderer("exit.bmp");
-	ExitCollision_ = CreateCollision("Exit", { 64, 64 });
+	ExitCollision_ = CreateCollision("Exit", {24, 24 });
 	Exit_->CameraEffectOff();
 	//ExitCollision_->GetCollisionPos();
 	//ExitCollision_->GetCollisionPos

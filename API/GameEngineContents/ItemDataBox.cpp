@@ -51,18 +51,18 @@ void ItemDataBox::SetData(std::string _Name, std::string _Data , float4 _Pos)
 	{
 		NameFont_->ChangeFont(_Name, { 0, 0 });
 		DataFont_->ChangeFont(_Data, { 0 , 0 });
-		this->SetPosition({ _Pos.x, _Pos.y - 180.f });
-		NameFont_->SetPosition({ _Pos.x - 110.f , _Pos.y - 280.f });
-		DataFont_->SetPosition({ _Pos.x - 110.f , _Pos.y - 160.f });
+		this->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 150.f,  _Pos.y - 100.f });
+		NameFont_->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 40.f , _Pos.y - 210.f });
+		DataFont_->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 40.f , _Pos.y - 85.f });
 	}
 
 	if(Inventory::MainInventory->GetPopUpStateMain())
 	{
 		NameFont_->ChangeFont(_Name, { 0, 0 });
 		DataFont_->ChangeFont(_Data, { 0 , 0 });
-		this->SetPosition({ _Pos.x, _Pos.y + 180.f });
-		NameFont_->SetPosition({ _Pos.x - 110.f , _Pos.y + 160.f });
-		DataFont_->SetPosition({ _Pos.x - 110.f , _Pos.y + 280.f });
+		this->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 130.f, _Pos.y + 180.f });
+		NameFont_->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 20.f , _Pos.y + 60.f });
+		DataFont_->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 20.f , _Pos.y + 175.f });
 	}
 
 }
@@ -81,4 +81,10 @@ void ItemDataBox::ItemDataBoxOff()
 	NameFont_->Off();
 	DataFont_->Off();
 
+}
+
+void ItemDataBox::FontNextLevelOn()
+{
+	NameFont_->NextLevelOn();
+	DataFont_->NextLevelOn();
 }

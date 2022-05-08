@@ -8,7 +8,7 @@ public:
 
 	static Potato_Seeds* MainPotatoSeeds;
 	static Font* Font_;
-	//static ItemDataBox* MainItemDataBox;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Potato_Seeds();
