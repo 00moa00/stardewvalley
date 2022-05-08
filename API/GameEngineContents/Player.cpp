@@ -37,6 +37,8 @@ Player::Player()
 	IsNotInvincibilityTimer_(0.f),
 	SubHPTimer_(0.f),
 
+	StepBGMPlayer(),
+
 	PlayerBodyRenderer_(nullptr),
 	PlayerPantsRenderer_(nullptr),
 	PlayerShirtsRenderer_(nullptr),
@@ -681,7 +683,8 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	MainPlayer = this;
 	PlayerHandItem_ = PlayerHandItem_;
 	MainMouse_ = MainMouse_;
-
+	StepBGMPlayer = GameEngineSound::SoundPlayControl("woodyStep.wav", -1);
+	StepBGMPlayer.Volume(0.f);
 	LevelInit();
 }
 
@@ -1014,9 +1017,15 @@ void Player::PlayerUpdate()
 		CheckDrink();
 		CheckEat();
 
+		if (CurrentLevel_ == "MyHouseLevel")
+		{
+			StepBGMPlayer.Volume(0.6f);
+		}
 
 		if (isStop())
 		{
+			StepBGMPlayer.Volume(0.0f);
+
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 

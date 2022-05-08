@@ -3,6 +3,7 @@
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngine/GameEngineRendererTileMap.h>
 #include <GameEngineBase/GameEngineRandom.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 #include "RendererData.h"
 #include "TileData.h"
@@ -171,6 +172,9 @@ private:
 	GameEngineRendererTileMap* WetTileMap_;
 
 	GameEngineImage* MapColImage_;
+
+	GameEngineSoundPlayer StepBGMPlayer;
+
 
 	//Mouse* Mouse_;
 
