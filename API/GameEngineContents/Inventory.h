@@ -25,6 +25,10 @@
 #include "Parsnip_Seeds.h"
 #include "Swoard.h"
 
+#include "FarmTotem.h"
+#include "MineTotem.h"
+
+
 
 #include  <vector>
 #include <map>

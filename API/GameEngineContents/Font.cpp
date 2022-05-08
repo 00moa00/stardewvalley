@@ -226,7 +226,7 @@ void Font::ChangeNumMoneyLeftSort(int _Num, float4 _Pos)
 	}
 
 	//그 외의 숫자는 공백으로 함
-	for (; Count_ < 11; ++Count_)
+	for (; Count_ < 7; ++Count_)
 	{
 		NumberRenderer.at(Count_)->SetIndex(10);
 	}

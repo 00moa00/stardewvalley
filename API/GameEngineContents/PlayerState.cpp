@@ -272,6 +272,15 @@ void Player::SetUpdateStateInit()
 
 }
 
+void Player::DayOffReset()
+{
+	DayOffFarming_ = 0;
+	DayOffFForaging_ = 0;
+	DayOffFishing_ = 0;
+	DayOffMining_ = 0;
+	DayOffOther_ = 0;
+}
+
 
 
 //******************************************************************************
@@ -656,14 +665,13 @@ void Player::CheckTool()
 		PlayerState_ = PLAYER_UPDATE::INIT;
 	}
 
-
-
 }
 
 void Player::CheckDrink()
 {
 	if (GetCurrentItem()->GetObjectType() == OBJECTTYPE::DRINK && GameEngineInput::GetInst()->IsDown("RightClick"))
 	{
+		GameEngineSound::SoundPlayOneShot("drink1.wav");
 		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
 		PlayerState_ = PLAYER_UPDATE::DRINK;
 	}
@@ -673,8 +681,11 @@ void Player::CheckEat()
 {
 	if (GetCurrentItem()->GetObjectType() == OBJECTTYPE::FOOD && GameEngineInput::GetInst()->IsDown("RightClick"))
 	{
+		GameEngineSound::SoundPlayOneShot("eat.wav");
+
 		GetCurrentItem()->DropItemInMap();
 		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
+
 		PlayerState_ = PLAYER_UPDATE::EAT_WAIT;
 	}
 }
@@ -722,7 +733,7 @@ void Player::AddMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ += 3;
+		PrevMoney_ += 6;
 		AddMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 	
 		break;
@@ -756,7 +767,7 @@ void Player::SubMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ -= 3;
+		PrevMoney_ -= 6;
 		SubMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
@@ -1057,6 +1068,9 @@ void Player::AddEnergy(int _Energy)
 	{
 		Energy_ = 126;
 	}
+
+	PlayerEnergyFrame::MainPlayerEnergyBar->GetRenderer()->SetScale({ 18, static_cast<float>(Energy_) });
+
 }
 
 void Player::SubHP(int _HP)
@@ -1083,8 +1097,11 @@ void Player::AddHP(int _HP)
 
 	if (HP_ > _HP)
 	{
-		HP_ = _HP;
+		HP_ = 126;
 	}
+
+	PlayerHPFrame::MainPlayerHPBar->GetRenderer()->SetScale({ 18, static_cast<float>(HP_) });
+
 }
 
 

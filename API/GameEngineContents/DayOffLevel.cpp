@@ -125,6 +125,7 @@ void DayOffLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	UpdateState_ = DAYOFF_STATE::MONEY_UPDATE;
 	Player::MainPlayer->AddMoney(DayOffTotal_);
 	MainUI::MainMainUI->SetMainUIMoney(Player::MainPlayer->GetMoney());
+	Player::MainPlayer->DayOffReset();
 
 	BgmPlayer.Stop();
 	

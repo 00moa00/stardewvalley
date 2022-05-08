@@ -154,6 +154,9 @@ private:
 	bool isNotInvincibility_;
 	bool isSubTime_;
 	bool BackGroundBGMOn_;
+	bool UseFarmTotem_;
+	bool UseBackForestTotem_;
+
 
 	std::string ChangeLevelName_;
 
@@ -295,6 +298,8 @@ public:
 
 	void SetPlayerDirDown();
 	void SetUpdateStateInit();
+
+	void DayOffReset();
 	//void SetisEvent(bool _Flag);
 
 	//================================

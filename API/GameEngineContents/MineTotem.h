@@ -6,6 +6,7 @@ class MineTotem : public Items
 public:
 	static MineTotem* MainMineTotem;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	MineTotem();
@@ -23,10 +24,11 @@ private:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
-private:
+public:
 	void AddItemCount() override;
 	void SubItemCount() override;
 	void UpdateOff() override;
 	void UpdateOn() override;
+	void SetItemCount(int _Count)override;
 
 };

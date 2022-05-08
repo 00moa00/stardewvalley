@@ -176,7 +176,7 @@ void Monster::BackMove()
 	//	return;
 	//}
 
-	SetMove(BackMove * GameEngineTime::GetDeltaTime() * 50.f);
+	SetMove(BackMove * GameEngineTime::GetDeltaTime() * (Speed_ * 1.5f));
 
 }
 

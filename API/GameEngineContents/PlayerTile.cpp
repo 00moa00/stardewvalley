@@ -50,7 +50,6 @@ void Player::CreateDirtTile()
 	
 	float4 Pos = PlayerCollCheckPos();
 
-
 	TileIndex Index = DirtTileMap_->GetTileIndex({ Pos.x , Pos.y });
 	int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
 
@@ -610,7 +609,9 @@ void Player::AttackMonster()
 		{
 
 			//몬스터의 체력을 깍는다.
-			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower());	
+			GameEngineRandom RandomDamage;
+
+			GetMonsterIter->second->SubHP(GetCurrentItem()->GetPower() - RandomDamage.RandomInt(0,2));
 
 			if (GetMonsterIter->second->GetMonsterType() != MONSTER_TYPE::BUG)
 			{
@@ -714,22 +715,24 @@ void Player::UseTotem()
 {
 	if (GetCurrentItem()->GetItemNameConstRef() == "FarmTotem" && MainMouse_->isMouseRightClick())
 	{
+		GameEngineSound::SoundPlayOneShot("wand.wav");
 		GetCurrentItem()->SubItemCount();
+		GameEngine::GetInst().ChangeLevel("MyFarmLevel");
+		UseFarmTotem_ = true;
 		FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
-
-		ChangeLevelName_ = "DayOffLevel";
 		FadeInOut_->SetFadeOut();
-		LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 	}
 	
-	if (GetCurrentItem()->GetItemNameConstRef() == "MineTotem" && MainMouse_->isMouseRightClick())
+	if (GetCurrentItem()->GetItemNameConstRef() == "BackForestTotem" && MainMouse_->isMouseRightClick())
 	{
-		GetCurrentItem()->SubItemCount();
-		FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+		GameEngineSound::SoundPlayOneShot("wand.wav");
 
-		ChangeLevelName_ = "DayOffLevel";
+		GetCurrentItem()->SubItemCount();
+		GameEngine::GetInst().ChangeLevel("BackForestLevel");
+		UseBackForestTotem_ = true;
+
+		FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 		FadeInOut_->SetFadeOut();
-		LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 	}
 
 }

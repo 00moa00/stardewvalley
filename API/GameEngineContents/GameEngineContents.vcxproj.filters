@@ -464,11 +464,11 @@
     <ClCompile Include="ItemDataBox.cpp">
       <Filter>Actor\03. Play\Obejct</Filter>
     </ClCompile>
-    <ClCompile Include="FarmTotem.cpp">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
-    </ClCompile>
     <ClCompile Include="MineTotem.cpp">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item\Totem</Filter>
+    </ClCompile>
+    <ClCompile Include="FarmTotem.cpp">
+      <Filter>Actor\03. Play\Obejct\Item\Totem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -959,11 +959,11 @@
     <ClInclude Include="ItemDataBox.h">
       <Filter>Actor\03. Play\Obejct</Filter>
     </ClInclude>
-    <ClInclude Include="FarmTotem.h">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
-    </ClInclude>
     <ClInclude Include="MineTotem.h">
-      <Filter>Actor\03. Play\Obejct\Item</Filter>
+      <Filter>Actor\03. Play\Obejct\Item\Totem</Filter>
+    </ClInclude>
+    <ClInclude Include="FarmTotem.h">
+      <Filter>Actor\03. Play\Obejct\Item\Totem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1056,6 +1056,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Animals">
       <UniqueIdentifier>{ca854252-716d-436f-90cd-0714c63eba68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\Item\Totem">
+      <UniqueIdentifier>{8b5e1dc8-1de8-432b-9466-13ea3f354258}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

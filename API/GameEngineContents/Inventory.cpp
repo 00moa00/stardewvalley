@@ -77,6 +77,9 @@ void Inventory::Start()
 	//NewItem<Potato_Seeds>(3);
 	NewItem<Swoard>();
 
+	NewItem<FarmTotem>(3);
+	NewItem<MineTotem>(3);
+
 
 	float4 Position;
 	Position.x = Inventory_->GetScale().x  + 250.f;

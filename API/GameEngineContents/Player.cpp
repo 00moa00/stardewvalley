@@ -70,6 +70,8 @@ Player::Player()
 	isNotInvincibility_(false),
 	isSubTime_(false),
 	BackGroundBGMOn_(false),
+	UseFarmTotem_(false),
+	UseBackForestTotem_(false),
 
 	WetTileMap_(nullptr),
 	DirtTileMap_(nullptr),
@@ -711,7 +713,8 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	StoneStepBGMPlayer.Volume(0.f);
 	StoneStepBGMPlayer.PlaySpeed(1.1f);
 
-
+	DirtTileMap_ = DirtTileMap_;
+	WetTileMap_ = WetTileMap_;
 
 	LevelInit();
 }
@@ -719,6 +722,7 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+
 
 	if (FadeInOut_ != nullptr)
 	{
@@ -762,11 +766,12 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MYFARM_LEVEL:
-		
+
 		SetCamera();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
 		ChangeLevel();
+		UseTotem();
 		//NpcCollCheck();
 		harvestingCrops();
 		DelaySpeed();
@@ -776,6 +781,7 @@ void Player::Update()
 		break;
 	case LEVEL_LIST::BUSSTOP_LEVEL:
 
+		UseTotem();
 		SetCamera();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
@@ -786,6 +792,7 @@ void Player::Update()
 		break;
 	case LEVEL_LIST::TOWN_LEVEL:
 
+		UseTotem();
 		SetCamera();
 		NpcCollCheck();
 		PlayerUpdate();
@@ -797,6 +804,7 @@ void Player::Update()
 		break;
 	case LEVEL_LIST::SALOON_LEVEL:
 
+		UseTotem();
 		SetCamera();
 		NpcCollCheck();
 		PlayerUpdate();
@@ -811,6 +819,7 @@ void Player::Update()
 		break;
 	case LEVEL_LIST::SEEDSHOP_LEVEL:
 
+		UseTotem();
 		SetCamera();
 		NpcCollCheck();
 		PlayerUpdate();
@@ -825,6 +834,7 @@ void Player::Update()
 		break;
 	case LEVEL_LIST::BACKFOREST_LEVEL:
 
+		UseTotem();
 		SetCamera();
 		PlayerUpdate();
 		PlayerDirCheck();
@@ -882,10 +892,10 @@ void Player::Update()
 		GameEngine::GetInst().ChangeLevel("SeedShopLevel");
 	}
 
-	if (true == GameEngineInput::GetInst()->IsDown("DebugRendereChange"))
-	{
-		GetLevel()->IsDebugModeSwitch();
-	}
+	//if (true == GameEngineInput::GetInst()->IsDown("DebugRendereChange"))
+	//{
+	//	GetLevel()->IsDebugModeSwitch();
+	//}
 
 }
 
@@ -1119,18 +1129,21 @@ void Player::PlayerUpdate()
 		if (AnimationWaitTimer_ > 0.5f)
 		{
 			AnimationWaitTimer_ = 0.f;
-			GameEngineSound::SoundPlayOneShot("eat.wav");
 			PlayerState_ = PLAYER_UPDATE::EAT;
 		}
 
 		break;
 
 	case PLAYER_UPDATE::EAT:
-
+	
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			GetCurrentItem()->SubItemCount();
-			AddEnergy(GetCurrentItem()->GetAddHP());
+
+			AddEnergy(GetCurrentItem()->GetAddEnergy());
+			AddHP(GetCurrentItem()->GetAddHP());
+			invincibility_ = false;
+
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -1139,13 +1152,17 @@ void Player::PlayerUpdate()
 
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
-			GameEngineSound::SoundPlayOneShot("drink1.wav");
 			GetCurrentItem()->SubItemCount();
-			AddEnergy(GetCurrentItem()->GetAddHP());
+
+			AddEnergy(GetCurrentItem()->GetAddEnergy());
+			AddHP(GetCurrentItem()->GetAddHP());
+
 			isDelaySpeed_ = true;
 			DelaySpeed_ = GetCurrentItem()->GetDrinkChangeSpeed();
 			Speed_ += DelaySpeed_;
 			DelaySpeedTimer_ = GetCurrentItem()->GetChangeSpeedTime();
+			invincibility_ = false;
+
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
 
@@ -1364,6 +1381,12 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "MineLevel")
 	{
+		if (BackGroundBGMOn_ == true)
+		{
+			BackGroundBgmPlayer.Stop();
+			BackGroundBGMOn_ = false;
+		}
+
 		LevelList_ = LEVEL_LIST::MINE_LEVEL;
 
 		MapSizeX_ = MINE_SIZE_WEIGHT;
@@ -1601,13 +1624,18 @@ void Player::LevelInit()
 		SetPosition({ 695.f, 1140.f });
 	}
 
-	DayOffFarming_ = 0;
-	DayOffFForaging_ = 0;
-	DayOffFishing_ = 0;
-	DayOffMining_ = 0;
-	DayOffOther_ = 0;
+	if (UseFarmTotem_ == true)
+	{
+		SetPosition({ 2330.f, 385.f });
+		UseFarmTotem_ = false;
 
+	}
 
+	if (UseBackForestTotem_ == true)
+	{
+		SetPosition({ 1560.f, 520.f });
+		UseBackForestTotem_ = false;
 
+	}
 }
 

@@ -21,6 +21,7 @@
 
 MyFarmLevel::MyFarmLevel()
 	:
+	FlowingFlower_(nullptr),
 	Iter(MapObject_.begin()),
 	Time(0.f)
 	
@@ -73,13 +74,10 @@ void MyFarmLevel::Loading()
 
 void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-
 	if (MapObject_.empty() == true)
 	{
 		LoadMapObject();
 	}
-
-
 
 	BackGroundFront_->GetRenderer()->SetImage("FarmFront.bmp");
 	BackGroundFront_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });

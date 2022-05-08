@@ -5,6 +5,7 @@ class FarmTotem : public Items
 public:
 	static FarmTotem* MainFarmTotem;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	FarmTotem();
@@ -22,11 +23,12 @@ private:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
-private:
+public:
 	void AddItemCount() override;
 	void SubItemCount() override;
 	void UpdateOff() override;
 	void UpdateOn() override;
+	void SetItemCount(int _Count)override;
 
 };
 

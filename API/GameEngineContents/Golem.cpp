@@ -65,7 +65,7 @@ void Golem::Start()
 	MonsterRenderer_->ChangeAnimation("FRONT_WALK");
 
 	Damage_ = 2;
-	HP_ = 10;
+	HP_ = 22;
 	Speed_ = 60.f;
 
 	MonsterState_ = MONSTER_STATE::WAIT;
@@ -234,7 +234,7 @@ void Golem::Update()
 
 		//가다가 일정 시간이 지나면 방향을 튼다.
 		Timer_ += GameEngineTime::GetDeltaTime();
-		if (Timer_ > 3.0f && Check_ > 150)
+		if (Timer_ > 1.0f && Check_ > 300)
 		{
 			Timer_ = 0.f;
 			MonsterState_ = MONSTER_STATE::CHECK;

@@ -22,7 +22,7 @@ void MoveFlag::CreateMoveFlag(std::string _CollName)
 
 void MoveFlag::ChnageImageFile(std::string _FileName)
 {
-	//ItemRenderer_->SetImage(_FileName);
+	ItemRenderer_->SetImage(_FileName);
 }
 
 void MoveFlag::CreateSubCollision(std::string _CollName, float4 _Size)
