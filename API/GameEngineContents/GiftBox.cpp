@@ -80,6 +80,8 @@ void GiftBox::Update()
 		if (MoveItem->GetPosition().y < Player::MainPlayer->GetPosition().y - 100.f)
 		{
 			Items* HandItem = Inventory::MainInventory->NewItem<Parsnip_Seeds>(15);
+			GameEngineSound::SoundPlayOneShot("getNewSpecialItem.wav");
+
 			Inventory::MainInventory->SetCurrentItem(HandItem);
 			//혹시 몰라 설정
 			Inventory::MainInventory->SetCurrentItemParsnipSeed();

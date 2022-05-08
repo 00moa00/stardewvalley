@@ -340,6 +340,10 @@ void Player::PlayerShopping()
 
 	case PLAYER_SHOPPING::SHOP_ON:
 
+		WoodStepBGMPlayer.Volume(0.0f);
+		SandStepBGMPlayer.Volume(0.0f);
+		WeedStepBGMPlayer.Volume(0.0f);
+
 		Shop::MainShop->ShopOn();
 		Inventory::MainInventory->SetInventoryMoveStateInit();
 		isShopping_ = true;
@@ -687,7 +691,7 @@ void Player::AddMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ += 6;
+		PrevMoney_ += 3;
 		AddMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 	
 		break;
@@ -721,12 +725,11 @@ void Player::SubMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ -= 6;
+		PrevMoney_ -= 3;
 		SubMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
 	case MONEY_UPDATE::CHANGE_FONT:
-
 
 		if (PrevMoney_ <= Money_)
 		{

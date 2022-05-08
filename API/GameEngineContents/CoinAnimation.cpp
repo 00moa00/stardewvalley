@@ -30,6 +30,7 @@ void CoinAnimation::Update()
 		if (Timer_ > 0.05f)
 		{
 			Timer_ = 0.f;
+			GameEngineSound::SoundPlayOneShot("moneyDial.wav");
 			CoinState_ = COIN_STATE::CREATE;
 		}
 

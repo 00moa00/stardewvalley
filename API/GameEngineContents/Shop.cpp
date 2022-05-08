@@ -188,6 +188,8 @@ void Shop::Update()
 			{
 				if (Player::MainPlayer->SubMoney(ItemStartIter->second->GetBuyPrice()) == true)
 				{
+					GameEngineSound::SoundPlayOneShot("coins.wav");
+
 					ItemStartIter->second->InventoryNewItem();
 				}
 

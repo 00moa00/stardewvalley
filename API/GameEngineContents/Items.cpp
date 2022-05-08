@@ -173,6 +173,7 @@ void Items::MoveToPlayer()
 
 	if (Check <= 20)
 	{
+		GameEngineSound::SoundPlayOneShot("coin.wav");
 		isMapItemDeath_ = true;
 		Death();
 		return;

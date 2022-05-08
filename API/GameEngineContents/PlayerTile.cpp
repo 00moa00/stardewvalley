@@ -74,6 +74,7 @@ void Player::CreateDirtTile()
 			, "hoeDirt.bmp", static_cast<int>(TILE_DIRT::BASIC), (int)PLAYLEVEL::DIRT);
 	
 		Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
+		GameEngineSound::SoundPlayOneShot("hoeHit.wav");
 
 		//Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
 		//ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
@@ -347,7 +348,7 @@ void Player::CreateSeed()
 		if (FindDirtIter != EndDirtIter)
 		{
 
-			//TODO: 핸드 아이템의 타입에 따라서 초기화.
+			GameEngineSound::SoundPlayOneShot("sandstep2.wav");
 
 			GetCurrentItem()->SubItemCount();
 
@@ -393,6 +394,7 @@ void Player::harvestingCrops()
 
 		if (MainMouse_->isMouseRightClick())
 		{
+			GameEngineSound::SoundPlayOneShot("harvest.wav");
 			FindSeedIter->second->DropCropsInMap();
 
 			SeedList_.erase(FindSeedIter);
@@ -440,6 +442,7 @@ void Player::CrushWood()
 			if (Iter->second->GetObjectType() == OBJECTTYPE::WOOD)
 
 			{
+				GameEngineSound::SoundPlayOneShot("axe.wav");
 
 				WoodEffect* StoneAnimation_ = GetLevel()->CreateActor<WoodEffect>();
 				StoneAnimation_->SetParticlesPosition({ Iter->second->GetPosition().x , Iter->second->GetPosition().y });
@@ -489,6 +492,8 @@ void Player::CrushStone()
 		{
 			if (Iter->second->GetObjectType() == OBJECTTYPE::STONE)
 			{
+				GameEngineSound::SoundPlayOneShot("hammer.wav");
+
 				//곡괭이질을 했다면 체력 감소
 				SubEnergy(2);
 
@@ -501,6 +506,7 @@ void Player::CrushStone()
 
 				//아이템 드랍
 				Iter->second->DropItemInMap(Iter->second->GetStoneType());
+				GameEngineSound::SoundPlayOneShot("brick1.wav");
 
 				//해당 아이템 삭제
 				Iter->second->Death();
@@ -539,6 +545,7 @@ void Player::CrushTree()
 		if (Iter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
 			&& Iter->second->GetObjectType() == OBJECTTYPE::TREE)
 		{
+			GameEngineSound::SoundPlayOneShot("axe.wav");
 
 			//이펙트
 			WoodEffect* StoneAnimation_ = GetLevel()->CreateActor<WoodEffect>();
@@ -669,6 +676,10 @@ void Player::GetItem()
 				&& GetItemIter->second->GetObjectType() == OBJECTTYPE::GETITEM
 				&& MainMouse_->isMouseRightClick() == true)
 			{
+				WoodStepBGMPlayer.Volume(0.0f);
+				SandStepBGMPlayer.Volume(0.0f);
+				WeedStepBGMPlayer.Volume(0.0f);
+
 				//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
 				PlayerState_ = PLAYER_UPDATE::GETITEM;
 				GetItemIter->second->ItemCollPlayer();
@@ -718,9 +729,11 @@ void Player::CheckShippingBox()
 				ShippingIter->second->ItemCollPlayer();
 
 
+
 				if (GetCurrentItem()->GetisPossibleHand() == true && MainMouse_->isMouseRightClick())
 				{
 					GetCurrentItem()->SubItemCount();
+					GameEngineSound::SoundPlayOneShot("drawer1.wav");
 
 					if (GetCurrentItem()->GetItemType() == ITEMTYPE::FARMING)
 					{
