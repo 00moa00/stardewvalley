@@ -220,8 +220,34 @@ void Inventory::ItemPosFocusInvenBox()
 		{
 			continue;
 		}
-		IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
-		
+
+		if (CurrentInvenState_ == POPUPSTATE::MINI)
+		{
+			//툴 아이템의 경우 피봇값이 달라서 프레임이 헛도는 일이 발생. 아래와 같이 해결
+			if (IterFindIter->second->GetObjectType() == OBJECTTYPE::TOOL && IterFindIter->second->GetItemNameConstRef() != "Swoard")
+			{
+				IterFindIter->second->GetRenderer()->SetPivot({ 0, 0 });
+				IterFindIter->second->SetPosition({ BoxStartIter->second->GetPosition().x, BoxStartIter->second->GetPosition().y + 24 });
+			}
+			else
+			{
+				IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
+			}
+		}
+
+		else if (CurrentInvenState_ == POPUPSTATE::MAIN)
+		{
+			if (IterFindIter->second->GetObjectType() == OBJECTTYPE::TOOL && IterFindIter->second->GetItemNameConstRef() != "Swoard")
+			{
+				IterFindIter->second->GetRenderer()->SetPivot({ 0, 24 });
+				IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
+
+			}
+			else
+			{
+				IterFindIter->second->SetPosition(BoxStartIter->second->GetPosition());
+			}
+		}
 	}
 }
 
@@ -238,8 +264,8 @@ void Inventory::CurrentItemFrameFocusBox()
 	{
 		if (StartIter->second->MouseOverAndClick())
 		{
+			
 			SetCurrentItemFrame(StartIter->second);
-
 			FindIter = PlayerItemList_.find(StartIter->first);
 			if (FindIter == ItemEndIter)
 			{
@@ -395,6 +421,7 @@ void Inventory::ItemMove()
 
 				//현재 아이템 프레임, 현재 아이템 저장
 				SetCurrentItemFrame(  PlayerItemListStartIter->second);
+				GameEngineSound::SoundPlayOneShot("pickUpItem.wav");
 
 				CurrentItem_ = PlayerItemListStartIter->second;
 				//FindCurrentItemIter
@@ -402,6 +429,7 @@ void Inventory::ItemMove()
 				//미니 상태에서 아이템은 이동할 수 없다.
 				if ((CurrentInvenState_ == POPUPSTATE::MINI))
 				{
+
 					PlayerItemListStartIter->second->SetInBox(false);
 					MoveState_ = ITEMMOVE::INIT;
 					break;
@@ -409,6 +437,8 @@ void Inventory::ItemMove()
 
 				PlayerItemListStartIter->second->SetInBox(false);
 				PlayerItemListStartIter->second->SetInMouse(true);
+
+
 				MoveState_ = ITEMMOVE::HOLD;
 				break;
 			}
@@ -506,6 +536,8 @@ void Inventory::ItemMove()
 			//마우스와 충돌한 인벤토리 박스를 찾아서 그 박스의 위치에 아이템을 넣는다.
 			if (BoxStartIter->second->MouseOver())
 			{
+				GameEngineSound::SoundPlayOneShot("woodyStep.wav");
+
 				PlayerItemListStartIter->second->SetInBox(true);
 				PlayerItemListStartIter->second->SetInMouse(false);
 
@@ -524,6 +556,8 @@ void Inventory::ItemMove()
 
 		FindBoxiter = Box_.find(PlayerItemListStartIter->first);
 		PlayerItemListStartIter->second->SetPosition(FindBoxiter->second->GetPosition());
+
+		GameEngineSound::SoundPlayOneShot("woodyStep.wav");
 		PlayerItemListStartIter->second->SetInBox(true);
 		PlayerItemListStartIter->second->SetInMouse(false);
 
@@ -560,12 +594,14 @@ void Inventory::InvenPopUp()
 	if ((CurrentInvenState_ == POPUPSTATE::MINI)
 		&& true == GameEngineInput::GetInst()->IsDown("OpenMenu"))
 	{
+		GameEngineSound::SoundPlayOneShot("bigDeSelect.wav");
 		PopUpState_ = POPUPSTATE::MAIN;
 	}
 
 	if (((CurrentInvenState_ == POPUPSTATE::MAIN) 
 		&& true == GameEngineInput::GetInst()->IsDown("OpenMenu")) || (MainExitBotton->MouseClick()))
 	{
+		GameEngineSound::SoundPlayOneShot("bigDeSelect.wav");
 		PopUpState_ = POPUPSTATE::MINI;
 	}
 

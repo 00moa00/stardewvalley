@@ -354,6 +354,7 @@ void Player::PlayerShopping()
 
 	case PLAYER_SHOPPING::SHOP_OFF:
 
+		GameEngineSound::SoundPlayOneShot("bigDeSelect.wav");
 		Shop::MainShop->ShopOff();
 	//	isEvent_ = false;
 		PlayerState_ = PLAYER_UPDATE::INIT;

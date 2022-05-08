@@ -170,7 +170,6 @@ void CustomBoard::Update()
 
 			if (BackButton_->ButtonMouseOverAndLeftClick())
 			{
-
 				ClickBackButton_ = true;
 			}
 

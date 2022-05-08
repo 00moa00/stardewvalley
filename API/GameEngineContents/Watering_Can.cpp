@@ -17,7 +17,7 @@ void Watering_Can::Start()
 
 	ItemRenderer_ = CreateRenderer("tools.bmp");
 	ItemRenderer_->SetIndex(static_cast<size_t>(TOOL::WATER_RIGHT00));
-	ItemRenderer_->SetPivot({ 0, 24 });
+	//ItemRenderer_->SetPivot({ 0, 24 });
 	ItemRenderer_->CameraEffectOff();
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
