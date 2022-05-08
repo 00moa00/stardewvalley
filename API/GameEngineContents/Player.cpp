@@ -1035,7 +1035,6 @@ void Player::PlayerUpdate()
 		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == false)
 		{
 			PlayerState_ = PLAYER_UPDATE::INIT;
-
 		}
 
 		if (isMove()
@@ -1043,7 +1042,6 @@ void Player::PlayerUpdate()
 		{
 			PlayerState_ = PLAYER_UPDATE::HANDITEMWALK;
 		}
-
 
 		break;
 
@@ -1055,7 +1053,9 @@ void Player::PlayerUpdate()
 		CheckDrink();
 		CheckEat();
 
-		if ((CurrentLevel_ == "MyHouseLevel") || (CurrentLevel_ == "SaloonLevel") || (CurrentLevel_ == "SeedShopLevel"))
+		if ((CurrentLevel_ == "MyHouseLevel")
+			|| (CurrentLevel_ == "SaloonLevel")
+			|| (CurrentLevel_ == "SeedShopLevel")) 
 		{
 			WoodStepBGMPlayer.Volume(0.6f);
 		}
@@ -1071,7 +1071,9 @@ void Player::PlayerUpdate()
 		PlayerDirCheck();
 		PlayerWalk();
 
-		if ((CurrentLevel_ == "MyHouseLevel") || (CurrentLevel_ == "SaloonLevel") || (CurrentLevel_ == "SeedShopLevel"))
+		if ((CurrentLevel_ == "MyHouseLevel") 
+			|| (CurrentLevel_ == "SaloonLevel") 
+			|| (CurrentLevel_ == "SeedShopLevel"))
 		{
 			WoodStepBGMPlayer.Volume(0.6f);
 		}
@@ -1108,7 +1110,6 @@ void Player::PlayerUpdate()
 			FadeInOut_->SetFadeOut();
 			LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
 			PlayerState_ = PLAYER_UPDATE::INIT;
-
 		}
 
 
@@ -1121,7 +1122,6 @@ void Player::PlayerUpdate()
 			AnimationWaitTimer_ = 0.f;
 			GameEngineSound::SoundPlayOneShot("eat.wav");
 			PlayerState_ = PLAYER_UPDATE::EAT;
-
 		}
 
 		break;
