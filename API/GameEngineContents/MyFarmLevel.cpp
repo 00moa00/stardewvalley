@@ -101,10 +101,6 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	Player::MainPlayer->Renderer()->CameraEffectOn();
 
-
-
-
-	BgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
 	Time = 5.0f;
 }
 
@@ -279,11 +275,11 @@ void MyFarmLevel::LoadMapObject()
 
 void MyFarmLevel::Update()
 {
-	Time -= GameEngineTime::GetDeltaTime();
+	//Time -= GameEngineTime::GetDeltaTime();
 
-	if (0 >= Time)
-	{
-		BgmPlayer.Stop();
-	}
+	//if (0 >= Time)
+	//{
+	//	BgmPlayer.Stop();
+	//}
 
 }

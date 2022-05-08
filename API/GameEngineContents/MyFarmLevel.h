@@ -53,7 +53,6 @@ private:
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
 	FlowingFlower* FlowingFlower_;
-	GameEngineSoundPlayer BgmPlayer;
 
 	std::map<int, Items*> MapObject_;
 	std::map<int, Items*>::iterator Iter;

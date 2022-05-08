@@ -26,6 +26,12 @@ Player::Player()
 	HP_(126),
 	Energy_(126),
 
+	DayOffFarming_(0),
+	DayOffFForaging_(0),
+	DayOffFishing_(0),
+	DayOffMining_(0),
+	DayOffOther_(0),
+
 	AnimationFrame_(0.120f),
 	Speed_(220.f),
 	MapSizeX_(0.f),
@@ -38,6 +44,10 @@ Player::Player()
 	SubHPTimer_(0.f),
 
 	WoodStepBGMPlayer(),
+	StoneStepBGMPlayer(),
+	SandStepBGMPlayer(),
+	WeedStepBGMPlayer(),
+	BackGroundBgmPlayer(),
 
 	PlayerBodyRenderer_(nullptr),
 	PlayerPantsRenderer_(nullptr),
@@ -59,6 +69,7 @@ Player::Player()
 	invincibility_(false),
 	isNotInvincibility_(false),
 	isSubTime_(false),
+	BackGroundBGMOn_(false),
 
 	WetTileMap_(nullptr),
 	DirtTileMap_(nullptr),
@@ -696,6 +707,12 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	WeedStepBGMPlayer.Volume(0.f);
 	WeedStepBGMPlayer.PlaySpeed(1.1f);
 
+	StoneStepBGMPlayer = GameEngineSound::SoundPlayControl("stoneStep.wav", -1);
+	StoneStepBGMPlayer.Volume(0.f);
+	StoneStepBGMPlayer.PlaySpeed(1.1f);
+
+
+
 	LevelInit();
 }
 
@@ -717,7 +734,7 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	WoodStepBGMPlayer.Volume(0.f);
 	SandStepBGMPlayer.Volume(0.f);
 	WeedStepBGMPlayer.Volume(0.f);
-
+	StoneStepBGMPlayer.Volume(0.f);
 }
 
 
@@ -895,6 +912,7 @@ void Player::PlayerUpdate()
 		WoodStepBGMPlayer.Volume(0.0f);
 		SandStepBGMPlayer.Volume(0.0f);
 		WeedStepBGMPlayer.Volume(0.0f);
+		StoneStepBGMPlayer.Volume(0.0f);
 
 		//손에 들 수 있는 아이템이라면 
 		if (Inventory::MainInventory->GetCurrentItem() != nullptr && Inventory::MainInventory->GetCurrentItem()->GetisPossibleHand() == true)
@@ -1161,6 +1179,12 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "DayOffLevel")
 	{
+		if (BackGroundBGMOn_ == true)
+		{
+			BackGroundBgmPlayer.Stop();
+			BackGroundBGMOn_ = false;
+		}
+
 		LevelList_ = LEVEL_LIST::TITLE_LEVEL;
 
 		MapColImage_ = nullptr;
@@ -1231,6 +1255,13 @@ void Player::LevelInit()
 		PlayerShirtsRenderer_->CameraEffectOn();
 		PlayerHairRenderer_->CameraEffectOn();
 		PlayerHandRenderer_->CameraEffectOn();
+
+		if (BackGroundBGMOn_ == false)
+		{
+			BackGroundBgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
+			BackGroundBgmPlayer.Volume(0.7f);
+			BackGroundBGMOn_ = true;
+		}
 	}
 
 
@@ -1261,7 +1292,7 @@ void Player::LevelInit()
 		MapSizeX_ = TOWN_SIZE_WEIGHT;
 		MapSizeY_ = TOWN_SIZE_HEIGHT;
 
-		MapColImage_ = nullptr;
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("Town_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
 
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();

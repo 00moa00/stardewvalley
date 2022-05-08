@@ -153,6 +153,7 @@ private:
 	bool invincibility_;
 	bool isNotInvincibility_;
 	bool isSubTime_;
+	bool BackGroundBGMOn_;
 
 	std::string ChangeLevelName_;
 
@@ -176,7 +177,8 @@ private:
 	GameEngineSoundPlayer WoodStepBGMPlayer;
 	GameEngineSoundPlayer SandStepBGMPlayer;
 	GameEngineSoundPlayer WeedStepBGMPlayer;
-
+	GameEngineSoundPlayer StoneStepBGMPlayer;
+	GameEngineSoundPlayer BackGroundBgmPlayer;
 
 	//Mouse* Mouse_;
 

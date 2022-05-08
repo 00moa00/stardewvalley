@@ -149,7 +149,6 @@ public:
 
 	std::map<int, Items*>::iterator FindPlayerListByValue(std::string ItemName)
 	{
-
 		std::map<int, Items*>::iterator StartIter = PlayerItemList_.begin();
 		std::map<int, Items*>::iterator EndIter = PlayerItemList_.end();
 		
@@ -165,9 +164,7 @@ public:
 		{
 			return EndIter;
 		}
-
 	}
-
 
 	Items* GetCurrentItem()
 	{
@@ -226,7 +223,6 @@ public:
 			}
 		}
 
-
 	}
 
 	void SetPopUpStateMini()
@@ -251,11 +247,8 @@ public:
 		{
 			if (StartIter->second->GetItemNameConstRef() == ItemName)
 			{
-
 				PlayerItemList_.erase(StartIter->first);
 				return;
-
-
 			}
 		}
 

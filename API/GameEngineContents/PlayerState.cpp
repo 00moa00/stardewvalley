@@ -951,32 +951,53 @@ void Player::PlayerWalk() {
 		if ((RGB(0, 0, 0) == Color))
 		{
 			Move = float4::ZERO;
-
 		}
 
 		if ((RGB(0, 0, 255) == Color))
 		{
 			FarmingArea_ = true;
 		}
+
 		else
 		{
 			FarmingArea_ = false;
-
 		}
 
 		if ( (CurrentLevel_ != "MyHouseLevel") && (CurrentLevel_ != "SaloonLevel") && (CurrentLevel_ != "SeedShopLevel"))
 		{
 			if ((RGB(255, 0, 0) == Color))
 			{
-				//FarmingArea_ = true;
-				WeedStepBGMPlayer.Volume(0.5f);
+				WeedStepBGMPlayer.Volume(0.4f);
+				SandStepBGMPlayer.Volume(0.0f);
+				WoodStepBGMPlayer.Volume(0.0f);
+				StoneStepBGMPlayer.Volume(0.0f);
+
+			}
+
+			else if ((RGB(0, 255, 255) == Color))
+			{
+				WoodStepBGMPlayer.Volume(0.7f);
+				StoneStepBGMPlayer.Volume(0.0f);
+				WeedStepBGMPlayer.Volume(0.0f);
 				SandStepBGMPlayer.Volume(0.0f);
 			}
+
+			else if ((RGB(125, 0, 255) == Color))
+			{
+				WoodStepBGMPlayer.Volume(0.0f);
+				StoneStepBGMPlayer.Volume(0.4f);
+				WeedStepBGMPlayer.Volume(0.0f);
+				SandStepBGMPlayer.Volume(0.0f);
+			}
+
+
 			else
 			{
 				WeedStepBGMPlayer.Volume(0.0f);
+				SandStepBGMPlayer.Volume(0.5f);
+				WoodStepBGMPlayer.Volume(0.0f);
+				StoneStepBGMPlayer.Volume(0.0f);
 
-				SandStepBGMPlayer.Volume(0.6f);
 			}
 		}
 
