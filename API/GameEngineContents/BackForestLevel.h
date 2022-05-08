@@ -43,7 +43,7 @@ private:
 	BackGround* BackGroundFront_;
 	FlowingFlower* FlowingFlower_;
 
-	GameEngineCollision* MapBlock_;
+	//GameEngineCollision* MapBlock_;
 
 	std::map<int, Items*> MapObject_;
 

@@ -5,6 +5,9 @@
 #include <GameEngineBase/GameEngineInput.h>
 
 ExitBotton::ExitBotton() 
+	:
+	ExitCollision_(nullptr),
+	Exit_(nullptr)
 {
 }
 

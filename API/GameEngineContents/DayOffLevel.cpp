@@ -32,6 +32,8 @@ DayOffLevel::DayOffLevel()
 
 	UpdateState_(DAYOFF_STATE::MONEY_UPDATE),
 
+	OKButton_(nullptr),
+
 	DayOffFarmingFont_(nullptr),
 	DayOffFForagingFont_(nullptr),
 	DayOffFishingFont_(nullptr),
@@ -39,6 +41,7 @@ DayOffLevel::DayOffLevel()
 	DayOffOtherFont_(nullptr),
 	DayOffTotalFont_(nullptr),
 
+	BackGroundFront_(nullptr),
 	DayFont_(nullptr)
 
 {

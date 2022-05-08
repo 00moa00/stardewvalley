@@ -110,6 +110,7 @@ void MinePoint::LoadMapObject()
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveMine1");
 				ThisIter->second->ChnageImageFile("MineMove.bmp");
+				ThisIter->second->CreateSubCollision("MapObject", { 48, 48 });
 
 				break;
 

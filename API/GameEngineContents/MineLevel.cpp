@@ -110,6 +110,7 @@ void MineLevel::LoadMapObject()
 				ThisIter = --MapObject_.end();
 				ThisIter->second->SetPosition(pos);
 				ThisIter->second->CreateMoveFlag("MoveMinePoint");
+				ThisIter->second->CreateSubCollision("MapObject", { 48, 48 });
 
 				break;
 

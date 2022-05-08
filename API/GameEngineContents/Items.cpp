@@ -27,6 +27,7 @@ Items::Items() :
 	ChangeSpeed_(0),
 	ItemCount_ (1),
 	Damage_(5),
+	Power_(0),
 
 	ChangeTime_(0.f),
 

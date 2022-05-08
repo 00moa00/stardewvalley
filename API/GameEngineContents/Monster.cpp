@@ -5,12 +5,14 @@ Monster::Monster()
 	:
 	Damage_(0),
 	HP_(0),
+	RamdomDirResult_(0),
 
 	Speed_(0.f),
 	Timer_(0.f),
 
 	isDeath_(false),
 	invincibility_(false),
+	isHit_(false),
 
 	MoveDir_(float4::DOWN),
 
@@ -23,6 +25,7 @@ Monster::Monster()
 	MonsterRenderer_(nullptr),
 	MonsterCollider_(nullptr)
 {
+	ArrAnimationName;
 }
 
 Monster::~Monster() 
