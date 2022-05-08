@@ -687,7 +687,7 @@ void Player::AddMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ += 7;
+		PrevMoney_ += 6;
 		AddMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 	
 		break;
@@ -721,7 +721,7 @@ void Player::SubMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ -= 7;
+		PrevMoney_ -= 6;
 		SubMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
