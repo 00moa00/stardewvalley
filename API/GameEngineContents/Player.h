@@ -173,7 +173,9 @@ private:
 
 	GameEngineImage* MapColImage_;
 
-	GameEngineSoundPlayer StepBGMPlayer;
+	GameEngineSoundPlayer WoodStepBGMPlayer;
+	GameEngineSoundPlayer SandStepBGMPlayer;
+	GameEngineSoundPlayer WeedStepBGMPlayer;
 
 
 	//Mouse* Mouse_;

@@ -925,12 +925,28 @@ void Player::PlayerWalk() {
 		{
 			FarmingArea_ = true;
 		}
-
 		else
 		{
 			FarmingArea_ = false;
 
 		}
+
+		if ( (CurrentLevel_ != "MyHouseLevel") && (CurrentLevel_ != "SaloonLevel") && (CurrentLevel_ != "SeedShopLevel"))
+		{
+			if ((RGB(255, 0, 0) == Color))
+			{
+				//FarmingArea_ = true;
+				WeedStepBGMPlayer.Volume(0.5f);
+				SandStepBGMPlayer.Volume(0.0f);
+			}
+			else
+			{
+				WeedStepBGMPlayer.Volume(0.0f);
+
+				SandStepBGMPlayer.Volume(0.6f);
+			}
+		}
+
 	}
 
 

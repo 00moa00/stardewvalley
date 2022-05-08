@@ -37,7 +37,7 @@ Player::Player()
 	IsNotInvincibilityTimer_(0.f),
 	SubHPTimer_(0.f),
 
-	StepBGMPlayer(),
+	WoodStepBGMPlayer(),
 
 	PlayerBodyRenderer_(nullptr),
 	PlayerPantsRenderer_(nullptr),
@@ -683,8 +683,19 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	MainPlayer = this;
 	PlayerHandItem_ = PlayerHandItem_;
 	MainMouse_ = MainMouse_;
-	StepBGMPlayer = GameEngineSound::SoundPlayControl("woodyStep.wav", -1);
-	StepBGMPlayer.Volume(0.f);
+
+	WoodStepBGMPlayer = GameEngineSound::SoundPlayControl("woodyStep.wav", -1);
+	WoodStepBGMPlayer.Volume(0.f);
+	WoodStepBGMPlayer.PlaySpeed(1.1f);
+
+	SandStepBGMPlayer = GameEngineSound::SoundPlayControl("sandyStep.wav", -1);
+	SandStepBGMPlayer.Volume(0.f);
+	SandStepBGMPlayer.PlaySpeed(1.1f);
+
+	WeedStepBGMPlayer = GameEngineSound::SoundPlayControl("grassyStep.wav", -1);
+	WeedStepBGMPlayer.Volume(0.f);
+	WeedStepBGMPlayer.PlaySpeed(1.1f);
+
 	LevelInit();
 }
 
@@ -703,6 +714,9 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 	PrevLevel_ = CurrentLevel_;
 
+	WoodStepBGMPlayer.Volume(0.f);
+	SandStepBGMPlayer.Volume(0.f);
+	WeedStepBGMPlayer.Volume(0.f);
 
 }
 
@@ -1017,14 +1031,16 @@ void Player::PlayerUpdate()
 		CheckDrink();
 		CheckEat();
 
-		if (CurrentLevel_ == "MyHouseLevel")
+		if ((CurrentLevel_ == "MyHouseLevel") || (CurrentLevel_ == "SaloonLevel") || (CurrentLevel_ == "SeedShopLevel"))
 		{
-			StepBGMPlayer.Volume(0.6f);
+			WoodStepBGMPlayer.Volume(0.6f);
 		}
 
 		if (isStop())
 		{
-			StepBGMPlayer.Volume(0.0f);
+			WoodStepBGMPlayer.Volume(0.0f);
+			SandStepBGMPlayer.Volume(0.0f);
+			WeedStepBGMPlayer.Volume(0.0f);
 
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
@@ -1217,7 +1233,7 @@ void Player::LevelInit()
 		MapSizeX_ = BUSSTOP_SIZE_WEIGHT;
 		MapSizeY_ = BUSSTOP_SIZE_HEIGHT;
 
-		MapColImage_ = nullptr;
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("BusStop_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
 
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
@@ -1296,7 +1312,7 @@ void Player::LevelInit()
 		MapSizeX_ = FOREST_SIZE_WEIGHT;
 		MapSizeY_ = FOREST_SIZE_HEIGHT;
 
-		MapColImage_ = nullptr;
+		MapColImage_ = GameEngineImageManager::GetInst()->Find("BacKForest_Coll.bmp");
 		ToolRenderer_->CameraEffectOn();
 
 		PlayerHandItem_->GetRenderer()->CameraEffectOn();
