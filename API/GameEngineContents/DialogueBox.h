@@ -4,7 +4,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineCollision.h>
 #include <GameEngine/GameEngine.h>
-#include <GameEngine/GameEngineFont.h>
+//#include <GameEngine/GameEngineFont.h>
 #include <GameEngineBase/GameEngineRandom.h>
 
 #include "NpcData.h"

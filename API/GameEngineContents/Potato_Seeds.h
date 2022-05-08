@@ -8,6 +8,7 @@ public:
 
 	static Potato_Seeds* MainPotatoSeeds;
 	static Font* Font_;
+	//static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Potato_Seeds();
@@ -28,6 +29,7 @@ private:
 	Crops* CreateCrops() override;
 	void AddItemCount() override;
 	void SubItemCount() override;
+
 	void UpdateOff() override;
 	void UpdateOn() override;
 

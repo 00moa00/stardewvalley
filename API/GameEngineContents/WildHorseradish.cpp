@@ -1,4 +1,5 @@
 #include "WildHorseradish.h"
+#include "Inventory.h"
 
 WildHorseradish* WildHorseradish::MainWildHorseradish = nullptr;
 
@@ -21,13 +22,14 @@ void WildHorseradish::Start()
 	
 	SetItemName("WildHorseradish");
 
-	SellPrice_ = 40;
 	ItemType_ = ITEMTYPE::GATHERING;
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::WILD_HORSERADISH);
+
+	SellPrice_ = 35;
 
 }
 
@@ -42,4 +44,35 @@ void WildHorseradish::Render()
 void WildHorseradish::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	MainWildHorseradish = this;
+}
+
+void WildHorseradish::AddItemCount()
+{
+	++ItemCount_;
+}
+
+void WildHorseradish::SubItemCount()
+{
+	if (ItemCount_ == 1)
+	{
+		ItemCount_ = 0;
+		Player::MainPlayer->SetResetPlayerHandItem();
+		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
+		this->Death();
+	}
+	else
+	{
+		--ItemCount_;
+	}
+}
+
+void WildHorseradish::UpdateOff()
+{
+	this->Off();
+}
+
+void WildHorseradish::UpdateOn()
+{
+	this->On();
+
 }

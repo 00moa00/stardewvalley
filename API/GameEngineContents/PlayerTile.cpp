@@ -391,7 +391,7 @@ void Player::harvestingCrops()
 			return;
 		}
 
-		if (MainMouse_->isMouseClick())
+		if (MainMouse_->isMouseRightClick())
 		{
 			FindSeedIter->second->DropCropsInMap();
 
@@ -660,7 +660,6 @@ void Player::MonsterAndPlayerColl()
 
 void Player::GetItem()
 {
-
 	if (PlayerCollider_->NextPostCollisionCheck("MapObject", MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_, CollisionType::Rect, CollisionType::Rect) == true)
 	{
 		std::map<int, Items*>::iterator GetItemIter = MapObject_.begin();
@@ -668,8 +667,7 @@ void Player::GetItem()
 
 			if (GetItemIter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
 				&& GetItemIter->second->GetObjectType() == OBJECTTYPE::GETITEM
-				&& MainMouse_->isMouseClick() == true
-				&& GetCurrentItem()->GetObjectType() != OBJECTTYPE::TOOL)
+				&& MainMouse_->isMouseRightClick() == true)
 			{
 				//이벤트용이 아닌 아이템을 습득하는 일이 있다면 예외 설정 해야함
 				PlayerState_ = PLAYER_UPDATE::GETITEM;
@@ -680,6 +678,30 @@ void Player::GetItem()
 
 		}
 	}
+}
+
+void Player::UseTotem()
+{
+	if (GetCurrentItem()->GetItemNameConstRef() == "FarmTotem" && MainMouse_->isMouseRightClick())
+	{
+		GetCurrentItem()->SubItemCount();
+		FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+
+		ChangeLevelName_ = "DayOffLevel";
+		FadeInOut_->SetFadeOut();
+		LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+	}
+	
+	if (GetCurrentItem()->GetItemNameConstRef() == "MineTotem" && MainMouse_->isMouseRightClick())
+	{
+		GetCurrentItem()->SubItemCount();
+		FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+
+		ChangeLevelName_ = "DayOffLevel";
+		FadeInOut_->SetFadeOut();
+		LevelChagne_ = LEVEL_CHANGE_STATE::FADE_OUT;
+	}
+
 }
 
 void Player::CheckShippingBox()

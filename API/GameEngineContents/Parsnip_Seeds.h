@@ -7,6 +7,7 @@ public:
 
 	static Parsnip_Seeds* MainParsnipSeeds;
 	static Font* Font_;
+	static ItemDataBox* MainItemDataBox;
 
 	// constrcuter destructer
 	Parsnip_Seeds();

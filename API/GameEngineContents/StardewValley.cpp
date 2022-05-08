@@ -78,20 +78,20 @@ void StardewValley::GameInit()
 	{
 
 
-		GameEngineDirectory ResourcesDir;
-		ResourcesDir.MoveParent("API");
-		ResourcesDir.Move("Resources");
-		ResourcesDir.Move("Sound");
+		//GameEngineDirectory ResourcesDir;
+		//ResourcesDir.MoveParent("API");
+		//ResourcesDir.Move("Resources");
+		//ResourcesDir.Move("Sound");
 
 
-		//------< 사운드 파일 찾기 >------------------------------------------------------------------
-		
-		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile();
+		////------< 사운드 파일 찾기 >------------------------------------------------------------------
+		//
+		//std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile();
 
-		for (size_t i = 0; i < AllImageFileList.size(); i++)
-		{
-			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
-		}
+		//for (size_t i = 0; i < AllImageFileList.size(); i++)
+		//{
+		//	GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
+		//}
 
 	}
 

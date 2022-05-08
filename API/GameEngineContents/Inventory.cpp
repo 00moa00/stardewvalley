@@ -408,6 +408,7 @@ void Inventory::ItemMove()
 				}
 
 				PlayerItemListStartIter->second->SetInBox(false);
+				PlayerItemListStartIter->second->SetInMouse(true);
 				MoveState_ = ITEMMOVE::HOLD;
 				break;
 			}
@@ -506,6 +507,7 @@ void Inventory::ItemMove()
 			if (BoxStartIter->second->MouseOver())
 			{
 				PlayerItemListStartIter->second->SetInBox(true);
+				PlayerItemListStartIter->second->SetInMouse(false);
 
 				//키값 변경
 				Finditer = PlayerItemListStartIter;
@@ -523,6 +525,7 @@ void Inventory::ItemMove()
 		FindBoxiter = Box_.find(PlayerItemListStartIter->first);
 		PlayerItemListStartIter->second->SetPosition(FindBoxiter->second->GetPosition());
 		PlayerItemListStartIter->second->SetInBox(true);
+		PlayerItemListStartIter->second->SetInMouse(false);
 
 
 		MoveState_ = ITEMMOVE::INIT;

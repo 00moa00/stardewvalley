@@ -4,6 +4,7 @@
 
 Parsnip_Seeds* Parsnip_Seeds::MainParsnipSeeds = nullptr;
 Font* Parsnip_Seeds::Font_ = nullptr;
+ItemDataBox* Parsnip_Seeds::MainItemDataBox = nullptr;
 
 Parsnip_Seeds::Parsnip_Seeds() 
 {
@@ -23,23 +24,33 @@ void Parsnip_Seeds::Start()
 
 	ItemCollider_ = CreateCollision("Item", { 40, 40 });
 
+	SeedType_ = SEEDTYPE::PARSNIP_SEED;
+	ItemName_ = "Parsnip_Seeds";
+	SellPrice_ = 35;
+
+	ItemType_ = ITEMTYPE::ETC;
+	ObjectType_ = OBJECTTYPE::SEED;
+
 	if (Font_ == nullptr)
 	{
-		Font_ = GetLevel()->CreateActor<Font>((int)PLAYLEVEL::FONT);
+		Font_ = GetLevel()->CreateActor<Font>(static_cast<int>(PLAYLEVEL::FONT));
 		Font_->ChangeWhiteColor();
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
-	ItemType_ = ITEMTYPE::ETC;
-	ObjectType_ = OBJECTTYPE::SEED;
+
+	if (MainItemDataBox == nullptr)
+	{
+		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
+		MainItemDataBox->SetData(ItemName_, "asdf", this->GetPosition());
+	}
+
 
 	//핸드 아이템용
 	isPossibleHand_ = true;
 	FileName_ = "springobjects.bmp";
 	FileIndex_ = static_cast<size_t>(ITEM::PARSNIP_SEEDS);
 
-	SeedType_ = SEEDTYPE::PARSNIP_SEED;
-	ItemName_ = "Parsnip_Seeds";
-	SellPrice_ = 35;
+
 }
 
 void Parsnip_Seeds::Update()
@@ -48,6 +59,16 @@ void Parsnip_Seeds::Update()
 	{
 	case ITEM_STATE::INIT:
 		Font_->SetPositionItem({ GetPosition() });
+		if (MouseOver() && InMouse == false)
+		{
+			MainItemDataBox->ItemDataBoxOn();
+			MainItemDataBox->SetData(ItemName_, "asdf", this->GetPosition());
+		}
+		else
+		{
+			MainItemDataBox->ItemDataBoxOff();
+
+		}
 
 		break;
 	}

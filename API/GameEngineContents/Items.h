@@ -13,6 +13,7 @@
 #include "ToolData.h"
 #include "Font.h"
 #include "Crops.h"
+#include "ItemDataBox.h"
 //#include "Player.h"
 
 
@@ -210,6 +211,8 @@ protected:
 	bool isPossibleHand_;
 	bool isMapItemDeath_;
 	bool isMove_;
+	bool InMouse;
+	bool InBox;
 
 	std::string ItemName_;
 	std::string FileName_;
@@ -217,8 +220,7 @@ protected:
 
 private:
 
-	bool InMouse;
-	bool InBox;
+
 
 protected:
 
@@ -414,7 +416,10 @@ public:
 		ItemRenderer_ = &_Renderer;
 	}
 
-
+	void SetInMouse(bool _b)
+	{
+		InMouse = _b;
+	}
 
 	void SetInBox(bool _b)
 	{

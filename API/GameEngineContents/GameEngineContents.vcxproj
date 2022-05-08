@@ -340,6 +340,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FarmTotem.h" />
     <ClInclude Include="FixedPlayerColl.h">
       <SubType>
       </SubType>
@@ -390,6 +391,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ItemDataBox.h" />
     <ClInclude Include="Items.h">
       <SubType>
       </SubType>
@@ -470,6 +472,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MineTotem.h" />
     <ClInclude Include="Monster.h">
       <SubType>
       </SubType>
@@ -926,6 +929,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FarmTotem.cpp" />
     <ClCompile Include="FixedPlayerColl.cpp">
       <SubType>
       </SubType>
@@ -975,6 +979,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ItemDataBox.cpp" />
     <ClCompile Include="Items.cpp">
       <SubType>
       </SubType>
@@ -1059,6 +1064,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MineTotem.cpp" />
     <ClCompile Include="Monster.cpp">
       <SubType>
       </SubType>

@@ -1,21 +1,21 @@
 #pragma once
 #include "Items.h"
-// Ό³Έν :
-class Pasnip : public Items
+
+class MineTotem : public Items
 {
 public:
-	static Pasnip* MainPasnip;
+	static MineTotem* MainMineTotem;
 	static Font* Font_;
 
 	// constrcuter destructer
-	Pasnip();
-	~Pasnip();
+	MineTotem();
+	~MineTotem();
 
 	// delete Function
-	Pasnip(const Pasnip& _Other) = delete;
-	Pasnip(Pasnip&& _Other) noexcept = delete;
-	Pasnip& operator=(const Pasnip& _Other) = delete;
-	Pasnip& operator=(Pasnip&& _Other) noexcept = delete;
+	MineTotem(const MineTotem& _Other) = delete;
+	MineTotem(MineTotem&& _Other) noexcept = delete;
+	MineTotem& operator=(const MineTotem& _Other) = delete;
+	MineTotem& operator=(MineTotem&& _Other) noexcept = delete;
 
 private:
 	void Start() override;
@@ -25,9 +25,8 @@ private:
 
 private:
 	void AddItemCount() override;
-	void SubItemCount() override;	
+	void SubItemCount() override;
 	void UpdateOff() override;
 	void UpdateOn() override;
 
 };
-

@@ -461,6 +461,15 @@
     <ClCompile Include="Coop.cpp">
       <Filter>Actor\03. Play\Obejct\buildings</Filter>
     </ClCompile>
+    <ClCompile Include="ItemDataBox.cpp">
+      <Filter>Actor\03. Play\Obejct</Filter>
+    </ClCompile>
+    <ClCompile Include="FarmTotem.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="MineTotem.cpp">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -947,6 +956,15 @@
     <ClInclude Include="Coop.h">
       <Filter>Actor\03. Play\Obejct\buildings</Filter>
     </ClInclude>
+    <ClInclude Include="ItemDataBox.h">
+      <Filter>Actor\03. Play\Obejct</Filter>
+    </ClInclude>
+    <ClInclude Include="FarmTotem.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="MineTotem.h">
+      <Filter>Actor\03. Play\Obejct\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">
@@ -1038,6 +1056,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Animals">
       <UniqueIdentifier>{ca854252-716d-436f-90cd-0714c63eba68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Obejct\Item\NewFilter1">
+      <UniqueIdentifier>{ce343f41-492c-4e23-88ff-5ce7c7ba84e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

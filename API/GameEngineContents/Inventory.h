@@ -120,7 +120,7 @@ private:
 
 	ITEMMOVE MoveState_;			//메인 상태에서 움직이는 
 	POPUPSTATE PopUpState_;			//조작에 의해 팝업 상태
-	POPUPSTATE CurrentInvenState_;	//현재 팝업 상태, 바깥 제어 용
+	POPUPSTATE CurrentInvenState_;	//현재 팝업 상태, 바깥 체크용. 위의 변수는 idle이기때문에 확인하기 어렵다.
 	INVEN_UPDATE UpdateState_;		//메인 업데이트 상태
 
 	std::map<int, Items*>::iterator PlayerItemListStartIter;
@@ -169,8 +169,6 @@ public:
 	}
 
 
-
-
 	Items* GetCurrentItem()
 	{
 		if (CurrentItem_ != nullptr)
@@ -184,6 +182,15 @@ public:
 		}
 	}
 
+	bool GetPopUpStateMini()
+	{
+		return CurrentInvenState_ == POPUPSTATE::MINI;
+	}
+
+	bool GetPopUpStateMain()
+	{
+		return CurrentInvenState_ == POPUPSTATE::MAIN;
+	}
 
 	bool ExitBottonMouseClick()
 	{

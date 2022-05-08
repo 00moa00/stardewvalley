@@ -26,9 +26,10 @@ protected:
 
 
 private:
-
-	//GameEngineRenderer* WildHorseradish_;
-	//GameEngineRenderer* InventoryBox_;
+	void AddItemCount() override;
+	void SubItemCount() override;
+	void UpdateOff() override;
+	void UpdateOn() override;
 
 
 };

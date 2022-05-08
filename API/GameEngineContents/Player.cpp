@@ -295,6 +295,35 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_HANDITEMWALK", static_cast<int>(PLAYER::BACK_WALK_HAND0), static_cast<int>(PLAYER::BACK_WALK_HAND3), AnimationFrame_, true);
 
 		//================================
+		//     플레이어 호미 체크
+		//================================
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HOECHECK", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT0), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_HOHOECHECKE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT0), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_HOECHECK", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK0), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_HOECHECK", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT0), AnimationFrame_, false);
+
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_HOECHECK", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT0), AnimationFrame_, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_HOECHECK", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT0), AnimationFrame_, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_HOECHECK", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK0), AnimationFrame_, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_HOECHECK", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT0), AnimationFrame_, false);
+
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_HOECHECK", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT0), AnimationFrame_, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_HOECHECK", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT0), AnimationFrame_, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_HOECHECK", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK0), AnimationFrame_, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_HOECHECK", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT0), AnimationFrame_, false);
+
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_HOECHECK", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT0), AnimationFrame_, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_HOECHECK", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT0), AnimationFrame_, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_HOECHECK", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK0), AnimationFrame_, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_HOECHECK", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT0), AnimationFrame_, false);
+
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_HOECHECK", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT0), AnimationFrame_, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_HOECHECK", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT0), AnimationFrame_, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_HOECHECK", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK0), AnimationFrame_, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_HOECHECK", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT0), AnimationFrame_, false);
+
+
+		//================================
 		//     플레이어 호미 사용
 		//================================
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), AnimationFrame_, false);
@@ -321,6 +350,70 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), AnimationFrame_, false);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), AnimationFrame_, false);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), AnimationFrame_, false);
+
+
+		//================================
+		//     플레이어 호미 차지
+		//================================
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HOECHARGE", static_cast<int>(PLAYER::HOE_FRONT_HOLD1), static_cast<int>(PLAYER::HOE_FRONT_HOLD2), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_HOECHARGE", static_cast<int>(PLAYER::HOE_RIGHT_HOLD1), static_cast<int>(PLAYER::HOE_RIGHT_HOLD2), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_HOECHARGE", static_cast<int>(PLAYER::HOE_BACK_HOLD1), static_cast<int>(PLAYER::HOE_BACK_HOLD2), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_HOECHARGE", static_cast<int>(PLAYER::HOE_LEFT_HOLD1), static_cast<int>(PLAYER::HOE_LEFT_HOLD2), AnimationFrame_, false);
+
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_HOECHARGE", static_cast<int>(PLAYER::HOE_FRONT_HOLD1), static_cast<int>(PLAYER::HOE_FRONT_HOLD2), AnimationFrame_, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_HOECHARGE", static_cast<int>(PLAYER::HOE_RIGHT_HOLD1), static_cast<int>(PLAYER::HOE_RIGHT_HOLD2), AnimationFrame_, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_HOECHARGE", static_cast<int>(PLAYER::HOE_BACK_HOLD1), static_cast<int>(PLAYER::HOE_BACK_HOLD2), AnimationFrame_, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_HOECHARGE", static_cast<int>(PLAYER::HOE_LEFT_HOLD1), static_cast<int>(PLAYER::HOE_LEFT_HOLD2), AnimationFrame_, false);
+
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_HOECHARGE", static_cast<int>(PLAYER::HOE_RIGHT_HOLD1), static_cast<int>(PLAYER::HOE_RIGHT_HOLD2), AnimationFrame_, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_HOECHARGE", static_cast<int>(PLAYER::HOE_FRONT_HOLD1), static_cast<int>(PLAYER::HOE_FRONT_HOLD2), AnimationFrame_, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_HOECHARGE", static_cast<int>(PLAYER::HOE_BACK_HOLD1), static_cast<int>(PLAYER::HOE_BACK_HOLD2), AnimationFrame_, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_HOECHARGE", static_cast<int>(PLAYER::HOE_LEFT_HOLD1), static_cast<int>(PLAYER::HOE_LEFT_HOLD2), AnimationFrame_, false);
+
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_HOECHARGE", static_cast<int>(PLAYER::HOE_FRONT_HOLD1), static_cast<int>(PLAYER::HOE_FRONT_HOLD2), AnimationFrame_, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_HOECHARGE", static_cast<int>(PLAYER::HOE_RIGHT_HOLD1), static_cast<int>(PLAYER::HOE_RIGHT_HOLD2), AnimationFrame_, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_HOECHARGE", static_cast<int>(PLAYER::HOE_BACK_HOLD1), static_cast<int>(PLAYER::HOE_BACK_HOLD2), AnimationFrame_, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_HOECHARGE", static_cast<int>(PLAYER::HOE_LEFT_HOLD1), static_cast<int>(PLAYER::HOE_LEFT_HOLD2), AnimationFrame_, false);
+
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_HOECHARGE", static_cast<int>(PLAYER::HOE_FRONT_HOLD1), static_cast<int>(PLAYER::HOE_FRONT_HOLD2), AnimationFrame_, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_HOECHARGE", static_cast<int>(PLAYER::HOE_RIGHT_HOLD1), static_cast<int>(PLAYER::HOE_RIGHT_HOLD2), AnimationFrame_, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_HOECHARGE", static_cast<int>(PLAYER::HOE_BACK_HOLD1), static_cast<int>(PLAYER::HOE_BACK_HOLD2), AnimationFrame_, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_HOECHARGE", static_cast<int>(PLAYER::HOE_LEFT_HOLD1), static_cast<int>(PLAYER::HOE_LEFT_HOLD2), AnimationFrame_, false);
+
+
+
+		//================================
+		//     플레이어 호미 프리
+		//================================
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HOEFREE", static_cast<int>(PLAYER::HOE_FRONT_FREE0), static_cast<int>(PLAYER::HOE_FRONT_FREE2), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_HOEFREE", static_cast<int>(PLAYER::HOE_RIGHT_FREE0), static_cast<int>(PLAYER::HOE_RIGHT_FREE2), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_HOEFREE", static_cast<int>(PLAYER::HOE_BACK_FREE0), static_cast<int>(PLAYER::HOE_BACK_FREE1), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_HOEFREE", static_cast<int>(PLAYER::HOE_LEFT_FREE0), static_cast<int>(PLAYER::HOE_LEFT_FREE2), AnimationFrame_, false);
+
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_HOEFREE", static_cast<int>(PLAYER::HOE_FRONT_FREE0), static_cast<int>(PLAYER::HOE_FRONT_FREE2), AnimationFrame_, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_HOEFREE", static_cast<int>(PLAYER::HOE_RIGHT_FREE0), static_cast<int>(PLAYER::HOE_RIGHT_FREE2), AnimationFrame_, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_HOEFREE", static_cast<int>(PLAYER::HOE_BACK_FREE0), static_cast<int>(PLAYER::HOE_BACK_FREE1), AnimationFrame_, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_HOEFREE", static_cast<int>(PLAYER::HOE_LEFT_FREE0), static_cast<int>(PLAYER::HOE_LEFT_FREE2), AnimationFrame_, false);
+
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_HOEFREE", static_cast<int>(PLAYER::HOE_FRONT_FREE0), static_cast<int>(PLAYER::HOE_FRONT_FREE2), AnimationFrame_, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_HOEFREE", static_cast<int>(PLAYER::HOE_RIGHT_FREE0), static_cast<int>(PLAYER::HOE_RIGHT_FREE2), AnimationFrame_, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_HOEFREE", static_cast<int>(PLAYER::HOE_BACK_FREE0), static_cast<int>(PLAYER::HOE_BACK_FREE1), AnimationFrame_, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_HOEFREE", static_cast<int>(PLAYER::HOE_LEFT_FREE0), static_cast<int>(PLAYER::HOE_LEFT_FREE2), AnimationFrame_, false);
+
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_HOEFREE", static_cast<int>(PLAYER::HOE_FRONT_FREE0), static_cast<int>(PLAYER::HOE_FRONT_FREE2), AnimationFrame_, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_HOEFREE", static_cast<int>(PLAYER::HOE_RIGHT_FREE0), static_cast<int>(PLAYER::HOE_RIGHT_FREE2), AnimationFrame_, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_HOEFREE", static_cast<int>(PLAYER::HOE_BACK_FREE0), static_cast<int>(PLAYER::HOE_BACK_FREE1), AnimationFrame_, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_HOEFREE", static_cast<int>(PLAYER::HOE_LEFT_FREE0), static_cast<int>(PLAYER::HOE_LEFT_FREE2), AnimationFrame_, false);
+
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_HOEFREE", static_cast<int>(PLAYER::HOE_FRONT_FREE0), static_cast<int>(PLAYER::HOE_FRONT_FREE2), AnimationFrame_, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_HOEFREE", static_cast<int>(PLAYER::HOE_RIGHT_FREE0), static_cast<int>(PLAYER::HOE_RIGHT_FREE2), AnimationFrame_, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_HOEFREE", static_cast<int>(PLAYER::HOE_BACK_FREE0), static_cast<int>(PLAYER::HOE_BACK_FREE1), AnimationFrame_, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_HOEFREE", static_cast<int>(PLAYER::HOE_LEFT_FREE0), static_cast<int>(PLAYER::HOE_LEFT_FREE2), AnimationFrame_, false);
+
+
+
+
+
 
 
 		//================================
@@ -635,9 +728,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MYFARM_LEVEL:
-
-
-
+		
 		SetCamera();
 		PlayerUpdate();
 		SetPlayerHandItemPos();
