@@ -40,6 +40,8 @@ private:
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
 
+	GameEngineSoundPlayer BgmPlayer;
+
 	std::map<int, Items*> MapObject_;
 
 private:

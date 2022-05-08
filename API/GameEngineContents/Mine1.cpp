@@ -12,6 +12,8 @@
 #include <GameEngineBase/GameEngineTime.h>
 
 Mine1::Mine1() 
+	:
+	BgmPlayer()
 {
 	SetName("Mine1");
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
@@ -46,6 +48,8 @@ void Mine1::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	YSortOn(static_cast<int>(PLAYLEVEL::PLAYER));
 
+	BgmPlayer = GameEngineSound::SoundPlayControl("frost.wav", -1);
+	BgmPlayer.Volume(0.4f);
 
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
@@ -54,6 +58,7 @@ void Mine1::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 void Mine1::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	BgmPlayer.Stop();
 
 	if (_NextLevel->GetNameCopy() != "TitleLevel")
 	{

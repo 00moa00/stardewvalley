@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineSound.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 #include "TileData.h"
 #include "RendererData.h"
@@ -39,6 +40,8 @@ private:
 
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
+
+	GameEngineSoundPlayer BgmPlayer;
 
 	std::map<int, Items*> MapObject_;
 	std::map<std::string, Monster*> MonsterList_;	//검색할 일이 없으면 다른 자료 구조로 바꿀 예정

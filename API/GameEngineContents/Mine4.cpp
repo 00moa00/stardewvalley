@@ -8,6 +8,8 @@
 #include <GameEngineBase/GameEngineTime.h>
 
 Mine4::Mine4() 
+	:
+	BgmPlayer()
 {
 	SetName("Mine4");
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
@@ -40,12 +42,16 @@ void Mine4::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->GetRenderer()->SetImage("Mine4_Back.bmp");
 	BackGround_->GetRenderer()->SetPivot({ MINEFLOOR_SIZE_WEIGHT / 2,  MINEFLOOR_SIZE_HEIGHT / 2 });
 
+	BgmPlayer = GameEngineSound::SoundPlayControl("frost.wav", -1);
+	BgmPlayer.Volume(0.4f);
+
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
 }
 
 void Mine4::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	BgmPlayer.Stop();
 
 	if (_NextLevel->GetNameCopy() != "TitleLevel")
 	{

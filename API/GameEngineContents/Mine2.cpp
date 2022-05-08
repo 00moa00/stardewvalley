@@ -6,6 +6,8 @@
 #include "SmallStone.h"
 #include <GameEngineBase/GameEngineTime.h>
 Mine2::Mine2() 
+	:
+	BgmPlayer()
 {
 	SetName("Mine1");
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
@@ -38,12 +40,16 @@ void Mine2::LevelChangeStart(GameEngineLevel* _NextLevel)
 	BackGround_->GetRenderer()->SetImage("Mine2_Back.bmp");
 	BackGround_->GetRenderer()->SetPivot({ MINEFLOOR_SIZE_WEIGHT / 2,  MINEFLOOR_SIZE_HEIGHT / 2 });
 
+	BgmPlayer = GameEngineSound::SoundPlayControl("frost.wav", -1);
+	BgmPlayer.Volume(0.4f);
+
 	FadeInOut* FadeInOut_ = CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
 	FadeInOut_->SetFadeIn();
 }
 
 void Mine2::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	BgmPlayer.Stop();
 
 	if (_NextLevel->GetNameCopy() != "TitleLevel")
 	{
