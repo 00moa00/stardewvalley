@@ -133,7 +133,7 @@ void Font::ChangeNumItemLeftSort(int _Num, float4 _Pos)
 	int Count_ = 0;
 
 	Num_ = _Num;
-	//1개는 표시 안함
+	//0은 표시 안함
 	if (Num_ == 1)
 	{
 		std::vector<GameEngineRenderer*>::iterator Iter = NumberRenderer.begin();
