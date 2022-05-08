@@ -17,9 +17,6 @@
     <ClCompile Include="PlayerEnergyBar.cpp">
       <Filter>Actor\03. Play\UI</Filter>
     </ClCompile>
-    <ClCompile Include="MyHouse.cpp">
-      <Filter>Actor\03. Play\Buildings</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Actor\03. Play\Player</Filter>
     </ClCompile>
@@ -461,6 +458,9 @@
     <ClCompile Include="CoinParticle.cpp">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Coop.cpp">
+      <Filter>Actor\03. Play\Obejct\buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StardewValley.h" />
@@ -478,9 +478,6 @@
     </ClInclude>
     <ClInclude Include="PlayerEnergyBar.h">
       <Filter>Actor\03. Play\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="MyHouse.h">
-      <Filter>Actor\03. Play\Buildings</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSpriteData.h">
       <Filter>Actor\00. GlobalData</Filter>
@@ -947,6 +944,9 @@
     <ClInclude Include="CoinParticle.h">
       <Filter>Actor\03. Play\Obejct\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="Coop.h">
+      <Filter>Actor\03. Play\Obejct\buildings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">
@@ -963,9 +963,6 @@
     </Filter>
     <Filter Include="Actor\03. Play">
       <UniqueIdentifier>{2b9a7125-e5c4-4740-931d-18dd34a3f8d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\03. Play\Buildings">
-      <UniqueIdentifier>{192a0a27-f530-43a4-a4f9-3c4b8cc1df2e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Actor\03. Play\NPC">
       <UniqueIdentifier>{d3ffba0c-12d1-4fa2-8a35-e9f19a2f687f}</UniqueIdentifier>
@@ -1038,6 +1035,9 @@
     </Filter>
     <Filter Include="Actor\03. Play\Monster">
       <UniqueIdentifier>{b446a918-e212-4bdb-b6df-fc68e1693e89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\03. Play\Animals">
+      <UniqueIdentifier>{ca854252-716d-436f-90cd-0714c63eba68}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

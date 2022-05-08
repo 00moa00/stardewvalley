@@ -770,12 +770,39 @@ void StardewValley::GameInit()
 		ArmoredBug->Cut({ 48, 48 });
 
 		//================================
-		//		ArmoredBug
+		//		LavaBat
 		//================================
 		GameEngineImage* LavaBat = GameEngineImageManager::GetInst()->Find("LavaBat.bmp");
 		LavaBat->Cut({ 48, 84 });
 
 
+
+
+	}
+
+
+	//----------------------------------------------------------------------------------------------
+	//------< Animals >-----------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------
+
+	{
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprite");
+		ResourcesDir.Move("Animals");
+
+
+		//------< 이미지 파일 찾기 >------------------------------------------------------------------
+
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		//------< 이미지 Cut >------------------------------------------------------------------
 
 
 	}

@@ -148,7 +148,7 @@ void Bat::Update()
 		BackMove();
 		break;
 	case MONSTER_STATE::DEATH:
-		MonsterRenderer_->ChangeAnimation("FRONT_DEATH");
+		MonsterRenderer_->ChangeAnimation("RIGHT_DEATH");
 
 		if (MonsterRenderer_->IsEndAnimation())
 		{

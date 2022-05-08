@@ -46,6 +46,7 @@ void Mine4::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 void Mine4::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+
 	if (_NextLevel->GetNameCopy() != "TitleLevel")
 	{
 		Player::MainPlayer->NextLevelOn();
@@ -262,5 +263,4 @@ void Mine4::LoadMapObject()
 	}
 
 	Player::MainPlayer->CopyList(MapObject_);
-	MapObject_.clear();
 }

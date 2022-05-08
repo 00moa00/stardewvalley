@@ -254,6 +254,7 @@ public:
 	//    Setter
 	//================================
 
+	void ResetMine();
 
 	void ClearWetDirtTile();
 

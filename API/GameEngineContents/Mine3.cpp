@@ -47,6 +47,7 @@ void Mine3::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 void Mine3::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+
 	if (_NextLevel->GetNameCopy() != "TitleLevel")
 	{
 		Player::MainPlayer->NextLevelOn();
@@ -266,5 +267,4 @@ void Mine3::LoadMapObject()
 	}
 
 	Player::MainPlayer->CopyList(MapObject_);
-	MapObject_.erase(MapObject_.begin(), MapObject_.end());
 }

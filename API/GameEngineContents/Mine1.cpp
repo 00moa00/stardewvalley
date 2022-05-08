@@ -54,6 +54,7 @@ void Mine1::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 void Mine1::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+
 	if (_NextLevel->GetNameCopy() != "TitleLevel")
 	{
 		Player::MainPlayer->NextLevelOn();
@@ -294,8 +295,5 @@ void Mine1::LoadMapObject()
 
 	Player::MainPlayer->CopyList(MapObject_);
 	Player::MainPlayer->CopyList(MonsterList_);
-
-	MapObject_.erase(MapObject_.begin(), MapObject_.end());
-	MonsterList_.erase(MonsterList_.begin(), MonsterList_.end());
 
  }

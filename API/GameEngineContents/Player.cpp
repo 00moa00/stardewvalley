@@ -608,54 +608,6 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	PrevLevel_ = CurrentLevel_;
 
 
-	if (CurrentLevel_ == "Mine1" || CurrentLevel_ == "Mine2" || CurrentLevel_ == "Mine3" || CurrentLevel_ == "Mine4" )
-	{
-
-		std::map<int, Items*> ::iterator StartIter = MapObject_.begin();
-		std::map<int, Items*> ::iterator EndIter = MapObject_.end();
-
-		for (; StartIter != EndIter; ++StartIter)
-		{
-			StartIter->second->Death();
-		}
-
-		std::map<std::string, Monster*>::iterator StarMonstertIter= MonsterList_.begin();
-		std::map<std::string, Monster*>::iterator EndMonstertIter = MonsterList_.end();
-
-		for (; StarMonstertIter != EndMonstertIter; ++StarMonstertIter)
-		{
-			StarMonstertIter->second->Death();
-		}
-
-		//MapObject_.erase(MapObject_.begin(), MapObject_.end());
-		MapObject_.clear();
-	}
-
-	//if (CurrentLevel_ == "TownLevel")
-	//{
- //
-	//	std::map<std::string, Npc*>::iterator StarNPCtIter = NpcList_.begin();
-	//	std::map<std::string, Npc*>::iterator EndMonstertIter = NpcList_.end();
-
-	//	for (; StarNPCtIter != EndMonstertIter; ++StarNPCtIter)
-	//	{
-	//		StarNPCtIter->second->Death();
-	//	}
-	//			MapObject_.clear();
-
-
-	//	std::map<int, Items*> ::iterator StartIter = MapObject_.begin();
-	//	std::map<int, Items*> ::iterator EndIter = MapObject_.end();
-
-	//	for (; StartIter != EndIter; ++StartIter)
-	//	{
-	//		StartIter->second->Death();
-	//	}
-	//	MapObject_.clear();
-
-	//}
-
-
 }
 
 
