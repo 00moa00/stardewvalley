@@ -399,9 +399,8 @@ void Inventory::ItemMove()
 				CurrentItem_ = PlayerItemListStartIter->second;
 				//FindCurrentItemIter
 
-				//미니 상태에서 툴은 이동할 수 없다.
-				if ((CurrentInvenState_ == POPUPSTATE::MINI) &&
-					(PlayerItemListStartIter->second->GetObjectType() == OBJECTTYPE::TOOL))
+				//미니 상태에서 아이템은 이동할 수 없다.
+				if ((CurrentInvenState_ == POPUPSTATE::MINI))
 				{
 					PlayerItemListStartIter->second->SetInBox(false);
 					MoveState_ = ITEMMOVE::INIT;
@@ -531,11 +530,12 @@ void Inventory::ItemMove()
 
 
 	case ITEMMOVE::SHOPPING:
+
 		if (Player::MainPlayer->GetMoneyAddMoneyCountWait())
 		{
 			Effect* Coin = GetLevel()->CreateActor<CoinAnimation>(static_cast<int>(PLAYLEVEL::SHOP_EFFECT));
-			Coin->SetPosition({ PlayerItemListStartIter->second-> GetPosition()});
-			Coin->SetCount(5);
+			Coin->SetPosition({ PlayerItemListStartIter->second-> GetPosition().x + 96.f,  PlayerItemListStartIter->second->GetPosition().y });
+			Coin->SetCount(PlayerItemListStartIter->second->GetSellPrice() / 5);
 
 			Player::MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
 			PlayerItemListStartIter->second->SubItemCount();

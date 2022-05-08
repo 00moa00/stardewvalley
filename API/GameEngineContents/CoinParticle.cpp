@@ -19,7 +19,7 @@ void CoinParticle::Update()
 {
 	float4 MoveTarget = TargetPos_ - this->GetPosition();
 
-	SetMove(MoveTarget * GameEngineTime::GetInst()->GetDeltaTime() * 10.f);
+	SetMove(MoveTarget * GameEngineTime::GetInst()->GetDeltaTime() * 15.f);
 	if (this->GetPosition().x <= TargetPos_.x + 20.f)
 	{
 		this->Death();

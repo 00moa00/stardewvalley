@@ -27,7 +27,7 @@ void CoinAnimation::Update()
 	case COIN_STATE::COUNT:
 
 		Timer_ += GameEngineTime::GetInst()->GetDeltaTime();
-		if (Timer_ > 0.1f)
+		if (Timer_ > 0.05f)
 		{
 			Timer_ = 0.f;
 			CoinState_ = COIN_STATE::CREATE;
