@@ -141,6 +141,7 @@ private:
 	float InvincibilityTimer_;
 	float IsNotInvincibilityTimer_;
 	float SubHPTimer_;
+	float MoneyTimer_;
 
 	float HoldTImer_;
 
@@ -218,6 +219,9 @@ private:
 	int DayOffFishing_;
 	int DayOffMining_;
 	int DayOffOther_;
+
+	int AddCountMoney_;
+	int SubCountMoney_;
 
 
 	std::vector<GameEngineCollision*> ColList;

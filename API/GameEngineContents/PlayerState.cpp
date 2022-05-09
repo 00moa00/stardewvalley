@@ -202,6 +202,7 @@ bool Player::SubMoney(int _Money)
 		PrevMoney_ = Money_;
 		Money_ -= _Money;
 		//TotalMoney_ = 
+		SubCountMoney_ = _Money / 5;
 		SubMoneyCount_ = MONEY_UPDATE::ADD_TIME;
 		return true;
 	}
@@ -216,6 +217,7 @@ bool Player::SubMoney(int _Money)
 
 void Player::AddMoney(int _Money)
 {
+	AddCountMoney_ = _Money /5 ;
 
 	PrevMoney_ = Money_;
 	Money_ += _Money;
@@ -741,50 +743,7 @@ void Player::AddMoneyAnimation()
 
 		// TODO : 임시용. 하나로 수정하기
 
-		if (static_cast<unsigned int>(Money_ - PrevMoney_) > 40)
-		{
-			PrevMoney_ += static_cast<unsigned int>(Money_ - PrevMoney_) /3;
-
-		}
-
-		else if(static_cast<unsigned int>(Money_ - PrevMoney_) > 100)
-		{
-			PrevMoney_ += 11;
-
-		}
-
-		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 150)
-		{
-			PrevMoney_ += 17;
-
-		}
-
-		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 250)
-		{
-			PrevMoney_ += 32;
-
-		}
-
-
-		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 300)
-		{
-			PrevMoney_ += 42;
-
-		}
-
-		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 400)
-		{
-			PrevMoney_ += 62;
-
-		}
-
-		else
-		{
-			PrevMoney_ += 3;
-		}
-
-
-
+		PrevMoney_ += (4 + (AddCountMoney_/5));
 
 		AddMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 	
@@ -819,43 +778,8 @@ void Player::SubMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		if (static_cast<unsigned int>(Money_ - PrevMoney_) > 40)
-		{
-			PrevMoney_ -= 7;
+		PrevMoney_ -= ( 4 + (SubCountMoney_ / 5));
 
-		}
-
-		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 100)
-		{
-			PrevMoney_ -= 11;
-
-		}
-		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 150)
-		{
-			PrevMoney_ -= 17;
-
-		}
-
-		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 250)
-		{
-			PrevMoney_ -= 32;
-
-		}
-		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 300)
-		{
-			PrevMoney_ -= 42;
-
-		}
-		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 400)
-		{
-			PrevMoney_ -= 62;
-
-		}
-
-		else
-		{
-			PrevMoney_ -= 3;
-		}
 		SubMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
