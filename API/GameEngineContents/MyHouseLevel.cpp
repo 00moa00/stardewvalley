@@ -120,6 +120,12 @@ void MyHouseLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 	}
 
+	if (MenuGuide_ != nullptr)
+	{
+		MenuGuide_->Death();
+		MenuGuide_ = nullptr;
+
+	}
 }
 
 
@@ -265,11 +271,11 @@ void MyHouseLevel::Update()
 		MoveGuide();
 	}
 
-	if (StartSound_ == false)
-	{
-		GameEngineSound::SoundPlayOneShot("rooster.wav");
-		StartSound_ = true;
-	}
+	//if (StartSound_ == false)
+	//{
+	//	GameEngineSound::SoundPlayOneShot("rooster.wav");
+	//	StartSound_ = true;
+	//}
 
 }
 

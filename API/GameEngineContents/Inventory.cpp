@@ -590,7 +590,7 @@ void Inventory::ItemMove()
 		{
 			Effect* Coin = GetLevel()->CreateActor<CoinAnimation>(static_cast<int>(PLAYLEVEL::SHOP_EFFECT));
 			Coin->SetPosition({ PlayerItemListStartIter->second-> GetPosition().x + 96.f,  PlayerItemListStartIter->second->GetPosition().y });
-			Coin->SetCount(PlayerItemListStartIter->second->GetSellPrice() / 5);
+			Coin->SetCount(PlayerItemListStartIter->second->GetSellPrice() / 10);
 
 			Player::MainPlayer->AddMoney(PlayerItemListStartIter->second->GetSellPrice());
 			PlayerItemListStartIter->second->SubItemCount();

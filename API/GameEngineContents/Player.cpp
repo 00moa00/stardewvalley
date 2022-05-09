@@ -42,6 +42,7 @@ Player::Player()
 	InvincibilityTimer_(0.f),
 	IsNotInvincibilityTimer_(0.f),
 	SubHPTimer_(0.f),
+	HoldTImer_(0.f),
 
 	WoodStepBGMPlayer(),
 	StoneStepBGMPlayer(),
@@ -904,16 +905,6 @@ void Player::Update()
 		break;
 	}
 
-	if (true == GameEngineInput::GetInst()->IsDown("MoveShopLevel"))
-	{
-		GameEngine::GetInst().ChangeLevel("Mine1");
-
-	}
-
-	if (true == GameEngineInput::GetInst()->IsDown("MoveTown"))
-	{
-		GameEngine::GetInst().ChangeLevel("SeedShopLevel");
-	}
 
 	//if (true == GameEngineInput::GetInst()->IsDown("DebugRendereChange"))
 	//{
@@ -984,7 +975,9 @@ void Player::PlayerUpdate()
 
 		if (MainMouse_->isMouseFree())
 		{
+			HoldTImer_ = 0.f;
 			PlayerState_ = PLAYER_UPDATE::HOE;
+			break;
 
 		}
 
@@ -1566,8 +1559,16 @@ void Player::LevelInit()
 
 	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "DayOffLevel")
 	{
+		GameEngineSound::SoundPlayOneShot("rooster.wav");
 		SetPosition({ 790.f, 490.f });
 	}
+
+	if (CurrentLevel_ == "MyHouseLevel" )
+	{
+		SetPosition({ 790.f, 490.f });
+	}
+
+
 	// 집 -> 마인
 	if (CurrentLevel_ == "Mine1" && PrevLevel_ == "MyHouseLevel")
 	{
@@ -1576,14 +1577,9 @@ void Player::LevelInit()
 
 
 	// 타이틀 -> 집
-	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "")
-	{
-		SetPosition({ 110.f, 2620.f });
-	}
-
-	// 타이틀 -> 집
 	if (CurrentLevel_ == "MyHouseLevel" && PrevLevel_ == "")
 	{
+		GameEngineSound::SoundPlayOneShot("rooster.wav");
 		SetPosition({ 790.f, 490.f });
 	}
 

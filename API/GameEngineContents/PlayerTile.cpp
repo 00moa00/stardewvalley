@@ -745,7 +745,10 @@ void Player::MonsterAndPlayerColl()
 
 			if (isSubTime_ == true)
 			{
-				SubHP(GetMonsterIter->second->GetDamage());
+
+				GameEngineRandom RandomDamage;
+
+				SubHP(GetMonsterIter->second->GetDamage() + RandomDamage.RandomInt(0,2));
 				isSubTime_ = false;
 			}
 

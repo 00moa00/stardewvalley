@@ -732,7 +732,33 @@ void Player::AddMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ += 7;
+
+		if(static_cast<unsigned int>(Money_ - PrevMoney_) > 100)
+		{
+			PrevMoney_ += 7;
+
+		}
+
+		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 150)
+		{
+			PrevMoney_ += 14;
+
+		}
+
+		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 250)
+		{
+			PrevMoney_ += 28;
+
+		}
+
+		else
+		{
+			PrevMoney_ += 3;
+		}
+
+
+
+
 		AddMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 	
 		break;
@@ -766,7 +792,27 @@ void Player::SubMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ -= 7;
+		if (static_cast<unsigned int>(Money_ - PrevMoney_) > 100)
+		{
+			PrevMoney_ -= 7;
+
+		}
+		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 150)
+		{
+			PrevMoney_ -= 14;
+
+		}
+
+		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 250)
+		{
+			PrevMoney_ -= 28;
+
+		}
+
+		else
+		{
+			PrevMoney_ -= 3;
+		}
 		SubMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;
@@ -1054,8 +1100,14 @@ void Player::SubEnergy(int _Energy)
 {
 
 	Energy_ -= _Energy;
+
+	if (Energy_ <= 0)
+	{
+		Energy_ = 1;
+		PlayerEnergyFrame::MainPlayerEnergyBar->GetRenderer()->SetScale({ 18, static_cast<float>(Energy_) });
+	}
+
 	PlayerEnergyFrame::MainPlayerEnergyBar->GetRenderer()->SetScale({18, static_cast<float>(Energy_) });
-	//TODO : 에너지가 0이면 어쩔거임?
 
 }
 
@@ -1079,14 +1131,27 @@ void Player::SubHP(int _HP)
 		return;
 	}
 
+
+	GameEngineSound::SoundPlayOneShot("ow.wav");
+
 	SubHPFont* SubHPFont_;
 	SubHPFont_ = GetLevel()->CreateActor<SubHPFont>();
 	SubHPFont_->SetPosAndNumRed(this->GetPosition(), _HP);
-	GameEngineSound::SoundPlayOneShot("ow.wav");
-
 	HP_ -= _HP;
+
+	if (HP_ <= 0)
+	{
+		HP_ = 1;
+		PlayerHPFrame::MainPlayerHPBar->GetRenderer()->SetScale({ 18, static_cast<float>(HP_) });
+
+		GameEngineSound::SoundPlayOneShot("death.wav");
+		GameEngine::GetInst().ChangeLevel("MyHouseLevel");
+		FadeInOut_ = GetLevel()->CreateActor<FadeInOut>(static_cast<int>(PLAYLEVEL::FADE));
+		FadeInOut_->SetFadeOut();
+	
+	}
+
 	PlayerHPFrame::MainPlayerHPBar->GetRenderer()->SetScale({ 18, static_cast<float>(HP_) });
-	//TODO : HP가 0이면 어쩔거임?
 
 }
 
