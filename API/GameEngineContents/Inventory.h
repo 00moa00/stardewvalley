@@ -188,6 +188,11 @@ public:
 		return Mouse_;
 	}
 
+	bool GetCurrentItemEmpty()
+	{
+		return CurrentItem_ == EmptyItem_ && CurrentItem_ != nullptr;
+	}
+
 	bool GetPopUpStateShop()
 	{
 		return CurrentInvenState_ == POPUPSTATE::SHOP;
@@ -216,6 +221,11 @@ public:
 	void SetCurrentItem(Items* _SetItem)
 	{
 		CurrentItem_ = _SetItem;
+	}
+
+	void SetCurrentItemEmpty()
+	{
+		CurrentItem_ = EmptyItem_;
 	}
 
 
@@ -266,6 +276,8 @@ public:
 		{
 			return;
 		}
+
+		CurrentItem_ = EmptyItem_;
 
 	}
 

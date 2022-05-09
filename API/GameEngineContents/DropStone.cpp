@@ -106,10 +106,11 @@ void DropStone::SubItemCount()
 	if (ItemCount_ == 1)
 	{
 		ItemCount_ = 0;
-		Player::MainPlayer->SetResetPlayerHandItem();
 		Inventory::MainInventory->FindAndErasePlayerItemList(this->GetItemNameConstRef());
+		Player::MainPlayer->SetResetPlayerHandItem();
+		//Font_->Death();
 		Font_ = nullptr;
-		this->Death();
+		Death();
 	}
 	else
 	{

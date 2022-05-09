@@ -437,6 +437,12 @@ void StardewValley::GameInit()
 		//================================
 		GameEngineImage* Back = GameEngineImageManager::GetInst()->Find("Back.bmp");
 		Back->Cut({ 132, 54 });
+
+		//================================
+		//		뒤로가기 버튼
+		//================================
+		GameEngineImage* Empty = GameEngineImageManager::GetInst()->Find("Empty.bmp");
+		Empty->Cut({ 144, 48 });
 	}
 
 

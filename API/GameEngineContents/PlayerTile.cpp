@@ -819,22 +819,18 @@ void Player::UseTotem()
 
 void Player::CheckShippingBox()
 {
-	std::map<int, Items*>::iterator ShippingIter = MapObject_.begin();
 
 	if (GetCurrentLevel() == "MyFarmLevel")
 	{
-		for (; ShippingIter != MapObject_.end(); ++ShippingIter) {
+		for (std::map<int, Items*>::iterator ShippingIter = MapObject_.begin(); ShippingIter != MapObject_.end(); ++ShippingIter) {
 
 			if (ShippingIter->second->ItemCheck(PlayerCollCheckPos(), GetScale()) == true
 				&& ShippingIter->second->GetObjectType() == OBJECTTYPE::SHIPPINGBOX)
 			{
 				ShippingIter->second->ItemCollPlayer();
 
-
-
 				if (GetCurrentItem()->GetisPossibleHand() == true && MainMouse_->isMouseRightClick())
 				{
-					GetCurrentItem()->SubItemCount();
 					GameEngineSound::SoundPlayOneShot("drawer1.wav");
 
 					if (GetCurrentItem()->GetItemType() == ITEMTYPE::FARMING)
@@ -861,6 +857,9 @@ void Player::CheckShippingBox()
 					{
 						DayOffOther_ += (GetCurrentItem()->GetSellPrice());
 					}
+					GetCurrentItem()->SubItemCount();
+
+					return;
 
 				}
 			}

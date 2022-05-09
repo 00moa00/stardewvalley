@@ -189,8 +189,10 @@ void Player::ChangePants(int _Index)
 
 void Player::SetResetPlayerHandItem()
 {
-	PlayerState_ = PLAYER_UPDATE::WALK;
-	//Inventory::MainInventory->SetCurrentItemHoe();
+
+	PlayerState_ = PLAYER_UPDATE::INIT;
+
+	Inventory::MainInventory->SetCurrentItemEmpty();
 }
 
 
@@ -627,6 +629,8 @@ void Player::ChangeHandItem()
 	else
 	{
 		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
+		PlayerHandItem_->GetRenderer()->SetIndex(0);
+
 	}
 }
 
