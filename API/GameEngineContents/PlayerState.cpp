@@ -732,6 +732,8 @@ void Player::AddMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
+		// TODO : 임시용. 하나로 수정하기
+
 		if (static_cast<unsigned int>(Money_ - PrevMoney_) > 40)
 		{
 			PrevMoney_ += static_cast<unsigned int>(Money_ - PrevMoney_) /3;
@@ -753,6 +755,19 @@ void Player::AddMoneyAnimation()
 		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 250)
 		{
 			PrevMoney_ += 32;
+
+		}
+
+
+		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 300)
+		{
+			PrevMoney_ += 42;
+
+		}
+
+		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 400)
+		{
+			PrevMoney_ += 62;
 
 		}
 
@@ -817,6 +832,16 @@ void Player::SubMoneyAnimation()
 		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 250)
 		{
 			PrevMoney_ -= 32;
+
+		}
+		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 300)
+		{
+			PrevMoney_ -= 42;
+
+		}
+		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 400)
+		{
+			PrevMoney_ -= 62;
 
 		}
 
