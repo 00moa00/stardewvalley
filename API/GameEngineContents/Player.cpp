@@ -869,6 +869,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MINE_LEVEL:
+		UseTotem();
 
 		SetCamera();
 		PlayerUpdate();
@@ -882,6 +883,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MINEPOINT_LEVEL:
+		UseTotem();
 
 		SetCamera();
 		PlayerUpdate();
@@ -892,6 +894,7 @@ void Player::Update()
 
 		break;
 	case LEVEL_LIST::MINEFLOOR_LEVEL:
+		UseTotem();
 
 		SetCamera();
 		PlayerUpdate();
