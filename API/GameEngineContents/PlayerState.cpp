@@ -211,7 +211,7 @@ bool Player::SubMoney(int _Money)
 		false;
 	}
 
-
+	return false;
 }
 
 void Player::AddMoney(int _Money)
@@ -635,7 +635,7 @@ void Player::CheckTool()
 
 	if (CurrentItemType() == TOOLTYPE::HOE)
 	{
-		PlayerState_ = PLAYER_UPDATE::HOE;
+		PlayerState_ = PLAYER_UPDATE::HOECHECK;
 	}
 
 	else if (CurrentItemType() == TOOLTYPE::WATTERING_CAN)
@@ -681,7 +681,6 @@ void Player::CheckEat()
 {
 	if (GetCurrentItem()->GetObjectType() == OBJECTTYPE::FOOD && GameEngineInput::GetInst()->IsDown("RightClick"))
 	{
-		GameEngineSound::SoundPlayOneShot("eat.wav");
 
 		GetCurrentItem()->DropItemInMap();
 		PlayerHandItem_->GetRenderer()->SetImage("Empty.bmp");
@@ -733,7 +732,7 @@ void Player::AddMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ += 6;
+		PrevMoney_ += 7;
 		AddMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 	
 		break;
@@ -767,7 +766,7 @@ void Player::SubMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		PrevMoney_ -= 6;
+		PrevMoney_ -= 7;
 		SubMoneyCount_ = MONEY_UPDATE::CHANGE_FONT;
 
 		break;

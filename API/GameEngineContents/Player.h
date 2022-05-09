@@ -142,6 +142,7 @@ private:
 	float IsNotInvincibilityTimer_;
 	float SubHPTimer_;
 
+	float HoldTImer_;
 
 	float4 MoveDir_;
 	float4 CameraPos_;
@@ -375,6 +376,8 @@ private:
 	float4 PlayerCollCheckPos();
 
 	void CreateDirtTile();
+	void CreateChargeDirtTile();
+
 	void CreateWaterTile();
 	void CreateWaterEffet();
 	void CreateDirtEffet();

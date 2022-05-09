@@ -93,7 +93,14 @@ Player::Player()
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::INIT)] = "INIT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::WALK)] = "WALK";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::WATER)] = "WATER";
+
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOECHECK)] = "HOECHECK";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOECHARGE)] = "HOECHARGE";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HOEFREE)] = "HOEFREE";
+
+
+
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::AXE)] = "HOE";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "HOE";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::SWOARD)] = "SWOARD";
@@ -114,7 +121,14 @@ Player::Player()
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "INIT";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::WATER)] = "WATER";
+
+
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HOECHECK)] = "HOECHECK";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HOE)] = "HOE";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HOECHARGE)] = "HOECHECK";
+	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::HOEFREE)] = "HOE";
+
+
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::AXE)] = "AXE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::PICKAXE)] = "PICKAXE";
 	ArrAnimationToolName[static_cast<int>(PLAYER_UPDATE::SWOARD)] = "SWOARD";
@@ -313,7 +327,7 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		//     플레이어 호미 체크
 		//================================
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HOECHECK", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT0), AnimationFrame_, false);
-		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_HOHOECHECKE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT0), AnimationFrame_, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_HOECHECK", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT0), AnimationFrame_, false);
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_HOECHECK", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK0), AnimationFrame_, false);
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_HOECHECK", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT0), AnimationFrame_, false);
 
@@ -341,27 +355,27 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		//================================
 		//     플레이어 호미 사용
 		//================================
-		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), 0.080f, false);
+		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT4), 0.080f, false);
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), 0.080f, false);
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), 0.080f, false);
 		PlayerBodyRenderer_->CreateAnimation("PlayerBody0.bmp", "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), 0.080f, false);
 
-		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), 0.080f, false);
+		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT4), 0.080f, false);
 		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), 0.080f, false);
 		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), 0.080f, false);
 		PlayerPantsRenderer_->CreateAnimation(CustomData::GetInst()->GetPantsFileName(), "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), 0.080f, false);
 
-		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), 0.080f, false);
+		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT4), 0.080f, false);
 		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), 0.080f, false);
 		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), 0.080f, false);
 		PlayerShirtsRenderer_->CreateAnimation(CustomData::GetInst()->GetShirtsFileName(), "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), 0.080f, false);
 
-		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), 0.080f, false);
+		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT4), 0.080f, false);
 		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), 0.080f, false);
 		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), 0.080f, false);
 		PlayerHairRenderer_->CreateAnimation(CustomData::GetInst()->GetHairFileName(), "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), 0.080f, false);
 
-		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT5), 0.080f, false);
+		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "FRONT_HOE", static_cast<int>(PLAYER::HOE_FRONT0), static_cast<int>(PLAYER::HOE_FRONT4), 0.080f, false);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_HOE", static_cast<int>(PLAYER::HOE_RIGHT0), static_cast<int>(PLAYER::HOE_RIGHT4), 0.080f, false);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_HOE", static_cast<int>(PLAYER::HOE_BACK0), static_cast<int>(PLAYER::HOE_BACK2), 0.080f, false);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_HOE", static_cast<int>(PLAYER::HOE_LEFT0), static_cast<int>(PLAYER::HOE_LEFT4), 0.080f, false);
@@ -646,6 +660,15 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		ToolRenderer_->CreateAnimation("hoe_right.bmp", "RIGHT_HOE", static_cast<int>(HOE_RIGHT::HOE_RIGHT0), static_cast<int>(HOE_RIGHT::HOE_RIGHT4), AnimationFrame_, false);
 		ToolRenderer_->CreateAnimation("hoe_front.bmp", "FRONT_HOE", static_cast<int>(HOE_FRONT::HOE_FRONT0), static_cast<int>(HOE_FRONT::HOE_FRONT4), AnimationFrame_, false);
 		ToolRenderer_->CreateAnimation("hoe_back.bmp", "BACK_HOE", static_cast<int>(HOE_BACK::HOE_BACK0), static_cast<int>(HOE_BACK::HOE_BACK2), AnimationFrame_, false);
+
+		//================================
+		//     플레이어 호미 체크
+		//================================
+		ToolRenderer_->CreateAnimation("hoe_left.bmp", "LEFT_HOECHECK", static_cast<int>(HOE_LEFT::HOE_LEFT0), static_cast<int>(HOE_LEFT::HOE_LEFT0), AnimationFrame_, false);
+		ToolRenderer_->CreateAnimation("hoe_right.bmp", "RIGHT_HOECHECK", static_cast<int>(HOE_RIGHT::HOE_RIGHT0), static_cast<int>(HOE_RIGHT::HOE_RIGHT0), AnimationFrame_, false);
+		ToolRenderer_->CreateAnimation("hoe_front.bmp", "FRONT_HOECHECK", static_cast<int>(HOE_FRONT::HOE_FRONT0), static_cast<int>(HOE_FRONT::HOE_FRONT0), AnimationFrame_, false);
+		ToolRenderer_->CreateAnimation("hoe_back.bmp", "BACK_HOECHECK", static_cast<int>(HOE_BACK::HOE_BACK0), static_cast<int>(HOE_BACK::HOE_BACK0), AnimationFrame_, false);
+
 
 		//================================
 		//     플레이어 도끼 사용
@@ -946,7 +969,45 @@ void Player::PlayerUpdate()
 
 		break;
 
+
+
+
+	case PLAYER_UPDATE::HOECHECK:
+
+
+		if (GetDirString() == "BACK_")
+		{
+			ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+			PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+
+		}
+
+		if (MainMouse_->isMouseFree())
+		{
+			PlayerState_ = PLAYER_UPDATE::HOE;
+
+		}
+
+		HoldTImer_ += GameEngineTime::GetInst()->GetDeltaTime();
+
+		if (HoldTImer_ > 1.0f)
+		{
+			HoldTImer_ = 0.f;
+			GameEngineSound::SoundPlayOneShot("toolCharge.wav");
+			PlayerState_ = PLAYER_UPDATE::HOECHARGE;
+		}
+
+		break;
+
+
 	case PLAYER_UPDATE::HOE:
+
+		if (GetDirString() == "BACK_")
+		{
+			ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+			PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+
+		}
 
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{	
@@ -956,12 +1017,61 @@ void Player::PlayerUpdate()
 			{
 				CreateDirtTile();
 				ChangeDirtTile();
-
+				PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::PLAYER) });
+				ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::USE_TOOL) });
 				SubEnergy(2);
 			}
 
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
+
+		break;
+
+
+	case PLAYER_UPDATE::HOECHARGE:
+
+		if (GetDirString() == "BACK_")
+		{
+			ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+			PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+
+		}
+
+		if (MainMouse_->isMouseFree())
+		{
+			PlayerState_ = PLAYER_UPDATE::HOEFREE;
+
+		}
+
+		break;
+
+	case PLAYER_UPDATE::HOEFREE:
+
+		if (GetDirString() == "BACK_")
+		{
+			ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+			PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+
+		}
+
+		if (PlayerBodyRenderer_->IsEndAnimation())
+		{
+			AttackMonster();
+
+			if (FarmingArea_ == true)
+			{
+				CreateChargeDirtTile();
+				ChangeDirtTile();
+				PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::PLAYER) });
+				ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::USE_TOOL) });
+				SubEnergy(2);
+			}
+
+			PlayerState_ = PLAYER_UPDATE::INIT;
+		}
+
+		break;
+
 
 		break;
 
@@ -1128,6 +1238,8 @@ void Player::PlayerUpdate()
 		AnimationWaitTimer_ += GameEngineTime::GetDeltaTime() ;
 		if (AnimationWaitTimer_ > 0.5f)
 		{
+			GameEngineSound::SoundPlayOneShot("eat.wav");
+
 			AnimationWaitTimer_ = 0.f;
 			PlayerState_ = PLAYER_UPDATE::EAT;
 		}
@@ -1615,7 +1727,7 @@ void Player::LevelInit()
 	// 주점 -> 마을
 	if (CurrentLevel_ == "TownLevel" && PrevLevel_ == "SaloonLevel")
 	{
-		SetPosition({ 1185.f, 3480.f });
+		SetPosition({ 2180.f, 3480.f });
 	}
 
 	// 집 -> 주점

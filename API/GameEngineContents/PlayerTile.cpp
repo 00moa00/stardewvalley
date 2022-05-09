@@ -83,6 +83,83 @@ void Player::CreateDirtTile()
 	//delete Tile;
 }
 
+void Player::CreateChargeDirtTile()
+{
+	for (int i = 0; i < 3; ++i)
+	{
+		float4 Pos = PlayerCollCheckPos();
+
+
+		if (MoveDir_.CompareInt2D(float4::UP))
+		{
+			Pos.x += 0;
+			Pos.y -= 48.f * i;
+		}
+
+		else if (MoveDir_.CompareInt2D(float4::DOWN))
+		{
+			Pos.x += 0;
+			Pos.y += 48.f * i;
+		}
+
+		else if (MoveDir_.CompareInt2D(float4::RIGHT))
+		{
+			Pos.x += 48.f * i;
+			Pos.y += 0;
+		}
+
+		else if (MoveDir_.CompareInt2D(float4::LEFT))
+		{
+			Pos.x -= 48.f * i;
+			Pos.y += 0;
+		}
+
+		TileIndex Index = DirtTileMap_->GetTileIndex({ Pos.x , Pos.y });
+		int ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+
+		std::map<int, FarmTile*>::iterator FindIter = DirtList_.find(ChangeIndex);
+		std::map<int, FarmTile*>::iterator EndIter = DirtList_.end();
+
+		std::map<int, Items*>::iterator ObjectFindIter = MapObject_.find(ChangeIndex);
+		std::map<int, Items*>::iterator ObjectEndIter = MapObject_.end();
+
+
+		// 해당 땅이 이미 파져있다면 새로운 타일맵을 생성하지 않음
+
+		if (FindIter != EndIter || ObjectFindIter != ObjectEndIter)
+		{
+			return;
+		}
+
+		else
+		{
+			FarmTile* Tile = DirtTileMap_->CreateTile<FarmTile>(static_cast<int>(Pos.x / CHIP_SIZE), static_cast<int>(Pos.y / CHIP_SIZE)
+				, "hoeDirt.bmp", static_cast<int>(TILE_DIRT::BASIC), (int)PLAYLEVEL::DIRT);
+
+			Tile->TileState_ = TILE_STATE::HOE_DIRT_CREATE;
+			GameEngineSound::SoundPlayOneShot("hoeHit.wav");
+
+			//Index = TileMap_->GetTileIndex({ Pos.x , Pos.y });
+			//ChangeIndex = Index.X + (Index.Y * FARM_CHIP_NUM_Y);
+			DirtList_.insert(std::make_pair(ChangeIndex, Tile));
+
+			DirtAnimation* DirtAnimation_ = GetLevel()->CreateActor<DirtAnimation>(static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT));
+			DirtAnimation_->SetPosition({ Pos.x /*+ MarginX*/, Pos.y });
+
+			if (GetCurrentLevel() == "MyHouseLevel")
+			{
+				DirtAnimation_->GetRenderer()->CameraEffectOff();
+			}
+
+			else
+			{
+				DirtAnimation_->GetRenderer()->CameraEffectOn();
+
+			}
+		}
+	}
+}
+
 void Player::CreateWaterTile()
 {
 
@@ -713,7 +790,7 @@ void Player::GetItem()
 
 void Player::UseTotem()
 {
-	if (GetCurrentItem()->GetItemNameConstRef() == "FarmTotem" && MainMouse_->isMouseRightClick())
+	if (GetCurrentItem()->GetItemNameConstRef() == "FarmTotem" && MainMouse_->isMouseRightClick() && CurrentLevel_ != "MyFarmLevel")
 	{
 		GameEngineSound::SoundPlayOneShot("wand.wav");
 		GetCurrentItem()->SubItemCount();
@@ -723,7 +800,7 @@ void Player::UseTotem()
 		FadeInOut_->SetFadeOut();
 	}
 	
-	if (GetCurrentItem()->GetItemNameConstRef() == "BackForestTotem" && MainMouse_->isMouseRightClick())
+	if (GetCurrentItem()->GetItemNameConstRef() == "BackForestTotem" && MainMouse_->isMouseRightClick() && CurrentLevel_ != "BackForestLevel")
 	{
 		GameEngineSound::SoundPlayOneShot("wand.wav");
 
