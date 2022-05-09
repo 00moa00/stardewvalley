@@ -635,6 +635,13 @@ void Player::CheckTool()
 
 	if (CurrentItemType() == TOOLTYPE::HOE)
 	{
+		if (GetDirString() == "BACK_")
+		{
+			ToolRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+			PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::BOTTOM_EFFECT) });
+
+		}
+
 		PlayerState_ = PLAYER_UPDATE::HOECHECK;
 	}
 
