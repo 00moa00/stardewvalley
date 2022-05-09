@@ -108,7 +108,7 @@ Player::Player()
 
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "HANDITEM";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "HANDITEMWALK";
-	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "FAINT";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "INIT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::EAT_WAIT)] = "EAT_WAIT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::EAT)] = "EAT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::DRINK)] = "DRINK";

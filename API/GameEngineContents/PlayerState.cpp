@@ -732,22 +732,27 @@ void Player::AddMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-
-		if(static_cast<unsigned int>(Money_ - PrevMoney_) > 100)
+		if (static_cast<unsigned int>(Money_ - PrevMoney_) > 40)
 		{
-			PrevMoney_ += 7;
+			PrevMoney_ += static_cast<unsigned int>(Money_ - PrevMoney_) /3;
+
+		}
+
+		else if(static_cast<unsigned int>(Money_ - PrevMoney_) > 100)
+		{
+			PrevMoney_ += 11;
 
 		}
 
 		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 150)
 		{
-			PrevMoney_ += 14;
+			PrevMoney_ += 17;
 
 		}
 
 		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 250)
 		{
-			PrevMoney_ += 28;
+			PrevMoney_ += 32;
 
 		}
 
@@ -792,20 +797,26 @@ void Player::SubMoneyAnimation()
 		break;
 	case MONEY_UPDATE::ADD_TIME:
 
-		if (static_cast<unsigned int>(Money_ - PrevMoney_) > 100)
+		if (static_cast<unsigned int>(Money_ - PrevMoney_) > 40)
 		{
 			PrevMoney_ -= 7;
 
 		}
+
+		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 100)
+		{
+			PrevMoney_ -= 11;
+
+		}
 		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 150)
 		{
-			PrevMoney_ -= 14;
+			PrevMoney_ -= 17;
 
 		}
 
 		else if (static_cast<unsigned int>(Money_ - PrevMoney_) > 250)
 		{
-			PrevMoney_ -= 28;
+			PrevMoney_ -= 32;
 
 		}
 
