@@ -38,25 +38,15 @@ void Penny::Start()
 
 	NpcRenderer_->ChangeAnimation("FRONT_INIT");
 	SetScale({ 50,100 });
-	MoveDir_ = float4::DOWN;
-	NpcUpdateState_ = NPC_STATE::WALK;
 
-	LoadPennyMoveFlag();
+
+	//LoadPennyMoveFlag();
 }
 
 void Penny::Update()
 {
 	MoveUpdate();
 	NPCDayOver();
-
-	if (NpcUpdateState_ == NPC_STATE::WAIT)
-	{
-		if (MainUI::MainMainUI->GetHour() > 13 && WaitCount_ == 1)
-		{
-			MoveDir_ = float4::UP;
-			NpcUpdateState_ = NPC_STATE::WALK;
-		}
-	}
 }
 
 void Penny::LevelChangeStart(GameEngineLevel* _PrevLevel)
