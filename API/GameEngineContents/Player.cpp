@@ -55,6 +55,7 @@ Player::Player()
 	PlayerShirtsRenderer_(nullptr),
 	PlayerHairRenderer_(nullptr),
 	PlayerHandRenderer_(nullptr),
+	PixelCollImage_(nullptr),
 
 	ToolRenderer_(nullptr),
 	PlayerCollider_(nullptr),
@@ -175,7 +176,9 @@ void Player::Start()
 	//------< 액터 등록 >------------------------------------------------------------------
 	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::HAND_ITEM);
 	MainMouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-
+	PixelCollImage_ = CreateRenderer("FarmBack_Coll.bmp");
+	PixelCollImage_->SetAlpha(100);
+	PixelCollImage_->Off();
 	//------< 초기화 >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	PlayerCollider_ = CreateCollision("Player", { 40, 47 });
@@ -440,11 +443,9 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_HOEFREE", static_cast<int>(PLAYER::HOE_BACK_FREE0), static_cast<int>(PLAYER::HOE_BACK_FREE1), AnimationFrame_, false);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_HOEFREE", static_cast<int>(PLAYER::HOE_LEFT_FREE0), static_cast<int>(PLAYER::HOE_LEFT_FREE2), AnimationFrame_, false);
 
-
-
-
-
-
+		//================================
+		//     플레이어 물뿌리개 체크
+		//================================
 
 		//================================
 		//     플레이어 물뿌리개 사용
@@ -473,7 +474,14 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "RIGHT_WATER", static_cast<int>(PLAYER::WATER_RIGHT0), static_cast<int>(PLAYER::WATER_RIGHT2), 0.200f, true);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "LEFT_WATER", static_cast<int>(PLAYER::WATER_LEFT0), static_cast<int>(PLAYER::WATER_LEFT2), 0.200f, true);
 		PlayerHandRenderer_->CreateAnimation(CustomData::GetInst()->GetHandFileName(), "BACK_WATER", static_cast<int>(PLAYER::WATER_BACK0), static_cast<int>(PLAYER::WATER_BACK2), 0.200f, true);
+		
+		//================================
+		//     플레이어 물뿌리개 차지
+		//================================
 
+		//================================
+		//     플레이어 물뿌리개 프리
+		//================================
 
 		//================================
 		//     플레이어 칼 사용
@@ -909,10 +917,22 @@ void Player::Update()
 	}
 
 
-	//if (true == GameEngineInput::GetInst()->IsDown("DebugRendereChange"))
-	//{
-	//	GetLevel()->IsDebugModeSwitch();
-	//}
+	if (true == GameEngineInput::GetInst()->IsDown("DebugRendereChange"))
+	{
+		GetLevel()->IsDebugModeSwitch();
+	}
+
+	if (true == GameEngineInput::GetInst()->IsDown("CollOff"))
+	{
+		PixelCollImage_->Off();
+	}
+
+
+	if (true == GameEngineInput::GetInst()->IsDown("CollOn"))
+	{
+		PixelCollImage_->On();
+	}
+
 
 }
 
@@ -948,7 +968,7 @@ void Player::PlayerUpdate()
 		}
 
 		//인벤토리 밖 && 농사 가능한 지역이라면 툴 사용 
-		if (MainMouse_->MouseClickInventoryOut())
+		if (MainMouse_->MouseClickInventoryOut() && CurrentLevel_ != "MyHouseLevel")
 		{
 			CheckTool();//툴에 맞게 스테이트 이동
 		}
@@ -1243,7 +1263,8 @@ void Player::PlayerUpdate()
 		break;
 
 	case PLAYER_UPDATE::EAT:
-	
+		PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::PLAYER) });
+
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
 			GetCurrentItem()->SubItemCount();
@@ -1257,6 +1278,7 @@ void Player::PlayerUpdate()
 
 		break;
 	case PLAYER_UPDATE::DRINK:
+		PlayerHandRenderer_->SetOrder({ static_cast<int>(PLAYLEVEL::PLAYER) });
 
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
@@ -1382,8 +1404,9 @@ void Player::LevelInit()
 
 		if (BackGroundBGMOn_ == false)
 		{
-			BackGroundBgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3");
+			BackGroundBgmPlayer = GameEngineSound::SoundPlayControl("05 - Spring (It's A Big World Outside).mp3", -1);
 			BackGroundBgmPlayer.Volume(0.7f);
+			
 			BackGroundBGMOn_ = true;
 		}
 	}

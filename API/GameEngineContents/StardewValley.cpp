@@ -69,6 +69,9 @@ void StardewValley::GameInit()
 		GameEngineInput::GetInst()->CreateKey("KeyUp", VK_UP);
 		GameEngineInput::GetInst()->CreateKey("KeyDown", VK_DOWN);
 
+		GameEngineInput::GetInst()->CreateKey("CollOff", 'O');
+		GameEngineInput::GetInst()->CreateKey("CollOn", 'P');
+
 	}
 
 	//----------------------------------------------------------------------------------------------

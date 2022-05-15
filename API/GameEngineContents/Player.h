@@ -171,6 +171,7 @@ private:
 	GameEngineRenderer* PlayerHairRenderer_;
 	GameEngineRenderer* PlayerHandRenderer_;
 
+	GameEngineRenderer* PixelCollImage_;
 
 	GameEngineRenderer* ToolRenderer_;
 	GameEngineCollision* PlayerCollider_;

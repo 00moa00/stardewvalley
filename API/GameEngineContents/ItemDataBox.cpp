@@ -62,7 +62,7 @@ void ItemDataBox::SetData(std::string _Name, std::string _Data , float4 _Pos)
 		DataFont_->ChangeFont(_Data, { 0 , 0 });
 		this->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 130.f, _Pos.y + 180.f });
 		NameFont_->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 20.f , _Pos.y + 60.f });
-		DataFont_->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 20.f , _Pos.y + 175.f });
+		DataFont_->SetPosition({ Inventory::MainInventory->GetMouse()->GetPosition().x + 20.f , _Pos.y + 185.f });
 	}
 
 }

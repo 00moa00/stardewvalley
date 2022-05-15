@@ -1,6 +1,7 @@
 #include "Items.h"
 #include "GameData.h"
 #include "Player.h"
+#include "Bean_Crops.h"
 
 //Font* Items::Font_ = nullptr;
 

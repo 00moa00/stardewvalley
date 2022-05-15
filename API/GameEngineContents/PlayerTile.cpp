@@ -399,7 +399,7 @@ void Player::CreateCrushStoneEffect(STONETYPE _CheckType)
 
 void Player::CreateSeed()
 {
-	if (GetCurrentItem()->GetObjectType() == OBJECTTYPE::SEED)
+	if (GetCurrentItem()->GetObjectType() == OBJECTTYPE::SEED && CurrentLevel_!= "MyHouseLevel")
 	{
 		float4 Pos = PlayerCollCheckPos();
 

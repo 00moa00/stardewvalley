@@ -62,8 +62,9 @@ void Font::ChangeNumStr(std::string _Num)
 	int Count_ = 0;
 
 	StrNum_ = _Num;
+	int Size = StrNum_.size();
 
-	for (Count_ = 0; Count_ < StrNum_.size(); ++Count_)
+	for (Count_ = 0; Count_ < Size; ++Count_)
 	{
 		//숫자의 앞에서부터 접근
 		char String = StrNum_.at(Count_);
@@ -104,8 +105,9 @@ void Font::ChangeNumRightSort(int _Num)
 	std::stringstream IntToString;
 	IntToString << Num_;
 	StrNum_ = IntToString.str();
+	int Size = StrNum_.size();
 
-	for (Count_ = 0; Count_ < StrNum_.size(); ++Count_)
+	for (Count_ = 0; Count_ < Size; ++Count_)
 	{
 		//숫자의 앞에서부터 접근
 		char String = StrNum_.at(Count_);
@@ -125,8 +127,6 @@ void Font::ChangeNumRightSort(int _Num)
 		NumberRenderer.at(Count_)->SetIndex(10);
 	}
 }
-
-
 
 void Font::ChangeNumItemLeftSort(int _Num, float4 _Pos)
 {
@@ -151,7 +151,9 @@ void Font::ChangeNumItemLeftSort(int _Num, float4 _Pos)
 	IntToString << Num_;
 	StrNum_ = IntToString.str();
 
-	for (Count_ = 0; Count_ < StrNum_.size(); ++Count_)
+	int Size = StrNum_.size();
+
+	for (Count_ = 0; Count_ < Size; ++Count_)
 	{
 		//숫자의 앞에서부터 접근
 		char String = StrNum_.at(Count_);
@@ -204,8 +206,9 @@ void Font::ChangeNumMoneyLeftSort(int _Num, float4 _Pos)
 	std::stringstream IntToString;
 	IntToString << Num_;
 	StrNum_ = IntToString.str();
+	int Size = StrNum_.size();
 
-	for (Count_ = 0; Count_ < StrNum_.size(); ++Count_)
+	for (Count_ = 0; Count_ < Size; ++Count_)
 	{
 		//숫자의 앞에서부터 접근
 		char String = StrNum_.at(Count_);
@@ -282,10 +285,6 @@ void Font::ChangeNumLeftSort(int _Num , float4 _Pos)
 	}
 }
 
-
-
-
-
 void Font::SetPositionRightSort(float4 _Pos)
 {
 	std::vector<GameEngineRenderer*>::iterator Iter = NumberRenderer.begin();
@@ -357,7 +356,9 @@ void Font::ChangeFont(std::string _Font, float4 _Pos)
 	char Font_[300];
 	strcpy_s(Font_, _Font.c_str());
 
-	for (Count_ = 0; Count_ < _Font.size(); ++Count_)
+	int Size = _Font.size();
+
+	for (Count_ = 0; Count_ < Size; ++Count_)
 	{
 		switch (Font_[Count_])
 		{
@@ -599,10 +600,7 @@ void Font::ChangeFont(std::string _Font, float4 _Pos)
 			MarginX += 17.f;
 		}
 
-
 	}
-
-
 
 	//그 외는공백으로 함
 	for (; Count_ < 300; ++Count_)

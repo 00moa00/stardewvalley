@@ -29,6 +29,7 @@ private:
 	std::vector<GameEngineRenderer*> FontRenderer;
 
 	int Num_;
+	float FontTimer_;
 	std::string StrNum_;
 
 public:
