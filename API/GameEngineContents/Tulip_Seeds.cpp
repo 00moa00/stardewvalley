@@ -40,7 +40,7 @@ void Tulip_Seeds::Start()
 	if (MainItemDataBox == nullptr)
 	{
 		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
-		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
+	//	MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
 	}
 
 
@@ -113,6 +113,12 @@ void Tulip_Seeds::SubItemCount()
 		--ItemCount_;
 		Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 	}
+}
+
+void Tulip_Seeds::SetItemCount(int _Count)
+{
+	ItemCount_ = _Count;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
 }
 
 void Tulip_Seeds::UpdateOff()

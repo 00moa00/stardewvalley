@@ -279,6 +279,20 @@ void MainUI::ExtraDayAndAddDay()
 	}
 }
 
+void MainUI::SetDayOff()
+{
+	AddDay();
+	++Day_;
+	DayFont_->ChangeNumRightSort(Day_);
+	HourTime_ = 5;
+	MinuteTime_ = 50;
+
+
+	isExtraDay_ = false;
+	Player::MainPlayer->ClearWetDirtTile();
+	Player::MainPlayer->SetPlayerFaint();
+}
+
 void MainUI::SetMainUIMoney(int _Money)
 {
 	MoneyFont_->ChangeNumMoneyLeftSort(_Money, { 1230.f, 192.f });

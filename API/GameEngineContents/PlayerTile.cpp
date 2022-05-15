@@ -426,7 +426,6 @@ void Player::CreateSeed()
 
 			GameEngineSound::SoundPlayOneShot("sandstep2.wav");
 
-			GetCurrentItem()->SubItemCount();
 
 			Crops* seed = GetCurrentItem()->CreateCrops();
 
@@ -444,6 +443,7 @@ void Player::CreateSeed()
 
 			SeedList_.insert(std::make_pair(ChangeIndex, seed));
 
+			GetCurrentItem()->SubItemCount();
 		}
 
 	}

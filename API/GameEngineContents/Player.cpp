@@ -9,6 +9,7 @@
 #include "PlayerSpriteData.h"
 #include "TileData.h"
 #include "CustomData.h"
+#include "MainUI.h"
 
 std::string Player::CurrentLevel_ = "TitleLevel";
 std::string Player::PrevLevel_ = "";
@@ -176,8 +177,8 @@ void Player::Start()
 	//------< 액터 등록 >------------------------------------------------------------------
 	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::HAND_ITEM);
 	MainMouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-	PixelCollImage_ = CreateRenderer("FarmBack_Coll.bmp");
-	PixelCollImage_->SetAlpha(100);
+	PixelCollImage_ = CreateRenderer("Town_Coll.bmp");
+	PixelCollImage_->CameraEffectOff();
 	PixelCollImage_->Off();
 	//------< 초기화 >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
@@ -933,6 +934,12 @@ void Player::Update()
 		PixelCollImage_->On();
 	}
 
+	if (true == GameEngineInput::GetInst()->IsDown("DayOff"))
+	{
+		MainUI::MainMainUI->SetDayOff();
+	}
+
+
 
 }
 
@@ -1161,6 +1168,12 @@ void Player::PlayerUpdate()
 		CheckDrink();
 		CheckEat();
 
+		WoodStepBGMPlayer.Volume(0.0f);
+		SandStepBGMPlayer.Volume(0.0f);
+		WeedStepBGMPlayer.Volume(0.0f);
+		StoneStepBGMPlayer.Volume(0.0f);
+
+
 		if (MainMouse_->MouseClickInventoryOut())
 		{
 			CreateSeed();
@@ -1220,7 +1233,7 @@ void Player::PlayerUpdate()
 
 		if (isStop())
 		{
-			PlayerState_ = PLAYER_UPDATE::INIT;
+			PlayerState_ = PLAYER_UPDATE::HANDITEM;
 		}
 
 		break;

@@ -72,6 +72,8 @@ void StardewValley::GameInit()
 		GameEngineInput::GetInst()->CreateKey("CollOff", 'O');
 		GameEngineInput::GetInst()->CreateKey("CollOn", 'P');
 
+		GameEngineInput::GetInst()->CreateKey("DayOff", 'K');
+
 	}
 
 	//----------------------------------------------------------------------------------------------

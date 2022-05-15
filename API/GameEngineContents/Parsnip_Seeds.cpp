@@ -41,7 +41,7 @@ void Parsnip_Seeds::Start()
 	if (MainItemDataBox == nullptr)
 	{
 		MainItemDataBox = GetLevel()->CreateActor<ItemDataBox>(static_cast<int>(PLAYLEVEL::DIALOGUEBOX));
-		MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
+		//MainItemDataBox->SetData(ItemName_, " ", this->GetPosition());
 	}
 
 

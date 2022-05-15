@@ -3,6 +3,10 @@
 #include "Potato_Seeds.h"
 #include "CoinAnimation.h"
 
+#include "Cauliflower_Seeds.h"
+#include "Bean_Seeds.h"
+#include "Tulip_Seeds.h"
+
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <sstream>

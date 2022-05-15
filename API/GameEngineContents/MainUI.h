@@ -128,6 +128,7 @@ private:
 
 
 public:
+	void SetDayOff();
 
 	void SetMainUIMoney(int _Money);
 

@@ -119,6 +119,12 @@ void Jazz_Seeds::SubItemCount()
 	}
 }
 
+void Jazz_Seeds::SetItemCount(int _Count)
+{
+	ItemCount_ = _Count;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+}
+
 void Jazz_Seeds::UpdateOff()
 {
 	this->Off();
