@@ -20,6 +20,8 @@ TownLevel::TownLevel()
 	SetName("TownLevel");
 	BackGround_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND);
 	BackGroundFront_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
+	CollIamge_ = CreateActor<BackGround>((int)PLAYLEVEL::BACKGROUND_FRONT);
+
 }
 
 TownLevel::~TownLevel()
@@ -69,7 +71,10 @@ void TownLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	BackGround_->GetRenderer()->SetImage("Town_Back.bmp");
 	BackGround_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });
-
+	
+	CollIamge_->GetRenderer()->SetImage("Town_Coll.bmp");
+	CollIamge_->GetRenderer()->SetPivot({ TOWN_SIZE_WEIGHT / 2, TOWN_SIZE_HEIGHT / 2 });
+	CollIamge_->Off();
 	//BackGround_->DirtTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 	//BackGround_->WetTileMap_.TileRangeSetting(TOWN_CHIP_NUM_X, TOWN_CHIP_NUM_Y, { CHIP_SIZE, CHIP_SIZE });
 
@@ -234,6 +239,16 @@ void TownLevel::Update()
 	//	//	BgmPlayer.Stop();
 	//}
 
+	if (true == GameEngineInput::GetInst()->IsDown("CollOff"))
+	{
+		CollIamge_->Off();
+	}
+
+
+	if (true == GameEngineInput::GetInst()->IsDown("CollOn"))
+	{
+		CollIamge_->On();
+	}
 
 
 }

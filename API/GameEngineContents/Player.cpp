@@ -110,7 +110,7 @@ Player::Player()
 
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEM)] = "HANDITEM";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::HANDITEMWALK)] = "HANDITEMWALK";
-	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "INIT";
+	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::FAINT)] = "FAINT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::EAT_WAIT)] = "EAT_WAIT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::EAT)] = "EAT";
 	ArrAnimationName[static_cast<int>(PLAYER_UPDATE::DRINK)] = "DRINK";
@@ -177,9 +177,7 @@ void Player::Start()
 	//------< 액터 등록 >------------------------------------------------------------------
 	PlayerHandItem_ = GetLevel()->CreateActor<PlayerHandItem>((int)PLAYLEVEL::HAND_ITEM);
 	MainMouse_ = GetLevel()->CreateActor<Mouse>((int)PLAYLEVEL::MOUSE);
-	PixelCollImage_ = CreateRenderer("Town_Coll.bmp");
-	PixelCollImage_->CameraEffectOff();
-	PixelCollImage_->Off();
+
 	//------< 초기화 >------------------------------------------------------------------
 	MapColImage_ = GameEngineImageManager::GetInst()->Find("PlayerHouse_Coll.bmp");
 	PlayerCollider_ = CreateCollision("Player", { 40, 47 });
@@ -746,10 +744,15 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	StoneStepBGMPlayer.Volume(0.f);
 	StoneStepBGMPlayer.PlaySpeed(1.1f);
 
+
+
+
+
+	LevelInit();
+	
 	DirtTileMap_ = DirtTileMap_;
 	WetTileMap_ = WetTileMap_;
 
-	LevelInit();
 }
 
 
@@ -772,6 +775,8 @@ void Player::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	SandStepBGMPlayer.Volume(0.f);
 	WeedStepBGMPlayer.Volume(0.f);
 	StoneStepBGMPlayer.Volume(0.f);
+
+
 }
 
 
@@ -923,20 +928,12 @@ void Player::Update()
 		GetLevel()->IsDebugModeSwitch();
 	}
 
-	if (true == GameEngineInput::GetInst()->IsDown("CollOff"))
-	{
-		PixelCollImage_->Off();
-	}
-
-
-	if (true == GameEngineInput::GetInst()->IsDown("CollOn"))
-	{
-		PixelCollImage_->On();
-	}
 
 	if (true == GameEngineInput::GetInst()->IsDown("DayOff"))
 	{
+		MainUI::MainMainUI->SetSleep(true);
 		MainUI::MainMainUI->SetDayOff();
+
 	}
 
 
@@ -1280,11 +1277,11 @@ void Player::PlayerUpdate()
 
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
-			GetCurrentItem()->SubItemCount();
 
 			AddEnergy(GetCurrentItem()->GetAddEnergy());
 			AddHP(GetCurrentItem()->GetAddHP());
 			invincibility_ = false;
+			GetCurrentItem()->SubItemCount();
 
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}
@@ -1295,7 +1292,6 @@ void Player::PlayerUpdate()
 
 		if (PlayerBodyRenderer_->IsEndAnimation())
 		{
-			GetCurrentItem()->SubItemCount();
 
 			AddEnergy(GetCurrentItem()->GetAddEnergy());
 			AddHP(GetCurrentItem()->GetAddHP());
@@ -1305,6 +1301,7 @@ void Player::PlayerUpdate()
 			Speed_ += DelaySpeed_;
 			DelaySpeedTimer_ = GetCurrentItem()->GetChangeSpeedTime();
 			invincibility_ = false;
+			GetCurrentItem()->SubItemCount();
 
 			PlayerState_ = PLAYER_UPDATE::INIT;
 		}

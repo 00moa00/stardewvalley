@@ -28,8 +28,8 @@ MainUI::MainUI()
 	ExtraHourTime_(0),
 	SecondTimeInt_(0),
 
-
 	isExtraDay_(false),
+	Sleep_(false),
 
 	AmPm_(AM_PM::AM),
 
@@ -287,9 +287,8 @@ void MainUI::SetDayOff()
 	HourTime_ = 5;
 	MinuteTime_ = 50;
 
-
 	isExtraDay_ = false;
-	Player::MainPlayer->ClearWetDirtTile();
+
 	Player::MainPlayer->SetPlayerFaint();
 }
 
@@ -303,3 +302,4 @@ void MainUI::SetDayFadeReset()
 	DayFadeAlpha_ = 0;
 	DayFade_->SetAlpha(0);
 }
+

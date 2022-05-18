@@ -45,8 +45,10 @@ void Crops::GrowingCropsTime()
 	{
 	case CROPS_UPDATE::WAIT:
 
-		if (MainUI::MainMainUI->DayEnd() && isDeath_ == false)
+		if ((MainUI::MainMainUI->DayEnd() && isDeath_ == false) 
+			|| MainUI::MainMainUI->PlayerSleep() == true)
 		{
+
 			CropsUpdateState_ = CROPS_UPDATE::DAY_END_WETDIRT_CHECK;
 			break;
 		}
@@ -69,8 +71,11 @@ void Crops::GrowingCropsTime()
 
 	case CROPS_UPDATE::DAY_OVER_WAIT:
 
-		if (MainUI::MainMainUI->DayOver())
+		if (MainUI::MainMainUI->DayOver() 
+			|| MainUI::MainMainUI->PlayerSleep() == true)
 		{
+			MainUI::MainMainUI->SetSleep(false);
+
 			CropsUpdateState_ = CROPS_UPDATE::ADD_GROWING_DAY;
 			break;
 		}
@@ -81,12 +86,13 @@ void Crops::GrowingCropsTime()
 
 
 		GrowingDay_ = (MainUI::MainMainUI->GetDay()) - StartDay_;
+
 		CropsUpdateState_ = CROPS_UPDATE::GROWING_CROPS;
 
 		break;
 
 	case CROPS_UPDATE::GROWING_CROPS:
-
+		Player::MainPlayer->ClearWetDirtTile();
 
 		CropsUpdateState_ = CROPS_UPDATE::WAIT;
 
@@ -121,13 +127,13 @@ void Crops::DeathCropsCheck()
 		++DirtDay_;
 	}
 
-	if (DirtDay_ == 2)
+	if (DirtDay_ == 1)
 	{
 		isDeath_ = true;
 		if (GrowingDay_ < 2 )
 		{
 			this->Death();
-		Player::MainPlayer->DeleteSeedList(TileFindIndex_);
+			Player::MainPlayer->DeleteSeedList(TileFindIndex_);
 		}
 
 	}

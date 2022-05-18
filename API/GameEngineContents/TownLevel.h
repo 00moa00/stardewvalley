@@ -43,6 +43,7 @@ private:
 
 	BackGround* BackGround_;
 	BackGround* BackGroundFront_;
+	BackGround* CollIamge_;
 
 	FlowingFlower* FlowingFlower_;
 

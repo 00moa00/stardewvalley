@@ -111,6 +111,9 @@ void DayOffLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 
 	BgmPlayer = GameEngineSound::SoundPlayControl("spring_night.wav");
 
+	MainUI::MainMainUI->SetSleep(false);
+
+
 }
 
 void DayOffLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -129,6 +132,16 @@ void DayOffLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	Player::MainPlayer->AddMoney(DayOffTotal_);
 	MainUI::MainMainUI->SetMainUIMoney(Player::MainPlayer->GetMoney());
 	Player::MainPlayer->DayOffReset();
+
+	DayOffFarmingFont_->ChangeNumMoneyLeftSort(0, { 0 ,0 });
+	DayOffFForagingFont_->ChangeNumMoneyLeftSort(0, { 0 ,0 });
+	DayOffFishingFont_->ChangeNumMoneyLeftSort(0, { 0 ,0 });
+	DayOffMiningFont_->ChangeNumMoneyLeftSort(0, { 0 ,0 });
+	DayOffOtherFont_->ChangeNumMoneyLeftSort(0, { 0 ,0 });
+	DayOffTotalFont_->ChangeNumMoneyLeftSort(0, { 0 ,0 });
+
+
+
 
 	BgmPlayer.Stop();
 	

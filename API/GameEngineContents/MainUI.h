@@ -77,6 +77,7 @@ private:
 	float SecondTime_;
 
 	bool isExtraDay_;
+	bool Sleep_;
 
 	AM_PM AmPm_;
 
@@ -134,6 +135,13 @@ public:
 
 	void SetDayFadeReset();
 
+
+
+	void SetSleep(bool _Flag)
+	{
+		Sleep_ = _Flag;
+	}
+
 	int GetDay()
 	{
 		return Day_;
@@ -168,6 +176,11 @@ public:
 		{
 			return false;
 		}
+	}
+
+	bool PlayerSleep()
+	{
+		return Sleep_;
 	}
 
 	

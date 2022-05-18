@@ -6,6 +6,8 @@
 #include "Cauliflower_Seeds.h"
 #include "Bean_Seeds.h"
 #include "Tulip_Seeds.h"
+#include "DropStone.h"
+#include "Copper.h"
 
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -77,12 +79,11 @@ void Inventory::Start()
 	NewItem<Watering_Can>();
 	NewItem<Axe>();
 	NewItem<Pickaxe>();
-	//NewItem<WildHorseradish>();
-	//NewItem<Potato_Seeds>(3);
 	NewItem<Swoard>();
 
 	NewItem<FarmTotem>(3);
-	NewItem<MineTotem>(3);
+	NewItem<MineTotem>(2);
+
 
 
 	float4 Position;

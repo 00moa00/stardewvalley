@@ -84,6 +84,7 @@ void MyFarmLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	BackGround_->GetRenderer()->SetPivot({ FARM_SIZE_WEIGHT / 2, FARM_SIZE_HEIGHT / 2 });
 
 
+
 	BackGround_->GetRenderer()->CameraEffectOn();
 
 	FlowingFlower_ = CreateActor<FlowingFlower>(static_cast<int>(PLAYLEVEL::EFFECT));

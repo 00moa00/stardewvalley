@@ -94,6 +94,12 @@ void Copper::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 }
 
+void Copper::SetItemCount(int _Count)
+{
+	ItemCount_ = _Count;
+	Font_->ChangeNumItemLeftSort(ItemCount_, { GetPosition().x + 11.f ,GetPosition().y + 11.f });
+}
+
 void Copper::AddItemCount()
 {
 	++ItemCount_;

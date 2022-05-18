@@ -5,6 +5,7 @@
 class Parsnip_Crops : public Crops
 {
 public:
+
 	// constrcuter destructer
 	Parsnip_Crops();
 	~Parsnip_Crops();
@@ -20,6 +21,7 @@ protected:
 private:
 	void Start() override;
 	void Update() override;
+
 	void DropCropsInMap() override;
 	bool GetisDeath() override;
 
