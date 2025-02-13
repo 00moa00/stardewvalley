@@ -1,32 +1,21 @@
 # 프로젝트 소개
-Unreal 5.1 학습용으로 제작한 프로젝트입니다. GTFO의 시스템을 일부 모작하였습니다.
+StardewValley 모작 프로젝트입니다. 
 
 # 개발 인원
 1인
 
 # 개발 코멘트
-언리얼의 기본 시스템 이해를 우선으로 했던 프로젝트입니다. 언리얼의 인터페이스, 컨텐츠 프레임 워크, DataTable과 UI 등 기본적인 기능을 학습할 수 있었습니다.  
+일본 대학교 휴학을 하고 학원에서 만들었던 첫번 째 프로젝트입니다. 다양한 기능을 경험하고 싶어서 같은 컨텐츠 안에서도 다양하게 접근을 시도 했습니다. 농사, 전투, 인벤토리, 상점, NPC와의 상호작용 등 여러 컨텐츠를 구현하면서 컨텐츠 프로그래머의 첫번 째 발걸음이 될 수 있었지만 다양한 구조로 인해 코드의 통일성을 지킬 수 없었습니다.
+
+원작과 동일하게 구현하기 위해서 200시간이 넘는 플레이를 했습니다.
 
 # 기술 디테일
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C7.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C8.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C9.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C10.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C11.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C12.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C13.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C14.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C15.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C16.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C17.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C18.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C19.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C20.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C21.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C22.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C23.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C24.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C25.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C26.PNG?raw=true)
-![4](https://github.com/00moa00/startunreal/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C27.PNG?raw=true)
-
+![4](https://github.com/00moa00/stardewvalley/blob/main/PDF/image5.png?raw=true)
+![4](https://github.com/00moa00/stardewvalley/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C68.PNG?raw=true)
+![4](https://github.com/00moa00/stardewvalley/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C69.PNG?raw=true)
+![4](https://github.com/00moa00/stardewvalley/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C70.PNG?raw=true)
+![4](https://github.com/00moa00/stardewvalley/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C71.PNG?raw=true)
+![4](https://github.com/00moa00/stardewvalley/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C72.PNG?raw=true)
+![4](https://github.com/00moa00/stardewvalley/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C73.PNG?raw=true)
+![4](https://github.com/00moa00/stardewvalley/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C74.PNG?raw=true)
+![4](https://github.com/00moa00/stardewvalley/blob/main/PDF/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C75.PNG?raw=true)
